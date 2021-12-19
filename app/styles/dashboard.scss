@@ -1,0 +1,100 @@
+// LAYOUT
+
+.dashboard-header-user-popover {
+  width: 100px;
+}
+
+.dashboard-header-logout {
+  margin-bottom: 0;
+  transition: all 0.3s ease;
+  &:hover {
+    color: #1890ff;
+    cursor: pointer;
+  }
+}
+
+#dashboard.main-dashboard-layout {
+  max-height: 100vh;
+  overflow: hidden;
+  main {
+    overflow: auto;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: inherit;
+    font-weight: inherit;
+  }
+
+  h4,
+  h5,
+  h6,
+  p,
+  span {
+    font-family: inherit;
+    font-weight: inherit;
+  }
+
+  a {
+    font-family: inherit;
+    font-weight: inherit;
+  }
+
+  .d-none {
+    display: none;
+  }
+
+  .dashboard-avg-price {
+    padding: 0 !important;
+  }
+
+  .dashboard-form-dynamic-remove {
+    position: relative;
+    top: 5px;
+    margin: 0 8px !important;
+    color: #999;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s;
+    &:hover {
+      color: #ff4d4f;
+    }
+  }
+
+  .ant-layout-sider {
+    .ant-layout-sider-children {
+      overflow: auto;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+}
+
+.dashboard-layout-header {
+  background: #ffffff;
+  z-index: 1;
+  margin-bottom: 30px;
+}
+
+.dashboard-header-ava {
+  text-align: center;
+  margin-right: 50px;
+}
+
+.dashboard-header-logo-container {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.3);
+  .dashboard-header-logo {
+    height: 30px;
+    position: relative;
+    width: 100%;
+  }
+}
+
+.dashboard-card-container {
+  width: 95%;
+  margin: 0 auto;
+}

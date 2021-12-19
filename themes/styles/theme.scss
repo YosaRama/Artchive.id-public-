@@ -1,0 +1,21 @@
+/* ===================== Custom Font ========================== */
+
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 400;
+  src: local("Montserrat"),
+    url(/fonts/Montserrat/Montserrat-Regular.ttf) format("truetype");
+}
+
+/* =================== Page =========================== */
+
+#about {
+  background-color: red;
+}
+
+/* =================== Responsive =========================== */
+
+@import "responsive-max-1365";
+@import "responsive-max-1024";
+@import "responsive-max-768";
+@import "responsive-max-500";
