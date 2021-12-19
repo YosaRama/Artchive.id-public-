@@ -10,8 +10,127 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// MODEL
 model User {
+  @@map("user")
   id    Int     @id @default(autoincrement())
   email String  @unique
-  name  String?
+  full_name  String
+  password String
+  role Role
+  artwork Artwork[]
+  collection Collection[]
+  cart Cart[]
+  order Order[]
+}
+
+model Artwork {
+  @@map("artwork")
+  id Int @id @default(autoincrement())
+  sku String @unique
+  artist User @relation(fields: [artist_id], references:[id])
+  artist_id Int
+  title String
+  year String
+  material String ?
+  description String @db.Text
+  genre Genre[]
+  media Media[]
+  type Type
+  height Int
+  length Int
+  price String
+  status ArtStatus
+  approve Boolean
+  collection Collection[]
+  cart Cart[]
+  order Order[]
+}
+
+model Genre {
+  @@map("genre")
+  id Int @id @default(autoincrement())
+  title String
+  artwork Artwork[]
+}
+
+model Media {
+  @@map("media")
+  id Int @id @default(autoincrement())
+  parent_id Int 
+  dimension Dimension @default(MAIN)
+  filename String @db.Text
+  mimetype String 
+  url String @db.Text
+  title String ? @db.Text
+  description String ? @db.Text
+  artwork Artwork[]
+}
+
+model Cart {
+  @@map("cart")
+  id Int @id @default(autoincrement())
+  user User @relation(fields:[user_id], references:[id])
+  user_id Int
+  artwork Artwork @relation(fields:[artwork_id], references:[id])
+  artwork_id Int
+  status CartStatus
+  order Order[]
+}
+
+model Order {
+  @@map("order")
+  id Int @id @default(autoincrement())
+  user User @relation(fields: [user_id], references:[id])
+  user_id Int
+  artwork Artwork @relation(fields: [artwork_id], references:[id])
+  artwork_id Int
+  shipping_address String @db.Text
+  cart Cart @relation(fields: [cart_id], references:[id])
+  cart_id Int
+  collection Collection[]
+}
+
+
+model Collection {
+  @@map("collection")
+  id Int @id @default(autoincrement())
+  collector User @relation(fields: [user_id], references:[id])
+  user_id Int 
+  artwork Artwork @relation(fields: [artwork_id], references:[id]) //TODO: Check one-to-one relation
+  artwork_id Int @unique //TODO : Check one-to-one relation
+  order Order @relation(fields: [order_id], references:[id])
+  order_id Int 
+}
+
+// ENUM
+enum Role {
+  ARTIST
+  GALLERY
+  ADMIN
+  COLLECTOR
+}
+
+enum Type {
+  UNIQUE
+  EDITION
+}
+
+enum ArtStatus {
+  SOLD
+  DRAFT
+  PUBLISH
+}
+
+enum Dimension {
+  MAIN
+  LARGE
+  MEDIUM
+  SMALL
+}
+
+enum CartStatus {
+  PAID
+  CANCEL
+  CART
 }
