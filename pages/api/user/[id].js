@@ -67,7 +67,7 @@ apiHandler.put(async (req, res) => {
 apiHandler.patch(async (req, res) => {
   const id = req.query.id;
   const { email, password } = req.body;
-  const hashedPassword = hashPassword(password);
+  const hashedPassword = await hashPassword(password);
   try {
     const userFound = await GET_USER_BY_EMAIL({ email });
     if (!userFound) {
@@ -76,7 +76,10 @@ apiHandler.patch(async (req, res) => {
         message: "User not found!",
       });
     }
-    const result = await UPDATE_USER_PASSWORD({ password: hashedPassword });
+    const result = await UPDATE_USER_PASSWORD({
+      password: hashedPassword,
+      id: +id,
+    });
     if (result) {
       res
         .status(200)
@@ -85,6 +88,7 @@ apiHandler.patch(async (req, res) => {
       res.status(200).json({ success: false, message: "Something Error!" });
     }
   } catch (error) {
+    console.log(error);
     res.status(200).json({
       success: false,
       message: "Failed patch data",
