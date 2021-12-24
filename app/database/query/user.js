@@ -1,14 +1,30 @@
 import { prisma } from "../connection";
 
-const Query = () => {};
-
 //***** OPTION QUERY ***** //
 
 //***** GET QUERY ***** //
 
-export const GET_USER = ({ page = 0, limit = 15 }) => {
-  const skip = +page * +limit;
-  return prisma.user.findMany({ skip: +skip, take: +limit });
+export const GET_USER = ({ page = 0, limit = 15, role, email, fullName }) => {
+  // Handle Pagination
+  const skip = limit != "all" ? +page * +limit : undefined;
+  return prisma.user.findMany({
+    // Handle pagination
+    skip: skip ? +skip : undefined, // Disable by undefined
+    take: limit != "all" ? +limit : undefined, // Disable by undefined
+    // Handle query condition
+    where: {
+      // Can disable by empty object
+      AND: {
+        role: role ? role : {},
+        email: email ? { contains: email } : {},
+        full_name: fullName ? { contains: fullName } : {},
+      },
+    },
+    // Handle order
+    orderBy: {
+      id: "desc",
+    },
+  });
 };
 
 export const GET_USER_BY_ID = ({ id }) => {

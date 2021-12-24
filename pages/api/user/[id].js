@@ -1,3 +1,4 @@
+// Query
 import {
   DELETE_USER,
   GET_USER_BY_EMAIL,
@@ -5,10 +6,12 @@ import {
   UPDATE_USER,
   UPDATE_USER_PASSWORD,
 } from "app/database/query/user";
+// Helper
 import { hashPassword } from "app/helpers/auth";
 import nextConnect from "next-connect";
 
 const apiHandler = nextConnect();
+const messageHead = "User";
 
 // GET SINGLE HANDLER
 apiHandler.get(async (req, res) => {
@@ -18,20 +21,20 @@ apiHandler.get(async (req, res) => {
     if (result) {
       res.status(200).json({
         success: true,
-        message: "Successfully get data",
+        message: `Successfully Get ${messageHead} - ${id}`,
         data: result,
       });
     } else {
       res.status(200).json({
         success: false,
-        message: "Failed get data from database",
+        message: `Failed Get ${messageHead} - ${id}`,
+        data: result,
       });
     }
   } catch (error) {
-    console.log(error);
     res.status(200).json({
       success: false,
-      message: "Failed get data",
+      message: error.message,
     });
   }
 });
@@ -41,24 +44,28 @@ apiHandler.put(async (req, res) => {
   const id = req.query.id;
   const { email, fullName } = req.body;
   try {
-    const result = await UPDATE_USER({ id, email, fullName });
+    const result = await UPDATE_USER({
+      id,
+      email,
+      fullName,
+    });
     if (result) {
       res.status(200).json({
         success: true,
-        message: "Successfully update data",
+        message: `Successfully update ${messageHead} - ${id}`,
         data: result,
       });
     } else {
       res.status(200).json({
         success: false,
-        message: "Failed update data from database",
+        message: `Failed update ${messageHead} - ${id}`,
+        data: result,
       });
     }
   } catch (error) {
-    console.log(error);
     res.status(200).json({
       success: false,
-      message: "Failed update data",
+      message: error.message,
     });
   }
 });
@@ -81,17 +88,20 @@ apiHandler.patch(async (req, res) => {
       id: +id,
     });
     if (result) {
-      res
-        .status(200)
-        .json({ success: true, message: "Success update password" });
+      res.status(200).json({
+        success: true,
+        message: `Success Update ${messageHead} - ${id} Password`,
+      });
     } else {
-      res.status(200).json({ success: false, message: "Something Error!" });
+      res.status(200).json({
+        success: false,
+        message: "Something Error!",
+      });
     }
   } catch (error) {
-    console.log(error);
     res.status(200).json({
       success: false,
-      message: "Failed patch data",
+      message: error.message,
     });
   }
 });
@@ -104,20 +114,20 @@ apiHandler.delete(async (req, res) => {
     if (result) {
       res.status(200).json({
         success: true,
-        message: "Successfully delete data",
+        message: `Successfully delete ${messageHead} - ${id}`,
         data: result,
       });
     } else {
       res.status(200).json({
         success: false,
-        message: "Failed delete data from database",
+        message: `Failed delete ${messageHead} - ${id}`,
+        data: result,
       });
     }
   } catch (error) {
-    console.log(error);
     res.status(200).json({
       success: false,
-      message: "Failed delete data",
+      message: error.message,
     });
   }
 });

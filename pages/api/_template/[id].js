@@ -1,11 +1,11 @@
-import {
-  DELETE_DATA,
-  GET_DATA_BY_ID,
-  UPDATE_DATA,
-} from "app/database/query/_template";
+// Query
+import { DELETE_DATA, GET_DATA_BY_ID, UPDATE_DATA } from "app/database/query/_template";
+
+// Helper
 import nextConnect from "next-connect";
 
 const apiHandler = nextConnect();
+const messageHead = "Template";
 
 // GET SINGLE HANDLER
 apiHandler.get(async (req, res) => {
@@ -15,20 +15,19 @@ apiHandler.get(async (req, res) => {
     if (result) {
       res.status(200).json({
         success: true,
-        message: "Successfully get data",
+        message: `Successfully get single ${messageHead} - ${id}`,
         data: result,
       });
     } else {
       res.status(200).json({
         success: false,
-        message: "Failed get data from database",
+        message: `Failed get single ${messageHead} - ${id}`,
       });
     }
   } catch (error) {
-    console.log(error);
     res.status(200).json({
       success: false,
-      message: "Failed get data",
+      message: error.message,
     });
   }
 });
@@ -41,20 +40,20 @@ apiHandler.put(async (req, res) => {
     if (result) {
       res.status(200).json({
         success: true,
-        message: "Successfully update data",
+        message: `Successfully update ${messageHead} - ${id}`,
         data: result,
       });
     } else {
       res.status(200).json({
         success: false,
-        message: "Failed update data from database",
+        message: `Failed update ${messageHead} - ${id}`,
+        data: result,
       });
     }
   } catch (error) {
-    console.log(error);
     res.status(200).json({
       success: false,
-      message: "Failed update data",
+      message: error.message,
     });
   }
 });
@@ -67,20 +66,20 @@ apiHandler.delete(async (req, res) => {
     if (result) {
       res.status(200).json({
         success: true,
-        message: "Successfully delete data",
+        message: `Successfully delete ${messageHead} - ${id}`,
         data: result,
       });
     } else {
       res.status(200).json({
         success: false,
-        message: "Failed delete data from database",
+        message: `Failed delete ${messageHead} - ${id}`,
+        data: result,
       });
     }
   } catch (error) {
-    console.log(error);
     res.status(200).json({
       success: false,
-      message: "Failed delete data",
+      message: error.message,
     });
   }
 });

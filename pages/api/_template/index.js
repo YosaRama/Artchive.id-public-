@@ -1,7 +1,11 @@
+// Query
 import { CREATE_DATA, GET_DATA } from "app/database/query/_template";
+
+// Helper
 import nextConnect from "next-connect";
 
 const apiHandler = nextConnect();
+const messageHead = "Template";
 
 // GET HANDLER
 apiHandler.get(async (req, res) => {
@@ -10,20 +14,20 @@ apiHandler.get(async (req, res) => {
     if (result) {
       res.status(200).json({
         success: true,
-        message: "Successfully get data",
+        message: `Successfully get ${messageHead}`,
         data: result,
       });
     } else {
       res.status(200).json({
         success: false,
-        message: "Failed get data from database",
+        message: `Failed get ${messageHead}`,
+        data: result,
       });
     }
   } catch (error) {
-    console.log(error);
     res.status(200).json({
       success: false,
-      message: "Failed get data",
+      message: error.message,
     });
   }
 });
@@ -35,20 +39,20 @@ apiHandler.post(async (req, res) => {
     if (result) {
       res.status(200).json({
         success: true,
-        message: "Successfully create data",
+        message: `Successfully create ${messageHead}`,
         data: result,
       });
     } else {
       res.status(200).json({
         success: false,
-        message: "Failed create data to database",
+        message: `Failed create ${messageHead}`,
+        data: result,
       });
     }
   } catch (error) {
-    console.log(error);
     res.status(200).json({
       success: false,
-      message: "Failed create data",
+      message: error.message,
     });
   }
 });
