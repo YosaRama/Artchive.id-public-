@@ -20,33 +20,20 @@ function DashboardLayout({ children }) {
   );
 
   return (
-    <Layout
-      style={{ minHeight: "100vh" }}
-      className="main-dashboard-layout"
-      id="dashboard"
-    >
+    <Layout style={{ minHeight: "100vh" }} className="main-dashboard-layout" id="dashboard">
       <Sidebar />
       <Layout className="site-layout">
-        <Header
-          className="site-layout-background dashboard-layout-header"
-          style={{ padding: 0 }}
-        >
+        <Header className="site-layout-background dashboard-layout-header" style={{ padding: 0 }}>
           <Row justify="end">
             <Col span={1} className="dashboard-header-ava">
-              <Popover
-                placement="bottomRight"
-                trigger="click"
-                content={popOverContent}
-              >
+              <Popover placement="bottomRight" trigger="click" content={popOverContent}>
                 <Avatar src="/images/profile-default.png" />
               </Popover>
             </Col>
           </Row>
         </Header>
         <Content>{children}</Content>
-        <Footer style={{ textAlign: "center" }}>
-          Yosa Template v1.0 ©2021
-        </Footer>
+        <Footer style={{ textAlign: "center" }}>Artchive v1.0 ©2021</Footer>
       </Layout>
     </Layout>
   );

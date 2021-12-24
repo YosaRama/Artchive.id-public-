@@ -17,25 +17,18 @@ const DashboardSider = (props) => {
 
   return (
     <>
-      <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
+      <Sider collapsible collapsed={collapsed} onCollapse={onCollapse} theme="light">
         <Col span={24} className="dashboard-header-logo-container">
-          <div
-            className="dashboard-header-logo"
-            style={{ position: "relative" }}
-          >
+          <div className="dashboard-header-logo" style={{ position: "relative" }}>
             <Image
-              src={
-                !collapsed
-                  ? "/images/header-logo-white.svg"
-                  : "/images/favicon.svg"
-              }
+              src={!collapsed ? "/images/favicon.svg" : "/images/favicon.jpg"}
               objectFit="contain"
               layout="fill"
               alt=""
             />
           </div>
         </Col>
-        <Menu theme="dark" mode="inline" selectedKeys={router.pathname}>
+        <Menu theme="light" mode="inline" selectedKeys={router.pathname}>
           <Menu.Item key="/dashboard" icon={<HomeOutlined />}>
             <Link href="/dashboard">Home</Link>
           </Menu.Item>

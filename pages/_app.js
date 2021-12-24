@@ -1,5 +1,5 @@
 // Styles
-import "antd/dist/antd.css";
+import "antd/dist/antd.less";
 import "app/styles/dashboard.scss";
 import "themes/styles/theme.scss";
 
