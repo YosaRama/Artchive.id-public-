@@ -56,9 +56,14 @@
 //? ========= Content Dashboard ============== ?//
 
 .dashboard-card-container {
-  width: 95%;
+  width: 100%;
   margin: 0 auto;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.dashboard-boxed-container {
+  width: 95%;
+  margin: 0 auto;
 }
 
 //* =========================================== *//
@@ -71,46 +76,9 @@
   main {
     overflow: auto;
   }
-  h1,
-  h2,
-  h3 {
-    font-family: inherit;
-    font-weight: inherit;
-  }
-
-  h4,
-  h5,
-  h6,
-  p,
-  span {
-    font-family: inherit;
-    font-weight: inherit;
-  }
-
-  a {
-    font-family: inherit;
-    font-weight: inherit;
-  }
 
   .d-none {
     display: none;
-  }
-
-  .dashboard-avg-price {
-    padding: 0 !important;
-  }
-
-  .dashboard-form-dynamic-remove {
-    position: relative;
-    top: 5px;
-    margin: 0 8px !important;
-    color: #999;
-    font-size: 24px;
-    cursor: pointer;
-    transition: all 0.3s;
-    &:hover {
-      color: #ff4d4f;
-    }
   }
 
   .ant-layout-sider {

@@ -1,19 +1,31 @@
-/* ===================== Custom Font ========================== */
+//? ===================== Custom Font ========================== ?//
 
 @font-face {
   font-family: "Montserrat";
   font-weight: 400;
-  src: local("Montserrat"),
-    url(/fonts/Montserrat/Montserrat-Regular.ttf) format("truetype");
+  src: local("Montserrat"), url(/fonts/Montserrat/Montserrat-Regular.ttf) format("truetype");
 }
 
-/* =================== Page =========================== */
+//* ============================================================ *//
+
+//? ===================== Custom Color ========================== ?//
+
+$fulvous: #e5890a;
+$smoky-black: #140c01;
+$gainsboro: #e0e0e0;
+$white: #ffffff;
+
+//* ============================================================ *//
+
+//? =================== Page =========================== ?//
 
 #about {
   background-color: red;
 }
 
-/* =================== Responsive =========================== */
+//* ============================================================ *//
+
+//? =================== Responsive =========================== ?//
 
 @import "responsive-max-1365";
 @import "responsive-max-1024";

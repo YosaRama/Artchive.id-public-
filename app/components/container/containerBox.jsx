@@ -1,10 +1,11 @@
 import { Col } from "antd";
 
 function ContainerBox(props) {
+  const { sectionClass, containerClass, children } = props;
   return (
-    <section className={props.sectionClass}>
-      <Col className={"boxed-container " + props.className}>
-        {props.children}
+    <section className={sectionClass}>
+      <Col className={"dashboard-boxed-container " + containerClass} {...props}>
+        {children}
       </Col>
     </section>
   );
