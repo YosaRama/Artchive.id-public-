@@ -7,8 +7,9 @@ import "themes/styles/theme.scss";
 import DashboardLayout from "app/components/layout";
 
 // Libs
-import { useRouter } from "next/router";
 import Head from "next/head";
+import { useEffect, useState } from "react";
+import { Provider as SessionProvider } from "next-auth/client";
 
 // Context
 import GlobalContext from "app/contexts";
@@ -17,26 +18,31 @@ import GlobalContext from "app/contexts";
 import { SWRConfig } from "swr";
 import { fetcher } from "app/utils/swr";
 
-function MyApp({ Component, pageProps }) {
-  const router = useRouter();
+function MyApp({ Component, pageProps: { session, ...pageProps }, router }) {
+  // Handle useLayoutEffect
+  const [content, setContent] = useState(false);
+  useEffect(() => {
+    setContent(true);
+  }, []);
 
   return (
     <>
       <SWRConfig value={{ refreshInterval: 0, fetcher }}>
         <GlobalContext>
           <Head>
-            <title>Yosa Template</title>
-            <meta
-              name="viewport"
-              content="width=device-width, initial-scale=1"
-            />
+            <title>Artchive</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
           </Head>
-          {router.pathname.startsWith("/dashboard") ? (
-            <DashboardLayout>
-              <Component {...pageProps} />
-            </DashboardLayout>
-          ) : (
-            <Component {...pageProps} />
+          {content && (
+            <SessionProvider session={session}>
+              {router.pathname.startsWith("/dashboard") ? (
+                <DashboardLayout>
+                  <Component {...pageProps} />
+                </DashboardLayout>
+              ) : (
+                <Component {...pageProps} />
+              )}
+            </SessionProvider>
           )}
         </GlobalContext>
       </SWRConfig>
