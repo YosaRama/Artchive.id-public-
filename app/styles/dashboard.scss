@@ -1,8 +1,4 @@
-// LAYOUT
-
-.dashboard-header-user-popover {
-  width: 100px;
-}
+//? ========= Header Dashboard =========== ?//
 
 .dashboard-header-logout {
   margin-bottom: 0;
@@ -12,6 +8,62 @@
     cursor: pointer;
   }
 }
+
+.dashboard-header-user-popover {
+  width: 100px;
+}
+
+.dashboard-layout-header {
+  background: #ffffff;
+  z-index: 1;
+  width: 95%;
+  margin: 20px auto;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.dashboard-header-ava {
+  text-align: center;
+  margin-right: 50px;
+}
+
+.dashboard-header-logo-container {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  background: transparent;
+  .dashboard-header-logo {
+    height: 30px;
+    position: relative;
+    width: 100%;
+  }
+}
+
+//* =========================================== *//
+
+//? ========= Side Bar Dashboard ============== ?//
+
+.dashboard-sider {
+  border-radius: 0 20px 20px 0;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  .ant-layout-sider-trigger {
+    bottom: 30px;
+  }
+}
+
+//* =========================================== *//
+
+//? ========= Content Dashboard ============== ?//
+
+.dashboard-card-container {
+  width: 95%;
+  margin: 0 auto;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+//* =========================================== *//
+
+//? ========= General Custom Dashboard =========== ?//
 
 #dashboard.main-dashboard-layout {
   max-height: 100vh;
@@ -71,30 +123,4 @@
   }
 }
 
-.dashboard-layout-header {
-  background: #ffffff;
-  z-index: 1;
-  margin-bottom: 30px;
-}
-
-.dashboard-header-ava {
-  text-align: center;
-  margin-right: 50px;
-}
-
-.dashboard-header-logo-container {
-  height: 64px;
-  display: flex;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.3);
-  .dashboard-header-logo {
-    height: 30px;
-    position: relative;
-    width: 100%;
-  }
-}
-
-.dashboard-card-container {
-  width: 95%;
-  margin: 0 auto;
-}
+//* =========================================== *//

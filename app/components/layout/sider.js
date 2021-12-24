@@ -17,7 +17,13 @@ const DashboardSider = (props) => {
 
   return (
     <>
-      <Sider collapsible collapsed={collapsed} onCollapse={onCollapse} theme="light">
+      <Sider
+        collapsible
+        collapsed={collapsed}
+        onCollapse={onCollapse}
+        theme="light"
+        className="dashboard-sider"
+      >
         <Col span={24} className="dashboard-header-logo-container">
           <div className="dashboard-header-logo" style={{ position: "relative" }}>
             <Image
