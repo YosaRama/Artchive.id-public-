@@ -5,10 +5,23 @@ import Image from "next/image";
 // Icon
 import { CollectorIcon } from "public/icons/collector-icon";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import { useRouter } from "next/router";
 
 function ManagePageLogin() {
-  // Handle Form
+  const router = useRouter();
   const [form] = Form.useForm();
+
+  // Handle Login
+  const handleLogin = () => {
+    form.validateFields().then(async (value) => {
+      const result = await value;
+      console.log(`value`, result);
+      if (result) {
+        router.push("/dashboard");
+      }
+    });
+  };
+  // ======================
 
   return (
     <>
@@ -27,7 +40,7 @@ function ManagePageLogin() {
 
               {/* Form Section */}
               <Col className="d-flex center" span={24}>
-                <Form style={{ width: "100%" }} form={form}>
+                <Form style={{ width: "100%" }} form={form} onFinish={handleLogin}>
                   <Form.Item name="email">
                     <Input
                       size="large"
@@ -42,14 +55,19 @@ function ManagePageLogin() {
                       addonBefore={<LockOutlined />}
                     />
                   </Form.Item>
+                  <Col span={24} className="d-flex center">
+                    <Button
+                      type="primary"
+                      className="managepage-button"
+                      size="large"
+                      htmlType="submit"
+                    >
+                      Login
+                    </Button>
+                  </Col>
                 </Form>
               </Col>
 
-              <Col span={24} className="d-flex center">
-                <Button type="primary" className="managepage-button" size="large">
-                  Login
-                </Button>
-              </Col>
               {/* ========================== */}
             </Card>
           </div>

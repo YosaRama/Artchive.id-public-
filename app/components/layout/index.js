@@ -1,23 +1,40 @@
-import { Layout, Avatar, Col, Row, Popover } from "antd";
-import Sidebar from "./sider";
-import Content from "./content";
+// Libs
+import { Layout, Avatar, Col, Row, Popover, Dropdown, Menu } from "antd";
+import { useRouter } from "next/router";
+const { Header, Footer } = Layout;
 // import { signOut } from "next-auth/client";
 
-const { Header, Footer } = Layout;
+// Component
+import Sidebar from "./sider";
+import Content from "./content";
+
+// Icon
+import { LogoutOutlined } from "@ant-design/icons";
 
 function DashboardLayout({ children }) {
+  const router = useRouter();
+
+  // Handle logout
   const handleLogout = () => {
-    console.log("I am Logout");
+    router.push("/managepage");
     // signOut({ callbackUrl: `/dashboard` });
   };
+  // ==================
 
+  // Handle avatar dropdown content
   const popOverContent = (
-    <div className="dashboard-header-user-popover">
-      <p className="dashboard-header-logout" onClick={handleLogout}>
-        Logout
-      </p>
-    </div>
+    <Menu>
+      <Menu.Item>
+        <a onClick={handleLogout}>
+          <span style={{ marginRight: 10 }}>
+            <LogoutOutlined />
+          </span>
+          Logout
+        </a>
+      </Menu.Item>
+    </Menu>
   );
+  // ====================
 
   return (
     <Layout style={{ minHeight: "100vh" }} className="main-dashboard-layout" id="dashboard">
@@ -26,9 +43,9 @@ function DashboardLayout({ children }) {
         <Header className="site-layout-background dashboard-layout-header" style={{ padding: 0 }}>
           <Row justify="end">
             <Col span={1} className="dashboard-header-ava">
-              <Popover placement="bottomRight" trigger="click" content={popOverContent}>
+              <Dropdown placement="bottomCenter" trigger="click" overlay={popOverContent}>
                 <Avatar src="/images/profile-default.png" />
-              </Popover>
+              </Dropdown>
             </Col>
           </Row>
         </Header>
