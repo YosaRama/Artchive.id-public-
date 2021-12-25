@@ -1,0 +1,56 @@
+.image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fef6eb;
+  border-radius: 100%;
+  height: 75px;
+  width: 75px;
+  span {
+    width: 50px;
+    height: auto;
+    object-fit: contain;
+    svg {
+      fill: #e5890a;
+    }
+  }
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.title {
+  width: 100%;
+  font-size: 18px;
+  font-weight: 200;
+  margin: 0;
+  color: #a0a0a0;
+  transition: all 0.3s ease;
+}
+
+.count {
+  width: 100%;
+  font-size: 28px;
+  color: #140c01;
+  font-weight: 800;
+  margin: 0;
+  transition: all 0.3s ease;
+}
+
+.card {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  &:hover {
+    .title {
+      color: #e5890a;
+    }
+    .count {
+      color: #e5890a;
+    }
+    box-shadow: rgba(229, 137, 10, 0.3) 0px 3px 8px;
+  }
+}

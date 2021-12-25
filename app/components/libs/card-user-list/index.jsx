@@ -7,7 +7,7 @@ import Link from "next/link";
 import { UserOutlined, EllipsisOutlined } from "@ant-design/icons";
 
 // Style
-import s from "../card-user-list/index.module.scss";
+import s from "./index.module.scss";
 
 function CardUserList(props) {
   const { image, name, email, role, date, id } = props;

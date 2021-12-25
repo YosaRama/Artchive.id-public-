@@ -4,7 +4,7 @@
 import { Card, Col, Row } from "antd";
 
 // Style
-import s from "./cardCount.module.scss";
+import s from "./index.module.scss";
 
 function CardCount(props) {
   const { icon, count, title } = props;
