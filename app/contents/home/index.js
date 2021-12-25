@@ -96,6 +96,8 @@ function DashboardHome() {
       size: "258 x 350 (cm)",
       title: "Artwork I",
       status: "PUBLISH",
+      artistName: "Miller James",
+      artistImage: "/images/profile-5.jpg",
       featured: true,
     },
     {
@@ -104,6 +106,8 @@ function DashboardHome() {
       size: "258 x 350 (cm)",
       title: "Artwork II",
       status: "SOLD",
+      artistName: "John Doe",
+      artistImage: "/images/profile-3.jpg",
       featured: true,
     },
     {
@@ -112,6 +116,8 @@ function DashboardHome() {
       size: "258 x 350 (cm)",
       title: "Artwork III",
       status: "DRAFT",
+      artistName: "Murphy Martin",
+      artistImage: "/images/profile-2.jpg",
       featured: true,
     },
     {
@@ -120,6 +126,8 @@ function DashboardHome() {
       size: "258 x 350 (cm)",
       title: "Artwork IV",
       status: "PUBLISH",
+      artistName: "Miller James",
+      artistImage: "/images/profile-5.jpg",
       featured: true,
     },
   ];
@@ -186,6 +194,8 @@ function DashboardHome() {
                 id={item.id}
                 status={item.status}
                 featured={item.featured}
+                artistName={item.artistName}
+                artistImage={item.artistImage}
               />
             </Col>
           ))}

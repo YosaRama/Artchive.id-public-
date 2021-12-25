@@ -2,7 +2,7 @@
 
 // Libs
 import { useRouter } from "next/router";
-import { Avatar, Card, Col, Row, Tag } from "antd";
+import { Avatar, Card, Col, Row, Tag, Tooltip } from "antd";
 const { Meta } = Card;
 
 // Style
@@ -10,7 +10,7 @@ import s from "./index.module.scss";
 
 function CardArtwork(props) {
   const router = useRouter();
-  const { title, size, image, status, featured, id } = props;
+  const { title, size, image, status, featured, id, artistImage, artistName } = props;
   return (
     <>
       <Card
@@ -20,7 +20,9 @@ function CardArtwork(props) {
       >
         <Row gutter={[16, 0]}>
           <Col span={6}>
-            <Avatar />
+            <Tooltip title={artistName}>
+              <Avatar src={artistImage} />
+            </Tooltip>
           </Col>
           <Col span={18}>
             <Meta title={title} description={size} />
