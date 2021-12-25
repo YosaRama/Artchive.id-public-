@@ -3,6 +3,7 @@
 // Libs
 import { useRouter } from "next/router";
 import { Avatar, Card, Col, Row, Tag, Tooltip } from "antd";
+import Image from "next/image";
 const { Meta } = Card;
 
 // Style
@@ -14,11 +15,14 @@ function CardArtwork(props) {
   return (
     <>
       <Card
-        hoverable
-        cover={<img alt="example" src={image} className={s.image} />}
+        className={s.card}
+        bodyStyle={{ padding: 0 }}
         onClick={() => router.push(`/dashboard/artwork/${id}`)}
       >
-        <Row gutter={[16, 0]}>
+        <Col className={s.imageContainer}>
+          <Image alt="example" src={image} className={s.image} layout="fill" />
+        </Col>
+        <Row gutter={[16, 0]} className={s.textContainer}>
           <Col span={6}>
             <Tooltip title={artistName}>
               <Avatar src={artistImage} />
