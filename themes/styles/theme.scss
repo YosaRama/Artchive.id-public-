@@ -17,13 +17,84 @@ $white: #ffffff;
 
 //* ============================================================ *//
 
+//? ============== General Styling ============= ?//
+
+.d-flex {
+  display: flex;
+  &.center {
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+// * ====================================== * //
+
 //? =================== Page =========================== ?//
 
+// Login Manage Page
+#managepage {
+  .managepage-container {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+  }
+  .managepage-background-image {
+    z-index: 0;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 16px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(10px);
+    }
+  }
+  .managepage-content-container {
+    z-index: 1;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    .managepage-content-icon {
+      width: 150px;
+      height: 150px;
+      background-color: #140c01;
+      border-radius: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 30px;
+      span {
+        fill: #e0e0e0;
+        width: 60%;
+        height: 60%;
+      }
+    }
+    .managepage-button {
+      width: 50%;
+    }
+  }
+}
+// ====================================
+
+// About Page
 #about {
   background-color: red;
 }
+// ====================================
 
-//* ============================================================ *//
+// * ====================================== * //
 
 //? =================== Responsive =========================== ?//
 
@@ -31,3 +102,5 @@ $white: #ffffff;
 @import "responsive-max-1024";
 @import "responsive-max-768";
 @import "responsive-max-500";
+
+// * ====================================== * //
