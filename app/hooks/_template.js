@@ -1,22 +1,23 @@
+// Libs
 import useSWR from "swr";
-import { useCallback, useState } from "react";
-import {
-  SuccessNotification,
-  ErrorNotification,
-} from "app/components/libs/notification";
-
 import api from "app/helper/swr";
+import { useCallback, useState } from "react";
+
+// Component
+import { SuccessNotification, ErrorNotification } from "app/components/libs/notification";
 
 //TODO: Match with backend endpoint
 const pathName = "/api-route"; // End point
 const msgHead = "Context"; // Just For message
 
-//TODO : Hook general data (All Data) with query
+//? ============== GENERAL HOOK (ALL DATA) ============= ?//
+
 export const useTemplates = (queryString) => {
   const pathKeys = pathName + "?" + queryString;
   const { data = {}, error, isValidating, mutate } = useSWR(pathKeys);
   const [loading, setLoading] = useState(false);
 
+  // Add Hook Function
   const onAdd = useCallback(
     async (data) => {
       try {
@@ -26,20 +27,20 @@ export const useTemplates = (queryString) => {
           mutate();
           SuccessNotification({
             message: "Success",
-            description: `A new event has successfully saved.`,
+            description: `A new ${msgHead} has successfully saved.`,
           });
           return res.success;
         } else {
           ErrorNotification({
             message: "Error",
-            description: `Something went wrong while adding a new event`,
+            description: `Something went wrong while adding a new ${msgHead}`,
           });
           return res.success;
         }
       } catch (error) {
         ErrorNotification({
           message: "Error",
-          description: `Something went wrong while adding a new event`,
+          description: `Something went wrong while adding a new ${msgHead}`,
         });
         return false;
       } finally {
@@ -48,7 +49,9 @@ export const useTemplates = (queryString) => {
     },
     [mutate]
   );
+  // ==========================
 
+  // Delete Hook Function
   const onDelete = useCallback(
     async (singleId) => {
       try {
@@ -58,13 +61,13 @@ export const useTemplates = (queryString) => {
           mutate();
           SuccessNotification({
             message: "Success",
-            description: `Event has been deleted successfully.`,
+            description: `Delete ${msgHead} has been successfully.`,
           });
           return res.success;
         } else {
           ErrorNotification({
             message: "Error",
-            description: `Something went wrong while deleting event`,
+            description: `Something went wrong while deleting ${msgHead}`,
           });
 
           return res.success;
@@ -72,7 +75,7 @@ export const useTemplates = (queryString) => {
       } catch (error) {
         ErrorNotification({
           message: "Error",
-          description: `Something went wrong while deleting event`,
+          description: `Something went wrong while deleting ${msgHead}`,
         });
 
         return false;
@@ -82,6 +85,7 @@ export const useTemplates = (queryString) => {
     },
     [data, mutate]
   );
+  // ==========================
 
   return {
     data,
@@ -91,12 +95,16 @@ export const useTemplates = (queryString) => {
   };
 };
 
-//TODO : Hook single data with query
+// * ====================================== * //
+
+//? ============== SPECIFIC HOOK (SINGLE DATA) ============= ?//
+
 export const useTemplate = ({ singleId }) => {
   const pathKeys = `${pathName}/${singleId}`;
   const { data = {}, error, isValidating, mutate } = useSWR(pathKeys);
   const [loading, setLoading] = useState(false);
 
+  // Edit Hook Function
   const onEdit = useCallback(
     async (data) => {
       try {
@@ -130,6 +138,7 @@ export const useTemplate = ({ singleId }) => {
     },
     [mutate, pathKeys]
   );
+  // ==========================
 
   return {
     data,
@@ -137,3 +146,5 @@ export const useTemplate = ({ singleId }) => {
     onEdit,
   };
 };
+
+// * ====================================== * //

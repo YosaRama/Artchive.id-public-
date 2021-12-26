@@ -38,8 +38,12 @@ function DashboardLayout({ children }) {
 
   return (
     <Layout style={{ minHeight: "100vh" }} className="main-dashboard-layout" id="dashboard">
+      {/* Sidebar Section */}
       <Sidebar />
+      {/* ============================ */}
+
       <Layout className="site-layout">
+        {/* Header Section */}
         <Header className="site-layout-background dashboard-layout-header" style={{ padding: 0 }}>
           <Row justify="end">
             <Col span={1} className="dashboard-header-ava">
@@ -49,8 +53,15 @@ function DashboardLayout({ children }) {
             </Col>
           </Row>
         </Header>
+        {/* ============================ */}
+
+        {/* Content Section */}
         <Content>{children}</Content>
+        {/* ============================ */}
+
+        {/* Footer Section */}
         <Footer style={{ textAlign: "center" }}>Artchive v1.0 ©2021</Footer>
+        {/* ============================ */}
       </Layout>
     </Layout>
   );

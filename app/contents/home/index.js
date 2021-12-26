@@ -90,6 +90,7 @@ function DashboardHome() {
 
   //? ================= Dummy data for artwork ==================== ?//
   const artworkData = [
+    // TODO : Change to data from database
     {
       id: 1,
       image: "/images/artwork-1.jpg",

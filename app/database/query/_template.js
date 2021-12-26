@@ -1,50 +1,77 @@
+// Import database query
 import { prisma } from "../connection";
 
-//***** OPTION QUERY ***** //
+//? ============== OPTION QUERY ============= ?//
 
-//***** GET QUERY ***** //
+// * ====================================== * //
 
-export const GET_TEMPLATE = ({ page = 0, limit = 15, role, email, fullName }) => {
+//? ============== GET QUERY ============= ?//
+
+// Get Data (Filter by Role, Email, FullName)
+export const GET_DATA = ({ page = 0, limit = 15, role, email, fullName }) => {
   // Handle Pagination
   const skip = limit != "all" ? +page * +limit : undefined;
-  return prisma.TEMPLATE.findMany({
-    // Handle pagination
+  return prisma.data.findMany({
     skip: skip ? +skip : undefined, // Disable by undefined
     take: limit != "all" ? +limit : undefined, // Disable by undefined
+    // ===========================
+
     // Handle query condition
     where: {
-      // Can disable by empty object
       AND: {
-        role: role ? role : {},
-        email: email ? { contains: email } : {},
-        full_name: fullName ? { contains: fullName } : {},
+        role: role ? role : {}, // Can disable by empty object
+        email: email ? { contains: email } : {}, // Can disable by empty object
+        full_name: fullName ? { contains: fullName } : {}, // Can disable by empty object
       },
     },
+    // ==========================
+
     // Handle order
     orderBy: {
       id: "desc",
     },
+    // ==========================
   });
 };
+// ==================================
 
-export const GET_TEMPLATE_BY_ID = ({ id }) => {
-  return prisma.TEMPLATE.findUnique({
+// Get Data by Specific ID
+export const GET_DATA_BY_ID = ({ id }) => {
+  return prisma.data.findUnique({
     where: { id: +id },
   });
 };
+// ==================================
 
-export const GET_TEMPLATE_BY_EMAIL = ({ email }) => {
-  return prisma.TEMPLATE.findUnique({ where: { email: email } });
+// Get Data by Specific Email
+export const GET_DATA_BY_EMAIL = ({ email }) => {
+  return prisma.data.findUnique({ where: { email: email } });
 };
+// ==================================
 
-export const GET_TOTAL_TEMPLATE = () => {
-  return prisma.TEMPLATE.count();
+// Get total all data
+export const GET_TOTAL_DATA = ({ role, email, fullName }) => {
+  return prisma.data.count({
+    // Handle query condition
+    where: {
+      AND: {
+        role: role ? role : {}, // Can disable by empty object
+        email: email ? { contains: email } : {}, // Can disable by empty object
+        full_name: fullName ? { contains: fullName } : {}, // Can disable by empty object
+      },
+    },
+    // ========================== });
+  });
 };
+// ==================================
 
-//***** CREATE QUERY ***** //
+// * ====================================== * //
 
-export const CREATE_TEMPLATE = ({ email, password, fullName, role }) => {
-  return prisma.TEMPLATE.create({
+//? ============== CREATE QUERY ============= ?//
+
+// Create new data
+export const CREATE_DATA = ({ email, password, fullName, role }) => {
+  return prisma.data.create({
     data: {
       email: email,
       password: password,
@@ -53,25 +80,38 @@ export const CREATE_TEMPLATE = ({ email, password, fullName, role }) => {
     },
   });
 };
+// ==================================
 
-//***** UPDATE QUERY ***** //
+// * ====================================== * //
 
-export const UPDATE_TEMPLATE = ({ id, fullName, email }) => {
-  return prisma.TEMPLATE.update({
+//? ============== UPDATE QUERY ============= ?//
+
+// Update data with specific ID details without password
+export const UPDATE_DATA = ({ id, fullName, email }) => {
+  return prisma.data.update({
     data: { email: email, full_name: fullName },
     where: { id: +id },
   });
 };
+// ==================================
 
-export const UPDATE_TEMPLATE_PASSWORD = ({ password, id }) => {
-  return prisma.TEMPLATE.update({
+// Update data with specific ID password only
+export const UPDATE_DATA_PASSWORD = ({ password, id }) => {
+  return prisma.data.update({
     where: { id: +id },
     data: { password: password },
   });
 };
+// ==================================
 
-//***** OPTION QUERY ***** //
+// * ====================================== * //
 
-export const DELETE_TEMPLATE = ({ id }) => {
-  return prisma.TEMPLATE.delete({ where: { id: +id } });
+//? ============== DELETE QUERY ============= ?//
+
+// Delete data with specific ID
+export const DELETE_DATA = ({ id }) => {
+  return prisma.data.delete({ where: { id: +id } });
 };
+// ==================================
+
+// * ====================================== * //

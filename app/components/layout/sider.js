@@ -1,19 +1,24 @@
+// Libs
 import { Col, Layout, Menu } from "antd";
-import { HomeOutlined, BellOutlined } from "@ant-design/icons";
 import { useState } from "react";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import Link from "next/link";
+const { Sider } = Layout;
+const { SubMenu } = Menu;
+
+// Icon
+import { HomeOutlined, UserOutlined } from "@ant-design/icons";
 
 const DashboardSider = (props) => {
   const router = useRouter();
-  const { Sider } = Layout;
-  const { SubMenu } = Menu;
-  const [collapsed, setCollapsed] = useState(false);
 
+  // Handle collapse menu
+  const [collapsed, setCollapsed] = useState(false);
   const onCollapse = (collapsed) => {
     setCollapsed(collapsed);
   };
+  // =======================
 
   return (
     <>
@@ -34,16 +39,29 @@ const DashboardSider = (props) => {
             />
           </div>
         </Col>
+        {/* Menu Section */}
         <Menu theme="light" mode="inline" selectedKeys={router.pathname}>
+          {/* Homepage Menu Section */}
           <Menu.Item key="/dashboard" icon={<HomeOutlined />}>
             <Link href="/dashboard">Home</Link>
           </Menu.Item>
-          <SubMenu icon={<BellOutlined />} title="Option" key="1">
-            <Menu.Item key="/dashboard/options">
-              <Link href="/dashboard/options">Option 1</Link>
+          {/* ============================ */}
+
+          {/* User Menu Section */}
+          <SubMenu icon={<UserOutlined />} title="Users" key="1">
+            <Menu.Item key="/dashboard/users/artist">
+              <Link href="/dashboard/users/artist">Artist</Link>
+            </Menu.Item>
+            <Menu.Item key="/dashboard/users/collector">
+              <Link href="/dashboard/users/collector">Collector</Link>
+            </Menu.Item>
+            <Menu.Item key="/dashboard/users/gallery">
+              <Link href="/dashboard/users/gallery">Gallery</Link>
             </Menu.Item>
           </SubMenu>
+          {/* ============================ */}
         </Menu>
+        {/* ============================ */}
       </Sider>
     </>
   );
