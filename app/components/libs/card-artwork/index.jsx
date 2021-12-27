@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 // Libs
+import propTypes from "prop-types";
 import { useRouter } from "next/router";
 import { Avatar, Card, Col, Row, Tag, Tooltip } from "antd";
 import Image from "next/image";
@@ -48,5 +49,16 @@ function CardArtwork(props) {
     </>
   );
 }
+
+CardArtwork.propTypes = {
+  title: propTypes.string,
+  size: propTypes.string,
+  image: propTypes.string,
+  status: propTypes.oneOf(["PUBLISH", "SOLD", "DRAFT"]),
+  featured: propTypes.bool,
+  id: propTypes.oneOfType([propTypes.string, propTypes.number]).isRequired,
+  artistImage: propTypes.string,
+  artistName: propTypes.string,
+};
 
 export default CardArtwork;

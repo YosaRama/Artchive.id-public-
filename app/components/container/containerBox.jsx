@@ -1,4 +1,6 @@
+// Libs
 import { Col } from "antd";
+import propTypes from "prop-types";
 
 function ContainerBox(props) {
   const { sectionClass, containerClass, children } = props;
@@ -10,5 +12,11 @@ function ContainerBox(props) {
     </section>
   );
 }
+
+ContainerBox.propTypes = {
+  sectionClass: propTypes.string,
+  containerClass: propTypes.string,
+  children: propTypes.node,
+};
 
 export default ContainerBox;

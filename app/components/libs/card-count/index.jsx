@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 // Library
+import propTypes from "prop-types";
 import { Card, Col, Row } from "antd";
 
 // Style
@@ -20,5 +21,11 @@ function CardCount(props) {
     </Card>
   );
 }
+
+CardCount.propTypes = {
+  icon: propTypes.element,
+  count: propTypes.oneOfType([propTypes.number, propTypes.string]),
+  title: propTypes.string,
+};
 
 export default CardCount;

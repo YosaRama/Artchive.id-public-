@@ -2,6 +2,7 @@
 import { Avatar, Card, Col, Popover, Row, Tag } from "antd";
 import moment from "moment";
 import Link from "next/link";
+import propTypes from "prop-types";
 
 // Icon
 import { UserOutlined, EllipsisOutlined } from "@ant-design/icons";
@@ -55,5 +56,14 @@ function CardUserList(props) {
     </>
   );
 }
+
+CardUserList.propTypes = {
+  image: propTypes.string,
+  name: propTypes.string,
+  email: propTypes.string,
+  role: propTypes.oneOf(["ARTIST", "GALLERY", "ADMIN", "COLLECTOR"]),
+  date: propTypes.string,
+  id: propTypes.oneOfType([propTypes.string, propTypes.number]).isRequired,
+};
 
 export default CardUserList;
