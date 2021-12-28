@@ -1,7 +1,7 @@
 // Query
 import { CREATE_USER, GET_TOTAL_USER, GET_USER } from "app/database/query/user";
 
-// Helper
+// Libs
 import { hashPassword } from "app/helpers/auth";
 import nextConnect from "next-connect";
 

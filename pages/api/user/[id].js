@@ -6,7 +6,8 @@ import {
   UPDATE_USER,
   UPDATE_USER_PASSWORD,
 } from "app/database/query/user";
-// Helper
+
+// Libs
 import { hashPassword } from "app/helpers/auth";
 import nextConnect from "next-connect";
 
