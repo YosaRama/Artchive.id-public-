@@ -1,17 +1,43 @@
 // Libs
-import { Avatar, Card, Col, Popover, Row, Tag } from "antd";
 import moment from "moment";
 import Link from "next/link";
 import propTypes from "prop-types";
+import { useRouter } from "next/router";
+import { useState } from "react";
+import { Avatar, Card, Col, Row, Tag, Tooltip } from "antd";
 
 // Icon
-import { UserOutlined, EllipsisOutlined } from "@ant-design/icons";
+import {
+  UserOutlined,
+  EllipsisOutlined,
+  CloseOutlined,
+  EditOutlined,
+  DeleteOutlined,
+} from "@ant-design/icons";
 
 // Style
 import s from "./index.module.scss";
 
+// Component
+import deleteConfirmModal from "../delete-modal-confirm";
+
 function CardUserList(props) {
   const { image, name, email, role, date, id } = props;
+  const router = useRouter();
+
+  // Handle Options
+  const [openMenu, setOpenMenu] = useState(false);
+  const handleOpen = () => {
+    setOpenMenu(!openMenu);
+  };
+  // =================
+
+  // Handle Delete
+  const handleDelete = () => {
+    console.log("Deleted");
+  };
+  // =================
+
   return (
     <>
       <Card className={s.card} bodyStyle={{ padding: "10px 24px" }}>
@@ -21,7 +47,11 @@ function CardUserList(props) {
           </Col>
           <Col span={6} className={s.nameBox}>
             <div>
-              <h1 className={s.name}>{name}</h1>
+              <Link href={`/dashboard/users/${id}`}>
+                <a>
+                  <h1 className={s.name}>{name}</h1>
+                </a>
+              </Link>
               <p className={s.email}>{email}</p>
             </div>
           </Col>
@@ -40,16 +70,39 @@ function CardUserList(props) {
           </Col>
           <Col span={6}>{moment({ date }).format("DD MMMM YYYY")}</Col>
           <Col span={3} className={s.menu}>
-            <Popover
-              trigger="click"
-              content={
-                <Link href={`/dashboard/user/${id}`}>
-                  <a>View Details</a>
-                </Link>
-              }
-            >
-              <EllipsisOutlined />
-            </Popover>
+            {!openMenu && (
+              <Col>
+                <Tooltip title="Show menu">
+                  <EllipsisOutlined onClick={handleOpen} className={s.icon} />
+                </Tooltip>
+              </Col>
+            )}
+            {openMenu && (
+              <>
+                <Row gutter={[16, 0]}>
+                  <Col onClick={() => router.push(`/dashboard/users/${id}`)}>
+                    <Tooltip title="Edit user">
+                      <EditOutlined className={s.icon} />
+                    </Tooltip>
+                  </Col>
+                  <Col>
+                    <Tooltip title="Delete user">
+                      <DeleteOutlined
+                        className={s.icon}
+                        onClick={() =>
+                          deleteConfirmModal({ title: "user", onDelete: handleDelete })
+                        }
+                      />
+                    </Tooltip>
+                  </Col>
+                  <Col>
+                    <Tooltip title="Close menu">
+                      <CloseOutlined onClick={handleOpen} className={s.icon} />
+                    </Tooltip>
+                  </Col>
+                </Row>
+              </>
+            )}
           </Col>
         </Row>
       </Card>

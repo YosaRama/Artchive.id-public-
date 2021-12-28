@@ -1,5 +1,5 @@
 .card {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   transition: all 0.3s ease;
 }
 
@@ -9,6 +9,10 @@
 .nameBox {
   .name {
     margin: 0;
+    transition: all 0.3s ease;
+    &:hover {
+      color: #e5890a;
+    }
   }
   .email {
     margin: 0;
@@ -21,4 +25,13 @@
   display: flex;
   justify-content: flex-end;
   font-size: 24px;
+}
+
+.icon {
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  &:hover {
+    color: #e5890a;
+  }
 }
