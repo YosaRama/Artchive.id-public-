@@ -84,7 +84,7 @@ apiHandler.post(async (req, res) => {
     .toBuffer(function (err, buffer) {
       s3.upload(
         {
-          Bucket: process.env.S3_BUCKET_NAME,
+          Bucket: bucketName,
           ACL: "public-read",
           ContentType: "application/pdf",
           Body: buffer,
