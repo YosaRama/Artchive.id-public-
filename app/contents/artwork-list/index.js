@@ -37,7 +37,7 @@ function ArtworkList() {
                     }
                     artistName={item?.artist?.full_name}
                     id={item?.id}
-                    size={`${item?.length} x ${item?.height} cm`}
+                    size={`${item?.width} x ${item?.height} cm`}
                     status={item?.status}
                     title={item.title}
                   />
