@@ -7,12 +7,12 @@ import { useCallback, useState } from "react";
 import { SuccessNotification, ErrorNotification } from "app/components/libs/notification";
 
 //TODO: Match with backend endpoint
-const pathName = "/api-route"; // End point
-const msgHead = "Context"; // Just For message
+const pathName = "/artwork"; // End point
+const msgHead = "artwork"; // Just For message
 
 //? ============== GENERAL HOOK (ALL DATA) ============= ?//
 
-export const useTemplates = ({ queryString = "" }) => {
+export const useArtworks = ({ queryString = "" }) => {
   const pathKeys = pathName + "?" + queryString;
   const { data = {}, error, isValidating, mutate } = useSWR(pathKeys);
   const [loading, setLoading] = useState(false);
@@ -99,7 +99,7 @@ export const useTemplates = ({ queryString = "" }) => {
 
 //? ============== SPECIFIC HOOK (SINGLE DATA) ============= ?//
 
-export const useTemplate = ({ singleId }) => {
+export const useArtwork = ({ singleId }) => {
   const pathKeys = `${pathName}/${singleId}`;
   const { data = {}, error, isValidating, mutate } = useSWR(pathKeys);
   const [loading, setLoading] = useState(false);
