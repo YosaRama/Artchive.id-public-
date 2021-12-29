@@ -18,7 +18,7 @@ function CardArtwork(props) {
       <Card
         className={s.card}
         bodyStyle={{ padding: 0 }}
-        onClick={() => router.push(`/dashboard/artwork/${id}`)}
+        onClick={() => router.push(`/dashboard/artworks/${id}`)}
       >
         <Col className={s.imageContainer}>
           <Image alt="example" src={image} className={s.image} layout="fill" />

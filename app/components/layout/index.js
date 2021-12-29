@@ -56,11 +56,12 @@ function DashboardLayout({ children }) {
         {/* ============================ */}
 
         {/* Content Section */}
-        <Content>{children}</Content>
-        {/* ============================ */}
-
-        {/* Footer Section */}
-        <Footer style={{ textAlign: "center" }}>Artchive v1.0 ©2021</Footer>
+        <Content>
+          {children}
+          {/* Footer Section */}
+          <Footer style={{ textAlign: "center", marginTop: 50 }}>Artchive v1.0 ©2021</Footer>
+          {/* ============================ */}
+        </Content>
         {/* ============================ */}
       </Layout>
     </Layout>
