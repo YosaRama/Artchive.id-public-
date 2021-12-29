@@ -7,13 +7,14 @@ import propTypes from "prop-types";
 import ContainerCard from "app/components/container/containerCard";
 import CardUserList from "app/components/libs/card-user-list";
 import DashboardSearch from "app/components/libs/dashboard-search";
+import AddButton from "../add-button";
 
 // Icons
-import { FilterOutlined, PlusOutlined } from "@ant-design/icons";
+import { FilterOutlined } from "@ant-design/icons";
 
 function UserListing(props) {
-  const { searchValue, setSearchValue, data } = props;
   const router = useRouter();
+  const { searchValue, setSearchValue, data } = props;
 
   return (
     <ContainerCard
@@ -45,14 +46,7 @@ function UserListing(props) {
         </>
       }
     >
-      <Col span={24} style={{ textAlign: "right", marginBottom: 20 }}>
-        <Button type="primary" onClick={() => router.push("/dashboard/users/create")}>
-          <span>
-            <PlusOutlined />
-          </span>
-          Add artist
-        </Button>
-      </Col>
+      <AddButton onCreate={() => router.push("/dashboard/users/create")}>Add User</AddButton>
       {data &&
         data.map((item) => {
           return (
