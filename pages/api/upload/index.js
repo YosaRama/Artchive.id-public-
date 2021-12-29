@@ -54,7 +54,8 @@ const storage = multerS3({
   bucket: bucketName,
   acl: "public-read",
   contentType: multerS3.AUTO_CONTENT_TYPE,
-  Key: async (req, file, cb) => {
+  key: (req, file, cb) => {
+    console.log(req.body.artistId);
     const fileName = file.originalname;
     cb(null, fileName);
   },
@@ -83,7 +84,11 @@ const upload = multer();
 // Upload with multer s3
 apiHandler.post(s3Upload.single("uploadFile"), async (req, res) => {
   const file = req.file;
-  res.status(200).json({ file });
+  if (file) {
+    res.status(200).json({ status: true, file: file });
+  } else {
+    res.status(200).json({ status: false, file: file, message: "Failed upload file" });
+  }
 });
 // ========================
 

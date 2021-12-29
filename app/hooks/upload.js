@@ -1,0 +1,54 @@
+// Libs
+import { useCallback, useState } from "react";
+import axios from "axios";
+
+// Component
+import { ErrorNotification, SuccessNotification } from "app/components/libs/notification";
+
+export const useUploads = () => {
+  const [loading, setLoading] = useState(false);
+  const msgHead = "file";
+
+  const onUpload = async ({ file, artistId, artworkId }) => {
+    const fmData = new FormData();
+    const config = {
+      headers: { "content-type": "multipart/form-data" },
+    };
+
+    // Append Data to Form Data
+    //! Order is important, always put file bottom
+    fmData.append("artistId", artistId);
+    fmData.append("artworkId", artworkId);
+    fmData.append("uploadFile", file);
+    // ================================
+
+    try {
+      setLoading(true);
+      const res = await axios.post("/api/upload", fmData, config);
+      if (res.status) {
+        SuccessNotification({
+          message: "Success",
+          description: `A new ${msgHead} has successfully saved.`,
+        });
+        return res.success;
+      } else {
+        ErrorNotification({
+          message: "Error",
+          description: `Something went wrong while adding a new ${msgHead}`,
+        });
+        return res.success;
+      }
+    } catch (error) {
+      console.log(error);
+      ErrorNotification({
+        message: "Error",
+        description: `Something went wrong while adding a new ${msgHead}`,
+      });
+      return false;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return { onUpload, loading };
+};
