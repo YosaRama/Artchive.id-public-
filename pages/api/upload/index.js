@@ -6,6 +6,7 @@ import multer from "multer";
 import multerS3 from "multer-s3";
 import multerS3Sharp from "multer-sharp-s3";
 import aws from "aws-sdk";
+import { CREATE_MAIN_MEDIA } from "app/database/query/media";
 
 const apiHandler = nextConnect();
 
@@ -55,9 +56,9 @@ const storage = multerS3({
   acl: "public-read",
   contentType: multerS3.AUTO_CONTENT_TYPE,
   key: (req, file, cb) => {
-    console.log(req.body.artistId);
-    const fileName = file.originalname;
-    cb(null, fileName);
+    const { artistId, artworkId } = req.body;
+    const fullPath = `ARTIST-${artistId}/ART-${artworkId}/${file.originalname}`;
+    cb(null, fullPath);
   },
 });
 
@@ -84,10 +85,18 @@ const upload = multer();
 // Upload with multer s3
 apiHandler.post(s3Upload.single("uploadFile"), async (req, res) => {
   const file = req.file;
-  if (file) {
-    res.status(200).json({ status: true, file: file });
-  } else {
-    res.status(200).json({ status: false, file: file, message: "Failed upload file" });
+  const filename = file.originalname;
+  const mimetype = file.mimetype;
+  const url = file.location.replace(`${process.env.NEXT_PUBLIC_S3_URL}/`, "");
+  try {
+    const result = await CREATE_MAIN_MEDIA({ filename: filename, mimetype: mimetype, url: url });
+    if (result) {
+      res.status(200).json({ success: true, file: file, data: result });
+    } else {
+      res.status(200).json({ success: false, file: file, data: result });
+    }
+  } catch (error) {
+    res.status(200).json({ success: false, file: file, message: "Failed upload file" });
   }
 });
 // ========================

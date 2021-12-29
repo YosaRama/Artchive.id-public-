@@ -8,7 +8,7 @@ import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 function UploadBox(props) {
   const { onUpload, loading } = props;
   const uploadButton = (
-    <div>
+    <div className="upload-button">
       {loading ? <LoadingOutlined /> : <PlusOutlined />}
       <div style={{ marginTop: 8 }}>Upload</div>
     </div>
@@ -19,6 +19,7 @@ function UploadBox(props) {
       listType="picture-card"
       showUploadList={false}
       customRequest={onUpload}
+      {...props}
     >
       {uploadButton}
     </Upload>
