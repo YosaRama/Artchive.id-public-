@@ -12,7 +12,7 @@ const msgHead = "Context"; // Just For message
 
 //? ============== GENERAL HOOK (ALL DATA) ============= ?//
 
-export const useTemplates = (queryString) => {
+export const useTemplates = ({ queryString = "" }) => {
   const pathKeys = pathName + "?" + queryString;
   const { data = {}, error, isValidating, mutate } = useSWR(pathKeys);
   const [loading, setLoading] = useState(false);

@@ -26,6 +26,13 @@ export const GET_USER = ({ page = 0, limit = 15, role, email, fullName }) => {
     },
     // ==========================
 
+    // Get Relation Data
+    include: {
+      profile: true,
+      signature: true,
+    },
+    // ==========================
+
     // Handle order
     orderBy: {
       id: "desc",

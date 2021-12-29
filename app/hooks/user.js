@@ -12,7 +12,7 @@ const msgHead = "user"; // Just For message
 
 //? ============== GENERAL HOOK (ALL DATA) ============= ?//
 
-export const useUsers = (queryString) => {
+export const useUsers = ({ queryString = "" }) => {
   const pathKeys = pathName + "?" + queryString;
   const { data = {}, error, isValidating, mutate } = useSWR(pathKeys);
   const [loading, setLoading] = useState(false);
