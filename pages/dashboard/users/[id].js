@@ -1,4 +1,4 @@
-// Component
+// Contents
 import EditUser from "app/contents/user-edit";
 
 function UserEditPage() {

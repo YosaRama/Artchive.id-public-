@@ -1,4 +1,4 @@
-// Component
+// Contents
 import CollectorList from "app/contents/user-collector-list";
 
 function CollectorListPage() {

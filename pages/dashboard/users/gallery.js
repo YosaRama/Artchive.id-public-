@@ -1,4 +1,4 @@
-// Component
+// Contents
 import GalleryList from "app/contents/user-gallery-list";
 
 function GalleryListPage() {

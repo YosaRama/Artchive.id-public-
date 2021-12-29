@@ -1,4 +1,4 @@
-// Component
+// Contents
 import ArtistList from "app/contents/user-artist-list";
 
 function ArtistListPage() {

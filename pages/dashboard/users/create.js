@@ -1,4 +1,4 @@
-// Component
+// Contents
 import CreateUser from "app/contents/user-create";
 
 function UserCreatePage() {

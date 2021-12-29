@@ -1,3 +1,4 @@
+// Contents
 import DashboardHome from "app/contents/home";
 
 function Dashboard() {

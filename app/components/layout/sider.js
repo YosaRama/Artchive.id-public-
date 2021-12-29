@@ -8,7 +8,7 @@ const { Sider } = Layout;
 const { SubMenu } = Menu;
 
 // Icon
-import { HomeOutlined, UserOutlined } from "@ant-design/icons";
+import { HomeOutlined, UserOutlined, PictureOutlined } from "@ant-design/icons";
 
 const DashboardSider = (props) => {
   const router = useRouter();
@@ -59,6 +59,12 @@ const DashboardSider = (props) => {
               <Link href="/dashboard/users/gallery">Gallery</Link>
             </Menu.Item>
           </SubMenu>
+          {/* ============================ */}
+
+          {/* Artwork Menu Section */}
+          <Menu.Item key="/dashboard/artworks" icon={<PictureOutlined />}>
+            <Link href="/dashboard/artworks">Artwork</Link>
+          </Menu.Item>
           {/* ============================ */}
         </Menu>
         {/* ============================ */}
