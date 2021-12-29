@@ -1,4 +1,5 @@
 // Libs
+import moment from "moment";
 import { useRouter } from "next/router";
 import { Button, Col, Form, Input, Row, Image, Select, InputNumber } from "antd";
 const { Option } = Select;
@@ -91,9 +92,15 @@ function ArtworkCreate() {
             </Col>
             <Col span={12}>
               <Form layout="vertical" form={form}>
-                <Form.Item name="sku" label="Artwork SKU">
-                  <Input />
-                </Form.Item>
+                {lastArtworkId && (
+                  <Form.Item
+                    name="sku"
+                    label="Artwork SKU"
+                    initialValue={`ARTCHIVE/ART-${lastArtworkId}/${moment().format("DDMMYYYY")}`}
+                  >
+                    <Input disabled />
+                  </Form.Item>
+                )}
                 <Form.Item name="artistId" label="Artist">
                   <Select placeholder="Select artist" showSearch>
                     {artistData &&
