@@ -1,4 +1,5 @@
 // Libs
+import { useRouter } from "next/router";
 import { Col, Row } from "antd";
 
 // Components
@@ -11,20 +12,23 @@ import CardArtwork from "app/components/libs/card-artwork";
 import { useArtworks } from "app/hooks/artwork";
 
 function ArtworkList() {
+  const router = useRouter();
+
   //? ============== Data Fetching ============= ?//
   const { data } = useArtworks({ queryString: "" });
-  const allData = data?.data;
   // * ====================================== * //
 
   return (
     <ContainerBox>
       <ContainerCard title="Artwork List">
-        <AddButton>Add Artwork</AddButton>
+        <AddButton onCreate={() => router.push("/dashboard/artworks/create")}>
+          Add Artwork
+        </AddButton>
         <Row gutter={[16, 16]}>
-          {allData &&
-            allData.map((item, index) => {
+          {data &&
+            data.map((item, index) => {
               return (
-                <Col span={6} key={item?.index}>
+                <Col span={6} key={index}>
                   <CardArtwork
                     image={
                       item?.media?.[0]?.url
