@@ -88,7 +88,7 @@ apiHandler.post(async (req, res) => {
           ACL: "public-read",
           ContentType: "application/pdf",
           Body: buffer,
-          Key: `certificate-${id}.pdf`,
+          Key: `ARTIST-${artistId}/ART-${id}/certificate-${id}.pdf`,
         },
         function (err, data) {
           if (!err) {

@@ -112,6 +112,7 @@ const certificateTemplate = ({
           align-self: flex-end;
           position: relative;
           margin-top: 20px;
+          font-size:8px;
         }
         .align-center {
           text-align: center;
@@ -191,7 +192,7 @@ const certificateTemplate = ({
           </div>
         </div>
         <div class="align-center serial-number flex-center col-12">
-          <p style="margin: 0"><strong>${certificateId}</strong></p>
+          <p style="margin: 0">${certificateId}</p>
         </div>
       </div>
     </div>
