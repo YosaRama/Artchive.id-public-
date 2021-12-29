@@ -11,7 +11,6 @@ import { useUsers } from "app/hooks/user";
 function ArtistList() {
   //? ============== Data Fetching ============= ?//
   const { data } = useUsers({ queryString: `role=ARTIST` });
-  const allData = data?.data;
   // * ====================================== * //
 
   //? ============== Search Handling ============= ?//
@@ -20,7 +19,9 @@ function ArtistList() {
 
   return (
     <ContainerBox>
-      <UserListing searchValue={searchValue} setSearchValue={setSearchValue} data={allData} />
+      {data && (
+        <UserListing searchValue={searchValue} setSearchValue={setSearchValue} data={data} />
+      )}
     </ContainerBox>
   );
 }

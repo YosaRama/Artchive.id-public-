@@ -14,7 +14,7 @@ const msgHead = "artwork"; // Just For message
 
 export const useArtworks = ({ queryString = "" }) => {
   const pathKeys = pathName + "?" + queryString;
-  const { data = {}, error, isValidating, mutate } = useSWR(pathKeys);
+  const { data = [], error, isValidating, mutate } = useSWR(pathKeys);
   const [loading, setLoading] = useState(false);
 
   // Add Hook Function
@@ -101,7 +101,7 @@ export const useArtworks = ({ queryString = "" }) => {
 
 export const useArtwork = ({ singleId }) => {
   const pathKeys = `${pathName}/${singleId}`;
-  const { data = {}, error, isValidating, mutate } = useSWR(pathKeys);
+  const { data = [], error, isValidating, mutate } = useSWR(pathKeys);
   const [loading, setLoading] = useState(false);
 
   // Edit Hook Function

@@ -17,7 +17,7 @@ export const fetcher = (url) => {
       throw Error(results.message);
     }
 
-    return results;
+    return results.data;
   });
 };
 

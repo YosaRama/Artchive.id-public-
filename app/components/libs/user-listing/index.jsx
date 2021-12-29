@@ -48,7 +48,7 @@ function UserListing(props) {
     >
       <AddButton onCreate={() => router.push("/dashboard/users/create")}>Add User</AddButton>
       {data &&
-        data.map((item) => {
+        data?.map((item) => {
           return (
             <CardUserList
               key={item.id}

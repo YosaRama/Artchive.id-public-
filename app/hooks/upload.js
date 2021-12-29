@@ -39,7 +39,6 @@ export const useUploads = () => {
         return res.data.success;
       }
     } catch (error) {
-      console.log(error);
       ErrorNotification({
         message: "Error",
         description: `Something went wrong while adding a new ${msgHead}`,

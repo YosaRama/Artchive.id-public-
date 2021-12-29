@@ -14,7 +14,7 @@ const msgHead = "user"; // Just For message
 
 export const useUsers = ({ queryString = "" }) => {
   const pathKeys = pathName + "?" + queryString;
-  const { data = {}, error, isValidating, mutate } = useSWR(pathKeys);
+  const { data = [], error, isValidating, mutate } = useSWR(pathKeys);
   const [loading, setLoading] = useState(false);
 
   // Add Hook Function
@@ -101,7 +101,7 @@ export const useUsers = ({ queryString = "" }) => {
 
 export const useUser = ({ singleId }) => {
   const pathKeys = `${pathName}/${singleId}`;
-  const { data = {}, error, isValidating, mutate } = useSWR(pathKeys);
+  const { data = [], error, isValidating, mutate } = useSWR(pathKeys);
   const [loading, setLoading] = useState(false);
 
   // Edit Hook Function
