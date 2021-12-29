@@ -1,68 +1,202 @@
-const certificateTemplate = ({ id, qrCode }) => {
+const certificateTemplate = ({
+  id,
+  artworkImage,
+  qrCode,
+  title,
+  artist,
+  certificateId,
+  size,
+  signature,
+  description,
+  media,
+}) => {
   return `<!DOCTYPE html>
-    <html lang="en">
+  <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href=""/>
-        <title>Certificate Template</title>
-        <style>
-          .flex-box {
-            width: 100%;
-            display: -webkit-box;
-            display: -ms-flexbox;
-            display: flex;
-            -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
-            position: relative;
-          }
-          .col-12 {
-            width:100%;
-          }
-          .col-6 {
-            width:50%;
-          }
-        </style>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap"
+        rel="stylesheet"
+      />
+      <title>Certificate Template</title>
+      <style>
+        body {
+          position: relative;
+          margin: 0;
+          font-size: 12px;
+          font-family: "Open Sans", sans-serif;
+        }
+        p {
+          margin: 0;
+          line-height: 1.75;
+        }
+        strong {
+          font-weight: 700;
+        }
+        .main-container {
+          width: 100%;
+          height: 595px;
+          max-width: 100%;
+          max-height: 595px;
+          position: relative;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: 115% 95%;
+        }
+        .container {
+          height: 85%;
+          width: 80%;
+          margin: 0 auto;
+          position: relative;
+          top: 7.5%;
+        }
+        .icon-img img {
+          width: auto;
+          height: 25px;
+          -o-object-fit: contain;
+          object-fit: contain;
+        }
+        .title-img img {
+          width: auto;
+          height: 50px;
+          -o-object-fit: contain;
+          object-fit: contain;
+        }
+        .subtitle-section {
+          margin: 5px auto 20px;
+        }
+        .artwork-section {
+          margin: 5px auto;
+        }
+        .artwork-img {
+          text-align: right;
+        }
+        .artwork-img img {
+          width: auto;
+          height: 200px;
+          -o-object-fit: contain;
+          object-fit: contain;
+          margin-right: 20px;
+        }
+        .signature-section {
+          margin: 0px 0;
+        }
+        .signature-img {
+          border-bottom: 1px solid #eda624;
+          width: 50%;
+          margin: auto;
+          padding-bottom: 10px;
+        }
+        .signature-img img {
+          width: auto;
+          height: 70px;
+          -o-object-fit: contain;
+          object-fit: contain;
+        }
+        .qrcode-img {
+          text-align: center;
+          width: 80px;
+          height: 80px;
+          -o-object-fit: contain;
+          object-fit: contain;
+        }
+        .serial-number {
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          -ms-flex-item-align: end;
+          align-self: flex-end;
+          position: relative;
+          margin-top: 20px;
+        }
+        .align-center {
+          text-align: center;
+        }
+        .flex-box {
+          width: 100%;
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+          position: relative;
+        }
+        .col-12 {
+          width: 100%;
+        }
+        .col-6 {
+          width: 50%;
+        }
+        .flex-center {
+          -webkit-box-align: center;
+          -ms-flex-align: center;
+          align-items: center;
+          -webkit-box-pack: center;
+          -ms-flex-pack: center;
+          justify-content: center;
+        }
+      </style>
     </head>
     <body>
-      <div style="height: 100vh; position:'relative' ">
-        <img src=${process.env.SITE_URL}/_next/image?url=%2Fimages%2Ffavicon.svg&w=3840&q=75} style="width:100px; height:100px; position:'relative'; display:'block'"/>
-        <h1>Artchive Certificate Template ${id}</h1>
-        <p>ARTCHIVE/ART-I/</p>
-        <div class="flex-box">
-          <div class="col-6">
-            <img src="${process.env.NEXT_PUBLIC_S3_URL}/mongodb.png-%40150px" style="width:100px; height:100px; position:'relative'; display:'block' "/>
-          </div>
-          <div class="col-6">
-            <p>Title : <span>Artwork Title</span></p>
-            <p>Artist : <span>Artwork Artist</span></p>
-            <p>Media : <span>Just in Idea</span></p>
-            <p>Size : <span>100 x 150 cm </span></p>
-            <p>Artwork Details : <br/> 
-              <span>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                Corrupti dolores quibusdam dolorem assumenda quam consequatur 
-                nesciunt excepturi voluptatem inventore, ut magnam ex, et, 
-                blanditiis culpa! Totam illo officia laudantium magnam.
-              </span>
-            </p>
-          </div>
+    <div class="main-container">
+      <div class="container">
+        <div class="col-12 icon-img align-center">
+          <img src=http://localhost:3000/images/favicon.svg />
         </div>
-        <div class="flex-box">
-          <div class="col-6">
-            <div style="width:100px; height:100px; position:'relative'; display='block' ">
-            ${qrCode}
+        <div class="col-12 title-img align-center">
+          <img src="http://localhost:3000/images/certificate-title.svg" />
+        </div>
+        <div class="subtitle-section col-12">
+          <p class="align-center" style="margin: 0">
+            This artwork is one-of-a-kind authentic, original artwork.
+          </p>
+          <p class="align-center" style="margin: 0">
+            All copyright and reproduction rights are reserved by the artist
+          </p>
+        </div>
+
+        <div class="col-12">
+          <div class="flex-box artwork-section col-12">
+            <div class="col-6 artwork-img">
+              <img src="${
+                artworkImage ? artworkImage : "http://localhost:3000/images/artwork-2.jpg"
+              }" />
+            </div>
+            <div class="col-6">
+              <p><strong>Title : </strong><span>${title ? title : "Artwork Title"}</span></p>
+              <p><strong>Artist : </strong><span>${artist ? artist : "Another Artist"}</span></p>
+              <p><strong>Media : </strong><span>${media ? media : "Media on canvas"}</span></p>
+              <p><strong>Size : </strong><span>${size ? size : "100 x 150"} cm</span></p>
+              <p>
+                <strong>Artwork Details : </strong><br />
+                <span> ${description ? description : ""} </span>
+              </p>
             </div>
           </div>
-          <div class="col-6">
-            <h1>This is Signature</h1>
-            <p>John Doe</p>
+        </div>
+
+        <div class="flex-box signature-section">
+          <div class="col-6 flex-box flex-center">
+            <div class="qrcode-img">${qrCode}</div>
+          </div>
+          <div class="col-6 align-center">
+            <div class="signature-img">${signature ? '<img src="' + signature + '" />' : ""}</div>
+            <div class="col-6 align-center" style="margin: auto">
+              <p style="width: 100%; font-size: 12px">${artist ? artist : ""}</p>
+            </div>
           </div>
         </div>
+        <div class="align-center serial-number flex-center col-12">
+          <p style="margin: 0"><strong>${certificateId}</strong></p>
+        </div>
       </div>
-    </body>
-    </html>`;
+    </div>
+  </body>
+  </html>`;
 };
 
 export default certificateTemplate;

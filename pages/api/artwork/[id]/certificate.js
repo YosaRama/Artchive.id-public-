@@ -2,6 +2,7 @@
 import nextConnect from "next-connect";
 import pdf from "html-pdf";
 import QRCode from "qrcode";
+import moment from "moment";
 const apiHandler = nextConnect();
 
 // Upload Libs
@@ -23,8 +24,30 @@ const s3 = new aws.S3();
 
 //? ============== Upload certificate on S3 ============= ?//
 apiHandler.post(async (req, res) => {
+  // Artwork ID
   const { id } = req.query;
-  const {} = req.body;
+  // ====================
+
+  // Certificate Data
+  //TODO : Property get from database with artwork ID
+  const {
+    title,
+    artist,
+    artistId,
+    artworkDate,
+    size,
+    signature,
+    description,
+    media,
+    artworkImage,
+  } = req.body;
+  // ====================
+
+  // Certificate ID
+  const certificateId = `ARTCHIVE/ART-${id}/${artworkDate}/${artistId}/${moment().format(
+    "DDMMYYYY"
+  )}`;
+  // ====================
 
   //? ============== Generate QR Code ============= ?//
 
@@ -40,12 +63,24 @@ apiHandler.post(async (req, res) => {
 
   //? ============== Certificate HTML Template ============= ?//
 
-  const certificate = certificateTemplate({ id: id, qrCode: qrCode });
+  const certificate = certificateTemplate({
+    id: id,
+    artworkImage: artworkImage,
+    qrCode: qrCode,
+    title: title,
+    artist: artist,
+    certificateId: certificateId,
+    size: size,
+    signature: signature,
+    signatureName: artist,
+    description: description,
+    media: media,
+  });
 
   // * ====================================== * //
 
   pdf
-    .create(certificate, { orientation: "landscape", format: "A4" })
+    .create(certificate, { format: "A4", orientation: "landscape", quality: "100", type: "pdf" })
     .toBuffer(function (err, buffer) {
       s3.upload(
         {
