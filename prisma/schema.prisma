@@ -12,17 +12,21 @@ datasource db {
 
 // MODEL
 model User {
-  id         Int          @id @default(autoincrement())
-  email      String       @unique
-  full_name  String
-  password   String
-  role       Role
-  artwork    Artwork[]
-  collection Collection[]
-  cart       Cart[]
-  order      Order[]
-  createdAt  DateTime     @default(now())
-  updatedAt  DateTime?    @updatedAt
+  id             Int          @id @default(autoincrement())
+  email          String       @unique
+  full_name      String
+  password       String
+  profile        Media?       @relation("profile", fields: [profile_img_id], references: [id])
+  profile_img_id Int?         @unique
+  signature      Media?       @relation("signature", fields: [signature_id], references: [id])
+  signature_id   Int?         @unique
+  role           Role
+  artwork        Artwork[]
+  collection     Collection[]
+  cart           Cart[]
+  order          Order[]
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime?    @updatedAt
 
   @@map("user")
 }
@@ -48,7 +52,7 @@ model Artwork {
   cart        Cart[]
   order       Order[]
   createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
+  updatedAt   DateTime?    @updatedAt
 
   @@map("artwork")
 }
@@ -58,7 +62,7 @@ model Genre {
   title     String
   artwork   Artwork[]
   createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  updatedAt DateTime? @updatedAt
 
   @@map("genre")
 }
@@ -72,9 +76,11 @@ model Media {
   url         String    @db.Text
   title       String?   @db.Text
   description String?   @db.Text
-  artwork     Artwork[]
   createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  updatedAt   DateTime? @updatedAt
+  artwork     Artwork[]
+  profile     User?     @relation("profile")
+  signature   User?     @relation("signature")
 
   @@map("media")
 }
@@ -88,7 +94,7 @@ model Cart {
   status     CartStatus
   order      Order[]
   createdAt  DateTime   @default(now())
-  updatedAt  DateTime   @updatedAt
+  updatedAt  DateTime?  @updatedAt
 
   @@map("cart")
 }
@@ -104,21 +110,21 @@ model Order {
   cart_id          Int
   collection       Collection[]
   createdAt        DateTime     @default(now())
-  updatedAt        DateTime     @updatedAt
+  updatedAt        DateTime?    @updatedAt
 
   @@map("order")
 }
 
 model Collection {
-  id         Int      @id @default(autoincrement())
-  collector  User     @relation(fields: [user_id], references: [id])
+  id         Int       @id @default(autoincrement())
+  collector  User      @relation(fields: [user_id], references: [id])
   user_id    Int
-  artwork    Artwork  @relation(fields: [artwork_id], references: [id]) //TODO: Check one-to-one relation
-  artwork_id Int      @unique //TODO : Check one-to-one relation
-  order      Order    @relation(fields: [order_id], references: [id])
+  artwork    Artwork   @relation(fields: [artwork_id], references: [id]) //TODO: Check one-to-one relation
+  artwork_id Int       @unique //TODO : Check one-to-one relation
+  order      Order     @relation(fields: [order_id], references: [id])
   order_id   Int
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime? @updatedAt
 
   @@map("collection")
 }
