@@ -5,7 +5,7 @@ import { GET_ARTWORK_BY_ID, UPDATE_ARTWORK, DELETE_ARTWORK } from "app/database/
 import nextConnect from "next-connect";
 
 const apiHandler = nextConnect();
-const messageHead = "Template";
+const messageHead = "artwork";
 
 // GET SINGLE HANDLER
 apiHandler.get(async (req, res) => {
@@ -35,8 +35,40 @@ apiHandler.get(async (req, res) => {
 // EDIT SINGLE HANDLER
 apiHandler.put(async (req, res) => {
   const id = req.query.id;
+  const {
+    sku,
+    artist_id,
+    title,
+    year,
+    material,
+    description,
+    genre_id,
+    media_id,
+    type,
+    height,
+    length,
+    price,
+    status,
+    approve,
+  } = req.body;
   try {
-    const result = await UPDATE_ARTWORK({ id });
+    const result = await UPDATE_ARTWORK({
+      id,
+      sku,
+      artist_id,
+      title,
+      year,
+      material,
+      description,
+      genre_id,
+      media_id,
+      type,
+      height,
+      length,
+      price,
+      status,
+      approve,
+    });
     if (result) {
       res.status(200).json({
         success: true,

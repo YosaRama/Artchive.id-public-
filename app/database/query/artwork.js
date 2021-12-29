@@ -116,14 +116,61 @@ export const GET_TOTAL_ARTWORK = () => {
 //? ============== CREATE QUERY ============= ?//
 
 // Create new data
-export const CREATE_ARTWORK = ({ email, password, fullName, role }) => {
-  return prisma.data.create({
+export const CREATE_ARTWORK = ({
+  sku,
+  artist_id,
+  title,
+  year,
+  material,
+  description,
+  genre_id,
+  media_id,
+  type,
+  height,
+  length,
+  price,
+  status,
+  approve,
+}) => {
+  return prisma.artwork.create({
+    // Data
     data: {
-      email: email,
-      password: password,
-      full_name: fullName,
-      role: role,
+      sku: sku,
+      title: title,
+      year: year,
+      material: material,
+      description: description,
+      type: type,
+      height: height,
+      length: length,
+      price: price,
+      status: status,
+      approve: approve,
+      artist: {
+        connect: {
+          id: artist_id,
+        },
+      },
+      genre: {
+        connect: {
+          id: genre_id,
+        },
+      },
+      media: {
+        connect: media_id.map((item) => {
+          return { id: item };
+        }),
+      },
     },
+    //============================
+
+    // Get Relational Data
+    include: {
+      media: true,
+      genre: true,
+      artist: true,
+    },
+    // ==================
   });
 };
 // ==================================
@@ -133,19 +180,68 @@ export const CREATE_ARTWORK = ({ email, password, fullName, role }) => {
 //? ============== UPDATE QUERY ============= ?//
 
 // Update data with specific ID details without password
-export const UPDATE_ARTWORK = ({ id, fullName, email }) => {
-  return prisma.data.update({
-    data: { email: email, full_name: fullName },
+export const UPDATE_ARTWORK = ({
+  id,
+  sku,
+  artist_id,
+  title,
+  year,
+  material,
+  description,
+  genre_id,
+  media_id,
+  type,
+  height,
+  length,
+  price,
+  status,
+  approve,
+}) => {
+  return prisma.artwork.update({
+    // Handle query condition
     where: { id: +id },
-  });
-};
-// ==================================
+    //====================
 
-// Update data with specific ID password only
-export const UPDATE_ARTWORK_PASSWORD = ({ password, id }) => {
-  return prisma.data.update({
-    where: { id: +id },
-    data: { password: password },
+    // Data
+    data: {
+      sku: sku,
+      title: title,
+      year: year,
+      material: material,
+      description: description,
+      type: type,
+      height: height,
+      length: length,
+      price: price,
+      status: status,
+      approve: approve,
+      artist: {
+        connect: {
+          id: artist_id,
+        },
+      },
+      genre: {
+        set: [],
+        connect: {
+          id: genre_id,
+        },
+      },
+      media: {
+        set: [],
+        connect: media_id.map((item) => {
+          return { id: item };
+        }),
+      },
+    },
+    //====================
+
+    // Get Relational Data
+    include: {
+      media: true,
+      genre: true,
+      artist: true,
+    },
+    // ==================
   });
 };
 // ==================================
@@ -156,7 +252,7 @@ export const UPDATE_ARTWORK_PASSWORD = ({ password, id }) => {
 
 // Delete data with specific ID
 export const DELETE_ARTWORK = ({ id }) => {
-  return prisma.data.delete({ where: { id: +id } });
+  return prisma.artwork.delete({ where: { id: +id } });
 };
 // ==================================
 

@@ -5,7 +5,7 @@ import { GET_ARTWORK, CREATE_ARTWORK, GET_TOTAL_ARTWORK } from "app/database/que
 import nextConnect from "next-connect";
 
 const apiHandler = nextConnect();
-const messageHead = "Template";
+const messageHead = "artwork";
 
 // GET HANDLER
 apiHandler.get(async (req, res) => {
@@ -38,8 +38,39 @@ apiHandler.get(async (req, res) => {
 
 // POST HANDLER
 apiHandler.post(async (req, res) => {
+  const {
+    sku,
+    artist_id,
+    title,
+    year,
+    material,
+    description,
+    genre_id,
+    media_id,
+    type,
+    height,
+    length,
+    price,
+    status,
+    approve,
+  } = req.body;
   try {
-    const result = await CREATE_ARTWORK({});
+    const result = await CREATE_ARTWORK({
+      sku,
+      artist_id,
+      title,
+      year,
+      material,
+      description,
+      genre_id,
+      media_id,
+      type,
+      height,
+      length,
+      price,
+      status,
+      approve,
+    });
     if (result) {
       res.status(200).json({
         success: true,
