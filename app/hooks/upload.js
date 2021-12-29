@@ -25,18 +25,18 @@ export const useUploads = () => {
     try {
       setLoading(true);
       const res = await axios.post("/api/upload", fmData, config);
-      if (res.status) {
+      if (res.data.success) {
         SuccessNotification({
           message: "Success",
           description: `A new ${msgHead} has successfully saved.`,
         });
-        return res.success;
+        return res.data;
       } else {
         ErrorNotification({
           message: "Error",
           description: `Something went wrong while adding a new ${msgHead}`,
         });
-        return res.success;
+        return res.data.success;
       }
     } catch (error) {
       console.log(error);
