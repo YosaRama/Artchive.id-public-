@@ -52,7 +52,7 @@ apiHandler.post(async (req, res) => {
   //? ============== Generate QR Code ============= ?//
 
   const qrCode = QRCode.toString(
-    `${process.env.NEXT_PUBLIC_S3_URL}/certificate-${id}.pdf`,
+    `${process.env.NEXT_PUBLIC_S3_URL}/ARTIST-${artistId}/ART-${id}/certificate-${id}.pdf`,
     { type: "svg" },
     function (err, res) {
       return res;
