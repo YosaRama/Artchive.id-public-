@@ -12,6 +12,9 @@ import CardUserList from "app/components/libs/card-user-list";
 import { FilterOutlined, PlusOutlined } from "@ant-design/icons";
 import DashboardSearch from "app/components/libs/dashboard-search";
 
+// Data Hook
+import { useUsers } from "app/hooks/user";
+
 function ArtistList() {
   //? ============== Search Handling ============= ?//
   const [searchValue, setSearchValue] = useState();
