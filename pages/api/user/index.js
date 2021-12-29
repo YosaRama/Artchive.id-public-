@@ -13,7 +13,7 @@ apiHandler.get(async (req, res) => {
   const { page, limit, role, email, fullName } = req.query;
   try {
     const result = await GET_USER({ page, limit, role, email, fullName });
-    const total = await GET_TOTAL_USER();
+    const total = await GET_TOTAL_USER({ role, email, fullName });
     if (result) {
       res.status(200).json({
         success: true,
