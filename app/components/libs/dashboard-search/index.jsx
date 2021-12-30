@@ -9,7 +9,6 @@ function DashboardSearch(props) {
   const [searchForm] = Form.useForm();
   // Handle Set value Search
   const handleSearch = (value) => {
-    console.log(value);
     setSearchValue(value);
   };
   // Handle Reset Search

@@ -27,7 +27,7 @@ const s3 = new aws.S3();
 apiHandler.post(async (req, res) => {
   // Artwork ID
   const { id } = req.query;
-  const certificateId = (await GET_CERTIFICATE_LAST_ID()).id + 1;
+  const certificateId = (await GET_CERTIFICATE_LAST_ID())?.id + 1;
   // ====================
 
   // Certificate Data
@@ -50,12 +50,13 @@ apiHandler.post(async (req, res) => {
     "DDMMYYYY"
   )}/${certificateId}`;
   const certificateKeys = `ARTIST-${artistId}/ART-${id}/CERTIFICATE/certificate-${certificateId}.pdf`;
+  const certificateMainKeys = `ARTIST-${artistId}/ART-${id}/CERTIFICATE/main-certificate-${certificateId}.pdf`;
   // ====================
 
   //? ============== Generate QR Code ============= ?//
 
   const qrCode = QRCode.toString(
-    `${process.env.NEXT_PUBLIC_S3_URL}/${certificateKeys}`,
+    `${process.env.NEXT_PUBLIC_S3_URL}/${certificateMainKeys}`,
     { type: "svg" },
     function (err, res) {
       return res;
@@ -66,8 +67,23 @@ apiHandler.post(async (req, res) => {
 
   //? ============== Certificate HTML Template ============= ?//
 
+  const certificateWithoutBarcode = certificateTemplate({
+    id: id,
+    watermark: true,
+    artworkImage: artworkImage,
+    title: title,
+    artist: artist,
+    certificateSerial: certificateSerial,
+    size: size,
+    signature: signature,
+    signatureName: artist,
+    description: description,
+    material: material,
+  });
+
   const certificate = certificateTemplate({
     id: id,
+    watermark: false,
     artworkImage: artworkImage,
     qrCode: qrCode,
     title: title,
@@ -83,34 +99,68 @@ apiHandler.post(async (req, res) => {
   // * ====================================== * //
 
   pdf
-    .create(certificate, { format: "A4", orientation: "landscape", quality: "100", type: "pdf" })
-    .toBuffer(function (err, buffer) {
+    .create(certificateWithoutBarcode, {
+      format: "A4",
+      orientation: "landscape",
+      quality: "100",
+      type: "pdf",
+    })
+    .toBuffer(async function (err, buffer) {
       s3.upload(
         {
           Bucket: bucketName,
           ACL: "public-read",
           ContentType: "application/pdf",
           Body: buffer,
-          Key: certificateKeys,
+          Key: certificateMainKeys,
         },
         async function (err, data) {
           if (!err) {
             try {
-              const result = await CREATE_CERTIFICATE({
+              const mainResult = await CREATE_CERTIFICATE({
                 artistId: +artistId,
                 artworkId: +id,
                 serialNumber: certificateSerial,
-                url: certificateKeys,
+                url: certificateMainKeys,
+                type: "MAIN",
               });
-              if (result) {
-                res
-                  .status(200)
-                  .json({ success: true, data: data, message: "Success save certificate" });
-              } else {
-                res
-                  .status(200)
-                  .json({ success: false, data: data, message: "Failed save certificate" });
-              }
+
+              pdf
+                .create(certificate, {
+                  format: "A4",
+                  orientation: "landscape",
+                  quality: "100",
+                  type: "pdf",
+                })
+                .toBuffer(function (err, buffer) {
+                  s3.upload(
+                    {
+                      Bucket: bucketName,
+                      ACL: "public-read",
+                      ContentType: "application/pdf",
+                      Body: buffer,
+                      Key: certificateKeys,
+                    },
+                    async function (err, data) {
+                      if (!err) {
+                        const result = await CREATE_CERTIFICATE({
+                          artistId: +artistId,
+                          artworkId: +id,
+                          serialNumber: certificateSerial,
+                          url: certificateKeys,
+                          type: "EDITION",
+                        });
+                        res.status(200).json({
+                          success: true,
+                          data: data,
+                          message: "Success serve all certificate",
+                        });
+                      } else {
+                        res.status(200).json({ success: false, data: data, message: err });
+                      }
+                    }
+                  );
+                });
             } catch (error) {
               res.status(200).json({ success: false, data: data, message: error.message });
             }

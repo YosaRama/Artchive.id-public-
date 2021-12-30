@@ -91,7 +91,13 @@ export const GET_ARTWORK_BY_ID = ({ id }) => {
       },
       media_cover: { select: { id: true, url: true } },
       media_gallery: { select: { id: true, url: true } },
-      certificate: { select: { id: true, url: true }, orderBy: { id: "desc" } },
+      certificate: {
+        select: { id: true, url: true },
+        orderBy: { id: "desc" },
+        where: {
+          type: "EDITION",
+        },
+      },
     },
     // ==================
   });

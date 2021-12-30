@@ -15,7 +15,6 @@ function ManagePageLogin() {
   const handleLogin = () => {
     form.validateFields().then(async (value) => {
       const result = await value;
-      console.log(`value`, result);
       if (result) {
         router.push("/dashboard");
       }

@@ -34,7 +34,7 @@ function CardUserList(props) {
 
   // Handle Delete
   const handleDelete = () => {
-    console.log("Deleted");
+    // TODO: Delete here
   };
   // =================
 

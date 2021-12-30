@@ -37,8 +37,6 @@ function ArtworkGeneralInformation(prop) {
         approve: value.approve,
       };
       onEdit(submission);
-      console.log("submission:", submission);
-      console.log(`id`, initialValue.id);
     });
   };
   // * ====================================== * //

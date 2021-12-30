@@ -32,9 +32,6 @@ function ArtworkCertificateGenerate(props) {
     };
 
     const result = await onGenerateCertificate(submission);
-    if (result) {
-      console.log(result);
-    }
   };
   // * ====================================== * //
 

@@ -16,7 +16,7 @@ export const GET_CERTIFICATE_LAST_ID = () => {
 //? ============== CREATE QUERY ============= ?//
 
 // Create new data
-export const CREATE_CERTIFICATE = ({ artistId, artworkId, serialNumber, url }) => {
+export const CREATE_CERTIFICATE = ({ artistId, artworkId, serialNumber, url, type }) => {
   return prisma.certificate.create({
     data: {
       user: {
@@ -31,6 +31,7 @@ export const CREATE_CERTIFICATE = ({ artistId, artworkId, serialNumber, url }) =
       },
       url: url,
       serial_no: serialNumber,
+      type: type,
     },
   });
 };

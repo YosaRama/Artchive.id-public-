@@ -1,5 +1,6 @@
 const certificateTemplate = ({
   id,
+  watermark,
   artworkImage,
   qrCode,
   title,
@@ -46,6 +47,21 @@ const certificateTemplate = ({
           background-position: center;
           background-repeat: no-repeat;
           background-size: 115% 95%;
+        }
+        .watermark {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+        }
+        .watermark img {
+          position: absolute;
+          width: 50%;
+          height: 50%;
+          top: 25%;
+          left: 25%;
+          -o-object-fit: contain;
+             object-fit: contain;
+          opacity: 0.1;
         }
         .container {
           height: 85%;
@@ -144,6 +160,11 @@ const certificateTemplate = ({
     </head>
     <body>
     <div class="main-container">
+    ${
+      watermark
+        ? '<div class="watermark"><img src="http://localhost:3000/images/logo.png"/></div>'
+        : ""
+    }
       <div class="container">
         <div class="col-12 icon-img align-center">
           <img src=http://localhost:3000/images/logo.png />
@@ -184,7 +205,7 @@ const certificateTemplate = ({
 
         <div class="flex-box signature-section">
           <div class="col-6 flex-box flex-center">
-            <div class="qrcode-img">${qrCode}</div>
+            <div class="qrcode-img">${qrCode ? qrCode : ""}</div>
           </div>
           <div class="col-6 align-center">
             <div class="signature-img">${

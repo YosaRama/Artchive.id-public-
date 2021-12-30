@@ -12,12 +12,10 @@ function deleteConfirmModal({ title, onDelete, onClose }) {
     okType: "danger",
     cancelText: "No",
     onOk() {
-      console.log("OK");
       onDelete();
     },
     onCancel() {
       onClose && onClose();
-      console.log("Cancel");
     },
   });
 }
