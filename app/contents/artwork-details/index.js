@@ -7,6 +7,7 @@ import { PageHeader, Image, Row, Col, Form, Input, Menu } from "antd";
 import ContainerBox from "app/components/container/containerBox";
 import ContainerCard from "app/components/container/containerCard";
 import ArtworkGeneralInformation from "../artwork-details-general";
+import ArtworkCertificateGenerate from "../artwork-certificate-generate";
 
 function ArtworkDetails(props) {
   const { initialValue } = props;
@@ -34,6 +35,7 @@ function ArtworkDetails(props) {
         </Menu>
 
         {selectedMenu == 1 && <ArtworkGeneralInformation initialValue={initialValue} />}
+        {selectedMenu == 2 && <ArtworkCertificateGenerate initialValue={initialValue} />}
       </ContainerCard>
     </ContainerBox>
   );
