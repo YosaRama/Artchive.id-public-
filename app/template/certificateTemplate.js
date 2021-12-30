@@ -146,7 +146,7 @@ const certificateTemplate = ({
     <div class="main-container">
       <div class="container">
         <div class="col-12 icon-img align-center">
-          <img src=http://localhost:3000/images/favicon.svg />
+          <img src=http://localhost:3000/images/logo.png />
         </div>
         <div class="col-12 title-img align-center">
           <img src="http://localhost:3000/images/certificate-title.svg" />

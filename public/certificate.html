@@ -100,7 +100,7 @@
         align-self: flex-end;
         position: relative;
         margin-top: 20px;
-        font-size: 12px;
+        font-size: 8px;
       }
       .align-center {
         text-align: center;
@@ -134,7 +134,7 @@
     <div class="main-container">
       <div class="container">
         <div class="col-12 icon-img align-center">
-          <img src=http://localhost:3000/images/favicon.svg />
+          <img src=http://localhost:3000/images/logo.png />
         </div>
         <div class="col-12 title-img align-center">
           <img src="http://localhost:3000/images/certificate-title.svg" />
@@ -157,7 +157,9 @@
             <div class="col-6">
               <p><strong>Title : </strong><span>${title ? title : "Artwork Title"}</span></p>
               <p><strong>Artist : </strong><span>${artist ? artist : "Another Artist"}</span></p>
-              <p><strong>Media : </strong><span>${media ? media : "Media on canvas"}</span></p>
+              <p>
+                <strong>Media : </strong><span>${ material ? material : "Media on canvas" }</span>
+              </p>
               <p><strong>Size : </strong><span>${size ? size : "100 x 150"} cm</span></p>
               <p>
                 <strong>Artwork Details : </strong><br />
@@ -172,14 +174,18 @@
             <div class="qrcode-img">${qrCode}</div>
           </div>
           <div class="col-6 align-center">
-            <div class="signature-img">${signature ? '<img src="' + signature + '" />' : ""}</div>
+            <div class="signature-img">
+              ${ signature ? '<img src="' + signature + '" />' : "
+              <div style="width: 100%; height: 70px"></div>
+              " }
+            </div>
             <div class="col-6 align-center" style="margin: auto">
               <p style="width: 100%; font-size: 12px">${artist ? artist : ""}</p>
             </div>
           </div>
         </div>
         <div class="align-center serial-number flex-center col-12">
-          <p style="margin: 0"><strong>${certificateId}</strong></p>
+          <p style="margin: 0">${certificateSerial}</p>
         </div>
       </div>
     </div>
