@@ -10,7 +10,7 @@ import aws from "aws-sdk";
 
 // Template
 import certificateTemplate from "app/template/certificateTemplate";
-import { CREATE_CERTIFICATE } from "app/database/query/certificate";
+import { CREATE_CERTIFICATE, GET_CERTIFICATE_LAST_ID } from "app/database/query/certificate";
 
 //? ============== AWS CONFIGURATION ============= ?//
 
@@ -27,12 +27,12 @@ const s3 = new aws.S3();
 apiHandler.post(async (req, res) => {
   // Artwork ID
   const { id } = req.query;
+  const certificateId = (await GET_CERTIFICATE_LAST_ID()).id + 1;
   // ====================
 
   // Certificate Data
   //TODO : Property get from database with artwork ID
   const {
-    certificateId,
     title,
     artist,
     artistId,

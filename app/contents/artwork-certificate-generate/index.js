@@ -1,7 +1,7 @@
 // Libs
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { Button, Col, Row, Image } from "antd";
+import { Button, Col, Row, Image, Spin } from "antd";
 import moment from "moment";
 import propTypes from "prop-types";
 
@@ -13,7 +13,7 @@ function ArtworkCertificateGenerate(props) {
   const router = useRouter();
 
   //? ============== Artwork Hook ============= ?//
-  const { data, onGenerateCertificate } = useArtwork({ singleId: initialValue.id });
+  const { data, onGenerateCertificate, loading } = useArtwork({ singleId: initialValue.id });
   // * ====================================== * //
 
   //? ============== Handle Generate Certificate ============= ?//
@@ -39,53 +39,59 @@ function ArtworkCertificateGenerate(props) {
   // * ====================================== * //
 
   return (
-    <Col style={{ margin: "100px auto", textAlign: "center" }} span={22}>
-      {data?.certificate?.length == 0 && (
-        <Button type="primary" onClick={handleGenerateCertificate}>
-          Create Certificate
-        </Button>
-      )}
-      {data?.certificate?.length != 0 && (
-        <Row>
-          <Col span={12}>
-            <iframe
-              src={`${process.env.NEXT_PUBLIC_S3_URL}/${data?.certificate?.[0]?.url}`}
-              style={{ width: "100%", height: 400 }}
-            />
-          </Col>
-          <Col
-            span={12}
-            style={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+    <Spin spinning={loading}>
+      <Col style={{ margin: "100px auto", textAlign: "center" }} span={22}>
+        {data?.certificate?.length == 0 && (
+          <Button
+            type="primary"
+            onClick={handleGenerateCertificate}
+            disabled={data?.status != "SOLD"}
           >
-            <div>
-              <Col span={24}>
-                <Button
-                  type="primary"
-                  style={{ marginBottom: 20, width: 250, height: 50 }}
-                  disabled={!data}
-                >
-                  <a
-                    href={`${process.env.NEXT_PUBLIC_S3_URL}/${data?.certificate?.[0]?.url}`}
-                    target="_blank"
-                    rel="noreferrer"
+            Create Certificate
+          </Button>
+        )}
+        {data?.certificate?.length != 0 && (
+          <Row>
+            <Col span={12}>
+              <iframe
+                src={`${process.env.NEXT_PUBLIC_S3_URL}/${data?.certificate?.[0]?.url}`}
+                style={{ width: "100%", height: 400 }}
+              />
+            </Col>
+            <Col
+              span={12}
+              style={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+            >
+              <div>
+                <Col span={24}>
+                  <Button
+                    type="primary"
+                    style={{ marginBottom: 20, width: 250, height: 50 }}
+                    disabled={!data}
                   >
-                    Download Certificate
-                  </a>
-                </Button>
-              </Col>
-              <Col span={24}>
-                <Button
-                  style={{ marginBottom: 20, width: 250, height: 50 }}
-                  onClick={handleGenerateCertificate}
-                >
-                  Update Certificate
-                </Button>
-              </Col>
-            </div>
-          </Col>
-        </Row>
-      )}
-    </Col>
+                    <a
+                      href={`${process.env.NEXT_PUBLIC_S3_URL}/${data?.certificate?.[0]?.url}`}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Download Certificate
+                    </a>
+                  </Button>
+                </Col>
+                <Col span={24}>
+                  <Button
+                    style={{ marginBottom: 20, width: 250, height: 50 }}
+                    onClick={handleGenerateCertificate}
+                  >
+                    Update Certificate
+                  </Button>
+                </Col>
+              </div>
+            </Col>
+          </Row>
+        )}
+      </Col>
+    </Spin>
   );
 }
 

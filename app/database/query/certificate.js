@@ -7,63 +7,9 @@ import { prisma } from "../connection";
 
 //? ============== GET QUERY ============= ?//
 
-// Get Data (Filter by Role, Email, FullName)
-export const GET_DATA = ({ page = 0, limit = 15, role, email, fullName }) => {
-  // Handle Pagination
-  const skip = limit != "all" ? +page * +limit : undefined;
-  return prisma.data.findMany({
-    skip: skip ? +skip : undefined, // Disable by undefined
-    take: limit != "all" ? +limit : undefined, // Disable by undefined
-    // ===========================
-
-    // Handle query condition
-    where: {
-      AND: {
-        role: role ? role : {}, // Can disable by empty object
-        email: email ? { contains: email } : {}, // Can disable by empty object
-        full_name: fullName ? { contains: fullName } : {}, // Can disable by empty object
-      },
-    },
-    // ==========================
-
-    // Handle order
-    orderBy: {
-      id: "desc",
-    },
-    // ==========================
-  });
+export const GET_CERTIFICATE_LAST_ID = () => {
+  return prisma.certificate.findFirst({ select: { id: true }, orderBy: { id: "desc" } });
 };
-// ==================================
-
-// Get Data by Specific ID
-export const GET_DATA_BY_ID = ({ id }) => {
-  return prisma.data.findUnique({
-    where: { id: +id },
-  });
-};
-// ==================================
-
-// Get Data by Specific Email
-export const GET_DATA_BY_EMAIL = ({ email }) => {
-  return prisma.data.findUnique({ where: { email: email } });
-};
-// ==================================
-
-// Get total all data
-export const GET_TOTAL_DATA = ({ role, email, fullName }) => {
-  return prisma.data.count({
-    // Handle query condition
-    where: {
-      AND: {
-        role: role ? role : {}, // Can disable by empty object
-        email: email ? { contains: email } : {}, // Can disable by empty object
-        full_name: fullName ? { contains: fullName } : {}, // Can disable by empty object
-      },
-    },
-    // ========================== });
-  });
-};
-// ==================================
 
 // * ====================================== * //
 
