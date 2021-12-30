@@ -10,6 +10,7 @@ import aws from "aws-sdk";
 
 // Template
 import certificateTemplate from "app/template/certificateTemplate";
+import { CREATE_CERTIFICATE } from "app/database/query/certificate";
 
 //? ============== AWS CONFIGURATION ============= ?//
 
@@ -31,6 +32,7 @@ apiHandler.post(async (req, res) => {
   // Certificate Data
   //TODO : Property get from database with artwork ID
   const {
+    certificateId,
     title,
     artist,
     artistId,
@@ -38,21 +40,22 @@ apiHandler.post(async (req, res) => {
     size,
     signature,
     description,
-    media,
+    material,
     artworkImage,
   } = req.body;
   // ====================
 
-  // Certificate ID
-  const certificateId = `ARTCHIVE/ART-${id}/${artworkDate}/${artistId}/${moment().format(
+  // Certificate Details
+  const certificateSerial = `ARTCHIVE/ART-${id}/${artworkDate}/${artistId}/${moment().format(
     "DDMMYYYY"
-  )}`;
+  )}/${certificateId}`;
+  const certificateKeys = `ARTIST-${artistId}/ART-${id}/CERTIFICATE/certificate-${certificateId}.pdf`;
   // ====================
 
   //? ============== Generate QR Code ============= ?//
 
   const qrCode = QRCode.toString(
-    `${process.env.NEXT_PUBLIC_S3_URL}/ARTIST-${artistId}/ART-${id}/certificate-${id}.pdf`,
+    `${process.env.NEXT_PUBLIC_S3_URL}/${certificateKeys}`,
     { type: "svg" },
     function (err, res) {
       return res;
@@ -69,12 +72,12 @@ apiHandler.post(async (req, res) => {
     qrCode: qrCode,
     title: title,
     artist: artist,
-    certificateId: certificateId,
+    certificateSerial: certificateSerial,
     size: size,
     signature: signature,
     signatureName: artist,
     description: description,
-    media: media,
+    material: material,
   });
 
   // * ====================================== * //
@@ -88,13 +91,31 @@ apiHandler.post(async (req, res) => {
           ACL: "public-read",
           ContentType: "application/pdf",
           Body: buffer,
-          Key: `ARTIST-${artistId}/ART-${id}/certificate-${id}.pdf`,
+          Key: certificateKeys,
         },
-        function (err, data) {
+        async function (err, data) {
           if (!err) {
-            res.status(200).json({ status: true, data: data, message: "Success save certificate" });
+            try {
+              const result = await CREATE_CERTIFICATE({
+                artistId: +artistId,
+                artworkId: +id,
+                serialNumber: certificateSerial,
+                url: certificateKeys,
+              });
+              if (result) {
+                res
+                  .status(200)
+                  .json({ success: true, data: data, message: "Success save certificate" });
+              } else {
+                res
+                  .status(200)
+                  .json({ success: false, data: data, message: "Failed save certificate" });
+              }
+            } catch (error) {
+              res.status(200).json({ success: false, data: data, message: error.message });
+            }
           } else {
-            res.status(200).json({ status: false, data: data, message: err });
+            res.status(200).json({ success: false, data: data, message: err });
           }
         }
       );

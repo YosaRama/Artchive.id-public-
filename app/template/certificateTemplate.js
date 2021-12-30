@@ -4,11 +4,11 @@ const certificateTemplate = ({
   qrCode,
   title,
   artist,
-  certificateId,
+  certificateSerial,
   size,
   signature,
   description,
-  media,
+  material,
 }) => {
   return `<!DOCTYPE html>
   <html lang="en">
@@ -170,7 +170,9 @@ const certificateTemplate = ({
             <div class="col-6">
               <p><strong>Title : </strong><span>${title ? title : "Artwork Title"}</span></p>
               <p><strong>Artist : </strong><span>${artist ? artist : "Another Artist"}</span></p>
-              <p><strong>Media : </strong><span>${media ? media : "Media on canvas"}</span></p>
+              <p><strong>Media : </strong><span>${
+                material ? material : "Media on canvas"
+              }</span></p>
               <p><strong>Size : </strong><span>${size ? size : "100 x 150"} cm</span></p>
               <p>
                 <strong>Artwork Details : </strong><br />
@@ -185,14 +187,18 @@ const certificateTemplate = ({
             <div class="qrcode-img">${qrCode}</div>
           </div>
           <div class="col-6 align-center">
-            <div class="signature-img">${signature ? '<img src="' + signature + '" />' : ""}</div>
+            <div class="signature-img">${
+              signature
+                ? '<img src="' + signature + '" />'
+                : "<div style='width:100%; height:70px'></div>"
+            }</div>
             <div class="col-6 align-center" style="margin: auto">
               <p style="width: 100%; font-size: 12px">${artist ? artist : ""}</p>
             </div>
           </div>
         </div>
         <div class="align-center serial-number flex-center col-12">
-          <p style="margin: 0">${certificateId}</p>
+          <p style="margin: 0">${certificateSerial}</p>
         </div>
       </div>
     </div>

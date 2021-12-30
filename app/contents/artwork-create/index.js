@@ -23,7 +23,7 @@ function ArtworkCreate() {
 
   //? ============== Artwork Hook ============= ?//
   const { data: artworkData, onAdd } = useArtworks({ queryString: "" });
-  const lastArtworkId = artworkData?.[0]?.id;
+  const lastArtworkId = artworkData.length != 0 ? artworkData?.[0]?.id + 1 : 1;
   // * ====================================== * //
 
   //? ============== Artist Hook ============= ?//
@@ -41,7 +41,7 @@ function ArtworkCreate() {
     const result = await onUpload({
       file: file.file,
       artistId: 1, // TODO: Change with id in session
-      artworkId: lastArtworkId + 1,
+      artworkId: lastArtworkId,
     });
     if (result.success) {
       setUploadImage({ id: result.data.id, url: result.data.url });
@@ -61,7 +61,8 @@ function ArtworkCreate() {
         material: value.material,
         description: value.description,
         genre_id: 1,
-        media_id: [uploadImage?.id],
+        media_id: [],
+        cover_id: uploadImage?.id,
         type: value.type,
         height: value.height,
         width: value.width,

@@ -54,7 +54,7 @@ model Artwork {
   collection     Collection[]
   cart           Cart[]
   order          Order[]
-  Certificate    Certificate[]
+  certificate    Certificate[]
   createdAt      DateTime      @default(now())
   updatedAt      DateTime?     @updatedAt
 
@@ -136,10 +136,12 @@ model Collection {
 
 model Certificate {
   id        Int      @id @default(autoincrement())
-  User      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
   userId    Int
-  Artwork   Artwork  @relation(fields: [artworkId], references: [id])
+  artwork   Artwork  @relation(fields: [artworkId], references: [id])
   artworkId Int
+  serial_no String
+  url       String
   cretedAt  DateTime @default(now())
 
   @@map("certificate")
