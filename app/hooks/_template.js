@@ -114,13 +114,13 @@ export const useTemplate = ({ singleId }) => {
           mutate();
           SuccessNotification({
             message: "Success",
-            description: `Edited event has successfully saved.`,
+            description: `Edited ${msgHead} has successfully saved.`,
           });
           return res.success;
         } else {
           ErrorNotification({
             message: "Error",
-            description: `Something went wrong while editing event`,
+            description: `Something went wrong while editing ${msgHead}`,
           });
 
           return res.success;
@@ -128,7 +128,7 @@ export const useTemplate = ({ singleId }) => {
       } catch (error) {
         ErrorNotification({
           message: "Error",
-          description: `Something went wrong while editing event`,
+          description: `Something went wrong while editing ${msgHead}`,
         });
 
         return false;

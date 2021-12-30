@@ -114,13 +114,13 @@ export const useArtwork = ({ singleId }) => {
           mutate();
           SuccessNotification({
             message: "Success",
-            description: `Edited event has successfully saved.`,
+            description: `Edited ${msgHead} has successfully saved.`,
           });
           return res.success;
         } else {
           ErrorNotification({
             message: "Error",
-            description: `Something went wrong while editing event`,
+            description: `Something went wrong while editing ${msgHead}`,
           });
 
           return res.success;
@@ -128,7 +128,43 @@ export const useArtwork = ({ singleId }) => {
       } catch (error) {
         ErrorNotification({
           message: "Error",
-          description: `Something went wrong while editing event`,
+          description: `Something went wrong while editing ${msgHead}`,
+        });
+
+        return false;
+      } finally {
+        setLoading(false);
+      }
+    },
+    [mutate, pathKeys]
+  );
+  // ==========================
+
+  // Edit Hook Function
+  const onGenerateCertificate = useCallback(
+    async (data) => {
+      try {
+        setLoading(true);
+        const { data: res } = await api.post(`${pathKeys}/certificate`, data);
+        if (res.success) {
+          mutate();
+          SuccessNotification({
+            message: "Success",
+            description: `Generate ${msgHead} certificate has successfully saved.`,
+          });
+          return res.success;
+        } else {
+          ErrorNotification({
+            message: "Error",
+            description: `Something went wrong while generate ${msgHead} certificate`,
+          });
+
+          return res.success;
+        }
+      } catch (error) {
+        ErrorNotification({
+          message: "Error",
+          description: `Something went wrong while generate ${msgHead} certificate`,
         });
 
         return false;
@@ -144,6 +180,7 @@ export const useArtwork = ({ singleId }) => {
     data,
     loading: (!error && !data) || isValidating || loading,
     onEdit,
+    onGenerateCertificate,
   };
 };
 
