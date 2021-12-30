@@ -25,7 +25,7 @@ function ArtworkDetails(props) {
       <PageHeader title="Artwork Details" onBack={() => router.back()} />
       <Row gutter={[16, 0]} style={{ marginBottom: 30 }}>
         <Col span={12} style={{ margin: "0 auto" }}>
-          <Image src={`${process.env.NEXT_PUBLIC_S3_URL}/${initialValue.media[0].url}`} alt="" />
+          <Image src={`${process.env.NEXT_PUBLIC_S3_URL}/${initialValue.media_cover.url}`} alt="" />
         </Col>
       </Row>
       <ContainerCard>

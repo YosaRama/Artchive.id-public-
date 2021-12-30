@@ -37,7 +37,8 @@ export const GET_ARTWORK = ({ page = 0, limit = 15 }) => {
           },
         },
       },
-      media: { select: { id: true, url: true } },
+      media_cover: { select: { id: true, url: true } },
+      media_gallery: { select: { id: true, url: true } },
     },
     // ==================
 
@@ -88,7 +89,8 @@ export const GET_ARTWORK_BY_ID = ({ id }) => {
           },
         },
       },
-      media: { select: { id: true, url: true } },
+      media_cover: { select: { id: true, url: true } },
+      media_gallery: { select: { id: true, url: true } },
     },
     // ==================
   });
@@ -125,6 +127,7 @@ export const CREATE_ARTWORK = ({
   description,
   genre_id,
   media_id,
+  cover_id,
   type,
   height,
   width,
@@ -156,19 +159,28 @@ export const CREATE_ARTWORK = ({
           id: genre_id,
         },
       },
-      media: {
-        connect: media_id.map((item) => {
-          return { id: item };
-        }),
+      media_gallery: {
+        connect:
+          (media_id &&
+            media_id.map((item) => {
+              return { id: item };
+            })) ||
+          [],
+      },
+      media_cover: {
+        connect: {
+          id: cover_id,
+        },
       },
     },
     //============================
 
     // Get Relational Data
     include: {
-      media: true,
       genre: true,
       artist: true,
+      media_cover: { select: { id: true, url: true } },
+      media_gallery: { select: { id: true, url: true } },
     },
     // ==================
   });
@@ -190,6 +202,7 @@ export const UPDATE_ARTWORK = ({
   description,
   genre_id,
   media_id,
+  cover_id,
   type,
   height,
   width,
@@ -226,20 +239,29 @@ export const UPDATE_ARTWORK = ({
           id: genre_id,
         },
       },
-      media: {
+      media_gallery: {
         set: [],
-        connect: media_id.map((item) => {
-          return { id: item };
-        }),
+        connect:
+          (media_id &&
+            media_id.map((item) => {
+              return { id: item };
+            })) ||
+          [],
+      },
+      media_cover: {
+        connect: {
+          id: cover_id,
+        },
       },
     },
     //====================
 
     // Get Relational Data
     include: {
-      media: true,
       genre: true,
       artist: true,
+      media_cover: { select: { id: true, url: true } },
+      media_gallery: { select: { id: true, url: true } },
     },
     // ==================
   });

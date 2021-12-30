@@ -31,8 +31,8 @@ function ArtworkList() {
                 <Col span={6} key={index}>
                   <CardArtwork
                     image={
-                      item?.media?.[0]?.url
-                        ? `${process.env.NEXT_PUBLIC_S3_URL}/${item?.media?.[0]?.url}`
+                      item?.media_cover
+                        ? `${process.env.NEXT_PUBLIC_S3_URL}/${item?.media_cover?.url}`
                         : "/images/default-images.png"
                     }
                     artistImage={

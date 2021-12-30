@@ -28,7 +28,7 @@ function ArtworkGeneralInformation(prop) {
         material: value.material,
         description: value.description,
         genre_id: 1,
-        media_id: initialValue.media.map((item) => item.id),
+        cover_id: initialValue.media_cover_id,
         type: value.type,
         height: value.height,
         width: value.width,
@@ -37,7 +37,7 @@ function ArtworkGeneralInformation(prop) {
         approve: value.approve,
       };
       onEdit(submission);
-      console.log("submissin:", submission);
+      console.log("submission:", submission);
       console.log(`id`, initialValue.id);
     });
   };
