@@ -4,22 +4,17 @@ import Link from "next/link";
 import propTypes from "prop-types";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { Avatar, Card, Col, Row, Tag, Tooltip } from "antd";
+import { Avatar, Card, Col, Row, Tooltip } from "antd";
 
 // Icon
-import {
-  UserOutlined,
-  EllipsisOutlined,
-  CloseOutlined,
-  EditOutlined,
-  DeleteOutlined,
-} from "@ant-design/icons";
+import { EllipsisOutlined, CloseOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
 
 // Style
 import s from "./index.module.scss";
 
 // Component
 import deleteConfirmModal from "../delete-modal-confirm";
+import RoleTag from "../role-tag";
 
 function CardUserList(props) {
   const { image, name, email, role, date, id } = props;
@@ -56,17 +51,7 @@ function CardUserList(props) {
             </div>
           </Col>
           <Col span={6}>
-            <Tag
-              icon={<UserOutlined />}
-              color={
-                (role == "ARTIST" && "green") ||
-                (role == "GALLERY" && "magenta") ||
-                (role == "COLLECTOR" && "blue") ||
-                (role == "ADMIN" && "default")
-              }
-            >
-              {role}
-            </Tag>
+            <RoleTag role={role} />
           </Col>
           <Col span={6}>{moment({ date }).format("DD MMMM YYYY")}</Col>
           <Col span={3} className={s.menu}>
