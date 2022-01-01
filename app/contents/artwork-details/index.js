@@ -6,8 +6,8 @@ import { PageHeader, Image, Row, Col, Form, Input, Menu } from "antd";
 // Component
 import ContainerBox from "app/components/container/containerBox";
 import ContainerCard from "app/components/container/containerCard";
-import ArtworkGeneralInformation from "../artwork-details-general";
-import ArtworkCertificateGenerate from "../artwork-certificate-generate";
+import ArtworkGeneralInformation from "./artwork-details-info";
+import ArtworkCertificateGenerate from "./artwork-details-certificate";
 
 // Styles
 import s from "./index.module.scss";
