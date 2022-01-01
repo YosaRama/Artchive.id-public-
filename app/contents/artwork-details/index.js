@@ -9,6 +9,9 @@ import ContainerCard from "app/components/container/containerCard";
 import ArtworkGeneralInformation from "../artwork-details-general";
 import ArtworkCertificateGenerate from "../artwork-certificate-generate";
 
+// Styles
+import s from "./index.module.scss";
+
 function ArtworkDetails(props) {
   const { initialValue } = props;
   const router = useRouter();
@@ -24,8 +27,12 @@ function ArtworkDetails(props) {
     <ContainerBox>
       <PageHeader title="Artwork Details" onBack={() => router.back()} />
       <Row gutter={[16, 0]} style={{ marginBottom: 30 }}>
-        <Col span={12} style={{ margin: "0 auto" }}>
-          <Image src={`${process.env.NEXT_PUBLIC_S3_URL}/${initialValue.media_cover.url}`} alt="" />
+        <Col span={12} className={s.imageContainer}>
+          <Image
+            src={`${process.env.NEXT_PUBLIC_S3_URL}/${initialValue.media_cover.url}`}
+            alt=""
+            className={s.image}
+          />
         </Col>
       </Row>
       <ContainerCard>
