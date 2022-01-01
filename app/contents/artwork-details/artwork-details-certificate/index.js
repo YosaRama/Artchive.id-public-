@@ -1,19 +1,16 @@
 // Libs
 import { useRouter } from "next/router";
-import { useState } from "react";
 import { Button, Col, Row, Image, Spin } from "antd";
 import moment from "moment";
-import propTypes from "prop-types";
 
 // Data Hook
 import { useArtwork } from "app/hooks/artwork";
 
-function ArtworkCertificateGenerate(props) {
-  const { initialValue } = props;
+function ArtworkCertificateGenerate() {
   const router = useRouter();
 
   //? ============== Artwork Hook ============= ?//
-  const { data, onGenerateCertificate, loading } = useArtwork({ singleId: initialValue.id });
+  const { data, onGenerateCertificate, loading } = useArtwork({ singleId: router?.query?.id });
   // * ====================================== * //
 
   //? ============== Handle Generate Certificate ============= ?//
@@ -91,9 +88,5 @@ function ArtworkCertificateGenerate(props) {
     </Spin>
   );
 }
-
-ArtworkCertificateGenerate.propTypes = {
-  initialValue: propTypes.object,
-};
 
 export default ArtworkCertificateGenerate;

@@ -1,7 +1,7 @@
 // Libs
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { PageHeader, Image, Row, Col, Form, Input, Menu } from "antd";
+import { PageHeader, Image, Row, Col, Menu } from "antd";
 
 // Component
 import ContainerBox from "app/components/container/containerBox";
@@ -41,8 +41,8 @@ function ArtworkDetails(props) {
           <Menu.Item key={"2"}>Certificate</Menu.Item>
         </Menu>
 
-        {selectedMenu == 1 && <ArtworkGeneralInformation initialValue={initialValue} />}
-        {selectedMenu == 2 && <ArtworkCertificateGenerate initialValue={initialValue} />}
+        {selectedMenu == 1 && <ArtworkGeneralInformation />}
+        {selectedMenu == 2 && <ArtworkCertificateGenerate />}
       </ContainerCard>
     </ContainerBox>
   );
