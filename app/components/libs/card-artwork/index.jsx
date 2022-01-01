@@ -21,7 +21,12 @@ function CardArtwork(props) {
         onClick={() => router.push(`/dashboard/artworks/${id}`)}
       >
         <Col className={s.imageContainer}>
-          <Image alt="example" src={image} className={s.image} layout="fill" />
+          <Image
+            alt="example"
+            src={image ? image : "/images/default-images.png"}
+            className={s.image}
+            layout="fill"
+          />
         </Col>
         <Row gutter={[16, 0]} className={s.textContainer}>
           <Col span={6}>
