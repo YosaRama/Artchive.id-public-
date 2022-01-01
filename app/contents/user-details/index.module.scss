@@ -1,0 +1,25 @@
+.profileImage {
+  border-radius: 100%;
+  text-align: center;
+  img {
+    height: 200px;
+    width: 200px;
+    border-radius: 100%;
+    object-fit: cover;
+  }
+}
+
+.profileDetails {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  .name {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+  }
+  .email {
+    font-size: 14px;
+    font-weight: 200;
+  }
+}

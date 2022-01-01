@@ -1,5 +1,5 @@
 // Contents
-import EditUser from "app/contents/user-edit";
+import EditUser from "app/contents/user-details";
 
 function UserEditPage() {
   return (
