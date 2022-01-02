@@ -9,7 +9,7 @@ export const useUploads = () => {
   const [loading, setLoading] = useState(false);
   const msgHead = "file";
 
-  const onUpload = async ({ file, artistId, artworkId }) => {
+  const onUpload = async ({ file, userId, artworkId }) => {
     const fmData = new FormData();
     const config = {
       headers: { "content-type": "multipart/form-data" },
@@ -17,8 +17,8 @@ export const useUploads = () => {
 
     // Append Data to Form Data
     //! Order is important, always put file bottom
-    fmData.append("artistId", artistId);
-    fmData.append("artworkId", artworkId);
+    userId && fmData.append("userId", userId);
+    artworkId && fmData.append("artworkId", artworkId);
     fmData.append("uploadFile", file);
     // ================================
 
