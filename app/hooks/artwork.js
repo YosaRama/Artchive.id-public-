@@ -140,7 +140,7 @@ export const useArtwork = ({ singleId }) => {
   );
   // ==========================
 
-  // Edit Hook Function
+  // Generate Certificate Hook Function
   const onGenerateCertificate = useCallback(
     async (data) => {
       try {
@@ -176,11 +176,48 @@ export const useArtwork = ({ singleId }) => {
   );
   // ==========================
 
+  // Edit Cover Image Hook Function
+  const onChangeCover = useCallback(
+    async (data) => {
+      try {
+        setLoading(true);
+        const { data: res } = await api.put(`${pathKeys}/cover`, data);
+        if (res.success) {
+          mutate();
+          SuccessNotification({
+            message: "Success",
+            description: `Change ${msgHead} cover image has successfully saved.`,
+          });
+          return res.success;
+        } else {
+          ErrorNotification({
+            message: "Error",
+            description: `Something went wrong while change ${msgHead} cover image`,
+          });
+
+          return res.success;
+        }
+      } catch (error) {
+        ErrorNotification({
+          message: "Error",
+          description: `Something went wrong while change ${msgHead} cover image`,
+        });
+
+        return false;
+      } finally {
+        setLoading(false);
+      }
+    },
+    [mutate, pathKeys]
+  );
+  // ==========================
+
   return {
     data,
     loading: (!error && !data) || isValidating || loading,
     onEdit,
     onGenerateCertificate,
+    onChangeCover,
   };
 };
 

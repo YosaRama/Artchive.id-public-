@@ -13,9 +13,17 @@ import ArtworkCertificateGenerate from "./artwork-details-certificate";
 import s from "./index.module.scss";
 import UploadButton from "app/components/libs/upload-button";
 
+// Data Hook
+import { useUploads } from "app/hooks/upload";
+import { useArtwork } from "app/hooks/artwork";
+
 function ArtworkDetails(props) {
   const { initialValue } = props;
   const router = useRouter();
+
+  //? ============== Artwork Hook ============= ?//
+  const { data: artworkData, onChangeCover } = useArtwork({ singleId: initialValue.id });
+  // * ====================================== * //
 
   //? ============== Handle Select Menu ============= ?//
   const [selectedMenu, setSelectedMenu] = useState("1");
@@ -25,7 +33,17 @@ function ArtworkDetails(props) {
   // * ====================================== * //
 
   //? ============== Handle Change Artwork Image ============= ?//
-  const [currentImage, setCurrentImage] = useState(initialValue.media_cover.url);
+  const { onUpload, loading: uploadLoading } = useUploads();
+  const handleUpload = async (file) => {
+    const result = await onUpload({
+      file: file.file,
+      userId: initialValue.artist_id,
+      artworkId: initialValue.id,
+    });
+    if (result.success) {
+      onChangeCover({ coverId: result.data.id });
+    }
+  };
   // * ====================================== * //
 
   return (
@@ -35,14 +53,17 @@ function ArtworkDetails(props) {
         <Col span={24}>
           <Col span={12} className={s.imageContainer}>
             <Image
-              src={`${process.env.NEXT_PUBLIC_S3_URL}/${currentImage}`}
+              src={
+                `${process.env.NEXT_PUBLIC_S3_URL}/${artworkData?.media_cover?.url}` ||
+                `${process.env.NEXT_PUBLIC_S3_URL}/${initialValue.media_cover.url}`
+              }
               alt=""
               className={s.image}
             />
           </Col>
         </Col>
         <Col span={24} style={{ textAlign: "center" }}>
-          <UploadButton onUpload={{}} loading={false}>
+          <UploadButton onUpload={handleUpload} loading={uploadLoading}>
             Change Artwork
           </UploadButton>
         </Col>
