@@ -20,6 +20,7 @@ import { useState } from "react";
 
 function ArtworkCreate() {
   const router = useRouter();
+  const [form] = Form.useForm();
 
   //? ============== Artwork Hook ============= ?//
   const { data: artworkData, onAdd } = useArtworks({ queryString: "" });
@@ -34,23 +35,7 @@ function ArtworkCreate() {
   // TODO : Hook Genre
   // * ====================================== * //
 
-  //? ============== Handle Upload ============= ?//
-  const { loading: uploadLoading, onUpload } = useUploads();
-  const [uploadImage, setUploadImage] = useState();
-  const handleUpload = async (file) => {
-    const result = await onUpload({
-      file: file.file,
-      artistId: 1, // TODO: Change with id in session
-      artworkId: lastArtworkId,
-    });
-    if (result.success) {
-      setUploadImage({ id: result.data.id, url: result.data.url });
-    }
-  };
-  // * ====================================== * //
-
   //? ============== Handle Add Artwork ============= ?//
-  const [form] = Form.useForm();
   const handleSubmit = () => {
     form.validateFields().then(async (value) => {
       const submission = {
@@ -76,7 +61,28 @@ function ArtworkCreate() {
       }
     });
   };
+  // * ====================================== * //
 
+  //? ============== Handle Upload ============= ?//
+  const [artistSelected, setArtistSelected] = useState();
+  const handleSelectArtist = (value) => {
+    setArtistSelected(value[1]);
+  };
+  // * ====================================== * //
+
+  //? ============== Handle Upload ============= ?//
+  const { loading: uploadLoading, onUpload } = useUploads();
+  const [uploadImage, setUploadImage] = useState();
+  const handleUpload = async (file) => {
+    const result = await onUpload({
+      file: file.file,
+      userId: artistSelected,
+      artworkId: lastArtworkId,
+    });
+    if (result.success) {
+      setUploadImage({ id: result.data.id, url: result.data.url });
+    }
+  };
   // * ====================================== * //
 
   return (
@@ -88,7 +94,17 @@ function ArtworkCreate() {
               {uploadImage ? (
                 <Image alt="" src={`${process.env.NEXT_PUBLIC_S3_URL}/${uploadImage?.url}`} />
               ) : (
-                <UploadBox onUpload={handleUpload} loading={uploadLoading} className={s.upload} />
+                <UploadBox
+                  onUpload={handleUpload}
+                  loading={uploadLoading}
+                  className={s.upload}
+                  disabled={!artistSelected}
+                />
+              )}
+              {!artistSelected && (
+                <p style={{ margin: "10px 0 0", fontStyle: "italic", opacity: "0.5" }}>
+                  *Note : Please select artist first
+                </p>
               )}
             </Col>
             <Col span={12}>
@@ -103,7 +119,7 @@ function ArtworkCreate() {
                   </Form.Item>
                 )}
                 <Form.Item name="artistId" label="Artist">
-                  <Select placeholder="Select artist" showSearch>
+                  <Select placeholder="Select artist" showSearch onSelect={handleSelectArtist}>
                     {artistData &&
                       artistData?.map((item, index) => {
                         return (
