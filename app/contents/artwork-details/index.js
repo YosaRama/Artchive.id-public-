@@ -1,7 +1,7 @@
 // Libs
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { PageHeader, Image, Row, Col, Menu } from "antd";
+import { PageHeader, Image, Row, Col, Menu, Button } from "antd";
 
 // Component
 import ContainerBox from "app/components/container/containerBox";
@@ -11,6 +11,7 @@ import ArtworkCertificateGenerate from "./artwork-details-certificate";
 
 // Styles
 import s from "./index.module.scss";
+import UploadButton from "app/components/libs/upload-button";
 
 function ArtworkDetails(props) {
   const { initialValue } = props;
@@ -23,16 +24,27 @@ function ArtworkDetails(props) {
   };
   // * ====================================== * //
 
+  //? ============== Handle Change Artwork Image ============= ?//
+  const [currentImage, setCurrentImage] = useState(initialValue.media_cover.url);
+  // * ====================================== * //
+
   return (
     <ContainerBox>
       <PageHeader title="Artwork Details" onBack={() => router.back()} />
       <Row gutter={[16, 0]} style={{ marginBottom: 30 }}>
-        <Col span={12} className={s.imageContainer}>
-          <Image
-            src={`${process.env.NEXT_PUBLIC_S3_URL}/${initialValue.media_cover.url}`}
-            alt=""
-            className={s.image}
-          />
+        <Col span={24}>
+          <Col span={12} className={s.imageContainer}>
+            <Image
+              src={`${process.env.NEXT_PUBLIC_S3_URL}/${currentImage}`}
+              alt=""
+              className={s.image}
+            />
+          </Col>
+        </Col>
+        <Col span={24} style={{ textAlign: "center" }}>
+          <UploadButton onUpload={{}} loading={false}>
+            Change Artwork
+          </UploadButton>
         </Col>
       </Row>
       <ContainerCard>
