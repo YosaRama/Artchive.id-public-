@@ -6,7 +6,7 @@ import multer from "multer";
 import multerS3 from "multer-s3";
 import multerS3Sharp from "multer-sharp-s3";
 import aws from "aws-sdk";
-import { CREATE_MAIN_MEDIA } from "app/database/query/media";
+import { CREATE_MAIN_MEDIA, CREATE_MEDIUM_MEDIA } from "app/database/query/media";
 
 const apiHandler = nextConnect();
 
@@ -30,17 +30,18 @@ const sharpStorage = multerS3Sharp({
   multiple: true,
   ACL: "public-read",
   Key: async (req, file, cb) => {
-    const fileName = blockId + file.originalname;
-    cb(null, fileName);
+    const { userId, artworkId } = req.body;
+    const fullPath =
+      userId && artworkId
+        ? `USER-${userId}/ART-${artworkId}/${file.originalname}`
+        : userId
+        ? `USER-${userId}/${file.originalname}`
+        : `Default/${file.originalname}`;
+    cb(null, fullPath);
   },
   resize: [
-    { suffix: "2560px.jpg", width: 2560 }, // XXL File
-    { suffix: "1920px.jpg", width: 1920 }, // Xl File
-    { suffix: "1440px.jpg", width: 1440 }, // L File
-    { suffix: "1024px.jpg", width: 1024 }, // M File
-    { suffix: "768px.jpg", width: 768 }, // S File
-    { suffix: "500px.jpg", width: 500 }, // ThumbFile
-    { suffix: "original.jpg" },
+    { suffix: "medium", width: 1440 }, // L File
+    { suffix: "original" },
   ],
 });
 
@@ -56,8 +57,11 @@ const storage = multerS3({
   acl: "public-read",
   contentType: multerS3.AUTO_CONTENT_TYPE,
   key: (req, file, cb) => {
-    const { artistId, artworkId } = req.body;
-    const fullPath = `ARTIST-${artistId}/ART-${artworkId}/${file.originalname}`;
+    const { userId, artworkId } = req.body;
+    const fullPath =
+      userId && artworkId
+        ? `USER-${userId}/ART-${artworkId}/${file.originalname}`
+        : `Default/${file.originalname}`;
     cb(null, fullPath);
   },
 });
@@ -68,7 +72,7 @@ const s3Upload = multer({
 // ===================
 
 // Without Storage
-const upload = multer();
+// const upload = multer();
 // ===================
 
 // * ====================================== * //
@@ -76,29 +80,54 @@ const upload = multer();
 //? ============== UPLOAD API ============= ?//
 
 // Upload with multer s3 sharp
-// apiHandler.post(multerS3Sharp.single("uploadFile"), async (req, res) => {
-//   const file = req.file;
-//   res.status(200).json({ file });
-// });
-// ========================
-
-// Upload with multer s3
-apiHandler.post(s3Upload.single("uploadFile"), async (req, res) => {
+apiHandler.post(sharpUpload.single("uploadFile"), async (req, res) => {
   const file = req.file;
   const filename = file.originalname;
   const mimetype = file.mimetype;
-  const url = file.location.replace(`${process.env.NEXT_PUBLIC_S3_URL}/`, "");
+  const mainUrl = file.original.key;
+  const mediumUrl = file.medium.key;
   try {
-    const result = await CREATE_MAIN_MEDIA({ filename: filename, mimetype: mimetype, url: url });
-    if (result) {
-      res.status(200).json({ success: true, file: file, data: result });
+    const mainResult = await CREATE_MAIN_MEDIA({
+      filename: filename,
+      mimetype: mimetype,
+      url: mainUrl,
+    });
+    if (mainResult) {
+      const mediumResult = await CREATE_MEDIUM_MEDIA({
+        filename: filename,
+        mimetype: mimetype,
+        url: mediumUrl,
+        parentId: mainResult.id,
+      });
+      if (mediumResult) {
+        res.status(200).json({ success: true, file: file, data: mediumResult });
+      }
     } else {
-      res.status(200).json({ success: false, file: file, data: result });
+      res.status(200).json({ success: false, file: file, data: mainResult });
     }
   } catch (error) {
     res.status(200).json({ success: false, file: file, message: "Failed upload file" });
   }
 });
+// ========================
+
+// Upload with multer s3
+// apiHandler.post(s3Upload.single("uploadFile"), async (req, res) => {
+//   const file = req.file;
+//   const filename = file.originalname;
+//   const mimetype = file.mimetype;
+//   const url = file.location.replace(`${process.env.NEXT_PUBLIC_S3_URL}/`, "");
+//   try {
+//     const result = await CREATE_MAIN_MEDIA({ filename: filename, mimetype: mimetype, url: url });
+//     if (result) {
+//       res.status(200).json({ success: true, file: file, data: result });
+//     } else {
+//       res.status(200).json({ success: false, file: file, data: result });
+//     }
+//   } catch (error) {
+//     res.status(200).json({ success: false, file: file, message: "Failed upload file" });
+//   }
+// });
 // ========================
 
 // Upload with AWS-SDK
