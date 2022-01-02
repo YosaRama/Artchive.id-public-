@@ -1,5 +1,5 @@
 // Query
-import { UPDATE_ARTWORK_MAIN_IMAGE } from "app/database/query/artwork";
+import { UPDATE_ARTWORK_COVER_IMAGE } from "app/database/query/artwork";
 
 // Helper
 import nextConnect from "next-connect";
@@ -12,7 +12,7 @@ apiHandler.put(async (req, res) => {
   const id = req.query.id;
   const { coverId } = req.body;
   try {
-    const result = await UPDATE_ARTWORK_MAIN_IMAGE({ id, cover_id: coverId });
+    const result = await UPDATE_ARTWORK_COVER_IMAGE({ id, cover_id: coverId });
     if (result) {
       res.status(200).json({
         success: true,

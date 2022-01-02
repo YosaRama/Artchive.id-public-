@@ -276,7 +276,7 @@ export const UPDATE_ARTWORK = ({
 // ==================================
 
 // Update artwork image
-export const UPDATE_ARTWORK_MAIN_IMAGE = ({ id, cover_id }) => {
+export const UPDATE_ARTWORK_COVER_IMAGE = ({ id, cover_id }) => {
   return prisma.artwork.update({
     where: {
       id: +id,
