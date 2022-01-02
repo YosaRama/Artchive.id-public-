@@ -275,6 +275,22 @@ export const UPDATE_ARTWORK = ({
 };
 // ==================================
 
+// Update artwork image
+export const UPDATE_ARTWORK_MAIN_IMAGE = ({ id, cover_id }) => {
+  return prisma.artwork.update({
+    where: {
+      id: +id,
+    },
+    data: {
+      media_cover: {
+        connect: {
+          id: cover_id,
+        },
+      },
+    },
+  });
+};
+
 // * ====================================== * //
 
 //? ============== DELETE QUERY ============= ?//
