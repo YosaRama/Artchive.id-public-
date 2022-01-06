@@ -14,16 +14,16 @@ import { LogoutOutlined } from "@ant-design/icons";
 function DashboardLayout({ children }) {
   const router = useRouter();
 
-  // Handle logout
+  //? ============== Handle Logout ============= ?//
   const handleLogout = () => {
-    signOut({ redirect: false });
+    signOut({ callbackUrl: "/managepage" });
   };
-  // ==================
+  // * ====================================== * //
 
-  // Handle avatar dropdown content
+  //? ============== Avatar Dropdown Content ============= ?//
   const popOverContent = (
     <Menu>
-      <Menu.Item>
+      <Menu.Item key="logout">
         <a onClick={handleLogout}>
           <span style={{ marginRight: 10 }}>
             <LogoutOutlined />
@@ -33,7 +33,7 @@ function DashboardLayout({ children }) {
       </Menu.Item>
     </Menu>
   );
-  // ====================
+  // * ====================================== * //
 
   return (
     <Layout style={{ minHeight: "100vh" }} className="main-dashboard-layout" id="dashboard">
