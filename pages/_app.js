@@ -28,23 +28,25 @@ function MyApp({ Component, pageProps: { session, ...pageProps }, router }) {
   return (
     <>
       <SWRConfig value={{ refreshInterval: 0, fetcher }}>
-        <GlobalContext>
-          <Head>
-            <title>Artchive</title>
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
-          </Head>
-          {content && (
-            <SessionProvider session={session}>
-              {router.pathname.startsWith("/dashboard") ? (
-                <DashboardLayout>
+        <SessionProvider session={session}>
+          <GlobalContext>
+            <Head>
+              <title>Artchive</title>
+              <meta name="viewport" content="width=device-width, initial-scale=1" />
+            </Head>
+            {content && (
+              <>
+                {router.pathname.startsWith("/dashboard") ? (
+                  <DashboardLayout>
+                    <Component {...pageProps} />
+                  </DashboardLayout>
+                ) : (
                   <Component {...pageProps} />
-                </DashboardLayout>
-              ) : (
-                <Component {...pageProps} />
-              )}
-            </SessionProvider>
-          )}
-        </GlobalContext>
+                )}
+              </>
+            )}
+          </GlobalContext>
+        </SessionProvider>
       </SWRConfig>
     </>
   );

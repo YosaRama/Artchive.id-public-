@@ -1,8 +1,8 @@
 // Libs
+import { signOut } from "next-auth/react";
 import { Layout, Avatar, Col, Row, Popover, Dropdown, Menu } from "antd";
 import { useRouter } from "next/router";
 const { Header, Footer } = Layout;
-// import { signOut } from "next-auth/client";
 
 // Component
 import Sidebar from "./sider";
@@ -16,8 +16,7 @@ function DashboardLayout({ children }) {
 
   // Handle logout
   const handleLogout = () => {
-    router.push("/managepage");
-    // signOut({ callbackUrl: `/dashboard` });
+    signOut({ redirect: false });
   };
   // ==================
 

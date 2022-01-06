@@ -23,8 +23,6 @@ function ManagePageLogin() {
         email: value.email,
         password: value.password,
       });
-
-      console.log(login);
       if (!login.error) {
         router.push("/dashboard");
       } else {

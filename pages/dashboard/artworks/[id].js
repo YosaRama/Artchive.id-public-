@@ -1,5 +1,6 @@
 // Libs
 import moment from "moment";
+import { getSession } from "next-auth/react";
 
 // Data
 import { GET_ARTWORK_BY_ID } from "app/database/query/artwork";
@@ -27,9 +28,22 @@ export const getServerSideProps = async (ctx) => {
     updatedAt: moment(artworkData.updatedAt).format("DD/MM/YYYY"),
   };
 
-  return {
-    props: {
-      artwork: artwork,
-    },
-  };
+  //? ============== Handle Session ============= ?//
+  const session = await getSession({ req: ctx.req });
+  if (session) {
+    return {
+      props: {
+        session: session,
+        artwork: artwork,
+      },
+    };
+  } else {
+    return {
+      redirect: {
+        destination: "/managepage",
+        permanent: true,
+      },
+    };
+  }
+  // * ====================================== * //
 };

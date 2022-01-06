@@ -64,22 +64,19 @@ export default NextAuth({
     },
     //* Setting JWT Token
     async jwt({ token, user, account, profile, isNewUser }) {
-      if (account?.accessToken) {
-        token.accessToken = account.accessToken;
+      if (account) {
+        token.user = user; // Insert user to token for access on session
       }
-      token = {
-        email: token.email,
-      };
       return token;
     },
     //* Setting Session
-    async session({ session, token, user }) {
-      session.accessToken = token.accessToken;
-      //? Get Data from database and parsing to session
-      session.user = {
-        id: "User ID",
-        role: "User Role",
-      };
+    async session({ session, user, token }) {
+      // Setup Session with data from token
+      session.user.id = token.user.user.id;
+      session.user.email = token.user.user.email;
+      session.user.full_name = token.user.user.full_name;
+      session.user.role = token.user.user.role;
+      return session;
     },
   },
 });
