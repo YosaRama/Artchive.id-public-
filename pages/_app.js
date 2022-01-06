@@ -9,7 +9,7 @@ import DashboardLayout from "app/components/layout";
 // Libs
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import { Provider as SessionProvider } from "next-auth/client";
+import { SessionProvider } from "next-auth/react";
 
 // Context
 import GlobalContext from "app/contexts";

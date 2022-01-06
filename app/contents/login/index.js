@@ -1,11 +1,15 @@
 // Libs
+import { useRouter } from "next/router";
+import { signIn } from "next-auth/react";
 import { Button, Card, Col, Form, Input } from "antd";
 import Image from "next/image";
 
 // Icon
 import { CollectorIcon } from "public/icons/collector-icon";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
-import { useRouter } from "next/router";
+
+// Notification
+import { ErrorNotification } from "app/components/libs/notification";
 
 function ManagePageLogin() {
   const router = useRouter();
@@ -14,9 +18,17 @@ function ManagePageLogin() {
   // Handle Login
   const handleLogin = () => {
     form.validateFields().then(async (value) => {
-      const result = await value;
-      if (result) {
+      const login = await signIn("credentials", {
+        redirect: false,
+        email: value.email,
+        password: value.password,
+      });
+
+      console.log(login);
+      if (!login.error) {
         router.push("/dashboard");
+      } else {
+        ErrorNotification({ message: "Login Failed!", description: login.error });
       }
     });
   };
