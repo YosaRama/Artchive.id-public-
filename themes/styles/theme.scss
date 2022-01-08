@@ -37,11 +37,34 @@ $white: #ffffff;
 
 //? ============== General Styling ============= ?//
 
+// Flex Box
 .d-flex {
   display: flex;
   &.center {
     align-items: center;
     justify-content: center;
+  }
+}
+
+// Page Button
+.page-button {
+  &.default {
+    background: $fulvous;
+    color: $white;
+    border: 2px solid $fulvous;
+    &:hover {
+      background: transparent;
+      border: 2px solid #e5a03f;
+      color: $fulvous;
+    }
+  }
+  &.outlined {
+    border: 2px solid $smoky-black;
+    color: $smoky-black;
+    &:hover {
+      background: $smoky-black;
+      color: $white;
+    }
   }
 }
 
