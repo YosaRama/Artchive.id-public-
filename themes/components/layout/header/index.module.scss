@@ -1,0 +1,18 @@
+.container {
+  background: #ffffff !important;
+  padding: 0 !important;
+  height: 128px !important;
+}
+
+.logo {
+  width: 180px;
+  height: 100%;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  .hamburger {
+    font-size: 28px;
+  }
+}

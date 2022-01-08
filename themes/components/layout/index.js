@@ -10,15 +10,15 @@ function PageLayout(props) {
   const { children } = props;
   return (
     <>
-      <Header>
+      <Layout>
         <PageHeader />
-      </Header>
-      <Content className="page-content" id="frontpage">
-        {children}
-      </Content>
-      <Footer>
-        <PageFooter />
-      </Footer>
+        <Content className="page-content" id="frontpage">
+          {children}
+        </Content>
+        <Footer>
+          <PageFooter />
+        </Footer>
+      </Layout>
     </>
   );
 }
