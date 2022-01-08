@@ -1,11 +1,3 @@
-// Styles
-import "antd/dist/antd.less";
-import "app/styles/dashboard.scss";
-import "themes/styles/theme.scss";
-
-// Layout
-import DashboardLayout from "app/components/layout";
-
 // Libs
 import Head from "next/head";
 import { useEffect, useState } from "react";
@@ -17,6 +9,15 @@ import GlobalContext from "app/contexts";
 // Client Data Fetching
 import { SWRConfig } from "swr";
 import { fetcher } from "app/utils/swr";
+
+// Layout
+import DashboardLayout from "app/components/layout";
+import PageLayout from "themes/components/layout";
+
+// Styles
+import "antd/dist/antd.less";
+import "app/styles/dashboard.scss";
+import "themes/styles/theme.scss";
 
 function MyApp({ Component, pageProps: { session, ...pageProps }, router }) {
   // Handle useLayoutEffect
@@ -41,7 +42,9 @@ function MyApp({ Component, pageProps: { session, ...pageProps }, router }) {
                     <Component {...pageProps} />
                   </DashboardLayout>
                 ) : (
-                  <Component {...pageProps} />
+                  <PageLayout>
+                    <Component {...pageProps} />
+                  </PageLayout>
                 )}
               </>
             )}
