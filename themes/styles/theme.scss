@@ -1,9 +1,27 @@
 //? ===================== Custom Font ========================== ?//
 
 @font-face {
-  font-family: "Montserrat";
-  font-weight: 400;
-  src: local("Montserrat"), url(/fonts/Montserrat/Montserrat-Regular.ttf) format("truetype");
+  font-family: "DM_serif_display";
+  src: local("DM_Serif_Display"),
+    url("/fonts/DM_Serif_Display/DMSerifDisplay-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Aileron";
+  font-weight: normal;
+  src: local("Aileron"), url("/fonts/Aileron/Aileron-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Aileron";
+  font-weight: bold;
+  src: local("Aileron_Bold"), url("/fonts/Aileron/Aileron-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Aileron";
+  font-weight: 200;
+  src: local("Aileron_Thin"), url("/fonts/Aileron/Aileron-Thin.ttf") format("truetype");
 }
 
 //* ============================================================ *//
@@ -30,6 +48,19 @@ $white: #ffffff;
 // * ====================================== * //
 
 //? =================== Page =========================== ?//
+
+#frontpage {
+  p {
+    font-family: "Aileron";
+  }
+  h3 {
+    font-family: "DM_serif_display";
+  }
+  h1 {
+    font-family: "DM_serif_display";
+    font-weight: 800;
+  }
+}
 
 // Login Manage Page
 #managepage {
