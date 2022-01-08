@@ -11,7 +11,7 @@ function CardCount(props) {
   const { icon, count, title } = props;
   return (
     <Card className={"dashboard-card-container " + s.card}>
-      <Row justify="space-between" gutter={[16, 0]}>
+      <Row gutter={[16, 0]} style={{ alignItems: "center" }}>
         <Col className={s.image}>{icon}</Col>
         <Col className={s.content}>
           <h3 className={s.count}>{count}</h3>
