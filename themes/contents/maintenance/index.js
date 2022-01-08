@@ -15,8 +15,8 @@ function PageMaintenance() {
         <Col span={24} className={s.image}>
           <Image src="/images/maintenance.png" alt="" layout="fill" />
         </Col>
-        <Col>
-          <h3>Under Maintenance!</h3>
+        <Col className={s.text}>
+          <h1>Under Maintenance!</h1>
           <p>See you on march!</p>
         </Col>
       </Col>

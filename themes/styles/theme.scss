@@ -50,15 +50,22 @@ $white: #ffffff;
 //? =================== Page =========================== ?//
 
 #frontpage {
-  p {
-    font-family: "Aileron";
-  }
+  h1,
+  h2,
   h3 {
     font-family: "DM_serif_display";
   }
-  h1 {
-    font-family: "DM_serif_display";
-    font-weight: 800;
+  h4 {
+    font-family: "Aileron";
+    font-weight: bold;
+  }
+  h5 {
+    font-family: "Aileron";
+    font-weight: normal;
+  }
+  h6 {
+    font-family: "Aileron";
+    font-weight: 200;
   }
 }
 
