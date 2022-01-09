@@ -14,7 +14,7 @@ import { FilterOutlined } from "@ant-design/icons";
 
 function UserListing(props) {
   const router = useRouter();
-  const { searchValue, setSearchValue, data } = props;
+  const { searchValue, setSearchValue, data, onDelete } = props;
 
   return (
     <ContainerCard
@@ -58,6 +58,7 @@ function UserListing(props) {
               image={item.profile && `${process.env.NEXT_PUBLIC_S3_URL}/${item.profile.url}`}
               name={item.full_name}
               role={item.role}
+              onDelete={onDelete}
             />
           );
         })}
@@ -74,6 +75,7 @@ UserListing.propTypes = {
   searchValue: propTypes.string,
   setSearchValue: propTypes.func,
   data: propTypes.array,
+  onDelete: propTypes.func,
 };
 
 export default UserListing;

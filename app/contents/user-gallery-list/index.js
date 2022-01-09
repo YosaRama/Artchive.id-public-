@@ -10,7 +10,7 @@ import { useUsers } from "app/hooks/user";
 
 function GalleryList() {
   //? ============== Data Fetching ============= ?//
-  const { data } = useUsers({ queryString: `role=GALLERY` });
+  const { data, onDelete } = useUsers({ queryString: `role=GALLERY` });
   // * ====================================== * //
 
   //? ============== Search Handling ============= ?//
@@ -19,7 +19,12 @@ function GalleryList() {
   return (
     <ContainerBox>
       {data && (
-        <UserListing searchValue={searchValue} setSearchValue={setSearchValue} data={data} />
+        <UserListing
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
+          data={data}
+          onDelete={onDelete}
+        />
       )}
     </ContainerBox>
   );

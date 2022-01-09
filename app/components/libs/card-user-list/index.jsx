@@ -17,21 +17,21 @@ import deleteConfirmModal from "../delete-modal-confirm";
 import RoleTag from "../role-tag";
 
 function CardUserList(props) {
-  const { image, name, email, role, date, id } = props;
+  const { image, name, email, role, date, id, onDelete } = props;
   const router = useRouter();
 
-  // Handle Options
+  //? ============== Handle Options ============= ?//
   const [openMenu, setOpenMenu] = useState(false);
   const handleOpen = () => {
     setOpenMenu(!openMenu);
   };
-  // =================
+  // * ====================================== * //
 
-  // Handle Delete
+  //? ============== Handle Delete ============= ?//
   const handleDelete = () => {
-    // TODO: Delete here
+    onDelete && onDelete(id);
   };
-  // =================
+  // * ====================================== * //
 
   return (
     <>
@@ -102,6 +102,7 @@ CardUserList.propTypes = {
   role: propTypes.oneOf(["ARTIST", "GALLERY", "ADMIN", "COLLECTOR"]),
   date: propTypes.string,
   id: propTypes.oneOfType([propTypes.string, propTypes.number]).isRequired,
+  onDelete: propTypes.func,
 };
 
 export default CardUserList;
