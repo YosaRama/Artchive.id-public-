@@ -18,6 +18,9 @@ const { Option } = Select;
 import { useArtwork } from "app/hooks/artwork";
 import { useUsers } from "app/hooks/user";
 
+// Components
+import deleteConfirmModal from "app/components/libs/delete-modal-confirm";
+
 function ArtworkGeneralInformation() {
   const router = useRouter();
 
@@ -141,11 +144,15 @@ function ArtworkGeneralInformation() {
               </Form.Item>
             </Col>
             <Col span={24} style={{ textAlign: "right", margin: "30px auto" }}>
-              <Popconfirm onConfirm={handleDelete} title="Are you sure to delete this artwork?">
-                <Button size="large" type="ghost" danger style={{ marginRight: 10 }}>
-                  Delete Artwork
-                </Button>
-              </Popconfirm>
+              <Button
+                size="large"
+                type="ghost"
+                danger
+                style={{ marginRight: 10 }}
+                onClick={() => deleteConfirmModal({ title: "artwork", onDelete: handleDelete })}
+              >
+                Delete Artwork
+              </Button>
               <Button size="large" type="primary" onClick={handleUpdate}>
                 Save Changes
               </Button>
