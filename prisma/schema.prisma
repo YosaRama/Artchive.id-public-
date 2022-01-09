@@ -41,14 +41,14 @@ model User {
 model Artwork {
   id             Int           @id @default(autoincrement())
   sku            String        @unique
-  artist         User          @relation(fields: [artist_id], references: [id])
+  artist         User          @relation(fields: [artist_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   artist_id      Int
   title          String
   year           String
   material       String?
   description    String        @db.Text
   type           Type
-  media_cover    Media         @relation("cover", fields: [media_cover_id], references: [id])
+  media_cover    Media         @relation("cover", fields: [media_cover_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   media_cover_id Int
   height         Int
   width          Int

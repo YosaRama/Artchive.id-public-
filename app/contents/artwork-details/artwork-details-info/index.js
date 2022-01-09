@@ -1,6 +1,17 @@
 // Libs
 import { useRouter } from "next/router";
-import { Button, Col, Divider, Form, Input, InputNumber, Row, Select, Switch } from "antd";
+import {
+  Button,
+  Col,
+  Divider,
+  Form,
+  Input,
+  InputNumber,
+  Popconfirm,
+  Row,
+  Select,
+  Switch,
+} from "antd";
 const { Option } = Select;
 
 // Data Hook
@@ -15,7 +26,11 @@ function ArtworkGeneralInformation() {
   // * ====================================== * //
 
   //? ============== Artwork Hook ============= ?//
-  const { onEdit, data: artworkInitialData } = useArtwork({ singleId: router?.query?.id });
+  const {
+    onEdit,
+    data: artworkInitialData,
+    onDelete,
+  } = useArtwork({ singleId: router?.query?.id });
   const artworkInitialValues = artworkInitialData?.length != 0 && {
     ...artworkInitialData,
     artistId: [artworkInitialData?.artist?.full_name, artworkInitialData?.artist_id],
@@ -45,6 +60,15 @@ function ArtworkGeneralInformation() {
       };
       onEdit(submission);
     });
+  };
+  // * ====================================== * //
+
+  //? ============== Handle Delete ============= ?//
+  const handleDelete = async () => {
+    const result = await onDelete();
+    if (result) {
+      router.push("/dashboard/artworks");
+    }
   };
   // * ====================================== * //
 
@@ -117,9 +141,11 @@ function ArtworkGeneralInformation() {
               </Form.Item>
             </Col>
             <Col span={24} style={{ textAlign: "right", margin: "30px auto" }}>
-              <Button size="large" type="ghost" danger style={{ marginRight: 10 }}>
-                Delete Artwork
-              </Button>
+              <Popconfirm onConfirm={handleDelete} title="Are you sure to delete this artwork?">
+                <Button size="large" type="ghost" danger style={{ marginRight: 10 }}>
+                  Delete Artwork
+                </Button>
+              </Popconfirm>
               <Button size="large" type="primary" onClick={handleUpdate}>
                 Save Changes
               </Button>

@@ -212,10 +212,44 @@ export const useArtwork = ({ singleId }) => {
   );
   // ==========================
 
+  // Delete Hook Function
+  const onDelete = useCallback(async () => {
+    try {
+      setLoading(true);
+      const { data: res } = await api.delete(pathKeys);
+      if (res.success) {
+        mutate();
+        SuccessNotification({
+          message: "Success",
+          description: `Delete ${msgHead} has been successfully.`,
+        });
+        return res.success;
+      } else {
+        ErrorNotification({
+          message: "Error",
+          description: `Something went wrong while deleting ${msgHead}`,
+        });
+
+        return res.success;
+      }
+    } catch (error) {
+      ErrorNotification({
+        message: "Error",
+        description: `Something went wrong while deleting ${msgHead}`,
+      });
+
+      return false;
+    } finally {
+      setLoading(false);
+    }
+  }, [mutate, pathKeys]);
+  // ==========================
+
   return {
     data,
     loading: (!error && !data) || isValidating || loading,
     onEdit,
+    onDelete,
     onGenerateCertificate,
     onChangeCover,
   };

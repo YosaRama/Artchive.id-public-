@@ -25,7 +25,7 @@ function ArtworkList() {
           Add Artwork
         </AddButton>
         <Row gutter={[16, 16]}>
-          {data &&
+          {data.length != 0 &&
             data.map((item, index) => {
               return (
                 <Col span={6} key={index}>
