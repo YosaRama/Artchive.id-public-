@@ -26,7 +26,7 @@ function EditUser() {
   const router = useRouter();
 
   //? ============== Handle Initial Data ============= ?//
-  const { data, onEditInfo } = useUser({ singleId: router.query.id });
+  const { data, onEditInfo, onEditPassword } = useUser({ singleId: router.query.id });
   // * ====================================== * //
 
   //? ============== Handle Select Menu ============= ?//
@@ -81,7 +81,7 @@ function EditUser() {
           {data.length != 0 && (
             <Col span={23} style={{ margin: "30px auto" }}>
               {selectedMenu == 1 && <UserEditInfo initialData={data} onSave={onEditInfo} />}
-              {selectedMenu == 2 && <UserEditPassword />}
+              {selectedMenu == 2 && <UserEditPassword onSave={onEditPassword} />}
               {selectedMenu == 3 && <UserEditBilling />}
               {selectedMenu == 4 && <UserEditArtwork />}
               {selectedMenu == 5 && <UserEditCollection />}

@@ -1,7 +1,6 @@
 // Query
 import {
   DELETE_USER,
-  GET_USER_BY_EMAIL,
   GET_USER_BY_ID,
   UPDATE_USER,
   UPDATE_USER_PASSWORD,
@@ -83,10 +82,10 @@ apiHandler.put(async (req, res) => {
 // PATCH SINGLE HANDLER FOR RESET PASSWORD
 apiHandler.patch(async (req, res) => {
   const id = req.query.id;
-  const { email, password } = req.body;
+  const { password } = req.body;
   const hashedPassword = await hashPassword(password);
   try {
-    const userFound = await GET_USER_BY_EMAIL({ email });
+    const userFound = await GET_USER_BY_ID({ id });
     if (!userFound) {
       res.status(200).json({
         success: false,
