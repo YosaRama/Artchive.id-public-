@@ -14,6 +14,11 @@ apiHandler.get(async (req, res) => {
   try {
     const result = await GET_USER({ page, limit, role, email, fullName });
     const total = await GET_TOTAL_USER({ role, email, fullName });
+
+    // Clean up Data
+    delete result["password"];
+    // ========================
+
     if (result) {
       res.status(200).json({
         success: true,

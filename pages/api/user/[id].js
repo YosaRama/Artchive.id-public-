@@ -19,6 +19,11 @@ apiHandler.get(async (req, res) => {
   const id = req.query.id;
   try {
     const result = await GET_USER_BY_ID({ id });
+
+    // Clean up Data
+    delete result["password"];
+    // ========================
+
     if (result) {
       res.status(200).json({
         success: true,
@@ -43,12 +48,16 @@ apiHandler.get(async (req, res) => {
 // EDIT SINGLE HANDLER
 apiHandler.put(async (req, res) => {
   const id = req.query.id;
-  const { email, fullName } = req.body;
+  const { email, fullName, city, address, instagramUrl, facebookUrl } = req.body;
   try {
     const result = await UPDATE_USER({
       id,
       email,
       fullName,
+      city,
+      address,
+      instagramUrl,
+      facebookUrl,
     });
     if (result) {
       res.status(200).json({

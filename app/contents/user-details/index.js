@@ -1,9 +1,14 @@
 // Libs
 import { useState } from "react";
-import { Col, Row, Image, Menu } from "antd";
+import { Col, Row, Image, Menu, Skeleton } from "antd";
+import { useRouter } from "next/router";
+
+// Data Hook
+import { useUser } from "app/hooks/user";
 
 // Component
 import ContainerBox from "app/components/container/containerBox";
+import UploadButton from "app/components/libs/upload-button";
 import ContainerCard from "app/components/container/containerCard";
 import RoleTag from "app/components/libs/role-tag";
 
@@ -18,6 +23,12 @@ import UserEditCollection from "./user-edit-collection";
 import s from "./index.module.scss";
 
 function EditUser() {
+  const router = useRouter();
+
+  //? ============== Handle Initial Data ============= ?//
+  const { data, onEditInfo } = useUser({ singleId: router.query.id });
+  // * ====================================== * //
+
   //? ============== Handle Select Menu ============= ?//
   const [selectedMenu, setSelectedMenu] = useState("1");
   const handleSelectMenu = (e) => {
@@ -30,13 +41,31 @@ function EditUser() {
       <ContainerCard title="Edit User">
         <Row gutter={[16, 0]}>
           <Col span={8} className={s.profileImage}>
-            <Image src="/images/default-images.png" alt="" />
+            <Col span={24}>
+              <Image
+                src={
+                  data?.profile?.url
+                    ? `${process.env.NEXT_PUBLIC_S3_URL}/${data?.profile.url}`
+                    : "/images/profile-default.png"
+                }
+                alt=""
+              />
+            </Col>
+            <Col span={24}>
+              <UploadButton>Change Profile Image</UploadButton>
+            </Col>
           </Col>
           <Col span={8} className={s.profileDetails}>
             <Col span={24}>
-              <h1 className={s.name}>Artchive Artist</h1>
-              <p className={s.email}>artist@artchive.id</p>
-              <RoleTag role="ARTIST" />
+              {data.length != 0 ? (
+                <>
+                  <h1 className={s.name}>{data?.full_name}</h1>
+                  <p className={s.email}>{data?.email}</p>
+                  <RoleTag role={data?.role} />
+                </>
+              ) : (
+                <Skeleton />
+              )}
             </Col>
           </Col>
         </Row>
@@ -49,13 +78,15 @@ function EditUser() {
             <Menu.Item key="5">Collection</Menu.Item>
           </Menu>
 
-          <Col span={23} style={{ margin: "30px auto" }}>
-            {selectedMenu == 1 && <UserEditInfo />}
-            {selectedMenu == 2 && <UserEditPassword />}
-            {selectedMenu == 3 && <UserEditBilling />}
-            {selectedMenu == 4 && <UserEditArtwork />}
-            {selectedMenu == 5 && <UserEditCollection />}
-          </Col>
+          {data.length != 0 && (
+            <Col span={23} style={{ margin: "30px auto" }}>
+              {selectedMenu == 1 && <UserEditInfo initialData={data} onSave={onEditInfo} />}
+              {selectedMenu == 2 && <UserEditPassword />}
+              {selectedMenu == 3 && <UserEditBilling />}
+              {selectedMenu == 4 && <UserEditArtwork />}
+              {selectedMenu == 5 && <UserEditCollection />}
+            </Col>
+          )}
         </Col>
       </ContainerCard>
     </ContainerBox>

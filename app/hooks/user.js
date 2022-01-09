@@ -104,8 +104,8 @@ export const useUser = ({ singleId }) => {
   const { data = [], error, isValidating, mutate } = useSWR(pathKeys);
   const [loading, setLoading] = useState(false);
 
-  // Edit Hook Function
-  const onEdit = useCallback(
+  // Edit General Information Hook Function
+  const onEditInfo = useCallback(
     async (data) => {
       try {
         setLoading(true);
@@ -114,13 +114,13 @@ export const useUser = ({ singleId }) => {
           mutate();
           SuccessNotification({
             message: "Success",
-            description: `Edited event has successfully saved.`,
+            description: `Edited general information of ${msgHead} has successfully saved.`,
           });
           return res.success;
         } else {
           ErrorNotification({
             message: "Error",
-            description: `Something went wrong while editing event`,
+            description: `Something went wrong while editing general information of ${msgHead}`,
           });
 
           return res.success;
@@ -128,7 +128,79 @@ export const useUser = ({ singleId }) => {
       } catch (error) {
         ErrorNotification({
           message: "Error",
-          description: `Something went wrong while editing event`,
+          description: `Something went wrong while editing general information of ${msgHead}`,
+        });
+
+        return false;
+      } finally {
+        setLoading(false);
+      }
+    },
+    [mutate, pathKeys]
+  );
+  // ==========================
+
+  // Edit Password Hook Function
+  const onEditPassword = useCallback(
+    async (data) => {
+      try {
+        setLoading(true);
+        const { data: res } = await api.patch(pathKeys, data);
+        if (res.success) {
+          mutate();
+          SuccessNotification({
+            message: "Success",
+            description: `Edited password of ${msgHead} has successfully saved.`,
+          });
+          return res.success;
+        } else {
+          ErrorNotification({
+            message: "Error",
+            description: `Something went wrong while editing password of ${msgHead}`,
+          });
+
+          return res.success;
+        }
+      } catch (error) {
+        ErrorNotification({
+          message: "Error",
+          description: `Something went wrong while editing password of ${msgHead}`,
+        });
+
+        return false;
+      } finally {
+        setLoading(false);
+      }
+    },
+    [mutate, pathKeys]
+  );
+  // ==========================
+
+  // Edit Billing Information Hook Function
+  const onEditBilling = useCallback(
+    async (data) => {
+      try {
+        setLoading(true);
+        const { data: res } = await api.put(pathKeys, data);
+        if (res.success) {
+          mutate();
+          SuccessNotification({
+            message: "Success",
+            description: `Edited billing information of ${msgHead} has successfully saved.`,
+          });
+          return res.success;
+        } else {
+          ErrorNotification({
+            message: "Error",
+            description: `Something went wrong while editing billing information of ${msgHead}`,
+          });
+
+          return res.success;
+        }
+      } catch (error) {
+        ErrorNotification({
+          message: "Error",
+          description: `Something went wrong while editing billing information of ${msgHead}`,
         });
 
         return false;
@@ -143,7 +215,9 @@ export const useUser = ({ singleId }) => {
   return {
     data,
     loading: (!error && !data) || isValidating || loading,
-    onEdit,
+    onEditInfo,
+    onEditPassword,
+    onEditBilling,
   };
 };
 

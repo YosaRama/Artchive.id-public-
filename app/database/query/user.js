@@ -46,6 +46,12 @@ export const GET_USER = ({ page = 0, limit = 15, role, email, fullName }) => {
 export const GET_USER_BY_ID = ({ id }) => {
   return prisma.user.findUnique({
     where: { id: +id },
+    include: {
+      profile: true,
+      signature: true,
+      artwork: true,
+      collection: true,
+    },
   });
 };
 // ==================================
@@ -94,9 +100,16 @@ export const CREATE_USER = ({ email, password, fullName, role }) => {
 //? ============== UPDATE QUERY ============= ?//
 
 // Update user with specific ID details without password
-export const UPDATE_USER = ({ id, fullName, email }) => {
+export const UPDATE_USER = ({ id, fullName, email, city, address, instagramUrl, facebookUrl }) => {
   return prisma.user.update({
-    data: { email: email, full_name: fullName },
+    data: {
+      email: email,
+      full_name: fullName,
+      city: city,
+      address: address,
+      instagram_url: instagramUrl,
+      facebook_url: facebookUrl,
+    },
     where: { id: +id },
   });
 };
