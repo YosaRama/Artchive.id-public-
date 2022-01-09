@@ -97,7 +97,7 @@ function EditUser() {
               {selectedMenu == 1 && <UserEditInfo initialData={data} onSave={onEditInfo} />}
               {selectedMenu == 2 && <UserEditPassword onSave={onEditPassword} />}
               {selectedMenu == 3 && <UserEditBilling />}
-              {selectedMenu == 4 && <UserEditArtwork />}
+              {selectedMenu == 4 && <UserEditArtwork initialData={data} />}
               {selectedMenu == 5 && <UserEditCollection />}
             </Col>
           )}

@@ -49,7 +49,12 @@ export const GET_USER_BY_ID = ({ id }) => {
     include: {
       profile: true,
       signature: true,
-      artwork: true,
+      artwork: {
+        include: {
+          media_cover: true,
+          artist: true,
+        },
+      },
       collection: true,
     },
   });
