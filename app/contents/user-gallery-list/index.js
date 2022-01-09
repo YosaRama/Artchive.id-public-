@@ -24,6 +24,7 @@ function GalleryList() {
           setSearchValue={setSearchValue}
           data={data}
           onDelete={onDelete}
+          title="Gallery List"
         />
       )}
     </ContainerBox>

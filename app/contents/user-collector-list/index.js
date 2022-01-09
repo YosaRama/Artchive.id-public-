@@ -25,6 +25,7 @@ function CollectorList() {
           setSearchValue={setSearchValue}
           data={data}
           onDelete={onDelete}
+          title="Collector List"
         />
       )}
     </ContainerBox>

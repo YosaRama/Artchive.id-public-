@@ -14,11 +14,11 @@ import { FilterOutlined } from "@ant-design/icons";
 
 function UserListing(props) {
   const router = useRouter();
-  const { searchValue, setSearchValue, data, onDelete } = props;
+  const { searchValue, setSearchValue, data, onDelete, title } = props;
 
   return (
     <ContainerCard
-      title="Artist List"
+      title={title}
       extra={
         <>
           <Row gutter={[16, 0]}>
@@ -72,6 +72,7 @@ function UserListing(props) {
 }
 
 UserListing.propTypes = {
+  title: propTypes.string,
   searchValue: propTypes.string,
   setSearchValue: propTypes.func,
   data: propTypes.array,

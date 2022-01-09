@@ -25,6 +25,7 @@ function ArtistList() {
           setSearchValue={setSearchValue}
           data={data}
           onDelete={onDelete}
+          title="Artist List"
         />
       )}
     </ContainerBox>
