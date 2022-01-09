@@ -1,6 +1,6 @@
 .section {
-  height: calc(100vh - 64px - 106px);
-  position: relative;
+  margin: 0;
+  height: 100%;
 }
 
 .container {
@@ -9,6 +9,7 @@
   align-items: center;
   flex-wrap: wrap;
   height: 100%;
+  margin: 150px auto;
 }
 
 .image {

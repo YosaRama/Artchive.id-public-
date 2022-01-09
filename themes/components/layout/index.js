@@ -1,10 +1,13 @@
 // Libs
 import { Layout } from "antd";
-const { Header, Footer, Content } = Layout;
+const { Content } = Layout;
 
 // Component
 import PageHeader from "./header";
 import PageFooter from "./footer";
+
+// Styles
+import s from "./index.module.scss";
 
 function PageLayout(props) {
   const { children } = props;
@@ -12,12 +15,10 @@ function PageLayout(props) {
     <>
       <Layout>
         <PageHeader />
-        <Content className="page-content" id="frontpage">
+        <Content className={s.content} id="frontpage">
           {children}
         </Content>
-        <Footer>
-          <PageFooter />
-        </Footer>
+        <PageFooter />
       </Layout>
     </>
   );
