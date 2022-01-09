@@ -1,6 +1,6 @@
 // Libs
 import { useRouter } from "next/router";
-import { Col, Row } from "antd";
+import { Col, Empty, Row } from "antd";
 
 // Components
 import ContainerBox from "app/components/container/containerBox";
@@ -48,6 +48,11 @@ function ArtworkList() {
                 </Col>
               );
             })}
+          {data.length == 0 && (
+            <Col span={24}>
+              <Empty />
+            </Col>
+          )}
         </Row>
       </ContainerCard>
     </ContainerBox>

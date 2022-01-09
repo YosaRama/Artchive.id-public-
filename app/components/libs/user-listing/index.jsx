@@ -1,6 +1,6 @@
 // Libs
 import { useRouter } from "next/router";
-import { Button, Col, Row } from "antd";
+import { Button, Col, Empty, Row } from "antd";
 import propTypes from "prop-types";
 
 // Component
@@ -47,7 +47,7 @@ function UserListing(props) {
       }
     >
       <AddButton onCreate={() => router.push("/dashboard/users/create")}>Add User</AddButton>
-      {data &&
+      {data.length != 0 &&
         data?.map((item) => {
           return (
             <CardUserList
@@ -61,6 +61,11 @@ function UserListing(props) {
             />
           );
         })}
+      {data.length == 0 && (
+        <Col span={24}>
+          <Empty />
+        </Col>
+      )}
     </ContainerCard>
   );
 }
