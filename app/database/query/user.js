@@ -124,6 +124,21 @@ export const UPDATE_USER_PASSWORD = ({ password, id }) => {
 };
 // ==================================
 
+// Update user profile
+export const UPDATE_USER_PROFILE_IMAGE = ({ profileId, id }) => {
+  return prisma.user.update({
+    where: { id: +id },
+    data: {
+      profile: {
+        connect: {
+          id: profileId,
+        },
+      },
+    },
+  });
+};
+// ==================================
+
 // * ====================================== * //
 
 //? ============== DELETE QUERY ============= ?//

@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 
 // Data Hook
 import { useUser } from "app/hooks/user";
+import { useUploads } from "app/hooks/upload";
 
 // Component
 import ContainerBox from "app/components/container/containerBox";
@@ -24,15 +25,26 @@ import s from "./index.module.scss";
 
 function EditUser() {
   const router = useRouter();
+  const id = router.query.id;
 
   //? ============== Handle Initial Data ============= ?//
-  const { data, onEditInfo, onEditPassword } = useUser({ singleId: router.query.id });
+  const { data, onEditInfo, onEditPassword, onEditProfileImage } = useUser({ singleId: id });
   // * ====================================== * //
 
   //? ============== Handle Select Menu ============= ?//
   const [selectedMenu, setSelectedMenu] = useState("1");
   const handleSelectMenu = (e) => {
     setSelectedMenu(e.key);
+  };
+  // * ====================================== * //
+
+  //? ============== Handle Change Profile Image ============= ?//
+  const { onUpload, loading: uploadLoading } = useUploads();
+  const handleChangeProfile = async (file) => {
+    const upload = await onUpload({ file: file.file, userId: id });
+    if (upload.success) {
+      const result = await onEditProfileImage({ profileId: upload.data.id });
+    }
   };
   // * ====================================== * //
 
@@ -52,7 +64,9 @@ function EditUser() {
               />
             </Col>
             <Col span={24}>
-              <UploadButton>Change Profile Image</UploadButton>
+              <UploadButton onUpload={handleChangeProfile} loading={uploadLoading}>
+                Change Profile Image
+              </UploadButton>
             </Col>
           </Col>
           <Col span={8} className={s.profileDetails}>

@@ -212,12 +212,49 @@ export const useUser = ({ singleId }) => {
   );
   // ==========================
 
+  // Edit Profile Image Hook Function
+  const onEditProfileImage = useCallback(
+    async (data) => {
+      try {
+        setLoading(true);
+        const { data: res } = await api.put(`${pathKeys}/profile-image`, data);
+        if (res.success) {
+          mutate();
+          SuccessNotification({
+            message: "Success",
+            description: `Edited profile image of ${msgHead} has successfully saved.`,
+          });
+          return res.success;
+        } else {
+          ErrorNotification({
+            message: "Error",
+            description: `Something went wrong while editing profile image of ${msgHead}`,
+          });
+
+          return res.success;
+        }
+      } catch (error) {
+        ErrorNotification({
+          message: "Error",
+          description: `Something went wrong while editing profile image of ${msgHead}`,
+        });
+
+        return false;
+      } finally {
+        setLoading(false);
+      }
+    },
+    [mutate, pathKeys]
+  );
+  // ==========================
+
   return {
     data,
     loading: (!error && !data) || isValidating || loading,
     onEditInfo,
     onEditPassword,
     onEditBilling,
+    onEditProfileImage,
   };
 };
 
