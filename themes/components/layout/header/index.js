@@ -26,7 +26,7 @@ function PageHeader() {
         <PageContainerBox>
           <Row style={{ height: "100%" }} justify="space-between">
             <Col className={s.logo}>
-              <Image src="/images/logo.png" alt="" layout="fill" objectFit="contain" />
+              <Image src="/images/logo-without-text.png" alt="" layout="fill" objectFit="contain" />
             </Col>
             <Col className={s.menu}>
               <PageButton style={{ marginRight: "26px" }} type="outlined">
