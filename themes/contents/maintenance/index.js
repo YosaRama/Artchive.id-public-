@@ -13,11 +13,11 @@ function PageMaintenance() {
     <PageContainerBox sectionClass={s.section} containerClass={s.container}>
       <Col style={{ textAlign: "center" }}>
         <Col span={24} className={s.image}>
-          <Image src="/images/maintenance.png" alt="" layout="fill" />
+          <Image src="/images/under-construction.png" alt="" layout="fill" />
         </Col>
         <Col className={s.text}>
-          <h1>Under Maintenance!</h1>
-          <p>See you on march!</p>
+          <h1>Under Construction!</h1>
+          <p>See you on March!</p>
         </Col>
       </Col>
     </PageContainerBox>
