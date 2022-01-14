@@ -47,16 +47,16 @@ function PageFooter() {
         <Row justify="space-between" className={s.bottomContainer}>
           <Col className={s.social}>
             <Row className={s.socialLink}>
-              <Link href="/">
-                <a>
-                  <p>Instagram</p>
-                </a>
-              </Link>
-              <Link href="/">
-                <a>
-                  <p>Facebook</p>
-                </a>
-              </Link>
+              <a
+                href="https://www.facebook.com/Artchiveid-105888711990207"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Image src="/images/instagram.svg" alt="" width={20} height={20} />
+              </a>
+              <a href="https://www.instagram.com/art_chive.id/" target={"_blank"} rel="noreferrer">
+                <Image src="/images/facebook.svg" alt="" width={20} height={20} />
+              </a>
             </Row>
           </Col>
           <Col className={s.copyright}>
