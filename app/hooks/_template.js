@@ -14,9 +14,10 @@ const msgHead = "Context"; // Just For message
 
 export const useTemplates = ({ queryString = "" }) => {
   const pathKeys = pathName + "?" + queryString;
-  const { data = [], error, isValidating, mutate } = useSWR(pathKeys);
   const [loading, setLoading] = useState(false);
 
+  const { data = [], error, isValidating, mutate } = useSWR(pathKeys);
+  const results = data?.data;
   // Add Hook Function
   const onAdd = useCallback(
     async (data) => {
@@ -88,7 +89,7 @@ export const useTemplates = ({ queryString = "" }) => {
   // ==========================
 
   return {
-    data,
+    data: results,
     loading: (!error && !data) || isValidating || loading,
     onAdd,
     onDelete,
@@ -101,8 +102,10 @@ export const useTemplates = ({ queryString = "" }) => {
 
 export const useTemplate = ({ singleId }) => {
   const pathKeys = `${pathName}/${singleId}`;
-  const { data = [], error, isValidating, mutate } = useSWR(pathKeys);
   const [loading, setLoading] = useState(false);
+
+  const { data = [], error, isValidating, mutate } = useSWR(pathKeys);
+  const results = data?.data;
 
   // Edit Hook Function
   const onEdit = useCallback(
@@ -141,7 +144,7 @@ export const useTemplate = ({ singleId }) => {
   // ==========================
 
   return {
-    data,
+    data: results,
     loading: (!error && !data) || isValidating || loading,
     onEdit,
   };
