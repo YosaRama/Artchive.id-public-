@@ -11,10 +11,10 @@ function deleteConfirmModal({ title, onDelete, onClose }) {
     okText: "Delete",
     okType: "danger",
     cancelText: "No",
-    onOk() {
+    onOk: () => {
       onDelete();
     },
-    onCancel() {
+    onCancel: () => {
       onClose && onClose();
     },
   });
