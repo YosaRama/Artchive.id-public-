@@ -1,6 +1,6 @@
 // Libs
-import { Pagination } from "antd";
 import propTypes from "prop-types";
+import { Pagination } from "antd";
 
 function CustomPagination(props) {
   const { total, handlePagination, pageSize, current } = props;
