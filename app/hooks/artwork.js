@@ -14,8 +14,10 @@ const msgHead = "artwork"; // Just For message
 
 export const useArtworks = ({ queryString = "" }) => {
   const pathKeys = pathName + "?" + queryString;
-  const { data = [], error, isValidating, mutate } = useSWR(pathKeys);
   const [loading, setLoading] = useState(false);
+
+  const { data = [], error, isValidating, mutate } = useSWR(pathKeys);
+  const results = data?.data;
 
   // Add Hook Function
   const onAdd = useCallback(
@@ -88,7 +90,7 @@ export const useArtworks = ({ queryString = "" }) => {
   // ==========================
 
   return {
-    data,
+    data: results,
     loading: (!error && !data) || isValidating || loading,
     onAdd,
     onDelete,
@@ -101,8 +103,10 @@ export const useArtworks = ({ queryString = "" }) => {
 
 export const useArtwork = ({ singleId }) => {
   const pathKeys = `${pathName}/${singleId}`;
-  const { data = [], error, isValidating, mutate } = useSWR(pathKeys);
   const [loading, setLoading] = useState(false);
+
+  const { data = [], error, isValidating, mutate } = useSWR(pathKeys);
+  const results = data?.data;
 
   // Edit Hook Function
   const onEdit = useCallback(
@@ -246,7 +250,7 @@ export const useArtwork = ({ singleId }) => {
   // ==========================
 
   return {
-    data,
+    data: results,
     loading: (!error && !data) || isValidating || loading,
     onEdit,
     onDelete,

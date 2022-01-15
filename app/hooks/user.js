@@ -14,8 +14,10 @@ const msgHead = "user"; // Just For message
 
 export const useUsers = ({ queryString = "" }) => {
   const pathKeys = pathName + "?" + queryString;
-  const { data = [], error, isValidating, mutate } = useSWR(pathKeys);
   const [loading, setLoading] = useState(false);
+
+  const { data = [], error, isValidating, mutate } = useSWR(pathKeys);
+  const results = data?.data;
 
   // Add Hook Function
   const onAdd = useCallback(
@@ -88,7 +90,7 @@ export const useUsers = ({ queryString = "" }) => {
   // ==========================
 
   return {
-    data,
+    data: results,
     loading: (!error && !data) || isValidating || loading,
     onAdd,
     onDelete,
@@ -101,8 +103,10 @@ export const useUsers = ({ queryString = "" }) => {
 
 export const useUser = ({ singleId }) => {
   const pathKeys = `${pathName}/${singleId}`;
-  const { data = [], error, isValidating, mutate } = useSWR(pathKeys);
   const [loading, setLoading] = useState(false);
+
+  const { data = [], error, isValidating, mutate } = useSWR(pathKeys);
+  const results = data?.data;
 
   // Edit General Information Hook Function
   const onEditInfo = useCallback(
@@ -249,7 +253,7 @@ export const useUser = ({ singleId }) => {
   // ==========================
 
   return {
-    data,
+    data: results,
     loading: (!error && !data) || isValidating || loading,
     onEditInfo,
     onEditPassword,

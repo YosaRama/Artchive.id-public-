@@ -25,8 +25,8 @@ function ArtworkList() {
           Add Artwork
         </AddButton>
         <Row gutter={[16, 16]}>
-          {data.length != 0 &&
-            data.map((item, index) => {
+          {data?.length != 0 &&
+            data?.map((item, index) => {
               return (
                 <Col span={6} key={index}>
                   <CardArtwork
@@ -48,7 +48,7 @@ function ArtworkList() {
                 </Col>
               );
             })}
-          {data.length == 0 && (
+          {data?.length == 0 && (
             <Col span={24}>
               <Empty />
             </Col>

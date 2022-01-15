@@ -9,15 +9,15 @@ const instance = axios.create({
   },
 });
 
-export const fetcher = (url) => {
-  return instance.get(url).then((res) => {
-    var results = res.data;
+export const fetcher = async (url) => {
+  return await instance.get(url).then(async (res) => {
+    var results = await res.data;
 
     if (!results) {
       throw Error(results.message);
     }
 
-    return results.data;
+    return results;
   });
 };
 

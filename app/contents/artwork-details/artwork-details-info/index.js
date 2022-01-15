@@ -34,10 +34,12 @@ function ArtworkGeneralInformation() {
     data: artworkInitialData,
     onDelete,
   } = useArtwork({ singleId: router?.query?.id });
-  const artworkInitialValues = artworkInitialData?.length != 0 && {
+  const artworkInitialValues = artworkInitialData && {
     ...artworkInitialData,
     artistId: [artworkInitialData?.artist?.full_name, artworkInitialData?.artist_id],
   };
+
+  console.log(artworkInitialData);
   // * ====================================== * //
 
   //? ============== Handle Update ============= ?//

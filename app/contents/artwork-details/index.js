@@ -23,6 +23,7 @@ function ArtworkDetails(props) {
 
   //? ============== Artwork Hook ============= ?//
   const { data: artworkData, onChangeCover } = useArtwork({ singleId: initialValue.id });
+  console.log(artworkData);
   // * ====================================== * //
 
   //? ============== Handle Select Menu ============= ?//

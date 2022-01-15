@@ -71,7 +71,7 @@ function EditUser() {
           </Col>
           <Col span={8} className={s.profileDetails}>
             <Col span={24}>
-              {data.length != 0 ? (
+              {data?.length != 0 ? (
                 <>
                   <h1 className={s.name}>{data?.full_name}</h1>
                   <p className={s.email}>{data?.email}</p>
@@ -92,7 +92,7 @@ function EditUser() {
             <Menu.Item key="5">Collection</Menu.Item>
           </Menu>
 
-          {data.length != 0 && (
+          {data?.length != 0 && (
             <Col span={23} style={{ margin: "30px auto" }}>
               {selectedMenu == 1 && <UserEditInfo initialData={data} onSave={onEditInfo} />}
               {selectedMenu == 2 && <UserEditPassword onSave={onEditPassword} />}
