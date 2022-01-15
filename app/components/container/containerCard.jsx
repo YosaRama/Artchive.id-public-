@@ -1,4 +1,5 @@
 // Libs
+import propTypes from "prop-types";
 import { Card } from "antd";
 
 function ContainerCard(props) {
@@ -8,5 +9,9 @@ function ContainerCard(props) {
     </Card>
   );
 }
+
+ContainerCard.propTypes = {
+  title: propTypes.string,
+};
 
 export default ContainerCard;
