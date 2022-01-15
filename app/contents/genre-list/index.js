@@ -9,8 +9,16 @@ import GenreColumns from "./util";
 import deleteConfirmModal from "app/components/libs/delete-modal-confirm";
 import AddButton from "app/components/libs/add-button";
 
+// Data Hook
+import { useGenres } from "app/hooks/genre";
+
 function GenreList() {
   const router = useRouter();
+
+  //? ============== Genre Hook ============= ?//
+  const { data } = useGenres({ queryString: "" });
+  console.log(data);
+  // * ====================================== * //
 
   //? ============== Handle Delete ============= ?//
   const onDelete = (id) => {
@@ -21,7 +29,7 @@ function GenreList() {
   };
   // * ====================================== * //
   const columns = GenreColumns({ onDelete: handleDelete });
-  const data = [
+  const dummyData = [
     { id: 1, title: "Cubism" },
     { id: 2, title: "Realism" },
   ];
@@ -29,7 +37,7 @@ function GenreList() {
     <ContainerBox>
       <ContainerCard title="Genre List">
         <AddButton onCreate={() => router.push("/dashboard/genre/create")}>Add Genre</AddButton>
-        <Table columns={columns} dataSource={data} />
+        <Table columns={columns} dataSource={dummyData} />
       </ContainerCard>
     </ContainerBox>
   );
