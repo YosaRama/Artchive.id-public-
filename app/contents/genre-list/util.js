@@ -30,6 +30,7 @@ function GenreColumns({ onDelete }) {
       title: "Genre",
       dataIndex: "title",
       key: "title",
+      render: (t, r) => <p style={{ textTransform: "capitalize" }}>{t}</p>,
     },
     {
       title: "Action",

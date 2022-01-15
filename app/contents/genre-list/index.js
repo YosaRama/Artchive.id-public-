@@ -1,6 +1,7 @@
 // Libs
+import { v4 as uuid } from "uuid";
 import { useRouter } from "next/router";
-import { Table } from "antd";
+import { Empty, Table } from "antd";
 
 // Components
 import ContainerBox from "app/components/container/containerBox";
@@ -17,7 +18,6 @@ function GenreList() {
 
   //? ============== Genre Hook ============= ?//
   const { data } = useGenres({ queryString: "" });
-  console.log(data);
   // * ====================================== * //
 
   //? ============== Handle Delete ============= ?//
@@ -28,16 +28,17 @@ function GenreList() {
     deleteConfirmModal({ title: "genre", onDelete: () => onDelete(id) });
   };
   // * ====================================== * //
+
+  //? ============== Handle Column ============= ?//
   const columns = GenreColumns({ onDelete: handleDelete });
-  const dummyData = [
-    { id: 1, title: "Cubism" },
-    { id: 2, title: "Realism" },
-  ];
+  // * ====================================== * //
+
   return (
     <ContainerBox>
       <ContainerCard title="Genre List">
         <AddButton onCreate={() => router.push("/dashboard/genre/create")}>Add Genre</AddButton>
-        <Table columns={columns} dataSource={dummyData} />
+        {data && <Table columns={columns} dataSource={data} rowKey={() => uuid()} />}
+        {!data && <Empty />}
       </ContainerCard>
     </ContainerBox>
   );
