@@ -8,7 +8,7 @@ import { prisma } from "../connection";
 //? ============== GET QUERY ============= ?//
 
 // Get Data (Filter by Role, Email, FullName)
-export const GET_DATA = ({ page = 0, limit = 15, role, email, fullName }) => {
+export const GET_DATA = ({ page = 0, limit = 15, something }) => {
   // Handle Pagination
   const skip = limit != "all" ? +page * +limit : undefined;
   return prisma.data.findMany({
@@ -19,9 +19,7 @@ export const GET_DATA = ({ page = 0, limit = 15, role, email, fullName }) => {
     // Handle query condition
     where: {
       AND: {
-        role: role ? role : {}, // Can disable by empty object
-        email: email ? { contains: email } : {}, // Can disable by empty object
-        full_name: fullName ? { contains: fullName } : {}, // Can disable by empty object
+        something: something ? something : {}, // Can disable by empty object
       },
     },
     // ==========================
@@ -40,12 +38,6 @@ export const GET_DATA_BY_ID = ({ id }) => {
   return prisma.data.findUnique({
     where: { id: +id },
   });
-};
-// ==================================
-
-// Get Data by Specific Email
-export const GET_DATA_BY_EMAIL = ({ email }) => {
-  return prisma.data.findUnique({ where: { email: email } });
 };
 // ==================================
 
@@ -70,13 +62,10 @@ export const GET_TOTAL_DATA = ({ role, email, fullName }) => {
 //? ============== CREATE QUERY ============= ?//
 
 // Create new data
-export const CREATE_DATA = ({ email, password, fullName, role }) => {
+export const CREATE_DATA = ({ something }) => {
   return prisma.data.create({
     data: {
-      email: email,
-      password: password,
-      full_name: fullName,
-      role: role,
+      something: something,
     },
   });
 };
@@ -87,19 +76,10 @@ export const CREATE_DATA = ({ email, password, fullName, role }) => {
 //? ============== UPDATE QUERY ============= ?//
 
 // Update data with specific ID details without password
-export const UPDATE_DATA = ({ id, fullName, email }) => {
+export const UPDATE_DATA = ({ id, something }) => {
   return prisma.data.update({
-    data: { email: email, full_name: fullName },
+    data: { something: something },
     where: { id: +id },
-  });
-};
-// ==================================
-
-// Update data with specific ID password only
-export const UPDATE_DATA_PASSWORD = ({ password, id }) => {
-  return prisma.data.update({
-    where: { id: +id },
-    data: { password: password },
   });
 };
 // ==================================
