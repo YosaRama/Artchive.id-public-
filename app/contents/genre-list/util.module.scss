@@ -1,0 +1,7 @@
+.action {
+  transition: all 0.3s ease;
+  &:hover {
+    cursor: pointer;
+    color: #e5890a;
+  }
+}

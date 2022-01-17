@@ -1,9 +1,12 @@
 // Libs
-import { Col, Row } from "antd";
+import { Col, Row, Tooltip } from "antd";
 import { useRouter } from "next/router";
 
 // Icons
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+
+// Styles
+import s from "./util.module.scss";
 
 function GenreColumns({ onDelete }) {
   const router = useRouter();
@@ -41,10 +44,14 @@ function GenreColumns({ onDelete }) {
         return (
           <Row gutter={[16, 0]}>
             <Col>
-              <EditOutlined onClick={() => handleEdit(r.id)} />
+              <Tooltip title="Edit">
+                <EditOutlined onClick={() => handleEdit(r.id)} className={s.action} />
+              </Tooltip>
             </Col>
             <Col>
-              <DeleteOutlined onClick={() => handleDelete(r.id)} />
+              <Tooltip title="Delete">
+                <DeleteOutlined onClick={() => handleDelete(r.id)} className={s.action} />
+              </Tooltip>
             </Col>
           </Row>
         );
