@@ -8,9 +8,9 @@ import { prisma } from "../connection";
 //? ============== GET QUERY ============= ?//
 
 // Get Data (Filter by Role, Email, FullName)
-export const GET_DATA = ({ page = 0, limit = 15, something }) => {
+export const GET_DATA = ({ page = 1, limit = 15, something }) => {
   // Handle Pagination
-  const skip = limit != "all" ? +page * +limit : undefined;
+  const skip = limit != "all" ? (+page - 1) * +limit : undefined;
   return prisma.data.findMany({
     skip: skip ? +skip : undefined, // Disable by undefined
     take: limit != "all" ? +limit : undefined, // Disable by undefined
