@@ -98,6 +98,12 @@ export const GET_ARTWORK_BY_ID = ({ id }) => {
           type: "EDITION",
         },
       },
+      genre: {
+        select: {
+          id: true,
+          title: true,
+        },
+      },
     },
     // ==================
   });
@@ -243,25 +249,26 @@ export const UPDATE_ARTWORK = ({
           id: artist_id,
         },
       },
-      genre: {
-        set: [],
-        connect: {
-          id: genre_id,
-        },
-      },
       media_gallery: {
         set: [],
-        connect:
-          (media_id &&
-            media_id.map((item) => {
+        connect: media_id
+          ? media_id.map((item) => {
               return { id: item };
-            })) ||
-          [],
+            })
+          : [],
       },
       media_cover: {
         connect: {
           id: cover_id,
         },
+      },
+      genre: {
+        set: [],
+        connect: genre_id
+          ? genre_id.map((item) => {
+              return { id: item };
+            })
+          : [],
       },
     },
     //====================

@@ -17,6 +17,7 @@ const { Option } = Select;
 // Data Hook
 import { useArtwork } from "app/hooks/artwork";
 import { useUsers } from "app/hooks/user";
+import { useGenres } from "app/hooks/genre";
 
 // Components
 import deleteConfirmModal from "app/components/libs/delete-modal-confirm";
@@ -37,9 +38,14 @@ function ArtworkGeneralInformation() {
   const artworkInitialValues = artworkInitialData && {
     ...artworkInitialData,
     artistId: [artworkInitialData?.artist?.full_name, artworkInitialData?.artist_id],
+    genre: artworkInitialData?.genre?.map((item) => {
+      return item.id;
+    }),
   };
+  // * ====================================== * //
 
-  console.log(artworkInitialData);
+  //? ============== Genre Hook ============= ?//
+  const { data: genreData } = useGenres({ queryString: "" });
   // * ====================================== * //
 
   //? ============== Handle Update ============= ?//
@@ -54,7 +60,7 @@ function ArtworkGeneralInformation() {
         year: value.year,
         material: value.material,
         description: value.description,
-        genre_id: 1,
+        genre_id: value.genre,
         cover_id: artworkInitialValues?.media_cover_id,
         type: value.type,
         height: value.height,
@@ -93,6 +99,18 @@ function ArtworkGeneralInformation() {
                       return (
                         <Option key={index} value={[item.full_name, item.id]}>
                           {item.full_name}
+                        </Option>
+                      );
+                    })}
+                </Select>
+              </Form.Item>
+              <Form.Item name="genre" label="Genre">
+                <Select placeholder="Select genre" mode="multiple">
+                  {genreData &&
+                    genreData?.map((item, index) => {
+                      return (
+                        <Option key={index} value={item.id}>
+                          {item.title}
                         </Option>
                       );
                     })}
