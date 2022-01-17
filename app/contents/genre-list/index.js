@@ -17,13 +17,10 @@ function GenreList() {
   const router = useRouter();
 
   //? ============== Genre Hook ============= ?//
-  const { data } = useGenres({ queryString: "" });
+  const { data, onDelete, loading } = useGenres({ queryString: "" });
   // * ====================================== * //
 
   //? ============== Handle Delete ============= ?//
-  const onDelete = (id) => {
-    console.log(id);
-  };
   const handleDelete = (id) => {
     deleteConfirmModal({ title: "genre", onDelete: () => onDelete(id) });
   };
@@ -37,7 +34,9 @@ function GenreList() {
     <ContainerBox>
       <ContainerCard title="Genre List">
         <AddButton onCreate={() => router.push("/dashboard/genre/create")}>Add Genre</AddButton>
-        {data && <Table columns={columns} dataSource={data} rowKey={() => uuid()} />}
+        {data && (
+          <Table columns={columns} dataSource={data} rowKey={() => uuid()} loading={loading} />
+        )}
         {!data && <Empty />}
       </ContainerCard>
     </ContainerBox>
