@@ -8,11 +8,15 @@ const { Option } = Select;
 import { useUploads } from "app/hooks/upload";
 import { useArtworks } from "app/hooks/artwork";
 import { useUsers } from "app/hooks/user";
+import { useGenres } from "app/hooks/genre";
 
 // Components
 import UploadBox from "app/components/libs/upload-box";
 import ContainerBox from "app/components/container/containerBox";
 import ContainerCard from "app/components/container/containerCard";
+
+// Notification
+import { WarningNotification } from "app/components/libs/notification";
 
 // Style
 import s from "./index.module.scss";
@@ -24,7 +28,7 @@ function ArtworkCreate() {
 
   //? ============== Artwork Hook ============= ?//
   const { data: artworkData, onAdd } = useArtworks({ queryString: "" });
-  const lastArtworkId = artworkData.length != 0 ? artworkData?.[0]?.id + 1 : 1;
+  const lastArtworkId = artworkData?.length != 0 ? artworkData?.[0]?.id + 1 : 1;
   // * ====================================== * //
 
   //? ============== Artist Hook ============= ?//
@@ -32,7 +36,7 @@ function ArtworkCreate() {
   // * ====================================== * //
 
   //? ============== Genre Hook ============= ?//
-  // TODO : Hook Genre
+  const { data: genreData } = useGenres({ queryString: "" });
   // * ====================================== * //
 
   //? ============== Handle Add Artwork ============= ?//
@@ -45,7 +49,7 @@ function ArtworkCreate() {
         year: value.year,
         material: value.material,
         description: value.description,
-        genre_id: 1,
+        genre_id: value.genre.map((item) => item[1]),
         media_id: [],
         cover_id: uploadImage?.id,
         type: value.type,
@@ -55,9 +59,16 @@ function ArtworkCreate() {
         status: "DRAFT", // Default on create artwork
         approve: false, // Default on create artwork
       };
-      const result = await onAdd(submission);
-      if (result) {
-        router.push("/dashboard/artworks");
+      if (!submission.cover_id) {
+        WarningNotification({
+          message: "Failed Submit!",
+          description: "Please upload artwork image",
+        });
+      } else {
+        const result = await onAdd(submission);
+        if (result) {
+          router.push("/dashboard/artworks");
+        }
       }
     });
   };
@@ -125,6 +136,18 @@ function ArtworkCreate() {
                         return (
                           <Option key={index} value={[item.full_name, item.id]}>
                             {item.full_name}
+                          </Option>
+                        );
+                      })}
+                  </Select>
+                </Form.Item>
+                <Form.Item name="genre" label="Genre">
+                  <Select placeholder="Select artist" showSearch mode="multiple">
+                    {genreData &&
+                      genreData?.map((item, index) => {
+                        return (
+                          <Option key={index} value={[item.title, item.id]}>
+                            {item.title}
                           </Option>
                         );
                       })}

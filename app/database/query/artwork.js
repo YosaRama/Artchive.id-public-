@@ -162,9 +162,12 @@ export const CREATE_ARTWORK = ({
         },
       },
       genre: {
-        connect: {
-          id: genre_id,
-        },
+        connect:
+          (genre_id &&
+            genre_id.map((item) => {
+              return { id: item };
+            })) ||
+          [],
       },
       media_gallery: {
         connect:
