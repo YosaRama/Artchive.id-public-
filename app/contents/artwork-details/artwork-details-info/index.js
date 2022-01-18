@@ -34,6 +34,7 @@ function ArtworkGeneralInformation() {
     onEdit,
     data: artworkInitialData,
     onDelete,
+    loading,
   } = useArtwork({ singleId: router?.query?.id });
   const artworkInitialValues = artworkInitialData && {
     ...artworkInitialData,
@@ -170,10 +171,11 @@ function ArtworkGeneralInformation() {
                 danger
                 style={{ marginRight: 10 }}
                 onClick={() => deleteConfirmModal({ title: "artwork", onDelete: handleDelete })}
+                loading={loading}
               >
                 Delete Artwork
               </Button>
-              <Button size="large" type="primary" onClick={handleUpdate}>
+              <Button size="large" type="primary" onClick={handleUpdate} loading={loading}>
                 Save Changes
               </Button>
             </Col>
