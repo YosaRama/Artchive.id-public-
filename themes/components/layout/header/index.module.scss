@@ -1,11 +1,11 @@
 .container {
   background: #ffffff !important;
   padding: 0 !important;
-  height: 128px !important;
+  height: 64px !important;
 }
 
 .logo {
-  width: 180px;
+  width: 120px;
   height: 100%;
 }
 
@@ -13,6 +13,6 @@
   display: flex;
   align-items: center;
   .hamburger {
-    font-size: 28px;
+    font-size: 24px;
   }
 }
