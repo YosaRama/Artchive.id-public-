@@ -45,7 +45,7 @@ function PageFooter() {
         <div className={s.divider} />
 
         <Row justify="space-between" className={s.bottomContainer}>
-          <Col className={s.social}>
+          <Col className={s.social} span={8}>
             <Row className={s.socialLink}>
               <a href="https://www.instagram.com/art_chive.id/" target="_blank" rel="noreferrer">
                 <Image src="/images/instagram.svg" alt="" width={20} height={20} />
@@ -59,10 +59,10 @@ function PageFooter() {
               </a>
             </Row>
           </Col>
-          <Col className={s.copyright}>
+          <Col className={s.copyright} span={8}>
             <p>© 2022 Artchive.id</p>
           </Col>
-          <Col>
+          <Col span={8}>
             <Row className={s.additionalLink}>
               <Link href="/">
                 <a>

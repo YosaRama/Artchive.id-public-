@@ -58,6 +58,7 @@
 
   .copyright {
     color: #ffffff;
+    text-align: center;
     p {
       margin: 0;
       font-family: "Aileron";
@@ -66,6 +67,7 @@
   }
 
   .additionalLink {
+    justify-content: flex-end;
     p {
       color: #ffffff;
       margin: 0;
