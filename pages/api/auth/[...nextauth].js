@@ -15,7 +15,7 @@ export default NextAuth({
   session: {
     strategy: "jwt",
   },
-  secret: "DJBSMhV4ynvoQNjVFJpzmAvxyyLQeDPZjfPzzplNPJc=",
+  secret: "TVmJCqoONdD1T1QFuIF3IPzGuvGXWdpyyStjXqydcWI=",
   providers: [
     CredentialsProvider({
       async authorize(credentials, req) {
