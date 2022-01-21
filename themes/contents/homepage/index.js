@@ -8,6 +8,7 @@ import PageArtworkFrame from "themes/components/libs/page-artwork-frame";
 import PageDividerButton from "themes/components/libs/page-divider-button";
 import PageBanner from "themes/components/libs/page-banner";
 import PageHomepageSearchBox from "themes/components/libs/page-homepage-search-box";
+import PageTitle from "themes/components/libs/page-title";
 
 // Styles
 import s from "./index.module.scss";
@@ -22,6 +23,7 @@ function Homepage() {
       </PageBanner>
 
       <PageContainerBox>
+        <PageTitle />
         <Row gutter={[16, 0]}>
           <Col span={6}>
             <PageArtworkFrame />
@@ -39,6 +41,7 @@ function Homepage() {
 
         <PageDividerButton>SEE MORE</PageDividerButton>
 
+        <PageTitle />
         <Row gutter={[16, 0]}>
           <Col span={6}>
             <PageArtistCard />
