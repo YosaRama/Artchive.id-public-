@@ -5,7 +5,7 @@ import { Button, Col, Drawer, Layout, Row } from "antd";
 const { Header } = Layout;
 
 // Components
-import PageContainerBox from "themes/components/container/box-container/indes";
+import PageContainerBox from "themes/components/container/box-container";
 import PageButton from "themes/components/libs/page-button";
 
 // Icons

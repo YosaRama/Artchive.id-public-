@@ -3,7 +3,7 @@ import { Col } from "antd";
 import Image from "next/image";
 
 // Component
-import PageContainerBox from "themes/components/container/box-container/indes";
+import PageContainerBox from "themes/components/container/box-container";
 
 // Styles
 import s from "./index.module.scss";

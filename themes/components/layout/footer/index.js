@@ -5,7 +5,7 @@ import { Col, Layout, Row } from "antd";
 const { Footer } = Layout;
 
 // Components
-import PageContainerBox from "themes/components/container/box-container/indes";
+import PageContainerBox from "themes/components/container/box-container";
 
 // Styles
 import s from "./index.module.scss";

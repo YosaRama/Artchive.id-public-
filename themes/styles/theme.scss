@@ -157,6 +157,34 @@ $white: #ffffff;
 
 // * ====================================== * //
 
+//? ============== Components ============= ?//
+
+.homepage-search {
+  .ant-select-selector {
+    height: 40px !important;
+    align-items: center !important;
+    .ant-select-selection-search {
+      display: flex !important;
+      align-items: center !important;
+      width: 70% !important;
+      input {
+        font-family: "Aileron";
+      }
+    }
+    .ant-select-selection-placeholder {
+      font-family: "Aileron" !important;
+    }
+  }
+  .ant-select-arrow {
+    width: 30px !important;
+    margin: 0 !important;
+    top: 0 !important;
+    transform: translate(0px, 5px) !important;
+  }
+}
+
+// * ====================================== * //
+
 //? =================== Responsive =========================== ?//
 
 @import "responsive-max-1365";
