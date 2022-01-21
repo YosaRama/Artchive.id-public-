@@ -23,41 +23,49 @@ function Homepage() {
       </PageBanner>
 
       <PageContainerBox>
-        <PageTitle />
-        <Row gutter={[16, 0]}>
-          <Col span={6}>
-            <PageArtworkFrame />
-          </Col>
-          <Col span={6}>
-            <PageArtworkFrame />
-          </Col>
-          <Col span={6}>
-            <PageArtworkFrame />
-          </Col>
-          <Col span={6}>
-            <PageArtworkFrame />
-          </Col>
-        </Row>
+        <section className={s.section}>
+          <PageTitle />
+          <Row gutter={[16, 0]}>
+            <Col span={6}>
+              <PageArtworkFrame />
+            </Col>
+            <Col span={6}>
+              <PageArtworkFrame />
+            </Col>
+            <Col span={6}>
+              <PageArtworkFrame />
+            </Col>
+            <Col span={6}>
+              <PageArtworkFrame />
+            </Col>
+          </Row>
+        </section>
 
-        <PageDividerButton>SEE MORE</PageDividerButton>
+        <section className={s.section}>
+          <PageDividerButton>SEE MORE</PageDividerButton>
+        </section>
 
-        <PageTitle />
-        <Row gutter={[16, 0]}>
-          <Col span={6}>
-            <PageArtistCard />
-          </Col>
-          <Col span={6}>
-            <PageArtistCard />
-          </Col>
-          <Col span={6}>
-            <PageArtistCard />
-          </Col>
-          <Col span={6}>
-            <PageArtistCard />
-          </Col>
-        </Row>
+        <section className={s.section}>
+          <PageTitle />
+          <Row gutter={[16, 0]}>
+            <Col span={6}>
+              <PageArtistCard />
+            </Col>
+            <Col span={6}>
+              <PageArtistCard />
+            </Col>
+            <Col span={6}>
+              <PageArtistCard />
+            </Col>
+            <Col span={6}>
+              <PageArtistCard />
+            </Col>
+          </Row>
+        </section>
 
-        <PageDividerButton>SEE MORE</PageDividerButton>
+        <section className={s.section}>
+          <PageDividerButton>SEE MORE</PageDividerButton>
+        </section>
       </PageContainerBox>
     </>
   );
