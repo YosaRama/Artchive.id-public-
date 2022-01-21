@@ -1,4 +1,5 @@
 // Libs
+import propTypes from "prop-types";
 import { Col, Row } from "antd";
 
 // Components
@@ -13,62 +14,68 @@ import PageTitle from "themes/components/libs/page-title";
 // Styles
 import s from "./index.module.scss";
 
-function Homepage() {
+function Homepage(props) {
+  const { artworkData, artistData } = props;
   return (
     <>
+      {/* Banner Section */}
       <PageBanner>
         <div className={s.searchBox}>
           <PageHomepageSearchBox />
         </div>
       </PageBanner>
+      {/* ============================ */}
 
+      {/* Artwork Section */}
       <PageContainerBox>
-        <section className={s.section}>
-          <PageTitle />
-          <Row gutter={[16, 0]}>
-            <Col span={6}>
-              <PageArtworkFrame />
-            </Col>
-            <Col span={6}>
-              <PageArtworkFrame />
-            </Col>
-            <Col span={6}>
-              <PageArtworkFrame />
-            </Col>
-            <Col span={6}>
-              <PageArtworkFrame />
-            </Col>
-          </Row>
-        </section>
+        {artworkData && (
+          <section className={s.section}>
+            <PageTitle />
+            <Row gutter={[16, 0]}>
+              {artworkData.map((item, index) => (
+                <Col span={6} key={index}>
+                  <PageArtworkFrame />
+                </Col>
+              ))}
+            </Row>
+          </section>
+        )}
+        {/* ============================ */}
 
+        {/* Divider Section */}
         <section className={s.section}>
           <PageDividerButton>SEE MORE</PageDividerButton>
         </section>
+        {/* ============================ */}
 
-        <section className={s.section}>
-          <PageTitle />
-          <Row gutter={[16, 0]}>
-            <Col span={6}>
-              <PageArtistCard />
-            </Col>
-            <Col span={6}>
-              <PageArtistCard />
-            </Col>
-            <Col span={6}>
-              <PageArtistCard />
-            </Col>
-            <Col span={6}>
-              <PageArtistCard />
-            </Col>
-          </Row>
-        </section>
+        {/* Artist Section */}
+        {artistData && (
+          <section className={s.section}>
+            <PageTitle />
+            <Row gutter={[16, 0]}>
+              {artistData.map((item, index) => (
+                <Col span={6} key={index}>
+                  <PageArtistCard />
+                </Col>
+              ))}
+            </Row>
+          </section>
+        )}
+        {/* ============================ */}
 
+        {/* Divider Section */}
         <section className={s.section}>
           <PageDividerButton>SEE MORE</PageDividerButton>
         </section>
+        {/* ============================ */}
       </PageContainerBox>
     </>
   );
 }
+
+Homepage.propTypes = {
+  artworkData: propTypes.array,
+  artistData: propTypes.array,
+};
 
 export default Homepage;
