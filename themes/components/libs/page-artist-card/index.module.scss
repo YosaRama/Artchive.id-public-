@@ -1,4 +1,5 @@
 .card {
+  top: 0;
   padding: 0 !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
@@ -7,9 +8,13 @@
   position: relative;
   background-color: #ffffff;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  transition: all 0.3s ease;
   .image {
     height: 60%;
     width: 100%;
+    img {
+      transition: all 0.3s ease;
+    }
   }
   .avatar {
     position: absolute;
@@ -20,6 +25,7 @@
     transform: translate(-50%, -50%);
     img {
       border-radius: 100%;
+      border: 4px solid #ffffff !important;
     }
   }
   .content {
@@ -29,9 +35,25 @@
     .artistName {
       margin-bottom: 0;
       font-size: 18px;
+      transition: all 0.3s ease;
     }
     .artistCity {
       margin-bottom: 0;
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+    top: -5px;
+    .image {
+      img {
+        // transform: scale(1.1);
+      }
+    }
+    .content {
+      .artistName {
+        color: #e5890a;
+      }
     }
   }
 }
