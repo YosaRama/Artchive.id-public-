@@ -43,7 +43,7 @@ function Homepage(props) {
         {/* ============================ */}
 
         {/* Divider Section */}
-        <section className={s.section}>
+        <section className={s.divider}>
           <PageDividerButton>SEE MORE</PageDividerButton>
         </section>
         {/* ============================ */}
@@ -64,7 +64,7 @@ function Homepage(props) {
         {/* ============================ */}
 
         {/* Divider Section */}
-        <section className={s.section}>
+        <section className={s.divider}>
           <PageDividerButton>SEE MORE</PageDividerButton>
         </section>
         {/* ============================ */}
