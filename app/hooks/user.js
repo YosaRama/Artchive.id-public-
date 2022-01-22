@@ -18,6 +18,7 @@ export const useUsers = ({ queryString = "" }) => {
 
   const { data = [], error, isValidating, mutate } = useSWR(pathKeys);
   const results = data?.data;
+  const total = data?.total;
 
   // Add Hook Function
   const onAdd = useCallback(
@@ -91,6 +92,7 @@ export const useUsers = ({ queryString = "" }) => {
 
   return {
     data: results,
+    total,
     loading: (!error && !data) || isValidating || loading,
     onAdd,
     onDelete,
@@ -107,6 +109,7 @@ export const useUser = ({ singleId }) => {
 
   const { data = [], error, isValidating, mutate } = useSWR(pathKeys);
   const results = data?.data;
+  const total = data?.total;
 
   // Edit General Information Hook Function
   const onEditInfo = useCallback(
@@ -254,6 +257,7 @@ export const useUser = ({ singleId }) => {
 
   return {
     data: results,
+    total,
     loading: (!error && !data) || isValidating || loading,
     onEditInfo,
     onEditPassword,

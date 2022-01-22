@@ -18,6 +18,8 @@ export const useTemplates = ({ queryString = "" }) => {
 
   const { data = [], error, isValidating, mutate } = useSWR(pathKeys);
   const results = data?.data;
+  const total = data?.total;
+
   // Add Hook Function
   const onAdd = useCallback(
     async (data) => {
@@ -90,6 +92,7 @@ export const useTemplates = ({ queryString = "" }) => {
 
   return {
     data: results,
+    total,
     loading: (!error && !data) || isValidating || loading,
     onAdd,
     onDelete,
@@ -106,6 +109,7 @@ export const useTemplate = ({ singleId }) => {
 
   const { data = [], error, isValidating, mutate } = useSWR(pathKeys);
   const results = data?.data;
+  const total = data?.data;
 
   // Edit Hook Function
   const onEdit = useCallback(
@@ -145,6 +149,7 @@ export const useTemplate = ({ singleId }) => {
 
   return {
     data: results,
+    total,
     loading: (!error && !data) || isValidating || loading,
     onEdit,
   };

@@ -31,7 +31,7 @@ function CardArtwork(props) {
         <Row gutter={[16, 0]} className={s.textContainer}>
           <Col span={6}>
             <Tooltip title={artistName}>
-              <Avatar src={artistImage} />
+              <Avatar src={artistImage ? artistImage : "/images/profile-default.png"} />
             </Tooltip>
           </Col>
           <Col span={18}>

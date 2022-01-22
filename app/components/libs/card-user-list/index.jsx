@@ -38,7 +38,7 @@ function CardUserList(props) {
       <Card className={s.card} bodyStyle={{ padding: "10px 24px" }}>
         <Row justify="center" align="middle">
           <Col span={3}>
-            <Avatar src={image} />
+            <Avatar src={image ? image : "/images/profile-default.png"} />
           </Col>
           <Col span={6} className={s.nameBox}>
             <div>
