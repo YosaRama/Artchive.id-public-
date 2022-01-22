@@ -27,10 +27,14 @@ function Homepage(props) {
       {/* ============================ */}
 
       {/* Artwork Section */}
-      <PageContainerBox>
+      <PageContainerBox sectionClass={s.sectionContainer}>
         {artworkData && (
           <section className={s.section}>
-            <PageTitle />
+            <PageTitle
+              title="Artwork"
+              subtitle="Original artwork by indonesian artist"
+              className={s.pageTitle}
+            />
             <Row gutter={[16, 0]}>
               {artworkData.map((item, index) => (
                 <Col span={6} key={index}>
@@ -51,7 +55,7 @@ function Homepage(props) {
         {/* Artist Section */}
         {artistData && (
           <section className={s.section}>
-            <PageTitle />
+            <PageTitle title="Our New Artist" className={s.pageTitle} />
             <Row gutter={[16, 0]}>
               {artistData.map((item, index) => (
                 <Col span={6} key={index}>
