@@ -98,9 +98,9 @@ model Media {
 
 model Cart {
   id         Int        @id @default(autoincrement())
-  user       User       @relation(fields: [user_id], references: [id])
+  user       User       @relation(fields: [user_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
   user_id    Int
-  artwork    Artwork    @relation(fields: [artwork_id], references: [id])
+  artwork    Artwork    @relation(fields: [artwork_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
   artwork_id Int
   status     CartStatus
   order      Order[]
@@ -112,12 +112,12 @@ model Cart {
 
 model Order {
   id               Int          @id @default(autoincrement())
-  user             User         @relation(fields: [user_id], references: [id])
+  user             User         @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   user_id          Int
-  artwork          Artwork      @relation(fields: [artwork_id], references: [id])
+  artwork          Artwork      @relation(fields: [artwork_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   artwork_id       Int
   shipping_address String       @db.Text
-  cart             Cart         @relation(fields: [cart_id], references: [id])
+  cart             Cart         @relation(fields: [cart_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   cart_id          Int
   collection       Collection[]
   createdAt        DateTime     @default(now())
@@ -128,11 +128,11 @@ model Order {
 
 model Collection {
   id         Int       @id @default(autoincrement())
-  collector  User      @relation(fields: [user_id], references: [id])
+  collector  User      @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   user_id    Int
-  artwork    Artwork   @relation(fields: [artwork_id], references: [id]) //TODO: Check one-to-one relation
+  artwork    Artwork   @relation(fields: [artwork_id], references: [id], onDelete: Cascade, onUpdate: Cascade) //TODO: Check one-to-one relation
   artwork_id Int       @unique //TODO : Check one-to-one relation
-  order      Order     @relation(fields: [order_id], references: [id])
+  order      Order     @relation(fields: [order_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   order_id   Int
   createdAt  DateTime  @default(now())
   updatedAt  DateTime? @updatedAt
@@ -142,9 +142,9 @@ model Collection {
 
 model Certificate {
   id        Int             @id @default(autoincrement())
-  user      User            @relation(fields: [userId], references: [id])
+  user      User            @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   userId    Int
-  artwork   Artwork         @relation(fields: [artworkId], references: [id])
+  artwork   Artwork         @relation(fields: [artworkId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   artworkId Int
   serial_no String
   url       String
