@@ -38,7 +38,11 @@ function Homepage(props) {
             <Row gutter={[16, 0]}>
               {artworkData.map((item, index) => (
                 <Col span={6} key={index}>
-                  <PageArtworkFrame />
+                  <PageArtworkFrame
+                    artworkTitle={item.title}
+                    artworkSize={item.size}
+                    imgSrc={item.imgUrl}
+                  />
                 </Col>
               ))}
             </Row>
