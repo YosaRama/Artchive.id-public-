@@ -23,7 +23,32 @@ export const getStaticProps = async (ctx) => {
   // * ====================================== * //
 
   //? ============== Artist Data ============= ?//
-  const artistData = [{}, {}, {}, {}]; // TODO : Get Data with Artist Query
+  const artistData = [
+    {
+      name: "John Doe",
+      city: "Jakarta",
+      avatar: "/images/profile-1.jpg",
+      artwork: "/images/artwork-1.jpg",
+    },
+    {
+      name: "Nahid Ástríðr McCauley",
+      city: "Bali",
+      avatar: "/images/profile-2.jpg",
+      artwork: "/images/artwork-2.jpg",
+    },
+    {
+      name: "Constant Norberto Lê",
+      city: "Semarang",
+      avatar: "/images/profile-3.jpg",
+      artwork: "/images/artwork-3.jpg",
+    },
+    {
+      name: "Azat Rasel Abrahamsen",
+      city: "Lampung",
+      avatar: "/images/profile-4.jpg",
+      artwork: "/images/artwork-4.jpg",
+    },
+  ]; // TODO : Get Data with Artist Query
   // * ====================================== * //
 
   return {

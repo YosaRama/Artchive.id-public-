@@ -63,7 +63,12 @@ function Homepage(props) {
             <Row gutter={[16, 0]}>
               {artistData.map((item, index) => (
                 <Col span={6} key={index}>
-                  <PageArtistCard />
+                  <PageArtistCard
+                    artistName={item.name}
+                    artistCity={item.city}
+                    avatarSrc={item.avatar}
+                    bannerSrc={item.artwork}
+                  />
                 </Col>
               ))}
             </Row>

@@ -1,25 +1,44 @@
 // Libs
+import propTypes from "prop-types";
 import { Col } from "antd";
 import Image from "next/image";
 
 // Styles
 import s from "./index.module.scss";
 
-function PageArtistCard() {
+function PageArtistCard(props) {
+  const { artistName, artistCity, avatarSrc, bannerSrc } = props;
   return (
     <Col className={s.card}>
       <Col className={s.image}>
-        <Image src="/images/artwork-1.jpg" layout="fill" alt="" objectFit="cover" />
+        <Image
+          src={bannerSrc ? bannerSrc : "/images/default-images.png"}
+          layout="fill"
+          alt=""
+          objectFit="cover"
+        />
       </Col>
       <Col className={s.avatar}>
-        <Image src="/images/profile-1.jpg" layout="fill" alt="" objectFit="cover" />
+        <Image
+          src={avatarSrc ? avatarSrc : "/images/profile-default.png"}
+          layout="fill"
+          alt=""
+          objectFit="cover"
+        />
       </Col>
       <Col className={s.content}>
-        <h1 className={s.artistName}>John Doe</h1>
-        <p className={s.artistCity}>Bali</p>
+        {artistName && <h1 className={s.artistName}>{artistName}</h1>}
+        {artistCity && <p className={s.artistCity}>{artistCity}</p>}
       </Col>
     </Col>
   );
 }
+
+PageArtistCard.propTypes = {
+  artistName: propTypes.string,
+  artistCity: propTypes.string,
+  avatarSrc: propTypes.string,
+  bannerSrc: propTypes.string,
+};
 
 export default PageArtistCard;
