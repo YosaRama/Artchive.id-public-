@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";
 import { Button, Card, Col, Form, Input } from "antd";
 import Image from "next/image";
+import { useState } from "react";
 
 // Icon
 import { CollectorIcon } from "public/icons/collector-icon";
@@ -15,9 +16,11 @@ function ManagePageLogin() {
   const router = useRouter();
   const [form] = Form.useForm();
 
-  // Handle Login
+  //? ============== Handle Login ============= ?//
+  const [loading, setLoading] = useState(false);
   const handleLogin = () => {
     form.validateFields().then(async (value) => {
+      setLoading(true);
       const login = await signIn("credentials", {
         redirect: false,
         email: value.email,
@@ -25,12 +28,14 @@ function ManagePageLogin() {
       });
       if (!login.error) {
         router.push("/dashboard");
+        setLoading(false);
       } else {
         ErrorNotification({ message: "Login Failed!", description: login.error });
+        setLoading(false);
       }
     });
   };
-  // ======================
+  // * ====================================== * //
 
   return (
     <>
@@ -70,6 +75,7 @@ function ManagePageLogin() {
                       className="managepage-button"
                       size="large"
                       htmlType="submit"
+                      loading={loading}
                     >
                       Login
                     </Button>
