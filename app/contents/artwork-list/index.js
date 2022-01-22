@@ -16,6 +16,7 @@ function ArtworkList() {
   const router = useRouter();
 
   //? ============== Handle Pagination ============= ?//
+  const pageSize = 8;
   const [currentPage, setCurrentPage] = useState(1);
   const handlePagination = (value) => {
     setCurrentPage(value);
@@ -23,7 +24,9 @@ function ArtworkList() {
   // * ====================================== * //
 
   //? ============== Data Fetching ============= ?//
-  const { data, total, loading } = useArtworks({ queryString: `limit=8&page=${currentPage}` });
+  const { data, total, loading } = useArtworks({
+    queryString: `limit=${pageSize}&page=${currentPage}`,
+  });
   // * ====================================== * //
 
   return (
@@ -65,7 +68,7 @@ function ArtworkList() {
             <Col span={24} style={{ textAlign: "right" }}>
               <Pagination
                 total={total}
-                defaultPageSize={8}
+                defaultPageSize={pageSize}
                 current={currentPage}
                 onChange={handlePagination}
               />

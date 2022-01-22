@@ -1,9 +1,9 @@
 // Libs
-import { useRouter } from "next/router";
-import { Button, Col, Empty, Row } from "antd";
 import propTypes from "prop-types";
+import { useRouter } from "next/router";
+import { Button, Col, Empty, Pagination, Row } from "antd";
 
-// Component
+// Components
 import ContainerCard from "app/components/container/containerCard";
 import CardUserList from "app/components/libs/card-user-list";
 import DashboardSearch from "app/components/libs/dashboard-search";
@@ -14,7 +14,17 @@ import { FilterOutlined } from "@ant-design/icons";
 
 function UserListing(props) {
   const router = useRouter();
-  const { searchValue, setSearchValue, data, onDelete, title } = props;
+  const {
+    searchValue,
+    setSearchValue,
+    data,
+    onDelete,
+    title,
+    total,
+    pageSize,
+    currentPage,
+    handlePagination,
+  } = props;
 
   return (
     <ContainerCard
@@ -67,6 +77,16 @@ function UserListing(props) {
           <Empty />
         </Col>
       )}
+      {total && (
+        <Col span={24} style={{ textAlign: "right" }}>
+          <Pagination
+            total={total}
+            defaultPageSize={pageSize}
+            current={currentPage}
+            onChange={handlePagination}
+          />
+        </Col>
+      )}
     </ContainerCard>
   );
 }
@@ -77,6 +97,10 @@ UserListing.propTypes = {
   setSearchValue: propTypes.func,
   data: propTypes.array,
   onDelete: propTypes.func,
+  total: propTypes.number,
+  handlePagination: propTypes.func,
+  pageSize: propTypes.number,
+  currentPage: propTypes.number,
 };
 
 export default UserListing;

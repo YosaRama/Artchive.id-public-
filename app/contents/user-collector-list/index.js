@@ -9,12 +9,22 @@ import UserListing from "app/components/libs/user-listing";
 import { useUsers } from "app/hooks/user";
 
 function CollectorList() {
-  //? ============== Data Fetching ============= ?//
-  const { data, onDelete } = useUsers({ queryString: `role=COLLECTOR` });
+  //? ============== Handle Pagination ============= ?//
+  const pageSize = 10;
+  const [currentPage, setCurrentPage] = useState(1);
+  const handlePagination = (value) => {
+    setCurrentPage(value);
+  };
   // * ====================================== * //
 
-  //? ============== Search Handling ============= ?//
+  //? ============== Handle Search ============= ?//
   const [searchValue, setSearchValue] = useState();
+  // * ====================================== * //
+
+  //? ============== Data Fetching ============= ?//
+  const { data, onDelete, total } = useUsers({
+    queryString: `role=COLLECTOR&limit=${pageSize}&page=${currentPage}`,
+  });
   // * ====================================== * //
 
   return (
@@ -26,6 +36,10 @@ function CollectorList() {
           data={data}
           onDelete={onDelete}
           title="Collector List"
+          total={total}
+          currentPage={currentPage}
+          pageSize={pageSize}
+          handlePagination={handlePagination}
         />
       )}
     </ContainerBox>

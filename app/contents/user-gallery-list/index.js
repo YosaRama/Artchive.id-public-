@@ -9,13 +9,24 @@ import UserListing from "app/components/libs/user-listing";
 import { useUsers } from "app/hooks/user";
 
 function GalleryList() {
-  //? ============== Data Fetching ============= ?//
-  const { data, onDelete } = useUsers({ queryString: `role=GALLERY` });
+  //? ============== Handle Pagination ============= ?//
+  const pageSize = 10;
+  const [currentPage, setCurrentPage] = useState(1);
+  const handlePagination = (value) => {
+    setCurrentPage(value);
+  };
   // * ====================================== * //
 
-  //? ============== Search Handling ============= ?//
+  //? ============== Handle Search ============= ?//
   const [searchValue, setSearchValue] = useState();
   // * ====================================== * //
+
+  //? ============== Data Fetching ============= ?//
+  const { data, onDelete } = useUsers({
+    queryString: `role=GALLERY&limit=${pageSize}&page=${currentPage}`,
+  });
+  // * ====================================== * //
+
   return (
     <ContainerBox>
       {data && (
@@ -25,6 +36,10 @@ function GalleryList() {
           data={data}
           onDelete={onDelete}
           title="Gallery List"
+          total={total}
+          pageSize={pageSize}
+          currentPage={currentPage}
+          handlePagination={handlePagination}
         />
       )}
     </ContainerBox>
