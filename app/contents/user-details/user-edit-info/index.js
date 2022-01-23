@@ -3,7 +3,7 @@ import propTypes from "prop-types";
 import { Button, Col, Divider, Form, Input } from "antd";
 
 function UserEditInfo(props) {
-  const { initialData, onSave } = props;
+  const { initialData, onSave, loading } = props;
 
   //? ============== Handle Update ============= ?//
   const [form] = Form.useForm();
@@ -43,15 +43,23 @@ function UserEditInfo(props) {
               <Input />
             </Form.Item>
             <Divider orientation="left">Social Media</Divider>
-            <Form.Item label="Instagram" name="instagram_url">
+            <Form.Item
+              label="Instagram"
+              name="instagram_url"
+              rules={[{ type: "url", message: "Please input correct instagram profile URL!" }]}
+            >
               <Input />
             </Form.Item>
-            <Form.Item label="Facebook" name="facebook_url">
+            <Form.Item
+              label="Facebook"
+              name="facebook_url"
+              rules={[{ type: "url", message: "Please input correct facebook profile URL!" }]}
+            >
               <Input />
             </Form.Item>
           </Col>
           <Col span={24} style={{ textAlign: "right" }}>
-            <Button type="primary" size="large" onClick={handleUpdate}>
+            <Button type="primary" size="large" onClick={handleUpdate} loading={loading}>
               Save Changes
             </Button>
           </Col>
@@ -64,6 +72,7 @@ function UserEditInfo(props) {
 UserEditInfo.propTypes = {
   initialData: propTypes.object.isRequired,
   onSave: propTypes.func,
+  loading: propTypes.bool,
 };
 
 export default UserEditInfo;
