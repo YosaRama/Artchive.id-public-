@@ -42,22 +42,55 @@ function CreateUser() {
         <ContainerCard>
           <Form layout="vertical" form={form}>
             <Col span={24}>
-              <Form.Item name="email" label="Email">
+              <Form.Item
+                name="email"
+                label="Email"
+                rules={[{ required: true, type: "email", message: "Please input email!" }]}
+              >
                 <Input placeholder="Input your email" />
               </Form.Item>
             </Col>
             <Col span={24}>
-              <Form.Item name="password" label="Password">
+              <Form.Item
+                name="password"
+                label="Password"
+                rules={[
+                  {
+                    required: true,
+                    validator: (_, value) => {
+                      const validPassword = new RegExp("(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8}");
+                      if (validPassword.test(value)) {
+                        return Promise.resolve();
+                      }
+
+                      return Promise.reject(
+                        new Error(
+                          "Password must be at least 8 characters long and contain at least one capital letter and one number."
+                        )
+                      );
+                    },
+                  },
+                ]}
+                hasFeedback
+              >
                 <Input.Password placeholder="Input your password" />
               </Form.Item>
             </Col>
             <Col span={24}>
-              <Form.Item name="fullName" label="Full Name">
+              <Form.Item
+                name="fullName"
+                label="Full Name"
+                rules={[{ required: true, message: "Please input full name!" }]}
+              >
                 <Input placeholder="Input your full name" />
               </Form.Item>
             </Col>
             <Col span={24}>
-              <Form.Item name="role" label="Role">
+              <Form.Item
+                name="role"
+                label="Role"
+                rules={[{ required: true, message: "Please select role!" }]}
+              >
                 <Select placeholder="Select your role">
                   <Option value={"ARTIST"}>Artist</Option>
                   <Option value={"GALLERY"}>Gallery</Option>
