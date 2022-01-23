@@ -32,14 +32,14 @@ function ArtworkCreate() {
   // * ====================================== * //
 
   //? ============== Artist Hook ============= ?//
-  const { data: artistData } = useUsers({ queryString: "role=ARTIST" });
+  const { data: artistData } = useUsers({ queryString: "role=ARTIST&limit=all" });
   // * ====================================== * //
 
   //? ============== Genre Hook ============= ?//
   const { data: genreData } = useGenres({ queryString: "" });
   // * ====================================== * //
 
-  //? ============== Handle Add Artwork ============= ?//
+  //? ============== Handle Submit ============= ?//
   const handleSubmit = () => {
     form.validateFields().then(async (value) => {
       const submission = {
@@ -55,7 +55,7 @@ function ArtworkCreate() {
         type: value.type,
         height: value.height,
         width: value.width,
-        price: value.price,
+        price: new Intl.NumberFormat().format(value.price),
         status: "DRAFT", // Default on create artwork
         approve: false, // Default on create artwork
       };
@@ -74,7 +74,7 @@ function ArtworkCreate() {
   };
   // * ====================================== * //
 
-  //? ============== Handle Upload ============= ?//
+  //? ============== Handle Active Upload ============= ?//
   const [artistSelected, setArtistSelected] = useState();
   const handleSelectArtist = (value) => {
     setArtistSelected(value[1]);
@@ -125,11 +125,20 @@ function ArtworkCreate() {
                     name="sku"
                     label="Artwork SKU"
                     initialValue={`ARTCHIVE/ART-${lastArtworkId}/${moment().format("DDMMYYYY")}`}
+                    rules={[
+                      {
+                        required: true,
+                      },
+                    ]}
                   >
                     <Input disabled />
                   </Form.Item>
                 )}
-                <Form.Item name="artistId" label="Artist">
+                <Form.Item
+                  name="artistId"
+                  label="Artist"
+                  rules={[{ required: true, message: "Please select artist for this artwork!" }]}
+                >
                   <Select placeholder="Select artist" showSearch onSelect={handleSelectArtist}>
                     {artistData &&
                       artistData?.map((item, index) => {
@@ -141,7 +150,11 @@ function ArtworkCreate() {
                       })}
                   </Select>
                 </Form.Item>
-                <Form.Item name="genre" label="Genre">
+                <Form.Item
+                  name="genre"
+                  label="Genre"
+                  rules={[{ required: true, message: "Please select genre for this artwork!" }]}
+                >
                   <Select placeholder="Select artist" showSearch mode="multiple">
                     {genreData &&
                       genreData?.map((item, index) => {
@@ -153,25 +166,42 @@ function ArtworkCreate() {
                       })}
                   </Select>
                 </Form.Item>
-                <Form.Item name="title" label="Title">
+                <Form.Item
+                  name="title"
+                  label="Title"
+                  rules={[{ required: true, message: "Please input title for this artwork!" }]}
+                >
                   <Input placeholder="Input artwork title" />
                 </Form.Item>
-                <Form.Item name="year" label="Year">
+                <Form.Item
+                  name="year"
+                  label="Year"
+                  rules={[{ required: true, message: "Please input year for this artwork!" }]}
+                >
                   <Input placeholder="Input artwork year" />
                 </Form.Item>
-                <Form.Item name="material" label="Material">
+                <Form.Item
+                  name="material"
+                  label="Material"
+                  rules={[{ required: true, message: "Please input material for this artwork!" }]}
+                >
                   <Input placeholder="Input artwork material" />
                 </Form.Item>
-                <Form.Item name="description" label="Description">
+                <Form.Item
+                  name="description"
+                  label="Description"
+                  rules={[
+                    { required: true, message: "Please input description for this artwork!" },
+                  ]}
+                >
                   <Input.TextArea placeholder="Write artwork description" />
                 </Form.Item>
 
-                {/* // TODO : Handle Select Genre */}
-                {/* <Form.Item name="genre" label="Genre">
-                  <Input />
-                </Form.Item> */}
-
-                <Form.Item name="type" label="Type">
+                <Form.Item
+                  name="type"
+                  label="Type"
+                  rules={[{ required: true, message: "Please select type of this artwork!" }]}
+                >
                   <Select placeholder="Select type of artwork">
                     <Option value="UNIQUE">Unique</Option>
                     <Option value="EDITION">Edition Series</Option>
@@ -179,18 +209,51 @@ function ArtworkCreate() {
                 </Form.Item>
                 <Row gutter={[16, 0]}>
                   <Col span={12}>
-                    <Form.Item name="width" label="Width">
+                    <Form.Item
+                      name="width"
+                      label="Width"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please input width for this artwork!",
+                          type: "number",
+                        },
+                      ]}
+                    >
                       <InputNumber placeholder="Width (cm)" style={{ width: "100%" }} />
                     </Form.Item>
                   </Col>
                   <Col span={12}>
-                    <Form.Item name="height" label="Height">
+                    <Form.Item
+                      name="height"
+                      label="Height"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please input height for this artwork!",
+                          type: "number",
+                        },
+                      ]}
+                    >
                       <InputNumber placeholder="Height (cm)" style={{ width: "100%" }} />
                     </Form.Item>
                   </Col>
                 </Row>
-                <Form.Item name="price" label="Price">
-                  <Input placeholder="Input artwork price" />
+                <Form.Item
+                  name="price"
+                  label="Price"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please input price for this artwork!",
+                    },
+                  ]}
+                >
+                  <Input
+                    style={{ width: "100%" }}
+                    placeholder="Input artwork price"
+                    addonBefore="Rp"
+                  />
                 </Form.Item>
               </Form>
               <Col span={24} style={{ padding: 0, textAlign: "right" }}>
