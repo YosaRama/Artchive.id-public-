@@ -21,7 +21,7 @@ function CardArtwork(props) {
         onClick={() => router.push(`/dashboard/artworks/${id}`)}
       >
         <Col className={s.imageContainer}>
-          <Image
+          <img
             alt="example"
             src={image ? image : "/images/default-images.png"}
             className={s.image}
