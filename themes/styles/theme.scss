@@ -68,6 +68,13 @@ $white: #ffffff;
   }
 }
 
+// Simple Page Layout
+.simplePageContainer-card {
+  .ant-card-body {
+    padding: 0;
+  }
+}
+
 // * ====================================== * //
 
 //? =================== Page =========================== ?//
@@ -89,6 +96,33 @@ $white: #ffffff;
   h6 {
     font-family: "Aileron";
     font-weight: 200;
+  }
+
+  // Form
+  .ant-form-item {
+    margin-bottom: 20px;
+    .ant-form-item-label {
+      font-family: "Aileron";
+      font-weight: 600;
+    }
+    input {
+      height: 50px;
+      &::placeholder {
+        font-family: "Aileron";
+      }
+    }
+    .ant-input-password {
+      input {
+        height: 40px;
+      }
+    }
+  }
+
+  // Checkbox
+  .ant-checkbox-wrapper {
+    span {
+      font-family: "Aileron";
+    }
   }
 }
 

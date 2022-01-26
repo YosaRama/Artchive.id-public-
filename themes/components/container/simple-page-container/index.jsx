@@ -17,7 +17,7 @@ function SimplePageContainer(props) {
           />
         </Col>
         <Col span={12} style={{ padding: "50px", minHeight: "70vh", paddingRight: "0" }}>
-          <Card>{children}</Card>
+          <Card className="simplePageContainer-card">{children}</Card>
         </Col>
       </Row>
     </section>
