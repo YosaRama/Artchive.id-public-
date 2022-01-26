@@ -1,7 +1,8 @@
 // Libs
+import { useRouter } from "next/router";
 import { useState } from "react";
 import Image from "next/image";
-import { Button, Col, Drawer, Layout, Row } from "antd";
+import { Col, Drawer, Layout, Row } from "antd";
 const { Header } = Layout;
 
 // Components
@@ -15,9 +16,9 @@ import { MenuOutlined } from "@ant-design/icons";
 import s from "./index.module.scss";
 
 function PageHeader() {
+  const router = useRouter();
   //? ============== Open Menu Drawer ============= ?//
   const [openMenu, setOpenMenu] = useState(false);
-
   // * ====================================== * //
 
   return (
@@ -29,10 +30,16 @@ function PageHeader() {
               <Image src="/images/logo-without-text.png" alt="" layout="fill" objectFit="contain" />
             </Col>
             <Col className={s.menu}>
-              <PageButton style={{ marginRight: "26px" }} type="outlined">
+              <PageButton
+                style={{ marginRight: "26px" }}
+                type="outlined"
+                onClick={() => router.push("/signin")}
+              >
                 LOGIN
               </PageButton>
-              <PageButton style={{ marginRight: "26px" }}>REGISTER</PageButton>
+              <PageButton style={{ marginRight: "26px" }} onClick={() => router.push("/register")}>
+                REGISTER
+              </PageButton>
               <MenuOutlined className={s.hamburger} onClick={() => setOpenMenu(true)} />
             </Col>
           </Row>

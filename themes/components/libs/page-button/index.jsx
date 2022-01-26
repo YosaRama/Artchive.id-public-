@@ -6,9 +6,9 @@ import { Button } from "antd";
 import s from "./index.module.scss";
 
 function PageButton(props) {
-  const { children, type = "default" } = props;
+  const { children, type = "default", onClick } = props;
   return (
-    <Button className={s.button + " page-button " + type} {...props}>
+    <Button className={s.button + " page-button " + type} onClick={onClick} {...props}>
       {children}
     </Button>
   );
@@ -17,6 +17,7 @@ function PageButton(props) {
 PageButton.propTypes = {
   children: propTypes.node,
   type: propTypes.oneOf(["default", "outlined"]),
+  onClick: propTypes.func,
 };
 
 export default PageButton;
