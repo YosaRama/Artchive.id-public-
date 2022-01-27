@@ -124,6 +124,21 @@ $white: #ffffff;
       font-family: "Aileron";
     }
   }
+
+  // Custom Radio Button
+  .radioCard {
+    width: 100%;
+    > .ant-radio {
+      display: none;
+    }
+    > span {
+      width: 100%;
+      padding: 0;
+    }
+    .ant-card-body {
+      width: 100%;
+    }
+  }
 }
 
 // Login Manage Page

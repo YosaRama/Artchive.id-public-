@@ -17,6 +17,7 @@ import s from "./index.module.scss";
 
 function PageHeader() {
   const router = useRouter();
+
   //? ============== Open Menu Drawer ============= ?//
   const [openMenu, setOpenMenu] = useState(false);
   // * ====================================== * //
