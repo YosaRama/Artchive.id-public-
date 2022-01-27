@@ -1,0 +1,44 @@
+.card {
+  width: 100%;
+  position: relative;
+  border-radius: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: none;
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+}
+
+.image {
+  position: relative;
+  display: flex;
+  img {
+    position: relative;
+    object-fit: contain;
+    width: 100%;
+    height: auto;
+  }
+}
+
+.artworkDetails {
+  text-align: center;
+  padding: 30px 0;
+  h1,
+  p {
+    margin-bottom: 0;
+  }
+  p {
+    font-size: 16px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+  .artist {
+    text-transform: uppercase;
+  }
+  .price {
+    font-style: italic;
+  }
+}

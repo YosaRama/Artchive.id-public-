@@ -105,6 +105,10 @@ $white: #ffffff;
       font-family: "Aileron";
       font-weight: 600;
     }
+    .ant-select-selector {
+      height: 50px;
+      align-items: center;
+    }
     input {
       height: 50px;
       &::placeholder {
@@ -229,6 +233,12 @@ $white: #ffffff;
     margin: 0 !important;
     top: 0 !important;
     transform: translate(0px, 5px) !important;
+  }
+}
+
+.artworkCardList {
+  .ant-card-body {
+    padding: 0;
   }
 }
 

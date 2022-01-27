@@ -1,0 +1,15 @@
+.grid {
+  display: flex;
+  margin-left: -15px; /* gutter size offset */
+  width: auto;
+}
+
+.column {
+  padding-left: 15px; /* gutter size */
+  background-clip: padding-box;
+}
+
+.column > div {
+  background: grey;
+  margin-bottom: 15px;
+}

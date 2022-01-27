@@ -1,5 +1,6 @@
 // Libs
 import propTypes from "prop-types";
+import { useRouter } from "next/router";
 import { Col, Row } from "antd";
 
 // Components
@@ -16,10 +17,11 @@ import s from "./index.module.scss";
 
 function Homepage(props) {
   const { artworkData, artistData } = props;
+  const router = useRouter();
   return (
     <>
       {/* Banner Section */}
-      <PageBanner>
+      <PageBanner imgSrc="/images/banner-homepage.jpg">
         <div className={s.searchBox}>
           <PageHomepageSearchBox />
         </div>
@@ -52,7 +54,7 @@ function Homepage(props) {
 
         {/* Divider Section */}
         <section className={s.divider}>
-          <PageDividerButton>SEE MORE</PageDividerButton>
+          <PageDividerButton onClick={() => router.push("/artwork")}>SEE MORE</PageDividerButton>
         </section>
         {/* ============================ */}
 

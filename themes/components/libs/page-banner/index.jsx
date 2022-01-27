@@ -1,4 +1,5 @@
 // Libs
+import propTypes from "prop-types";
 import Image from "next/image";
 import { Col } from "antd";
 
@@ -6,15 +7,21 @@ import { Col } from "antd";
 import s from "./index.module.scss";
 
 function PageBanner(props) {
-  const { children } = props;
+  const { children, imgSrc, className } = props;
   return (
-    <Col span={24} className={s.container}>
+    <Col span={24} className={s.container + " " + className}>
       <Col span={24} className={s.image}>
-        <Image src="/images/banner.jpg" alt="" layout="fill" objectFit="cover" />
+        <Image src={imgSrc} alt="" layout="fill" objectFit="cover" />
       </Col>
       <Col className={s.contentContainer}>{children}</Col>
     </Col>
   );
 }
+
+PageBanner.propTypes = {
+  children: propTypes.node,
+  imgSrc: propTypes.string.isRequired,
+  className: propTypes.string,
+};
 
 export default PageBanner;
