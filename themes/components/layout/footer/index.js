@@ -1,4 +1,5 @@
 // Libs
+import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
 import { Col, Layout, Row } from "antd";
@@ -11,6 +12,7 @@ import PageContainerBox from "themes/components/container/box-container";
 import s from "./index.module.scss";
 
 function PageFooter() {
+  const router = useRouter();
   //? ============== Footer Menu ============= ?//
   const footerMenu = [
     { title: "About Us", link: "/" },
@@ -24,7 +26,7 @@ function PageFooter() {
     <Footer className={s.footer}>
       <PageContainerBox sectionClass={s.section}>
         <Row className={s.topContainer}>
-          <Col span={8} className={s.logo}>
+          <Col span={8} className={s.logo} onClick={() => router.push("/")}>
             <Image alt="" src="/images/logo-text-white.png" layout="fill" />
           </Col>
           <Col span={24} className={s.linkContainer}>

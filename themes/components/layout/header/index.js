@@ -27,18 +27,18 @@ function PageHeader() {
       <Header className={s.container}>
         <PageContainerBox>
           <Row style={{ height: "100%" }} justify="space-between">
-            <Col className={s.logo}>
+            <Col className={s.logo} onClick={() => router.push("/")}>
               <Image src="/images/logo-without-text.png" alt="" layout="fill" objectFit="contain" />
             </Col>
             <Col className={s.menu}>
               <PageButton
-                style={{ marginRight: "26px" }}
+                style={{ marginRight: "15px" }}
                 type="outlined"
                 onClick={() => router.push("/signin")}
               >
                 LOGIN
               </PageButton>
-              <PageButton style={{ marginRight: "26px" }} onClick={() => router.push("/register")}>
+              <PageButton style={{ marginRight: "15px" }} onClick={() => router.push("/register")}>
                 REGISTER
               </PageButton>
               <MenuOutlined className={s.hamburger} onClick={() => setOpenMenu(true)} />
