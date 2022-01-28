@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 // Libs
+import { useRouter } from "next/router";
 import propTypes from "prop-types";
 import { Card, Col } from "antd";
 
@@ -9,9 +10,14 @@ import s from "./index.module.scss";
 
 function PageArtworkCardList(props) {
   const { imgSrc } = props;
+  const router = useRouter();
   return (
     <>
-      <Card className={s.card + " artworkCardList"} bordered={false}>
+      <Card
+        className={s.card + " artworkCardList"}
+        bordered={false}
+        onClick={() => router.push("artwork/id")}
+      >
         <Col span={24} className={s.image}>
           <img src={imgSrc} alt="" />
         </Col>

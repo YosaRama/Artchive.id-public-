@@ -17,8 +17,8 @@ function PageFooter() {
   const footerMenu = [
     { title: "About Us", link: "/" },
     { title: "Artist", link: "/" },
-    { title: "Artwork", link: "/" },
-    { title: "Contact Us", link: "/" },
+    { title: "Artwork", link: "/artwork" },
+    { title: "Contact Us", link: "/contact-us" },
   ];
   // * ====================================== * //
 
