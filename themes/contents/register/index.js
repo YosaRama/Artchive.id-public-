@@ -98,7 +98,7 @@ function RegisterPage() {
           </section>
 
           <Col span={24}>
-            <PageButton type={"default " + s.button}>SIGN IN</PageButton>
+            <PageButton type={"default " + s.button}>SIGN UP</PageButton>
           </Col>
           <Col span={24}>
             <PageButton type={"outlined " + s.button}>LOG IN</PageButton>

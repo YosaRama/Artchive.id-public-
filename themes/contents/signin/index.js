@@ -10,8 +10,10 @@ import PageButton from "themes/components/libs/page-button";
 
 // Styles
 import s from "./index.module.scss";
+import { useRouter } from "next/router";
 
 function SignInPage() {
+  const router = useRouter();
   return (
     <PageContainerBox>
       <SimplePageContainer imgSrc="/images/signin-background.jpg" cardClassName="halo">
@@ -77,7 +79,9 @@ function SignInPage() {
             <PageButton type={"default " + s.button}>LOG IN</PageButton>
           </Col>
           <Col span={24}>
-            <PageButton type={"outlined " + s.button}>CREATE ACCOUNT</PageButton>
+            <PageButton type={"outlined " + s.button} onClick={() => router.push("/register")}>
+              CREATE ACCOUNT
+            </PageButton>
           </Col>
         </section>
       </SimplePageContainer>
