@@ -75,6 +75,15 @@ $white: #ffffff;
   }
 }
 
+// Ant Image
+.ant-image {
+  width: 100% !important;
+  height: 100% !important;
+  .ant-image-img {
+    height: 100% !important;
+  }
+}
+
 // * ====================================== * //
 
 //? =================== Page =========================== ?//
@@ -212,6 +221,7 @@ $white: #ffffff;
 
 //? ============== Components ============= ?//
 
+// Homepage Search
 .homepage-search {
   .ant-select-selector {
     height: 40px !important;
@@ -236,11 +246,15 @@ $white: #ffffff;
   }
 }
 
+// =================================
+
+// Artwork Card
 .artworkCardList {
   .ant-card-body {
     padding: 0;
   }
 }
+// =================================
 
 // * ====================================== * //
 

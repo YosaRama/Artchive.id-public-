@@ -1,8 +1,8 @@
 // Libs
 import { useRouter } from "next/router";
 import propTypes from "prop-types";
-import Image from "next/image";
-import { Col } from "antd";
+// import Image from "next/image";
+import { Col, Image } from "antd";
 
 // Styles
 import s from "./index.module.scss";
@@ -19,6 +19,7 @@ function PageArtworkFrame(props) {
           layout="fill"
           objectFit="cover"
           objectPosition="center"
+          preview={false}
         />
       </Col>
       <Col className={s.content}>

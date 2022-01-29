@@ -1,7 +1,9 @@
+import ArtworkDetailsPage from "themes/contents/artwork/artwork-details";
+
 function PageArtworkDetails() {
   return (
     <>
-      <h1>This is Page Artwork Details</h1>
+      <ArtworkDetailsPage />
     </>
   );
 }
