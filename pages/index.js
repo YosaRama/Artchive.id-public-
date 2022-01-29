@@ -12,43 +12,37 @@ function PageHomepage(props) {
 
 export default PageHomepage;
 
-export const getStaticProps = async (ctx) => {
+export async function getStaticProps(ctx) {
+  //? ============== Queries ============= ?//
+  const { GET_ARTWORK } = require("app/database/query/artwork");
+  const { GET_USER } = require("app/database/query/user");
+  // * ====================================== * //
+
   //? ============== Artwork Data ============= ?//
-  const artworkData = [
-    { title: "Cold Heart", size: "200 x 300", imgUrl: "/images/artwork-1.jpg" },
-    { title: "Follow Your Heart", size: "300 x 400", imgUrl: "/images/artwork-2.jpg" },
-    { title: "Between You and Me", size: "250 x 500", imgUrl: "/images/artwork-3.jpg" },
-    { title: "Art is My Blood", size: "100 x 100", imgUrl: "/images/artwork-4.jpg" },
-  ]; //TODO : Get Data with Artwork Query
+  const artwork = await GET_ARTWORK({ limit: 4 });
+  const artworkData = artwork.map((item) => {
+    return {
+      id: item.id,
+      title: item.title,
+      size: `${item.width} x ${item.height}`,
+      imgUrl: item?.media_cover
+        ? `${process.env.NEXT_PUBLIC_S3_URL}/${item?.media_cover?.url}`
+        : null,
+    };
+  });
   // * ====================================== * //
 
   //? ============== Artist Data ============= ?//
-  const artistData = [
-    {
-      name: "John Doe",
-      city: "Jakarta",
-      avatar: "/images/profile-1.jpg",
-      artwork: "/images/artwork-1.jpg",
-    },
-    {
-      name: "Nahid Ástríðr McCauley",
-      city: "Bali",
-      avatar: "/images/profile-2.jpg",
-      artwork: "/images/artwork-2.jpg",
-    },
-    {
-      name: "Constant Norberto Lê",
-      city: "Semarang",
-      avatar: "/images/profile-3.jpg",
-      artwork: "/images/artwork-3.jpg",
-    },
-    {
-      name: "Azat Rasel Abrahamsen",
-      city: "Lampung",
-      avatar: "/images/profile-4.jpg",
-      artwork: "/images/artwork-4.jpg",
-    },
-  ]; // TODO : Get Data with Artist Query
+  const artist = await GET_USER({ limit: 4 });
+  const artistData = artist.map((item) => {
+    return {
+      id: item.id,
+      name: item?.full_name,
+      city: item?.city,
+      avatar: item?.profile?.url ? `${process.env.NEXT_PUBLIC_S3_URL}/${item?.profile?.url}` : null,
+      artwork: item?.banner?.url ? `${process.env.NEXT_PUBLIC_S3_URL}/${item?.banner?.url}` : null,
+    };
+  });
   // * ====================================== * //
 
   return {
@@ -57,4 +51,4 @@ export const getStaticProps = async (ctx) => {
       artworkData: artworkData,
     },
   };
-};
+}

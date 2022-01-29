@@ -35,7 +35,6 @@ function EditUser() {
     useUser({
       singleId: id,
     });
-  console.log(data);
   // * ====================================== * //
 
   //? ============== Handle Select Menu ============= ?//

@@ -9,10 +9,10 @@ import s from "./index.module.scss";
 
 function PageArtworkFrame(props) {
   const router = useRouter();
-  const { imgSrc, artworkTitle, artworkSize } = props;
+  const { imgSrc, artworkTitle, artworkSize, artworkId } = props;
   return (
     <Col span={24} className={s.container}>
-      <Col span={24} className={s.image} onClick={() => router.push("/artwork/id")}>
+      <Col span={24} className={s.image} onClick={() => router.push(`/artwork/${artworkId}`)}>
         <Image
           src={imgSrc ? imgSrc : "/images/default-images.png"}
           alt=""
@@ -35,6 +35,7 @@ function PageArtworkFrame(props) {
 }
 
 PageArtworkFrame.propTypes = {
+  artworkId: propTypes.number.isRequired,
   imgSrc: propTypes.string,
   artworkTitle: propTypes.string,
   artworkSize: propTypes.string,

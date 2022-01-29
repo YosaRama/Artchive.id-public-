@@ -2,17 +2,19 @@
 import propTypes from "prop-types";
 import { Col } from "antd";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 // Styles
 import s from "./index.module.scss";
 
 function PageArtistCard(props) {
-  const { artistName, artistCity, avatarSrc, bannerSrc } = props;
+  const { artistName, artistCity, avatarSrc, bannerSrc, artistId } = props;
+  const router = useRouter();
   return (
-    <Col className={s.card}>
+    <Col className={s.card} onClick={() => router.push(`/artist/${artistId}`)}>
       <Col className={s.image}>
         <Image
-          src={bannerSrc ? bannerSrc : "/images/default-images.png"}
+          src={bannerSrc ? bannerSrc : "/images/default-images.jpg"}
           layout="fill"
           alt=""
           objectFit="cover"
@@ -35,6 +37,7 @@ function PageArtistCard(props) {
 }
 
 PageArtistCard.propTypes = {
+  artistId: propTypes.number.isRequired,
   artistName: propTypes.string,
   artistCity: propTypes.string,
   avatarSrc: propTypes.string,

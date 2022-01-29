@@ -30,6 +30,7 @@ export const GET_USER = ({ page = 1, limit = 15, role, email, fullName }) => {
     include: {
       profile: true,
       signature: true,
+      banner: true,
     },
     // ==========================
 
