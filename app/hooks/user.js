@@ -255,6 +255,42 @@ export const useUser = ({ singleId }) => {
   );
   // ==========================
 
+  // Edit Profile Banner Image Hook Function
+  const onEditBannerImage = useCallback(
+    async (data) => {
+      try {
+        setLoading(true);
+        const { data: res } = await api.put(`${pathKeys}/banner-image`, data);
+        if (res.success) {
+          mutate();
+          SuccessNotification({
+            message: "Success",
+            description: `Edited banner image of ${msgHead} has successfully saved.`,
+          });
+          return res.success;
+        } else {
+          ErrorNotification({
+            message: "Error",
+            description: `Something went wrong while editing banner image of ${msgHead}`,
+          });
+
+          return res.success;
+        }
+      } catch (error) {
+        ErrorNotification({
+          message: "Error",
+          description: `Something went wrong while editing banner image of ${msgHead}`,
+        });
+
+        return false;
+      } finally {
+        setLoading(false);
+      }
+    },
+    [mutate, pathKeys]
+  );
+  // ==========================
+
   return {
     data: results,
     total,
@@ -263,6 +299,7 @@ export const useUser = ({ singleId }) => {
     onEditPassword,
     onEditBilling,
     onEditProfileImage,
+    onEditBannerImage,
   };
 };
 

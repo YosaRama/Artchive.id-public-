@@ -23,14 +23,19 @@ import UserEditCollection from "./user-edit-collection";
 // Style
 import s from "./index.module.scss";
 
+// Icons
+import { ArrowLeftOutlined } from "@ant-design/icons";
+
 function EditUser() {
   const router = useRouter();
   const id = router.query.id;
 
   //? ============== Handle Initial Data ============= ?//
-  const { data, onEditInfo, onEditPassword, onEditProfileImage, loading } = useUser({
-    singleId: id,
-  });
+  const { data, onEditInfo, onEditPassword, onEditProfileImage, onEditBannerImage, loading } =
+    useUser({
+      singleId: id,
+    });
+  console.log(data);
   // * ====================================== * //
 
   //? ============== Handle Select Menu ============= ?//
@@ -50,9 +55,47 @@ function EditUser() {
   };
   // * ====================================== * //
 
+  //? ============== Handle Change Banner Image ============= ?//
+  const handleChangeBanner = async (file) => {
+    const upload = await onUpload({ file: file.file, userId: id });
+    if (upload.success) {
+      const result = await onEditBannerImage({ bannerId: upload.data.id });
+    }
+  };
+  // * ====================================== * //
+
   return (
     <ContainerBox>
-      <ContainerCard title="Edit User">
+      <ContainerCard
+        title={
+          <>
+            <p style={{ marginBottom: 0 }}>
+              <span className={s.backIcon} onClick={() => router.back()}>
+                <ArrowLeftOutlined />
+              </span>
+              Edit User
+            </p>
+          </>
+        }
+      >
+        <section>
+          <Col span={24} className={s.profileBanner}>
+            <Image
+              src={
+                data?.banner?.url
+                  ? `${process.env.NEXT_PUBLIC_S3_URL}/${data?.banner.url}`
+                  : "/images/default-images.jpg"
+              }
+              alt=""
+              preview={false}
+            />
+          </Col>
+          <Col span={24} style={{ textAlign: "right" }}>
+            <UploadButton onUpload={handleChangeBanner} loading={uploadLoading}>
+              Change Banner Profile
+            </UploadButton>
+          </Col>
+        </section>
         <Row gutter={[16, 0]}>
           <Col span={8} className={s.profileImage}>
             <Col span={24}>

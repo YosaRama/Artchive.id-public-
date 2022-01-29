@@ -1,3 +1,20 @@
+.backIcon {
+  cursor: pointer;
+  margin-right: 20px;
+  transition: all 0.3s ease;
+  &:hover {
+    color: #e5890a;
+  }
+}
+
+.profileBanner {
+  height: 300px;
+  img {
+    object-fit: cover;
+    height: 100%;
+  }
+}
+
 .profileImage {
   border-radius: 100%;
   text-align: center;
@@ -6,6 +23,7 @@
     width: 200px;
     border-radius: 100%;
     object-fit: cover;
+    margin: auto;
   }
 }
 

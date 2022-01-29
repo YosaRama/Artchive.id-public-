@@ -75,15 +75,6 @@ $white: #ffffff;
   }
 }
 
-// Ant Image
-.ant-image {
-  width: 100% !important;
-  height: 100% !important;
-  .ant-image-img {
-    height: 100% !important;
-  }
-}
-
 // * ====================================== * //
 
 //? =================== Page =========================== ?//
@@ -150,6 +141,15 @@ $white: #ffffff;
     }
     .ant-card-body {
       width: 100%;
+    }
+  }
+
+  // Ant Image
+  .ant-image {
+    width: 100% !important;
+    height: 100% !important;
+    .ant-image-img {
+      height: 100% !important;
     }
   }
 }

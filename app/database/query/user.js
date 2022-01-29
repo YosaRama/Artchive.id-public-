@@ -48,6 +48,7 @@ export const GET_USER_BY_ID = ({ id }) => {
     where: { id: +id },
     include: {
       profile: true,
+      banner: true,
       signature: true,
       artwork: {
         include: {
@@ -137,6 +138,21 @@ export const UPDATE_USER_PROFILE_IMAGE = ({ profileId, id }) => {
       profile: {
         connect: {
           id: profileId,
+        },
+      },
+    },
+  });
+};
+// ==================================
+
+// Update user banner
+export const UPDATE_USER_PROFILE_BANNER = ({ bannerId, id }) => {
+  return prisma.user.update({
+    where: { id: +id },
+    data: {
+      banner: {
+        connect: {
+          id: bannerId,
         },
       },
     },

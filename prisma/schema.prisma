@@ -20,6 +20,8 @@ model User {
   profile_img_id  Int?          @unique
   signature       Media?        @relation("signature", fields: [signature_id], references: [id])
   signature_id    Int?          @unique
+  banner          Media?        @relation("banner", fields: [banner_id], references: [id])
+  banner_id       Int?          @unique
   instagram_url   String?
   facebook_url    String?
   city            String?
@@ -88,10 +90,11 @@ model Media {
   description   String?   @db.Text
   createdAt     DateTime  @default(now())
   updatedAt     DateTime? @updatedAt
-  artwork_cover Artwork[] @relation("cover")
   artwork       Artwork[]
+  artwork_cover Artwork[] @relation("cover")
   profile       User?     @relation("profile")
   signature     User?     @relation("signature")
+  banner        User[]    @relation("banner")
 
   @@map("media")
 }
