@@ -1,5 +1,6 @@
 // Libs
 import nextConnect from "next-connect";
+import { v4 as uuid } from "uuid";
 
 // Upload Libs
 import multer from "multer";
@@ -33,10 +34,10 @@ const sharpStorage = multerS3Sharp({
     const { userId, artworkId } = req.body;
     const fullPath =
       userId && artworkId
-        ? `USER-${userId}/ART-${artworkId}/${file.originalname}`
+        ? `USER-${userId}/ART-${artworkId}/${uuid()}-${file.originalname}`
         : userId
-        ? `USER-${userId}/${file.originalname}`
-        : `Default/${file.originalname}`;
+        ? `USER-${userId}/${uuid()}-${file.originalname}`
+        : `Default/${uuid()}-${file.originalname}`;
     cb(null, fullPath);
   },
   resize: [
