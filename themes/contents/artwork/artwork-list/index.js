@@ -24,7 +24,6 @@ function ArtworkListPage() {
     setSize,
     end,
   } = useArtworksLoad({ limit: 15, queryString: "client=true" });
-  console.log(artworkData);
   // * ====================================== * //
   //? ============== Handle Price Search ============= ?//
   const [maxPrice, setMaxPrice] = useState(100000000);
@@ -131,9 +130,11 @@ function ArtworkListPage() {
                   );
                 })}
               </MasonryContainer>
-              <Col span={24} style={{ textAlign: "center" }}>
-                <PageButton onClick={handleLoadMore}>Load More</PageButton>
-              </Col>
+              {!end && (
+                <Col span={24} style={{ textAlign: "center" }}>
+                  <PageButton onClick={handleLoadMore}>Load More</PageButton>
+                </Col>
+              )}
             </Col>
           </Row>
         </section>
