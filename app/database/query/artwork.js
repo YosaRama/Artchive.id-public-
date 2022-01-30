@@ -205,6 +205,23 @@ export const CREATE_ARTWORK = ({
 };
 // ==================================
 
+// Create media galleries
+export const CREATE_ARTWORK_GALLERY = ({ id, gallery_id }) => {
+  return prisma.artwork.update({
+    where: {
+      id: +id,
+    },
+    data: {
+      media_gallery: {
+        connect: {
+          id: gallery_id,
+        },
+      },
+    },
+  });
+};
+// ==================================
+
 // * ====================================== * //
 
 //? ============== UPDATE QUERY ============= ?//
@@ -219,8 +236,6 @@ export const UPDATE_ARTWORK = ({
   material,
   description,
   genre_id,
-  media_id,
-  cover_id,
   type,
   height,
   width,
@@ -249,19 +264,6 @@ export const UPDATE_ARTWORK = ({
       artist: {
         connect: {
           id: artist_id,
-        },
-      },
-      media_gallery: {
-        set: [],
-        connect: media_id
-          ? media_id.map((item) => {
-              return { id: item };
-            })
-          : [],
-      },
-      media_cover: {
-        connect: {
-          id: cover_id,
         },
       },
       genre: {
@@ -310,6 +312,21 @@ export const UPDATE_ARTWORK_COVER_IMAGE = ({ id, cover_id }) => {
 // Delete data with specific ID
 export const DELETE_ARTWORK = ({ id }) => {
   return prisma.artwork.delete({ where: { id: +id } });
+};
+// ==================================
+
+// Delete data with specific ID
+export const DELETE_ARTWORK_GALLERY = ({ id, gallery_id }) => {
+  return prisma.artwork.update({
+    where: { id: +id },
+    data: {
+      media_gallery: {
+        disconnect: {
+          id: gallery_id,
+        },
+      },
+    },
+  });
 };
 // ==================================
 

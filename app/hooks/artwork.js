@@ -249,6 +249,78 @@ export const useArtwork = ({ singleId }) => {
   );
   // ==========================
 
+  // Add Gallery Image Hook Function
+  const onAddGallery = useCallback(
+    async (data) => {
+      try {
+        setLoading(true);
+        const { data: res } = await api.post(`${pathKeys}/gallery`, data);
+        if (res.success) {
+          mutate();
+          SuccessNotification({
+            message: "Success",
+            description: `${msgHead} gallery image has successfully saved.`,
+          });
+          return res.success;
+        } else {
+          ErrorNotification({
+            message: "Error",
+            description: `Something went wrong while add ${msgHead} gallery image`,
+          });
+
+          return res.success;
+        }
+      } catch (error) {
+        ErrorNotification({
+          message: "Error",
+          description: `Something went wrong while add ${msgHead} gallery image`,
+        });
+
+        return false;
+      } finally {
+        setLoading(false);
+      }
+    },
+    [mutate, pathKeys]
+  );
+  // ==========================
+
+  // Delete Hook Function
+  const onDeleteGallery = useCallback(
+    async (data) => {
+      try {
+        setLoading(true);
+        const { data: res } = await api.put(`${pathKeys}/gallery`, data);
+        if (res.success) {
+          mutate();
+          SuccessNotification({
+            message: "Success",
+            description: `Delete ${msgHead} gallery image has been successfully.`,
+          });
+          return res.success;
+        } else {
+          ErrorNotification({
+            message: "Error",
+            description: `Something went wrong while deleting ${msgHead} gallery image`,
+          });
+
+          return res.success;
+        }
+      } catch (error) {
+        ErrorNotification({
+          message: "Error",
+          description: `Something went wrong while deleting ${msgHead} gallery image`,
+        });
+
+        return false;
+      } finally {
+        setLoading(false);
+      }
+    },
+    [mutate, pathKeys]
+  );
+  // ==========================
+
   // Delete Hook Function
   const onDelete = useCallback(async () => {
     try {
@@ -289,6 +361,8 @@ export const useArtwork = ({ singleId }) => {
     onDelete,
     onGenerateCertificate,
     onChangeCover,
+    onAddGallery,
+    onDeleteGallery,
   };
 };
 

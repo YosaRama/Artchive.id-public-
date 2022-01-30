@@ -16,6 +16,7 @@ import UploadButton from "app/components/libs/upload-button";
 // Data Hook
 import { useUploads } from "app/hooks/upload";
 import { useArtwork } from "app/hooks/artwork";
+import ArtworkMediaGalleries from "./artwork-galleries";
 
 function ArtworkDetails(props) {
   const { initialValue } = props;
@@ -72,11 +73,13 @@ function ArtworkDetails(props) {
       <ContainerCard>
         <Menu mode="horizontal" onClick={handleSelectMenu} selectedKeys={selectedMenu}>
           <Menu.Item key={"1"}>General Information</Menu.Item>
-          <Menu.Item key={"2"}>Certificate</Menu.Item>
+          <Menu.Item key={"2"}>Media Galleries</Menu.Item>
+          <Menu.Item key={"3"}>Certificate</Menu.Item>
         </Menu>
 
         {selectedMenu == 1 && <ArtworkGeneralInformation />}
-        {selectedMenu == 2 && <ArtworkCertificateGenerate />}
+        {selectedMenu == 2 && <ArtworkMediaGalleries />}
+        {selectedMenu == 3 && <ArtworkCertificateGenerate />}
       </ContainerCard>
     </ContainerBox>
   );
