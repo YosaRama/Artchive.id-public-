@@ -15,6 +15,7 @@ model User {
   id              Int           @id @default(autoincrement())
   email           String        @unique
   full_name       String
+  slug            String        @unique
   password        String
   profile         Media?        @relation("profile", fields: [profile_img_id], references: [id])
   profile_img_id  Int?          @unique
@@ -46,6 +47,7 @@ model Artwork {
   artist         User          @relation(fields: [artist_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   artist_id      Int
   title          String
+  slug           String        @unique
   year           String
   material       String?
   description    String        @db.Text

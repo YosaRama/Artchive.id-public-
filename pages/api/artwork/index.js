@@ -1,7 +1,13 @@
 // Query
-import { GET_ARTWORK, CREATE_ARTWORK, GET_TOTAL_ARTWORK } from "app/database/query/artwork";
+import {
+  GET_ARTWORK,
+  CREATE_ARTWORK,
+  GET_TOTAL_ARTWORK,
+  CHECK_ARTWORK_BY_SLUG,
+} from "app/database/query/artwork";
 
-// Helper
+// Libs
+import { slugParse } from "app/helpers/slugParse";
 import nextConnect from "next-connect";
 
 const apiHandler = nextConnect();
@@ -56,10 +62,14 @@ apiHandler.post(async (req, res) => {
     approve,
   } = req.body;
   try {
+    // Create Slug
+    const slug = await slugParse({ slugData: title, checkSlugFunc: CHECK_ARTWORK_BY_SLUG });
+    // ============
     const result = await CREATE_ARTWORK({
       sku,
       artist_id,
       title,
+      slug,
       year,
       material,
       description,

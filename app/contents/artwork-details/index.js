@@ -23,7 +23,7 @@ function ArtworkDetails(props) {
   const router = useRouter();
 
   //? ============== Artwork Hook ============= ?//
-  const { data: artworkData, onChangeCover } = useArtwork({ singleId: initialValue.id });
+  const { data: artworkData, onChangeCover } = useArtwork({ singleId: initialValue?.id });
   // * ====================================== * //
 
   //? ============== Handle Select Menu ============= ?//
@@ -57,7 +57,7 @@ function ArtworkDetails(props) {
               src={
                 (artworkData?.media_cover?.url &&
                   `${process.env.NEXT_PUBLIC_S3_URL}/${artworkData?.media_cover?.url}`) ||
-                `${process.env.NEXT_PUBLIC_S3_URL}/${initialValue.media_cover.url}`
+                `${process.env.NEXT_PUBLIC_S3_URL}/${initialValue?.media_cover?.url}`
               }
               alt=""
               className={s.image}

@@ -2,6 +2,13 @@
 import { prisma } from "../connection";
 
 //? ============== OPTION QUERY ============= ?//
+export const CHECK_ARTWORK_BY_SLUG = ({ slug }) => {
+  return prisma.artwork.findUnique({
+    where: {
+      slug: slug,
+    },
+  });
+};
 
 // * ====================================== * //
 
@@ -137,6 +144,7 @@ export const CREATE_ARTWORK = ({
   sku,
   artist_id,
   title,
+  slug,
   year,
   material,
   description,
@@ -155,6 +163,7 @@ export const CREATE_ARTWORK = ({
     data: {
       sku: sku,
       title: title,
+      slug: slug,
       year: year,
       material: material,
       description: description,

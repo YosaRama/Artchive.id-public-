@@ -1,9 +1,10 @@
 // Query
-import { CREATE_USER, GET_TOTAL_USER, GET_USER } from "app/database/query/user";
+import { CHECK_USER_BY_SLUG, CREATE_USER, GET_TOTAL_USER, GET_USER } from "app/database/query/user";
 
 // Libs
 import { hashPassword } from "app/helpers/auth";
 import nextConnect from "next-connect";
+import { slugParse } from "app/helpers/slugParse";
 
 const apiHandler = nextConnect();
 const messageHead = "Users";
@@ -47,12 +48,19 @@ apiHandler.post(async (req, res) => {
   const { email, fullName, password, role } = req.body;
   // Hash password
   const hashedPassword = await hashPassword(password);
+  // Create Slug
+  const slug = await slugParse({
+    slugData: fullName,
+    checkSlugFunc: CHECK_USER_BY_SLUG,
+  });
+
   try {
     const result = await CREATE_USER({
       email,
       fullName,
       password: hashedPassword,
       role,
+      slug,
     });
     if (result) {
       res.status(200).json({

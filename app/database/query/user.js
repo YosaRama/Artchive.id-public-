@@ -2,6 +2,13 @@
 import { prisma } from "../connection";
 
 //? ============== OPTION QUERY ============= ?//
+export const CHECK_USER_BY_SLUG = ({ slug }) => {
+  return prisma.user.findUnique({
+    where: {
+      slug: slug,
+    },
+  });
+};
 
 // * ====================================== * //
 
@@ -90,10 +97,11 @@ export const GET_TOTAL_USER = ({ role, email, fullName }) => {
 //? ============== CREATE QUERY ============= ?//
 
 // Create new user
-export const CREATE_USER = ({ email, password, fullName, role }) => {
+export const CREATE_USER = ({ email, password, fullName, role, slug }) => {
   return prisma.user.create({
     data: {
       email: email,
+      slug: slug,
       password: password,
       full_name: fullName,
       role: role,

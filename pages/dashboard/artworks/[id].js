@@ -21,11 +21,11 @@ export default ArtworkDetailsPage;
 export const getServerSideProps = async (ctx) => {
   const artworkId = ctx.query.id;
   const artworkData = await GET_ARTWORK_BY_ID({ id: artworkId });
-  const artwork = {
+  const artwork = artworkData && {
     ...artworkData,
-    artistId: [artworkData.artist.full_name, artworkData.artist_id],
-    createdAt: moment(artworkData.createdAt).format("DD/MM/YYYY"),
-    updatedAt: moment(artworkData.updatedAt).format("DD/MM/YYYY"),
+    artistId: [artworkData?.artist.full_name, artworkData?.artist_id],
+    createdAt: moment(artworkData?.createdAt).format("DD/MM/YYYY"),
+    updatedAt: moment(artworkData?.updatedAt).format("DD/MM/YYYY"),
   };
 
   //? ============== Handle Session ============= ?//

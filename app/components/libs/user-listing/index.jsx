@@ -77,7 +77,7 @@ function UserListing(props) {
           <Empty />
         </Col>
       )}
-      {total && (
+      {total ? (
         <Col span={24} style={{ textAlign: "right" }}>
           <Pagination
             total={total}
@@ -86,6 +86,8 @@ function UserListing(props) {
             onChange={handlePagination}
           />
         </Col>
+      ) : (
+        ""
       )}
     </ContainerCard>
   );

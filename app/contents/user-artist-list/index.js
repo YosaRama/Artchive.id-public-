@@ -1,6 +1,5 @@
 // Libs
 import { useState } from "react";
-import { Col, Pagination } from "antd";
 
 // Component
 import ContainerBox from "app/components/container/containerBox";
