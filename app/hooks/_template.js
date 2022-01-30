@@ -1,5 +1,6 @@
 // Libs
 import useSWR from "swr";
+import useSWRInfinite from "swr/infinite";
 import api from "app/utils/swr";
 import { useCallback, useState } from "react";
 
@@ -9,6 +10,37 @@ import { SuccessNotification, ErrorNotification } from "app/components/libs/noti
 //TODO: Match with backend endpoint
 const pathName = "/api-route"; // End point
 const msgHead = "Context"; // Just For message
+
+//? ============== INFINITE HOOK ============= ?//
+export const useTemplatesLoad = ({ limit = 15, queryString = "" }) => {
+  const { data, size, setSize, error, isValidating } = useSWRInfinite(
+    (index, prevData) => {
+      const pathKeys = `${pathName}?page=${index + 1}&limit=${limit}&${queryString}`;
+      if (prevData && !prevData.data) return null; // reached the end
+      return pathKeys;
+    },
+    { initialSize: 1, persistSize: true }
+  );
+
+  // Data processing
+  const resultProcess = data?.map((res) => {
+    return res?.data;
+  });
+  const result = resultProcess?.flat(1);
+  const total = data?.[0]?.total;
+  // =============================
+
+  return {
+    data: result,
+    total,
+    size,
+    setSize,
+    error,
+    loading: (!error && !data) || isValidating,
+    end: result?.length == total ? true : false,
+  };
+};
+// * ====================================== * //
 
 //? ============== GENERAL HOOK (ALL DATA) ============= ?//
 

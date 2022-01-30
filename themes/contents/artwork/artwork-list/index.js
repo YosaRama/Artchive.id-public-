@@ -10,16 +10,34 @@ import PageArtworkCardList from "themes/components/libs/page-artwork-card";
 import PageBanner from "themes/components/libs/page-banner";
 import PageButton from "themes/components/libs/page-button";
 
+// Data Hook
+import { useArtworksLoad } from "app/hooks/artwork";
+
 // Styles
 import s from "./index.module.scss";
 
 function ArtworkListPage() {
+  //? ============== Artwork Hook ============= ?//
+  const {
+    data: artworkData,
+    size,
+    setSize,
+    end,
+  } = useArtworksLoad({ limit: 15, queryString: "client=true" });
+  console.log(artworkData);
+  // * ====================================== * //
   //? ============== Handle Price Search ============= ?//
   const [maxPrice, setMaxPrice] = useState(100000000);
   const [minPrice, setMinPrice] = useState(1000000);
   const handlePriceChange = (value) => {
     setMaxPrice(value[1]);
     setMinPrice(value[0]);
+  };
+  // * ====================================== * //
+
+  //? ============== Handle Load More ============= ?//
+  const handleLoadMore = () => {
+    setSize(size + 1);
   };
   // * ====================================== * //
 
@@ -89,43 +107,33 @@ function ArtworkListPage() {
 
             <Col span={17}>
               <MasonryContainer breakPoint={3}>
-                <Col span={24}>
-                  <PageArtworkCardList imgSrc="/images/artwork-1.jpg" />
-                </Col>
-                <Col span={24}>
-                  <PageArtworkCardList imgSrc="/images/artwork-2.jpg" />
-                </Col>
-                <Col span={24}>
-                  <PageArtworkCardList imgSrc="/images/artwork-3.jpg" />
-                </Col>
-                <Col span={24}>
-                  <PageArtworkCardList imgSrc="/images/artwork-4.jpg" />
-                </Col>
-                <Col span={24}>
-                  <PageArtworkCardList imgSrc="/images/artwork-5.jpg" />
-                </Col>
-                <Col span={24}>
-                  <PageArtworkCardList imgSrc="/images/artwork-6.jpg" />
-                </Col>
-                <Col span={24}>
-                  <PageArtworkCardList imgSrc="/images/artwork-1.jpg" />
-                </Col>
-                <Col span={24}>
-                  <PageArtworkCardList imgSrc="/images/artwork-2.jpg" />
-                </Col>
-                <Col span={24}>
-                  <PageArtworkCardList imgSrc="/images/artwork-3.jpg" />
-                </Col>
-                <Col span={24}>
-                  <PageArtworkCardList imgSrc="/images/artwork-4.jpg" />
-                </Col>
-                <Col span={24}>
-                  <PageArtworkCardList imgSrc="/images/artwork-5.jpg" />
-                </Col>
-                <Col span={24}>
-                  <PageArtworkCardList imgSrc="/images/artwork-6.jpg" />
-                </Col>
+                {artworkData?.map((item) => {
+                  return (
+                    <Col span={24} key={item?.id}>
+                      <PageArtworkCardList
+                        artworkId={item?.id}
+                        artworkTitle={item?.title}
+                        artistName={item?.artist?.full_name}
+                        artistCity={item?.artist?.city}
+                        artworkYear={item?.year}
+                        artworkWidth={item?.width}
+                        artworkHeight={item?.height}
+                        artworkPrice={item?.price}
+                        artworkMedia={item?.material}
+                        artworkStatus={item?.status}
+                        imgSrc={
+                          item?.media_cover
+                            ? `${process.env.NEXT_PUBLIC_S3_URL}/${item?.media_cover?.url}`
+                            : "/images/default-images.jpg"
+                        }
+                      />
+                    </Col>
+                  );
+                })}
               </MasonryContainer>
+              <Col span={24} style={{ textAlign: "center" }}>
+                <PageButton onClick={handleLoadMore}>Load More</PageButton>
+              </Col>
             </Col>
           </Row>
         </section>
