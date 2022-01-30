@@ -8,7 +8,7 @@ import { prisma } from "../connection";
 //? ============== GET QUERY ============= ?//
 
 // Get Data (Filter by Role, Email, FullName)
-export const GET_ARTWORK = ({ page = 1, limit = 15 }) => {
+export const GET_ARTWORK = ({ page = 1, limit = 15, client = false }) => {
   // Handle Pagination
   const skip = limit != "all" ? (+page - 1) * +limit : undefined;
   return prisma.artwork.findMany({
@@ -43,13 +43,14 @@ export const GET_ARTWORK = ({ page = 1, limit = 15 }) => {
     // ==================
 
     // Handle query condition
-    // where: {
-    //   AND: {
-    //     role: role ? role : {}, // Can disable by empty object
-    //     email: email ? { contains: email } : {}, // Can disable by empty object
-    //     full_name: fullName ? { contains: fullName } : {}, // Can disable by empty object
-    //   },
-    // },
+    where: {
+      AND: {
+        OR: [
+          { status: client == "true" ? "SOLD" : {} },
+          { status: client == "true" ? "PUBLISH" : {} },
+        ],
+      },
+    },
     // ==========================
 
     // Handle order
@@ -111,17 +112,18 @@ export const GET_ARTWORK_BY_ID = ({ id }) => {
 // ==================================
 
 // Get total all data
-export const GET_TOTAL_ARTWORK = () => {
+export const GET_TOTAL_ARTWORK = ({ client }) => {
   return prisma.artwork.count({
     // Handle query condition
-    // where: {
-    //   AND: {
-    //     role: role ? role : {}, // Can disable by empty object
-    //     email: email ? { contains: email } : {}, // Can disable by empty object
-    //     full_name: fullName ? { contains: fullName } : {}, // Can disable by empty object
-    //   },
-    // },
-    // ========================== });
+    where: {
+      AND: {
+        OR: [
+          { status: client == "true" ? "SOLD" : {} },
+          { status: client == "true" ? "PUBLISH" : {} },
+        ],
+      },
+    },
+    // ==========================
   });
 };
 // ==================================

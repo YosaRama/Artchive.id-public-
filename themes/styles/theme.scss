@@ -75,6 +75,21 @@ $white: #ffffff;
   }
 }
 
+// Artwork Ribbon
+.artwork-ribbon {
+  &.hide {
+    display: none;
+  }
+}
+
+// Not Publish Artwork
+.artwork-not-publish {
+  filter: grayscale(1);
+  &:hover {
+    filter: grayscale(0);
+  }
+}
+
 // * ====================================== * //
 
 //? =================== Page =========================== ?//

@@ -19,7 +19,7 @@ export async function getStaticProps(ctx) {
   // * ====================================== * //
 
   //? ============== Artwork Data ============= ?//
-  const artwork = await GET_ARTWORK({ limit: 4 });
+  const artwork = await GET_ARTWORK({ limit: 4, client: "true" });
   const artworkData = artwork.map((item) => {
     return {
       id: item.id,
@@ -28,6 +28,7 @@ export async function getStaticProps(ctx) {
       imgUrl: item?.media_cover
         ? `${process.env.NEXT_PUBLIC_S3_URL}/${item?.media_cover?.url}`
         : null,
+      status: item.status,
     };
   });
   // * ====================================== * //
