@@ -17,7 +17,6 @@ import s from "./index.module.scss";
 
 function Homepage(props) {
   const { artworkData, artistData } = props;
-  console.log(artworkData);
   const router = useRouter();
   return (
     <>
