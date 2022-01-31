@@ -110,7 +110,7 @@ function ArtworkListPage() {
                   return (
                     <Col span={24} key={item?.id}>
                       <PageArtworkCardList
-                        artworkId={item?.id}
+                        artworkSlug={item?.slug}
                         artworkTitle={item?.title}
                         artistName={item?.artist?.full_name}
                         artistCity={item?.artist?.city}

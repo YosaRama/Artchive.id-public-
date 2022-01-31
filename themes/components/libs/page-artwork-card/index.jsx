@@ -11,7 +11,7 @@ import s from "./index.module.scss";
 function PageArtworkCardList(props) {
   const {
     imgSrc,
-    artworkId,
+    artworkSlug,
     artworkTitle,
     artistName,
     artistCity,
@@ -32,7 +32,7 @@ function PageArtworkCardList(props) {
         <Card
           className={s.card + " artworkCardList"}
           bordered={false}
-          onClick={() => router.push(`artwork/${artworkId}`)}
+          onClick={() => router.push(`artwork/${artworkSlug}`)}
         >
           <Col span={24} className={s.image}>
             <img
@@ -61,7 +61,7 @@ function PageArtworkCardList(props) {
 
 PageArtworkCardList.propTypes = {
   imgSrc: propTypes.string.isRequired,
-  artworkId: propTypes.number.isRequired,
+  artworkSlug: propTypes.string.isRequired,
   artworkTitle: propTypes.string.isRequired,
   artistName: propTypes.string.isRequired,
   artistCity: propTypes.string,

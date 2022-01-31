@@ -9,14 +9,14 @@ import s from "./index.module.scss";
 
 function PageArtworkFrame(props) {
   const router = useRouter();
-  const { imgSrc, artworkTitle, artworkSize, artworkId, artworkStatus } = props;
+  const { imgSrc, artworkTitle, artworkSize, artworkSlug, artworkStatus } = props;
   return (
     <Badge.Ribbon
       text={artworkStatus == "SOLD" ? "SOLD" : "Waiting Approval"}
       className={`artwork-ribbon ${artworkStatus == "PUBLISH" && "hide"}`}
     >
       <Col span={24} className={s.container}>
-        <Col span={24} className={s.image} onClick={() => router.push(`/artwork/${artworkId}`)}>
+        <Col span={24} className={s.image} onClick={() => router.push(`/artwork/${artworkSlug}`)}>
           <Image
             src={imgSrc ? imgSrc : "/images/default-images.png"}
             alt=""
@@ -29,7 +29,7 @@ function PageArtworkFrame(props) {
         </Col>
         <Col className={s.content}>
           {artworkTitle && (
-            <h1 className={s.title} onClick={() => router.push("/artwork/id")}>
+            <h1 className={s.title} onClick={() => router.push(`/artwork/${artworkSlug}`)}>
               {artworkTitle}
             </h1>
           )}
@@ -41,7 +41,7 @@ function PageArtworkFrame(props) {
 }
 
 PageArtworkFrame.propTypes = {
-  artworkId: propTypes.number.isRequired,
+  artworkSlug: propTypes.string.isRequired,
   imgSrc: propTypes.string,
   artworkTitle: propTypes.string,
   artworkSize: propTypes.string,

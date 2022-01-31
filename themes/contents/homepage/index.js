@@ -41,7 +41,7 @@ function Homepage(props) {
               {artworkData.map((item, index) => (
                 <Col span={6} key={index}>
                   <PageArtworkFrame
-                    artworkId={item.id}
+                    artworkSlug={item.slug}
                     artworkTitle={item.title}
                     artworkSize={item.size}
                     imgSrc={item.imgUrl}

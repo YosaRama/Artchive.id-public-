@@ -118,6 +118,66 @@ export const GET_ARTWORK_BY_ID = ({ id }) => {
 };
 // ==================================
 
+// Get Data by Specific ID
+export const GET_ARTWORK_BY_SLUG = ({ slug }) => {
+  return prisma.artwork.findUnique({
+    // Handle query condition
+    where: { slug: slug },
+    // ==========================
+
+    // Get Relational Data
+    include: {
+      artist: {
+        select: {
+          id: true,
+          email: true,
+          full_name: true,
+          city: true,
+          profile: {
+            select: {
+              id: true,
+              url: true,
+            },
+          },
+          signature: {
+            select: {
+              id: true,
+              url: true,
+            },
+          },
+        },
+      },
+      media_cover: { select: { id: true, url: true } },
+      media_gallery: { select: { id: true, url: true } },
+      certificate: {
+        select: { id: true, url: true },
+        orderBy: { id: "desc" },
+        where: {
+          type: "EDITION",
+        },
+      },
+      genre: {
+        select: {
+          id: true,
+          title: true,
+        },
+      },
+    },
+    // ==================
+  });
+};
+// ==================================
+
+// Get all slug
+export const GET_ALL_ARTWORK_SLUG = () => {
+  return prisma.artwork.findMany({
+    select: {
+      slug: true,
+    },
+  });
+};
+// ==================================
+
 // Get total all data
 export const GET_TOTAL_ARTWORK = ({ client }) => {
   return prisma.artwork.count({

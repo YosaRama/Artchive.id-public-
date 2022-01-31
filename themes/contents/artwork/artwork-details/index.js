@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 // Libs
+import propTypes from "prop-types";
 import { Card, Col, Image, Row } from "antd";
 
 // Components
@@ -16,7 +17,8 @@ import { CartIcon } from "public/icons/cart-icon";
 // Styles
 import s from "./index.module.scss";
 
-function ArtworkDetailsPage() {
+function ArtworkDetailsPage(props) {
+  const { artworkData } = props;
   return (
     <>
       <section style={{ margin: "50px 0" }}>
@@ -24,52 +26,49 @@ function ArtworkDetailsPage() {
           <Row gutter={[64, 0]}>
             <Col span={12}>
               <Col span={24} style={{ paddingLeft: 0, paddingRight: 0, marginBottom: 10 }}>
-                <Image src="/images/artwork-7.jpg" alt="" />
+                <Image
+                  src={`${process.env.NEXT_PUBLIC_S3_URL}/${artworkData?.media_cover?.url}`}
+                  alt=""
+                />
               </Col>
               <Row gutter={[16, 0]}>
-                <Col span={6} className={s.detailsImageContainer + " artworkDetails-details-image"}>
-                  <Image src="/images/artwork-1.jpg" alt="" />
-                </Col>
-                <Col span={6} className={s.detailsImageContainer + " artworkDetails-details-image"}>
-                  <Image src="/images/artwork-2.jpg" alt="" />
-                </Col>
-                <Col span={6} className={s.detailsImageContainer + " artworkDetails-details-image"}>
-                  <Image src="/images/artwork-3.jpg" alt="" />
-                </Col>
-                <Col span={6} className={s.detailsImageContainer + " artworkDetails-details-image"}>
-                  <Image src="/images/artwork-4.jpg" alt="" />
-                </Col>
+                {artworkData?.media_gallery?.map((item) => {
+                  return (
+                    <Col
+                      span={6}
+                      className={s.detailsImageContainer + " artworkDetails-details-image"}
+                      key={item.id}
+                    >
+                      <Image src={`${process.env.NEXT_PUBLIC_S3_URL}/${item.url}`} alt="" />
+                    </Col>
+                  );
+                })}
               </Row>
             </Col>
             <Col span={12}>
               <Card className={s.detailsCard}>
                 <Col className={s.artworkDetailsTitle}>
-                  <h1>Artwork Title</h1>
+                  <h1>{artworkData?.title}</h1>
                 </Col>
                 <Col className={s.artworkDetailsText}>
                   <p>
-                    <strong>Artist Name, </strong>City
+                    <strong>{artworkData?.artist?.full_name}, </strong>
+                    {artworkData?.artist?.city}
                   </p>
                   <p>
-                    <span>Year, </span>Media
+                    <span>{artworkData?.year}, </span>
+                    {artworkData?.material}
                   </p>
                   <p>
-                    <span>Width</span> x <span>Height cm</span>
+                    <span>{artworkData?.width}</span> x <span>{artworkData?.height} cm</span>
                   </p>
                 </Col>
                 <Col className={s.artworkDetailsDescription}>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                    culpa qui officia deserunt mollit anim id est laborum.
-                  </p>
+                  <p>{artworkData?.description}</p>
                 </Col>
                 <Col className={s.artworkDetailsPrice}>
                   <p>
-                    <strong>IDR</strong> 15.000.0000
+                    <strong>IDR</strong> {artworkData?.price}
                   </p>
                 </Col>
                 <Col>
@@ -83,7 +82,11 @@ function ArtworkDetailsPage() {
           </Row>
 
           <section style={{ margin: "100px 0" }}>
-            <PageTitle title="Other artwork from [Artist Name]" className={s.sectionTitle} />
+            <PageTitle
+              title={`Other artwork`}
+              subtitle={`${artworkData?.artist?.full_name}`}
+              className={s.sectionTitle}
+            />
             <Row gutter={[16, 0]} className={s.otherSection}>
               <Col span={6}>
                 <PageArtworkFrame
@@ -156,5 +159,9 @@ function ArtworkDetailsPage() {
     </>
   );
 }
+
+ArtworkDetailsPage.propTypes = {
+  artworkData: propTypes.object,
+};
 
 export default ArtworkDetailsPage;
