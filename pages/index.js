@@ -23,6 +23,7 @@ export async function getStaticProps(ctx) {
   const artworkData = artwork.map((item) => {
     return {
       id: item.id,
+      slug: item.slug,
       title: item.title,
       size: `${item.width} x ${item.height}`,
       imgUrl: item?.media_cover
@@ -34,7 +35,7 @@ export async function getStaticProps(ctx) {
   // * ====================================== * //
 
   //? ============== Artist Data ============= ?//
-  const artist = await GET_USER({ limit: 4 });
+  const artist = await GET_USER({ limit: 4, role: "ARTIST" });
   const artistData = artist.map((item) => {
     return {
       id: item.id,
@@ -51,5 +52,6 @@ export async function getStaticProps(ctx) {
       artistData: artistData,
       artworkData: artworkData,
     },
+    revalidate: 10,
   };
 }
