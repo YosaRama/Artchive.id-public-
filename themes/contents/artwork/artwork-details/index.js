@@ -11,6 +11,9 @@ import PageButton from "themes/components/libs/page-button";
 import PageDividerButton from "themes/components/libs/page-divider-button";
 import PageTitle from "themes/components/libs/page-title";
 
+// Data Hook
+import { useArtworks } from "app/hooks/artwork";
+
 // Icons
 import { CartIcon } from "public/icons/cart-icon";
 
@@ -19,6 +22,20 @@ import s from "./index.module.scss";
 
 function ArtworkDetailsPage(props) {
   const { artworkData } = props;
+
+  //? ============== Other Artwork Hook ============= ?//
+  const { data: otherArtworkData } = useArtworks({
+    queryString: `slug=${artworkData.slug}&artistId=${artworkData.artist_id}`,
+  });
+  // * ====================================== * //
+
+  //? ============== Might Like Artwork Hook ============= ?//
+  const genreListData = artworkData.genre.map((item) => item.id);
+  const genreList = genreListData.join(",");
+  const { data: mightLikeData } = useArtworks({
+    queryString: `slug=${artworkData.slug}&genreId=${genreList}`,
+  });
+  // * ====================================== * //
   return (
     <>
       <section style={{ margin: "50px 0" }}>
@@ -81,79 +98,53 @@ function ArtworkDetailsPage(props) {
             </Col>
           </Row>
 
-          <section style={{ margin: "100px 0" }}>
-            <PageTitle
-              title={`Other artwork`}
-              subtitle={`${artworkData?.artist?.full_name}`}
-              className={s.sectionTitle}
-            />
-            <Row gutter={[16, 0]} className={s.otherSection}>
-              <Col span={6}>
-                <PageArtworkFrame
-                  imgSrc="/images/artwork-1.jpg"
-                  artworkTitle="This Artwork"
-                  artworkSize="300 x 500"
-                />
-              </Col>
-              <Col span={6}>
-                <PageArtworkFrame
-                  imgSrc="/images/artwork-1.jpg"
-                  artworkTitle="This Artwork"
-                  artworkSize="300 x 500"
-                />
-              </Col>
-              <Col span={6}>
-                <PageArtworkFrame
-                  imgSrc="/images/artwork-1.jpg"
-                  artworkTitle="This Artwork"
-                  artworkSize="300 x 500"
-                />
-              </Col>
-              <Col span={6}>
-                <PageArtworkFrame
-                  imgSrc="/images/artwork-1.jpg"
-                  artworkTitle="This Artwork"
-                  artworkSize="300 x 500"
-                />
-              </Col>
-            </Row>
-            <PageDividerButton>SEE MORE</PageDividerButton>
-          </section>
+          {otherArtworkData?.length != 0 && (
+            <section style={{ margin: "100px 0" }}>
+              <PageTitle
+                title={`Other artwork`}
+                subtitle={`${artworkData?.artist?.full_name}`}
+                className={s.sectionTitle}
+              />
+              <Row gutter={[16, 0]} className={s.otherSection}>
+                {otherArtworkData?.map((item) => {
+                  return (
+                    <Col span={6} key={item.id}>
+                      <PageArtworkFrame
+                        imgSrc={`${process.env.NEXT_PUBLIC_S3_URL}/${item?.media_cover?.url}`}
+                        artworkStatus={item.status}
+                        artworkTitle={item.title}
+                        artworkSize={`${item.width} x ${item.height}`}
+                        artworkSlug={item.slug}
+                      />
+                    </Col>
+                  );
+                })}
+              </Row>
+              <PageDividerButton>SEE MORE</PageDividerButton>
+            </section>
+          )}
 
-          <section>
-            <PageTitle title="You Might Also Like" className={s.sectionTitle} />
-            <Row gutter={[16, 0]} className={s.otherSection}>
-              <Col span={6}>
-                <PageArtworkFrame
-                  imgSrc="/images/artwork-2.jpg"
-                  artworkTitle="This Artwork"
-                  artworkSize="300 x 500"
-                />
-              </Col>
-              <Col span={6}>
-                <PageArtworkFrame
-                  imgSrc="/images/artwork-3.jpg"
-                  artworkTitle="This Artwork"
-                  artworkSize="300 x 500"
-                />
-              </Col>
-              <Col span={6}>
-                <PageArtworkFrame
-                  imgSrc="/images/artwork-4.jpg"
-                  artworkTitle="This Artwork"
-                  artworkSize="300 x 500"
-                />
-              </Col>
-              <Col span={6}>
-                <PageArtworkFrame
-                  imgSrc="/images/artwork-5.jpg"
-                  artworkTitle="This Artwork"
-                  artworkSize="300 x 500"
-                />
-              </Col>
-            </Row>
-            <PageDividerButton>SEE MORE</PageDividerButton>
-          </section>
+          {mightLikeData?.length != 0 && (
+            <section style={{ margin: "100px 0" }}>
+              <PageTitle title="You Might Also Like" className={s.sectionTitle} />
+              <Row gutter={[16, 0]} className={s.otherSection}>
+                {mightLikeData?.map((item) => {
+                  return (
+                    <Col span={6} key={item.id}>
+                      <PageArtworkFrame
+                        imgSrc={`${process.env.NEXT_PUBLIC_S3_URL}/${item?.media_cover?.url}`}
+                        artworkStatus={item.status}
+                        artworkTitle={item.title}
+                        artworkSize={`${item.width} x ${item.height}`}
+                        artworkSlug={item.slug}
+                      />
+                    </Col>
+                  );
+                })}
+              </Row>
+              <PageDividerButton>SEE MORE</PageDividerButton>
+            </section>
+          )}
         </PageContainerBox>
       </section>
     </>

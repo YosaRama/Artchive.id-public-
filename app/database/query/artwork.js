@@ -15,9 +15,11 @@ export const CHECK_ARTWORK_BY_SLUG = ({ slug }) => {
 //? ============== GET QUERY ============= ?//
 
 // Get Data (Filter by Role, Email, FullName)
-export const GET_ARTWORK = ({ page = 1, limit = 15, client = false }) => {
+export const GET_ARTWORK = ({ page = 1, limit = 15, client = false, artistId, slug, genreId }) => {
   // Handle Pagination
   const skip = limit != "all" ? (+page - 1) * +limit : undefined;
+  // Handle Multiple Genre
+  const genreList = genreId && genreId.split(",");
   return prisma.artwork.findMany({
     skip: skip ? +skip : undefined, // Disable by undefined
     take: limit != "all" ? +limit : undefined, // Disable by undefined
@@ -46,6 +48,7 @@ export const GET_ARTWORK = ({ page = 1, limit = 15, client = false }) => {
       },
       media_cover: { select: { id: true, url: true } },
       media_gallery: { select: { id: true, url: true } },
+      genre: true,
     },
     // ==================
 
@@ -56,6 +59,19 @@ export const GET_ARTWORK = ({ page = 1, limit = 15, client = false }) => {
           { status: client == "true" ? "SOLD" : {} },
           { status: client == "true" ? "PUBLISH" : {} },
         ],
+        OR: genreList
+          ? genreList.map((item) => {
+              return {
+                genre: {
+                  some: {
+                    id: +item,
+                  },
+                },
+              };
+            })
+          : [],
+        artist_id: artistId ? +artistId : {},
+        NOT: { slug: slug ? slug : {} },
       },
     },
     // ==========================
@@ -179,7 +195,9 @@ export const GET_ALL_ARTWORK_SLUG = () => {
 // ==================================
 
 // Get total all data
-export const GET_TOTAL_ARTWORK = ({ client }) => {
+export const GET_TOTAL_ARTWORK = ({ client, artistId, slug, genreId }) => {
+  // Handle Multiple Genre
+  const genreList = genreId && genreId.split(",");
   return prisma.artwork.count({
     // Handle query condition
     where: {
@@ -188,6 +206,19 @@ export const GET_TOTAL_ARTWORK = ({ client }) => {
           { status: client == "true" ? "SOLD" : {} },
           { status: client == "true" ? "PUBLISH" : {} },
         ],
+        artist_id: artistId ? +artistId : {},
+        NOT: { slug: slug ? slug : {} },
+        OR: genreList
+          ? genreList.map((item) => {
+              return {
+                genre: {
+                  some: {
+                    id: +item,
+                  },
+                },
+              };
+            })
+          : [],
       },
     },
     // ==========================
