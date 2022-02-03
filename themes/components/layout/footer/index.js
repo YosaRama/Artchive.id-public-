@@ -15,8 +15,8 @@ function PageFooter() {
   const router = useRouter();
   //? ============== Footer Menu ============= ?//
   const footerMenu = [
-    { title: "About Us", link: "/" },
-    { title: "Artist", link: "/" },
+    { title: "About Us", link: "/maintenance" },
+    { title: "Artist", link: "/maintenance" },
     { title: "Artwork", link: "/artwork" },
     { title: "Contact Us", link: "/contact-us" },
   ];
@@ -49,14 +49,10 @@ function PageFooter() {
         <Row justify="space-between" className={s.bottomContainer}>
           <Col className={s.social} span={8}>
             <Row className={s.socialLink}>
-              <a href="https://www.instagram.com/art_chive.id/" target="_blank" rel="noreferrer">
+              <a href="https://www.instagram.com/__artchive.id/" target="_blank" rel="noreferrer">
                 <Image src="/images/instagram.svg" alt="" width={20} height={20} />
               </a>
-              <a
-                href="https://www.facebook.com/Artchiveid-105888711990207"
-                target={"_blank"}
-                rel="noreferrer"
-              >
+              <a href="https://www.facebook.com/artchive.id/" target={"_blank"} rel="noreferrer">
                 <Image src="/images/facebook.svg" alt="" width={20} height={20} />
               </a>
             </Row>
@@ -66,12 +62,12 @@ function PageFooter() {
           </Col>
           <Col span={8}>
             <Row className={s.additionalLink}>
-              <Link href="/">
+              <Link href="/maintenance">
                 <a>
                   <p>Privacy Policy</p>
                 </a>
               </Link>
-              <Link href="/">
+              <Link href="/maintenance">
                 <a>
                   <p>Terms</p>
                 </a>

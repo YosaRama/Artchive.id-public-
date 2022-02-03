@@ -1,6 +1,7 @@
 // Libs
 import Image from "next/image";
 import { Button, Checkbox, Col, Form, Input, Radio, Row } from "antd";
+import { useRouter } from "next/router";
 
 // Components
 import PageContainerBox from "themes/components/container/box-container";
@@ -12,6 +13,7 @@ import RadioCard from "themes/components/libs/page-radio-card";
 import s from "./index.module.scss";
 
 function RegisterPage() {
+  const router = useRouter();
   return (
     <PageContainerBox>
       <SimplePageContainer imgSrc="/images/register-background.jpg" cardClassName="halo">
@@ -101,7 +103,9 @@ function RegisterPage() {
             <PageButton type={"default " + s.button}>SIGN UP</PageButton>
           </Col>
           <Col span={24}>
-            <PageButton type={"outlined " + s.button}>LOG IN</PageButton>
+            <PageButton type={"outlined " + s.button} onClick={() => router.push("/signin")}>
+              LOG IN
+            </PageButton>
           </Col>
         </section>
       </SimplePageContainer>
