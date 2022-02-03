@@ -5,6 +5,9 @@ import { Button, Col, Form, Input } from "antd";
 // Components
 import changeConfirmModal from "app/components/libs/change-modal-confirm";
 
+// Helper
+import { passwordFormRules } from "app/helpers/passwordFormRules";
+
 function UserEditPassword(props) {
   const { onSave } = props;
 
@@ -25,28 +28,7 @@ function UserEditPassword(props) {
     <>
       <Form layout="vertical" form={form}>
         <Col span={12}>
-          <Form.Item
-            name="password"
-            label="New Password"
-            rules={[
-              {
-                required: true,
-                validator: (_, value) => {
-                  const validPassword = new RegExp("(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8}");
-                  if (validPassword.test(value)) {
-                    return Promise.resolve();
-                  }
-
-                  return Promise.reject(
-                    new Error(
-                      "Password must be at least 8 characters long and contain at least one capital letter and one number."
-                    )
-                  );
-                },
-              },
-            ]}
-            hasFeedback
-          >
+          <Form.Item name="password" label="New Password" rules={[passwordFormRules]} hasFeedback>
             <Input.Password />
           </Form.Item>
           <Form.Item

@@ -9,11 +9,24 @@ import SimplePageContainer from "themes/components/container/simple-page-contain
 import PageButton from "themes/components/libs/page-button";
 import RadioCard from "themes/components/libs/page-radio-card";
 
+// Helper
+import { passwordFormRules } from "app/helpers/passwordFormRules";
+
 // Styles
 import s from "./index.module.scss";
 
 function RegisterPage() {
   const router = useRouter();
+
+  //? ============== Handle Register ============= ?//
+  const [form] = Form.useForm();
+  const handleRegister = () => {
+    form.validateFields().then((value) => {
+      console.log(value);
+    });
+  };
+  // * ====================================== * //
+
   return (
     <PageContainerBox>
       <SimplePageContainer imgSrc="/images/register-background.jpg" cardClassName="halo">
@@ -52,14 +65,22 @@ function RegisterPage() {
 
           <section className={s.formSection}>
             <Col span={24}>
-              <Form layout="vertical">
-                <Form.Item name="email">
+              <Form layout="vertical" form={form}>
+                <Form.Item
+                  name="email"
+                  rules={[{ required: true, type: "email", message: "Please input your email!" }]}
+                >
                   <Input placeholder="Email Address" />
                 </Form.Item>
-                <Form.Item name="password">
+                <Form.Item name="password" rules={[passwordFormRules]}>
                   <Input.Password placeholder="Password" />
                 </Form.Item>
-                <Form.Item name="full_name">
+                <Form.Item
+                  name="full_name"
+                  rules={[
+                    { required: true, type: "string", message: "Please input your full name!" },
+                  ]}
+                >
                   <Input placeholder="Full Name" />
                 </Form.Item>
                 <Col span={24} style={{ margin: "50px 0 0" }}>
@@ -90,17 +111,19 @@ function RegisterPage() {
                   </Form.Item>
                 </Col>
 
-                <Row justify="space-between">
+                {/* <Row justify="space-between">
                   <Col>
                     <Checkbox>I Accept The Terms & Condition & Privacy Policy</Checkbox>
                   </Col>
-                </Row>
+                </Row> */}
               </Form>
             </Col>
           </section>
 
           <Col span={24}>
-            <PageButton type={"default " + s.button}>SIGN UP</PageButton>
+            <PageButton type={"default " + s.button} onClick={handleRegister}>
+              SIGN UP
+            </PageButton>
           </Col>
           <Col span={24}>
             <PageButton type={"outlined " + s.button} onClick={() => router.push("/signin")}>

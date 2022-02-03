@@ -10,6 +10,9 @@ import ContainerCard from "app/components/container/containerCard";
 // Data Hook
 import { useUsers } from "app/hooks/user";
 
+// Helper
+import { passwordFormRules } from "app/helpers/passwordFormRules";
+
 function CreateUser() {
   const router = useRouter();
 
@@ -51,28 +54,7 @@ function CreateUser() {
               </Form.Item>
             </Col>
             <Col span={24}>
-              <Form.Item
-                name="password"
-                label="Password"
-                rules={[
-                  {
-                    required: true,
-                    validator: (_, value) => {
-                      const validPassword = new RegExp("(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8}");
-                      if (validPassword.test(value)) {
-                        return Promise.resolve();
-                      }
-
-                      return Promise.reject(
-                        new Error(
-                          "Password must be at least 8 characters long and contain at least one capital letter and one number."
-                        )
-                      );
-                    },
-                  },
-                ]}
-                hasFeedback
-              >
+              <Form.Item name="password" label="Password" rules={[passwordFormRules]} hasFeedback>
                 <Input.Password placeholder="Input your password" />
               </Form.Item>
             </Col>
