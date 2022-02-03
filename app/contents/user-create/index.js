@@ -12,6 +12,7 @@ import { useUsers } from "app/hooks/user";
 
 // Helper
 import { passwordFormRules } from "app/helpers/passwordFormRules";
+import { stringCapitalize } from "app/helpers/capitalize";
 
 function CreateUser() {
   const router = useRouter();
@@ -25,7 +26,7 @@ function CreateUser() {
     form.validateFields().then(async (value) => {
       const submission = {
         email: value.email,
-        fullName: value.fullName,
+        fullName: stringCapitalize(value.fullName),
         password: value.password,
         role: value.role,
       };

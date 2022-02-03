@@ -1,5 +1,4 @@
 // Content
-
 import RegisterPage from "themes/contents/register";
 
 function PageRegister() {

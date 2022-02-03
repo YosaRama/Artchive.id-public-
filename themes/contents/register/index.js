@@ -11,6 +11,10 @@ import RadioCard from "themes/components/libs/page-radio-card";
 
 // Helper
 import { passwordFormRules } from "app/helpers/passwordFormRules";
+import { stringCapitalize } from "app/helpers/capitalize";
+
+// Data Hook
+import { useUsers } from "app/hooks/user";
 
 // Styles
 import s from "./index.module.scss";
@@ -19,10 +23,22 @@ function RegisterPage() {
   const router = useRouter();
 
   //? ============== Handle Register ============= ?//
+  const { onAdd } = useUsers({ queryString: "" });
   const [form] = Form.useForm();
+
   const handleRegister = () => {
-    form.validateFields().then((value) => {
-      console.log(value);
+    form.validateFields().then(async (value) => {
+      const submission = {
+        email: value.email,
+        fullName: stringCapitalize(value.fullName),
+        password: value.password,
+        role: value.role,
+      };
+
+      const result = await onAdd(submission);
+      if (result) {
+        router.push(`/`); //TODO : Create Thank You Page And Send Email
+      }
     });
   };
   // * ====================================== * //
@@ -76,7 +92,7 @@ function RegisterPage() {
                   <Input.Password placeholder="Password" />
                 </Form.Item>
                 <Form.Item
-                  name="full_name"
+                  name="fullName"
                   rules={[
                     { required: true, type: "string", message: "Please input your full name!" },
                   ]}
