@@ -12,9 +12,11 @@ import RadioCard from "themes/components/libs/page-radio-card";
 // Helper
 import { passwordFormRules } from "app/helpers/passwordFormRules";
 import { stringCapitalize } from "app/helpers/capitalize";
+import { hashPassword } from "app/helpers/auth";
 
 // Data Hook
 import { useUsers } from "app/hooks/user";
+import { useMailer } from "app/hooks/mailer";
 
 // Styles
 import s from "./index.module.scss";
@@ -24,6 +26,7 @@ function RegisterPage() {
 
   //? ============== Handle Register ============= ?//
   const { onAdd } = useUsers({ queryString: "" });
+  const { onSendMail } = useMailer({ pathName: "/register/confirmation" });
   const [form] = Form.useForm();
 
   const handleRegister = () => {
@@ -37,7 +40,18 @@ function RegisterPage() {
 
       const result = await onAdd(submission);
       if (result) {
-        router.push(`/`); //TODO : Create Thank You Page And Send Email
+        const sendMail = await onSendMail({
+          email: submission.email,
+          fullName: submission.fullName,
+        });
+        if (sendMail) {
+          const hashedEmail = await hashPassword(submission.email);
+          router.push(
+            `/register/confirmation/${encodeURIComponent(submission.email)}/${encodeURIComponent(
+              hashedEmail
+            )}`
+          ); //TODO : Create Thank You Page And Send Email
+        }
       }
     });
   };

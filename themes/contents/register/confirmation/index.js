@@ -6,6 +6,9 @@ import { Col, Result } from "antd";
 import PageButton from "themes/components/libs/page-button";
 import { useEffect, useState } from "react";
 
+// Data Hook
+import { useMailer } from "app/hooks/mailer";
+
 // Styles
 import s from "./index.module.scss";
 
@@ -13,10 +16,16 @@ function RegisterConfirmationPage(props) {
   const { email, status } = props;
 
   //? ============== Handle Resend Email ============= ?//
+  const { onSendMail } = useMailer({ pathName: "/register/confirmation" });
+
   const [resendActive, setResendActive] = useState(false);
   const [resendLoading, setResendLoading] = useState(30);
-  const handleResendEmail = () => {
-    setResendActive(!resendActive);
+
+  const handleResendEmail = async () => {
+    const sendEmail = await onSendMail({ email: email, fullName: email });
+    if (sendEmail) {
+      setResendActive(!resendActive);
+    }
   };
 
   useEffect(() => {
@@ -33,13 +42,13 @@ function RegisterConfirmationPage(props) {
       setResendLoading(30);
     }
   }, [resendActive, resendLoading]);
-
   // * ====================================== * //
+
   return (
     <>
       <section className={s.section}>
         <Result
-          status={status}
+          status="success"
           title="Verify Your Email!"
           subTitle={
             <>
@@ -76,7 +85,6 @@ function RegisterConfirmationPage(props) {
 
 RegisterConfirmationPage.propTypes = {
   email: propTypes.string,
-  status: propTypes.oneOf(["success", "404"]),
 };
 
 export default RegisterConfirmationPage;
