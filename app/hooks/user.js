@@ -300,6 +300,42 @@ export const useUser = ({ singleId }) => {
   );
   // ==========================
 
+  // Edit Status Hook Function
+  const onEditStatus = useCallback(
+    async (data) => {
+      try {
+        setLoading(true);
+        const { data: res } = await api.patch(`${pathKeys}/status`, data);
+        if (res.success) {
+          mutate();
+          SuccessNotification({
+            message: "Success",
+            description: `Edited status of ${msgHead} has successfully saved.`,
+          });
+          return res.success;
+        } else {
+          ErrorNotification({
+            message: "Error",
+            description: `Something went wrong while editing status of ${msgHead}`,
+          });
+
+          return res.success;
+        }
+      } catch (error) {
+        ErrorNotification({
+          message: "Error",
+          description: `Something went wrong while editing status of ${msgHead}`,
+        });
+
+        return false;
+      } finally {
+        setLoading(false);
+      }
+    },
+    [mutate, pathKeys]
+  );
+  // ==========================
+
   return {
     data: results,
     total,
@@ -309,6 +345,7 @@ export const useUser = ({ singleId }) => {
     onEditBilling,
     onEditProfileImage,
     onEditBannerImage,
+    onEditStatus,
   };
 };
 

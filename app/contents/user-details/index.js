@@ -19,6 +19,7 @@ import UserEditPassword from "./user-edit-password";
 import UserEditBilling from "./user-edit-billing";
 import UserEditArtwork from "./user-edit-artwork";
 import UserEditCollection from "./user-edit-collection";
+import UserEditAdvanced from "./user-edit-advance";
 
 // Style
 import s from "./index.module.scss";
@@ -134,6 +135,7 @@ function EditUser() {
             <Menu.Item key="3">Billing Information</Menu.Item>
             <Menu.Item key="4">Artwork</Menu.Item>
             <Menu.Item key="5">Collection</Menu.Item>
+            <Menu.Item key="6">Advance</Menu.Item>
           </Menu>
 
           {data?.length != 0 && (
@@ -145,6 +147,7 @@ function EditUser() {
               {selectedMenu == 3 && <UserEditBilling />}
               {selectedMenu == 4 && <UserEditArtwork initialData={data} />}
               {selectedMenu == 5 && <UserEditCollection />}
+              {selectedMenu == 6 && <UserEditAdvanced status={data.status} id={data.id} />}
             </Col>
           )}
         </Col>
