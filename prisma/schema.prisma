@@ -34,7 +34,8 @@ model User {
   collection      Collection[]
   cart            Cart[]
   order           Order[]
-  Certificate     Certificate[]
+  certificate     Certificate[]
+  status          Boolean
   createdAt       DateTime      @default(now())
   updatedAt       DateTime?     @updatedAt
 

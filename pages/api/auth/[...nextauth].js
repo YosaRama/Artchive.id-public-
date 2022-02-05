@@ -27,6 +27,10 @@ export default NextAuth({
         //? Check email or username
         const userFound = await GET_USER_BY_EMAIL({ email: userCredentials?.email });
 
+        if (!userFound.status) {
+          throw Error("INACTIVE");
+        }
+
         //? Condition where user not found
         if (!userFound) {
           throw new Error("User account doesn't exist. Enter a different account!");

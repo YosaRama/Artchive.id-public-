@@ -29,6 +29,12 @@ function ManagePageLogin() {
       if (!login.error) {
         router.push("/dashboard");
         setLoading(false);
+      } else if (login.error == "INACTIVE") {
+        ErrorNotification({
+          message: "Login Failed!",
+          description: "User account doesn't active, Please activation your account",
+        });
+        setLoading(false);
       } else {
         ErrorNotification({ message: "Login Failed!", description: login.error });
         setLoading(false);

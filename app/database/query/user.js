@@ -105,6 +105,7 @@ export const CREATE_USER = ({ email, password, fullName, role, slug }) => {
       password: password,
       full_name: fullName,
       role: role,
+      status: false,
     },
   });
 };
