@@ -170,6 +170,17 @@ export const UPDATE_USER_PROFILE_BANNER = ({ bannerId, id }) => {
 };
 // ==================================
 
+// Update user banner
+export const UPDATE_USER_STATUS = ({ status, id }) => {
+  return prisma.user.update({
+    where: { id: +id },
+    data: {
+      status: status,
+    },
+  });
+};
+// ==================================
+
 // * ====================================== * //
 
 //? ============== DELETE QUERY ============= ?//
