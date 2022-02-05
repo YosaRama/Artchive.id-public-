@@ -282,9 +282,9 @@ export default function EmailLayout(mailContent) {
                           .btn-primary table td:hover {
                             /*background-color: #34495e !important;*/ }
                           .btn-primary a:hover {
-                            background-color: #e5890a !important;
+                            background-color: transparent !important;
                             border-color: #e5890a !important; 
-                            color: white !important;
+                            color: #e5890a !important;
                           } 
                         }
                       </style>
