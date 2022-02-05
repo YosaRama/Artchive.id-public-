@@ -4,7 +4,11 @@ import api from "app/utils/swr";
 import { useCallback, useState } from "react";
 
 // Component
-import { SuccessNotification, ErrorNotification } from "app/components/libs/notification";
+import {
+  SuccessNotification,
+  ErrorNotification,
+  WarningNotification,
+} from "app/components/libs/notification";
 
 //TODO: Match with backend endpoint
 const pathName = "/user"; // End point
@@ -26,13 +30,18 @@ export const useUsers = ({ queryString = "" }) => {
       try {
         setLoading(true);
         const { data: res } = await api.post(pathName, data);
-        if (res.success) {
+        if (res.success == true) {
           mutate();
           SuccessNotification({
             message: "Success",
             description: `A new ${msgHead} has successfully saved.`,
           });
           return res.success;
+        } else if (res.success == "EXIST") {
+          WarningNotification({
+            message: "User Already Exist!",
+            description: "Account with this email already exist. Please try with another email",
+          });
         } else {
           ErrorNotification({
             message: "Error",

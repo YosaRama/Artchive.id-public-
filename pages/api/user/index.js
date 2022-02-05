@@ -1,5 +1,11 @@
 // Query
-import { CHECK_USER_BY_SLUG, CREATE_USER, GET_TOTAL_USER, GET_USER } from "app/database/query/user";
+import {
+  CHECK_USER_BY_SLUG,
+  CREATE_USER,
+  GET_TOTAL_USER,
+  GET_USER,
+  GET_USER_BY_EMAIL,
+} from "app/database/query/user";
 
 // Libs
 import { hashPassword } from "app/helpers/auth";
@@ -53,8 +59,16 @@ apiHandler.post(async (req, res) => {
     slugData: fullName,
     checkSlugFunc: CHECK_USER_BY_SLUG,
   });
+  // Handle Check Exist User
+  const existUser = await GET_USER_BY_EMAIL({ email: email });
 
   try {
+    if (existUser) {
+      res.status(200).json({
+        success: "EXIST",
+        message: `User Exist`,
+      });
+    }
     const result = await CREATE_USER({
       email,
       fullName,
@@ -66,12 +80,6 @@ apiHandler.post(async (req, res) => {
       res.status(200).json({
         success: true,
         message: `Successfully Create New ${messageHead}`,
-        data: result,
-      });
-    } else {
-      res.status(200).json({
-        success: false,
-        message: `Failed Create New ${messageHead}`,
         data: result,
       });
     }
