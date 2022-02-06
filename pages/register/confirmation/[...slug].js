@@ -17,9 +17,9 @@ export const getServerSideProps = async (ctx) => {
   const email = ctx.params.slug[0];
   const hashedEmail = ctx.params.slug[1];
 
-  const isVerify = await verifyPassword(email, hashedEmail);
+  const isVerify = email && hashedEmail && (await verifyPassword(email, hashedEmail));
 
-  if (isVerify) {
+  if (email && hashedEmail && isVerify) {
     return {
       props: {
         email: email,

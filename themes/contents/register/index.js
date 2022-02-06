@@ -39,6 +39,7 @@ function RegisterPage() {
       };
 
       const result = await onAdd(submission);
+      console.log(result);
       if (result) {
         const sendMail = await onSendMail({
           email: submission.email,

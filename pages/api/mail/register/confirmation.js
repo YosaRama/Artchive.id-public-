@@ -1,3 +1,6 @@
+// Query
+import { GET_USER_BY_EMAIL } from "app/database/query/user";
+
 // Templates
 import RegisterVerification from "app/template/mail/registerVerification";
 
@@ -14,6 +17,8 @@ const apiHandler = nextConnect();
 apiHandler.post(async (req, res) => {
   const { email, fullName } = req.body; // Data for mail template
   const hashEmail = await hashPassword(email);
+  const userDetails = await GET_USER_BY_EMAIL({ email });
+  const userId = userDetails.id;
   try {
     const sendMail = mailer({
       to: email,
@@ -21,7 +26,7 @@ apiHandler.post(async (req, res) => {
       subject: "Account Verification",
       html: RegisterVerification({
         fullName: fullName,
-        link: `/register/thank-you/${email}/${encodeURIComponent(hashEmail)}`,
+        link: `/register/thank-you/${userId}/${email}/${encodeURIComponent(hashEmail)}`,
       }),
     });
     if (sendMail) {

@@ -308,15 +308,22 @@ export const useUser = ({ singleId }) => {
         const { data: res } = await api.patch(`${pathKeys}/status`, data);
         if (res.success) {
           mutate();
-          SuccessNotification({
-            message: "Success",
-            description: `Edited status of ${msgHead} has successfully saved.`,
-          });
+          if (res.data.status) {
+            SuccessNotification({
+              message: "Congratulation!",
+              description: `This account has been successfully activated.`,
+            });
+          } else {
+            SuccessNotification({
+              message: "Success",
+              description: `This account has been successfully inactivated.`,
+            });
+          }
           return res.success;
         } else {
           ErrorNotification({
             message: "Error",
-            description: `Something went wrong while editing status of ${msgHead}`,
+            description: `Something went wrong while activation account of ${msgHead}`,
           });
 
           return res.success;
@@ -324,7 +331,7 @@ export const useUser = ({ singleId }) => {
       } catch (error) {
         ErrorNotification({
           message: "Error",
-          description: `Something went wrong while editing status of ${msgHead}`,
+          description: `Something went wrong while activation account of ${msgHead}`,
         });
 
         return false;
