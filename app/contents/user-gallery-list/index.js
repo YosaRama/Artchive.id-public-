@@ -22,7 +22,7 @@ function GalleryList() {
   // * ====================================== * //
 
   //? ============== Data Fetching ============= ?//
-  const { data, onDelete } = useUsers({
+  const { data, onDelete, total } = useUsers({
     queryString: `role=GALLERY&limit=${pageSize}&page=${currentPage}`,
   });
   // * ====================================== * //
