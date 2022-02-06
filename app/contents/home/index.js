@@ -93,6 +93,7 @@ function DashboardHome() {
             date={item.date}
             role={item.role}
             onDelete={userDelete}
+            status={item.status}
           />
         ))}
       </ContainerCard>

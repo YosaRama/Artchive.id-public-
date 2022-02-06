@@ -69,6 +69,7 @@ function UserListing(props) {
               name={item.full_name}
               role={item.role}
               onDelete={onDelete}
+              status={item.status}
             />
           );
         })}

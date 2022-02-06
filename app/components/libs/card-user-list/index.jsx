@@ -4,7 +4,7 @@ import Link from "next/link";
 import propTypes from "prop-types";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { Avatar, Card, Col, Row, Tooltip } from "antd";
+import { Avatar, Badge, Card, Col, Row, Tooltip } from "antd";
 
 // Icon
 import { EllipsisOutlined, CloseOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
@@ -17,7 +17,7 @@ import deleteConfirmModal from "../delete-modal-confirm";
 import RoleTag from "../role-tag";
 
 function CardUserList(props) {
-  const { image, name, email, role, date, id, onDelete } = props;
+  const { image, name, email, role, date, id, onDelete, status } = props;
   const router = useRouter();
 
   //? ============== Handle Options ============= ?//
@@ -37,7 +37,7 @@ function CardUserList(props) {
     <>
       <Card className={s.card} bodyStyle={{ padding: "10px 24px" }}>
         <Row justify="center" align="middle">
-          <Col span={3}>
+          <Col span={2}>
             <Avatar src={image ? image : "/images/profile-default.png"} />
           </Col>
           <Col span={6} className={s.nameBox}>
@@ -50,10 +50,16 @@ function CardUserList(props) {
               <p className={s.email}>{email}</p>
             </div>
           </Col>
-          <Col span={6}>
+          <Col span={4}>
             <RoleTag role={role} />
           </Col>
           <Col span={6}>{moment({ date }).format("DD MMMM YYYY")}</Col>
+          <Col span={3}>
+            <Badge
+              text={status ? "Active" : "Inactive"}
+              status={status ? "processing" : "default"}
+            />
+          </Col>
           <Col span={3} className={s.menu}>
             {!openMenu && (
               <Col>
@@ -103,6 +109,7 @@ CardUserList.propTypes = {
   date: propTypes.string,
   id: propTypes.oneOfType([propTypes.string, propTypes.number]).isRequired,
   onDelete: propTypes.func,
+  status: propTypes.bool,
 };
 
 export default CardUserList;
