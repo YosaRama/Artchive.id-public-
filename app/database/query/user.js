@@ -15,7 +15,7 @@ export const CHECK_USER_BY_SLUG = ({ slug }) => {
 //? ============== GET QUERY ============= ?//
 
 // Get User (Filter by Role, Email, FullName)
-export const GET_USER = ({ page = 1, limit = 15, role, email, fullName }) => {
+export const GET_USER = ({ page = 1, limit = 15, role, email, fullName, client = false }) => {
   // Handle Pagination
   const skip = limit != "all" ? (+page - 1) * +limit : undefined;
   return prisma.user.findMany({
@@ -27,8 +27,9 @@ export const GET_USER = ({ page = 1, limit = 15, role, email, fullName }) => {
     where: {
       AND: {
         role: role ? role : {}, // Can disable by empty object
-        email: email ? { contains: email } : {}, // Can disable by empty object
-        full_name: fullName ? { contains: fullName } : {}, // Can disable by empty object
+        email: email ? { contains: email } : {},
+        full_name: fullName ? { contains: fullName } : {},
+        NOT: { status: client == "true" ? false : {} },
       },
     },
     // ==========================

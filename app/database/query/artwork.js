@@ -72,6 +72,7 @@ export const GET_ARTWORK = ({ page = 1, limit = 15, client = false, artistId, sl
           : [],
         artist_id: artistId ? +artistId : {},
         NOT: { slug: slug ? slug : {} },
+        NOT: { status: client == "true" ? "DRAFT" : {} },
       },
     },
     // ==========================
@@ -195,7 +196,7 @@ export const GET_ALL_ARTWORK_SLUG = () => {
 // ==================================
 
 // Get total all data
-export const GET_TOTAL_ARTWORK = ({ client, artistId, slug, genreId }) => {
+export const GET_TOTAL_ARTWORK = ({ client = false, artistId, slug, genreId }) => {
   // Handle Multiple Genre
   const genreList = genreId && genreId.split(",");
   return prisma.artwork.count({
@@ -206,8 +207,6 @@ export const GET_TOTAL_ARTWORK = ({ client, artistId, slug, genreId }) => {
           { status: client == "true" ? "SOLD" : {} },
           { status: client == "true" ? "PUBLISH" : {} },
         ],
-        artist_id: artistId ? +artistId : {},
-        NOT: { slug: slug ? slug : {} },
         OR: genreList
           ? genreList.map((item) => {
               return {
@@ -219,6 +218,9 @@ export const GET_TOTAL_ARTWORK = ({ client, artistId, slug, genreId }) => {
               };
             })
           : [],
+        artist_id: artistId ? +artistId : {},
+        NOT: { slug: slug ? slug : {} },
+        NOT: { status: client == "true" ? "DRAFT" : {} },
       },
     },
     // ==========================

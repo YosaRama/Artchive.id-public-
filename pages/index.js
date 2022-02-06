@@ -35,7 +35,7 @@ export async function getStaticProps(ctx) {
   // * ====================================== * //
 
   //? ============== Artist Data ============= ?//
-  const artist = await GET_USER({ limit: 4, role: "ARTIST" });
+  const artist = await GET_USER({ limit: 4, role: "ARTIST", client: "true" });
   const artistData = artist.map((item) => {
     return {
       id: item.id,
