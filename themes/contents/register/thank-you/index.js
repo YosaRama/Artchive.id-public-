@@ -6,6 +6,7 @@ import { useEffect } from "react";
 
 // Data Hook
 import { useUser } from "app/hooks/user";
+import { useMailer } from "app/hooks/mailer";
 
 // Styles
 import s from "./index.module.scss";
@@ -13,15 +14,17 @@ import PageButton from "themes/components/libs/page-button";
 
 function RegisterThankyouPage(props) {
   const router = useRouter();
-  const { isVerify, id } = props;
+  const { isVerify, id, email } = props;
 
-  //? ============== Handle Change Status ============= ?//
+  //? ============== Handle Change Status & Welcome Email ============= ?//
   const { onEditStatus } = useUser({ singleId: id });
+  const { onSendMail } = useMailer({ pathName: "/register/thank-you" });
   useEffect(() => {
     if (isVerify) {
       onEditStatus({ status: true });
+      onSendMail({ email: email });
     }
-  }, [id, isVerify, onEditStatus]);
+  }, [email, id, isVerify, onEditStatus, onSendMail]);
   // * ====================================== * //
 
   return (
@@ -56,6 +59,7 @@ function RegisterThankyouPage(props) {
 RegisterThankyouPage.propTypes = {
   id: propTypes.number,
   isVerify: propTypes.bool,
+  email: propTypes.node,
 };
 
 export default RegisterThankyouPage;

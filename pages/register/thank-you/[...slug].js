@@ -5,10 +5,10 @@ import { verifyPassword } from "app/helpers/auth";
 import RegisterThankyouPage from "themes/contents/register/thank-you";
 
 function PageThankYouRegistration(props) {
-  const { isVerify, id } = props;
+  const { isVerify, id, email } = props;
   return (
     <>
-      <RegisterThankyouPage isVerify={isVerify} id={+id} />
+      <RegisterThankyouPage isVerify={isVerify} id={+id} email={email} />
     </>
   );
 }
@@ -23,6 +23,7 @@ export const getServerSideProps = async (ctx) => {
   return {
     props: {
       id: id,
+      email: email,
       isVerify: isVerify,
     },
   };
