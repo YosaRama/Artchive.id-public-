@@ -5,7 +5,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cypress": "cypress open"
   },
   "dependencies": {
     "@prisma/client": "^3.9.1",
@@ -36,6 +37,7 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "cypress": "^9.4.1",
     "eslint": "7",
     "eslint-config-next": "12.0.4"
   }
