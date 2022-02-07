@@ -23,7 +23,9 @@ function ArtistList() {
 
   //? ============== Data Fetching ============= ?//
   const { data, onDelete, total } = useUsers({
-    queryString: `role=ARTIST&limit=${pageSize}&page=${currentPage}`,
+    queryString: `role=ARTIST&limit=${pageSize}&page=${currentPage}&fullName=${
+      searchValue ? searchValue : ""
+    }`,
   });
   // * ====================================== * //
 

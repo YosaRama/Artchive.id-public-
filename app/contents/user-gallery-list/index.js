@@ -23,7 +23,9 @@ function GalleryList() {
 
   //? ============== Data Fetching ============= ?//
   const { data, onDelete, total } = useUsers({
-    queryString: `role=GALLERY&limit=${pageSize}&page=${currentPage}`,
+    queryString: `role=GALLERY&limit=${pageSize}&page=${currentPage}&fullName=${
+      searchValue ? searchValue : ""
+    }`,
   });
   // * ====================================== * //
 

@@ -23,7 +23,9 @@ function CollectorList() {
 
   //? ============== Data Fetching ============= ?//
   const { data, onDelete, total } = useUsers({
-    queryString: `role=COLLECTOR&limit=${pageSize}&page=${currentPage}`,
+    queryString: `role=COLLECTOR&limit=${pageSize}&page=${currentPage}&fullName=${
+      searchValue ? searchValue : ""
+    }`,
   });
   // * ====================================== * //
 
