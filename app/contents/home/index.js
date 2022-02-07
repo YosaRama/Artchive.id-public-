@@ -1,5 +1,5 @@
 // Libs
-import { Card, Col, Row } from "antd";
+import { Card, Col, Empty, Row } from "antd";
 import Link from "next/link";
 
 // Component
@@ -96,6 +96,11 @@ function DashboardHome() {
             status={item.status}
           />
         ))}
+        {userData.length == 0 && (
+          <Col span={24}>
+            <Empty />
+          </Col>
+        )}
       </ContainerCard>
       {/* ============================= */}
 
@@ -132,6 +137,11 @@ function DashboardHome() {
               />
             </Col>
           ))}
+          {artworkData.length == 0 && (
+            <Col span={24}>
+              <Empty />
+            </Col>
+          )}
         </Row>
       </ContainerCard>
       {/* ============================= */}
