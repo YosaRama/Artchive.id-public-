@@ -96,7 +96,7 @@ function DashboardHome() {
             status={item.status}
           />
         ))}
-        {userData.length == 0 && (
+        {userData?.length == 0 && (
           <Col span={24}>
             <Empty />
           </Col>
@@ -137,7 +137,7 @@ function DashboardHome() {
               />
             </Col>
           ))}
-          {artworkData.length == 0 && (
+          {artworkData?.length == 0 && (
             <Col span={24}>
               <Empty />
             </Col>
