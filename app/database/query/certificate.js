@@ -8,7 +8,11 @@ import { prisma } from "../connection";
 //? ============== GET QUERY ============= ?//
 
 export const GET_CERTIFICATE_LAST_ID = () => {
-  return prisma.certificate.findFirst({ select: { id: true }, orderBy: { id: "desc" } });
+  return prisma.certificate.findFirst({
+    select: { id: true },
+    orderBy: { id: "desc" },
+    where: { type: "MAIN" },
+  });
 };
 
 // * ====================================== * //

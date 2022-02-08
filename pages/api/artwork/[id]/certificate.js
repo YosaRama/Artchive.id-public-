@@ -3,6 +3,7 @@ import nextConnect from "next-connect";
 import pdf from "html-pdf";
 import QRCode from "qrcode";
 import moment from "moment";
+import { v4 as uuid } from "uuid";
 const apiHandler = nextConnect();
 
 // Upload Libs
@@ -27,11 +28,11 @@ const s3 = new aws.S3();
 apiHandler.post(async (req, res) => {
   // Artwork ID
   const { id } = req.query;
-  const certificateId = (await GET_CERTIFICATE_LAST_ID())?.id + 1;
+  const lastCertificateId = await GET_CERTIFICATE_LAST_ID();
+  const certificateId = lastCertificateId ? lastCertificateId.id + 1 : 1;
   // ====================
 
   // Certificate Data
-  //TODO : Property get from database with artwork ID
   const {
     title,
     artist,
@@ -49,8 +50,8 @@ apiHandler.post(async (req, res) => {
   const certificateSerial = `ARTCHIVE/ART-${id}/${artworkDate}/${artistId}/${moment().format(
     "DDMMYYYY"
   )}/${certificateId}`;
-  const certificateKeys = `ARTIST-${artistId}/ART-${id}/CERTIFICATE/certificate-${certificateId}.pdf`;
-  const certificateMainKeys = `ARTIST-${artistId}/ART-${id}/CERTIFICATE/main-certificate-${certificateId}.pdf`;
+  const certificateKeys = `ARTIST-${artistId}/ART-${id}/CERTIFICATE/${uuid()}-certificate-${certificateId}.pdf`;
+  const certificateMainKeys = `ARTIST-${artistId}/ART-${id}/CERTIFICATE/${uuid()}-main-certificate-${certificateId}.pdf`;
   // ====================
 
   //? ============== Generate QR Code ============= ?//

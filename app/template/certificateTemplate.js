@@ -87,16 +87,19 @@ const certificateTemplate = ({
         }
         .artwork-section {
           margin: 5px auto;
+          height: 200px;
         }
         .artwork-img {
           text-align: right;
+          position:relative;
         }
         .artwork-img img {
-          width: calc(100% - 20px);
-          height: 200px;
+          position:relative;
+          max-width: calc(100% - 20px);
+          max-height: 200px;
           -o-object-fit: contain;
           object-fit: contain;
-          margin-right: 20px;
+          margin-right:20px;
         }
         .signature-section {
           margin: 0px 0;
