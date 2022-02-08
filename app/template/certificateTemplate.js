@@ -92,7 +92,7 @@ const certificateTemplate = ({
           text-align: right;
         }
         .artwork-img img {
-          width: auto;
+          width: calc(100% - 20px);
           height: 200px;
           -o-object-fit: contain;
           object-fit: contain;
