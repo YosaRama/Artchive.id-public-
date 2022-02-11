@@ -20,7 +20,7 @@ apiHandler.post(async (req, res) => {
   const userDetails = await GET_USER_BY_EMAIL({ email });
   const userId = userDetails.id;
   try {
-    const sendMail = mailer({
+    const sendMail = await mailer({
       to: email,
       from: `${process.env.SMTP_MAIL_FROM}`,
       subject: "Account Verification",
@@ -29,6 +29,7 @@ apiHandler.post(async (req, res) => {
         link: `/register/thank-you/${userId}/${email}/${encodeURIComponent(hashEmail)}`,
       }),
     });
+
     if (sendMail) {
       res.status(200).json({
         success: true,

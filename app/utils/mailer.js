@@ -13,40 +13,20 @@ async function mailer({ from, to, subject, html }) {
   });
   // * ====================================== * //
 
-  // //? ============== Send Email ============= ?//
-  // let send = await transporter.sendMail({
-  //   from: from,
-  //   to: to,
-  //   subject: subject,
-  //   html: html,
-  // });
-  // // * ====================================== * //
-
-  // if (send) {
-  //   return true;
-  // } else {
-  //   false;
-  // }
-
-  const mailMessage = {
+  //? ============== Send Email ============= ?//
+  let send = await transporter.sendMail({
     from: from,
     to: to,
     subject: subject,
     html: html,
-  };
-
-  return new Promise((resolve, reject) => {
-    transporter.sendMail(mailMessage, function (err, info) {
-      let sendStatus = "error";
-      let sendInfo = "";
-      if (err) sendInfo = err;
-      else {
-        sendStatus = "success";
-        sendInfo = info;
-      }
-      resolve({ status: sendStatus, info: sendInfo });
-    });
   });
+
+  if (send) {
+    return send;
+  } else {
+    false;
+  }
+  // * ====================================== * //
 }
 
 export default mailer;

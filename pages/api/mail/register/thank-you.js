@@ -11,7 +11,7 @@ const apiHandler = nextConnect();
 apiHandler.post(async (req, res) => {
   const { email } = req.body; // Data for mail template
   try {
-    const sendMail = mailer({
+    const sendMail = await mailer({
       to: email,
       from: `${process.env.SMTP_MAIL_FROM}`,
       subject: "Welcome to Artchive.id",
