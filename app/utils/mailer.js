@@ -6,7 +6,6 @@ async function mailer({ from, to, subject, html }) {
   let transporter = nodemailer.createTransport({
     host: `${process.env.SMTP_HOST}`,
     port: `${process.env.SMTP_PORT}`,
-    secure: false, //TODO : Change to true when use port 465
     auth: {
       user: `${process.env.SMTP_USER}`,
       pass: `${process.env.SMTP_PASS}`,
@@ -14,20 +13,40 @@ async function mailer({ from, to, subject, html }) {
   });
   // * ====================================== * //
 
-  //? ============== Send Email ============= ?//
-  let send = await transporter.sendMail({
+  // //? ============== Send Email ============= ?//
+  // let send = await transporter.sendMail({
+  //   from: from,
+  //   to: to,
+  //   subject: subject,
+  //   html: html,
+  // });
+  // // * ====================================== * //
+
+  // if (send) {
+  //   return true;
+  // } else {
+  //   false;
+  // }
+
+  const mailMessage = {
     from: from,
     to: to,
     subject: subject,
     html: html,
-  });
-  // * ====================================== * //
+  };
 
-  if (send) {
-    return true;
-  } else {
-    false;
-  }
+  return new Promise((resolve, reject) => {
+    transporter.sendMail(mailMessage, function (err, info) {
+      let sendStatus = "error";
+      let sendInfo = "";
+      if (err) sendInfo = err;
+      else {
+        sendStatus = "success";
+        sendInfo = info;
+      }
+      resolve({ status: sendStatus, info: sendInfo });
+    });
+  });
 }
 
 export default mailer;
