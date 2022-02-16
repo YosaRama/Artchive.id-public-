@@ -5,4 +5,5 @@ module.exports = {
   role: "ADMIN",
   slug: "admin",
   status: true,
+  provider: "CREDENTIALS",
 };

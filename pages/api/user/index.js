@@ -75,6 +75,7 @@ apiHandler.post(async (req, res) => {
       password: hashedPassword,
       role,
       slug,
+      provider: "CREDENTIALS",
     });
     if (result) {
       res.status(200).json({

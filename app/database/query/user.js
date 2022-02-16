@@ -98,7 +98,7 @@ export const GET_TOTAL_USER = ({ role, email, fullName }) => {
 //? ============== CREATE QUERY ============= ?//
 
 // Create new user
-export const CREATE_USER = ({ email, password, fullName, role, slug }) => {
+export const CREATE_USER = ({ email, password, fullName, role, slug, provider }) => {
   return prisma.user.create({
     data: {
       email: email,
@@ -107,6 +107,7 @@ export const CREATE_USER = ({ email, password, fullName, role, slug }) => {
       full_name: fullName,
       role: role,
       status: false,
+      provider: provider,
     },
   });
 };

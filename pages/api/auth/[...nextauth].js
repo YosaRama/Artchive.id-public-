@@ -7,9 +7,10 @@ import FacebookProvider from "next-auth/providers/facebook";
 
 // Helper
 import { verifyPassword } from "app/helpers/auth";
+import { slugParse } from "app/helpers/slugParse";
 
 // Query
-import { GET_USER_BY_EMAIL } from "app/database/query/user";
+import { GET_USER_BY_EMAIL, CREATE_USER, CHECK_USER_BY_SLUG } from "app/database/query/user";
 
 export default NextAuth({
   session: {
@@ -48,9 +49,15 @@ export default NextAuth({
       },
     }),
     GoogleProvider({
-      clientId: "GET from Google API",
-      clientSecret: "GET from Google API",
-      authorizationUrl: "GET from Google API",
+      clientId: process.env.GOOGLE_AUTH_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_AUTH_CLIENT_SECRET,
+      authorization: {
+        params: {
+          prompt: "consent",
+          access_type: "offline",
+          response_type: "code",
+        },
+      },
     }),
     FacebookProvider({
       clientId: "GET from Facebook API",
@@ -65,12 +72,49 @@ export default NextAuth({
         return true;
       }
       // * ====================================== * //
+
+      //? ============== Handle Google Login ============= ?//
+      if (account.provider === "google") {
+        try {
+          // Check existing user
+          const existsUser = await GET_USER_BY_EMAIL({ email: user.email });
+
+          // Create User if user exists
+          if (!existsUser) {
+            const userSlug = await slugParse({
+              slugData: user.name,
+              checkSlugFunc: CHECK_USER_BY_SLUG,
+            });
+            const newUser = await CREATE_USER({
+              email: user.email,
+              fullName: user.name,
+              slug: userSlug,
+              provider: account.provider.toUpperCase(),
+              password: null,
+              role: "ARTIST", //TODO : Create Modal Choosing role
+            });
+          }
+
+          return true;
+        } catch (error) {
+          console.log(error);
+          return false;
+        }
+      }
+      // * ====================================== * //
     },
     //* Setting JWT Token
     async jwt({ token, user, account, profile, isNewUser }) {
-      if (account) {
+      //? ============== Handle Token Credentials Login ============= ?//
+      if (account.provider === "credentials") {
         token.user = user; // Insert user to token for access on session
       }
+      // * ====================================== * //
+      //? ============== Handle Token Google Login ============= ?//
+      if (account.provider === "google") {
+        token.user = user;
+      }
+      // * ====================================== * //
       return token;
     },
     //* Setting Session

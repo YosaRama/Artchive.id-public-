@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { Button, Checkbox, Col, Form, Input, Radio, Row } from "antd";
 import { useRouter } from "next/router";
+import { signIn } from "next-auth/react";
 
 // Components
 import PageContainerBox from "themes/components/container/box-container";
@@ -39,7 +40,7 @@ function RegisterPage() {
       };
 
       const result = await onAdd(submission);
-      console.log(result);
+
       if (result) {
         const sendMail = await onSendMail({
           email: submission.email,
@@ -51,10 +52,21 @@ function RegisterPage() {
             `/register/confirmation/${encodeURIComponent(submission.email)}/${encodeURIComponent(
               hashedEmail
             )}`
-          ); //TODO : Create Thank You Page And Send Email
+          );
         }
       }
     });
+  };
+  // * ====================================== * //
+
+  //? ============== Handle Google Login ============= ?//
+  const handleGoogleLogin = async () => {
+    const login = await signIn("google", { callbackUrl: "/" });
+    console.log("before login");
+    if (login) {
+      console.log("after login");
+      console.log(login);
+    }
   };
   // * ====================================== * //
 
@@ -68,7 +80,7 @@ function RegisterPage() {
 
           <section className={s.socialButtonSection}>
             <Col span={24}>
-              <Button className={s.socialButton}>
+              <Button className={s.socialButton} onClick={handleGoogleLogin}>
                 <Row align="middle">
                   <span className={s.socialButtonIcon}>
                     <Image src="/images/google-icon.png" alt="" layout="fill" objectFit="contain" />

@@ -16,7 +16,7 @@ model User {
   email           String        @unique
   full_name       String
   slug            String        @unique
-  password        String
+  password        String?
   profile         Media?        @relation("profile", fields: [profile_img_id], references: [id])
   profile_img_id  Int?          @unique
   signature       Media?        @relation("signature", fields: [signature_id], references: [id])
@@ -30,6 +30,7 @@ model User {
   address         String?
   biography       String?
   role            Role
+  provider        AuthProvider
   artwork         Artwork[]
   collection      Collection[]
   cart            Cart[]
@@ -195,4 +196,10 @@ enum CartStatus {
 enum CertificateType {
   MAIN
   EDITION
+}
+
+enum AuthProvider {
+  CREDENTIALS
+  GOOGLE
+  FACEBOOK
 }
