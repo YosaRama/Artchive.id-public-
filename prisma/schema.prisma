@@ -29,7 +29,7 @@ model User {
   billing_address String?
   address         String?
   biography       String?
-  role            Role
+  role            Role?
   provider        AuthProvider
   artwork         Artwork[]
   collection      Collection[]

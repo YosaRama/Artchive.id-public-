@@ -91,7 +91,7 @@ export default NextAuth({
               slug: userSlug,
               provider: account.provider.toUpperCase(),
               password: null,
-              role: "ARTIST", //TODO : Create Modal Choosing role
+              role: null,
             });
           }
 
@@ -105,14 +105,19 @@ export default NextAuth({
     },
     //* Setting JWT Token
     async jwt({ token, user, account, profile, isNewUser }) {
+      // if (account) {
+      //   token.user = user;
+      // }
       //? ============== Handle Token Credentials Login ============= ?//
-      if (account.provider === "credentials") {
+      if (account?.provider === "credentials") {
         token.user = user; // Insert user to token for access on session
       }
       // * ====================================== * //
       //? ============== Handle Token Google Login ============= ?//
-      if (account.provider === "google") {
-        token.user = user;
+      if (account?.provider === "google") {
+        // Get user with email
+        const existsUser = await GET_USER_BY_EMAIL({ email: user.email });
+        token.user = { user: existsUser };
       }
       // * ====================================== * //
       return token;
@@ -124,6 +129,7 @@ export default NextAuth({
       session.user.email = token.user.user.email;
       session.user.full_name = token.user.user.full_name;
       session.user.role = token.user.user.role;
+
       return session;
     },
   },
