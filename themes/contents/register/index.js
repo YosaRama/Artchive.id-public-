@@ -128,7 +128,10 @@ function RegisterPage() {
                 </Form.Item>
                 <Col span={24} style={{ margin: "50px 0 0" }}>
                   <h1 style={{ fontSize: 24, marginBottom: 20 }}>Who Are You ?</h1>
-                  <Form.Item name="role">
+                  <Form.Item
+                    name="role"
+                    rules={[{ required: true, message: "Please select your role!" }]}
+                  >
                     <Radio.Group style={{ width: "100%" }}>
                       <Row gutter={[16, 0]}>
                         <Col span={8}>
