@@ -73,7 +73,12 @@ export const GET_USER_BY_ID = ({ id }) => {
 
 // Get User by Specific Email
 export const GET_USER_BY_EMAIL = ({ email }) => {
-  return prisma.user.findUnique({ where: { email: email } });
+  return prisma.user.findUnique({
+    where: { email: email },
+    include: {
+      profile: true,
+    },
+  });
 };
 // ==================================
 

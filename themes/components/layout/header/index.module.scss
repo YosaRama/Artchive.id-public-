@@ -17,3 +17,11 @@
     font-size: 24px;
   }
 }
+
+.avatar {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+}

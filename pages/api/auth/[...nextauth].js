@@ -125,6 +125,7 @@ export default NextAuth({
       session.user.email = token.user.user.email;
       session.user.full_name = token.user.user.full_name;
       session.user.role = token.user.user.role;
+      session.user.image = token.user.user.profile?.url || null;
 
       return session;
     },
