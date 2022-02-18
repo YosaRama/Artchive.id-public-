@@ -1,19 +1,57 @@
 // Libs
 import Image from "next/image";
 import Link from "next/link";
+import { signIn } from "next-auth/react";
 import { Button, Checkbox, Col, Form, Input, Row } from "antd";
 
 // Components
 import PageContainerBox from "themes/components/container/box-container";
 import SimplePageContainer from "themes/components/container/simple-page-container";
 import PageButton from "themes/components/libs/page-button";
+import { ErrorNotification } from "app/components/libs/notification";
 
 // Styles
 import s from "./index.module.scss";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 function SignInPage() {
   const router = useRouter();
+  const [form] = Form.useForm();
+
+  //? ============== Handle Google Login ============= ?//
+  const handleGoogleLogin = async () => {
+    const login = await signIn("google", { callbackUrl: "/register/role-selection" });
+  };
+  // * ====================================== * //
+
+  //? ============== Handle Credentials Login ============= ?//
+  const [loading, setLoading] = useState(false);
+  const handleLogin = () => {
+    form.validateFields().then(async (value) => {
+      setLoading(true);
+      const login = await signIn("credentials", {
+        redirect: false,
+        email: value.email,
+        password: value.password,
+      });
+      if (!login.error) {
+        router.push("/profile");
+        setLoading(false);
+      } else if (login.error == "INACTIVE") {
+        ErrorNotification({
+          message: "Login Failed!",
+          description: "User account doesn't active, Please activation your account",
+        });
+        setLoading(false);
+      } else {
+        ErrorNotification({ message: "Login Failed!", description: login.error });
+        setLoading(false);
+      }
+    });
+  };
+  // * ====================================== * //
+
   return (
     <PageContainerBox>
       <SimplePageContainer imgSrc="/images/signin-background.jpg" cardClassName="halo">
@@ -24,7 +62,7 @@ function SignInPage() {
 
           <section className={s.socialButtonSection}>
             <Col span={24}>
-              <Button className={s.socialButton}>
+              <Button className={s.socialButton} onClick={handleGoogleLogin}>
                 <Row align="middle">
                   <span className={s.socialButtonIcon}>
                     <Image src="/images/google-icon.png" alt="" layout="fill" objectFit="contain" />
@@ -52,7 +90,7 @@ function SignInPage() {
 
           <section className={s.formSection}>
             <Col span={24}>
-              <Form layout="vertical">
+              <Form layout="vertical" form={form}>
                 <Form.Item name="email" label="Email">
                   <Input placeholder="Email Address" />
                 </Form.Item>
@@ -76,7 +114,9 @@ function SignInPage() {
           </section>
 
           <Col span={24}>
-            <PageButton type={"default " + s.button}>LOG IN</PageButton>
+            <PageButton type={"default " + s.button} onClick={handleLogin} loading={loading}>
+              LOG IN
+            </PageButton>
           </Col>
           <Col span={24}>
             <PageButton type={"outlined " + s.button} onClick={() => router.push("/register")}>
