@@ -61,12 +61,7 @@ function RegisterPage() {
 
   //? ============== Handle Google Login ============= ?//
   const handleGoogleLogin = async () => {
-    const login = await signIn("google", { callbackUrl: "/" });
-    console.log("before login");
-    if (login) {
-      console.log("after login");
-      console.log(login);
-    }
+    const login = await signIn("google", { callbackUrl: "/register/role-selection" });
   };
   // * ====================================== * //
 

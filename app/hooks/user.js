@@ -343,6 +343,42 @@ export const useUser = ({ singleId }) => {
   );
   // ==========================
 
+  // Edit Role Hook Function
+  const onEditRole = useCallback(
+    async (data) => {
+      try {
+        setLoading(true);
+        const { data: res } = await api.patch(`${pathKeys}/role`, data);
+        if (res.success) {
+          mutate();
+          SuccessNotification({
+            message: "Success",
+            description: `Edited role of ${msgHead} has successfully saved.`,
+          });
+          return res.success;
+        } else {
+          ErrorNotification({
+            message: "Error",
+            description: `Something went wrong while editing role of ${msgHead}`,
+          });
+
+          return res.success;
+        }
+      } catch (error) {
+        ErrorNotification({
+          message: "Error",
+          description: `Something went wrong while editing role of ${msgHead}`,
+        });
+
+        return false;
+      } finally {
+        setLoading(false);
+      }
+    },
+    [mutate, pathKeys]
+  );
+  // ==========================
+
   return {
     data: results,
     total,
@@ -353,6 +389,7 @@ export const useUser = ({ singleId }) => {
     onEditProfileImage,
     onEditBannerImage,
     onEditStatus,
+    onEditRole,
   };
 };
 

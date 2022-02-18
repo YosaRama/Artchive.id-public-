@@ -183,6 +183,17 @@ export const UPDATE_USER_STATUS = ({ status, id }) => {
 };
 // ==================================
 
+// Update user banner
+export const UPDATE_USER_ROLE = ({ role, id }) => {
+  return prisma.user.update({
+    where: { id: +id },
+    data: {
+      role: role,
+    },
+  });
+};
+// ==================================
+
 // * ====================================== * //
 
 //? ============== DELETE QUERY ============= ?//

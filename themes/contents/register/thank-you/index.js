@@ -3,6 +3,7 @@ import propTypes from "prop-types";
 import { Result } from "antd";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import { signOut } from "next-auth/react";
 
 // Data Hook
 import { useUser } from "app/hooks/user";

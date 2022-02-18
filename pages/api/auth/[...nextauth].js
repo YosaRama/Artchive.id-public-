@@ -97,7 +97,6 @@ export default NextAuth({
 
           return true;
         } catch (error) {
-          console.log(error);
           return false;
         }
       }
@@ -105,9 +104,6 @@ export default NextAuth({
     },
     //* Setting JWT Token
     async jwt({ token, user, account, profile, isNewUser }) {
-      // if (account) {
-      //   token.user = user;
-      // }
       //? ============== Handle Token Credentials Login ============= ?//
       if (account?.provider === "credentials") {
         token.user = user; // Insert user to token for access on session
