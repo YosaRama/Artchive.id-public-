@@ -13,7 +13,7 @@ export default Dashboard;
 export const getServerSideProps = async (ctx) => {
   //? ============== Handle Session ============= ?//
   const session = await getSession(ctx);
-  if (session) {
+  if (session && session.user.role == "ADMIN") {
     return {
       props: {
         session: session,

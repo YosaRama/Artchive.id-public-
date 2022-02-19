@@ -16,8 +16,8 @@ export default UserEditPage;
 
 export const getServerSideProps = async (ctx) => {
   //? ============== Handle Session ============= ?//
-  const session = await getSession({ req: ctx.req });
-  if (session) {
+  const session = await getSession(ctx);
+  if (session && session.user.role == "ADMIN") {
     return {
       props: {
         session: session,
