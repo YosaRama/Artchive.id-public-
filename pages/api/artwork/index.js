@@ -15,10 +15,10 @@ const messageHead = "artwork";
 
 // GET HANDLER
 apiHandler.get(async (req, res) => {
-  const { page, limit, client, artistId, slug, genreId } = req.query;
+  const { page, limit, client, artistId, excludeSlug, genreId } = req.query;
   try {
-    const result = await GET_ARTWORK({ page, limit, client, artistId, slug, genreId });
-    const total = await GET_TOTAL_ARTWORK({ client, artistId, slug, genreId });
+    const result = await GET_ARTWORK({ page, limit, client, artistId, excludeSlug, genreId });
+    const total = await GET_TOTAL_ARTWORK({ client, artistId, excludeSlug, genreId });
     if (result) {
       res.status(200).json({
         success: true,

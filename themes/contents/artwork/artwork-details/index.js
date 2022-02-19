@@ -25,7 +25,7 @@ function ArtworkDetailsPage(props) {
 
   //? ============== Other Artwork Hook ============= ?//
   const { data: otherArtworkData } = useArtworks({
-    queryString: `slug=${artworkData.slug}&artistId=${artworkData.artist_id}`,
+    queryString: `excludeSlug=${artworkData.slug}&artistId=${artworkData.artist_id}&client=true`,
   });
   // * ====================================== * //
 
@@ -33,7 +33,7 @@ function ArtworkDetailsPage(props) {
   const genreListData = artworkData.genre.map((item) => item.id);
   const genreList = genreListData.join(",");
   const { data: mightLikeData } = useArtworks({
-    queryString: `slug=${artworkData.slug}&genreId=${genreList}`,
+    queryString: `excludeSlug=${artworkData.slug}&genreId=${genreList}&client=true`,
   });
   // * ====================================== * //
   return (

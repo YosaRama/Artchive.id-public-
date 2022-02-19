@@ -15,7 +15,14 @@ export const CHECK_ARTWORK_BY_SLUG = ({ slug }) => {
 //? ============== GET QUERY ============= ?//
 
 // Get Data (Filter by Role, Email, FullName)
-export const GET_ARTWORK = ({ page = 1, limit = 15, client = false, artistId, slug, genreId }) => {
+export const GET_ARTWORK = ({
+  page = 1,
+  limit = 15,
+  client = false,
+  artistId,
+  excludeSlug,
+  genreId,
+}) => {
   // Handle Pagination
   const skip = limit != "all" ? (+page - 1) * +limit : undefined;
   // Handle Multiple Genre
@@ -71,9 +78,9 @@ export const GET_ARTWORK = ({ page = 1, limit = 15, client = false, artistId, sl
             })
           : [],
         artist_id: artistId ? +artistId : {},
-        NOT: { slug: slug ? slug : {} },
         NOT: { status: client == "true" ? "DRAFT" : {} },
       },
+      NOT: { slug: excludeSlug ? excludeSlug : {} },
     },
     // ==========================
 
@@ -196,7 +203,7 @@ export const GET_ALL_ARTWORK_SLUG = () => {
 // ==================================
 
 // Get total all data
-export const GET_TOTAL_ARTWORK = ({ client = false, artistId, slug, genreId }) => {
+export const GET_TOTAL_ARTWORK = ({ client = false, artistId, excludeSlug, genreId }) => {
   // Handle Multiple Genre
   const genreList = genreId && genreId.split(",");
   return prisma.artwork.count({
@@ -219,9 +226,9 @@ export const GET_TOTAL_ARTWORK = ({ client = false, artistId, slug, genreId }) =
             })
           : [],
         artist_id: artistId ? +artistId : {},
-        NOT: { slug: slug ? slug : {} },
         NOT: { status: client == "true" ? "DRAFT" : {} },
       },
+      NOT: { slug: excludeSlug ? excludeSlug : {} },
     },
     // ==========================
   });
