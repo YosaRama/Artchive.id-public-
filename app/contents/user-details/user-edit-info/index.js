@@ -16,6 +16,7 @@ function UserEditInfo(props) {
         address: value.address,
         instagramUrl: value.instagram_url,
         facebookUrl: value.facebook_url,
+        biography: value.biography,
       };
 
       const result = onSave(submission);
@@ -34,6 +35,9 @@ function UserEditInfo(props) {
             </Form.Item>
             <Form.Item label="Email" name="email">
               <Input disabled />
+            </Form.Item>
+            <Form.Item label="Bio" name="biography">
+              <Input.TextArea autoSize={{ maxRows: 5, minRows: 3 }} />
             </Form.Item>
             <Divider orientation="left">Address Information</Divider>
             <Form.Item label="City" name="city">

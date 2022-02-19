@@ -123,7 +123,16 @@ export const CREATE_USER = ({ email, password, fullName, role, slug, provider })
 //? ============== UPDATE QUERY ============= ?//
 
 // Update user with specific ID details without password
-export const UPDATE_USER = ({ id, fullName, email, city, address, instagramUrl, facebookUrl }) => {
+export const UPDATE_USER = ({
+  id,
+  fullName,
+  email,
+  city,
+  address,
+  instagramUrl,
+  facebookUrl,
+  biography,
+}) => {
   return prisma.user.update({
     data: {
       email: email,
@@ -132,6 +141,7 @@ export const UPDATE_USER = ({ id, fullName, email, city, address, instagramUrl, 
       address: address,
       instagram_url: instagramUrl,
       facebook_url: facebookUrl,
+      biography: biography,
     },
     where: { id: +id },
   });

@@ -28,7 +28,7 @@ model User {
   city            String?
   billing_address String?
   address         String?
-  biography       String?
+  biography       String?       @db.Text
   role            Role?
   provider        AuthProvider
   artwork         Artwork[]
