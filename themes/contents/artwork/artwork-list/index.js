@@ -43,8 +43,8 @@ function ArtworkListPage() {
   return (
     <>
       <section>
-        <PageBanner imgSrc="/images/banner-artwork-list.jpg" className={s.bannerContainer}>
-          <div className={s.bannerTitle}>
+        <PageBanner imgSrc="/images/banner-artwork-list.jpg" className={"page-bannerContainer"}>
+          <div className={"page-bannerTitle"}>
             <h1>Artwork List</h1>
           </div>
         </PageBanner>
