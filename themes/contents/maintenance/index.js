@@ -10,7 +10,7 @@ import s from "./index.module.scss";
 
 function PageMaintenance() {
   return (
-    <PageContainerBox sectionClass={s.section} containerClass={s.container}>
+    <PageContainerBox sectionclass={s.section} containerClass={s.container}>
       <Col style={{ textAlign: "center" }}>
         <Col span={24} className={s.image}>
           <Image src="/images/under-construction.png" alt="" layout="fill" />

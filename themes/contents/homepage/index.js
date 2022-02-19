@@ -29,7 +29,7 @@ function Homepage(props) {
       {/* ============================ */}
 
       {/* Artwork Section */}
-      <PageContainerBox sectionClass={s.sectionContainer}>
+      <PageContainerBox sectionclass={s.sectionContainer}>
         {artworkData && (
           <section className={s.section}>
             <PageTitle

@@ -6,9 +6,9 @@ import propTypes from "prop-types";
 import s from "./index.module.scss";
 
 function PageContainerBox(props) {
-  const { sectionClass, containerClass, children } = props;
+  const { sectionclass, containerClass, children } = props;
   return (
-    <section className={s.section + " " + sectionClass}>
+    <section className={s.section + " " + sectionclass}>
       <Col className={s.container + " " + containerClass} {...props}>
         {children}
       </Col>
@@ -17,7 +17,7 @@ function PageContainerBox(props) {
 }
 
 PageContainerBox.propTypes = {
-  sectionClass: propTypes.string,
+  sectionclass: propTypes.string,
   containerClass: propTypes.string,
   children: propTypes.node,
 };

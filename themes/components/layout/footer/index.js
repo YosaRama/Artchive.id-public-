@@ -24,7 +24,7 @@ function PageFooter() {
 
   return (
     <Footer className={s.footer}>
-      <PageContainerBox sectionClass={s.section}>
+      <PageContainerBox sectionclass={s.section}>
         <Row className={s.topContainer}>
           <Col span={8} className={s.logo} onClick={() => router.push("/")}>
             <Image alt="" src="/images/logo-text-white.png" layout="fill" />

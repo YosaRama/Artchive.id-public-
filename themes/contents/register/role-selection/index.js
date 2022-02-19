@@ -40,7 +40,7 @@ function RegisterRoleSelectionPage(props) {
   // * ====================================== * //
   return (
     <>
-      <PageContainerBox sectionClass={s.section} containerClass={s.container}>
+      <PageContainerBox sectionclass={s.section} containerClass={s.container}>
         <Col span={12}>
           <Col span={24}>
             <h1 className={s.title}>Role Selection</h1>
