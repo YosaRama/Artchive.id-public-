@@ -9,7 +9,7 @@ function UserEditInfo(props) {
   //? ============== Handle Initial Data ============= ?//
   const initialDataParse = {
     ...initialData,
-    birth_date: moment(initialData?.birth_date),
+    birth_date: initialData?.birth_date ? moment(initialData?.birth_date) : null,
   };
   // * ====================================== * //
 
