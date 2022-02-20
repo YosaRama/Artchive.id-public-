@@ -1,4 +1,5 @@
-// Import database query
+// Libs
+import moment from "moment";
 import { prisma } from "../connection";
 
 //? ============== OPTION QUERY ============= ?//
@@ -132,6 +133,7 @@ export const UPDATE_USER = ({
   instagramUrl,
   facebookUrl,
   biography,
+  birthDate,
 }) => {
   return prisma.user.update({
     data: {
@@ -142,6 +144,7 @@ export const UPDATE_USER = ({
       instagram_url: instagramUrl,
       facebook_url: facebookUrl,
       biography: biography,
+      birth_date: moment(birthDate).toISOString(),
     },
     where: { id: +id },
   });

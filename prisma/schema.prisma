@@ -29,6 +29,7 @@ model User {
   billing_address String?
   address         String?
   biography       String?       @db.Text
+  birth_date      DateTime?     @db.Date
   role            Role?
   provider        AuthProvider
   artwork         Artwork[]

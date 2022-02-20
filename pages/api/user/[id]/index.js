@@ -47,7 +47,8 @@ apiHandler.get(async (req, res) => {
 // EDIT SINGLE HANDLER
 apiHandler.put(async (req, res) => {
   const id = req.query.id;
-  const { email, fullName, city, address, instagramUrl, facebookUrl, biography } = req.body;
+  const { email, fullName, city, address, instagramUrl, facebookUrl, biography, birthDate } =
+    req.body;
   try {
     const result = await UPDATE_USER({
       id,
@@ -58,6 +59,7 @@ apiHandler.put(async (req, res) => {
       instagramUrl,
       facebookUrl,
       biography,
+      birthDate,
     });
     if (result) {
       res.status(200).json({

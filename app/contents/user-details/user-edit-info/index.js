@@ -1,9 +1,17 @@
 // Libs
+import moment from "moment";
 import propTypes from "prop-types";
-import { Button, Col, Divider, Form, Input } from "antd";
+import { Button, Col, DatePicker, Divider, Form, Input } from "antd";
 
 function UserEditInfo(props) {
   const { initialData, onSave, loading } = props;
+
+  //? ============== Handle Initial Data ============= ?//
+  const initialDataParse = {
+    ...initialData,
+    birth_date: moment(initialData?.birth_date),
+  };
+  // * ====================================== * //
 
   //? ============== Handle Update ============= ?//
   const [form] = Form.useForm();
@@ -17,9 +25,11 @@ function UserEditInfo(props) {
         instagramUrl: value.instagram_url,
         facebookUrl: value.facebook_url,
         biography: value.biography,
+        birthDate: moment(value.birth_date).toISOString(),
       };
 
       const result = onSave(submission);
+      // console.log(submission);
     });
   };
   // * ====================================== * //
@@ -27,7 +37,7 @@ function UserEditInfo(props) {
   return (
     <>
       {initialData && (
-        <Form layout="vertical" initialValues={initialData} form={form}>
+        <Form layout="vertical" initialValues={initialDataParse} form={form}>
           <Col span={12}>
             <Divider orientation="left">Profile Information</Divider>
             <Form.Item label="Full Name" name="full_name">
@@ -35,6 +45,9 @@ function UserEditInfo(props) {
             </Form.Item>
             <Form.Item label="Email" name="email">
               <Input disabled />
+            </Form.Item>
+            <Form.Item label="Birthday" name="birth_date">
+              <DatePicker format={"DD MMMM YYYY"} style={{ width: "50%" }} />
             </Form.Item>
             <Form.Item label="Bio" name="biography">
               <Input.TextArea autoSize={{ maxRows: 5, minRows: 3 }} />
