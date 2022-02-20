@@ -13,38 +13,12 @@ import s from "./index.module.scss";
 function ArtistListPage() {
   //? ============== Artist Hook ============= ?//
   const artistData = [
-    { id: 1, name: "Yosa Rama", city: "Bali" },
-    { id: 1, name: "Yosa Rama", city: "Bali" },
-    { id: 1, name: "Yosa Rama", city: "Bali" },
-    { id: 1, name: "Yosa Rama", city: "Bali" },
-    { id: 1, name: "Yosa Rama", city: "Bali" },
-    { id: 1, name: "Yosa Rama", city: "Bali" },
-    { id: 1, name: "Yosa Rama", city: "Bali" },
-    { id: 1, name: "Yosa Rama", city: "Bali" },
-    { id: 1, name: "Yosa Rama", city: "Bali" },
-    { id: 1, name: "Yosa Rama", city: "Bali" },
-    { id: 1, name: "Yosa Rama", city: "Bali" },
-    { id: 1, name: "Yosa Rama", city: "Bali" },
-    { id: 1, name: "Yosa Rama", city: "Bali" },
-    { id: 1, name: "Yosa Rama", city: "Bali" },
-    { id: 1, name: "Yosa Rama", city: "Bali" },
-    { id: 1, name: "Yosa Rama", city: "Bali" },
-    { id: 1, name: "Yosa Rama", city: "Bali" },
-    { id: 1, name: "Yosa Rama", city: "Bali" },
-    { id: 1, name: "Yosa Rama", city: "Bali" },
-    { id: 1, name: "Yosa Rama", city: "Bali" },
-    { id: 1, name: "Yosa Rama", city: "Bali" },
-    { id: 1, name: "Yosa Rama", city: "Bali" },
-    { id: 1, name: "Yosa Rama", city: "Bali" },
-    { id: 1, name: "Yosa Rama", city: "Bali" },
-    { id: 1, name: "Yosa Rama", city: "Bali" },
-    { id: 1, name: "Yosa Rama", city: "Bali" },
-    { id: 1, name: "Yosa Rama", city: "Bali" },
-    { id: 1, name: "Yosa Rama", city: "Bali" },
-    { id: 1, name: "Yosa Rama", city: "Bali" },
-    { id: 1, name: "Yosa Rama", city: "Bali" },
-    { id: 1, name: "Yosa Rama", city: "Bali" },
-    { id: 1, name: "Yosa Rama", city: "Bali" },
+    { id: 1, name: "Yosa Rama", city: "Bali", slug: "yosa-rama-dinata" },
+    { id: 1, name: "Yosa Rama", city: "Bali", slug: "yosa-rama-dinata" },
+    { id: 1, name: "Yosa Rama", city: "Bali", slug: "yosa-rama-dinata" },
+    { id: 1, name: "Yosa Rama", city: "Bali", slug: "yosa-rama-dinata" },
+    { id: 1, name: "Yosa Rama", city: "Bali", slug: "yosa-rama-dinata" },
+    { id: 1, name: "Yosa Rama", city: "Bali", slug: "yosa-rama-dinata" },
   ];
   // * ====================================== * //
 
@@ -101,6 +75,7 @@ function ArtistListPage() {
               <Col span={6} key={index}>
                 <PageArtistCard
                   artistId={item.id}
+                  artistSlug={item.slug}
                   artistName={item.name}
                   artistCity={item.city}
                   avatarSrc={item.avatar}

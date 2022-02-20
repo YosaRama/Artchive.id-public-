@@ -8,10 +8,10 @@ import { useRouter } from "next/router";
 import s from "./index.module.scss";
 
 function PageArtistCard(props) {
-  const { artistName, artistCity, avatarSrc, bannerSrc, artistId } = props;
+  const { artistName, artistCity, avatarSrc, bannerSrc, artistId, artistSlug } = props;
   const router = useRouter();
   return (
-    <Col className={s.card} onClick={() => router.push(`/artist/${artistId}`)}>
+    <Col className={s.card} onClick={() => router.push(`/artist/${artistSlug}`)}>
       <Col className={s.image}>
         <Image
           src={bannerSrc ? bannerSrc : "/images/default-images.jpg"}
@@ -38,6 +38,7 @@ function PageArtistCard(props) {
 
 PageArtistCard.propTypes = {
   artistId: propTypes.number.isRequired,
+  artistSlug: propTypes.string.isRequired,
   artistName: propTypes.string,
   artistCity: propTypes.string,
   avatarSrc: propTypes.string,

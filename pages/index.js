@@ -39,6 +39,7 @@ export async function getStaticProps(ctx) {
   const artistData = artist.map((item) => {
     return {
       id: item.id,
+      slug: item.slug,
       name: item?.full_name,
       city: item?.city,
       avatar: item?.profile?.url ? `${process.env.NEXT_PUBLIC_S3_URL}/${item?.profile?.url}` : null,

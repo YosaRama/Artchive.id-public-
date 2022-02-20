@@ -69,6 +69,7 @@ function Homepage(props) {
                 <Col span={6} key={index}>
                   <PageArtistCard
                     artistId={item.id}
+                    artistSlug={item.slug}
                     artistName={item.name}
                     artistCity={item.city}
                     avatarSrc={item.avatar}
@@ -83,7 +84,7 @@ function Homepage(props) {
 
         {/* Divider Section */}
         <section className={s.divider}>
-          <PageDividerButton>SEE MORE</PageDividerButton>
+          <PageDividerButton onClick={() => router.push("/artist")}>SEE MORE</PageDividerButton>
         </section>
         {/* ============================ */}
       </PageContainerBox>
