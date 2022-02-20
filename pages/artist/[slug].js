@@ -1,9 +1,12 @@
-// Libs
-import { useRouter } from "next/router";
+// Contents
+import PageArtistDetails from "themes/contents/artist/artist-details";
 
-function ArtistPage(props) {
-  const router = useRouter();
-  return <h1>I Made Duatmika</h1>;
+function ArtistPage() {
+  return (
+    <>
+      <PageArtistDetails />
+    </>
+  );
 }
 
 export default ArtistPage;

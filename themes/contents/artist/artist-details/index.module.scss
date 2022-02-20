@@ -1,0 +1,76 @@
+.artistDetailsSection {
+  margin: 50px 0;
+}
+
+.profileImage {
+  height: 750px;
+  width: auto;
+  img {
+    object-fit: cover;
+  }
+}
+
+.profileDetails {
+  padding-right: 50px !important;
+  &::before {
+    content: "";
+    position: absolute;
+    width: 3px;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: #e5890a;
+  }
+}
+
+.profileDetailsContent {
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.artistLocation {
+  font-size: 16px;
+}
+
+.artistDate {
+  font-size: 16px;
+}
+
+.artistName {
+  font-size: 48px;
+  margin-bottom: 0;
+}
+
+.artistBio {
+  margin-top: 30px;
+  font-size: 18px;
+}
+
+.socialProfile {
+  margin: 30px 0;
+}
+
+.socialIcon {
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #140c01;
+  &:hover {
+    color: #e5890a;
+  }
+}
+
+.artworkListTitle {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 50px;
+}
+
+.divider {
+  text-align: center;
+  margin: 30px 0;
+  button {
+    height: 50px !important;
+  }
+}
