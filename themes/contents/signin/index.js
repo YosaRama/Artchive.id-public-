@@ -5,8 +5,8 @@ import { signIn } from "next-auth/react";
 import { Button, Checkbox, Col, Form, Input, Row } from "antd";
 
 // Components
-import PageContainerBox from "themes/components/container/box-container";
-import SimplePageContainer from "themes/components/container/simple-page-container";
+import ThemesContainerMain from "themes/components/container/main";
+import ThemesContainerTwoColumns from "themes/components/container/two-column";
 import ThemesButton from "themes/components/libs/button";
 import { ErrorNotification } from "app/components/libs/notification";
 
@@ -53,8 +53,8 @@ function SignInPage() {
   // * ====================================== * //
 
   return (
-    <PageContainerBox>
-      <SimplePageContainer imgSrc="/images/signin-background.jpg" cardClassName="halo">
+    <ThemesContainerMain>
+      <ThemesContainerTwoColumns imgSrc="/images/signin-background.jpg" cardClassName="halo">
         <section style={{ textAlign: "center" }} className={s.section}>
           <Col span={24} className={s.title}>
             <h1>Sign In</h1>
@@ -124,8 +124,8 @@ function SignInPage() {
             </ThemesButton>
           </Col>
         </section>
-      </SimplePageContainer>
-    </PageContainerBox>
+      </ThemesContainerTwoColumns>
+    </ThemesContainerMain>
   );
 }
 

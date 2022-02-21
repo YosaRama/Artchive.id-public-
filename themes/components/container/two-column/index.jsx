@@ -3,7 +3,7 @@ import propTypes from "prop-types";
 import Image from "next/image";
 import { Card, Col, Row } from "antd";
 
-function SimplePageContainer(props) {
+function ThemesContainerTwoColumns(props) {
   const { imgSrc, children } = props;
   return (
     <section>
@@ -24,9 +24,9 @@ function SimplePageContainer(props) {
   );
 }
 
-SimplePageContainer.propTypes = {
+ThemesContainerTwoColumns.propTypes = {
   imgSrc: propTypes.string,
   children: propTypes.node,
 };
 
-export default SimplePageContainer;
+export default ThemesContainerTwoColumns;

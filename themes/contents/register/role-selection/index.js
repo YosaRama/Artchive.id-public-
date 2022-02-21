@@ -8,7 +8,7 @@ import { signOut } from "next-auth/react";
 import { useUser } from "app/hooks/user";
 
 // Components
-import PageContainerBox from "themes/components/container/box-container";
+import ThemesContainerMain from "themes/components/container/main";
 import ThemesButton from "themes/components/libs/button";
 import ThemesRadioWithImage from "themes/components/libs/radio-with-image";
 
@@ -40,7 +40,7 @@ function RegisterRoleSelectionPage(props) {
   // * ====================================== * //
   return (
     <>
-      <PageContainerBox sectionclass={s.section} containerClass={s.container}>
+      <ThemesContainerMain sectionclass={s.section} containerClass={s.container}>
         <Col span={12}>
           <Col span={24}>
             <h1 className={s.title}>Role Selection</h1>
@@ -86,7 +86,7 @@ function RegisterRoleSelectionPage(props) {
             <ThemesButton onClick={handleEdit}>SELECT ROLE</ThemesButton>
           </Col>
         </Col>
-      </PageContainerBox>
+      </ThemesContainerMain>
     </>
   );
 }

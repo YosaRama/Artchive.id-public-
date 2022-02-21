@@ -2,14 +2,14 @@
 import { Card, Col, Image, Row } from "antd";
 
 // Components
-import PageContainerBox from "themes/components/container/box-container";
+import ThemesContainerMain from "themes/components/container/main";
 
 // Styles
 import s from "./index.module.scss";
 
 // Icons
 import { InstagramOutlined, FacebookOutlined, MailOutlined } from "@ant-design/icons";
-import MasonryContainer from "themes/components/container/masonry-container";
+import ThemesContainerMasonry from "themes/components/container/masonry";
 import ThemesArtworkCard from "themes/components/libs/artwork-card";
 import ThemesArtworkWithFrame from "themes/components/libs/artwork-with-frame";
 import ThemesDividerWithButton from "themes/components/libs/divider-with-button";
@@ -110,7 +110,7 @@ function PageArtistDetails() {
   // * ====================================== * //
   return (
     <>
-      <PageContainerBox>
+      <ThemesContainerMain>
         <section className={s.artistDetailsSection}>
           <Card>
             <Row gutter={[64, 0]}>
@@ -161,7 +161,7 @@ function PageArtistDetails() {
 
         <section>
           <h1 className={s.artworkListTitle}>{`All Artwork by ${"Yosa Rama"}`}</h1>
-          <MasonryContainer breakPoint={4}>
+          <ThemesContainerMasonry breakPoint={4}>
             {artworkData?.map((item, index) => {
               return (
                 <ThemesArtworkCard
@@ -180,7 +180,7 @@ function PageArtistDetails() {
                 />
               );
             })}
-          </MasonryContainer>
+          </ThemesContainerMasonry>
 
           <section className={s.divider}>
             <ThemesButton onClick={() => router.push("/artwork")}>
@@ -207,7 +207,7 @@ function PageArtistDetails() {
             <ThemesDividerWithButton onClick={() => router.push("/artwork")}>SEE MORE</ThemesDividerWithButton>
           </section> */}
         </section>
-      </PageContainerBox>
+      </ThemesContainerMain>
     </>
   );
 }

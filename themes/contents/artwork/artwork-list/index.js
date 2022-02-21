@@ -4,8 +4,8 @@ import { useState } from "react";
 const { Option } = Select;
 
 // Components
-import PageContainerBox from "themes/components/container/box-container";
-import MasonryContainer from "themes/components/container/masonry-container";
+import ThemesContainerMain from "themes/components/container/main";
+import ThemesContainerMasonry from "themes/components/container/masonry";
 import ThemesArtworkCard from "themes/components/libs/artwork-card";
 import ThemesBanner from "themes/components/libs/banner";
 import ThemesButton from "themes/components/libs/button";
@@ -50,7 +50,7 @@ function ArtworkListPage() {
         </ThemesBanner>
       </section>
 
-      <PageContainerBox>
+      <ThemesContainerMain>
         <section style={{ margin: "50px 0" }}>
           <Row justify="space-between">
             <Col span={6}>
@@ -105,7 +105,7 @@ function ArtworkListPage() {
             </Col>
 
             <Col span={17}>
-              <MasonryContainer breakPoint={3}>
+              <ThemesContainerMasonry breakPoint={3}>
                 {artworkData?.map((item) => {
                   return (
                     <Col span={24} key={item?.id}>
@@ -129,7 +129,7 @@ function ArtworkListPage() {
                     </Col>
                   );
                 })}
-              </MasonryContainer>
+              </ThemesContainerMasonry>
               {!end && (
                 <Col span={24} style={{ textAlign: "center" }}>
                   <ThemesButton onClick={handleLoadMore}>Load More</ThemesButton>
@@ -138,7 +138,7 @@ function ArtworkListPage() {
             </Col>
           </Row>
         </section>
-      </PageContainerBox>
+      </ThemesContainerMain>
     </>
   );
 }

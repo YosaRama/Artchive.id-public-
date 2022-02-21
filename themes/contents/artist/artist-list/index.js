@@ -2,7 +2,7 @@
 import { Affix, Col, Form, Input, Row } from "antd";
 
 // Components
-import PageContainerBox from "themes/components/container/box-container";
+import ThemesContainerMain from "themes/components/container/main";
 import ThemesArtistCard from "themes/components/libs/artist-card";
 import ThemesBanner from "themes/components/libs/banner";
 import ThemesButton from "themes/components/libs/button";
@@ -33,7 +33,7 @@ function ArtistListPage() {
       </section>
 
       <Affix>
-        <PageContainerBox sectionclass={s.searchSection}>
+        <ThemesContainerMain sectionclass={s.searchSection}>
           <section className={s.searchContainer}>
             <Form>
               <Row gutter={[16, 0]}>
@@ -65,10 +65,10 @@ function ArtistListPage() {
               </Row>
             </Form>
           </section>
-        </PageContainerBox>
+        </ThemesContainerMain>
       </Affix>
 
-      <PageContainerBox>
+      <ThemesContainerMain>
         <section className={s.listSection}>
           <Row gutter={[16, 32]}>
             {artistData.map((item, index) => (
@@ -85,7 +85,7 @@ function ArtistListPage() {
             ))}
           </Row>
         </section>
-      </PageContainerBox>
+      </ThemesContainerMain>
     </>
   );
 }

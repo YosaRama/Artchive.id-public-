@@ -5,7 +5,7 @@ import propTypes from "prop-types";
 import { Card, Col, Image, Row } from "antd";
 
 // Components
-import PageContainerBox from "themes/components/container/box-container";
+import ThemesContainerMain from "themes/components/container/main";
 import ThemesArtworkWithFrame from "themes/components/libs/artwork-with-frame";
 import ThemesButton from "themes/components/libs/button";
 import ThemesDividerWithButton from "themes/components/libs/divider-with-button";
@@ -39,7 +39,7 @@ function ArtworkDetailsPage(props) {
   return (
     <>
       <section style={{ margin: "50px 0" }}>
-        <PageContainerBox>
+        <ThemesContainerMain>
           <Row gutter={[64, 0]}>
             <Col span={12}>
               <Col span={24} style={{ paddingLeft: 0, paddingRight: 0, marginBottom: 10 }}>
@@ -145,7 +145,7 @@ function ArtworkDetailsPage(props) {
               <ThemesDividerWithButton>SEE MORE</ThemesDividerWithButton>
             </section>
           )}
-        </PageContainerBox>
+        </ThemesContainerMain>
       </section>
     </>
   );

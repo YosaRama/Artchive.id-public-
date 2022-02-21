@@ -6,7 +6,7 @@ import { Col, Layout, Row } from "antd";
 const { Footer } = Layout;
 
 // Components
-import PageContainerBox from "themes/components/container/box-container";
+import ThemesContainerMain from "themes/components/container/main";
 
 // Styles
 import s from "./index.module.scss";
@@ -24,7 +24,7 @@ function ThemesFooter() {
 
   return (
     <Footer className={s.footer}>
-      <PageContainerBox sectionclass={s.section}>
+      <ThemesContainerMain sectionclass={s.section}>
         <Row className={s.topContainer}>
           <Col span={8} className={s.logo} onClick={() => router.push("/")}>
             <Image alt="" src="/images/logo-text-white.png" layout="fill" />
@@ -75,7 +75,7 @@ function ThemesFooter() {
             </Row>
           </Col>
         </Row>
-      </PageContainerBox>
+      </ThemesContainerMain>
     </Footer>
   );
 }

@@ -5,7 +5,7 @@ import Masonry from "react-masonry-css";
 // Styles
 import s from "./index.module.scss";
 
-function MasonryContainer(props) {
+function ThemesContainerMasonry(props) {
   const { children, breakPoint } = props;
   return (
     <Masonry breakpointCols={breakPoint} className={s.grid} columnClassName={s.column}>
@@ -14,9 +14,9 @@ function MasonryContainer(props) {
   );
 }
 
-MasonryContainer.propTypes = {
+ThemesContainerMasonry.propTypes = {
   children: propTypes.node,
   breakPoint: propTypes.number,
 };
 
-export default MasonryContainer;
+export default ThemesContainerMasonry;

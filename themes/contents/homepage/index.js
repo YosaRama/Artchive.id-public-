@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { Col, Row } from "antd";
 
 // Components
-import PageContainerBox from "themes/components/container/box-container";
+import ThemesContainerMain from "themes/components/container/main";
 import ThemesArtistCard from "themes/components/libs/artist-card";
 import ThemesArtworkWithFrame from "themes/components/libs/artwork-with-frame";
 import ThemesDividerWithButton from "themes/components/libs/divider-with-button";
@@ -29,7 +29,7 @@ function Homepage(props) {
       {/* ============================ */}
 
       {/* Artwork Section */}
-      <PageContainerBox sectionclass={s.sectionContainer}>
+      <ThemesContainerMain sectionclass={s.sectionContainer}>
         {artworkData && (
           <section className={s.section}>
             <ThemesHeadline
@@ -91,7 +91,7 @@ function Homepage(props) {
           </ThemesDividerWithButton>
         </section>
         {/* ============================ */}
-      </PageContainerBox>
+      </ThemesContainerMain>
     </>
   );
 }

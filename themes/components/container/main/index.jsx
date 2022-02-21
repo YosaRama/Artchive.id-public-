@@ -5,7 +5,7 @@ import propTypes from "prop-types";
 // Style
 import s from "./index.module.scss";
 
-function PageContainerBox(props) {
+function ThemesContainerMain(props) {
   const { sectionclass, containerClass, children } = props;
   return (
     <section className={s.section + " " + sectionclass}>
@@ -16,10 +16,10 @@ function PageContainerBox(props) {
   );
 }
 
-PageContainerBox.propTypes = {
+ThemesContainerMain.propTypes = {
   sectionclass: propTypes.string,
   containerClass: propTypes.string,
   children: propTypes.node,
 };
 
-export default PageContainerBox;
+export default ThemesContainerMain;

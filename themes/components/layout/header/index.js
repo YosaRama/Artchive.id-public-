@@ -7,7 +7,7 @@ import { Avatar, Col, Drawer, Layout, Row } from "antd";
 const { Header } = Layout;
 
 // Components
-import PageContainerBox from "themes/components/container/box-container";
+import ThemesContainerMain from "themes/components/container/main";
 import ThemesButton from "themes/components/libs/button";
 
 // Icons
@@ -31,7 +31,7 @@ function ThemesHeader() {
   return (
     <>
       <Header className={s.container}>
-        <PageContainerBox>
+        <ThemesContainerMain>
           <Row style={{ height: "100%" }} justify="space-between">
             <Col className={s.logo} onClick={() => router.push("/")}>
               <Image src="/images/logo-without-text.png" alt="" layout="fill" objectFit="contain" />
@@ -70,7 +70,7 @@ function ThemesHeader() {
               <MenuOutlined className={s.hamburger} onClick={() => setOpenMenu(true)} />
             </Col>
           </Row>
-        </PageContainerBox>
+        </ThemesContainerMain>
       </Header>
 
       <Drawer onClose={() => setOpenMenu(false)} visible={openMenu}></Drawer>
