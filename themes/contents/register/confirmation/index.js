@@ -3,7 +3,7 @@ import propTypes from "prop-types";
 import { Col, Result } from "antd";
 
 // Components
-import PageButton from "themes/components/libs/page-button";
+import ThemesButton from "themes/components/libs/button";
 import { useEffect, useState } from "react";
 
 // Data Hook
@@ -65,13 +65,13 @@ function RegisterConfirmationPage(props) {
           }
           extra={
             <>
-              <PageButton
+              <ThemesButton
                 onClick={handleResendEmail}
                 loading={resendActive}
                 type={"default " + s.resendButton}
               >
                 {resendActive ? `CHECK YOUR EMAIL` : "RESEND VERIFICATION EMAIL"}
-              </PageButton>
+              </ThemesButton>
               {resendActive && (
                 <p className={s.resendLoading}>Resend verification email on {resendLoading}s</p>
               )}

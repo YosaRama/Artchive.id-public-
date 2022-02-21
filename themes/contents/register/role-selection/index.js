@@ -9,8 +9,8 @@ import { useUser } from "app/hooks/user";
 
 // Components
 import PageContainerBox from "themes/components/container/box-container";
-import PageButton from "themes/components/libs/page-button";
-import RadioCard from "themes/components/libs/page-radio-card";
+import ThemesButton from "themes/components/libs/button";
+import ThemesRadioWithImage from "themes/components/libs/radio-with-image";
 
 // Styles
 import s from "./index.module.scss";
@@ -54,19 +54,28 @@ function RegisterRoleSelectionPage(props) {
                 <Radio.Group style={{ width: "100%" }}>
                   <Row gutter={[16, 0]}>
                     <Col span={8}>
-                      <RadioCard value="ARTIST" imgSrc="/images/frontpage-artist-icon.png">
+                      <ThemesRadioWithImage
+                        value="ARTIST"
+                        imgSrc="/images/frontpage-artist-icon.png"
+                      >
                         Artist
-                      </RadioCard>
+                      </ThemesRadioWithImage>
                     </Col>
                     <Col span={8}>
-                      <RadioCard value="COLLECTOR" imgSrc="/images/frontpage-collector-icon.png">
+                      <ThemesRadioWithImage
+                        value="COLLECTOR"
+                        imgSrc="/images/frontpage-collector-icon.png"
+                      >
                         Collector
-                      </RadioCard>
+                      </ThemesRadioWithImage>
                     </Col>
                     <Col span={8}>
-                      <RadioCard value="GALLERY" imgSrc="/images/frontpage-gallery-icon.png">
+                      <ThemesRadioWithImage
+                        value="GALLERY"
+                        imgSrc="/images/frontpage-gallery-icon.png"
+                      >
                         Gallery
-                      </RadioCard>
+                      </ThemesRadioWithImage>
                     </Col>
                   </Row>
                 </Radio.Group>
@@ -74,7 +83,7 @@ function RegisterRoleSelectionPage(props) {
             </Form>
           </Col>
           <Col span={24} style={{ margin: "30px 0" }}>
-            <PageButton onClick={handleEdit}>SELECT ROLE</PageButton>
+            <ThemesButton onClick={handleEdit}>SELECT ROLE</ThemesButton>
           </Col>
         </Col>
       </PageContainerBox>

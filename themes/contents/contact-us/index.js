@@ -4,7 +4,7 @@ import { Col, Form, Input } from "antd";
 // Components
 import PageContainerBox from "themes/components/container/box-container";
 import SimplePageContainer from "themes/components/container/simple-page-container";
-import PageButton from "themes/components/libs/page-button";
+import ThemesButton from "themes/components/libs/button";
 
 // Styles
 import s from "./index.module.scss";
@@ -35,7 +35,7 @@ function ContactUsPage() {
           </section>
 
           <Col span={24}>
-            <PageButton type={"default " + s.button}>SEND</PageButton>
+            <ThemesButton type={"default " + s.button}>SEND</ThemesButton>
           </Col>
         </section>
       </SimplePageContainer>

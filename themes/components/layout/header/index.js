@@ -8,7 +8,7 @@ const { Header } = Layout;
 
 // Components
 import PageContainerBox from "themes/components/container/box-container";
-import PageButton from "themes/components/libs/page-button";
+import ThemesButton from "themes/components/libs/button";
 
 // Icons
 import { CartIcon } from "public/icons/cart-icon";
@@ -52,19 +52,19 @@ function PageHeader() {
               )}
               {!session && (
                 <>
-                  <PageButton
+                  <ThemesButton
                     style={{ marginRight: "15px" }}
                     type="outlined"
                     onClick={() => router.push("/signin")}
                   >
                     LOGIN
-                  </PageButton>
-                  <PageButton
+                  </ThemesButton>
+                  <ThemesButton
                     style={{ marginRight: "15px" }}
                     onClick={() => router.push("/register")}
                   >
                     REGISTER
-                  </PageButton>
+                  </ThemesButton>
                 </>
               )}
               <MenuOutlined className={s.hamburger} onClick={() => setOpenMenu(true)} />

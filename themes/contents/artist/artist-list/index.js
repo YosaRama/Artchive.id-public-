@@ -3,9 +3,9 @@ import { Affix, Col, Form, Input, Row } from "antd";
 
 // Components
 import PageContainerBox from "themes/components/container/box-container";
-import PageArtistCard from "themes/components/libs/page-artist-card";
-import PageBanner from "themes/components/libs/page-banner";
-import PageButton from "themes/components/libs/page-button";
+import ThemesArtistCard from "themes/components/libs/artist-card";
+import ThemesBanner from "themes/components/libs/banner";
+import ThemesButton from "themes/components/libs/button";
 
 // Styles
 import s from "./index.module.scss";
@@ -25,11 +25,11 @@ function ArtistListPage() {
   return (
     <>
       <section>
-        <PageBanner imgSrc="/images/banner-artist-list.jpg" className={"page-bannerContainer"}>
+        <ThemesBanner imgSrc="/images/banner-artist-list.jpg" className={"page-bannerContainer"}>
           <div className={"page-bannerTitle"}>
             <h1>Our Artist</h1>
           </div>
-        </PageBanner>
+        </ThemesBanner>
       </section>
 
       <Affix>
@@ -55,10 +55,10 @@ function ArtistListPage() {
                 <Col span={6}>
                   <Row gutter={[16, 0]}>
                     <Col span={12}>
-                      <PageButton type={`outlined ${s.button}`}>RESET</PageButton>
+                      <ThemesButton type={`outlined ${s.button}`}>RESET</ThemesButton>
                     </Col>
                     <Col span={12}>
-                      <PageButton type={`default ${s.button}`}>SEARCH</PageButton>
+                      <ThemesButton type={`default ${s.button}`}>SEARCH</ThemesButton>
                     </Col>
                   </Row>
                 </Col>
@@ -73,7 +73,7 @@ function ArtistListPage() {
           <Row gutter={[16, 32]}>
             {artistData.map((item, index) => (
               <Col span={6} key={index}>
-                <PageArtistCard
+                <ThemesArtistCard
                   artistId={item.id}
                   artistSlug={item.slug}
                   artistName={item.name}

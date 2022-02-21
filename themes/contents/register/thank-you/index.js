@@ -11,7 +11,7 @@ import { useMailer } from "app/hooks/mailer";
 
 // Styles
 import s from "./index.module.scss";
-import PageButton from "themes/components/libs/page-button";
+import ThemesButton from "themes/components/libs/button";
 
 function RegisterThankyouPage(props) {
   const router = useRouter();
@@ -48,7 +48,7 @@ function RegisterThankyouPage(props) {
           }
           extra={
             <>
-              <PageButton onClick={() => router.push("/signin")}>SIGN IN HERE</PageButton>
+              <ThemesButton onClick={() => router.push("/signin")}>SIGN IN HERE</ThemesButton>
             </>
           }
         />

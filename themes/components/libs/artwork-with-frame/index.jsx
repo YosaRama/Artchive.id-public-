@@ -7,7 +7,7 @@ import { Badge, Col, Image } from "antd";
 // Styles
 import s from "./index.module.scss";
 
-function PageArtworkFrame(props) {
+function ThemesArtworkWithFrame(props) {
   const router = useRouter();
   const { imgSrc, artworkTitle, artworkSize, artworkSlug, artworkStatus } = props;
   return (
@@ -40,7 +40,7 @@ function PageArtworkFrame(props) {
   );
 }
 
-PageArtworkFrame.propTypes = {
+ThemesArtworkWithFrame.propTypes = {
   artworkSlug: propTypes.string.isRequired,
   imgSrc: propTypes.string,
   artworkTitle: propTypes.string,
@@ -48,4 +48,4 @@ PageArtworkFrame.propTypes = {
   artworkStatus: propTypes.oneOf(["PUBLISH", "SOLD", "DRAFT"]),
 };
 
-export default PageArtworkFrame;
+export default ThemesArtworkWithFrame;

@@ -5,7 +5,7 @@ import { Col } from "antd";
 // Styles
 import s from "./index.module.scss";
 
-function PageTitle(props) {
+function ThemesHeadline(props) {
   const { title, subtitle, className } = props;
   return (
     <Col className={`${s.container} ${className}`}>
@@ -15,10 +15,10 @@ function PageTitle(props) {
   );
 }
 
-PageTitle.propTypes = {
+ThemesHeadline.propTypes = {
   title: propTypes.string.isRequired,
   subtitle: propTypes.string,
   className: propTypes.string,
 };
 
-export default PageTitle;
+export default ThemesHeadline;

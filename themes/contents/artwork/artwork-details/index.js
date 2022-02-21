@@ -6,10 +6,10 @@ import { Card, Col, Image, Row } from "antd";
 
 // Components
 import PageContainerBox from "themes/components/container/box-container";
-import PageArtworkFrame from "themes/components/libs/page-artwork-frame";
-import PageButton from "themes/components/libs/page-button";
-import PageDividerButton from "themes/components/libs/page-divider-button";
-import PageTitle from "themes/components/libs/page-title";
+import ThemesArtworkWithFrame from "themes/components/libs/artwork-with-frame";
+import ThemesButton from "themes/components/libs/button";
+import ThemesDividerWithButton from "themes/components/libs/divider-with-button";
+import ThemesHeadline from "themes/components/libs/headline";
 
 // Data Hook
 import { useArtworks } from "app/hooks/artwork";
@@ -89,10 +89,10 @@ function ArtworkDetailsPage(props) {
                   </p>
                 </Col>
                 <Col>
-                  <PageButton type={"default " + s.cartBtn}>
+                  <ThemesButton type={"default " + s.cartBtn}>
                     <CartIcon />
                     ADD TO CART
-                  </PageButton>
+                  </ThemesButton>
                 </Col>
               </Card>
             </Col>
@@ -100,7 +100,7 @@ function ArtworkDetailsPage(props) {
 
           {otherArtworkData?.length != 0 && (
             <section style={{ margin: "100px 0" }}>
-              <PageTitle
+              <ThemesHeadline
                 title={`Other artwork`}
                 subtitle={`${artworkData?.artist?.full_name}`}
                 className={s.sectionTitle}
@@ -109,7 +109,7 @@ function ArtworkDetailsPage(props) {
                 {otherArtworkData?.map((item) => {
                   return (
                     <Col span={6} key={item.id}>
-                      <PageArtworkFrame
+                      <ThemesArtworkWithFrame
                         imgSrc={`${process.env.NEXT_PUBLIC_S3_URL}/${item?.media_cover?.url}`}
                         artworkStatus={item.status}
                         artworkTitle={item.title}
@@ -120,18 +120,18 @@ function ArtworkDetailsPage(props) {
                   );
                 })}
               </Row>
-              <PageDividerButton>SEE MORE</PageDividerButton>
+              <ThemesDividerWithButton>SEE MORE</ThemesDividerWithButton>
             </section>
           )}
 
           {mightLikeData?.length != 0 && (
             <section style={{ margin: "100px 0" }}>
-              <PageTitle title="You Might Also Like" className={s.sectionTitle} />
+              <ThemesHeadline title="You Might Also Like" className={s.sectionTitle} />
               <Row gutter={[16, 0]} className={s.otherSection}>
                 {mightLikeData?.map((item) => {
                   return (
                     <Col span={6} key={item.id}>
-                      <PageArtworkFrame
+                      <ThemesArtworkWithFrame
                         imgSrc={`${process.env.NEXT_PUBLIC_S3_URL}/${item?.media_cover?.url}`}
                         artworkStatus={item.status}
                         artworkTitle={item.title}
@@ -142,7 +142,7 @@ function ArtworkDetailsPage(props) {
                   );
                 })}
               </Row>
-              <PageDividerButton>SEE MORE</PageDividerButton>
+              <ThemesDividerWithButton>SEE MORE</ThemesDividerWithButton>
             </section>
           )}
         </PageContainerBox>

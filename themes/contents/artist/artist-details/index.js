@@ -10,10 +10,10 @@ import s from "./index.module.scss";
 // Icons
 import { InstagramOutlined, FacebookOutlined, MailOutlined } from "@ant-design/icons";
 import MasonryContainer from "themes/components/container/masonry-container";
-import PageArtworkCardList from "themes/components/libs/page-artwork-card";
-import PageArtworkFrame from "themes/components/libs/page-artwork-frame";
-import PageDividerButton from "themes/components/libs/page-divider-button";
-import PageButton from "themes/components/libs/page-button";
+import ThemesArtworkCard from "themes/components/libs/artwork-card";
+import ThemesArtworkWithFrame from "themes/components/libs/artwork-with-frame";
+import ThemesDividerWithButton from "themes/components/libs/divider-with-button";
+import ThemesButton from "themes/components/libs/button";
 
 function PageArtistDetails() {
   //? ============== Artwork Hook ============= ?//
@@ -164,7 +164,7 @@ function PageArtistDetails() {
           <MasonryContainer breakPoint={4}>
             {artworkData?.map((item, index) => {
               return (
-                <PageArtworkCardList
+                <ThemesArtworkCard
                   key={index}
                   artistCity="Bali"
                   artistName="Yosa Rama"
@@ -183,16 +183,16 @@ function PageArtistDetails() {
           </MasonryContainer>
 
           <section className={s.divider}>
-            <PageButton onClick={() => router.push("/artwork")}>
+            <ThemesButton onClick={() => router.push("/artwork")}>
               SEE MORE ARTWORK FROM YOSA RAMA
-            </PageButton>
+            </ThemesButton>
           </section>
 
           {/* <Row gutter={[16, 32]}>
             {artworkData?.map((item, index) => {
               return (
                 <Col key={index} span={6}>
-                  <PageArtworkFrame
+                  <ThemesArtworkWithFrame
                     artworkSize="200 x 300"
                     artworkSlug="love"
                     artworkStatus={item.status}
@@ -204,7 +204,7 @@ function PageArtistDetails() {
             })}
           </Row> */}
           {/* <section className={s.divider}>
-            <PageDividerButton onClick={() => router.push("/artwork")}>SEE MORE</PageDividerButton>
+            <ThemesDividerWithButton onClick={() => router.push("/artwork")}>SEE MORE</ThemesDividerWithButton>
           </section> */}
         </section>
       </PageContainerBox>

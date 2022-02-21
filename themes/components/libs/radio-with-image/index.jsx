@@ -6,7 +6,7 @@ import { Card, Col, Radio } from "antd";
 // Styles
 import s from "./index.module.scss";
 
-function RadioCard(props) {
+function ThemesRadioWithImage(props) {
   const { imgSrc, value, className, children } = props;
   return (
     <Radio value={value} className={"radioCard " + className}>
@@ -27,11 +27,11 @@ function RadioCard(props) {
   );
 }
 
-RadioCard.propTypes = {
+ThemesRadioWithImage.propTypes = {
   imgSrc: propTypes.string,
   value: propTypes.string,
   className: propTypes.string,
   children: propTypes.node,
 };
 
-export default RadioCard;
+export default ThemesRadioWithImage;

@@ -5,7 +5,7 @@ import { Button } from "antd";
 // Style
 import s from "./index.module.scss";
 
-function PageButton(props) {
+function ThemesButton(props) {
   const { children, type = "default", onClick, loading, disabled } = props;
   return (
     <Button
@@ -20,7 +20,7 @@ function PageButton(props) {
   );
 }
 
-PageButton.propTypes = {
+ThemesButton.propTypes = {
   loading: propTypes.bool,
   children: propTypes.node,
   type: propTypes.oneOf(["default", "outlined"]),
@@ -28,4 +28,4 @@ PageButton.propTypes = {
   disabled: propTypes.bool,
 };
 
-export default PageButton;
+export default ThemesButton;

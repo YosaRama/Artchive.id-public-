@@ -3,25 +3,25 @@ import propTypes from "prop-types";
 import { Divider } from "antd";
 
 // Components
-import PageButton from "themes/components/libs/page-button";
+import ThemesButton from "themes/components/libs/button";
 
 // Styles
 import s from "./index.module.scss";
 
-function PageDividerButton(props) {
+function ThemesDividerWithButton(props) {
   const { children, onClick } = props;
   return (
     <Divider style={{ margin: 0 }} className={s.divider}>
-      <PageButton type="outlined" onClick={onClick}>
+      <ThemesButton type="outlined" onClick={onClick}>
         {children}
-      </PageButton>
+      </ThemesButton>
     </Divider>
   );
 }
 
-PageDividerButton.propTypes = {
+ThemesDividerWithButton.propTypes = {
   children: propTypes.node,
   onClick: propTypes.func,
 };
 
-export default PageDividerButton;
+export default ThemesDividerWithButton;

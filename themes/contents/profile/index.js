@@ -3,7 +3,7 @@ import { signOut } from "next-auth/react";
 
 // Components
 import PageContainerBox from "themes/components/container/box-container";
-import PageButton from "themes/components/libs/page-button";
+import ThemesButton from "themes/components/libs/button";
 
 // Styles
 import s from "./index.module.scss";
@@ -17,7 +17,7 @@ function ProfilePage() {
   return (
     <>
       <PageContainerBox>
-        <PageButton onClick={handleLogout}>Logout</PageButton>
+        <ThemesButton onClick={handleLogout}>Logout</ThemesButton>
       </PageContainerBox>
     </>
   );

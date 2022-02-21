@@ -8,7 +8,7 @@ import { Badge, Card, Col } from "antd";
 // Styles
 import s from "./index.module.scss";
 
-function PageArtworkCardList(props) {
+function ThemesArtworkCard(props) {
   const {
     imgSrc,
     artworkSlug,
@@ -59,7 +59,7 @@ function PageArtworkCardList(props) {
   );
 }
 
-PageArtworkCardList.propTypes = {
+ThemesArtworkCard.propTypes = {
   imgSrc: propTypes.string.isRequired,
   artworkSlug: propTypes.string.isRequired,
   artworkTitle: propTypes.string.isRequired,
@@ -73,4 +73,4 @@ PageArtworkCardList.propTypes = {
   artworkStatus: propTypes.string,
 };
 
-export default PageArtworkCardList;
+export default ThemesArtworkCard;

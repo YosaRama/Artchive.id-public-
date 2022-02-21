@@ -7,7 +7,7 @@ import { Button, Checkbox, Col, Form, Input, Row } from "antd";
 // Components
 import PageContainerBox from "themes/components/container/box-container";
 import SimplePageContainer from "themes/components/container/simple-page-container";
-import PageButton from "themes/components/libs/page-button";
+import ThemesButton from "themes/components/libs/button";
 import { ErrorNotification } from "app/components/libs/notification";
 
 // Styles
@@ -114,14 +114,14 @@ function SignInPage() {
           </section>
 
           <Col span={24}>
-            <PageButton type={"default " + s.button} onClick={handleLogin} loading={loading}>
+            <ThemesButton type={"default " + s.button} onClick={handleLogin} loading={loading}>
               LOG IN
-            </PageButton>
+            </ThemesButton>
           </Col>
           <Col span={24}>
-            <PageButton type={"outlined " + s.button} onClick={() => router.push("/register")}>
+            <ThemesButton type={"outlined " + s.button} onClick={() => router.push("/register")}>
               CREATE ACCOUNT
-            </PageButton>
+            </ThemesButton>
           </Col>
         </section>
       </SimplePageContainer>

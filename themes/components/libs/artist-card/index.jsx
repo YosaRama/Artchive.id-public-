@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 // Styles
 import s from "./index.module.scss";
 
-function PageArtistCard(props) {
+function ThemesArtistCard(props) {
   const { artistName, artistCity, avatarSrc, bannerSrc, artistId, artistSlug } = props;
   const router = useRouter();
   return (
@@ -36,7 +36,7 @@ function PageArtistCard(props) {
   );
 }
 
-PageArtistCard.propTypes = {
+ThemesArtistCard.propTypes = {
   artistId: propTypes.number.isRequired,
   artistSlug: propTypes.string.isRequired,
   artistName: propTypes.string,
@@ -45,4 +45,4 @@ PageArtistCard.propTypes = {
   bannerSrc: propTypes.string,
 };
 
-export default PageArtistCard;
+export default ThemesArtistCard;

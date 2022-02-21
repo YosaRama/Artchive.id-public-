@@ -7,7 +7,7 @@ const { Option } = Select;
 // Styles
 import s from "./index.module.scss";
 
-function PageHomepageSearchBox() {
+function ThemesHomepageSearchBox() {
   //? ============== Handle Search ============= ?//
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
@@ -58,4 +58,4 @@ function PageHomepageSearchBox() {
   );
 }
 
-export default PageHomepageSearchBox;
+export default ThemesHomepageSearchBox;

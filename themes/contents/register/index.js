@@ -7,8 +7,8 @@ import { signIn } from "next-auth/react";
 // Components
 import PageContainerBox from "themes/components/container/box-container";
 import SimplePageContainer from "themes/components/container/simple-page-container";
-import PageButton from "themes/components/libs/page-button";
-import RadioCard from "themes/components/libs/page-radio-card";
+import ThemesButton from "themes/components/libs/button";
+import ThemesRadioWithImage from "themes/components/libs/radio-with-image";
 
 // Helper
 import { passwordFormRules } from "app/helpers/passwordFormRules";
@@ -130,22 +130,28 @@ function RegisterPage() {
                     <Radio.Group style={{ width: "100%" }}>
                       <Row gutter={[16, 0]}>
                         <Col span={8}>
-                          <RadioCard value="ARTIST" imgSrc="/images/frontpage-artist-icon.png">
+                          <ThemesRadioWithImage
+                            value="ARTIST"
+                            imgSrc="/images/frontpage-artist-icon.png"
+                          >
                             Artist
-                          </RadioCard>
+                          </ThemesRadioWithImage>
                         </Col>
                         <Col span={8}>
-                          <RadioCard
+                          <ThemesRadioWithImage
                             value="COLLECTOR"
                             imgSrc="/images/frontpage-collector-icon.png"
                           >
                             Collector
-                          </RadioCard>
+                          </ThemesRadioWithImage>
                         </Col>
                         <Col span={8}>
-                          <RadioCard value="GALLERY" imgSrc="/images/frontpage-gallery-icon.png">
+                          <ThemesRadioWithImage
+                            value="GALLERY"
+                            imgSrc="/images/frontpage-gallery-icon.png"
+                          >
                             Gallery
-                          </RadioCard>
+                          </ThemesRadioWithImage>
                         </Col>
                       </Row>
                     </Radio.Group>
@@ -162,14 +168,14 @@ function RegisterPage() {
           </section>
 
           <Col span={24}>
-            <PageButton type={"default " + s.button} onClick={handleRegister}>
+            <ThemesButton type={"default " + s.button} onClick={handleRegister}>
               SIGN UP
-            </PageButton>
+            </ThemesButton>
           </Col>
           <Col span={24}>
-            <PageButton type={"outlined " + s.button} onClick={() => router.push("/signin")}>
+            <ThemesButton type={"outlined " + s.button} onClick={() => router.push("/signin")}>
               LOG IN
-            </PageButton>
+            </ThemesButton>
           </Col>
         </section>
       </SimplePageContainer>

@@ -6,9 +6,9 @@ const { Option } = Select;
 // Components
 import PageContainerBox from "themes/components/container/box-container";
 import MasonryContainer from "themes/components/container/masonry-container";
-import PageArtworkCardList from "themes/components/libs/page-artwork-card";
-import PageBanner from "themes/components/libs/page-banner";
-import PageButton from "themes/components/libs/page-button";
+import ThemesArtworkCard from "themes/components/libs/artwork-card";
+import ThemesBanner from "themes/components/libs/banner";
+import ThemesButton from "themes/components/libs/button";
 
 // Data Hook
 import { useArtworksLoad } from "app/hooks/artwork";
@@ -43,11 +43,11 @@ function ArtworkListPage() {
   return (
     <>
       <section>
-        <PageBanner imgSrc="/images/banner-artwork-list.jpg" className={"page-bannerContainer"}>
+        <ThemesBanner imgSrc="/images/banner-artwork-list.jpg" className={"page-bannerContainer"}>
           <div className={"page-bannerTitle"}>
             <h1>Artwork List</h1>
           </div>
-        </PageBanner>
+        </ThemesBanner>
       </section>
 
       <PageContainerBox>
@@ -97,7 +97,7 @@ function ArtworkListPage() {
                       </Form.Item>
                     </Form>
                     <Col span={24}>
-                      <PageButton type={"default " + s.searchButton}>SEARCH</PageButton>
+                      <ThemesButton type={"default " + s.searchButton}>SEARCH</ThemesButton>
                     </Col>
                   </Col>
                 </Card>
@@ -109,7 +109,7 @@ function ArtworkListPage() {
                 {artworkData?.map((item) => {
                   return (
                     <Col span={24} key={item?.id}>
-                      <PageArtworkCardList
+                      <ThemesArtworkCard
                         artworkSlug={item?.slug}
                         artworkTitle={item?.title}
                         artistName={item?.artist?.full_name}
@@ -132,7 +132,7 @@ function ArtworkListPage() {
               </MasonryContainer>
               {!end && (
                 <Col span={24} style={{ textAlign: "center" }}>
-                  <PageButton onClick={handleLoadMore}>Load More</PageButton>
+                  <ThemesButton onClick={handleLoadMore}>Load More</ThemesButton>
                 </Col>
               )}
             </Col>

@@ -5,12 +5,12 @@ import { Col, Row } from "antd";
 
 // Components
 import PageContainerBox from "themes/components/container/box-container";
-import PageArtistCard from "themes/components/libs/page-artist-card";
-import PageArtworkFrame from "themes/components/libs/page-artwork-frame";
-import PageDividerButton from "themes/components/libs/page-divider-button";
-import PageBanner from "themes/components/libs/page-banner";
-import PageHomepageSearchBox from "themes/components/libs/page-homepage-search-box";
-import PageTitle from "themes/components/libs/page-title";
+import ThemesArtistCard from "themes/components/libs/artist-card";
+import ThemesArtworkWithFrame from "themes/components/libs/artwork-with-frame";
+import ThemesDividerWithButton from "themes/components/libs/divider-with-button";
+import ThemesBanner from "themes/components/libs/banner";
+import ThemesHomepageSearchBox from "themes/components/libs/homepage-search-box";
+import ThemesHeadline from "themes/components/libs/headline";
 
 // Styles
 import s from "./index.module.scss";
@@ -21,18 +21,18 @@ function Homepage(props) {
   return (
     <>
       {/* Banner Section */}
-      <PageBanner imgSrc="/images/banner-homepage.jpg">
+      <ThemesBanner imgSrc="/images/banner-homepage.jpg">
         <div className={s.searchBox}>
-          <PageHomepageSearchBox />
+          <ThemesHomepageSearchBox />
         </div>
-      </PageBanner>
+      </ThemesBanner>
       {/* ============================ */}
 
       {/* Artwork Section */}
       <PageContainerBox sectionclass={s.sectionContainer}>
         {artworkData && (
           <section className={s.section}>
-            <PageTitle
+            <ThemesHeadline
               title="Artwork"
               subtitle="Original artwork by indonesian artist"
               className={s.pageTitle}
@@ -40,7 +40,7 @@ function Homepage(props) {
             <Row gutter={[16, 0]}>
               {artworkData.map((item, index) => (
                 <Col span={6} key={index}>
-                  <PageArtworkFrame
+                  <ThemesArtworkWithFrame
                     artworkSlug={item.slug}
                     artworkTitle={item.title}
                     artworkSize={item.size}
@@ -56,18 +56,20 @@ function Homepage(props) {
 
         {/* Divider Section */}
         <section className={s.divider}>
-          <PageDividerButton onClick={() => router.push("/artwork")}>SEE MORE</PageDividerButton>
+          <ThemesDividerWithButton onClick={() => router.push("/artwork")}>
+            SEE MORE
+          </ThemesDividerWithButton>
         </section>
         {/* ============================ */}
 
         {/* Artist Section */}
         {artistData && (
           <section className={s.section}>
-            <PageTitle title="Our New Artist" className={s.pageTitle} />
+            <ThemesHeadline title="Our New Artist" className={s.pageTitle} />
             <Row gutter={[16, 0]}>
               {artistData.map((item, index) => (
                 <Col span={6} key={index}>
-                  <PageArtistCard
+                  <ThemesArtistCard
                     artistId={item.id}
                     artistSlug={item.slug}
                     artistName={item.name}
@@ -84,7 +86,9 @@ function Homepage(props) {
 
         {/* Divider Section */}
         <section className={s.divider}>
-          <PageDividerButton onClick={() => router.push("/artist")}>SEE MORE</PageDividerButton>
+          <ThemesDividerWithButton onClick={() => router.push("/artist")}>
+            SEE MORE
+          </ThemesDividerWithButton>
         </section>
         {/* ============================ */}
       </PageContainerBox>

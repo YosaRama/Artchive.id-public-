@@ -6,7 +6,7 @@ import { Col } from "antd";
 // Styles
 import s from "./index.module.scss";
 
-function PageBanner(props) {
+function ThemesBanner(props) {
   const { children, imgSrc, className } = props;
   return (
     <Col span={24} className={s.container + " " + className}>
@@ -18,10 +18,10 @@ function PageBanner(props) {
   );
 }
 
-PageBanner.propTypes = {
+ThemesBanner.propTypes = {
   children: propTypes.node,
   imgSrc: propTypes.string.isRequired,
   className: propTypes.string,
 };
 
-export default PageBanner;
+export default ThemesBanner;
