@@ -66,7 +66,7 @@ function ArtworkGeneralInformation() {
         type: value.type,
         height: value.height,
         width: value.width,
-        price: value.price,
+        price: new Intl.NumberFormat().format(value.price),
         status: value.status,
         approve: value.approve,
       };
@@ -158,7 +158,13 @@ function ArtworkGeneralInformation() {
                 </Col>
               </Row>
               <Form.Item name="price" label="Price">
-                <Input placeholder="Input artwork price" />
+                <InputNumber
+                  style={{ width: "100%" }}
+                  placeholder="Input artwork price"
+                  addonBefore="Rp"
+                  formatter={(value) => `Rp ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                  parser={(value) => value.replace(/Rp\s?|(,*)/g, "")}
+                />
               </Form.Item>
               <Form.Item name="approve" label="Approved" valuePropName="checked">
                 <Switch />

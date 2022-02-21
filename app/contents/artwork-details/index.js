@@ -23,7 +23,7 @@ function ArtworkDetails(props) {
   const router = useRouter();
 
   //? ============== Artwork Hook ============= ?//
-  const { data: artworkData, onChangeCover } = useArtwork({ singleId: initialValue?.id });
+  const { data: artworkData, onChangeCover } = useArtwork({ singleId: router?.query?.id });
   // * ====================================== * //
 
   //? ============== Handle Select Menu ============= ?//

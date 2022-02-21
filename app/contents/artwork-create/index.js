@@ -249,10 +249,12 @@ function ArtworkCreate() {
                     },
                   ]}
                 >
-                  <Input
+                  <InputNumber
                     style={{ width: "100%" }}
                     placeholder="Input artwork price"
                     addonBefore="Rp"
+                    formatter={(value) => `Rp ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                    parser={(value) => value.replace(/Rp\s?|(,*)/g, "")}
                   />
                 </Form.Item>
               </Form>
