@@ -17,7 +17,7 @@ import { MenuOutlined, LogoutOutlined, UserOutlined } from "@ant-design/icons";
 // Styles
 import s from "./index.module.scss";
 
-function PageHeader() {
+function ThemesHeader() {
   const router = useRouter();
 
   //? ============== Open Menu Drawer ============= ?//
@@ -78,4 +78,4 @@ function PageHeader() {
   );
 }
 
-export default PageHeader;
+export default ThemesHeader;

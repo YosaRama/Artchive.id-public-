@@ -12,7 +12,7 @@ import { fetcher } from "app/utils/swr";
 
 // Layout
 import DashboardLayout from "app/components/layout";
-import PageLayout from "themes/components/layout";
+import ThemesLayout from "themes/components/layout";
 
 // Styles
 import "antd/dist/antd.less";
@@ -42,9 +42,9 @@ function MyApp({ Component, pageProps: { session, ...pageProps }, router }) {
                     <Component {...pageProps} />
                   </DashboardLayout>
                 ) : (
-                  <PageLayout>
+                  <ThemesLayout>
                     <Component {...pageProps} />
-                  </PageLayout>
+                  </ThemesLayout>
                 )}
               </>
             )}

@@ -11,7 +11,7 @@ import PageContainerBox from "themes/components/container/box-container";
 // Styles
 import s from "./index.module.scss";
 
-function PageFooter() {
+function ThemesFooter() {
   const router = useRouter();
   //? ============== Footer Menu ============= ?//
   const footerMenu = [
@@ -80,4 +80,4 @@ function PageFooter() {
   );
 }
 
-export default PageFooter;
+export default ThemesFooter;

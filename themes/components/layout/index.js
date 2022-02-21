@@ -3,25 +3,25 @@ import { Layout } from "antd";
 const { Content } = Layout;
 
 // Component
-import PageHeader from "./header";
-import PageFooter from "./footer";
+import ThemesHeader from "./header";
+import ThemesFooter from "./footer";
 
 // Styles
 import s from "./index.module.scss";
 
-function PageLayout(props) {
+function ThemesLayout(props) {
   const { children } = props;
   return (
     <>
       <Layout>
-        <PageHeader />
+        <ThemesHeader />
         <Content className={s.content} id="frontpage">
           {children}
         </Content>
-        <PageFooter />
+        <ThemesFooter />
       </Layout>
     </>
   );
 }
 
-export default PageLayout;
+export default ThemesLayout;
