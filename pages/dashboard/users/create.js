@@ -4,7 +4,7 @@ import { getSession } from "next-auth/react";
 // Contents
 import AppContentsUserCreate from "app/contents/user/create";
 
-function UserCreatePage() {
+function PageDashboardUsersCreate() {
   return (
     <>
       <AppContentsUserCreate />
@@ -12,7 +12,7 @@ function UserCreatePage() {
   );
 }
 
-export default UserCreatePage;
+export default PageDashboardUsersCreate;
 
 export const getServerSideProps = async (ctx) => {
   //? ============== Handle Session ============= ?//
@@ -26,7 +26,7 @@ export const getServerSideProps = async (ctx) => {
   } else {
     return {
       redirect: {
-        destination: "/managepage",
+        destination: "/dashboard/login",
         permanent: true,
       },
     };

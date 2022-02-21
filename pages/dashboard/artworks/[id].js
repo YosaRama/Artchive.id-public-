@@ -8,7 +8,7 @@ import { GET_ARTWORK_BY_ID } from "app/database/query/artwork";
 // Contents
 import AppContentsArtworkDetails from "app/contents/artwork/details";
 
-function ArtworkDetailsPage(props) {
+function PageDashboardArtworksDetails(props) {
   return (
     <>
       <AppContentsArtworkDetails initialValue={props.artwork} />
@@ -16,7 +16,7 @@ function ArtworkDetailsPage(props) {
   );
 }
 
-export default ArtworkDetailsPage;
+export default PageDashboardArtworksDetails;
 
 export const getServerSideProps = async (ctx) => {
   const artworkId = ctx.query.id;
@@ -39,7 +39,7 @@ export const getServerSideProps = async (ctx) => {
   } else {
     return {
       redirect: {
-        destination: "/managepage",
+        destination: "/dashboard/login",
         permanent: true,
       },
     };

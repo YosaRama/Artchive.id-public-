@@ -4,7 +4,7 @@ import { getSession } from "next-auth/react";
 // Contents
 import AppContentsUserListCollector from "app/contents/user/list/collector";
 
-function AppContentsUserListCollectorPage() {
+function PageDashboardUsersCollectorList() {
   return (
     <>
       <AppContentsUserListCollector />
@@ -12,7 +12,7 @@ function AppContentsUserListCollectorPage() {
   );
 }
 
-export default AppContentsUserListCollectorPage;
+export default PageDashboardUsersCollectorList;
 
 export const getServerSideProps = async (ctx) => {
   //? ============== Handle Session ============= ?//
@@ -26,7 +26,7 @@ export const getServerSideProps = async (ctx) => {
   } else {
     return {
       redirect: {
-        destination: "/managepage",
+        destination: "/dashboard/login",
         permanent: true,
       },
     };

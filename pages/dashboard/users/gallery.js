@@ -4,7 +4,7 @@ import { getSession } from "next-auth/react";
 // Contents
 import AppContentsUserListGallery from "app/contents/user/list/gallery";
 
-function AppContentsUserListGalleryPage() {
+function PageDashboardUsersGalleryList() {
   return (
     <>
       <AppContentsUserListGallery />
@@ -12,7 +12,7 @@ function AppContentsUserListGalleryPage() {
   );
 }
 
-export default AppContentsUserListGalleryPage;
+export default PageDashboardUsersGalleryList;
 
 export const getServerSideProps = async (ctx) => {
   //? ============== Handle Session ============= ?//
@@ -26,7 +26,7 @@ export const getServerSideProps = async (ctx) => {
   } else {
     return {
       redirect: {
-        destination: "/managepage",
+        destination: "/dashboard/login",
         permanent: true,
       },
     };

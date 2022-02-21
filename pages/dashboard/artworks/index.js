@@ -4,7 +4,7 @@ import { getSession } from "next-auth/react";
 // Contents
 import AppContentsArtworkList from "app/contents/artwork/list";
 
-function ArtworkListPage() {
+function PageDashboardArtworkList() {
   return (
     <>
       <AppContentsArtworkList />
@@ -12,7 +12,7 @@ function ArtworkListPage() {
   );
 }
 
-export default ArtworkListPage;
+export default PageDashboardArtworkList;
 
 export const getServerSideProps = async (ctx) => {
   //? ============== Handle Session ============= ?//
@@ -26,7 +26,7 @@ export const getServerSideProps = async (ctx) => {
   } else {
     return {
       redirect: {
-        destination: "/managepage",
+        destination: "/dashboard/login",
         permanent: true,
       },
     };

@@ -1,7 +1,7 @@
 // Contents
 import AppContentsGenreList from "app/contents/genre/list";
 
-function AppContentsGenreListingPage() {
+function PageDashboardGenreList() {
   return (
     <>
       <AppContentsGenreList />
@@ -9,7 +9,7 @@ function AppContentsGenreListingPage() {
   );
 }
 
-export default AppContentsGenreListingPage;
+export default PageDashboardGenreList;
 
 export const getServerSideProps = async (ctx) => {
   //? ============== Handle Session ============= ?//
@@ -23,7 +23,7 @@ export const getServerSideProps = async (ctx) => {
   } else {
     return {
       redirect: {
-        destination: "/managepage",
+        destination: "/dashboard/login",
         permanent: true,
       },
     };

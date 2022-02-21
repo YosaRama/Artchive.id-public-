@@ -12,7 +12,7 @@ import { UserOutlined, LockOutlined } from "@ant-design/icons";
 // Notification
 import { ErrorNotification } from "app/components/utils/notification";
 
-function ManagePageLogin() {
+function AppContentsLogin() {
   const router = useRouter();
   const [form] = Form.useForm();
 
@@ -106,4 +106,4 @@ function ManagePageLogin() {
   );
 }
 
-export default ManagePageLogin;
+export default AppContentsLogin;

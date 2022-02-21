@@ -1,7 +1,7 @@
 // Contents
 import AppContentsGenreCreate from "app/contents/genre/create";
 
-function AppContentsGenreCreatePage() {
+function PageDashboardGenreCreate() {
   return (
     <>
       <AppContentsGenreCreate />
@@ -9,7 +9,7 @@ function AppContentsGenreCreatePage() {
   );
 }
 
-export default AppContentsGenreCreatePage;
+export default PageDashboardGenreCreate;
 
 export const getServerSideProps = async (ctx) => {
   //? ============== Handle Session ============= ?//
@@ -23,7 +23,7 @@ export const getServerSideProps = async (ctx) => {
   } else {
     return {
       redirect: {
-        destination: "/managepage",
+        destination: "/dashboard/login",
         permanent: true,
       },
     };

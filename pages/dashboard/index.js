@@ -2,13 +2,13 @@
 import { getSession } from "next-auth/react";
 
 // Contents
-import DashboardHome from "app/contents/home";
+import AppContentsHome from "app/contents/home";
 
-function Dashboard() {
-  return <DashboardHome />;
+function PageDashboard() {
+  return <AppContentsHome />;
 }
 
-export default Dashboard;
+export default PageDashboard;
 
 export const getServerSideProps = async (ctx) => {
   //? ============== Handle Session ============= ?//
@@ -22,7 +22,7 @@ export const getServerSideProps = async (ctx) => {
   } else {
     return {
       redirect: {
-        destination: "/managepage",
+        destination: "/dashboard/login",
         permanent: true,
       },
     };

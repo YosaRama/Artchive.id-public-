@@ -19,7 +19,7 @@ import { CollectorIcon } from "public/icons/collector-icon";
 import { GalleryIcon } from "public/icons/gallery-icon";
 import { PaintIcon } from "public/icons/paint-icon";
 
-function DashboardHome() {
+function AppContentsHome() {
   //? ============== Artwork Hook ============= ?//
   const { data: artworkData, total: artworkTotal } = useArtworks({ queryString: "limit=4" });
   // * ====================================== * //
@@ -149,4 +149,4 @@ function DashboardHome() {
   );
 }
 
-export default DashboardHome;
+export default AppContentsHome;
