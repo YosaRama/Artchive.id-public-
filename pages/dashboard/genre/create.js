@@ -1,15 +1,15 @@
 // Contents
-import GenreCreate from "app/contents/genre-create";
+import AppContentsGenreCreate from "app/contents/genre/create";
 
-function GenreCreatePage() {
+function AppContentsGenreCreatePage() {
   return (
     <>
-      <GenreCreate />
+      <AppContentsGenreCreate />
     </>
   );
 }
 
-export default GenreCreatePage;
+export default AppContentsGenreCreatePage;
 
 export const getServerSideProps = async (ctx) => {
   //? ============== Handle Session ============= ?//

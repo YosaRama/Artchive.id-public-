@@ -2,17 +2,17 @@
 import { getSession } from "next-auth/react";
 
 // Contents
-import CollectorList from "app/contents/user-collector-list";
+import AppContentsUserListCollector from "app/contents/user/list/collector";
 
-function CollectorListPage() {
+function AppContentsUserListCollectorPage() {
   return (
     <>
-      <CollectorList />
+      <AppContentsUserListCollector />
     </>
   );
 }
 
-export default CollectorListPage;
+export default AppContentsUserListCollectorPage;
 
 export const getServerSideProps = async (ctx) => {
   //? ============== Handle Session ============= ?//

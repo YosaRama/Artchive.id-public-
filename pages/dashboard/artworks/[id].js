@@ -6,12 +6,12 @@ import { getSession } from "next-auth/react";
 import { GET_ARTWORK_BY_ID } from "app/database/query/artwork";
 
 // Contents
-import ArtworkDetails from "app/contents/artwork-details";
+import AppContentsArtworkDetails from "app/contents/artwork/details";
 
 function ArtworkDetailsPage(props) {
   return (
     <>
-      <ArtworkDetails initialValue={props.artwork} />
+      <AppContentsArtworkDetails initialValue={props.artwork} />
     </>
   );
 }

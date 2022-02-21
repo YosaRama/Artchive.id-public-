@@ -1,15 +1,15 @@
 // Contents
-import GenreList from "app/contents/genre-list";
+import AppContentsGenreList from "app/contents/genre/list";
 
-function GenreListingPage() {
+function AppContentsGenreListingPage() {
   return (
     <>
-      <GenreList />
+      <AppContentsGenreList />
     </>
   );
 }
 
-export default GenreListingPage;
+export default AppContentsGenreListingPage;
 
 export const getServerSideProps = async (ctx) => {
   //? ============== Handle Session ============= ?//

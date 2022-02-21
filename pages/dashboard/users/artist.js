@@ -2,12 +2,12 @@
 import { getSession } from "next-auth/react";
 
 // Contents
-import ArtistList from "app/contents/user-artist-list";
+import AppContentsUserListArtist from "app/contents/user/list/artist";
 
 function ArtistListPage() {
   return (
     <>
-      <ArtistList />
+      <AppContentsUserListArtist />
     </>
   );
 }

@@ -2,17 +2,17 @@
 import { getSession } from "next-auth/react";
 
 // Contents
-import GalleryList from "app/contents/user-gallery-list";
+import AppContentsUserListGallery from "app/contents/user/list/gallery";
 
-function GalleryListPage() {
+function AppContentsUserListGalleryPage() {
   return (
     <>
-      <GalleryList />
+      <AppContentsUserListGallery />
     </>
   );
 }
 
-export default GalleryListPage;
+export default AppContentsUserListGalleryPage;
 
 export const getServerSideProps = async (ctx) => {
   //? ============== Handle Session ============= ?//

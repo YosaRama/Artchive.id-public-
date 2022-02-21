@@ -2,12 +2,12 @@
 import { getSession } from "next-auth/react";
 
 // Contents
-import EditUser from "app/contents/user-details";
+import AppContentsUserDetails from "app/contents/user/details";
 
 function UserEditPage() {
   return (
     <>
-      <EditUser />
+      <AppContentsUserDetails />
     </>
   );
 }

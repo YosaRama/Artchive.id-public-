@@ -2,12 +2,12 @@
 import { getSession } from "next-auth/react";
 
 // Contents
-import CreateUser from "app/contents/user-create";
+import AppContentsUserCreate from "app/contents/user/create";
 
 function UserCreatePage() {
   return (
     <>
-      <CreateUser />
+      <AppContentsUserCreate />
     </>
   );
 }

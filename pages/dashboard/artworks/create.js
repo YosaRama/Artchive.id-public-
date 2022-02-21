@@ -2,17 +2,17 @@
 import { getSession } from "next-auth/react";
 
 // Contents
-import ArtworkCreate from "app/contents/artwork-create";
+import AppContentsArtworkCreate from "app/contents/artwork/create";
 
-function ArtworkCreatePage() {
+function AppContentsArtworkCreatePage() {
   return (
     <>
-      <ArtworkCreate />
+      <AppContentsArtworkCreate />
     </>
   );
 }
 
-export default ArtworkCreatePage;
+export default AppContentsArtworkCreatePage;
 
 export const getServerSideProps = async (ctx) => {
   //? ============== Handle Session ============= ?//

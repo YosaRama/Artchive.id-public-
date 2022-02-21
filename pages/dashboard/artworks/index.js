@@ -2,12 +2,12 @@
 import { getSession } from "next-auth/react";
 
 // Contents
-import ArtworkList from "app/contents/artwork-list";
+import AppContentsArtworkList from "app/contents/artwork/list";
 
 function ArtworkListPage() {
   return (
     <>
-      <ArtworkList />
+      <AppContentsArtworkList />
     </>
   );
 }
