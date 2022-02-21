@@ -4,11 +4,11 @@ import { useRouter } from "next/router";
 import { Empty, Table } from "antd";
 
 // Components
-import ContainerBox from "app/components/container/containerBox";
-import ContainerCard from "app/components/container/containerCard";
+import AppContainerBox from "app/components/container/box";
+import AppContainerCard from "app/components/container/card";
 import GenreColumns from "./util";
-import deleteConfirmModal from "app/components/libs/delete-modal-confirm";
-import AddButton from "app/components/libs/add-button";
+import deleteConfirmModal from "app/components/utils/delete-modal-confirm";
+import AppAddButton from "app/components/libs/add-button";
 
 // Data Hook
 import { useGenres } from "app/hooks/genre";
@@ -31,15 +31,17 @@ function GenreList() {
   // * ====================================== * //
 
   return (
-    <ContainerBox>
-      <ContainerCard title="Genre List">
-        <AddButton onCreate={() => router.push("/dashboard/genre/create")}>Add Genre</AddButton>
+    <AppContainerBox>
+      <AppContainerCard title="Genre List">
+        <AppAddButton onCreate={() => router.push("/dashboard/genre/create")}>
+          Add Genre
+        </AppAddButton>
         {data && (
           <Table columns={columns} dataSource={data} rowKey={() => uuid()} loading={loading} />
         )}
         {!data && <Empty />}
-      </ContainerCard>
-    </ContainerBox>
+      </AppContainerCard>
+    </AppContainerBox>
   );
 }
 

@@ -8,7 +8,7 @@ import {
   SuccessNotification,
   ErrorNotification,
   WarningNotification,
-} from "app/components/libs/notification";
+} from "app/components/utils/notification";
 
 //TODO: Match with backend endpoint
 const pathName = "/user"; // End point

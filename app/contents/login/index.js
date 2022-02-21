@@ -10,7 +10,7 @@ import { CollectorIcon } from "public/icons/collector-icon";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 
 // Notification
-import { ErrorNotification } from "app/components/libs/notification";
+import { ErrorNotification } from "app/components/utils/notification";
 
 function ManagePageLogin() {
   const router = useRouter();

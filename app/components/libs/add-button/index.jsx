@@ -5,7 +5,7 @@ import { Col, Button } from "antd";
 // Icons
 import { PlusOutlined } from "@ant-design/icons";
 
-function AddButton(props) {
+function AppAddButton(props) {
   const { children, onCreate } = props;
   return (
     <Col span={24} style={{ textAlign: "right", marginBottom: 20 }}>
@@ -19,9 +19,9 @@ function AddButton(props) {
   );
 }
 
-AddButton.propTypes = {
+AppAddButton.propTypes = {
   children: propTypes.node,
   onCreate: propTypes.func,
 };
 
-export default AddButton;
+export default AppAddButton;

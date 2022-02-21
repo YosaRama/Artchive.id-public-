@@ -8,7 +8,7 @@ import { Card, Col, Row } from "antd";
 // Style
 import s from "./index.module.scss";
 
-function CardCount(props) {
+function AppCardCount(props) {
   const { icon, count, title, link } = props;
   const router = useRouter();
   return (
@@ -24,11 +24,11 @@ function CardCount(props) {
   );
 }
 
-CardCount.propTypes = {
+AppCardCount.propTypes = {
   icon: propTypes.element,
   count: propTypes.oneOfType([propTypes.number, propTypes.string]),
   title: propTypes.string,
   link: propTypes.string,
 };
 
-export default CardCount;
+export default AppCardCount;

@@ -11,7 +11,7 @@ import { SWRConfig } from "swr";
 import { fetcher } from "app/utils/swr";
 
 // Layout
-import DashboardLayout from "app/components/layout";
+import AppLayout from "app/components/layout";
 import ThemesLayout from "themes/components/layout";
 
 // Styles
@@ -38,9 +38,9 @@ function MyApp({ Component, pageProps: { session, ...pageProps }, router }) {
             {content && (
               <>
                 {router.pathname.startsWith("/dashboard") ? (
-                  <DashboardLayout>
+                  <AppLayout>
                     <Component {...pageProps} />
-                  </DashboardLayout>
+                  </AppLayout>
                 ) : (
                   <ThemesLayout>
                     <Component {...pageProps} />

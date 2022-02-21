@@ -8,10 +8,10 @@ import { useUser } from "app/hooks/user";
 import { useUploads } from "app/hooks/upload";
 
 // Component
-import ContainerBox from "app/components/container/containerBox";
-import UploadButton from "app/components/libs/upload-button";
-import ContainerCard from "app/components/container/containerCard";
-import RoleTag from "app/components/libs/role-tag";
+import AppContainerBox from "app/components/container/box";
+import AppUploadButton from "app/components/libs/upload-button";
+import AppContainerCard from "app/components/container/card";
+import AppRoleTag from "app/components/libs/role-tag";
 
 // Content
 import UserEditInfo from "./user-edit-info";
@@ -65,8 +65,8 @@ function EditUser() {
   // * ====================================== * //
 
   return (
-    <ContainerBox>
-      <ContainerCard
+    <AppContainerBox>
+      <AppContainerCard
         title={
           <>
             <p style={{ marginBottom: 0 }}>
@@ -91,9 +91,9 @@ function EditUser() {
             />
           </Col>
           <Col span={24} style={{ textAlign: "right" }}>
-            <UploadButton onUpload={handleChangeBanner} loading={uploadLoading}>
+            <AppUploadButton onUpload={handleChangeBanner} loading={uploadLoading}>
               Change Banner Profile
-            </UploadButton>
+            </AppUploadButton>
           </Col>
         </section>
         <Row gutter={[16, 0]}>
@@ -109,9 +109,9 @@ function EditUser() {
               />
             </Col>
             <Col span={24}>
-              <UploadButton onUpload={handleChangeProfile} loading={uploadLoading}>
+              <AppUploadButton onUpload={handleChangeProfile} loading={uploadLoading}>
                 Change Profile Image
-              </UploadButton>
+              </AppUploadButton>
             </Col>
           </Col>
           <Col span={8} className={s.profileDetails}>
@@ -120,7 +120,7 @@ function EditUser() {
                 <>
                   <h1 className={s.name}>{data?.full_name}</h1>
                   <p className={s.email}>{data?.email}</p>
-                  <RoleTag role={data?.role} />
+                  <AppRoleTag role={data?.role} />
                 </>
               ) : (
                 <Skeleton />
@@ -151,8 +151,8 @@ function EditUser() {
             </Col>
           )}
         </Col>
-      </ContainerCard>
-    </ContainerBox>
+      </AppContainerCard>
+    </AppContainerBox>
   );
 }
 

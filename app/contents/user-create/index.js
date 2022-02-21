@@ -4,8 +4,8 @@ import { Button, Col, Form, Input, PageHeader, Select } from "antd";
 const { Option } = Select;
 
 // Component
-import ContainerBox from "app/components/container/containerBox";
-import ContainerCard from "app/components/container/containerCard";
+import AppContainerBox from "app/components/container/box";
+import AppContainerCard from "app/components/container/card";
 
 // Data Hook
 import { useUsers } from "app/hooks/user";
@@ -40,10 +40,10 @@ function CreateUser() {
   // * ====================================== * //
 
   return (
-    <ContainerBox>
+    <AppContainerBox>
       <Col span={12} style={{ margin: "auto" }}>
         <PageHeader title="CREATE NEW USER" onBack={() => router.back()} />
-        <ContainerCard>
+        <AppContainerCard>
           <Form layout="vertical" form={form}>
             <Col span={24}>
               <Form.Item
@@ -88,9 +88,9 @@ function CreateUser() {
               </Button>
             </Col>
           </Form>
-        </ContainerCard>
+        </AppContainerCard>
       </Col>
-    </ContainerBox>
+    </AppContainerBox>
   );
 }
 

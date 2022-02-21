@@ -5,13 +5,13 @@ import { useRouter } from "next/router";
 const { Header, Footer } = Layout;
 
 // Component
-import Sidebar from "./sider";
-import Content from "./content";
+import AppSider from "./sider";
+import AppLayoutContent from "./content";
 
 // Icon
 import { LogoutOutlined } from "@ant-design/icons";
 
-function DashboardLayout({ children }) {
+function AppLayout({ children }) {
   const router = useRouter();
 
   //? ============== Handle Logout ============= ?//
@@ -38,7 +38,7 @@ function DashboardLayout({ children }) {
   return (
     <Layout style={{ minHeight: "100vh" }} className="main-dashboard-layout" id="dashboard">
       {/* Sidebar Section */}
-      <Sidebar />
+      <AppSider />
       {/* ============================ */}
 
       <Layout className="site-layout">
@@ -55,16 +55,16 @@ function DashboardLayout({ children }) {
         {/* ============================ */}
 
         {/* Content Section */}
-        <Content>
+        <AppLayoutContent>
           {children}
           {/* Footer Section */}
           <Footer style={{ textAlign: "center", marginTop: 50 }}>Artchive v1.0 ©2021</Footer>
           {/* ============================ */}
-        </Content>
+        </AppLayoutContent>
         {/* ============================ */}
       </Layout>
     </Layout>
   );
 }
 
-export default DashboardLayout;
+export default AppLayout;

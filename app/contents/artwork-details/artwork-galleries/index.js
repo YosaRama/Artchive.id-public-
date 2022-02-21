@@ -7,8 +7,8 @@ import { useArtwork } from "app/hooks/artwork";
 import { useUploads } from "app/hooks/upload";
 
 // Components
-import UploadBox from "app/components/libs/upload-box";
-import deleteConfirmModal from "app/components/libs/delete-modal-confirm";
+import AppUploadBox from "app/components/libs/upload-box";
+import deleteConfirmModal from "app/components/utils/delete-modal-confirm";
 
 // Styles
 import s from "./index.module.scss";
@@ -68,7 +68,11 @@ function ArtworkMediaGalleries() {
 
           {artworkData?.media_gallery?.length < 4 && (
             <Col span={6}>
-              <UploadBox className={s.uploadBox} onUpload={handleUpload} loading={uploadLoading} />
+              <AppUploadBox
+                className={s.uploadBox}
+                onUpload={handleUpload}
+                loading={uploadLoading}
+              />
             </Col>
           )}
         </Row>

@@ -8,7 +8,7 @@ import { Button, Checkbox, Col, Form, Input, Row } from "antd";
 import ThemesContainerMain from "themes/components/container/main";
 import ThemesContainerTwoColumns from "themes/components/container/two-column";
 import ThemesButton from "themes/components/libs/button";
-import { ErrorNotification } from "app/components/libs/notification";
+import { ErrorNotification } from "app/components/utils/notification";
 
 // Styles
 import s from "./index.module.scss";

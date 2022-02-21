@@ -3,8 +3,8 @@ import { useRouter } from "next/router";
 import { Button, Col, Form, Input, PageHeader } from "antd";
 
 // Components
-import ContainerBox from "app/components/container/containerBox";
-import ContainerCard from "app/components/container/containerCard";
+import AppContainerBox from "app/components/container/box";
+import AppContainerCard from "app/components/container/card";
 import { useGenre } from "app/hooks/genre";
 
 // Data Hook
@@ -32,10 +32,10 @@ function GenreDetails() {
   // * ====================================== * //
 
   return (
-    <ContainerBox>
+    <AppContainerBox>
       <Col span={12} style={{ margin: "0 auto" }}>
         <PageHeader title="Genre Details" onBack={() => router.back()} />
-        <ContainerCard>
+        <AppContainerCard>
           {data && (
             <Form layout="vertical" form={form} initialValues={data}>
               <Form.Item
@@ -52,9 +52,9 @@ function GenreDetails() {
               </Col>
             </Form>
           )}
-        </ContainerCard>
+        </AppContainerCard>
       </Col>
-    </ContainerBox>
+    </AppContainerBox>
   );
 }
 

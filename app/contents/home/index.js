@@ -3,11 +3,11 @@ import { Card, Col, Empty, Row } from "antd";
 import Link from "next/link";
 
 // Component
-import ContainerBox from "app/components/container/containerBox";
-import ContainerCard from "app/components/container/containerCard";
-import CardCount from "app/components/libs/card-count";
-import CardUserList from "app/components/libs/card-user-list";
-import CardArtwork from "app/components/libs/card-artwork";
+import AppContainerBox from "app/components/container/box";
+import AppContainerCard from "app/components/container/card";
+import AppCardCount from "app/components/libs/card-count";
+import AppCardUserList from "app/components/libs/card-user-list";
+import AppCardArtwork from "app/components/libs/card-artwork";
 
 // Data Hook
 import { useArtworks } from "app/hooks/artwork";
@@ -70,21 +70,21 @@ function DashboardHome() {
   //* =========================================== *//
 
   return (
-    <ContainerBox>
+    <AppContainerBox>
       {/* Counter Data Section */}
       <Row gutter={[16, 0]}>
         {countData.map((item, index) => (
           <Col span={6} key={index}>
-            <CardCount icon={item.icon} count={item.count} title={item.title} link={item.link} />
+            <AppCardCount icon={item.icon} count={item.count} title={item.title} link={item.link} />
           </Col>
         ))}
       </Row>
       {/* ============================= */}
 
       {/* New User Section */}
-      <ContainerCard title="New Users" style={{ margin: "30px 0" }}>
+      <AppContainerCard title="New Users" style={{ margin: "30px 0" }}>
         {userData?.map((item, index) => (
-          <CardUserList
+          <AppCardUserList
             key={index}
             id={item.id}
             image={item.profile?.url && `${process.env.NEXT_PUBLIC_S3_URL}/${item.profile?.url}`}
@@ -101,11 +101,11 @@ function DashboardHome() {
             <Empty />
           </Col>
         )}
-      </ContainerCard>
+      </AppContainerCard>
       {/* ============================= */}
 
       {/* New Artwork Section */}
-      <ContainerCard
+      <AppContainerCard
         title="New Artworks"
         style={{ margin: "30px 0" }}
         extra={
@@ -119,7 +119,7 @@ function DashboardHome() {
         <Row gutter={[16, 0]}>
           {artworkData?.map((item, index) => (
             <Col span={6} key={index}>
-              <CardArtwork
+              <AppCardArtwork
                 image={
                   item?.media_cover?.url &&
                   `${process.env.NEXT_PUBLIC_S3_URL}/${item.media_cover?.url}`
@@ -143,9 +143,9 @@ function DashboardHome() {
             </Col>
           )}
         </Row>
-      </ContainerCard>
+      </AppContainerCard>
       {/* ============================= */}
-    </ContainerBox>
+    </AppContainerBox>
   );
 }
 

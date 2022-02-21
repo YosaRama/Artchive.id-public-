@@ -3,8 +3,8 @@ import { Button, Col, Form, Input, PageHeader } from "antd";
 import { useRouter } from "next/router";
 
 // Components
-import ContainerBox from "app/components/container/containerBox";
-import ContainerCard from "app/components/container/containerCard";
+import AppContainerBox from "app/components/container/box";
+import AppContainerCard from "app/components/container/card";
 
 // Data Hook
 import { useGenres } from "app/hooks/genre";
@@ -32,10 +32,10 @@ function GenreCreate() {
   // * ====================================== * //
 
   return (
-    <ContainerBox>
+    <AppContainerBox>
       <Col span={12} style={{ margin: "0 auto" }}>
         <PageHeader title="Add New Genre" onBack={() => router.back()} />
-        <ContainerCard>
+        <AppContainerCard>
           <Form layout="vertical" form={form}>
             <Form.Item
               label="Genre Title"
@@ -50,9 +50,9 @@ function GenreCreate() {
               </Button>
             </Col>
           </Form>
-        </ContainerCard>
+        </AppContainerCard>
       </Col>
-    </ContainerBox>
+    </AppContainerBox>
   );
 }
 

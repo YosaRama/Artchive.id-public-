@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 // Component
-import ContainerBox from "app/components/container/containerBox";
+import AppContainerBox from "app/components/container/box";
 import UserListing from "app/components/libs/user-listing";
 
 // Data Hook
@@ -30,7 +30,7 @@ function ArtistList() {
   // * ====================================== * //
 
   return (
-    <ContainerBox>
+    <AppContainerBox>
       {data && (
         <UserListing
           searchValue={searchValue}
@@ -44,7 +44,7 @@ function ArtistList() {
           handlePagination={handlePagination}
         />
       )}
-    </ContainerBox>
+    </AppContainerBox>
   );
 }
 

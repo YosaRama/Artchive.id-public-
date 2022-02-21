@@ -20,7 +20,7 @@ import { useUsers } from "app/hooks/user";
 import { useGenres } from "app/hooks/genre";
 
 // Components
-import deleteConfirmModal from "app/components/libs/delete-modal-confirm";
+import deleteConfirmModal from "app/components/utils/delete-modal-confirm";
 
 function ArtworkGeneralInformation() {
   const router = useRouter();

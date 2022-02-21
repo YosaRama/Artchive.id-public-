@@ -2,23 +2,23 @@
 import { Col, Row } from "antd";
 
 // Component
-import CardArtwork from "app/components/libs/card-artwork";
+import AppCardArtwork from "app/components/libs/card-artwork";
 
 function UserEditCollection() {
   return (
     <>
       <Row gutter={[16, 0]}>
         <Col span={6}>
-          <CardArtwork />
+          <AppCardArtwork />
         </Col>
         <Col span={6}>
-          <CardArtwork />
+          <AppCardArtwork />
         </Col>
         <Col span={6}>
-          <CardArtwork />
+          <AppCardArtwork />
         </Col>
         <Col span={6}>
-          <CardArtwork />
+          <AppCardArtwork />
         </Col>
       </Row>
     </>

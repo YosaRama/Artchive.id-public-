@@ -5,7 +5,7 @@ import { Upload } from "antd";
 // Icons
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 
-function UploadBox(props) {
+function AppUploadBox(props) {
   const { onUpload, loading } = props;
   const uploadButton = (
     <div className="upload-button">
@@ -26,9 +26,9 @@ function UploadBox(props) {
   );
 }
 
-UploadBox.propTypes = {
+AppUploadBox.propTypes = {
   onUpload: propTypes.func,
   loading: propTypes.bool,
 };
 
-export default UploadBox;
+export default AppUploadBox;

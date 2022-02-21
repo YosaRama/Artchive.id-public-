@@ -10,7 +10,7 @@ const { SubMenu } = Menu;
 // Icon
 import { HomeOutlined, UserOutlined, PictureOutlined, PartitionOutlined } from "@ant-design/icons";
 
-const DashboardSider = (props) => {
+const AppSider = (props) => {
   const router = useRouter();
 
   // Handle collapse menu
@@ -79,4 +79,4 @@ const DashboardSider = (props) => {
   );
 };
 
-export default DashboardSider;
+export default AppSider;

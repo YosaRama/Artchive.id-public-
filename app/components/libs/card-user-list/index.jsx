@@ -13,10 +13,10 @@ import { EllipsisOutlined, CloseOutlined, EditOutlined, DeleteOutlined } from "@
 import s from "./index.module.scss";
 
 // Component
-import deleteConfirmModal from "../delete-modal-confirm";
-import RoleTag from "../role-tag";
+import deleteConfirmModal from "../../utils/delete-modal-confirm";
+import AppRoleTag from "../role-tag";
 
-function CardUserList(props) {
+function AppCardUserList(props) {
   const { image, name, email, role, date, id, onDelete, status } = props;
   const router = useRouter();
 
@@ -51,7 +51,7 @@ function CardUserList(props) {
             </div>
           </Col>
           <Col span={4}>
-            <RoleTag role={role} />
+            <AppRoleTag role={role} />
           </Col>
           <Col span={6}>{moment({ date }).format("DD MMMM YYYY")}</Col>
           <Col span={3}>
@@ -101,7 +101,7 @@ function CardUserList(props) {
   );
 }
 
-CardUserList.propTypes = {
+AppCardUserList.propTypes = {
   image: propTypes.string,
   name: propTypes.string,
   email: propTypes.string,
@@ -112,4 +112,4 @@ CardUserList.propTypes = {
   status: propTypes.bool,
 };
 
-export default CardUserList;
+export default AppCardUserList;

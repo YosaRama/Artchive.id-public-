@@ -3,7 +3,7 @@ import propTypes from "prop-types";
 import { Col, Empty, Row } from "antd";
 
 // Component
-import CardArtwork from "app/components/libs/card-artwork";
+import AppCardArtwork from "app/components/libs/card-artwork";
 
 function UserEditArtwork(props) {
   const { initialData = [] } = props;
@@ -13,7 +13,7 @@ function UserEditArtwork(props) {
         {initialData.length != 0 ? (
           initialData.artwork.map((item, index) => (
             <Col span={6} key={index}>
-              <CardArtwork
+              <AppCardArtwork
                 image={
                   item?.media_cover
                     ? `${process.env.NEXT_PUBLIC_S3_URL}/${item?.media_cover?.url}`

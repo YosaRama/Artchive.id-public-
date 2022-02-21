@@ -4,14 +4,14 @@ import { useRouter } from "next/router";
 import { PageHeader, Image, Row, Col, Menu, Button } from "antd";
 
 // Component
-import ContainerBox from "app/components/container/containerBox";
-import ContainerCard from "app/components/container/containerCard";
+import AppContainerBox from "app/components/container/box";
+import AppContainerCard from "app/components/container/card";
 import ArtworkGeneralInformation from "./artwork-details-info";
 import ArtworkCertificateGenerate from "./artwork-details-certificate";
 
 // Styles
 import s from "./index.module.scss";
-import UploadButton from "app/components/libs/upload-button";
+import AppUploadButton from "app/components/libs/upload-button";
 
 // Data Hook
 import { useUploads } from "app/hooks/upload";
@@ -48,7 +48,7 @@ function ArtworkDetails(props) {
   // * ====================================== * //
 
   return (
-    <ContainerBox>
+    <AppContainerBox>
       <PageHeader title="Artwork Details" onBack={() => router.back()} />
       <Row gutter={[16, 0]} style={{ marginBottom: 30 }}>
         <Col span={24}>
@@ -65,12 +65,12 @@ function ArtworkDetails(props) {
           </Col>
         </Col>
         <Col span={24} style={{ textAlign: "center" }}>
-          <UploadButton onUpload={handleUpload} loading={uploadLoading}>
+          <AppUploadButton onUpload={handleUpload} loading={uploadLoading}>
             Change Artwork
-          </UploadButton>
+          </AppUploadButton>
         </Col>
       </Row>
-      <ContainerCard>
+      <AppContainerCard>
         <Menu mode="horizontal" onClick={handleSelectMenu} selectedKeys={selectedMenu}>
           <Menu.Item key={"1"}>General Information</Menu.Item>
           <Menu.Item key={"2"}>Media Galleries</Menu.Item>
@@ -80,8 +80,8 @@ function ArtworkDetails(props) {
         {selectedMenu == 1 && <ArtworkGeneralInformation />}
         {selectedMenu == 2 && <ArtworkMediaGalleries />}
         {selectedMenu == 3 && <ArtworkCertificateGenerate />}
-      </ContainerCard>
-    </ContainerBox>
+      </AppContainerCard>
+    </AppContainerBox>
   );
 }
 

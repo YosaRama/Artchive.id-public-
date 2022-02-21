@@ -3,7 +3,7 @@ import propTypes from "prop-types";
 import { Button, Col, Form, Input } from "antd";
 
 // Components
-import changeConfirmModal from "app/components/libs/change-modal-confirm";
+import changeConfirmModal from "app/components/utils/change-modal-confirm";
 
 // Helper
 import { passwordFormRules } from "app/helpers/passwordFormRules";

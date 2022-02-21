@@ -4,10 +4,10 @@ import { useState } from "react";
 import { Col, Empty, Row, Pagination, Spin } from "antd";
 
 // Components
-import ContainerBox from "app/components/container/containerBox";
-import ContainerCard from "app/components/container/containerCard";
-import AddButton from "app/components/libs/add-button";
-import CardArtwork from "app/components/libs/card-artwork";
+import AppContainerBox from "app/components/container/box";
+import AppContainerCard from "app/components/container/card";
+import AppAddButton from "app/components/libs/add-button";
+import AppCardArtwork from "app/components/libs/card-artwork";
 
 // Data Hook
 import { useArtworks } from "app/hooks/artwork";
@@ -30,18 +30,18 @@ function ArtworkList() {
   // * ====================================== * //
 
   return (
-    <ContainerBox>
-      <ContainerCard title="Artwork List">
-        <AddButton onCreate={() => router.push("/dashboard/artworks/create")}>
+    <AppContainerBox>
+      <AppContainerCard title="Artwork List">
+        <AppAddButton onCreate={() => router.push("/dashboard/artworks/create")}>
           Add Artwork
-        </AddButton>
+        </AppAddButton>
         <Spin spinning={loading}>
           <Row gutter={[16, 16]}>
             {data?.length != 0 &&
               data?.map((item, index) => {
                 return (
                   <Col span={6} key={index}>
-                    <CardArtwork
+                    <AppCardArtwork
                       image={
                         item?.media_cover
                           ? `${process.env.NEXT_PUBLIC_S3_URL}/${item?.media_cover?.url}`
@@ -75,8 +75,8 @@ function ArtworkList() {
             </Col>
           </Row>
         </Spin>
-      </ContainerCard>
-    </ContainerBox>
+      </AppContainerCard>
+    </AppContainerBox>
   );
 }
 

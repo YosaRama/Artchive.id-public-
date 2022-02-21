@@ -5,7 +5,7 @@ import api from "app/utils/swr";
 import { useCallback, useState } from "react";
 
 // Component
-import { SuccessNotification, ErrorNotification } from "app/components/libs/notification";
+import { SuccessNotification, ErrorNotification } from "app/components/utils/notification";
 
 //TODO: Match with backend endpoint
 const pathName = "/api-route"; // End point

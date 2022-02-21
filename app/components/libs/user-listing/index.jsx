@@ -4,10 +4,10 @@ import { useRouter } from "next/router";
 import { Button, Col, Empty, Pagination, Row } from "antd";
 
 // Components
-import ContainerCard from "app/components/container/containerCard";
-import CardUserList from "app/components/libs/card-user-list";
-import DashboardSearch from "app/components/libs/dashboard-search";
-import AddButton from "../add-button";
+import AppContainerCard from "app/components/container/card";
+import AppCardUserList from "app/components/libs/card-user-list";
+import AppSearchBox from "app/components/libs/search-box";
+import AppAddButton from "../add-button";
 
 // Icons
 import { FilterOutlined } from "@ant-design/icons";
@@ -27,7 +27,7 @@ function UserListing(props) {
   } = props;
 
   return (
-    <ContainerCard
+    <AppContainerCard
       title={title}
       extra={
         <>
@@ -45,7 +45,7 @@ function UserListing(props) {
 
             {/* Search Section */}
             <Col>
-              <DashboardSearch
+              <AppSearchBox
                 searchValue={searchValue}
                 setSearchValue={setSearchValue}
                 searchBy="name"
@@ -56,11 +56,11 @@ function UserListing(props) {
         </>
       }
     >
-      <AddButton onCreate={() => router.push("/dashboard/users/create")}>Add User</AddButton>
+      <AppAddButton onCreate={() => router.push("/dashboard/users/create")}>Add User</AppAddButton>
       {data.length != 0 &&
         data?.map((item) => {
           return (
-            <CardUserList
+            <AppCardUserList
               key={item.id}
               email={item.email}
               id={item.id}
@@ -90,7 +90,7 @@ function UserListing(props) {
       ) : (
         ""
       )}
-    </ContainerCard>
+    </AppContainerCard>
   );
 }
 

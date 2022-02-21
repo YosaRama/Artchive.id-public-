@@ -10,7 +10,7 @@ const { Meta } = Card;
 // Style
 import s from "./index.module.scss";
 
-function CardArtwork(props) {
+function AppCardArtwork(props) {
   const router = useRouter();
   const { title, size, image, status, featured, id, artistImage, artistName } = props;
   return (
@@ -55,7 +55,7 @@ function CardArtwork(props) {
   );
 }
 
-CardArtwork.propTypes = {
+AppCardArtwork.propTypes = {
   title: propTypes.string,
   size: propTypes.string,
   image: propTypes.string,
@@ -66,4 +66,4 @@ CardArtwork.propTypes = {
   artistName: propTypes.string,
 };
 
-export default CardArtwork;
+export default AppCardArtwork;

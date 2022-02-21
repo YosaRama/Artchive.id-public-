@@ -1,6 +1,6 @@
 import { Content } from "antd/lib/layout/layout";
 
-function PageContent(props) {
+function AppLayoutContent(props) {
   return (
     <Content>
       <div className="site-layout-background main-content-container">{props.children}</div>
@@ -8,4 +8,4 @@ function PageContent(props) {
   );
 }
 
-export default PageContent;
+export default AppLayoutContent;

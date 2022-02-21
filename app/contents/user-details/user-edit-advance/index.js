@@ -3,7 +3,7 @@ import propTypes from "prop-types";
 import { Button, Col, Row } from "antd";
 
 // Components
-import changeConfirmModal from "app/components/libs/change-modal-confirm";
+import changeConfirmModal from "app/components/utils/change-modal-confirm";
 
 // Data Hook
 import { useUser } from "app/hooks/user";

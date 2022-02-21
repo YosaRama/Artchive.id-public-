@@ -3,7 +3,7 @@ import { Button, Col, Form, Input, Row } from "antd";
 import propTypes from "prop-types";
 const { Search } = Input;
 
-function DashboardSearch(props) {
+function AppSearchBox(props) {
   const { searchValue, setSearchValue, searchBy } = props;
   //? ============== Search Handling ============= ?//
   const [searchForm] = Form.useForm();
@@ -38,10 +38,10 @@ function DashboardSearch(props) {
   );
 }
 
-DashboardSearch.propTypes = {
+AppSearchBox.propTypes = {
   searchValue: propTypes.node,
   setSearchValue: propTypes.func,
   searchBy: propTypes.string,
 };
 
-export default DashboardSearch;
+export default AppSearchBox;

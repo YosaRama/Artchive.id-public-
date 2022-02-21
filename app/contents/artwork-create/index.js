@@ -11,12 +11,12 @@ import { useUsers } from "app/hooks/user";
 import { useGenres } from "app/hooks/genre";
 
 // Components
-import UploadBox from "app/components/libs/upload-box";
-import ContainerBox from "app/components/container/containerBox";
-import ContainerCard from "app/components/container/containerCard";
+import AppUploadBox from "app/components/libs/upload-box";
+import AppContainerBox from "app/components/container/box";
+import AppContainerCard from "app/components/container/card";
 
 // Notification
-import { WarningNotification } from "app/components/libs/notification";
+import { WarningNotification } from "app/components/utils/notification";
 
 // Style
 import s from "./index.module.scss";
@@ -98,14 +98,14 @@ function ArtworkCreate() {
 
   return (
     <>
-      <ContainerBox>
-        <ContainerCard title="CREATE NEW ARTWORK">
+      <AppContainerBox>
+        <AppContainerCard title="CREATE NEW ARTWORK">
           <Row gutter={[32, 0]}>
             <Col span={10}>
               {uploadImage ? (
                 <Image alt="" src={`${process.env.NEXT_PUBLIC_S3_URL}/${uploadImage?.url}`} />
               ) : (
-                <UploadBox
+                <AppUploadBox
                   onUpload={handleUpload}
                   loading={uploadLoading}
                   className={s.upload}
@@ -265,8 +265,8 @@ function ArtworkCreate() {
               </Col>
             </Col>
           </Row>
-        </ContainerCard>
-      </ContainerBox>
+        </AppContainerCard>
+      </AppContainerBox>
     </>
   );
 }

@@ -5,7 +5,7 @@ import { Tag } from "antd";
 // Icons
 import { UserOutlined } from "@ant-design/icons";
 
-function RoleTag(props) {
+function AppRoleTag(props) {
   const { role } = props;
   return (
     <Tag
@@ -22,8 +22,8 @@ function RoleTag(props) {
   );
 }
 
-RoleTag.propTypes = {
+AppRoleTag.propTypes = {
   role: propTypes.oneOf(["ARTIST", "GALLERY", "ADMIN", "COLLECTOR"]),
 };
 
-export default RoleTag;
+export default AppRoleTag;

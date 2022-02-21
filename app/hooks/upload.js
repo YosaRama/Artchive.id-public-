@@ -3,7 +3,7 @@ import { useCallback, useState } from "react";
 import axios from "axios";
 
 // Component
-import { ErrorNotification, SuccessNotification } from "app/components/libs/notification";
+import { ErrorNotification, SuccessNotification } from "app/components/utils/notification";
 
 export const useUploads = () => {
   const [loading, setLoading] = useState(false);
