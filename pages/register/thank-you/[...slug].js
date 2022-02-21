@@ -4,7 +4,7 @@ import { verifyPassword } from "app/helpers/auth";
 // Contents
 import ThemesContentsRegisterThankYou from "themes/contents/register/thank-you";
 
-function PageThankYouRegistration(props) {
+function PageRegisterThankYou(props) {
   const { isVerify, id, email } = props;
   return (
     <>
@@ -29,4 +29,4 @@ export const getServerSideProps = async (ctx) => {
   };
 };
 
-export default PageThankYouRegistration;
+export default PageRegisterThankYou;

@@ -1,8 +1,8 @@
 // Contents
 import ThemesContentsMaintenance from "themes/contents/maintenance";
 
-function MaintenancePage() {
+function PageMaintenance() {
   return <ThemesContentsMaintenance />;
 }
 
-export default MaintenancePage;
+export default PageMaintenance;

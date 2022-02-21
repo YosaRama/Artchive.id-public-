@@ -1,7 +1,7 @@
 // Contents
 import ThemesContentsArtistDetails from "themes/contents/artist/details";
 
-function ArtistPage() {
+function PageArtistDetails() {
   return (
     <>
       <ThemesContentsArtistDetails />
@@ -9,4 +9,4 @@ function ArtistPage() {
   );
 }
 
-export default ArtistPage;
+export default PageArtistDetails;

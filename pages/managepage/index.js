@@ -1,7 +1,7 @@
 import ManagePageLogin from "app/contents/login";
 
-function ManagePage() {
+function PageManagePage() {
   return <ManagePageLogin />;
 }
 
-export default ManagePage;
+export default PageManagePage;
