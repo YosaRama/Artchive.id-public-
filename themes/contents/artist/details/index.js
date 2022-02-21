@@ -11,11 +11,9 @@ import s from "./index.module.scss";
 import { InstagramOutlined, FacebookOutlined, MailOutlined } from "@ant-design/icons";
 import ThemesContainerMasonry from "themes/components/container/masonry";
 import ThemesArtworkCard from "themes/components/libs/artwork-card";
-import ThemesArtworkWithFrame from "themes/components/libs/artwork-with-frame";
-import ThemesDividerWithButton from "themes/components/libs/divider-with-button";
 import ThemesButton from "themes/components/libs/button";
 
-function PageArtistDetails() {
+function ThemesContentsArtistDetails() {
   //? ============== Artwork Hook ============= ?//
   const artworkData = [
     {
@@ -212,4 +210,4 @@ function PageArtistDetails() {
   );
 }
 
-export default PageArtistDetails;
+export default ThemesContentsArtistDetails;

@@ -2,13 +2,13 @@
 import { verifyPassword } from "app/helpers/auth";
 
 // Components
-import RegisterConfirmationPage from "themes/contents/register/confirmation";
+import ThemesContentsRegisterConfirmation from "themes/contents/register/confirmation";
 
 function PageRegisterConfirmation(props) {
   const { email } = props;
   return (
     <>
-      <RegisterConfirmationPage email={email} />
+      <ThemesContentsRegisterConfirmation email={email} />
     </>
   );
 }

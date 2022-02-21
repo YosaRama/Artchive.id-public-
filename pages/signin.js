@@ -2,10 +2,10 @@
 import { getSession } from "next-auth/react";
 
 // Contents
-import SignInPage from "themes/contents/signin";
+import ThemesContentsSignIn from "themes/contents/signin";
 
 function PageSignIn() {
-  return <SignInPage />;
+  return <ThemesContentsSignIn />;
 }
 
 export default PageSignIn;

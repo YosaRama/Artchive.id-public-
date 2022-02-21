@@ -16,7 +16,7 @@ import { useArtworksLoad } from "app/hooks/artwork";
 // Styles
 import s from "./index.module.scss";
 
-function ArtworkListPage() {
+function ThemesContentsArtworkList() {
   //? ============== Artwork Hook ============= ?//
   const {
     data: artworkData,
@@ -143,4 +143,4 @@ function ArtworkListPage() {
   );
 }
 
-export default ArtworkListPage;
+export default ThemesContentsArtworkList;

@@ -1,10 +1,10 @@
 // Contents
-import PageArtistDetails from "themes/contents/artist/artist-details";
+import ThemesContentsArtistDetails from "themes/contents/artist/details";
 
 function ArtistPage() {
   return (
     <>
-      <PageArtistDetails />
+      <ThemesContentsArtistDetails />
     </>
   );
 }

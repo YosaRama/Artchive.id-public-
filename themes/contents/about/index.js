@@ -1,4 +1,4 @@
-function About() {
+function ThemesContentsAbout() {
   return (
     <>
       <section id="about">
@@ -8,4 +8,4 @@ function About() {
   );
 }
 
-export default About;
+export default ThemesContentsAbout;

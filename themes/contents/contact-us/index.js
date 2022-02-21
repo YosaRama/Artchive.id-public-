@@ -9,7 +9,7 @@ import ThemesButton from "themes/components/libs/button";
 // Styles
 import s from "./index.module.scss";
 
-function ContactUsPage() {
+function ThemesContentsContactUs() {
   return (
     <ThemesContainerMain>
       <ThemesContainerTwoColumns imgSrc="/images/contact-background.jpg" cardClassName="halo">
@@ -43,4 +43,4 @@ function ContactUsPage() {
   );
 }
 
-export default ContactUsPage;
+export default ThemesContentsContactUs;

@@ -8,7 +8,7 @@ import ThemesContainerMain from "themes/components/container/main";
 // Styles
 import s from "./index.module.scss";
 
-function PageMaintenance() {
+function ThemesContentsMaintenance() {
   return (
     <ThemesContainerMain sectionclass={s.section} containerClass={s.container}>
       <Col style={{ textAlign: "center" }}>
@@ -24,4 +24,4 @@ function PageMaintenance() {
   );
 }
 
-export default PageMaintenance;
+export default ThemesContentsMaintenance;

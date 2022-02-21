@@ -1,11 +1,11 @@
 // Contents
 
-import ContactUsPage from "themes/contents/contact-us";
+import ThemesContentsContactUs from "themes/contents/contact-us";
 
 function PageContactUs() {
   return (
     <>
-      <ContactUsPage />
+      <ThemesContentsContactUs />
     </>
   );
 }

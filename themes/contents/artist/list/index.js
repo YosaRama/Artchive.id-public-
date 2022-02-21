@@ -10,7 +10,7 @@ import ThemesButton from "themes/components/libs/button";
 // Styles
 import s from "./index.module.scss";
 
-function ArtistListPage() {
+function ThemesContentsArtistList() {
   //? ============== Artist Hook ============= ?//
   const artistData = [
     { id: 1, name: "Yosa Rama", city: "Bali", slug: "yosa-rama-dinata" },
@@ -90,4 +90,4 @@ function ArtistListPage() {
   );
 }
 
-export default ArtistListPage;
+export default ThemesContentsArtistList;

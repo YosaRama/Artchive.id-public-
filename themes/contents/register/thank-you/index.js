@@ -13,7 +13,7 @@ import { useMailer } from "app/hooks/mailer";
 import s from "./index.module.scss";
 import ThemesButton from "themes/components/libs/button";
 
-function RegisterThankyouPage(props) {
+function ThemesContentsRegisterThankYou(props) {
   const router = useRouter();
   const { isVerify, id, email } = props;
 
@@ -57,10 +57,10 @@ function RegisterThankyouPage(props) {
   );
 }
 
-RegisterThankyouPage.propTypes = {
+ThemesContentsRegisterThankYou.propTypes = {
   id: propTypes.number,
   isVerify: propTypes.bool,
   email: propTypes.node,
 };
 
-export default RegisterThankyouPage;
+export default ThemesContentsRegisterThankYou;

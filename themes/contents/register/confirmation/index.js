@@ -12,7 +12,7 @@ import { useMailer } from "app/hooks/mailer";
 // Styles
 import s from "./index.module.scss";
 
-function RegisterConfirmationPage(props) {
+function ThemesContentsRegisterConfirmation(props) {
   const { email, status } = props;
 
   //? ============== Handle Resend Email ============= ?//
@@ -83,8 +83,8 @@ function RegisterConfirmationPage(props) {
   );
 }
 
-RegisterConfirmationPage.propTypes = {
+ThemesContentsRegisterConfirmation.propTypes = {
   email: propTypes.string,
 };
 
-export default RegisterConfirmationPage;
+export default ThemesContentsRegisterConfirmation;

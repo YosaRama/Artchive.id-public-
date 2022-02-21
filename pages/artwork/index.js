@@ -1,10 +1,10 @@
 // Contents
-import ArtworkListPage from "themes/contents/artwork/artwork-list";
+import ThemesContentsArtworkList from "themes/contents/artwork/list";
 
 function PageArtworkList() {
   return (
     <>
-      <ArtworkListPage />
+      <ThemesContentsArtworkList />
     </>
   );
 }

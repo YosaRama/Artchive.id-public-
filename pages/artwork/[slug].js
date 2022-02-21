@@ -2,13 +2,13 @@
 import moment from "moment";
 
 // Contents
-import ArtworkDetailsPage from "themes/contents/artwork/artwork-details";
+import ThemesContentsArtworkDetails from "themes/contents/artwork/details";
 
 function PageArtworkDetails(props) {
   const { artworkData } = props;
   return (
     <>
-      <ArtworkDetailsPage artworkData={artworkData} />
+      <ThemesContentsArtworkDetails artworkData={artworkData} />
     </>
   );
 }

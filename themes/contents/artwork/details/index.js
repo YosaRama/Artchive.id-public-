@@ -20,7 +20,7 @@ import { CartIcon } from "public/icons/cart-icon";
 // Styles
 import s from "./index.module.scss";
 
-function ArtworkDetailsPage(props) {
+function ThemesContentsArtworkDetails(props) {
   const { artworkData } = props;
 
   //? ============== Other Artwork Hook ============= ?//
@@ -151,8 +151,8 @@ function ArtworkDetailsPage(props) {
   );
 }
 
-ArtworkDetailsPage.propTypes = {
+ThemesContentsArtworkDetails.propTypes = {
   artworkData: propTypes.object,
 };
 
-export default ArtworkDetailsPage;
+export default ThemesContentsArtworkDetails;

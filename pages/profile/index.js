@@ -2,12 +2,12 @@
 import { getSession } from "next-auth/react";
 
 // Contents
-import ProfilePage from "themes/contents/profile";
+import ThemesContentsProfile from "themes/contents/profile";
 
 function PageProfile() {
   return (
     <>
-      <ProfilePage />
+      <ThemesContentsProfile />
     </>
   );
 }

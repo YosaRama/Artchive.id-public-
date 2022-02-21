@@ -1,11 +1,11 @@
 // Contents
-import Homepage from "themes/contents/homepage";
+import ThemesContentsHomepage from "themes/contents/homepage";
 
 function PageHomepage(props) {
   const { artistData, artworkData } = props;
   return (
     <>
-      <Homepage artistData={artistData} artworkData={artworkData} />
+      <ThemesContentsHomepage artistData={artistData} artworkData={artworkData} />
     </>
   );
 }

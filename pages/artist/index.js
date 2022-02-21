@@ -1,10 +1,10 @@
 // Contents
-import ArtistListPage from "themes/contents/artist/artist-list";
+import ThemesContentsArtistList from "themes/contents/artist/list";
 
 function PageArtistList() {
   return (
     <>
-      <ArtistListPage />
+      <ThemesContentsArtistList />
     </>
   );
 }

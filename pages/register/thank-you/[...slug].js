@@ -2,13 +2,13 @@
 import { verifyPassword } from "app/helpers/auth";
 
 // Contents
-import RegisterThankyouPage from "themes/contents/register/thank-you";
+import ThemesContentsRegisterThankYou from "themes/contents/register/thank-you";
 
 function PageThankYouRegistration(props) {
   const { isVerify, id, email } = props;
   return (
     <>
-      <RegisterThankyouPage isVerify={isVerify} id={+id} email={email} />
+      <ThemesContentsRegisterThankYou isVerify={isVerify} id={+id} email={email} />
     </>
   );
 }

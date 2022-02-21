@@ -2,12 +2,12 @@
 import { getSession } from "next-auth/react";
 
 // Content
-import RegisterPage from "themes/contents/register";
+import ThemesContentsRegister from "themes/contents/register";
 
 function PageRegister() {
   return (
     <>
-      <RegisterPage />
+      <ThemesContentsRegister />
     </>
   );
 }

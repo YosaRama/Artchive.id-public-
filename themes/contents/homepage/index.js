@@ -15,7 +15,7 @@ import ThemesHeadline from "themes/components/libs/headline";
 // Styles
 import s from "./index.module.scss";
 
-function Homepage(props) {
+function ThemesContentsHomepage(props) {
   const { artworkData, artistData } = props;
   const router = useRouter();
   return (
@@ -96,9 +96,9 @@ function Homepage(props) {
   );
 }
 
-Homepage.propTypes = {
+ThemesContentsHomepage.propTypes = {
   artworkData: propTypes.array,
   artistData: propTypes.array,
 };
 
-export default Homepage;
+export default ThemesContentsHomepage;

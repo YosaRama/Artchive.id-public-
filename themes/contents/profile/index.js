@@ -8,7 +8,7 @@ import ThemesButton from "themes/components/libs/button";
 // Styles
 import s from "./index.module.scss";
 
-function ProfilePage() {
+function ThemesContentsProfile() {
   //? ============== Handle Logout ============= ?//
   const handleLogout = () => {
     signOut();
@@ -23,4 +23,4 @@ function ProfilePage() {
   );
 }
 
-export default ProfilePage;
+export default ThemesContentsProfile;

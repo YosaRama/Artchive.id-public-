@@ -15,7 +15,7 @@ import ThemesRadioWithImage from "themes/components/libs/radio-with-image";
 // Styles
 import s from "./index.module.scss";
 
-function RegisterRoleSelectionPage(props) {
+function ThemesContentsRegisterRoleSelection(props) {
   const { userId, email, hashEmail } = props;
   const router = useRouter();
   //? ============== User Hook ============= ?//
@@ -91,10 +91,10 @@ function RegisterRoleSelectionPage(props) {
   );
 }
 
-RegisterRoleSelectionPage.propTypes = {
+ThemesContentsRegisterRoleSelection.propTypes = {
   userId: propTypes.number.isRequired,
   email: propTypes.string,
   hashEmail: propTypes.string,
 };
 
-export default RegisterRoleSelectionPage;
+export default ThemesContentsRegisterRoleSelection;

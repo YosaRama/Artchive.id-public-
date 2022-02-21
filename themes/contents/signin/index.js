@@ -15,7 +15,7 @@ import s from "./index.module.scss";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-function SignInPage() {
+function ThemesContentsSignIn() {
   const router = useRouter();
   const [form] = Form.useForm();
 
@@ -129,4 +129,4 @@ function SignInPage() {
   );
 }
 
-export default SignInPage;
+export default ThemesContentsSignIn;

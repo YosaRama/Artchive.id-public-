@@ -5,13 +5,13 @@ import { getSession } from "next-auth/react";
 import { hashPassword } from "app/helpers/auth";
 
 // Content
-import RegisterRoleSelectionPage from "themes/contents/register/role-selection";
+import ThemesContentsRegisterRoleSelection from "themes/contents/register/role-selection";
 
 function PageRegisterRoleSelection(props) {
   const { userId, email, hashEmail } = props;
   return (
     <>
-      <RegisterRoleSelectionPage userId={userId} email={email} hashEmail={hashEmail} />
+      <ThemesContentsRegisterRoleSelection userId={userId} email={email} hashEmail={hashEmail} />
     </>
   );
 }

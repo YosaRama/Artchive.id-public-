@@ -22,7 +22,7 @@ import { useMailer } from "app/hooks/mailer";
 // Styles
 import s from "./index.module.scss";
 
-function RegisterPage() {
+function ThemesContentsRegister() {
   const router = useRouter();
 
   //? ============== Handle Register ============= ?//
@@ -183,4 +183,4 @@ function RegisterPage() {
   );
 }
 
-export default RegisterPage;
+export default ThemesContentsRegister;
