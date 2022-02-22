@@ -17,37 +17,41 @@ export const CHECK_USER_BY_SLUG = ({ slug }) => {
 
 // Get User (Filter by Role, Email, FullName)
 export const GET_USER = ({ page = 1, limit = 15, role, email, fullName, client = false }) => {
-  // Handle Pagination
   const skip = limit != "all" ? (+page - 1) * +limit : undefined;
   return prisma.user.findMany({
-    skip: skip ? +skip : undefined, // Disable by undefined
-    take: limit != "all" ? +limit : undefined, // Disable by undefined
-    // ===========================
-
-    // Handle query condition
-    where: {
-      AND: {
-        role: role ? role : {}, // Can disable by empty object
-        email: email ? { contains: email } : {},
-        full_name: fullName ? { contains: fullName } : {},
-        NOT: { status: client == "true" ? false : {} },
-      },
-    },
-    // ==========================
-
-    // Get Relation Data
+    skip: skip ? +skip : undefined,
+    take: limit != "all" ? +limit : undefined,
     include: {
       profile: true,
       signature: true,
       banner: true,
     },
-    // ==========================
-
-    // Handle order
+    where: {
+      AND: {
+        role: role ? role : {},
+        email: email ? { contains: email } : {},
+        full_name: fullName ? { contains: fullName } : {},
+      },
+      NOT: { status: client == "true" ? false : {} },
+    },
     orderBy: {
       id: "desc",
     },
-    // ==========================
+  });
+};
+// ==================================
+
+// Get total all user
+export const GET_TOTAL_USER = ({ role, email, fullName, client }) => {
+  return prisma.user.count({
+    where: {
+      AND: {
+        role: role ? role : {},
+        email: email ? { contains: email } : {},
+        full_name: fullName ? { contains: fullName } : {},
+      },
+      NOT: { status: client == "true" ? false : {} },
+    },
   });
 };
 // ==================================
@@ -79,22 +83,6 @@ export const GET_USER_BY_EMAIL = ({ email }) => {
     include: {
       profile: true,
     },
-  });
-};
-// ==================================
-
-// Get total all user
-export const GET_TOTAL_USER = ({ role, email, fullName }) => {
-  return prisma.user.count({
-    // Handle query condition
-    where: {
-      AND: {
-        role: role ? role : {}, // Can disable by empty object
-        email: email ? { contains: email } : {}, // Can disable by empty object
-        full_name: fullName ? { contains: fullName } : {}, // Can disable by empty object
-      },
-    },
-    // ========================== });
   });
 };
 // ==================================

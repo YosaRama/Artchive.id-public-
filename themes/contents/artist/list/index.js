@@ -7,19 +7,30 @@ import ThemesArtistCard from "themes/components/libs/artist-card";
 import ThemesBanner from "themes/components/libs/banner";
 import ThemesButton from "themes/components/libs/button";
 
+// Data Hook
+import { useUsersLoad } from "app/hooks/user";
+
 // Styles
 import s from "./index.module.scss";
 
 function ThemesContentsArtistList() {
   //? ============== Artist Hook ============= ?//
-  const artistData = [
-    { id: 1, name: "Yosa Rama", city: "Bali", slug: "yosa-rama-dinata" },
-    { id: 1, name: "Yosa Rama", city: "Bali", slug: "yosa-rama-dinata" },
-    { id: 1, name: "Yosa Rama", city: "Bali", slug: "yosa-rama-dinata" },
-    { id: 1, name: "Yosa Rama", city: "Bali", slug: "yosa-rama-dinata" },
-    { id: 1, name: "Yosa Rama", city: "Bali", slug: "yosa-rama-dinata" },
-    { id: 1, name: "Yosa Rama", city: "Bali", slug: "yosa-rama-dinata" },
-  ];
+  const limit = 8;
+  const {
+    data: artistData,
+    total: artistTotal,
+    size: artistSize,
+    setSize: artistSetSize,
+  } = useUsersLoad({
+    queryString: `role=ARTIST&client=true`,
+    limit: limit,
+  });
+  // * ====================================== * //
+
+  //? ============== Handle Load More ============= ?//
+  const handleLoadMore = () => {
+    artistSetSize(artistSize + 1);
+  };
   // * ====================================== * //
 
   return (
@@ -71,19 +82,30 @@ function ThemesContentsArtistList() {
       <ThemesContainerMain>
         <section className={s.listSection}>
           <Row gutter={[16, 32]}>
-            {artistData.map((item, index) => (
+            {artistData?.map((item, index) => (
               <Col span={6} key={index}>
                 <ThemesArtistCard
                   artistId={item.id}
                   artistSlug={item.slug}
-                  artistName={item.name}
+                  artistName={item.full_name}
                   artistCity={item.city}
-                  avatarSrc={item.avatar}
-                  bannerSrc={item.artwork}
+                  avatarSrc={
+                    item?.profile && `${process.env.NEXT_PUBLIC_S3_URL}/${item?.profile?.url}`
+                  }
+                  bannerSrc={
+                    item?.banner && `${process.env.NEXT_PUBLIC_S3_URL}/${item?.banner?.url}`
+                  }
                 />
               </Col>
             ))}
           </Row>
+          {artistData?.length != artistTotal && (
+            <Col span={24} className={s.loadButton}>
+              <ThemesButton type={`default`} onClick={handleLoadMore}>
+                LOAD MORE
+              </ThemesButton>
+            </Col>
+          )}
         </section>
       </ThemesContainerMain>
     </>

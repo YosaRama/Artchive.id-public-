@@ -17,10 +17,10 @@ const messageHead = "Users";
 
 // GET HANDLER
 apiHandler.get(async (req, res) => {
-  const { page, limit, role, email, fullName } = req.query;
+  const { page, limit, role, email, fullName, client } = req.query;
   try {
-    const result = await GET_USER({ page, limit, role, email, fullName });
-    const total = await GET_TOTAL_USER({ role, email, fullName });
+    const result = await GET_USER({ page, limit, role, email, fullName, client });
+    const total = await GET_TOTAL_USER({ role, email, fullName, client });
 
     // Clean up Data
     delete result["password"];
