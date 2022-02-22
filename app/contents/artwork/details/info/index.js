@@ -66,7 +66,7 @@ function AppContentsArtworkDetailsInfo() {
         type: value.type,
         height: value.height,
         width: value.width,
-        price: new Intl.NumberFormat().format(value.price),
+        price: `${value.price}`,
         status: value.status,
         approve: value.approve,
       };

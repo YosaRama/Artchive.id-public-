@@ -55,7 +55,7 @@ function AppContentsArtworkCreate() {
         type: value.type,
         height: value.height,
         width: value.width,
-        price: new Intl.NumberFormat().format(value.price),
+        price: `${value.price}`,
         status: "DRAFT", // Default on create artwork
         approve: false, // Default on create artwork
       };

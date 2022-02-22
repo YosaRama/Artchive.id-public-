@@ -85,7 +85,7 @@ function ThemesContentsArtworkDetails(props) {
                 </Col>
                 <Col className={s.artworkDetailsPrice}>
                   <p>
-                    <strong>IDR</strong> {artworkData?.price}
+                    <strong>IDR</strong> {artworkData?.price.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                   </p>
                 </Col>
                 <Col>
