@@ -1,3 +1,6 @@
+// Libs
+import { getSession } from "next-auth/react";
+
 // Contents
 import AppContentsGenreDetails from "app/contents/genre/details";
 

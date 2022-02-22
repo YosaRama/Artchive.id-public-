@@ -37,7 +37,8 @@ function MyApp({ Component, pageProps: { session, ...pageProps }, router }) {
             </Head>
             {content && (
               <>
-                {router.pathname.startsWith("/dashboard") ? (
+                {router.pathname.startsWith("/dashboard") &&
+                router.pathname != "/dashboard/login" ? (
                   <AppLayout>
                     <Component {...pageProps} />
                   </AppLayout>
