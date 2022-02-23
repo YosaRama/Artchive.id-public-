@@ -45,6 +45,7 @@ $white: #ffffff;
     justify-content: center;
   }
 }
+// ====================================
 
 // Page Button
 .page-button {
@@ -67,6 +68,7 @@ $white: #ffffff;
     }
   }
 }
+// ====================================
 
 // Simple Page Layout
 .simplePageContainer-card {
@@ -74,6 +76,7 @@ $white: #ffffff;
     padding: 0;
   }
 }
+// ====================================
 
 // Artwork Ribbon
 .artwork-ribbon {
@@ -81,6 +84,7 @@ $white: #ffffff;
     display: none;
   }
 }
+// ====================================
 
 // Not Publish Artwork
 .artwork-not-publish {
@@ -89,6 +93,7 @@ $white: #ffffff;
     filter: grayscale(0);
   }
 }
+// ====================================
 
 // * ====================================== * //
 
@@ -136,6 +141,7 @@ $white: #ffffff;
       }
     }
   }
+  // ====================================
 
   // Checkbox
   .ant-checkbox-wrapper {
@@ -143,6 +149,7 @@ $white: #ffffff;
       font-family: "Aileron";
     }
   }
+  // ====================================
 
   // Custom Radio Button
   .radioCard {
@@ -158,6 +165,7 @@ $white: #ffffff;
       width: 100%;
     }
   }
+  // ====================================
 
   // Ant Image
   .ant-image {
@@ -167,6 +175,7 @@ $white: #ffffff;
       height: 100% !important;
     }
   }
+  // ====================================
 }
 
 // Login Manage Page
@@ -260,7 +269,6 @@ $white: #ffffff;
     transform: translate(0px, 5px) !important;
   }
 }
-
 // =================================
 
 // Artwork Card
@@ -272,7 +280,6 @@ $white: #ffffff;
 // =================================
 
 // Page Banner
-
 .page-bannerContainer {
   &::after {
     content: "";
@@ -284,7 +291,6 @@ $white: #ffffff;
     height: 100%;
   }
 }
-
 .page-bannerTitle {
   height: 100%;
   display: flex;
@@ -295,7 +301,6 @@ $white: #ffffff;
     color: #ffffff;
   }
 }
-
 // =================================
 
 // * ====================================== * //
