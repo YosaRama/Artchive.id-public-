@@ -1,4 +1,5 @@
 // Libs
+import propTypes from "prop-types";
 import { Affix, Col, Form, Input, Row } from "antd";
 
 // Components
@@ -13,7 +14,8 @@ import { useUsersLoad } from "app/hooks/user";
 // Styles
 import s from "./index.module.scss";
 
-function ThemesContentsArtistList() {
+function ThemesContentsArtistList(props) {
+  const { initialArtistData } = props;
   //? ============== Artist Hook ============= ?//
   const limit = 8;
   const {
@@ -82,7 +84,7 @@ function ThemesContentsArtistList() {
       <ThemesContainerMain>
         <section className={s.listSection}>
           <Row gutter={[16, 32]}>
-            {artistData?.map((item, index) => (
+            {(artistData ? artistData : initialArtistData)?.map((item, index) => (
               <Col span={6} key={index}>
                 <ThemesArtistCard
                   artistId={item.id}
@@ -111,5 +113,9 @@ function ThemesContentsArtistList() {
     </>
   );
 }
+
+ThemesContentsArtistList.propTypes = {
+  initialArtistData: propTypes.array,
+};
 
 export default ThemesContentsArtistList;
