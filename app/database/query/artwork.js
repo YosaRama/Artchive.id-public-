@@ -14,7 +14,7 @@ export const CHECK_ARTWORK_BY_SLUG = ({ slug }) => {
 
 //? ============== GET QUERY ============= ?//
 
-// Get Data (Filter by Role, Email, FullName)
+// Get Artwork
 export const GET_ARTWORK = ({
   page = 1,
   limit = 15,
@@ -27,12 +27,10 @@ export const GET_ARTWORK = ({
   const skip = limit != "all" ? (+page - 1) * +limit : undefined;
   // Handle Multiple Genre
   const genreList = genreId && genreId.split(",");
+  // ======================
   return prisma.artwork.findMany({
-    skip: skip ? +skip : undefined, // Disable by undefined
-    take: limit != "all" ? +limit : undefined, // Disable by undefined
-    // ===========================
-
-    // Get Relational Data
+    skip: skip ? +skip : undefined,
+    take: limit != "all" ? +limit : undefined,
     include: {
       artist: {
         select: {
@@ -57,9 +55,6 @@ export const GET_ARTWORK = ({
       media_gallery: { select: { id: true, url: true } },
       genre: true,
     },
-    // ==================
-
-    // Handle query condition
     where: {
       AND: {
         OR: [
@@ -82,13 +77,41 @@ export const GET_ARTWORK = ({
       },
       NOT: { slug: excludeSlug ? excludeSlug : {} },
     },
-    // ==========================
-
-    // Handle order
     orderBy: {
       id: "desc",
     },
-    // ==========================
+  });
+};
+// ==================================
+
+// Get total all data
+export const GET_TOTAL_ARTWORK = ({ client = false, artistId, excludeSlug, genreId }) => {
+  // Handle Multiple Genre
+  const genreList = genreId && genreId.split(",");
+  // ======================
+  return prisma.artwork.count({
+    where: {
+      AND: {
+        OR: [
+          { status: client == "true" ? "SOLD" : {} },
+          { status: client == "true" ? "PUBLISH" : {} },
+        ],
+        OR: genreList
+          ? genreList.map((item) => {
+              return {
+                genre: {
+                  some: {
+                    id: +item,
+                  },
+                },
+              };
+            })
+          : [],
+        artist_id: artistId ? +artistId : {},
+        NOT: { status: client == "true" ? "DRAFT" : {} },
+      },
+      NOT: { slug: excludeSlug ? excludeSlug : {} },
+    },
   });
 };
 // ==================================
@@ -198,39 +221,6 @@ export const GET_ALL_ARTWORK_SLUG = () => {
     select: {
       slug: true,
     },
-  });
-};
-// ==================================
-
-// Get total all data
-export const GET_TOTAL_ARTWORK = ({ client = false, artistId, excludeSlug, genreId }) => {
-  // Handle Multiple Genre
-  const genreList = genreId && genreId.split(",");
-  return prisma.artwork.count({
-    // Handle query condition
-    where: {
-      AND: {
-        OR: [
-          { status: client == "true" ? "SOLD" : {} },
-          { status: client == "true" ? "PUBLISH" : {} },
-        ],
-        OR: genreList
-          ? genreList.map((item) => {
-              return {
-                genre: {
-                  some: {
-                    id: +item,
-                  },
-                },
-              };
-            })
-          : [],
-        artist_id: artistId ? +artistId : {},
-        NOT: { status: client == "true" ? "DRAFT" : {} },
-      },
-      NOT: { slug: excludeSlug ? excludeSlug : {} },
-    },
-    // ==========================
   });
 };
 // ==================================

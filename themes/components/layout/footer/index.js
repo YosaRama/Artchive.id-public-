@@ -16,7 +16,7 @@ function ThemesFooter() {
   //? ============== Footer Menu ============= ?//
   const footerMenu = [
     { title: "About Us", link: "/maintenance" },
-    { title: "Artist", link: "/maintenance" },
+    { title: "Artist", link: "/artist" },
     { title: "Artwork", link: "/artwork" },
     { title: "Contact Us", link: "/contact-us" },
   ];

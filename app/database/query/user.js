@@ -87,6 +87,33 @@ export const GET_USER_BY_EMAIL = ({ email }) => {
 };
 // ==================================
 
+// Get User by slug
+export const GET_USER_BY_SLUG = ({ slug }) => {
+  return prisma.user.findUnique({
+    where: { slug: slug },
+    include: {
+      profile: true,
+      artwork: {
+        include: {
+          media_cover: true,
+        },
+      },
+    },
+  });
+};
+// ==================================
+
+// Get all artist slug
+export const GET_ALL_ARTIST_SLUG = () => {
+  return prisma.user.findMany({
+    where: { role: "ARTIST" },
+    select: {
+      slug: true,
+    },
+  });
+};
+// ==================================
+
 // * ====================================== * //
 
 //? ============== CREATE QUERY ============= ?//
