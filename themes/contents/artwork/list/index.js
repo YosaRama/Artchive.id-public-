@@ -13,10 +13,17 @@ import ThemesButton from "themes/components/libs/button";
 // Data Hook
 import { useArtworksLoad } from "app/hooks/artwork";
 
+// Helpers
+import { useWindowSize } from "app/helpers/useWindowSize";
+
 // Styles
 import s from "./index.module.scss";
 
 function ThemesContentsArtworkList() {
+  //? ============== Handle Get Viewport ============= ?//
+  const viewport = useWindowSize();
+  // * ====================================== * //
+
   //? ============== Artwork Hook ============= ?//
   const {
     data: artworkData,
@@ -53,7 +60,7 @@ function ThemesContentsArtworkList() {
       <ThemesContainerMain>
         <section style={{ margin: "50px 0" }}>
           <Row justify="space-between">
-            <Col span={6}>
+            <Col span={6} className={s.mobileHidden}>
               <Affix offsetTop={25}>
                 <Card>
                   <Col span={24} className={s.searchTitle}>
@@ -104,8 +111,16 @@ function ThemesContentsArtworkList() {
               </Affix>
             </Col>
 
-            <Col span={17}>
-              <ThemesContainerMasonry breakPoint={3}>
+            <Col xl={{ span: 17 }} lg={{ span: 24 }}>
+              <ThemesContainerMasonry
+                breakPoint={
+                  viewport?.width > 768
+                    ? 3
+                    : viewport?.width <= 768 && viewport?.width > 500
+                    ? 2
+                    : 1
+                }
+              >
                 {artworkData?.map((item) => {
                   return (
                     <Col span={24} key={item?.id}>

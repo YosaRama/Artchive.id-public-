@@ -25,3 +25,11 @@
   padding: 5px;
   font-size: 12px;
 }
+
+//? ============== Tablet Landscape Mode ============= ?//
+@media screen and (max-width: 1024px) {
+  .mobileHidden {
+    display: none !important;
+  }
+}
+// * ====================================== * //
