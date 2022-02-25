@@ -129,7 +129,7 @@ function ThemesContentsRegister() {
                   >
                     <Radio.Group style={{ width: "100%" }}>
                       <Row gutter={[16, 0]}>
-                        <Col span={8}>
+                        <Col lg={{ span: 8 }} xs={{ span: 24 }}>
                           <ThemesRadioWithImage
                             value="ARTIST"
                             imgSrc="/images/frontpage-artist-icon.png"
@@ -137,7 +137,7 @@ function ThemesContentsRegister() {
                             Artist
                           </ThemesRadioWithImage>
                         </Col>
-                        <Col span={8}>
+                        <Col lg={{ span: 8 }} xs={{ span: 24 }}>
                           <ThemesRadioWithImage
                             value="COLLECTOR"
                             imgSrc="/images/frontpage-collector-icon.png"
@@ -145,7 +145,7 @@ function ThemesContentsRegister() {
                             Collector
                           </ThemesRadioWithImage>
                         </Col>
-                        <Col span={8}>
+                        <Col lg={{ span: 8 }} xs={{ span: 24 }}>
                           <ThemesRadioWithImage
                             value="GALLERY"
                             imgSrc="/images/frontpage-gallery-icon.png"
