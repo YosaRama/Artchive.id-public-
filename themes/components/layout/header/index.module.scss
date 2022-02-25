@@ -29,7 +29,7 @@
 //? ============== Mobile Mode ============= ?//
 @media screen and (max-width: 500px) {
   .mobileHidden {
-    display: none;
+    display: none !important;
   }
 }
 // * ====================================== * //
