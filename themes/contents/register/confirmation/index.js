@@ -52,7 +52,7 @@ function ThemesContentsRegisterConfirmation(props) {
           title="Verify Your Email!"
           subTitle={
             <>
-              <Col span={15} style={{ margin: "0 auto" }}>
+              <Col lg={{ span: 15 }} xs={{ span: 24 }} style={{ margin: "0 auto" }}>
                 <p>
                   We have sent an email to
                   <strong> {email}</strong>. You need to verify your email to continue. If you have

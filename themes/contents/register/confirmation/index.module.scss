@@ -13,3 +13,12 @@
 .resendButton {
   margin-top: 20px;
 }
+
+//? ============== Mobile Mode ============= ?//
+
+@media screen and (max-width: 500px) {
+  .section {
+    height: 80vh;
+  }
+}
+// * ====================================== * //
