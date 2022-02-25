@@ -41,7 +41,7 @@ function ThemesContentsArtworkDetails(props) {
       <section style={{ margin: "50px 0" }}>
         <ThemesContainerMain>
           <Row gutter={[64, 0]}>
-            <Col span={12}>
+            <Col lg={{ span: 12 }} xs={{ span: 24 }}>
               <Col span={24} style={{ paddingLeft: 0, paddingRight: 0, marginBottom: 10 }}>
                 <Image
                   src={`${process.env.NEXT_PUBLIC_S3_URL}/${artworkData?.media_cover?.url}`}
@@ -62,7 +62,7 @@ function ThemesContentsArtworkDetails(props) {
                 })}
               </Row>
             </Col>
-            <Col span={12}>
+            <Col lg={{ span: 12 }} xs={{ span: 24 }}>
               <Card className={s.detailsCard}>
                 <Col className={s.artworkDetailsTitle}>
                   <h1>{artworkData?.title}</h1>
@@ -88,7 +88,7 @@ function ThemesContentsArtworkDetails(props) {
                     <strong>IDR</strong> {artworkData?.price.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                   </p>
                 </Col>
-                <Col>
+                <Col className={s.cardBtnContainer}>
                   <ThemesButton type={"default " + s.cartBtn}>
                     <CartIcon />
                     ADD TO CART
@@ -108,7 +108,13 @@ function ThemesContentsArtworkDetails(props) {
               <Row gutter={[16, 0]} className={s.otherSection}>
                 {otherArtworkData?.map((item) => {
                   return (
-                    <Col span={6} key={item.id}>
+                    <Col
+                      xl={{ span: 6 }}
+                      lg={{ span: 7 }}
+                      md={{ span: 11 }}
+                      xs={{ span: 19 }}
+                      key={item.id}
+                    >
                       <ThemesArtworkWithFrame
                         imgSrc={`${process.env.NEXT_PUBLIC_S3_URL}/${item?.media_cover?.url}`}
                         artworkStatus={item.status}
@@ -130,7 +136,13 @@ function ThemesContentsArtworkDetails(props) {
               <Row gutter={[16, 0]} className={s.otherSection}>
                 {mightLikeData?.map((item) => {
                   return (
-                    <Col span={6} key={item.id}>
+                    <Col
+                      xl={{ span: 6 }}
+                      lg={{ span: 7 }}
+                      md={{ span: 11 }}
+                      xs={{ span: 19 }}
+                      key={item.id}
+                    >
                       <ThemesArtworkWithFrame
                         imgSrc={`${process.env.NEXT_PUBLIC_S3_URL}/${item?.media_cover?.url}`}
                         artworkStatus={item.status}

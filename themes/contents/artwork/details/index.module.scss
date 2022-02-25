@@ -31,16 +31,19 @@
 
 .artworkDetailsText {
   margin-bottom: 20px;
+  font-size: 16px;
   p {
   }
 }
 
 .artworkDetailsDescription {
   margin-bottom: 20px;
+  font-size: 16px;
 }
 
 .artworkDetailsPrice {
   margin-bottom: 50px;
+  font-size: 16px;
   p {
     font-style: italic;
   }
@@ -73,3 +76,36 @@
     }
   }
 }
+
+//? ============== Tablet Landscape Mode ============= ?//
+@media screen and (max-width: 1024px) {
+  .artworkDetailsTitle {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+  .artworkDetailsText {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+  .artworkDetailsPrice {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+  .artworkDetailsDescription {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+  .cardBtnContainer {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+  .otherSection {
+    flex-wrap: nowrap;
+    overflow: auto;
+    margin-bottom: 40px;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+// * ====================================== * //
