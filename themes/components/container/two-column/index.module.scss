@@ -1,0 +1,31 @@
+.contentContainer {
+  padding: 50px;
+  min-height: 70vh;
+  padding-right: 0;
+}
+
+//? ============== Tablet Portrait Mode ============= ?//
+@media screen and (max-width: 768px) {
+  .bannerContainer {
+    height: 300px;
+  }
+  .contentContainer {
+    padding: 0px;
+    margin: 50px 0;
+    min-height: 70vh;
+  }
+}
+// * ====================================== * //
+
+//? ============== Mobile Mode ============= ?//
+@media screen and (max-width: 500px) {
+  .bannerContainer {
+    height: 150px;
+  }
+  .contentContainer {
+    padding: 0px;
+    margin: 50px 0;
+    min-height: 70vh;
+  }
+}
+// * ====================================== * //

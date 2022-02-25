@@ -17,3 +17,25 @@
   height: 50px !important;
   margin-bottom: 20px;
 }
+
+//? ============== Tablet Landscape Mode ============= ?//
+@media screen and (max-width: 1024px) {
+  .section {
+    padding: 30px 40px !important;
+  }
+}
+// * ====================================== * //
+
+//? ============== Tablet Landscape Mode ============= ?//
+@media screen and (max-width: 500px) {
+  .section {
+    padding: 30px 20px !important;
+  }
+  .title {
+    font-size: 32px;
+  }
+  .formSection {
+    margin: 30px 0;
+  }
+}
+// * ====================================== * //
