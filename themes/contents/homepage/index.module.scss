@@ -19,3 +19,15 @@
 .pageTitle {
   margin-bottom: 45px;
 }
+
+//? ============== Tablet Landscape Mode ============= ?//
+@media screen and (max-width: 1024px) {
+  .list {
+    flex-wrap: nowrap;
+    overflow: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+// * ====================================== * //

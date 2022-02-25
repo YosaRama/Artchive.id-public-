@@ -16,6 +16,7 @@
   }
 }
 
+//? ============== Laptop Mode ============= ?//
 @media screen and (max-width: 1365px) {
   .container {
     .contentContainer {
@@ -23,3 +24,15 @@
     }
   }
 }
+// * ====================================== * //
+
+//? ============== Mobile Mode ============= ?//
+@media screen and (max-width: 500px) {
+  .container {
+    height: 300px;
+    .image {
+      height: 300px;
+    }
+  }
+}
+// * ====================================== * //

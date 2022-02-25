@@ -24,3 +24,32 @@
 .text {
   font-size: 14px;
 }
+
+//? ============== Tablet Landscape Mode ============= ?//
+@media screen and (max-width: 1024px) {
+  .box {
+    width: 40%;
+  }
+}
+// * ====================================== * //
+
+//? ============== Tablet Portrait Mode ============= ?//
+@media screen and (max-width: 768px) {
+  .box {
+    width: 50%;
+  }
+}
+// * ====================================== * //
+
+//? ============== Mobile Mode ============= ?//
+@media screen and (max-width: 500px) {
+  .box {
+    width: 100%;
+  }
+  .title {
+    h1 {
+      font-size: 22px;
+    }
+  }
+}
+// * ====================================== * //

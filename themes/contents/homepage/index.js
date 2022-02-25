@@ -37,9 +37,15 @@ function ThemesContentsHomepage(props) {
               subtitle="Original artwork by indonesian artist"
               className={s.pageTitle}
             />
-            <Row gutter={[16, 0]}>
+            <Row gutter={[16, 0]} className={s.list}>
               {artworkData.map((item, index) => (
-                <Col span={6} key={index}>
+                <Col
+                  xl={{ span: 6 }}
+                  lg={{ span: 7 }}
+                  md={{ span: 11 }}
+                  xs={{ span: 19 }}
+                  key={index}
+                >
                   <ThemesArtworkWithFrame
                     artworkSlug={item.slug}
                     artworkTitle={item.title}
@@ -66,9 +72,15 @@ function ThemesContentsHomepage(props) {
         {artistData && (
           <section className={s.section}>
             <ThemesHeadline title="Our New Artist" className={s.pageTitle} />
-            <Row gutter={[16, 0]}>
+            <Row gutter={[16, 0]} className={s.list}>
               {artistData.map((item, index) => (
-                <Col span={6} key={index}>
+                <Col
+                  xl={{ span: 6 }}
+                  lg={{ span: 7 }}
+                  md={{ span: 11 }}
+                  xs={{ span: 21 }}
+                  key={index}
+                >
                   <ThemesArtistCard
                     artistId={item.id}
                     artistSlug={item.slug}

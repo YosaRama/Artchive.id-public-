@@ -8,3 +8,11 @@
     margin: 0;
   }
 }
+
+//? ============== Tablet Portrait Mode ============= ?//
+@media screen and (max-width: 768px) {
+  .button {
+    font-size: 18px !important;
+  }
+}
+// * ====================================== * //
