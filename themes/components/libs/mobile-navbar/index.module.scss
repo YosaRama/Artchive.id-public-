@@ -1,0 +1,44 @@
+.card {
+  padding: 20px 0 !important;
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px 20px;
+  border-radius: 10px 10px 0 0 !important;
+}
+
+.menuItemContainer {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-wrap: wrap !important;
+  height: 100%;
+}
+
+.menuItemIcon {
+  svg {
+    width: 50px;
+    height: 25px;
+  }
+  &:hover {
+    svg {
+      path {
+        fill: #e5890a;
+      }
+    }
+  }
+}
+
+.menuItemIconActive {
+  svg {
+    path {
+      fill: #e5890a;
+    }
+  }
+}
+
+.menuItemLabel {
+  margin-top: 5px;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 0;
+  font-size: 12px;
+  font-weight: 800;
+}

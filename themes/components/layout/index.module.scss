@@ -2,3 +2,15 @@
   min-height: calc(100vh - 64px - 321px) !important;
   position: relative;
 }
+
+.mobileMenu {
+  display: none;
+}
+
+//? ============== Tablet Mode ============= ?//
+@media screen and (max-width: 1024px) {
+  .mobileMenu {
+    display: block;
+  }
+}
+// * ====================================== * //
