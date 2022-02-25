@@ -4,110 +4,25 @@ import { Card, Col, Image, Row } from "antd";
 
 // Components
 import ThemesContainerMain from "themes/components/container/main";
+import ThemesContainerMasonry from "themes/components/container/masonry";
+import ThemesArtworkCard from "themes/components/libs/artwork-card";
+import ThemesButton from "themes/components/libs/button";
+import ThemesHeadline from "themes/components/libs/headline";
+
+// Helpers
+import { useWindowSize } from "app/helpers/useWindowSize";
 
 // Styles
 import s from "./index.module.scss";
 
 // Icons
 import { InstagramOutlined, FacebookOutlined, MailOutlined } from "@ant-design/icons";
-import ThemesContainerMasonry from "themes/components/container/masonry";
-import ThemesArtworkCard from "themes/components/libs/artwork-card";
-import ThemesButton from "themes/components/libs/button";
 
 function ThemesContentsArtistDetails(props) {
   const { artistData } = props;
-  console.log(artistData);
-  //? ============== Artwork Hook ============= ?//
-  const artworkData = [
-    {
-      height: 500,
-      media: "Acrylic on Canvas",
-      price: "5.000.000",
-      slug: "love",
-      status: "PUBLISH",
-      title: "Love",
-      width: 500,
-      year: "2022",
-      url: "/images/artwork-2.jpg",
-    },
-    {
-      height: 500,
-      media: "Acrylic on Canvas",
-      price: "5.000.000",
-      slug: "love",
-      status: "PUBLISH",
-      title: "Love",
-      width: 500,
-      year: "2022",
-      url: "/images/artwork-3.jpg",
-    },
-    {
-      height: 500,
-      media: "Acrylic on Canvas",
-      price: "5.000.000",
-      slug: "love",
-      status: "PUBLISH",
-      title: "Love",
-      width: 500,
-      year: "2022",
-      url: "/images/artwork-1.jpg",
-    },
-    {
-      height: 500,
-      media: "Acrylic on Canvas",
-      price: "5.000.000",
-      slug: "love",
-      status: "PUBLISH",
-      title: "Love",
-      width: 500,
-      year: "2022",
-      url: "/images/artwork-4.jpg",
-    },
-    {
-      height: 500,
-      media: "Acrylic on Canvas",
-      price: "5.000.000",
-      slug: "love",
-      status: "PUBLISH",
-      title: "Love",
-      width: 500,
-      year: "2022",
-      url: "/images/artwork-5.jpg",
-    },
-    {
-      height: 500,
-      media: "Acrylic on Canvas",
-      price: "5.000.000",
-      slug: "love",
-      status: "PUBLISH",
-      title: "Love",
-      width: 500,
-      year: "2022",
-      url: "/images/artwork-7.jpg",
-    },
-    {
-      height: 500,
-      media: "Acrylic on Canvas",
-      price: "5.000.000",
-      slug: "love",
-      status: "PUBLISH",
-      title: "Love",
-      width: 500,
-      year: "2022",
-      url: "/images/artwork-6.jpg",
-    },
-    {
-      height: 500,
-      media: "Acrylic on Canvas",
-      price: "5.000.000",
-      slug: "love",
-      status: "PUBLISH",
-      title: "Love",
-      width: 500,
-      year: "2022",
-      url: "/images/artwork-1.jpg",
-    },
-  ];
+
+  //? ============== Handle Get Viewport ============= ?//
+  const viewport = useWindowSize();
   // * ====================================== * //
   return (
     <>
@@ -115,7 +30,13 @@ function ThemesContentsArtistDetails(props) {
         <section className={s.artistDetailsSection}>
           <Card>
             <Row gutter={[64, 0]}>
-              <Col span={10} className={s.profileImage}>
+              <Col
+                xl={{ span: 10 }}
+                lg={{ span: 10 }}
+                md={{ span: 24 }}
+                xs={{ span: 24 }}
+                className={s.profileImage}
+              >
                 <Image
                   src={
                     artistData.profile
@@ -125,7 +46,12 @@ function ThemesContentsArtistDetails(props) {
                   alt=""
                 />
               </Col>
-              <Col span={14} className={s.profileDetails}>
+              <Col
+                xl={{ span: 14 }}
+                lg={{ span: 14 }}
+                md={{ span: 24 }}
+                className={s.profileDetails}
+              >
                 <div className={s.profileDetailsContent}>
                   <p className={s.artistLocation}>{artistData.city}</p>
                   <h1 className={s.artistName}>{artistData.full_name}</h1>
@@ -166,11 +92,33 @@ function ThemesContentsArtistDetails(props) {
 
         {artistData?.artwork.length != 0 && (
           <section>
-            <h1 className={s.artworkListTitle}>{`All Artwork by ${artistData.full_name}`}</h1>
-            <ThemesContainerMasonry breakPoint={4}>
+            <ThemesHeadline
+              title="All Title"
+              subtitle={`by ${artistData.full_name}`}
+              className={s.artworkListTitle}
+            />
+            <ThemesContainerMasonry
+              breakPoint={
+                viewport?.width > 1024
+                  ? 4
+                  : viewport?.width <= 1024 && viewport?.width > 768
+                  ? 3
+                  : viewport?.width <= 768 && viewport?.width > 500
+                  ? 2
+                  : 1
+              }
+            >
               {artistData?.artwork
                 ?.filter((item, index) => {
-                  if (index < 6) return item;
+                  if (
+                    index <
+                    (viewport?.width > 1024
+                      ? 8
+                      : viewport?.width <= 1024 && viewport?.width > 768
+                      ? 6
+                      : 4)
+                  )
+                    return item;
                 })
                 ?.map((item, index) => {
                   return (
@@ -193,9 +141,7 @@ function ThemesContentsArtistDetails(props) {
             </ThemesContainerMasonry>
 
             <section className={s.divider}>
-              <ThemesButton onClick={() => router.push("/artwork")}>
-                {`SEE MORE ARTWORK FROM ${artistData.full_name.toUpperCase()}`}
-              </ThemesButton>
+              <ThemesButton onClick={() => router.push("/artwork")}>{`SEE MORE`}</ThemesButton>
             </section>
 
             {/* <Row gutter={[16, 32]}>

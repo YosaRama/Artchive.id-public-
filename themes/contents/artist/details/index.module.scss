@@ -63,8 +63,7 @@
 
 .artworkListTitle {
   text-align: center;
-  font-size: 32px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 
 .divider {
@@ -74,3 +73,49 @@
     height: 50px !important;
   }
 }
+
+//? ============== Tablet Landscape Mode ============= ?//
+@media screen and (max-width: 1024px) {
+  .profileImage {
+    height: 500px;
+  }
+  .artistName {
+    font-size: 42px;
+  }
+}
+// * ====================================== * //
+
+//? ============== Tablet Portrait Mode ============= ?//
+@media screen and (max-width: 768px) {
+  .profileImage {
+    height: 500px;
+  }
+  .profileDetails {
+    margin-top: 50px;
+    padding-right: 32px !important;
+    padding-left: 32px !important;
+    &::before {
+      width: calc(100% - 64px);
+      height: 3px;
+      margin: 0 auto;
+      left: 32px;
+      top: -25px;
+      margin-bottom: 20px;
+    }
+  }
+}
+// * ====================================== * //
+
+//? ============== Tablet Portrait Mode ============= ?//
+@media screen and (max-width: 500px) {
+  .profileImage {
+    height: 300px;
+  }
+  .artistName {
+    font-size: 32px;
+  }
+  .artistBio {
+    font-size: 16px;
+  }
+}
+// * ====================================== * //
