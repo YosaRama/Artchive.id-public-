@@ -91,14 +91,44 @@ export const GET_USER_BY_EMAIL = ({ email }) => {
 export const GET_USER_BY_SLUG = ({ slug }) => {
   return prisma.user.findUnique({
     where: { slug: slug },
-    include: {
-      profile: true,
+    select: {
+      address: true,
       artwork: {
         include: {
           media_cover: true,
         },
       },
+      banner: true,
+      billing_address: true,
+      biography: true,
+      birth_date: true,
+      cart: true,
+      certificate: true,
+      city: true,
+      collection: true,
+      email: true,
+      facebook_url: true,
+      full_name: true,
+      id: true,
+      instagram_url: true,
+      profile: true,
+      role: true,
+      status: true,
+      slug: true,
     },
+    // include: {
+    //   profile: {
+    //     select: {
+    //       createdAt: false,
+    //       updatedAt: false,
+    //     },
+    //   },
+    //   artwork: {
+    //     include: {
+    //       media_cover: true,
+    //     },
+    //   },
+    // },
   });
 };
 // ==================================

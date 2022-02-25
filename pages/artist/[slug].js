@@ -2,12 +2,14 @@
 import ThemesContentsArtistDetails from "themes/contents/artist/details";
 
 // Query
-import { GET_ALL_ARTIST_SLUG } from "app/database/query/user";
+import moment from "moment";
+import { GET_ALL_ARTIST_SLUG, GET_USER_BY_SLUG } from "app/database/query/user";
 
-function PageArtistDetails() {
+function PageArtistDetails(props) {
+  const { artistData } = props;
   return (
     <>
-      <ThemesContentsArtistDetails />
+      <ThemesContentsArtistDetails artistData={artistData} />
     </>
   );
 }
@@ -15,10 +17,14 @@ function PageArtistDetails() {
 export default PageArtistDetails;
 
 export const getStaticProps = async (ctx) => {
+  const slug = ctx.params.slug;
+  const artistDataRes = await GET_USER_BY_SLUG({ slug: slug });
+  const artistData = JSON.parse(JSON.stringify(artistDataRes));
   return {
     props: {
-      data: null,
+      artistData: artistData,
     },
+    revalidate: 5,
   };
 };
 

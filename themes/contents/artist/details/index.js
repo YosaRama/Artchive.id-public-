@@ -1,4 +1,5 @@
 // Libs
+import propTypes from "prop-types";
 import { Card, Col, Image, Row } from "antd";
 
 // Components
@@ -13,7 +14,9 @@ import ThemesContainerMasonry from "themes/components/container/masonry";
 import ThemesArtworkCard from "themes/components/libs/artwork-card";
 import ThemesButton from "themes/components/libs/button";
 
-function ThemesContentsArtistDetails() {
+function ThemesContentsArtistDetails(props) {
+  const { artistData } = props;
+  console.log(artistData);
   //? ============== Artwork Hook ============= ?//
   const artworkData = [
     {
@@ -113,43 +116,47 @@ function ThemesContentsArtistDetails() {
           <Card>
             <Row gutter={[64, 0]}>
               <Col span={10} className={s.profileImage}>
-                <Image src="/images/profile-5.jpg" alt="" />
+                <Image
+                  src={
+                    artistData.profile
+                      ? `${process.env.NEXT_PUBLIC_S3_URL}/${artistData.profile.url}`
+                      : "/images/default-images.png"
+                  }
+                  alt=""
+                />
               </Col>
               <Col span={14} className={s.profileDetails}>
                 <div className={s.profileDetailsContent}>
-                  <p className={s.artistLocation}>Bali</p>
-                  <h1 className={s.artistName}>I Putu Yosa Rama Dinata</h1>
+                  <p className={s.artistLocation}>{artistData.city}</p>
+                  <h1 className={s.artistName}>{artistData.full_name}</h1>
                   <p className={s.artistDate}>22 October 1997</p>
                 </div>
 
                 <div className={`${s.profileDetailsContent} `}>
-                  <p className={s.artistBio}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                    culpa qui officia deserunt mollit anim id est laborum.
-                  </p>
+                  <p className={s.artistBio}>{artistData.biography}</p>
                 </div>
 
                 <div className={s.socialProfile}>
                   <Row gutter={[12, 0]}>
-                    <a href="mailto:yosamelody07@gmail.com">
+                    <a href={`mailto:${artistData.email}`}>
                       <Col>
                         <MailOutlined className={s.socialIcon} />
                       </Col>
                     </a>
-                    <a href="https://www.instagram.com" target={"_blank"} rel="noreferrer">
-                      <Col>
-                        <InstagramOutlined className={s.socialIcon} />
-                      </Col>
-                    </a>
-                    <a href="https://www.facebook.com" target={"_blank"} rel="noreferrer">
-                      <Col>
-                        <FacebookOutlined className={s.socialIcon} />
-                      </Col>
-                    </a>
+                    {artistData.instagram_url && (
+                      <a href={artistData.instagram_url} target={"_blank"} rel="noreferrer">
+                        <Col>
+                          <InstagramOutlined className={s.socialIcon} />
+                        </Col>
+                      </a>
+                    )}
+                    {artistData.facebook_url && (
+                      <a href={artistData.facebook_url} target={"_blank"} rel="noreferrer">
+                        <Col>
+                          <FacebookOutlined className={s.socialIcon} />
+                        </Col>
+                      </a>
+                    )}
                   </Row>
                 </div>
               </Col>
@@ -157,36 +164,41 @@ function ThemesContentsArtistDetails() {
           </Card>
         </section>
 
-        <section>
-          <h1 className={s.artworkListTitle}>{`All Artwork by ${"Yosa Rama"}`}</h1>
-          <ThemesContainerMasonry breakPoint={4}>
-            {artworkData?.map((item, index) => {
-              return (
-                <ThemesArtworkCard
-                  key={index}
-                  artistCity="Bali"
-                  artistName="Yosa Rama"
-                  artworkHeight={item.height}
-                  artworkMedia={item.media}
-                  artworkPrice={item.price}
-                  artworkSlug={item.slug}
-                  artworkStatus={item.status}
-                  artworkTitle={item.title}
-                  artworkWidth={item.width}
-                  artworkYear={item.year}
-                  imgSrc={item.url}
-                />
-              );
-            })}
-          </ThemesContainerMasonry>
+        {artistData?.artwork.length != 0 && (
+          <section>
+            <h1 className={s.artworkListTitle}>{`All Artwork by ${artistData.full_name}`}</h1>
+            <ThemesContainerMasonry breakPoint={4}>
+              {artistData?.artwork
+                ?.filter((item, index) => {
+                  if (index < 6) return item;
+                })
+                ?.map((item, index) => {
+                  return (
+                    <ThemesArtworkCard
+                      key={index}
+                      artistCity="Bali"
+                      artistName="Yosa Rama"
+                      artworkHeight={item.height}
+                      artworkMedia={item.material}
+                      artworkPrice={item.price}
+                      artworkSlug={item.slug}
+                      artworkStatus={item.status}
+                      artworkTitle={item.title}
+                      artworkWidth={item.width}
+                      artworkYear={item.year}
+                      imgSrc={`${process.env.NEXT_PUBLIC_S3_URL}/${item.media_cover.url}`}
+                    />
+                  );
+                })}
+            </ThemesContainerMasonry>
 
-          <section className={s.divider}>
-            <ThemesButton onClick={() => router.push("/artwork")}>
-              SEE MORE ARTWORK FROM YOSA RAMA
-            </ThemesButton>
-          </section>
+            <section className={s.divider}>
+              <ThemesButton onClick={() => router.push("/artwork")}>
+                {`SEE MORE ARTWORK FROM ${artistData.full_name.toUpperCase()}`}
+              </ThemesButton>
+            </section>
 
-          {/* <Row gutter={[16, 32]}>
+            {/* <Row gutter={[16, 32]}>
             {artworkData?.map((item, index) => {
               return (
                 <Col key={index} span={6}>
@@ -201,13 +213,18 @@ function ThemesContentsArtistDetails() {
               );
             })}
           </Row> */}
-          {/* <section className={s.divider}>
+            {/* <section className={s.divider}>
             <ThemesDividerWithButton onClick={() => router.push("/artwork")}>SEE MORE</ThemesDividerWithButton>
           </section> */}
-        </section>
+          </section>
+        )}
       </ThemesContainerMain>
     </>
   );
 }
+
+ThemesContentsArtistDetails.propTypes = {
+  artistData: propTypes.object,
+};
 
 export default ThemesContentsArtistDetails;
