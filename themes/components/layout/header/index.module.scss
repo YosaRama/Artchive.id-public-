@@ -25,3 +25,11 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   }
 }
+
+//? ============== Mobile Mode ============= ?//
+@media screen and (max-width: 500px) {
+  .mobileHidden {
+    display: none;
+  }
+}
+// * ====================================== * //

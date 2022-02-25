@@ -30,7 +30,7 @@ function ThemesFooter() {
             <Image alt="" src="/images/logo-text-white.png" layout="fill" />
           </Col>
           <Col span={24} className={s.linkContainer}>
-            <Row justify="center">
+            <Row justify="center" className={s.linkGroup}>
               {footerMenu.map((item, index) => (
                 <Col className={s.link} key={index}>
                   <Link href={item.link}>
@@ -60,7 +60,7 @@ function ThemesFooter() {
           <Col className={s.copyright} span={8}>
             <p>© 2022 Artchive.id</p>
           </Col>
-          <Col span={8}>
+          <Col span={8} className={s.additionalLinkContainer}>
             <Row className={s.additionalLink}>
               <Link href="/maintenance">
                 <a>

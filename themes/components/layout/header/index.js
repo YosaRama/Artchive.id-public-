@@ -37,9 +37,16 @@ function ThemesHeader() {
               <Image src="/images/logo-without-text.png" alt="" layout="fill" objectFit="contain" />
             </Col>
             <Col className={s.menu}>
-              <CartIcon style={{ marginRight: "15px", width: "25px" }} />
+              <CartIcon
+                style={{ marginRight: "15px", width: "25px" }}
+                className={`${s.mobileHidden}`}
+              />
               {session && (
-                <div style={{ marginRight: "15px" }} onClick={() => router.push("/profile")}>
+                <div
+                  style={{ marginRight: "15px" }}
+                  onClick={() => router.push("/profile")}
+                  className={`${s.mobileHidden}`}
+                >
                   <Avatar
                     src={
                       session.user.image
@@ -62,12 +69,13 @@ function ThemesHeader() {
                   <ThemesButton
                     style={{ marginRight: "15px" }}
                     onClick={() => router.push("/register")}
+                    type={`default ${s.mobileHidden}`}
                   >
                     REGISTER
                   </ThemesButton>
                 </>
               )}
-              <MenuOutlined className={s.hamburger} onClick={() => setOpenMenu(true)} />
+              <MenuOutlined className={`${s.hamburger}`} onClick={() => setOpenMenu(true)} />
             </Col>
           </Row>
         </ThemesContainerMain>
