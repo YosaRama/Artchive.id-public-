@@ -7,7 +7,7 @@ function dashboardSession({ session, data }) {
     } else {
       return {
         redirect: {
-          destination: "/",
+          destination: "/profile",
           permanent: true,
         },
       };
