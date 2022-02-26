@@ -43,7 +43,7 @@ export default NextAuth({
 
         //? Check user status
         if (!userFound.status) {
-          throw Error("User account doesn't active, Please activation your account");
+          throw Error("INACTIVE");
         }
 
         return { message: "Successfully Login", user: userFound };

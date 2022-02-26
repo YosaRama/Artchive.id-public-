@@ -5,12 +5,18 @@ import { Button, Card, Col, Form, Input } from "antd";
 import Image from "next/image";
 import { useState } from "react";
 
+// Components
+import { ErrorNotification, WarningNotification } from "app/components/utils/notification";
+
+// Hooks
+import { useMailer } from "app/hooks/mailer";
+
+// Helpers
+import { hashPassword } from "app/helpers/auth";
+
 // Icon
 import { CollectorIcon } from "public/icons/collector-icon";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
-
-// Notification
-import { ErrorNotification } from "app/components/utils/notification";
 
 function AppContentsLogin() {
   const router = useRouter();
@@ -18,6 +24,8 @@ function AppContentsLogin() {
 
   //? ============== Handle Login ============= ?//
   const [loading, setLoading] = useState(false);
+  const { onSendMail } = useMailer({ pathName: "/register/confirmation" });
+
   const handleLogin = () => {
     form.validateFields().then(async (value) => {
       setLoading(true);
@@ -28,6 +36,24 @@ function AppContentsLogin() {
       });
       if (!login.error) {
         router.push("/dashboard");
+        setLoading(false);
+      } else if (login.error == "INACTIVE") {
+        const sendMail = await onSendMail({
+          email: value.email,
+          fullName: value.email,
+        });
+        if (sendMail) {
+          const hashedEmail = await hashPassword(value.email);
+          router.push(
+            `/register/confirmation/${encodeURIComponent(value.email)}/${encodeURIComponent(
+              hashedEmail
+            )}`
+          );
+        }
+        WarningNotification({
+          message: "User Activation",
+          description: "User account doesn't active, Please activation your account",
+        });
         setLoading(false);
       } else {
         ErrorNotification({ message: "Login Failed!", description: login.error });

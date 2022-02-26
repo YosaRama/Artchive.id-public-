@@ -1,6 +1,8 @@
 // Libs
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { Button, Checkbox, Col, Form, Input, Row } from "antd";
 
@@ -8,12 +10,16 @@ import { Button, Checkbox, Col, Form, Input, Row } from "antd";
 import ThemesContainerMain from "themes/components/container/main";
 import ThemesContainerTwoColumns from "themes/components/container/two-column";
 import ThemesButton from "themes/components/libs/button";
-import { ErrorNotification } from "app/components/utils/notification";
+import { ErrorNotification, WarningNotification } from "app/components/utils/notification";
+
+// Hooks
+import { useMailer } from "app/hooks/mailer";
+
+// Helpers
+import { hashPassword } from "app/helpers/auth";
 
 // Styles
 import s from "./index.module.scss";
-import { useRouter } from "next/router";
-import { useState } from "react";
 
 function ThemesContentsSignIn() {
   const router = useRouter();
@@ -27,6 +33,8 @@ function ThemesContentsSignIn() {
 
   //? ============== Handle Credentials Login ============= ?//
   const [loading, setLoading] = useState(false);
+  const { onSendMail } = useMailer({ pathName: "/register/confirmation" });
+
   const handleLogin = () => {
     form.validateFields().then(async (value) => {
       setLoading(true);
@@ -37,6 +45,24 @@ function ThemesContentsSignIn() {
       });
       if (!login.error) {
         router.push("/profile");
+        setLoading(false);
+      } else if (login.error == "INACTIVE") {
+        const sendMail = await onSendMail({
+          email: value.email,
+          fullName: value.email,
+        });
+        if (sendMail) {
+          const hashedEmail = await hashPassword(value.email);
+          router.push(
+            `/register/confirmation/${encodeURIComponent(value.email)}/${encodeURIComponent(
+              hashedEmail
+            )}`
+          );
+        }
+        WarningNotification({
+          message: "User Activation",
+          description: "User account doesn't active, Please activation your account",
+        });
         setLoading(false);
       } else {
         ErrorNotification({ message: "Login Failed!", description: login.error });

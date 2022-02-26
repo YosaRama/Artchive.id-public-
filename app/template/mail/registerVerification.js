@@ -3,6 +3,7 @@ import mailLayout from "app/template/mail/mailLayout";
 
 // Site Details
 const siteURL = `${process.env.SITE_URL}`;
+console.log(siteURL);
 
 export default function RegisterVerification({ fullName, link }) {
   const mailContent = `<table class="main">
@@ -25,7 +26,7 @@ export default function RegisterVerification({ fullName, link }) {
                                             <tbody>
                                               <tr>
                                                 <td>
-                                                  <a href="${siteURL}${link}" target="_blank" style="color:#ffffff;">Verify Your Account</a>
+                                                  <a href="${link}" target="_blank" style="color:#ffffff;">Verify Your Account</a>
                                                 </td>
                                               </tr>
                                             </tbody>
@@ -34,7 +35,7 @@ export default function RegisterVerification({ fullName, link }) {
                                       </tr>
                                     </tbody>
                                   </table>
-                                  <p>Or verify using this link: <span><a href="${siteURL}${link}">${link}</a></span></p>
+                                  <p>Or verify using this link: <span><a href="${link}">${link}</a></span></p>
                                   <br>
                                   <p>If you didn't create an account on Artchive.id using this address, please just ignore this email.</p>
                                   </td>
