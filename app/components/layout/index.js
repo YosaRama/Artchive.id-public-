@@ -16,7 +16,7 @@ function AppLayout({ children }) {
 
   //? ============== Handle Logout ============= ?//
   const handleLogout = () => {
-    signOut({ callbackUrl: "/managepage" });
+    signOut({ callbackUrl: "/dashboard/login" });
   };
   // * ====================================== * //
 

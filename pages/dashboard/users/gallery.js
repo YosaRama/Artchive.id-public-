@@ -4,6 +4,9 @@ import { getSession } from "next-auth/react";
 // Contents
 import AppContentsUserListGallery from "app/contents/user/list/gallery";
 
+// Helpers
+import dashboardSession from "app/helpers/dashboardSession";
+
 function PageDashboardUsersGalleryList() {
   return (
     <>
@@ -17,19 +20,11 @@ export default PageDashboardUsersGalleryList;
 export const getServerSideProps = async (ctx) => {
   //? ============== Handle Session ============= ?//
   const session = await getSession(ctx);
-  if (session && session.user.role == "ADMIN") {
-    return {
-      props: {
-        session: session,
-      },
-    };
-  } else {
-    return {
-      redirect: {
-        destination: "/dashboard/login",
-        permanent: true,
-      },
-    };
-  }
+  const res = dashboardSession({ session: session, data: session });
   // * ====================================== * //
+
+  return {
+    props: res.props,
+    redirect: res.redirect,
+  };
 };

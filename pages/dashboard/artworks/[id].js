@@ -8,6 +8,9 @@ import { GET_ARTWORK_BY_ID } from "app/database/query/artwork";
 // Contents
 import AppContentsArtworkDetails from "app/contents/artwork/details";
 
+// Helpers
+import dashboardSession from "app/helpers/dashboardSession";
+
 function PageDashboardArtworksDetails(props) {
   return (
     <>
@@ -30,19 +33,11 @@ export const getServerSideProps = async (ctx) => {
 
   //? ============== Handle Session ============= ?//
   const session = await getSession(ctx);
-  if (session && session.user.role == "ADMIN") {
-    return {
-      props: {
-        session: session,
-      },
-    };
-  } else {
-    return {
-      redirect: {
-        destination: "/dashboard/login",
-        permanent: true,
-      },
-    };
-  }
+  const res = dashboardSession({ session: session, data: { session: session, artwork: artwork } });
   // * ====================================== * //
+
+  return {
+    props: res.props,
+    redirect: res.redirect,
+  };
 };
