@@ -1,0 +1,9 @@
+.search {
+  .searchBox {
+    width: 100%;
+    > .ant-select-selector {
+      background-color: black;
+    }
+  }
+  margin-bottom: 20px;
+}

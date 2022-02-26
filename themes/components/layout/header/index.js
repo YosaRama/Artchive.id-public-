@@ -16,6 +16,7 @@ import { MenuOutlined, LogoutOutlined, UserOutlined } from "@ant-design/icons";
 
 // Styles
 import s from "./index.module.scss";
+import ThemesNavbarDrawer from "themes/components/libs/navbar-drawer";
 
 function ThemesHeader() {
   const router = useRouter();
@@ -81,7 +82,7 @@ function ThemesHeader() {
         </ThemesContainerMain>
       </Header>
 
-      <Drawer onClose={() => setOpenMenu(false)} visible={openMenu}></Drawer>
+      <ThemesNavbarDrawer visible={openMenu} onClose={() => setOpenMenu(false)} />
     </>
   );
 }

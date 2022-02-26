@@ -1,50 +1,16 @@
 // Libs
-import Image from "next/image";
-import { Col, Select } from "antd";
-import { useState } from "react";
-const { Option } = Select;
+import { Col } from "antd";
+
+//Components
+import ThemesSearchBox from "../search-box";
 
 // Styles
 import s from "./index.module.scss";
 
 function ThemesHomepageSearchBox() {
-  //? ============== Handle Search ============= ?//
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [searchValue, setSearchValue] = useState("");
-
-  const handleSearch = (value) => {
-    if (value.length == 0) {
-      setDropdownOpen(false);
-    } else {
-      setDropdownOpen(true);
-    }
-  };
-  // * ====================================== * //
-
   return (
     <Col className={s.box}>
-      <Col className={s.search}>
-        <Select
-          className={s.searchBox + " homepage-search"}
-          showSearch
-          open={dropdownOpen}
-          onSearch={handleSearch}
-          placeholder="Search by artist ..."
-          suffixIcon={
-            <Image
-              width={50}
-              height={50}
-              objectFit="contain"
-              src="/images/search-icon.svg"
-              alt=""
-            />
-          }
-        >
-          <Option value={"yosa"}>Yosa</Option>
-          <Option value={"rama"}>Rama</Option>
-          <Option value={"dinata"}>Dinata</Option>
-        </Select>
-      </Col>
+      <ThemesSearchBox />
       <Col className={s.title}>
         <h1>Your Trusted Online Gallery</h1>
       </Col>
