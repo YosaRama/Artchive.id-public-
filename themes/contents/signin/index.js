@@ -31,6 +31,12 @@ function ThemesContentsSignIn() {
   };
   // * ====================================== * //
 
+  //? ============== Handle Facebook Login ============= ?//
+  const handleFacebookLogin = async () => {
+    const login = await signIn("facebook", { callbackUrl: "/register/role-selection" });
+  };
+  // * ====================================== * //
+
   //? ============== Handle Credentials Login ============= ?//
   const [loading, setLoading] = useState(false);
   const { onSendMail } = useMailer({ pathName: "/register/confirmation" });
@@ -92,7 +98,7 @@ function ThemesContentsSignIn() {
               </Button>
             </Col>
             <Col span={24}>
-              <Button className={s.socialButton}>
+              <Button className={s.socialButton} onClick={handleFacebookLogin}>
                 <Row>
                   <span className={s.socialButtonIcon}>
                     <Image

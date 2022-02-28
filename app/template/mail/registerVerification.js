@@ -3,7 +3,6 @@ import mailLayout from "app/template/mail/mailLayout";
 
 // Site Details
 const siteURL = `${process.env.SITE_URL}`;
-console.log(siteURL);
 
 export default function RegisterVerification({ fullName, link }) {
   const mailContent = `<table class="main">

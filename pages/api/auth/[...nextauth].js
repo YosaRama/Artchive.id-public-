@@ -61,8 +61,8 @@ export default NextAuth({
       },
     }),
     FacebookProvider({
-      clientId: "GET from Facebook API",
-      clientSecret: "GET from Facebook API",
+      clientId: process.env.FACEBOOK_AUTH_CLIENT_ID,
+      clientSecret: process.env.FACEBOOK_AUTH_CLIENT_SECRET,
     }),
   ],
   callbacks: {
@@ -75,7 +75,7 @@ export default NextAuth({
       // * ====================================== * //
 
       //? ============== Handle Google Login ============= ?//
-      if (account.provider === "google") {
+      if (account.provider === "google" || account.provider === "facebook") {
         try {
           // Check existing user
           const existsUser = await GET_USER_BY_EMAIL({ email: user.email });
@@ -111,7 +111,7 @@ export default NextAuth({
       }
       // * ====================================== * //
       //? ============== Handle Token Google Login ============= ?//
-      if (account?.provider === "google") {
+      if (account?.provider === "google" || account?.provider === "facebook") {
         // Get user with email
         const existsUser = await GET_USER_BY_EMAIL({ email: user.email });
         token.user = { user: existsUser };

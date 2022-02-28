@@ -65,6 +65,12 @@ function ThemesContentsRegister() {
   };
   // * ====================================== * //
 
+  //? ============== Handle Facebook Login ============= ?//
+  const handleFacebookLogin = async () => {
+    const login = await signIn("facebook", { callbackUrl: "/register/role-selection" });
+  };
+  // * ====================================== * //
+
   return (
     <ThemesContainerMain>
       <ThemesContainerTwoColumns imgSrc="/images/register-background.jpg" cardClassName="halo">
@@ -85,7 +91,7 @@ function ThemesContentsRegister() {
               </Button>
             </Col>
             <Col span={24}>
-              <Button className={s.socialButton}>
+              <Button className={s.socialButton} onClick={handleFacebookLogin}>
                 <Row>
                   <span className={s.socialButtonIcon}>
                     <Image
