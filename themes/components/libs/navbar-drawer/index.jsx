@@ -4,7 +4,7 @@ import { Col, Divider, Drawer, Menu, Row } from "antd";
 import Link from "next/link";
 
 // Components
-import ThemesSearchBox from "../search-box";
+import ThemeArtistSearchBox from "../artist-search-box";
 
 // Styles
 import s from "./index.module.scss";
@@ -39,7 +39,7 @@ function ThemesNavbarDrawer(props) {
       <Drawer visible={visible} onClose={onClose} width={300}>
         <section className={s.container}>
           <section>
-            <ThemesSearchBox />
+            <ThemeArtistSearchBox />
           </section>
 
           <section>

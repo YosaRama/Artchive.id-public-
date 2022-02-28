@@ -2,7 +2,7 @@
 import { Col } from "antd";
 
 //Components
-import ThemesSearchBox from "../search-box";
+import ThemeArtistSearchBox from "../artist-search-box";
 
 // Styles
 import s from "./index.module.scss";
@@ -10,7 +10,7 @@ import s from "./index.module.scss";
 function ThemesHomepageSearchBox() {
   return (
     <Col className={s.box}>
-      <ThemesSearchBox />
+      <ThemeArtistSearchBox />
       <Col className={s.title}>
         <h1>Your Trusted Online Gallery</h1>
       </Col>
