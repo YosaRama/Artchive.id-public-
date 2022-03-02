@@ -18,6 +18,7 @@ export const useGenres = ({ queryString = "" }) => {
 
   const { data = [], error, isValidating, mutate } = useSWR(pathKeys);
   const results = data?.data;
+  const total = data?.total;
 
   // Add Hook Function
   const onAdd = useCallback(
@@ -98,6 +99,7 @@ export const useGenres = ({ queryString = "" }) => {
 
   return {
     data: results,
+    total: total,
     loading: (!error && !data) || isValidating || loading,
     onAdd,
     onDelete,

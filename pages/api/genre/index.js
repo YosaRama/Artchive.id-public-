@@ -1,5 +1,5 @@
 // Query
-import { GET_GENRE, CREATE_GENRE } from "app/database/query/genre";
+import { GET_GENRE, CREATE_GENRE, GET_TOTAL_GENRE } from "app/database/query/genre";
 
 // Helper
 import nextConnect from "next-connect";
@@ -12,17 +12,20 @@ apiHandler.get(async (req, res) => {
   const { limit, page } = req.query;
   try {
     const result = await GET_GENRE({ limit, page });
+    const total = await GET_TOTAL_GENRE();
     if (result) {
       res.status(200).json({
         success: true,
         message: `Successfully get ${messageHead}`,
         data: result,
+        total: total,
       });
     } else {
       res.status(200).json({
         success: false,
         message: `Failed get ${messageHead}`,
         data: result,
+        total: total,
       });
     }
   } catch (error) {

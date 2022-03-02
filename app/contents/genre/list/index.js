@@ -1,4 +1,5 @@
 // Libs
+import { useState } from "react";
 import { v4 as uuid } from "uuid";
 import { useRouter } from "next/router";
 import { Empty, Table } from "antd";
@@ -17,7 +18,11 @@ function AppContentsGenreList() {
   const router = useRouter();
 
   //? ============== Genre Hook ============= ?//
-  const { data, onDelete, loading } = useGenres({ queryString: "" });
+  const [page, setPage] = useState();
+  const pageSize = 10;
+  const { data, onDelete, loading, total } = useGenres({
+    queryString: `limit=${pageSize}&page=${page}`,
+  });
   // * ====================================== * //
 
   //? ============== Handle Delete ============= ?//
@@ -30,6 +35,12 @@ function AppContentsGenreList() {
   const columns = GenreColumns({ onDelete: handleDelete });
   // * ====================================== * //
 
+  //? ============== Handle Pagination ============= ?//
+  const handlePagination = (pagination, sort, filter) => {
+    setPage(pagination.current);
+  };
+  // * ====================================== * //
+
   return (
     <AppContainerBox>
       <AppContainerCard title="Genre List">
@@ -37,7 +48,14 @@ function AppContentsGenreList() {
           Add Genre
         </AppAddButton>
         {data && (
-          <Table columns={columns} dataSource={data} rowKey={() => uuid()} loading={loading} />
+          <Table
+            columns={columns}
+            dataSource={data}
+            rowKey={() => uuid()}
+            loading={loading}
+            pagination={{ pageSize: pageSize, total: total }}
+            onChange={handlePagination}
+          />
         )}
         {!data && <Empty />}
       </AppContainerCard>

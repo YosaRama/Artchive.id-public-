@@ -25,17 +25,17 @@ export const GET_GENRE = ({ page = 1, limit = 15 }) => {
 };
 // ==================================
 
+// Get total all data
+export const GET_TOTAL_GENRE = () => {
+  return prisma.genre.count({});
+};
+// ==================================
+
 // Get Data by Specific ID
 export const GET_GENRE_BY_ID = ({ id }) => {
   return prisma.genre.findUnique({
     where: { id: +id },
   });
-};
-// ==================================
-
-// Get total all data
-export const GET_TOTAL_GENRE = ({}) => {
-  return prisma.genre.count({});
 };
 // ==================================
 
