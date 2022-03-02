@@ -93,7 +93,7 @@ function ThemesContentsArtistDetails(props) {
         {artistData?.artwork.length != 0 && (
           <section>
             <ThemesHeadline
-              title="All Title"
+              title="All Artwork"
               subtitle={`by ${artistData.full_name}`}
               className={s.artworkListTitle}
             />
@@ -124,8 +124,8 @@ function ThemesContentsArtistDetails(props) {
                   return (
                     <ThemesArtworkCard
                       key={index}
-                      artistCity="Bali"
-                      artistName="Yosa Rama"
+                      artistCity={artistData.city}
+                      artistName={artistData.full_name}
                       artworkHeight={item.height}
                       artworkMedia={item.material}
                       artworkPrice={item.price}
