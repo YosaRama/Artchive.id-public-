@@ -32,7 +32,7 @@ function ThemesArtworkCard(props) {
         <Card
           className={s.card + " artworkCardList"}
           bordered={false}
-          onClick={() => router.push(`artwork/${artworkSlug}`)}
+          onClick={() => router.push(`/artwork/${artworkSlug}`)}
         >
           <Col span={24} className={s.image}>
             <img
@@ -51,7 +51,7 @@ function ThemesArtworkCard(props) {
               {artworkYear}, {artworkMedia}
             </p>
             <p>{`${artworkWidth} x ${artworkHeight} cm`}</p>
-            <p className={s.price}>{`IDR ${artworkPrice}`}</p>
+            <p className={s.price}>{`IDR ${artworkPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}</p>
           </Col>
         </Card>
       </Badge.Ribbon>
