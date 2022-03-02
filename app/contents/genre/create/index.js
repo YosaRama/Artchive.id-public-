@@ -8,6 +8,9 @@ import AppContainerCard from "app/components/container/card";
 
 // Data Hook
 import { useGenres } from "app/hooks/genre";
+import { stringCapitalize } from "app/helpers/capitalize";
+
+// Helper
 
 function AppContentsGenreCreate() {
   const router = useRouter();
@@ -21,7 +24,7 @@ function AppContentsGenreCreate() {
   const handleSubmit = () => {
     form.validateFields().then(async (value) => {
       const submission = {
-        title: value.title,
+        title: stringCapitalize(value.title),
       };
       const result = await onAdd(submission);
       if (result) {

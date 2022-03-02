@@ -55,6 +55,7 @@ apiHandler.put(async (req, res) => {
     res.status(200).json({
       success: false,
       message: error.message,
+      error_code: error.code,
     });
   }
 });

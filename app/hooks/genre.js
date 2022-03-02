@@ -33,10 +33,17 @@ export const useGenres = ({ queryString = "" }) => {
           });
           return res.success;
         } else {
-          ErrorNotification({
-            message: "Error",
-            description: `Something went wrong while adding a new ${msgHead}`,
-          });
+          if (res.error_code == "P2002") {
+            ErrorNotification({
+              message: "Error",
+              description: `Duplicate ${msgHead} found, please input another title!`,
+            });
+          } else {
+            ErrorNotification({
+              message: "Error",
+              description: `Something went wrong while adding a new ${msgHead}`,
+            });
+          }
           return res.success;
         }
       } catch (error) {
@@ -122,10 +129,17 @@ export const useGenre = ({ singleId }) => {
           });
           return res.success;
         } else {
-          ErrorNotification({
-            message: "Error",
-            description: `Something went wrong while editing ${msgHead}`,
-          });
+          if (res.error_code == "P2002") {
+            ErrorNotification({
+              message: "Error",
+              description: `Duplicate ${msgHead} found, please input another title!`,
+            });
+          } else {
+            ErrorNotification({
+              message: "Error",
+              description: `Something went wrong while editing ${msgHead}`,
+            });
+          }
 
           return res.success;
         }
