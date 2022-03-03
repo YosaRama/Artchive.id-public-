@@ -2,25 +2,40 @@
   margin: 50px 0;
 }
 
-.profileImage {
-  height: 750px;
-  width: auto;
+.bannerImageContainer {
+  height: 495px;
   img {
     object-fit: cover;
   }
 }
 
+.profileImageContainer {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+  width: auto;
+  position: relative;
+}
+
+.profileImageBox {
+  width: 100%;
+  height: 350px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0px);
+  top: -150px;
+}
+
+.profileImage {
+  margin: 0 auto;
+  width: 350px;
+  border-radius: 100%;
+  object-fit: cover;
+  border: 10px solid #ffffff;
+}
+
 .profileDetails {
+  margin-top: 20px;
   padding-right: 50px !important;
-  &::before {
-    content: "";
-    position: absolute;
-    width: 3px;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background: #e5890a;
-  }
 }
 
 .profileDetailsContent {
@@ -47,7 +62,7 @@
   font-size: 18px;
 }
 
-.socialProfile {
+.socialProfileContainer {
   margin: 30px 0;
 }
 
@@ -76,8 +91,11 @@
 
 //? ============== Tablet Landscape Mode ============= ?//
 @media screen and (max-width: 1024px) {
+  .profileImageBox {
+    height: 300px;
+  }
   .profileImage {
-    height: 500px;
+    width: 300px;
   }
   .artistName {
     font-size: 42px;
@@ -87,13 +105,21 @@
 
 //? ============== Tablet Portrait Mode ============= ?//
 @media screen and (max-width: 768px) {
+  .profileImageContainer {
+    height: calc(350px - 150px);
+  }
+  .profileImageBox {
+    height: 350px;
+    top: -200px;
+  }
   .profileImage {
-    height: 500px;
+    width: 350px;
   }
   .profileDetails {
-    margin-top: 50px;
+    margin-top: 0px;
     padding-right: 32px !important;
     padding-left: 32px !important;
+    position: relative;
     &::before {
       width: calc(100% - 64px);
       height: 3px;
@@ -106,16 +132,35 @@
 }
 // * ====================================== * //
 
-//? ============== Tablet Portrait Mode ============= ?//
+//? ============== Mobile Mode ============= ?//
 @media screen and (max-width: 500px) {
+  .bannerImageContainer {
+    height: 250px;
+  }
+  .profileImageContainer {
+    height: calc(200px - 100px);
+  }
+  .profileImageBox {
+    height: 200px;
+    top: -100px;
+  }
   .profileImage {
-    height: 300px;
+    width: 200px;
+  }
+  .profileDetails {
+    text-align: center;
+    top: 0px;
+    padding-right: 20px !important;
+    padding-left: 20px !important;
   }
   .artistName {
     font-size: 32px;
   }
   .artistBio {
     font-size: 16px;
+  }
+  .socialProfileBox {
+    justify-content: center;
   }
 }
 // * ====================================== * //

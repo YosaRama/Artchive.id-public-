@@ -1,2 +1,11 @@
 @media screen and (max-width: 500px) {
+  //? ============== Page ============= ?//
+  // Artist Details Page
+  .artistDetails-card {
+    .ant-card-body {
+      padding: 0;
+    }
+  }
+  // ====================================
+  // * ====================================== * //
 }

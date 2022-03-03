@@ -1,5 +1,6 @@
 // Libs
 import propTypes from "prop-types";
+import moment from "moment";
 import { Card, Col, Image, Row } from "antd";
 
 // Components
@@ -28,42 +29,49 @@ function ThemesContentsArtistDetails(props) {
     <>
       <ThemesContainerMain>
         <section className={s.artistDetailsSection}>
-          <Card>
-            <Row gutter={[64, 0]}>
+          <Card className="artistDetails-card">
+            <Col span={24} className={`${s.bannerImageContainer}`}>
+              <Image src="/images/artwork-1.jpg" alt="" />
+            </Col>
+            <Row gutter={[64, 0]} style={{ marginRight: 0, marginLeft: 0 }}>
               <Col
-                xl={{ span: 10 }}
+                xl={{ span: 8 }}
                 lg={{ span: 10 }}
                 md={{ span: 24 }}
                 xs={{ span: 24 }}
-                className={s.profileImage}
+                className={`${s.profileImageContainer} artistDetails-profileImageContainer`}
               >
-                <Image
-                  src={
-                    artistData.profile
-                      ? `${process.env.NEXT_PUBLIC_S3_URL}/${artistData.profile.url}`
-                      : "/images/default-images.png"
-                  }
-                  alt=""
-                />
+                <div className={s.profileImageBox}>
+                  <Image
+                    src={
+                      artistData.profile
+                        ? `${process.env.NEXT_PUBLIC_S3_URL}/${artistData.profile.url}`
+                        : "/images/default-images.png"
+                    }
+                    alt=""
+                    className={s.profileImage}
+                  />
+                </div>
               </Col>
               <Col
-                xl={{ span: 14 }}
+                xl={{ span: 16 }}
                 lg={{ span: 14 }}
                 md={{ span: 24 }}
                 className={s.profileDetails}
               >
                 <div className={s.profileDetailsContent}>
-                  <p className={s.artistLocation}>{artistData.city}</p>
                   <h1 className={s.artistName}>{artistData.full_name}</h1>
-                  <p className={s.artistDate}>22 October 1997</p>
+                  <p className={s.artistDate}>
+                    {artistData.city}, {moment(artistData.birth_date).format("DD MMMM YYYY")}
+                  </p>
                 </div>
 
                 <div className={`${s.profileDetailsContent} `}>
                   <p className={s.artistBio}>{artistData.biography}</p>
                 </div>
 
-                <div className={s.socialProfile}>
-                  <Row gutter={[12, 0]}>
+                <div className={s.socialProfileContainer}>
+                  <Row gutter={[12, 0]} className={s.socialProfileBox}>
                     <a href={`mailto:${artistData.email}`}>
                       <Col>
                         <MailOutlined className={s.socialIcon} />
@@ -143,25 +151,6 @@ function ThemesContentsArtistDetails(props) {
             <section className={s.divider}>
               <ThemesButton onClick={() => router.push("/artwork")}>{`SEE MORE`}</ThemesButton>
             </section>
-
-            {/* <Row gutter={[16, 32]}>
-            {artworkData?.map((item, index) => {
-              return (
-                <Col key={index} span={6}>
-                  <ThemesArtworkWithFrame
-                    artworkSize="200 x 300"
-                    artworkSlug="love"
-                    artworkStatus={item.status}
-                    artworkTitle={item.title}
-                    imgSrc={item.url}
-                  />
-                </Col>
-              );
-            })}
-          </Row> */}
-            {/* <section className={s.divider}>
-            <ThemesDividerWithButton onClick={() => router.push("/artwork")}>SEE MORE</ThemesDividerWithButton>
-          </section> */}
           </section>
         )}
       </ThemesContainerMain>
