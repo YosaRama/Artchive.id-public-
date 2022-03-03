@@ -18,20 +18,20 @@ function ThemesNavbarDrawer(props) {
   //? ============== Menu List ============= ?//
   const firstMenuList = [
     { link: "/", label: "HOME" },
-    { link: "/", label: "STUDIO" },
+    { link: "/maintenance", label: "STUDIO" },
   ];
 
   const secondMenuList = [
-    { link: "/", label: "ARTIST" },
-    { link: "/", label: "ARTWORK" },
-    { link: "/", label: "EXHIBITION" },
-    { link: "/", label: "NFT GALLERY" },
+    { link: "/artist", label: "ARTIST" },
+    { link: "/artwork", label: "ARTWORK" },
+    { link: "/maintenance", label: "EXHIBITION" },
+    { link: "/maintenance", label: "NFT GALLERY" },
   ];
 
   const thirdMenuList = [
-    { link: "/", label: "ART ARTICLE" },
-    { link: "/", label: "ABOUT US" },
-    { link: "/", label: "CONTACT US" },
+    { link: "/maintenance", label: "ART ARTICLE" },
+    { link: "/maintenance", label: "ABOUT US" },
+    { link: "/contact-us", label: "CONTACT US" },
   ];
   // * ====================================== * //
   return (
@@ -46,7 +46,7 @@ function ThemesNavbarDrawer(props) {
             <Menu>
               {firstMenuList.map((item, index) => {
                 return (
-                  <Menu.Item key={index} className={s.menuItemBold}>
+                  <Menu.Item key={item.label} className={s.menuItemBold}>
                     <Link href={item.link}>
                       <a>{item.label}</a>
                     </Link>
@@ -56,7 +56,7 @@ function ThemesNavbarDrawer(props) {
               <Divider className={s.divider} />
               {secondMenuList.map((item, index) => {
                 return (
-                  <Menu.Item key={index} className={s.menuItemBold}>
+                  <Menu.Item key={item.label} className={s.menuItemBold}>
                     <Link href={item.link}>
                       <a>{item.label}</a>
                     </Link>
@@ -66,7 +66,7 @@ function ThemesNavbarDrawer(props) {
               <Divider className={s.divider} />
               {thirdMenuList.map((item, index) => {
                 return (
-                  <Menu.Item key={index} className={s.menuItem}>
+                  <Menu.Item key={item.label} className={s.menuItem}>
                     <Link href={item.link}>
                       <a>{item.label}</a>
                     </Link>
