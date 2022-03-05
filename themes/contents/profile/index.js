@@ -1,8 +1,8 @@
 // Libs
+import { Col, Row } from "antd";
 import { signOut } from "next-auth/react";
 
 // Components
-import ThemesContainerMain from "themes/components/container/main";
 import ThemesButton from "themes/components/libs/button";
 
 // Styles
@@ -16,9 +16,7 @@ function ThemesContentsProfile() {
   // * ====================================== * //
   return (
     <>
-      <ThemesContainerMain>
-        <ThemesButton onClick={handleLogout}>Logout</ThemesButton>
-      </ThemesContainerMain>
+      <ThemesButton onClick={handleLogout}>Logout</ThemesButton>
     </>
   );
 }

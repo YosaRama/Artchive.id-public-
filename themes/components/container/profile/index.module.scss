@@ -1,0 +1,19 @@
+.contentSection {
+  margin-left: -4.3%;
+}
+
+//? ============== Medium Laptop Mode (1366px) ============= ?//
+@media screen and (max-width: 1366px) {
+  .contentSection {
+    margin-left: auto;
+  }
+}
+// * ====================================== * //
+
+//? ============== Tablet Landscape Mode (1024px) ============= ?//
+@media screen and (max-width: 1024px) {
+  .mobileHidden {
+    display: none;
+  }
+}
+// * ====================================== * //

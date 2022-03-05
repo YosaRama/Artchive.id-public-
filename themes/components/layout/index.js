@@ -1,10 +1,12 @@
 // Libs
+import { useRouter } from "next/router";
 import { Affix, Layout } from "antd";
 const { Content } = Layout;
 
-// Component
+// Components
 import ThemesHeader from "./header";
 import ThemesFooter from "./footer";
+import ThemesContainerProfile from "themes/components/container/profile";
 import ThemeMobileNavbar from "../libs/mobile-navbar";
 
 // Styles
@@ -12,6 +14,9 @@ import s from "./index.module.scss";
 
 function ThemesLayout(props) {
   const { children } = props;
+  const router = useRouter();
+
+  console.log();
   return (
     <>
       <Layout>
@@ -19,7 +24,11 @@ function ThemesLayout(props) {
           <ThemesHeader />
         </Affix>
         <Content className={s.content} id="frontpage">
-          {children}
+          {router.pathname.startsWith("/profile") ? (
+            <ThemesContainerProfile>{children}</ThemesContainerProfile>
+          ) : (
+            <>{children}</>
+          )}
         </Content>
         <ThemesFooter />
 

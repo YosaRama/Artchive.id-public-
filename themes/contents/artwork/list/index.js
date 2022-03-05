@@ -1,5 +1,6 @@
 // Libs
-import { Affix, Card, Col, Form, Input, Row, Select, Slider } from "antd";
+import Sticky from "react-sticky-el";
+import { Card, Col, Form, Input, Row, Select, Slider } from "antd";
 import { useState } from "react";
 const { Option } = Select;
 
@@ -18,7 +19,6 @@ import { useWindowSize } from "app/helpers/useWindowSize";
 
 // Styles
 import s from "./index.module.scss";
-import Sticky from "react-sticky-el";
 
 function ThemesContentsArtworkList() {
   //? ============== Handle Get Viewport ============= ?//
@@ -63,7 +63,6 @@ function ThemesContentsArtworkList() {
           <section style={{ margin: "50px 0" }} className="">
             <Row justify="space-between" className="boundary">
               <Col span={6} className={`${s.mobileHidden} `} style={{ height: "auto" }}>
-                {/* <Affix offsetTop={80}> */}
                 <div className="affixContainer">
                   <Sticky
                     boundaryElement=".boundary"
@@ -118,8 +117,6 @@ function ThemesContentsArtworkList() {
                     </Card>
                   </Sticky>
                 </div>
-
-                {/* </Affix> */}
               </Col>
 
               <Col xl={{ span: 17 }} lg={{ span: 24 }}>
