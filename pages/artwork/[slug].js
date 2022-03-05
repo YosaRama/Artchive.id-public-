@@ -1,6 +1,3 @@
-// Libs
-import moment from "moment";
-
 // Contents
 import ThemesContentsArtworkDetails from "themes/contents/artwork/details";
 
@@ -19,11 +16,7 @@ export const getStaticProps = async (ctx) => {
   const { GET_ARTWORK_BY_SLUG } = require("app/database/query/artwork");
 
   const artworkDataRes = await GET_ARTWORK_BY_SLUG({ slug: ctx.params.slug });
-  const artworkData = {
-    ...artworkDataRes,
-    createdAt: moment(artworkDataRes?.createdAt).toISOString(),
-    updatedAt: moment(artworkDataRes?.updatedAt).toISOString(),
-  };
+  const artworkData = JSON.parse(JSON.stringify(artworkDataRes));
   return {
     props: {
       artworkData: artworkData,
