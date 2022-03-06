@@ -1,5 +1,6 @@
 // Libs
 import { Row, Col } from "antd";
+import ThemesProfileNavbar from "themes/components/libs/profile-navbar";
 import ThemesContainerMain from "../main";
 
 // Styles
@@ -9,10 +10,9 @@ function ThemesContainerProfile(props) {
   const { children } = props;
   return (
     <>
-      <Row style={{ height: "100vh" }}>
+      <Row className={s.container}>
         <Col span={1} className={s.mobileHidden}>
-          {/* //TODO : Change to Profile Navbar */}
-          <div style={{ background: "#ffffff", width: "100%", height: "100%" }}></div>
+          <ThemesProfileNavbar />
         </Col>
         <Col xl={{ span: 23 }} xs={{ span: 24 }}>
           <ThemesContainerMain sectionclass={s.contentSection}>{children}</ThemesContainerMain>

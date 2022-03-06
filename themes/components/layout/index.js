@@ -16,7 +16,6 @@ function ThemesLayout(props) {
   const { children } = props;
   const router = useRouter();
 
-  console.log();
   return (
     <>
       <Layout>
