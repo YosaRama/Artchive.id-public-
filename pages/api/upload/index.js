@@ -107,7 +107,6 @@ apiHandler.post(sharpUpload.single("uploadFile"), async (req, res) => {
       res.status(200).json({ success: false, file: file, data: mainResult });
     }
   } catch (error) {
-    console.log(error);
     res.status(200).json({ success: false, file: file, message: "Failed upload file" });
   }
 });

@@ -29,7 +29,6 @@ function AppContentsUserDetailsInfo(props) {
       };
 
       const result = onSave(submission);
-      // console.log(submission);
     });
   };
   // * ====================================== * //
