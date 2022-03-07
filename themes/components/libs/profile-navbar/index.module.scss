@@ -1,11 +1,11 @@
 .container {
   background-color: #fff;
-  height: 100%;
+  height: calc(100vh - 64px);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  z-index: 9999999;
+  z-index: 9;
 }
 
 .iconBox {

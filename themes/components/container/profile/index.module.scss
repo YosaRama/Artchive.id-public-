@@ -6,8 +6,12 @@
   margin-left: -4.3%;
 }
 
-.navbar {
+.navbarWrapper {
   z-index: 2;
+}
+
+.navbar {
+  height: 100%;
 }
 
 .contentWrapper {
@@ -25,7 +29,7 @@
 //? ============== Tablet Landscape Mode (1024px) ============= ?//
 @media screen and (max-width: 1024px) {
   .mobileHidden {
-    display: none;
+    display: none !important;
   }
 }
 // * ====================================== * //
