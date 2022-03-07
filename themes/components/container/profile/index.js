@@ -11,10 +11,10 @@ function ThemesContainerProfile(props) {
   return (
     <>
       <Row className={s.container}>
-        <Col span={1} className={s.mobileHidden}>
+        <Col span={1} className={`${s.mobileHidden} ${s.navbar}`}>
           <ThemesProfileNavbar />
         </Col>
-        <Col xl={{ span: 23 }} xs={{ span: 24 }}>
+        <Col xl={{ span: 23 }} xs={{ span: 24 }} className={`${s.contentWrapper}`}>
           <ThemesContainerMain sectionclass={s.contentSection}>{children}</ThemesContainerMain>
         </Col>
       </Row>
