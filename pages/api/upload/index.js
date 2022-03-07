@@ -85,8 +85,8 @@ apiHandler.post(sharpUpload.single("uploadFile"), async (req, res) => {
   const file = req.file;
   const filename = file.originalname;
   const mimetype = file.mimetype;
-  const mainUrl = file.original.key;
-  const mediumUrl = file.medium.key;
+  const mainUrl = file.original.Key;
+  const mediumUrl = file.medium.Key;
   try {
     const mainResult = await CREATE_MAIN_MEDIA({
       filename: filename,
@@ -107,6 +107,7 @@ apiHandler.post(sharpUpload.single("uploadFile"), async (req, res) => {
       res.status(200).json({ success: false, file: file, data: mainResult });
     }
   } catch (error) {
+    console.log(error);
     res.status(200).json({ success: false, file: file, message: "Failed upload file" });
   }
 });

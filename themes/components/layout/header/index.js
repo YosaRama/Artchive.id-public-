@@ -12,7 +12,7 @@ import ThemesButton from "themes/components/libs/button";
 
 // Icons
 import { CartIcon } from "public/icons/cart-icon";
-import { MenuOutlined, LogoutOutlined, UserOutlined } from "@ant-design/icons";
+import { MenuOutlined } from "@ant-design/icons";
 
 // Styles
 import s from "./index.module.scss";
@@ -50,8 +50,8 @@ function ThemesHeader() {
                 >
                   <Avatar
                     src={
-                      session.user.image
-                        ? `${process.env.NEXT_PUBLIC_S3_URL}/${session.user.image}`
+                      session?.user?.image
+                        ? `${process.env.NEXT_PUBLIC_S3_URL}/${session?.user?.image}`
                         : "/images/profile-default.png"
                     }
                     className={s.avatar}
