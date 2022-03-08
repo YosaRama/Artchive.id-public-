@@ -92,14 +92,14 @@ function ThemesContentsProfileStudioCreate(props) {
       <Divider className={s.divider} />
       <div className={s.contentContainer}>
         <Row gutter={[32, 0]} justify="center">
-          <Col span={10} className={s.artworkImage}>
+          <Col lg={{ span: 10 }} xs={{ span: 24 }} className={s.artworkImage}>
             {uploadImage ? (
               <Image alt="" src={`${process.env.NEXT_PUBLIC_S3_URL}/${uploadImage?.url}`} />
             ) : (
               <AppUploadBox onUpload={handleUpload} loading={uploadLoading} className={s.upload} />
             )}
           </Col>
-          <Col span={12}>
+          <Col lg={{ span: 12 }} xs={{ span: 24 }}>
             <Form layout="vertical" form={form}>
               {lastArtworkId && (
                 <Form.Item

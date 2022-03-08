@@ -46,9 +46,23 @@ function MyApp({ Component, pageProps: { session, ...pageProps }, router }) {
                   )}
                 </>
               ) : (
-                <ThemesLayout>
-                  <Component {...pageProps} />
-                </ThemesLayout>
+                <>
+                  {router.pathname.startsWith("/profile") ? (
+                    <>
+                      {content && (
+                        <ThemesLayout>
+                          <Component {...pageProps} />
+                        </ThemesLayout>
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      <ThemesLayout>
+                        <Component {...pageProps} />
+                      </ThemesLayout>
+                    </>
+                  )}
+                </>
               )}
             </>
           </GlobalContext>
