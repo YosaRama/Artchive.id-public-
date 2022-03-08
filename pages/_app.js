@@ -35,20 +35,22 @@ function MyApp({ Component, pageProps: { session, ...pageProps }, router }) {
               <title>Artchive</title>
               <meta name="viewport" content="width=device-width, initial-scale=1" />
             </Head>
-            {content && (
-              <>
-                {router.pathname.startsWith("/dashboard") &&
-                router.pathname != "/dashboard/login" ? (
-                  <AppLayout>
-                    <Component {...pageProps} />
-                  </AppLayout>
-                ) : (
-                  <ThemesLayout>
-                    <Component {...pageProps} />
-                  </ThemesLayout>
-                )}
-              </>
-            )}
+
+            <>
+              {router.pathname.startsWith("/dashboard") && router.pathname != "/dashboard/login" ? (
+                <>
+                  {content && (
+                    <AppLayout>
+                      <Component {...pageProps} />
+                    </AppLayout>
+                  )}
+                </>
+              ) : (
+                <ThemesLayout>
+                  <Component {...pageProps} />
+                </ThemesLayout>
+              )}
+            </>
           </GlobalContext>
         </SessionProvider>
       </SWRConfig>
