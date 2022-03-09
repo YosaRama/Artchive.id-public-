@@ -179,6 +179,7 @@ enum ArtStatus {
   SOLD
   DRAFT
   PUBLISH
+  EDIT
 }
 
 enum Dimension {
