@@ -1,4 +1,5 @@
 // Libs
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { Button, Col, Divider, Form, Input, InputNumber, Row, Select, Switch } from "antd";
 const { Option } = Select;
@@ -43,7 +44,6 @@ function AppContentsArtworkDetailsInfo() {
 
   //? ============== Handle Update ============= ?//
   const [form] = Form.useForm();
-
   const handleUpdate = () => {
     form.validateFields().then(async (value) => {
       const submission = {
@@ -76,6 +76,14 @@ function AppContentsArtworkDetailsInfo() {
   };
   // * ====================================== * //
 
+  //? ============== Handle Status Dropdown ============= ?//
+  const [isApproved, setIsApproved] = useState(false);
+  const handleApproved = () => {
+    form.setFieldsValue({ status: null });
+    setIsApproved(!isApproved);
+  };
+  // * ====================================== * //
+
   return (
     <Col style={{ margin: "50px auto 0" }} span={22}>
       {artworkInitialValues && (
@@ -97,7 +105,11 @@ function AppContentsArtworkDetailsInfo() {
                     })}
                 </Select>
               </Form.Item>
-              <Form.Item name="genre" label="Genre">
+              <Form.Item
+                name="genre"
+                label="Genre"
+                rules={[{ required: true, message: "Please select minimal 1 genre of artwork!" }]}
+              >
                 <Select placeholder="Select genre" mode="multiple">
                   {genreData &&
                     genreData?.map((item, index) => {
@@ -109,29 +121,61 @@ function AppContentsArtworkDetailsInfo() {
                     })}
                 </Select>
               </Form.Item>
-              <Form.Item name="title" label="Title">
+              <Form.Item
+                name="title"
+                label="Title"
+                rules={[{ required: true, message: "Please input title of artwork!" }]}
+              >
                 <Input placeholder="Input artwork title" />
               </Form.Item>
-              <Form.Item name="year" label="Year">
+              <Form.Item
+                name="year"
+                label="Year"
+                rules={[{ required: true, message: "Please input year of artwork!" }]}
+              >
                 <Input placeholder="Input artwork year" />
               </Form.Item>
-              <Form.Item name="material" label="Material">
+              <Form.Item
+                name="material"
+                label="Material"
+                rules={[{ required: true, message: "Please input material of artwork!" }]}
+              >
                 <Input placeholder="Input artwork material" />
               </Form.Item>
-              <Form.Item name="status" label="Status">
+              <Form.Item
+                name="status"
+                label="Status"
+                rules={[{ required: true, message: "Please select status of artwork!" }]}
+              >
                 <Select placeholder="Input artwork status">
-                  <Option value="PUBLISH">Publish</Option>
-                  <Option value="DRAFT">Draft</Option>
-                  <Option value="SOLD">Sold</Option>
+                  {isApproved || artworkInitialValues.approve ? (
+                    <>
+                      <Option value="PUBLISH">Publish</Option>
+                      <Option value="SOLD">Sold</Option>
+                    </>
+                  ) : (
+                    <>
+                      <Option value="DRAFT">Draft</Option>
+                      <Option value="EDIT">Edit Required</Option>
+                    </>
+                  )}
                 </Select>
               </Form.Item>
             </Col>
             <Divider type="vertical" />
             <Col span={11}>
-              <Form.Item name="description" label="Description">
+              <Form.Item
+                name="description"
+                label="Description"
+                rules={[{ required: true, message: "Please input description of artwork!" }]}
+              >
                 <Input.TextArea placeholder="Write artwork description" />
               </Form.Item>
-              <Form.Item name="type" label="Type">
+              <Form.Item
+                name="type"
+                label="Type"
+                rules={[{ required: true, message: "Please select type of artwork!" }]}
+              >
                 <Select placeholder="Select type of artwork">
                   <Option value="UNIQUE">Unique</Option>
                   <Option value="EDITION">Edition Series</Option>
@@ -139,17 +183,29 @@ function AppContentsArtworkDetailsInfo() {
               </Form.Item>
               <Row gutter={[16, 0]}>
                 <Col span={12}>
-                  <Form.Item name="width" label="Width">
+                  <Form.Item
+                    name="width"
+                    label="Width"
+                    rules={[{ required: true, message: "Width of artwork is required!" }]}
+                  >
                     <InputNumber placeholder="Width (cm)" style={{ width: "100%" }} />
                   </Form.Item>
                 </Col>
                 <Col span={12}>
                   <Form.Item name="height" label="Height">
-                    <InputNumber placeholder="Height (cm)" style={{ width: "100%" }} />
+                    <InputNumber
+                      placeholder="Height (cm)"
+                      style={{ width: "100%" }}
+                      rules={[{ required: true, message: "Height of artwork is required!" }]}
+                    />
                   </Form.Item>
                 </Col>
               </Row>
-              <Form.Item name="price" label="Price">
+              <Form.Item
+                name="price"
+                label="Price"
+                rules={[{ required: true, message: "Please input price of artwork!" }]}
+              >
                 <InputNumber
                   style={{ width: "100%" }}
                   placeholder="Input artwork price"
@@ -159,7 +215,7 @@ function AppContentsArtworkDetailsInfo() {
                 />
               </Form.Item>
               <Form.Item name="approve" label="Approved" valuePropName="checked">
-                <Switch />
+                <Switch onChange={handleApproved} />
               </Form.Item>
             </Col>
             <Col span={24} style={{ textAlign: "right", margin: "30px auto" }}>

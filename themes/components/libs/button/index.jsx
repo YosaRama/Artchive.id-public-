@@ -23,7 +23,7 @@ function ThemesButton(props) {
 ThemesButton.propTypes = {
   loading: propTypes.bool,
   children: propTypes.node,
-  type: propTypes.oneOf(["default", "outlined"]),
+  type: propTypes.any,
   onClick: propTypes.func,
   disabled: propTypes.bool,
 };
