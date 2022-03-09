@@ -13,12 +13,12 @@ function ThemesContentsProfileStudioList() {
   return (
     <>
       <div className={s.title}>
-        <ThemesHeadline title="Artwork" subtitle="You have {number} of artwork" />
+        <ThemesHeadline title="Your Artwork" subtitle="You have {number} of artwork" />
       </div>
       <Divider className={s.divider} />
-      <Col span={22} className={s.contentContainer}>
+      <Col xl={{ span: 22 }} xs={{ span: 24 }} className={s.contentContainer}>
         <Row gutter={[16, 16]}>
-          <Col lg={{ span: 6 }}>
+          <Col xl={{ span: 6 }} lg={{ span: 8 }} md={{ span: 12 }} xs={{ span: 24 }}>
             <ThemesProfileArtworkCard
               approved={true}
               status="PUBLISHED"
@@ -28,7 +28,7 @@ function ThemesContentsProfileStudioList() {
               price="1.000.000"
             />
           </Col>
-          <Col lg={{ span: 6 }}>
+          <Col xl={{ span: 6 }} lg={{ span: 8 }} md={{ span: 12 }} xs={{ span: 24 }}>
             <ThemesProfileArtworkCard
               approved={false}
               status="DRAFT"
@@ -38,7 +38,7 @@ function ThemesContentsProfileStudioList() {
               price="1.000.000"
             />
           </Col>
-          <Col lg={{ span: 6 }}>
+          <Col xl={{ span: 6 }} lg={{ span: 8 }} md={{ span: 12 }} xs={{ span: 24 }}>
             <ThemesProfileArtworkCard
               approved={false}
               status="EDIT"
@@ -48,7 +48,7 @@ function ThemesContentsProfileStudioList() {
               price="1.000.000"
             />
           </Col>
-          <Col lg={{ span: 6 }}>
+          <Col xl={{ span: 6 }} lg={{ span: 8 }} md={{ span: 12 }} xs={{ span: 24 }}>
             <ThemesProfileArtworkCard
               approved={true}
               status="SOLD"
