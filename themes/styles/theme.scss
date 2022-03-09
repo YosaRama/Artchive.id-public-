@@ -95,6 +95,14 @@ $white: #ffffff;
 }
 // ====================================
 
+// Card without padding
+.cardWithoutPadding {
+  .ant-card-body {
+    padding: 0;
+  }
+}
+// =============================
+
 // * ====================================== * //
 
 //? =================== Page =========================== ?//
@@ -244,7 +252,6 @@ $white: #ffffff;
 // Artist Details Page
 .artistDetails-card {
 }
-
 // ====================================
 
 // * ====================================== * //
@@ -273,14 +280,6 @@ $white: #ffffff;
     margin: 0 !important;
     top: 0 !important;
     transform: translate(0px, 5px) !important;
-  }
-}
-// =================================
-
-// Artwork Card
-.artworkCardList {
-  .ant-card-body {
-    padding: 0;
   }
 }
 // =================================

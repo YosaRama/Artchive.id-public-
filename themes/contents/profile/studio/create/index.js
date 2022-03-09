@@ -39,7 +39,7 @@ function ThemesContentsProfileStudioCreate(props) {
     form.validateFields().then(async (value) => {
       const submission = {
         sku: value.sku,
-        artist_id: artistData.id,
+        artist_id: artistData?.id,
         title: value.title,
         year: value.year,
         material: value.material,

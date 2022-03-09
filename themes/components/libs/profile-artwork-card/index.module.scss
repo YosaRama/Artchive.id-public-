@@ -1,0 +1,41 @@
+.card {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+}
+
+.imageContainer {
+  img {
+    position: relative;
+    width: 100% !important;
+    object-fit: cover;
+    height: 350px;
+  }
+  &.disabled {
+    img {
+      filter: grayscale(1);
+    }
+  }
+}
+
+.tagContainer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 10px;
+}
+
+.contentText {
+  padding: 20px 20px;
+  text-align: center;
+  h1 {
+    margin-bottom: 0;
+    font-size: 22px;
+  }
+  p {
+    margin-bottom: 0;
+    font-style: italic;
+  }
+}

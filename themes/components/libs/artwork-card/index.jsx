@@ -30,7 +30,7 @@ function ThemesArtworkCard(props) {
         className={`artwork-ribbon ${artworkStatus == "PUBLISH" && "hide"}`}
       >
         <Card
-          className={s.card + " artworkCardList"}
+          className={s.card + " cardWithoutPadding"}
           bordered={false}
           onClick={() => router.push(`/artwork/${artworkSlug}`)}
         >
