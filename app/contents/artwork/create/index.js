@@ -15,9 +15,10 @@ import { useGenres } from "app/hooks/genre";
 import AppUploadBox from "app/components/libs/upload-box";
 import AppContainerBox from "app/components/container/box";
 import AppContainerCard from "app/components/container/card";
-
-// Notification
 import { WarningNotification } from "app/components/utils/notification";
+
+// Helper
+import priceFormatter from "app/helpers/priceFormatter";
 
 // Style
 import s from "./index.module.scss";
@@ -253,7 +254,7 @@ function AppContentsArtworkCreate() {
                     style={{ width: "100%" }}
                     placeholder="Input artwork price"
                     addonBefore="Rp"
-                    formatter={(value) => `Rp ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                    formatter={(value) => priceFormatter(`Rp ${value}`, ",")}
                     parser={(value) => value.replace(/Rp\s?|(,*)/g, "")}
                   />
                 </Form.Item>

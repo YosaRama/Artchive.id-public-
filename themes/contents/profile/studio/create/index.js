@@ -13,9 +13,10 @@ import { useGenres } from "app/hooks/genre";
 // Components
 import ThemesHeadline from "themes/components/libs/headline";
 import AppUploadBox from "app/components/libs/upload-box";
-
-// Notification
 import { WarningNotification } from "app/components/utils/notification";
+
+// Helpers
+import priceFormatter from "app/helpers/priceFormatter";
 
 // Styles
 import s from "./index.module.scss";
@@ -218,7 +219,7 @@ function ThemesContentsProfileStudioCreate(props) {
                   style={{ width: "100%" }}
                   placeholder="Input artwork price"
                   addonBefore="Rp"
-                  formatter={(value) => `Rp ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                  formatter={(value) => priceFormatter(`Rp ${value}`, ",")}
                   parser={(value) => value.replace(/Rp\s?|(,*)/g, "")}
                 />
               </Form.Item>

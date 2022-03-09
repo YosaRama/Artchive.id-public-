@@ -5,6 +5,9 @@ import { useRouter } from "next/router";
 import propTypes from "prop-types";
 import { Badge, Card, Col } from "antd";
 
+// Helpers
+import priceFormatter from "app/helpers/priceFormatter";
+
 // Styles
 import s from "./index.module.scss";
 
@@ -51,7 +54,7 @@ function ThemesArtworkCard(props) {
               {artworkYear}, {artworkMedia}
             </p>
             <p>{`${artworkWidth} x ${artworkHeight} cm`}</p>
-            <p className={s.price}>{`IDR ${artworkPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}</p>
+            <p className={s.price}>{`IDR ${priceFormatter(artworkPrice, ",")}`}</p>
           </Col>
         </Card>
       </Badge.Ribbon>

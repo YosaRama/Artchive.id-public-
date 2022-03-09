@@ -14,6 +14,9 @@ import ThemesHeadline from "themes/components/libs/headline";
 // Data Hook
 import { useArtworks } from "app/hooks/artwork";
 
+// Helpers
+import priceFormatter from "app/helpers/priceFormatter";
+
 // Icons
 import { CartIcon } from "public/icons/cart-icon";
 
@@ -85,7 +88,7 @@ function ThemesContentsArtworkDetails(props) {
                 </Col>
                 <Col className={s.artworkDetailsPrice}>
                   <p>
-                    <strong>IDR</strong> {artworkData?.price.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                    <strong>IDR</strong> {priceFormatter(artworkData?.price, ",")}
                   </p>
                 </Col>
                 <Col className={s.cardBtnContainer}>

@@ -1,17 +1,6 @@
 // Libs
 import { useRouter } from "next/router";
-import {
-  Button,
-  Col,
-  Divider,
-  Form,
-  Input,
-  InputNumber,
-  Popconfirm,
-  Row,
-  Select,
-  Switch,
-} from "antd";
+import { Button, Col, Divider, Form, Input, InputNumber, Row, Select, Switch } from "antd";
 const { Option } = Select;
 
 // Data Hook
@@ -21,6 +10,9 @@ import { useGenres } from "app/hooks/genre";
 
 // Components
 import deleteConfirmModal from "app/components/utils/delete-modal-confirm";
+
+// Helpers
+import priceFormatter from "app/helpers/priceFormatter";
 
 function AppContentsArtworkDetailsInfo() {
   const router = useRouter();
@@ -162,7 +154,7 @@ function AppContentsArtworkDetailsInfo() {
                   style={{ width: "100%" }}
                   placeholder="Input artwork price"
                   addonBefore="Rp"
-                  formatter={(value) => `Rp ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                  formatter={(value) => priceFormatter(`Rp ${value}`, ",")}
                   parser={(value) => value.replace(/Rp\s?|(,*)/g, "")}
                 />
               </Form.Item>

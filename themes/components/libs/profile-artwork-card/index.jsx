@@ -58,7 +58,7 @@ function ThemesProfileArtworkCard(props) {
 ThemesProfileArtworkCard.propTypes = {
   id: propTypes.number,
   approved: propTypes.bool,
-  status: propTypes.arrayOf(["SOLD", "EDIT", "PUBLISH"]),
+  status: propTypes.oneOf(["SOLD", "EDIT", "PUBLISH"]),
   imgSrc: propTypes.string,
   title: propTypes.string,
   price: propTypes.node,
