@@ -45,7 +45,7 @@ ThemesArtworkWithFrame.propTypes = {
   imgSrc: propTypes.string,
   artworkTitle: propTypes.string,
   artworkSize: propTypes.string,
-  artworkStatus: propTypes.oneOf(["PUBLISH", "SOLD", "DRAFT"]),
+  artworkStatus: propTypes.oneOf(["PUBLISH", "SOLD", "DRAFT", "EDIT"]),
 };
 
 export default ThemesArtworkWithFrame;
