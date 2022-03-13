@@ -15,8 +15,12 @@ import { GET_USER_BY_EMAIL, CREATE_USER, CHECK_USER_BY_SLUG } from "app/database
 export default NextAuth({
   session: {
     strategy: "jwt",
+    maxAge: 1 * 24 * 60 * 60, // 1 Days
   },
   secret: "TVmJCqoONdD1T1QFuIF3IPzGuvGXWdpyyStjXqydcWI=",
+  jwt: {
+    maxAge: 1 * 24 * 60 * 60, // 1 Days
+  },
   providers: [
     CredentialsProvider({
       async authorize(credentials, req) {
