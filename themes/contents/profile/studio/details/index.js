@@ -63,7 +63,6 @@ function ThemesContentsProfileStudioDetails(props) {
         status: "DRAFT",
         approve: false,
       };
-      console.log(submission);
       // if (!submission.cover_id) {
       //   WarningNotification({
       //     message: "Failed Submit!",
@@ -244,11 +243,16 @@ function ThemesContentsProfileStudioDetails(props) {
           </div>
           <Divider className={s.divider} />
           <div className={s.contentContainer}>
-            <Row gutter={[16, 0]} justify="center">
-              <Col span={22}>
+            <Col span={22} className={s.mediaGalleryContainer}>
+              <Row gutter={[16, 0]}>
                 {artworkData?.media_gallery?.map((item) => {
                   return (
-                    <Col className={s.image} span={6} style={{ textAlign: "center" }} key={item.id}>
+                    <Col
+                      className={s.mediaGalleryImageBox}
+                      span={6}
+                      style={{ textAlign: "center" }}
+                      key={item.id}
+                    >
                       <Image src={`${process.env.NEXT_PUBLIC_S3_URL}/${item.url}`} alt="" />
                       <Button
                         onClick={() =>
@@ -273,8 +277,8 @@ function ThemesContentsProfileStudioDetails(props) {
                     />
                   </Col>
                 )}
-              </Col>
-            </Row>
+              </Row>
+            </Col>
           </div>
           {/* =================================== */}
 

@@ -51,6 +51,16 @@
   }
 }
 
+.mediaGalleryContainer {
+  margin: 0 auto;
+}
+
+.mediaGalleryImageBox {
+  img {
+    object-fit: cover;
+  }
+}
+
 //? ============== Tablet Landscape Mode ============= ?//
 @media screen and (max-width: 768px) {
   .artworkImage {

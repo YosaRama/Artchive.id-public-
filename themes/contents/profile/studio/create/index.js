@@ -14,6 +14,7 @@ import { useGenres } from "app/hooks/genre";
 import ThemesHeadline from "themes/components/libs/headline";
 import ThemesButton from "themes/components/libs/button";
 import AppUploadBox from "app/components/libs/upload-box";
+import deleteConfirmModal from "app/components/utils/delete-modal-confirm";
 import { WarningNotification } from "app/components/utils/notification";
 
 // Helpers
@@ -29,11 +30,41 @@ function ThemesContentsProfileStudioCreate(props) {
 
   //? ============== Artwork Hook ============= ?//
   const { data: artworkData, onAdd } = useArtworks({ queryString: "" });
-  const lastArtworkId = artworkData?.length != 0 ? artworkData?.[0]?.id + 1 : 1;
+  const lastArtworkId = artworkData?.length != 0 ? artworkData?.[0]?.id + 1 : 1; //TODO : There some problems when someone add new artwork
   // * ====================================== * //
 
   //? ============== Genre Hook ============= ?//
   const { data: genreData } = useGenres({ queryString: "" });
+  // * ====================================== * //
+
+  //? ============== Handle Upload ============= ?//
+  const { loading: uploadLoading, onUpload } = useUploads();
+
+  // Handle Upload Cover Image
+  const [uploadImage, setUploadImage] = useState();
+  const handleUploadCover = async (file) => {
+    const result = await onUpload({
+      file: file.file,
+      userId: artistData.id,
+      artworkId: lastArtworkId,
+    });
+    if (result.success) {
+      setUploadImage({ id: result.data.id, url: result.data.url });
+    }
+  };
+
+  // Handle Upload Gallery Image
+  const [mediaGallery, setMediaGallery] = useState([]);
+  const handleUploadMediaGallery = async (file) => {
+    const result = await onUpload({
+      file: file.file,
+      userId: artistData.id,
+      artworkId: lastArtworkId,
+    });
+    if (result.success) {
+      setMediaGallery([...mediaGallery, { id: result.data.id, url: result.data.url }]);
+    }
+  };
   // * ====================================== * //
 
   //? ============== Handle Submit ============= ?//
@@ -47,7 +78,7 @@ function ThemesContentsProfileStudioCreate(props) {
         material: value.material,
         description: value.description,
         genre_id: value.genre.map((item) => item[1]),
-        media_id: [],
+        media_id: mediaGallery.map((item) => item.id),
         cover_id: uploadImage?.id,
         type: value.type,
         height: value.height,
@@ -71,21 +102,6 @@ function ThemesContentsProfileStudioCreate(props) {
   };
   // * ====================================== * //
 
-  //? ============== Handle Upload ============= ?//
-  const { loading: uploadLoading, onUpload } = useUploads();
-  const [uploadImage, setUploadImage] = useState();
-  const handleUpload = async (file) => {
-    const result = await onUpload({
-      file: file.file,
-      userId: artistData.id,
-      artworkId: lastArtworkId,
-    });
-    if (result.success) {
-      setUploadImage({ id: result.data.id, url: result.data.url });
-    }
-  };
-  // * ====================================== * //
-
   return (
     <>
       {/* Form Details Section */}
@@ -99,7 +115,11 @@ function ThemesContentsProfileStudioCreate(props) {
             {uploadImage ? (
               <Image alt="" src={`${process.env.NEXT_PUBLIC_S3_URL}/${uploadImage?.url}`} />
             ) : (
-              <AppUploadBox onUpload={handleUpload} loading={uploadLoading} className={s.upload} />
+              <AppUploadBox
+                onUpload={handleUploadCover}
+                loading={uploadLoading}
+                className={s.upload}
+              />
             )}
           </Col>
           <Col lg={{ span: 12 }} xs={{ span: 24 }}>
@@ -237,17 +257,43 @@ function ThemesContentsProfileStudioCreate(props) {
       </div>
       <Divider className={s.divider} />
       <div className={s.contentContainer}>
-        <Row gutter={[16, 0]} justify="center">
-          <Col span={22}>
-            <Col span={6}>
-              <AppUploadBox
-                className={s.uploadBox}
-                onUpload={handleUpload}
-                loading={uploadLoading}
-              />
-            </Col>
-          </Col>
-        </Row>
+        <Col span={22} className={s.mediaGalleryContainer}>
+          <Row gutter={[16, 0]}>
+            {mediaGallery?.map((item) => {
+              return (
+                <Col
+                  className={s.mediaGalleryImageBox}
+                  span={6}
+                  style={{ textAlign: "center" }}
+                  key={item.id}
+                >
+                  <Image src={`${process.env.NEXT_PUBLIC_S3_URL}/${item.url}`} alt="" />
+                  <Button
+                    onClick={() =>
+                      deleteConfirmModal({
+                        title: "artwork gallery image",
+                        onDelete: () =>
+                          setMediaGallery(mediaGallery.filter((gallery) => gallery.id != item.id)),
+                      })
+                    }
+                  >
+                    Delete
+                  </Button>
+                </Col>
+              );
+            })}
+
+            {mediaGallery?.length < 4 && (
+              <Col span={6}>
+                <AppUploadBox
+                  className={s.uploadBox}
+                  onUpload={handleUploadMediaGallery}
+                  loading={uploadLoading}
+                />
+              </Col>
+            )}
+          </Row>
+        </Col>
       </div>
       {/* =================================== */}
 
