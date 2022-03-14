@@ -12,6 +12,7 @@ import { useGenres } from "app/hooks/genre";
 
 // Components
 import ThemesHeadline from "themes/components/libs/headline";
+import ThemesButton from "themes/components/libs/button";
 import AppUploadBox from "app/components/libs/upload-box";
 import { WarningNotification } from "app/components/utils/notification";
 
@@ -87,6 +88,7 @@ function ThemesContentsProfileStudioCreate(props) {
 
   return (
     <>
+      {/* Form Details Section */}
       <div className={s.title}>
         <ThemesHeadline title="Add an Artwork" subtitle="Upload your artwork and details" />
       </div>
@@ -224,14 +226,44 @@ function ThemesContentsProfileStudioCreate(props) {
                 />
               </Form.Item>
             </Form>
-            <Col span={24} style={{ padding: 0, textAlign: "right" }}>
-              <Button type="primary" onClick={handleSubmit} className={s.submitBtn}>
-                SUBMIT
-              </Button>
+          </Col>
+        </Row>
+      </div>
+      {/* =================================== */}
+
+      {/* Media Galley Section */}
+      <div className={s.title}>
+        <ThemesHeadline title="Media Gallery" subtitle="Upload your artwork details photos" />
+      </div>
+      <Divider className={s.divider} />
+      <div className={s.contentContainer}>
+        <Row gutter={[16, 0]} justify="center">
+          <Col span={22}>
+            <Col span={6}>
+              <AppUploadBox
+                className={s.uploadBox}
+                onUpload={handleUpload}
+                loading={uploadLoading}
+              />
             </Col>
           </Col>
         </Row>
       </div>
+      {/* =================================== */}
+
+      {/* Action Button Section */}
+      <div>
+        <Col span={8} className={s.submitBtnContainer}>
+          <Row gutter={[16, 0]} justify="end">
+            <Col span={12}>
+              <ThemesButton type={`primary ${s.submitBtn}`} onClick={handleSubmit}>
+                SAVE
+              </ThemesButton>
+            </Col>
+          </Row>
+        </Col>
+      </div>
+      {/* =================================== */}
     </>
   );
 }

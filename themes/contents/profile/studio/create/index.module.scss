@@ -27,10 +27,22 @@
   }
 }
 
+.submitBtnContainer {
+  margin-left: auto;
+  margin-bottom: 50px;
+}
+
 .submitBtn {
-  margin-top: 30px;
   width: 100%;
-  height: 50px;
+  height: 50px !important;
+}
+
+.uploadBox {
+  height: 250px !important;
+  > div {
+    width: 100% !important;
+    height: 100% !important;
+  }
 }
 
 //? ============== Tablet Landscape Mode ============= ?//
