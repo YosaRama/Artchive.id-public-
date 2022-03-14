@@ -1,0 +1,69 @@
+.title {
+  margin: 50px 0 30px;
+}
+
+.divider {
+  width: 50%;
+  min-width: 50%;
+  margin: 0px auto 40px;
+  border-top: 1px solid #e5890a;
+}
+
+.contentContainer {
+  margin: 50px 0;
+}
+
+.artworkImage {
+  height: 100%;
+  img {
+    height: auto !important;
+    object-fit: contain;
+  }
+}
+
+.changeImgBtn {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.upload {
+  > div {
+    width: 100% !important;
+    height: 500px !important;
+  }
+}
+
+.submitBtnContainer {
+  margin-left: auto;
+  margin-bottom: 50px;
+}
+.submitBtn {
+  width: 100%;
+  height: 50px !important;
+}
+
+.uploadBox {
+  height: 250px !important;
+  > div {
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+
+//? ============== Tablet Landscape Mode ============= ?//
+@media screen and (max-width: 768px) {
+  .artworkImage {
+    margin-bottom: 30px;
+  }
+}
+// * ====================================== * //
+
+//? ============== Phone Mode ============= ?//
+@media screen and (max-width: 500px) {
+  .upload {
+    > div {
+      height: 300px !important;
+    }
+  }
+}
+// * ====================================== * //
