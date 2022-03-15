@@ -30,7 +30,7 @@ function ThemesContentsProfileStudioCreate(props) {
 
   //? ============== Artwork Hook ============= ?//
   const { data: artworkData, onAdd } = useArtworks({ queryString: "" });
-  const lastArtworkId = artworkData?.length != 0 ? artworkData?.[0]?.id + 1 : 1; //TODO : There some problems when someone add new artwork
+  const lastArtworkId = artworkData?.length != 0 ? artworkData?.[0]?.id + 1 : 1;
   // * ====================================== * //
 
   //? ============== Genre Hook ============= ?//
@@ -71,7 +71,7 @@ function ThemesContentsProfileStudioCreate(props) {
   const handleSubmit = () => {
     form.validateFields().then(async (value) => {
       const submission = {
-        sku: value.sku,
+        sku: `ARTCHIVE/USR-${artistData.id}/ART-${lastArtworkId}/${moment().format("DDMMYYYY")}`,
         artist_id: artistData?.id,
         title: value.title,
         year: value.year,
@@ -124,22 +124,6 @@ function ThemesContentsProfileStudioCreate(props) {
           </Col>
           <Col lg={{ span: 12 }} xs={{ span: 24 }}>
             <Form layout="vertical" form={form}>
-              {lastArtworkId && (
-                <Form.Item
-                  name="sku"
-                  label="Artwork SKU"
-                  initialValue={`ARTCHIVE/USR-${
-                    artistData.id
-                  }/ART-${lastArtworkId}/${moment().format("DDMMYYYY")}`}
-                  rules={[
-                    {
-                      required: true,
-                    },
-                  ]}
-                >
-                  <Input disabled />
-                </Form.Item>
-              )}
               <Form.Item
                 name="genre"
                 label="Genre"

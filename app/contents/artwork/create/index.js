@@ -44,7 +44,9 @@ function AppContentsArtworkCreate() {
   const handleSubmit = () => {
     form.validateFields().then(async (value) => {
       const submission = {
-        sku: value.sku,
+        sku: `ARTCHIVE/USR-${value.artistId?.[1]}/ART-${lastArtworkId}/${moment().format(
+          "DDMMYYYY"
+        )}`,
         artist_id: value.artistId?.[1],
         title: value.title,
         year: value.year,
@@ -121,20 +123,6 @@ function AppContentsArtworkCreate() {
             </Col>
             <Col span={12}>
               <Form layout="vertical" form={form}>
-                {lastArtworkId && (
-                  <Form.Item
-                    name="sku"
-                    label="Artwork SKU"
-                    initialValue={`ARTCHIVE/ART-${lastArtworkId}/${moment().format("DDMMYYYY")}`}
-                    rules={[
-                      {
-                        required: true,
-                      },
-                    ]}
-                  >
-                    <Input disabled />
-                  </Form.Item>
-                )}
                 <Form.Item
                   name="artistId"
                   label="Artist"
