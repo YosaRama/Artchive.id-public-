@@ -12,33 +12,18 @@ import { prisma } from "../connection";
 //? ============== CREATE QUERY ============= ?//
 
 // Create main media
-export const CREATE_MAIN_MEDIA = ({ filename, mimetype, url }) => {
+export const CREATE_MAIN_MEDIA = ({ filename, mimetype, url, mediumUrl, uploadBy }) => {
   return prisma.media.create({
     data: {
-      parent_id: 0,
-      dimension: "MAIN",
       filename: filename,
       mimetype: mimetype,
       url: url,
+      medium_url: mediumUrl,
+      upload_by: uploadBy,
     },
   });
 };
 // ==================================
-
-// Create medium media
-export const CREATE_MEDIUM_MEDIA = ({ parentId, filename, mimetype, url }) => {
-  return prisma.media.create({
-    data: {
-      parent_id: parentId,
-      dimension: "MEDIUM",
-      filename: filename,
-      mimetype: mimetype,
-      url: url,
-    },
-  });
-};
-
-// =========================
 
 // * ====================================== * //
 

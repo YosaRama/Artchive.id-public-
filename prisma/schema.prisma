@@ -37,6 +37,7 @@ model User {
   cart            Cart[]
   order           Order[]
   certificate     Certificate[]
+  upload_by       Media[]       @relation("upload_by")
   status          Boolean
   createdAt       DateTime      @default(now())
   updatedAt       DateTime?     @updatedAt
@@ -86,15 +87,16 @@ model Genre {
 
 model Media {
   id            Int       @id @default(autoincrement())
-  parent_id     Int
-  dimension     Dimension @default(MAIN)
   filename      String    @db.Text
   mimetype      String
   url           String    @unique
+  medium_url    String?   @unique
   title         String?   @db.Text
   description   String?   @db.Text
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime? @updatedAt
+  created_at    DateTime  @default(now())
+  updated_at    DateTime? @updatedAt
+  user_id       User?     @relation("upload_by", references: [id], fields: [upload_by], onDelete: SetNull, onUpdate: Cascade)
+  upload_by     Int?
   artwork       Artwork[]
   artwork_cover Artwork[] @relation("cover")
   profile       User?     @relation("profile")

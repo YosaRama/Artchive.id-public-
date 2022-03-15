@@ -7,7 +7,8 @@ import multer from "multer";
 import multerS3 from "multer-s3";
 import multerS3Sharp from "multer-sharp-s3";
 import aws from "aws-sdk";
-import { CREATE_MAIN_MEDIA, CREATE_MEDIUM_MEDIA } from "app/database/query/media";
+import { CREATE_MAIN_MEDIA } from "app/database/query/media";
+import { getSession } from "next-auth/react";
 
 const apiHandler = nextConnect();
 
@@ -82,32 +83,33 @@ const s3Upload = multer({
 
 // Upload with multer s3 sharp
 apiHandler.post(sharpUpload.single("uploadFile"), async (req, res) => {
+  //? ============== Handle Session ============= ?//
+  const session = await getSession({ req });
+  // * ====================================== * //
+
+  //? ============== Handle File ============= ?//
   const file = req.file;
   const filename = file.originalname;
   const mimetype = file.mimetype;
   const mainUrl = file.original.Key;
   const mediumUrl = file.medium.Key;
+  // * ====================================== * //
+
   try {
     const mainResult = await CREATE_MAIN_MEDIA({
       filename: filename,
       mimetype: mimetype,
       url: mainUrl,
+      mediumUrl: mediumUrl,
+      uploadBy: session.user.id,
     });
     if (mainResult) {
-      const mediumResult = await CREATE_MEDIUM_MEDIA({
-        filename: filename,
-        mimetype: mimetype,
-        url: mediumUrl,
-        parentId: mainResult.id,
-      });
-      if (mediumResult) {
-        res.status(200).json({ success: true, file: file, data: mediumResult });
-      }
-    } else {
-      res.status(200).json({ success: false, file: file, data: mainResult });
+      res.status(200).json({ success: true, file: file, data: mainResult });
     }
   } catch (error) {
-    res.status(200).json({ success: false, file: file, message: "Failed upload file" });
+    res
+      .status(200)
+      .json({ success: false, file: file, message: "Failed upload file", error: error.message });
   }
 });
 // ========================
