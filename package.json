@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@babel/core": "7.17.5",
-    "@prisma/client": "^3.9.1",
+    "@prisma/client": "^3.10.0",
     "antd": "^4.16.13",
     "aws-sdk": "^2.1048.0",
     "axios": "^0.24.0",
