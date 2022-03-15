@@ -34,6 +34,7 @@ function ThemesNavbarDrawer(props) {
     { link: "/contact-us", label: "CONTACT US" },
   ];
   // * ====================================== * //
+
   return (
     <>
       <Drawer visible={visible} onClose={onClose} width={300}>
@@ -46,7 +47,7 @@ function ThemesNavbarDrawer(props) {
             <Menu>
               {firstMenuList.map((item, index) => {
                 return (
-                  <Menu.Item key={item.label} className={s.menuItemBold}>
+                  <Menu.Item key={item.label} className={s.menuItemBold} onClick={onClose}>
                     <Link href={item.link}>
                       <a>{item.label}</a>
                     </Link>
@@ -56,7 +57,7 @@ function ThemesNavbarDrawer(props) {
               <Divider className={s.divider} />
               {secondMenuList.map((item, index) => {
                 return (
-                  <Menu.Item key={item.label} className={s.menuItemBold}>
+                  <Menu.Item key={item.label} className={s.menuItemBold} onClick={onClose}>
                     <Link href={item.link}>
                       <a>{item.label}</a>
                     </Link>
@@ -66,7 +67,7 @@ function ThemesNavbarDrawer(props) {
               <Divider className={s.divider} />
               {thirdMenuList.map((item, index) => {
                 return (
-                  <Menu.Item key={item.label} className={s.menuItem}>
+                  <Menu.Item key={item.label} className={s.menuItem} onClick={onClose}>
                     <Link href={item.link}>
                       <a>{item.label}</a>
                     </Link>
