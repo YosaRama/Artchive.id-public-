@@ -7,13 +7,13 @@ import { useRouter } from "next/router";
 import s from "./index.module.scss";
 
 // Icons
-import { ArtworkIcon } from "/public/icons/artwork-icon";
 import { MobileHomeIcon } from "public/icons/mobile-home-icon";
 import { MobileArtworkIcon } from "public/icons/mobile-artwork-icon";
 import { MobileArtistListIcon } from "public/icons/mobile-artist-list-icon";
 import { MobileAccountIcon } from "public/icons/mobile-account-icon";
+import { CirclePlusIcon } from "public/icons/circle-plus-icon";
 
-function ThemesMobileNavbar() {
+function ThemesProfileMobileNavbar() {
   const router = useRouter();
 
   //? ============== Handle Active Menu ============= ?//
@@ -26,7 +26,7 @@ function ThemesMobileNavbar() {
     <>
       <Card bodyStyle={{ padding: 0 }} className={s.card}>
         <Row justify="center" align="middle">
-          <Col span={6} className={`${s.menuItemContainer}`}>
+          <Col className={`${s.menuItemContainer}`}>
             <MobileHomeIcon
               onClick={() => {
                 router.push("/");
@@ -36,7 +36,6 @@ function ThemesMobileNavbar() {
             />
           </Col>
           <Col
-            span={6}
             className={`${s.menuItemContainer} ${
               activeMenu == "ARTWORK" ? s.menuItemIconActive : ""
             }`}
@@ -44,13 +43,23 @@ function ThemesMobileNavbar() {
             <MobileArtworkIcon
               className={s.menuItemIcon}
               onClick={() => {
-                router.push("/artwork");
+                router.push("/profile/studio");
                 handleSelectMenu("ARTWORK");
               }}
             />
           </Col>
+          <Col className={`${s.menuItemContainer} ${s.iconPlus}`}>
+            <div
+              className={s.plusIconBox}
+              onClick={() => {
+                router.push("/profile/studio/create");
+                handleSelectMenu();
+              }}
+            >
+              <CirclePlusIcon className={s.plusIcon} />
+            </div>
+          </Col>
           <Col
-            span={6}
             className={`${s.menuItemContainer} ${
               activeMenu == "ARTIST" ? s.menuItemIconActive : ""
             }`}
@@ -58,13 +67,12 @@ function ThemesMobileNavbar() {
             <MobileArtistListIcon
               className={s.menuItemIcon}
               onClick={() => {
-                router.push("/artist");
+                router.push("/profile/studio");
                 handleSelectMenu("ARTIST");
               }}
             />
           </Col>
           <Col
-            span={6}
             className={`${s.menuItemContainer} ${
               activeMenu == "PROFILE" ? s.menuItemIconActive : ""
             }`}
@@ -83,4 +91,4 @@ function ThemesMobileNavbar() {
   );
 }
 
-export default ThemesMobileNavbar;
+export default ThemesProfileMobileNavbar;

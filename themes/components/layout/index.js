@@ -7,10 +7,11 @@ const { Content } = Layout;
 import ThemesHeader from "./header";
 import ThemesFooter from "./footer";
 import ThemesContainerProfile from "themes/components/container/profile";
-import ThemeMobileNavbar from "../libs/mobile-navbar";
+import ThemesMobileNavbar from "../libs/mobile-navbar";
 
 // Styles
 import s from "./index.module.scss";
+import ThemesProfileMobileNavbar from "../libs/profile-mobile-navbar";
 
 function ThemesLayout(props) {
   const { children } = props;
@@ -31,10 +32,20 @@ function ThemesLayout(props) {
         </Content>
         <ThemesFooter />
 
-        {/* MOBILE NAVBAR */}
-        <Affix offsetBottom={0} className={s.mobileMenu}>
-          <ThemeMobileNavbar />
-        </Affix>
+        {/* MAIN MOBILE NAVBAR */}
+        {!router.pathname.startsWith("/profile") && (
+          <Affix offsetBottom={0} className={s.mobileMenu}>
+            <ThemesMobileNavbar />
+          </Affix>
+        )}
+        {/* ============================ */}
+
+        {/* PROFILE MOBILE NAVBAR */}
+        {router.pathname.startsWith("/profile") && (
+          <Affix offsetBottom={0} className={s.mobileMenu}>
+            <ThemesProfileMobileNavbar />
+          </Affix>
+        )}
         {/* ============================ */}
       </Layout>
     </>
