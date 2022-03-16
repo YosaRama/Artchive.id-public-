@@ -17,7 +17,6 @@ export default NextAuth({
     strategy: "jwt",
     maxAge: 1 * 24 * 60 * 60, // 1 Days
   },
-  secret: "TVmJCqoONdD1T1QFuIF3IPzGuvGXWdpyyStjXqydcWI=",
   jwt: {
     maxAge: 1 * 24 * 60 * 60, // 1 Days
   },
