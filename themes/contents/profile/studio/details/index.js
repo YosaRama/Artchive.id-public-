@@ -1,6 +1,7 @@
 // Libs
+import propTypes from "prop-types";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Col, Divider, Row, Button, Form, Input, Image, Select, InputNumber } from "antd";
 const { Option } = Select;
 
@@ -13,6 +14,7 @@ import { useGenres } from "app/hooks/genre";
 import ThemesHeadline from "themes/components/libs/headline";
 import ThemesButton from "themes/components/libs/button";
 import AppUploadBox from "app/components/libs/upload-box";
+import AppUploadButton from "app/components/libs/upload-button";
 import deleteConfirmModal from "app/components/utils/delete-modal-confirm";
 import { WarningNotification } from "app/components/utils/notification";
 
@@ -29,7 +31,16 @@ function ThemesContentsProfileStudioDetails(props) {
   const [form] = Form.useForm();
 
   //? ============== Artwork Hook ============= ?//
-  const { data: artworkData } = useArtwork({ singleId: artworkId });
+  const {
+    data: artworkData,
+    onEdit,
+    onAddGallery,
+    onChangeCover,
+    onDeleteGallery,
+    onDelete,
+  } = useArtwork({ singleId: artworkId });
+  const lastArtworkId = artworkData?.length != 0 ? artworkData?.[0]?.id + 1 : 1;
+  console.log("Artwork Data:", artworkData);
   // * ====================================== * //
 
   //? ============== Genre Hook ============= ?//
@@ -44,6 +55,41 @@ function ThemesContentsProfileStudioDetails(props) {
 
   // * ====================================== * //
 
+  //? ============== Handle Upload ============= ?//
+  const { loading: uploadLoading, onUpload } = useUploads();
+
+  // Handle Upload Cover Image
+  const [uploadImage, setUploadImage] = useState(true);
+  const handleUpload = async (file) => {
+    const result = await onUpload({
+      file: file.file,
+      userId: artistData.id,
+      artworkId: lastArtworkId,
+    });
+    if (result.success) {
+      onChangeCover({ coverId: result.data.id });
+    }
+  };
+
+  // Handle Upload Gallery Image
+  const handleUploadMediaGallery = async (file) => {
+    const result = await onUpload({
+      file: file.file,
+      userId: artistData.id,
+      artworkId: lastArtworkId,
+    });
+    if (result.success) {
+      onAddGallery({ galleryId: result.data.id });
+    }
+  };
+  // * ====================================== * //
+
+  //? ============== Handle Delete Artwork Gallery ============= ?//
+  const handleDeleteMediaGallery = (id) => {
+    onDeleteGallery({ galleryId: id });
+  };
+  // * ====================================== * //
+
   //? ============== Handle Submit ============= ?//
   const handleSubmit = () => {
     form.validateFields().then(async (value) => {
@@ -54,39 +100,24 @@ function ThemesContentsProfileStudioDetails(props) {
         material: value.material,
         description: value.description,
         genre_id: value.genre,
-        media_id: [],
-        cover_id: uploadImage?.id,
+        cover_id: uploadImage?.id || artworkData?.media_cover_id,
         type: value.type,
         height: value.height,
         width: value.width,
         price: `${value.price}`,
-        status: "DRAFT",
-        approve: false,
+        status: artworkData?.status,
+        approve: artworkData?.approve,
       };
-      // if (!submission.cover_id) {
-      //   WarningNotification({
-      //     message: "Failed Submit!",
-      //     description: "Please upload artwork image",
-      //   });
-      // } else {
-      //   const result = await onAdd(submission);
-      // }
+      // console.log(submission);
+      if (!submission.cover_id) {
+        WarningNotification({
+          message: "Failed Submit!",
+          description: "Please upload artwork image",
+        });
+      } else {
+        const result = await onEdit(submission);
+      }
     });
-  };
-  // * ====================================== * //
-
-  //? ============== Handle Upload ============= ?//
-  const { loading: uploadLoading, onUpload } = useUploads();
-  const [uploadImage, setUploadImage] = useState(true);
-  const handleUpload = async (file) => {
-    const result = await onUpload({
-      file: file.file,
-      userId: artistData.id,
-      artworkId: lastArtworkId,
-    });
-    if (result.success) {
-      setUploadImage({ id: result.data.id, url: result.data.url });
-    }
   };
   // * ====================================== * //
 
@@ -111,7 +142,9 @@ function ThemesContentsProfileStudioDetails(props) {
                       }`}
                     />
                     <Col span={24} className={s.changeImgBtn} style={{ padding: 0 }}>
-                      <Button onClick={() => setUploadImage()}>Remove Image</Button>
+                      <AppUploadButton onUpload={handleUpload} loading={uploadLoading}>
+                        Change Artwork
+                      </AppUploadButton>
                     </Col>
                   </>
                 ) : (
@@ -258,7 +291,7 @@ function ThemesContentsProfileStudioDetails(props) {
                         onClick={() =>
                           deleteConfirmModal({
                             title: "artwork gallery image",
-                            onDelete: () => handleDelete(item.id),
+                            onDelete: () => handleDeleteMediaGallery(item.id),
                           })
                         }
                       >
@@ -272,7 +305,7 @@ function ThemesContentsProfileStudioDetails(props) {
                   <Col span={6}>
                     <AppUploadBox
                       className={s.uploadBox}
-                      onUpload={handleUpload}
+                      onUpload={handleUploadMediaGallery}
                       loading={uploadLoading}
                     />
                   </Col>
@@ -303,5 +336,9 @@ function ThemesContentsProfileStudioDetails(props) {
     </>
   );
 }
+
+ThemesContentsProfileStudioDetails.propTypes = {
+  artistData: propTypes.object,
+};
 
 export default ThemesContentsProfileStudioDetails;

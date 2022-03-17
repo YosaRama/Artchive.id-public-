@@ -1,4 +1,5 @@
 // Libs
+import propTypes from "prop-types";
 import { useRouter } from "next/router";
 import moment from "moment";
 import { useState } from "react";
@@ -297,5 +298,9 @@ function ThemesContentsProfileStudioCreate(props) {
     </>
   );
 }
+
+ThemesContentsProfileStudioCreate.propTypes = {
+  artistData: propTypes.object,
+};
 
 export default ThemesContentsProfileStudioCreate;
