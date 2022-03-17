@@ -1,5 +1,4 @@
 // Libs
-import { Col, Row } from "antd";
 import { signOut } from "next-auth/react";
 
 // Components

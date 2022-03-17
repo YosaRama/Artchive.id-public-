@@ -38,6 +38,7 @@ function ThemesContentsProfileStudioDetails(props) {
     onChangeCover,
     onDeleteGallery,
     onDelete,
+    loading: artworkDataLoading,
   } = useArtwork({ singleId: artworkId });
   const lastArtworkId = artworkData?.length != 0 ? artworkData?.[0]?.id + 1 : 1;
   console.log("Artwork Data:", artworkData);
@@ -323,7 +324,11 @@ function ThemesContentsProfileStudioDetails(props) {
                   <ThemesButton type={`outline ${s.submitBtn}`}>DELETE</ThemesButton>
                 </Col>
                 <Col span={12}>
-                  <ThemesButton type={`primary ${s.submitBtn}`} onClick={handleSubmit}>
+                  <ThemesButton
+                    type={`primary ${s.submitBtn}`}
+                    onClick={handleSubmit}
+                    loading={artworkDataLoading}
+                  >
                     SAVE
                   </ThemesButton>
                 </Col>

@@ -30,7 +30,11 @@ function ThemesContentsProfileStudioCreate(props) {
   const [form] = Form.useForm();
 
   //? ============== Artwork Hook ============= ?//
-  const { data: artworkData, onAdd } = useArtworks({ queryString: "" });
+  const {
+    data: artworkData,
+    onAdd,
+    loading: artworkDataLoading,
+  } = useArtworks({ queryString: "" });
   const lastArtworkId = artworkData?.length != 0 ? artworkData?.[0]?.id + 1 : 1;
   // * ====================================== * //
 
@@ -287,7 +291,11 @@ function ThemesContentsProfileStudioCreate(props) {
         <Col span={8} className={s.submitBtnContainer}>
           <Row gutter={[16, 0]} justify="end">
             <Col span={12}>
-              <ThemesButton type={`primary ${s.submitBtn}`} onClick={handleSubmit}>
+              <ThemesButton
+                type={`primary ${s.submitBtn}`}
+                onClick={handleSubmit}
+                loading={artworkDataLoading}
+              >
                 SAVE
               </ThemesButton>
             </Col>

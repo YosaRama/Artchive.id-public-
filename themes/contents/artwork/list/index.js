@@ -26,12 +26,14 @@ function ThemesContentsArtworkList() {
   // * ====================================== * //
 
   //? ============== Artwork Hook ============= ?//
+  const artworkLimit = 15;
   const {
     data: artworkData,
     size,
     setSize,
     end,
-  } = useArtworksLoad({ limit: 15, queryString: "client=true" });
+    loading: artworkLoading,
+  } = useArtworksLoad({ limit: artworkLimit, queryString: "client=true" });
   // * ====================================== * //
   //? ============== Handle Price Search ============= ?//
   const [maxPrice, setMaxPrice] = useState(100000000);
@@ -155,7 +157,9 @@ function ThemesContentsArtworkList() {
                 </ThemesContainerMasonry>
                 {!end && (
                   <Col span={24} style={{ textAlign: "center" }}>
-                    <ThemesButton onClick={handleLoadMore}>Load More</ThemesButton>
+                    <ThemesButton onClick={handleLoadMore} loading={artworkLoading}>
+                      Load More
+                    </ThemesButton>
                   </Col>
                 )}
               </Col>

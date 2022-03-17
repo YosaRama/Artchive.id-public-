@@ -17,12 +17,13 @@ import s from "./index.module.scss";
 function ThemesContentsArtistList(props) {
   const { initialArtistData } = props;
   //? ============== Artist Hook ============= ?//
-  const limit = 8;
+  const limit = 1;
   const {
     data: artistData,
-    total: artistTotal,
     size: artistSize,
     setSize: artistSetSize,
+    end: artistEndLoad,
+    loading: artistLoading,
   } = useUsersLoad({
     queryString: `role=ARTIST&client=true`,
     limit: limit,
@@ -109,9 +110,9 @@ function ThemesContentsArtistList(props) {
               </Col>
             ))}
           </Row>
-          {artistData?.length != artistTotal && (
+          {!artistEndLoad && (
             <Col span={24} className={s.loadButton}>
-              <ThemesButton type={`default`} onClick={handleLoadMore}>
+              <ThemesButton type={`default`} onClick={handleLoadMore} loading={artistLoading}>
                 LOAD MORE
               </ThemesButton>
             </Col>
