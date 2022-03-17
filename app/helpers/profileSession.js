@@ -6,7 +6,7 @@ function profileSession({ session, data }) {
   } else {
     return {
       redirect: {
-        destination: "/login",
+        destination: "/signin",
         permanent: true,
       },
     };

@@ -18,7 +18,7 @@ function ThemesNavbarDrawer(props) {
   //? ============== Menu List ============= ?//
   const firstMenuList = [
     { link: "/", label: "HOME" },
-    { link: "/maintenance", label: "STUDIO" },
+    { link: "/profile/studio", label: "STUDIO" },
   ];
 
   const secondMenuList = [
