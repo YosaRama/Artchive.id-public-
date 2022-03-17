@@ -41,7 +41,6 @@ function ThemesContentsProfileStudioDetails(props) {
     loading: artworkDataLoading,
   } = useArtwork({ singleId: artworkId });
   const lastArtworkId = artworkData?.length != 0 ? artworkData?.[0]?.id + 1 : 1;
-  console.log("Artwork Data:", artworkData);
   // * ====================================== * //
 
   //? ============== Genre Hook ============= ?//
@@ -109,7 +108,6 @@ function ThemesContentsProfileStudioDetails(props) {
         status: artworkData?.status,
         approve: artworkData?.approve,
       };
-      // console.log(submission);
       if (!submission.cover_id) {
         WarningNotification({
           message: "Failed Submit!",
@@ -119,6 +117,15 @@ function ThemesContentsProfileStudioDetails(props) {
         const result = await onEdit(submission);
       }
     });
+  };
+  // * ====================================== * //
+
+  //? ============== Handle Delete ============= ?//
+  const handleDelete = async () => {
+    const result = await onDelete();
+    if (result) {
+      router.push("/profile/studio");
+    }
   };
   // * ====================================== * //
 
@@ -321,7 +328,12 @@ function ThemesContentsProfileStudioDetails(props) {
             <Col span={8} className={s.submitBtnContainer}>
               <Row gutter={[16, 0]} justify="end">
                 <Col span={12}>
-                  <ThemesButton type={`outline ${s.submitBtn}`}>DELETE</ThemesButton>
+                  <ThemesButton
+                    type={`outline ${s.submitBtn}`}
+                    onClick={() => deleteConfirmModal({ title: "artwork", onDelete: handleDelete })}
+                  >
+                    DELETE
+                  </ThemesButton>
                 </Col>
                 <Col span={12}>
                   <ThemesButton
