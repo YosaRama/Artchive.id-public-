@@ -25,7 +25,7 @@ function AppContentsUserDetailsInfo(props) {
         instagramUrl: value.instagram_url,
         facebookUrl: value.facebook_url,
         biography: value.biography,
-        birthDate: moment(value.birth_date).toISOString(),
+        birthDate: moment(value.birth_date).format(),
       };
 
       const result = onSave(submission);

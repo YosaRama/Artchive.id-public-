@@ -1,13 +1,17 @@
 // Libs
-import { getSession } from "next-auth/react";
+import { getSession, useSession } from "next-auth/react";
 
 // Contents
 import ThemesContentsProfile from "themes/contents/profile";
 
 function PageProfile() {
+  //? ============== Handle Session ============= ?//
+  const { data: session, status: sessionLoading } = useSession();
+  // * ====================================== * //
+
   return (
     <>
-      <ThemesContentsProfile />
+      <ThemesContentsProfile userId={session.user.id} />
     </>
   );
 }

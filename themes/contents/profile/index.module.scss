@@ -1,0 +1,51 @@
+.divider {
+  width: 50%;
+  min-width: 50%;
+  margin: 0px auto 40px;
+  border-top: 1px solid #e5890a;
+  &.insideForm {
+    margin: 0;
+    margin-bottom: 30px;
+  }
+}
+
+.title {
+  margin: 50px 0 30px;
+}
+
+.contentContainer {
+  margin: 50px auto;
+}
+
+.profileBanner {
+  height: 300px;
+  img {
+    object-fit: cover;
+    height: 100%;
+  }
+}
+
+.profileImage {
+  border-radius: 100%;
+  text-align: center;
+  img {
+    height: 200px;
+    width: 200px;
+    border-radius: 100%;
+    object-fit: cover;
+    margin: auto;
+  }
+}
+
+.formContainer {
+  margin-bottom: 50px;
+}
+
+.formTitle {
+  font-size: 32px;
+}
+
+.logoutBtnContainer {
+  margin-top: 50px;
+  text-align: right;
+}
