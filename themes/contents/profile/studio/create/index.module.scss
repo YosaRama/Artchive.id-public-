@@ -57,6 +57,17 @@
 }
 
 //? ============== Tablet Landscape Mode ============= ?//
+@media screen and (max-width: 1024px) {
+  .mediaGalleryBox {
+    flex-wrap: nowrap;
+    overflow: auto;
+    height: 100%;
+    padding: 0 0 80px;
+  }
+}
+// * ====================================== * //
+
+//? ============== Tablet Portrait Mode ============= ?//
 @media screen and (max-width: 768px) {
   .artworkImage {
     margin-bottom: 30px;

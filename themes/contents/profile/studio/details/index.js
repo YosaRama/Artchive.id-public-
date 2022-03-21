@@ -285,12 +285,15 @@ function ThemesContentsProfileStudioDetails(props) {
           <Divider className={s.divider} />
           <div className={s.contentContainer}>
             <Col span={22} className={s.mediaGalleryContainer}>
-              <Row gutter={[16, 0]}>
+              <Row gutter={[16, 0]} className={s.mediaGalleryBox}>
                 {artworkData?.media_gallery?.map((item) => {
                   return (
                     <Col
                       className={s.mediaGalleryImageBox}
-                      span={6}
+                      xl={{ span: 6 }}
+                      lg={{ span: 11 }}
+                      md={{ span: 11 }}
+                      xs={{ span: 21 }}
                       style={{ textAlign: "center" }}
                       key={item.id}
                     >
@@ -310,7 +313,7 @@ function ThemesContentsProfileStudioDetails(props) {
                 })}
 
                 {artworkData?.media_gallery?.length < 4 && (
-                  <Col span={6}>
+                  <Col xl={{ span: 6 }} lg={{ span: 11 }} md={{ span: 11 }} xs={{ span: 21 }}>
                     <AppUploadBox
                       className={s.uploadBox}
                       onUpload={handleUploadMediaGallery}
@@ -325,9 +328,9 @@ function ThemesContentsProfileStudioDetails(props) {
 
           {/* Action Button Section */}
           <div>
-            <Col span={8} className={s.submitBtnContainer}>
+            <Col md={{ span: 8 }} sm={{ span: 24 }} className={s.submitBtnContainer}>
               <Row gutter={[16, 0]} justify="end">
-                <Col span={12}>
+                <Col md={{ span: 12 }} xs={{ span: 24, order: 2 }}>
                   <ThemesButton
                     type={`outline ${s.submitBtn}`}
                     onClick={() => deleteConfirmModal({ title: "artwork", onDelete: handleDelete })}
@@ -335,7 +338,7 @@ function ThemesContentsProfileStudioDetails(props) {
                     DELETE
                   </ThemesButton>
                 </Col>
-                <Col span={12}>
+                <Col md={{ span: 12 }} xs={{ span: 24, order: 1 }}>
                   <ThemesButton
                     type={`primary ${s.submitBtn}`}
                     onClick={handleSubmit}
