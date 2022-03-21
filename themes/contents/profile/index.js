@@ -104,8 +104,9 @@ function ThemesContentsProfile(props) {
           </div>
           <Divider className={s.divider} />
         </section>
+
         {/* BANNER SECTION */}
-        <section>
+        <section className={s.bannerSection}>
           <Col span={24} className={s.profileBanner}>
             <Image
               src={
@@ -128,7 +129,7 @@ function ThemesContentsProfile(props) {
         <section>
           <Row gutter={[32, 0]}>
             {/* PROFILE IMAGE SECTION */}
-            <Col span={8} className={s.profileImage}>
+            <Col lg={{ span: 8 }} xs={{ span: 24 }} className={s.profileImage}>
               <Col span={24}>
                 <Image
                   src={
@@ -149,7 +150,7 @@ function ThemesContentsProfile(props) {
 
             {/* FORM SECTION */}
             {initialUserData && (
-              <Col span={16}>
+              <Col lg={{ span: 16 }} xs={{ span: 24 }}>
                 <h1 className={s.formTitle}>General Information</h1>
                 <Divider className={`${s.divider} ${s.insideForm}`} />
 
