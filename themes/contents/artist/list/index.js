@@ -1,6 +1,7 @@
 // Libs
 import propTypes from "prop-types";
-import { Affix, Col, Form, Input, Row } from "antd";
+import { useRouter } from "next/router";
+import { Affix, Col, Form, Input, Row, Select } from "antd";
 
 // Components
 import ThemesContainerMain from "themes/components/container/main";
@@ -15,9 +16,38 @@ import { useUsersLoad } from "app/hooks/user";
 import s from "./index.module.scss";
 
 function ThemesContentsArtistList(props) {
+  const router = useRouter();
+  const { fullName: queryFullName, genre: queryGenre, city: queryCity } = router?.query;
   const { initialArtistData } = props;
+
+  //? ============== Handle Search ============= ?//
+  const [searchForm] = Form.useForm();
+  // Handle Search
+  const handleSearch = () => {
+    searchForm.validateFields().then(async (value) => {
+      const submission = {
+        fullName: value?.name ? value?.name : "",
+        genre: value?.genre ? value?.genre : "",
+        city: value?.city ? value?.city : "",
+      };
+      router.push(
+        `/artist?fullName=${submission?.fullName}&genre=${submission?.genre}&city=${submission?.city}`
+      );
+    });
+  };
+  // =========================
+
+  // Handle Reset Search
+  const handleResetSearch = () => {
+    searchForm.resetFields();
+    router.push("/artist");
+  };
+  // =========================
+
+  // * ====================================== * //
+
   //? ============== Artist Hook ============= ?//
-  const limit = 1;
+  const limit = 8;
   const {
     data: artistData,
     size: artistSize,
@@ -25,7 +55,7 @@ function ThemesContentsArtistList(props) {
     end: artistEndLoad,
     loading: artistLoading,
   } = useUsersLoad({
-    queryString: `role=ARTIST&client=true`,
+    queryString: `role=ARTIST&client=true&fullName=${queryFullName ? queryFullName : ""}`,
     limit: limit,
   });
   // * ====================================== * //
@@ -50,16 +80,16 @@ function ThemesContentsArtistList(props) {
         <Affix>
           <ThemesContainerMain sectionclass={s.searchSection}>
             <section className={s.searchContainer}>
-              <Form>
+              <Form form={searchForm}>
                 <Row gutter={[16, 0]}>
                   <Col span={6}>
                     <Form.Item name={"city"}>
-                      <Input placeholder="Search by City..." width={"100%"} />
+                      <Input placeholder="Search by City..." width={"100%"} disabled />
                     </Form.Item>
                   </Col>
                   <Col span={6}>
                     <Form.Item name={"genre"}>
-                      <Input placeholder="Search by Genre..." width={"100%"} />
+                      <Input placeholder="Search by Genre..." width={"100%"} disabled />
                     </Form.Item>
                   </Col>
                   <Col span={6}>
@@ -70,10 +100,14 @@ function ThemesContentsArtistList(props) {
                   <Col span={6}>
                     <Row gutter={[16, 0]}>
                       <Col span={12}>
-                        <ThemesButton type={`outlined ${s.button}`}>RESET</ThemesButton>
+                        <ThemesButton type={`outlined ${s.button}`} onClick={handleResetSearch}>
+                          RESET
+                        </ThemesButton>
                       </Col>
                       <Col span={12}>
-                        <ThemesButton type={`default ${s.button}`}>SEARCH</ThemesButton>
+                        <ThemesButton type={`default ${s.button}`} onClick={handleSearch}>
+                          SEARCH
+                        </ThemesButton>
                       </Col>
                     </Row>
                   </Col>
