@@ -1,4 +1,5 @@
 // Libs
+import { useRouter } from "next/router";
 import propTypes from "prop-types";
 import moment from "moment";
 import { Card, Col, Image, Row } from "antd";
@@ -21,6 +22,7 @@ import { InstagramOutlined, FacebookOutlined, MailOutlined } from "@ant-design/i
 
 function ThemesContentsArtistDetails(props) {
   const { artistData } = props;
+  const router = useRouter();
 
   //? ============== Handle Get Viewport ============= ?//
   const viewport = useWindowSize();
