@@ -22,6 +22,7 @@ export const GET_ARTWORK = ({
   artistId,
   excludeSlug,
   genreId,
+  artistName,
 }) => {
   // Handle Pagination
   const skip = limit != "all" ? (+page - 1) * +limit : undefined;
@@ -73,6 +74,9 @@ export const GET_ARTWORK = ({
             })
           : [],
         artist_id: artistId ? +artistId : {},
+        artist: {
+          full_name: artistName ? { contains: artistName } : {},
+        },
         NOT: { status: client == "true" ? "DRAFT" : {} },
       },
       NOT: { slug: excludeSlug ? excludeSlug : {} },
@@ -85,7 +89,13 @@ export const GET_ARTWORK = ({
 // ==================================
 
 // Get total all data
-export const GET_TOTAL_ARTWORK = ({ client = false, artistId, excludeSlug, genreId }) => {
+export const GET_TOTAL_ARTWORK = ({
+  client = false,
+  artistId,
+  excludeSlug,
+  genreId,
+  artistName,
+}) => {
   // Handle Multiple Genre
   const genreList = genreId && genreId.split(",");
   // ======================
@@ -108,6 +118,9 @@ export const GET_TOTAL_ARTWORK = ({ client = false, artistId, excludeSlug, genre
             })
           : [],
         artist_id: artistId ? +artistId : {},
+        artist: {
+          full_name: artistName ? { contains: artistName } : {},
+        },
         NOT: { status: client == "true" ? "DRAFT" : {} },
       },
       NOT: { slug: excludeSlug ? excludeSlug : {} },

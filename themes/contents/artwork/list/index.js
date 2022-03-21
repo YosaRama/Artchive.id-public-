@@ -1,4 +1,5 @@
 // Libs
+import { useRouter } from "next/router";
 import Sticky from "react-sticky-el";
 import { Card, Col, Form, Input, Row, Select, Slider } from "antd";
 import { useState } from "react";
@@ -13,6 +14,7 @@ import ThemesButton from "themes/components/libs/button";
 
 // Data Hook
 import { useArtworksLoad } from "app/hooks/artwork";
+import { useUsers } from "app/hooks/user";
 
 // Helpers
 import { useWindowSize } from "app/helpers/useWindowSize";
@@ -21,8 +23,35 @@ import { useWindowSize } from "app/helpers/useWindowSize";
 import s from "./index.module.scss";
 
 function ThemesContentsArtworkList() {
+  const router = useRouter();
+  const { artistName } = router.query;
+
   //? ============== Handle Get Viewport ============= ?//
   const viewport = useWindowSize();
+  // * ====================================== * //
+
+  //? ============== Handle Price Search ============= ?//
+  const [maxPrice, setMaxPrice] = useState(100000000);
+  const [minPrice, setMinPrice] = useState(1000000);
+  const handlePriceChange = (value) => {
+    setMaxPrice(value[1]);
+    setMinPrice(value[0]);
+  };
+  // * ====================================== * //
+
+  //? ============== Handle Search ============= ?//
+  const [searchForm] = Form.useForm();
+  const handleSearch = () => {
+    searchForm.validateFields().then((values) => {
+      const submission = {
+        artistName: values?.artist_name ? values?.artist_name : "",
+        genre: values.genre,
+        artworkTitle: values.artwork_title,
+      };
+      console.log(values);
+      router.push(`/artwork?artistName=${submission.artistName}`);
+    });
+  };
   // * ====================================== * //
 
   //? ============== Artwork Hook ============= ?//
@@ -33,14 +62,19 @@ function ThemesContentsArtworkList() {
     setSize,
     end,
     loading: artworkLoading,
-  } = useArtworksLoad({ limit: artworkLimit, queryString: "client=true" });
+  } = useArtworksLoad({
+    limit: artworkLimit,
+    queryString: `client=true&artistName=${artistName ? artistName : ""}`,
+  });
   // * ====================================== * //
-  //? ============== Handle Price Search ============= ?//
-  const [maxPrice, setMaxPrice] = useState(100000000);
-  const [minPrice, setMinPrice] = useState(1000000);
-  const handlePriceChange = (value) => {
-    setMaxPrice(value[1]);
-    setMinPrice(value[0]);
+
+  //? ============== Artist Hook ============= ?//
+  const [searchName, setSearchName] = useState("");
+  const { data: artistData } = useUsers({
+    queryString: `role=ARTIST&fullName=${searchName}&limit=5`,
+  });
+  const handleSearchName = (value) => {
+    setSearchName(value);
   };
   // * ====================================== * //
 
@@ -76,19 +110,28 @@ function ThemesContentsArtworkList() {
                         <h1>Search By</h1>
                       </Col>
                       <Col span={24}>
-                        <Form>
+                        <Form form={searchForm}>
                           <Form.Item name="artist_name">
-                            <Select showSearch placeholder="Artist Name">
-                              <Option value={["john doe", 1]}>John Doe</Option>
-                              <Option value={["mark sue", 2]}>Mark Sue</Option>
-                              <Option value={["marcus hitler", 3]}>Marcus Hitler</Option>
+                            <Select
+                              showSearch
+                              placeholder="Artist Name"
+                              onSearch={handleSearchName}
+                              allowClear
+                            >
+                              {artistData?.map((item, index) => {
+                                return (
+                                  <Option value={item.full_name} key={index}>
+                                    {item.full_name}
+                                  </Option>
+                                );
+                              })}
                             </Select>
                           </Form.Item>
                           <Form.Item name="artwork_title">
-                            <Input placeholder="Artwork Title" />
+                            <Input placeholder="Artwork Title" disabled />
                           </Form.Item>
-                          <Form.Item>
-                            <Select showSearch placeholder="Genre">
+                          <Form.Item name={"genre"}>
+                            <Select showSearch placeholder="Genre" disabled>
                               <Option value={["abstract", 1]}>Abstract</Option>
                               <Option value={["cubism", 2]}>Cubism</Option>
                               <Option value={["realism", 3]}>Realism</Option>
@@ -109,11 +152,14 @@ function ThemesContentsArtworkList() {
                               min={1000000}
                               step={1000000}
                               onChange={handlePriceChange}
+                              disabled
                             />
                           </Form.Item>
                         </Form>
                         <Col span={24}>
-                          <ThemesButton type={"default " + s.searchButton}>SEARCH</ThemesButton>
+                          <ThemesButton type={"default " + s.searchButton} onClick={handleSearch}>
+                            SEARCH
+                          </ThemesButton>
                         </Col>
                       </Col>
                     </Card>
