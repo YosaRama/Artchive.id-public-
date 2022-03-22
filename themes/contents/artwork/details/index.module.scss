@@ -107,5 +107,31 @@
       display: none;
     }
   }
+  .detailsImageSection {
+    flex-wrap: nowrap;
+    overflow: auto;
+  }
+  .detailsImageContainer {
+    height: 100px;
+  }
+}
+// * ====================================== * //
+
+//? ============== Tablet Portrait Mode ============= ?//
+@media screen and (max-width: 768px) {
+  .detailsImageSection {
+    margin-bottom: 30px;
+  }
+  .detailsImageContainer {
+    height: 150px;
+  }
+}
+// * ====================================== * //
+
+//? ============== Tablet Portrait Mode ============= ?//
+@media screen and (max-width: 500px) {
+  .detailsImageContainer {
+    height: 100px;
+  }
 }
 // * ====================================== * //

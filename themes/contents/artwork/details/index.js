@@ -51,11 +51,14 @@ function ThemesContentsArtworkDetails(props) {
                   alt=""
                 />
               </Col>
-              <Row gutter={[16, 0]}>
+              <Row gutter={[16, 0]} className={s.detailsImageSection}>
                 {artworkData?.media_gallery?.map((item) => {
                   return (
                     <Col
-                      span={6}
+                      xl={{ span: 6 }}
+                      lg={{ span: 7 }}
+                      md={{ span: 6 }}
+                      xs={{ span: 11 }}
                       className={s.detailsImageContainer + " artworkDetails-details-image"}
                       key={item.id}
                     >
