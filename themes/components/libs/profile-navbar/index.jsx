@@ -41,7 +41,7 @@ function ThemesProfileNavbar() {
         <Col className={s.iconBox} span={24}>
           <MobileArtistListIcon
             className={`${s.icon} ${router.pathname == "/profile/order" && s.active}`}
-            onClick={() => router.push("/profile/order")}
+            onClick={() => router.push("/maintenance")}
           />
         </Col>
       </div>
