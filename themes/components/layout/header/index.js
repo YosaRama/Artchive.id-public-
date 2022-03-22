@@ -38,10 +38,10 @@ function ThemesHeader() {
               <Image src="/images/logo-without-text.png" alt="" layout="fill" objectFit="contain" />
             </Col>
             <Col className={s.menu}>
-              <CartIcon
+              {/* <CartIcon
                 style={{ marginRight: "15px", width: "25px" }}
                 className={`${s.mobileHidden}`}
-              />
+              /> */}
               {session && (
                 <div
                   style={{ marginRight: "15px" }}
