@@ -7,10 +7,39 @@
   display: none;
 }
 
+.chatBoxContainer {
+  cursor: pointer;
+  position: fixed !important;
+  bottom: 20px;
+  right: 20px;
+}
+
+.chatBox {
+  background-color: #e5890a;
+  width: fit-content;
+  padding: 10px;
+  border-radius: 100%;
+  transition: all 0.3s ease;
+  &:hover {
+    background-color: #e5a03f;
+  }
+  svg {
+    width: 25px;
+    height: 25px;
+    path {
+      fill: #ffffff;
+    }
+  }
+}
+
 //? ============== Tablet Landscape Mode ============= ?//
 @media screen and (max-width: 1024px) {
   .mobileMenu {
     display: block;
+  }
+
+  .chatBoxContainer {
+    display: none !important;
   }
 }
 // * ====================================== * //
