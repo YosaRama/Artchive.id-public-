@@ -32,8 +32,16 @@ function MyApp({ Component, pageProps: { session, ...pageProps }, router }) {
         <SessionProvider session={session}>
           <GlobalContext>
             <Head>
-              <title>Artchive</title>
+              <title>Indonesia Online Gallery Platform</title>
+              <meta
+                name="description"
+                content="Welcome to your trusted online gallery, here you can buy artwork, sell artwork, archiving artwork. The first Indonesian Online Gallery Platform"
+              />
               <meta name="viewport" content="width=device-width, initial-scale=1" />
+              <meta
+                name="keywords"
+                content="artchiveid,artchive.id,artchive,art,online gallery, gallery platform, online gallery platform, indonesia gallery, indonesia gallery platform"
+              />
             </Head>
 
             <>
