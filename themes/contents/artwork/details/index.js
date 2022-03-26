@@ -20,6 +20,7 @@ import priceFormatter from "app/helpers/priceFormatter";
 
 // Icons
 import { CartIcon } from "public/icons/cart-icon";
+import { WhatsappIcon } from "public/icons/whatsapp-icon";
 
 // Styles
 import s from "./index.module.scss";
@@ -96,11 +97,30 @@ function ThemesContentsArtworkDetails(props) {
                     <strong>IDR</strong> {priceFormatter(artworkData?.price, ",")}
                   </p>
                 </Col>
-                <Col className={s.cardBtnContainer}>
+                {/* <Col className={s.cardBtnContainer}>
                   <ThemesButton type={"default " + s.cartBtn}>
                     <CartIcon />
                     ADD TO CART
                   </ThemesButton>
+                </Col> */}
+                <Col className={s.cardBtnContainer}>
+                  <a
+                    href={`https://wa.me/${
+                      process.env.NEXT_PUBLIC_PHONE_NUMBER
+                    }?text=${encodeURIComponent(
+                      "Hi There, really interest with this artwork " +
+                        process.env.NEXT_PUBLIC_SITE_URL +
+                        "artwork/" +
+                        artworkData.slug +
+                        ", Please give me more information for this artwork"
+                    )}`}
+                    target={"_blank"}
+                    rel="noreferrer"
+                  >
+                    <ThemesButton type={"default " + s.cardButton}>
+                      <WhatsappIcon /> REQUEST THIS ARTWORK
+                    </ThemesButton>
+                  </a>
                 </Col>
               </Card>
             </Col>

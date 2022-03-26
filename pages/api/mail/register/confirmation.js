@@ -26,9 +26,9 @@ apiHandler.post(async (req, res) => {
       subject: "Account Verification",
       html: RegisterVerification({
         fullName: fullName,
-        link: `${process.env.SITE_URL}register/thank-you/${userId}/${email}/${encodeURIComponent(
-          hashEmail
-        )}`,
+        link: `${
+          process.env.NEXT_PUBLIC_SITE_URL
+        }register/thank-you/${userId}/${email}/${encodeURIComponent(hashEmail)}`,
       }),
     });
 

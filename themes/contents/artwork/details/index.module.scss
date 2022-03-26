@@ -57,13 +57,17 @@
   margin-bottom: 20px;
 }
 
-.cartBtn {
+.cardButton {
   display: flex;
   align-items: center;
   span {
     display: flex;
     align-items: center;
     svg {
+      path {
+        fill: #ffffff;
+        transition: all 0.3s ease;
+      }
       width: 25px;
       height: auto;
       fill: #ffffff;
@@ -72,6 +76,9 @@
   }
   &:hover {
     svg {
+      path {
+        fill: #e5890a;
+      }
       fill: #e5890a;
     }
   }

@@ -2,7 +2,7 @@
 import mailLayout from "app/template/mail/mailLayout";
 
 // Site Details
-const siteURL = `${process.env.SITE_URL}`;
+const siteURL = `${process.env.NEXT_PUBLIC_SITE_URL}`;
 
 export default function RegisterWelcomeEmail() {
   const mailContent = `<table class="main">

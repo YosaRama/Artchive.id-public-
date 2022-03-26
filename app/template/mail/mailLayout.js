@@ -3,8 +3,8 @@ import moment from "moment";
 import ReactDOMServer from "react-dom/server";
 
 // Site Details
-const siteName = `${process.env.SITE_NAME}`;
-const siteURL = `${process.env.SITE_URL}`;
+const siteName = `${process.env.NEXT_PUBLIC_SITE_NAME}`;
+const siteURL = `${process.env.NEXT_PUBLIC_SITE_URL}`;
 const currentYear = moment().format("YYYY");
 const currentAddress = "Padma Street, Denpasar, Bali, Indonesia, 80238";
 
