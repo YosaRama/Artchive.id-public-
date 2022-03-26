@@ -62,6 +62,11 @@ export const GET_ARTWORK = ({
           { status: client == "true" ? "SOLD" : {} },
           { status: client == "true" ? "PUBLISH" : {} },
         ],
+        NOT: [
+          { status: client == "true" ? "DRAFT" : {} },
+          { status: client == "true" ? "EDIT" : {} },
+        ],
+
         OR: genreList
           ? genreList.map((item) => {
               return {
@@ -77,7 +82,6 @@ export const GET_ARTWORK = ({
         artist: {
           full_name: artistName ? { contains: artistName } : {},
         },
-        NOT: { status: client == "true" ? "DRAFT" : {} },
       },
       NOT: { slug: excludeSlug ? excludeSlug : {} },
     },
@@ -106,6 +110,10 @@ export const GET_TOTAL_ARTWORK = ({
           { status: client == "true" ? "SOLD" : {} },
           { status: client == "true" ? "PUBLISH" : {} },
         ],
+        NOT: [
+          { status: client == "true" ? "DRAFT" : {} },
+          { status: client == "true" ? "EDIT" : {} },
+        ],
         OR: genreList
           ? genreList.map((item) => {
               return {
@@ -121,7 +129,6 @@ export const GET_TOTAL_ARTWORK = ({
         artist: {
           full_name: artistName ? { contains: artistName } : {},
         },
-        NOT: { status: client == "true" ? "DRAFT" : {} },
       },
       NOT: { slug: excludeSlug ? excludeSlug : {} },
     },
