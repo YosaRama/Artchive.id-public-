@@ -2,6 +2,7 @@
 
 // Libs
 import propTypes from "prop-types";
+import { useRouter } from "next/router";
 import { Card, Col, Image, Row } from "antd";
 
 // Components
@@ -25,10 +26,11 @@ import s from "./index.module.scss";
 
 function ThemesContentsArtworkDetails(props) {
   const { artworkData } = props;
+  const router = useRouter();
 
   //? ============== Other Artwork Hook ============= ?//
   const { data: otherArtworkData } = useArtworks({
-    queryString: `excludeSlug=${artworkData.slug}&artistId=${artworkData.artist_id}&client=true`,
+    queryString: `excludeSlug=${artworkData.slug}&artistId=${artworkData.artist_id}&client=true&limit=4`,
   });
   // * ====================================== * //
 
@@ -36,7 +38,7 @@ function ThemesContentsArtworkDetails(props) {
   const genreListData = artworkData.genre.map((item) => item.id);
   const genreList = genreListData.join(",");
   const { data: mightLikeData } = useArtworks({
-    queryString: `excludeSlug=${artworkData.slug}&genreId=${genreList}&client=true`,
+    queryString: `excludeSlug=${artworkData.slug}&genreId=${genreList}&client=true&limit=4`,
   });
   // * ====================================== * //
   return (
@@ -132,7 +134,15 @@ function ThemesContentsArtworkDetails(props) {
                   );
                 })}
               </Row>
-              <ThemesDividerWithButton>SEE MORE</ThemesDividerWithButton>
+              <ThemesDividerWithButton
+                onClick={() =>
+                  router.push(
+                    `/artwork?artistName=${encodeURIComponent(artworkData?.artist?.full_name)}`
+                  )
+                }
+              >
+                SEE MORE
+              </ThemesDividerWithButton>
             </section>
           )}
 
