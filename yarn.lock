@@ -296,6 +296,11 @@
     "@babel/helper-validator-identifier" "^7.16.7"
     to-fast-properties "^2.0.0"
 
+"@corex/deepmerge@^2.6.148":
+  version "2.6.148"
+  resolved "https://registry.yarnpkg.com/@corex/deepmerge/-/deepmerge-2.6.148.tgz#8fa825d53ffd1cbcafce1b6a830eefd3dcc09dd5"
+  integrity sha512-6QMz0/2h5C3ua51iAnXMPWFbb1QOU1UvSM4bKBw5mzdT+WtLgjbETBBIQZ+Sh9WvEcGwlAt/DEdRpIC3XlDBMA==
+
 "@ctrl/tinycolor@^3.4.0":
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/@ctrl/tinycolor/-/tinycolor-3.4.0.tgz#c3c5ae543c897caa9c2a68630bed355be5f9990f"
@@ -3911,6 +3916,11 @@ minimist@^1.2.0, minimist@^1.2.3, minimist@^1.2.5:
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.5.tgz#67d66014b66a6a8aaa0c083c5fd58df4e4e97602"
   integrity sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==
 
+minimist@^1.2.6:
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.6.tgz#8637a5b759ea0d6e98702cfb3a9283323c93af44"
+  integrity sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==
+
 minipass@^3.0.0:
   version "3.1.5"
   resolved "https://registry.yarnpkg.com/minipass/-/minipass-3.1.5.tgz#71f6251b0a33a49c01b3cf97ff77eda030dff732"
@@ -4050,6 +4060,14 @@ next-connect@^0.11.0:
   integrity sha512-7VW5z9MWOpd8wnbST9dXgVd0c0V76LLLk5mBDYLSMtEC2dj3v3YF/Bl3t58cJrzm4SZ0e/s3yeD361F888u0yg==
   dependencies:
     trouter "^3.1.0"
+
+next-sitemap@^2.5.14:
+  version "2.5.14"
+  resolved "https://registry.yarnpkg.com/next-sitemap/-/next-sitemap-2.5.14.tgz#f196c90d4aef8444c6eb7266875bf2179a515bb7"
+  integrity sha512-aJmxGmoE23NClCi1P6KpHov9DUieF/ZZbfGpTiruOYCq4nKu8Q4masOuswlOl3nNKZa0C3u4JG+TPubjslYH9A==
+  dependencies:
+    "@corex/deepmerge" "^2.6.148"
+    minimist "^1.2.6"
 
 next-with-less@^2.0.4:
   version "2.0.4"
