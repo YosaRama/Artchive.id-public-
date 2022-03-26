@@ -48,7 +48,6 @@ function ThemesContentsArtworkList() {
         genre: values.genre,
         artworkTitle: values.artwork_title,
       };
-      console.log(values);
       router.push(`/artwork?artistName=${submission.artistName}`);
     });
   };
@@ -71,7 +70,7 @@ function ThemesContentsArtworkList() {
   //? ============== Artist Hook ============= ?//
   const [searchName, setSearchName] = useState("");
   const { data: artistData } = useUsers({
-    queryString: `role=ARTIST&fullName=${searchName}&limit=5`,
+    queryString: `role=ARTIST&fullName=${searchName}&limit=5&client=true`,
   });
   const handleSearchName = (value) => {
     setSearchName(value);
