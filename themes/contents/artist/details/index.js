@@ -120,15 +120,7 @@ function ThemesContentsArtistDetails(props) {
             >
               {artistData?.artwork
                 ?.filter((item, index) => {
-                  if (
-                    index <
-                    (viewport?.width > 1024
-                      ? 8
-                      : viewport?.width <= 1024 && viewport?.width > 768
-                      ? 6
-                      : 4)
-                  )
-                    return item;
+                  if (index < 4) return item;
                 })
                 ?.map((item, index) => {
                   return (

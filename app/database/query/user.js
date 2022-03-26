@@ -108,6 +108,9 @@ export const GET_USER_BY_SLUG = ({ slug }) => {
         include: {
           media_cover: true,
         },
+        where: {
+          NOT: [{ status: "EDIT" }, { status: "DRAFT" }],
+        },
       },
       banner: true,
       billing_address: true,
