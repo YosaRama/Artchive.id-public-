@@ -143,7 +143,11 @@ function ThemesContentsArtistDetails(props) {
             </ThemesContainerMasonry>
 
             <section className={s.divider}>
-              <ThemesButton onClick={() => router.push("/artwork")}>{`SEE MORE`}</ThemesButton>
+              <ThemesButton
+                onClick={() =>
+                  router.push(`/artwork?artistName=${encodeURIComponent(artistData.full_name)}`)
+                }
+              >{`SEE MORE`}</ThemesButton>
             </section>
           </section>
         )}
