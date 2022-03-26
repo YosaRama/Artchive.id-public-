@@ -11,11 +11,15 @@ export async function getServerSideProps({ res }) {
   res.write(`<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="/main-sitemap.xsl"?>
         <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
             <sitemap>
-                <loc>${process.env.NEXT_PUBLIC_SITE_URL}/sitemap.xml</loc>
+                <loc>${process.env.NEXT_PUBLIC_SITE_URL}sitemap.xml</loc>
                 <lastmod>${currentDate}</lastmod>
             </sitemap>
             <sitemap>
-                <loc>${process.env.NEXT_PUBLIC_SITE_URL}/sitemap-dynamic.xml</loc>
+            <loc>${process.env.NEXT_PUBLIC_SITE_URL}sitemap-0.xml</loc>
+            <lastmod>${currentDate}</lastmod>
+        </sitemap>
+            <sitemap>
+                <loc>${process.env.NEXT_PUBLIC_SITE_URL}sitemap-dynamic.xml</loc>
                 <lastmod>${currentDate}</lastmod>
             </sitemap>
         </sitemapindex>`);
