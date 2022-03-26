@@ -25,6 +25,7 @@ export const GET_USER = ({ page = 1, limit = 15, role, email, fullName, client =
       profile: true,
       signature: true,
       banner: true,
+      artwork: true,
     },
     where: {
       AND: {
@@ -32,7 +33,12 @@ export const GET_USER = ({ page = 1, limit = 15, role, email, fullName, client =
         email: email ? { contains: email } : {},
         full_name: fullName ? { contains: fullName } : {},
       },
-      NOT: { status: client == "true" ? false : {} },
+      NOT: [
+        { status: client == "true" ? false : {} },
+        {
+          artwork: client == "true" ? { none: {} } : {},
+        },
+      ],
     },
     orderBy: {
       id: "desc",
