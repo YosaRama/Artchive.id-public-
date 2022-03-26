@@ -56,7 +56,12 @@ export const GET_TOTAL_USER = ({ role, email, fullName, client }) => {
         email: email ? { contains: email } : {},
         full_name: fullName ? { contains: fullName } : {},
       },
-      NOT: { status: client == "true" ? false : {} },
+      NOT: [
+        { status: client == "true" ? false : {} },
+        {
+          artwork: client == "true" ? { none: {} } : {},
+        },
+      ],
     },
   });
 };
