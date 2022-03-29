@@ -1,7 +1,7 @@
 // Libs
 import propTypes from "prop-types";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Col, Divider, Row, Button, Form, Input, Image, Select, InputNumber } from "antd";
 const { Option } = Select;
 
@@ -15,20 +15,18 @@ import ThemesHeadline from "themes/components/libs/headline";
 import ThemesButton from "themes/components/libs/button";
 import AppUploadBox from "app/components/libs/upload-box";
 import AppUploadButton from "app/components/libs/upload-button";
+import AppFormArtworkPrice from "app/components/libs/form-artwork-price";
 import deleteConfirmModal from "app/components/utils/delete-modal-confirm";
 import { WarningNotification } from "app/components/utils/notification";
-
-// Helpers
-import priceFormatter from "app/helpers/priceFormatter";
 
 // Styles
 import s from "./index.module.scss";
 
 function ThemesContentsProfileStudioDetails(props) {
   const { artistData } = props;
+
   const router = useRouter();
   const artworkId = router.query.id;
-  const [form] = Form.useForm();
 
   //? ============== Artwork Hook ============= ?//
   const {
@@ -90,7 +88,12 @@ function ThemesContentsProfileStudioDetails(props) {
   };
   // * ====================================== * //
 
+  //? ============== Handle Artwork Price ============= ?//
+  const [markupPrice, setMarkupPrice] = useState("");
+  // * ====================================== * //
+
   //? ============== Handle Submit ============= ?//
+  const [form] = Form.useForm();
   const handleSubmit = () => {
     form.validateFields().then(async (value) => {
       const submission = {
@@ -105,6 +108,7 @@ function ThemesContentsProfileStudioDetails(props) {
         height: value.height,
         width: value.width,
         price: `${value.price}`,
+        markupPrice: `${markupPrice || artworkData?.markup_price}`,
         status: artworkData?.status,
         approve: artworkData?.approve,
       };
@@ -254,24 +258,10 @@ function ThemesContentsProfileStudioDetails(props) {
                       </Form.Item>
                     </Col>
                   </Row>
-                  <Form.Item
-                    name="price"
-                    label="Price"
-                    rules={[
-                      {
-                        required: true,
-                        message: "Please input price for this artwork!",
-                      },
-                    ]}
-                  >
-                    <InputNumber
-                      style={{ width: "100%" }}
-                      placeholder="Input artwork price"
-                      addonBefore="Rp"
-                      formatter={(value) => priceFormatter(`Rp ${value}`, ",")}
-                      parser={(value) => value.replace(/Rp\s?|(,*)/g, "")}
-                    />
-                  </Form.Item>
+                  <AppFormArtworkPrice
+                    markupPrice={markupPrice || artworkData.markup_price}
+                    setMarkupPrice={setMarkupPrice}
+                  />
                 </Form>
               </Col>
             </Row>

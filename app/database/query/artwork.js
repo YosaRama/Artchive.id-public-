@@ -265,6 +265,7 @@ export const CREATE_ARTWORK = ({
   height,
   width,
   price,
+  markupPrice,
   status,
   approve,
 }) => {
@@ -281,6 +282,7 @@ export const CREATE_ARTWORK = ({
       height: height,
       width: width,
       price: price,
+      markup_price: markupPrice,
       status: status,
       approve: approve,
       artist: {
@@ -359,6 +361,7 @@ export const UPDATE_ARTWORK = ({
   height,
   width,
   price,
+  markupPrice,
   status,
   approve,
 }) => {
@@ -378,6 +381,7 @@ export const UPDATE_ARTWORK = ({
       height: height,
       width: width,
       price: price,
+      markup_price: markupPrice,
       status: status,
       approve: approve,
       artist: {

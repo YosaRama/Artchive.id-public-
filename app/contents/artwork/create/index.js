@@ -15,10 +15,8 @@ import { useGenres } from "app/hooks/genre";
 import AppUploadBox from "app/components/libs/upload-box";
 import AppContainerBox from "app/components/container/box";
 import AppContainerCard from "app/components/container/card";
+import AppFormArtworkPrice from "app/components/libs/form-artwork-price";
 import { WarningNotification } from "app/components/utils/notification";
-
-// Helper
-import priceFormatter from "app/helpers/priceFormatter";
 
 // Style
 import s from "./index.module.scss";
@@ -26,6 +24,17 @@ import s from "./index.module.scss";
 function AppContentsArtworkCreate() {
   const router = useRouter();
   const [form] = Form.useForm();
+
+  //? ============== Handle Artwork Price ============= ?//
+  const [markupPrice, setMarkupPrice] = useState(0);
+  // * ====================================== * //
+
+  //? ============== Handle Active Upload ============= ?//
+  const [artistSelected, setArtistSelected] = useState();
+  const handleSelectArtist = (value) => {
+    setArtistSelected(value[1]);
+  };
+  // * ====================================== * //
 
   //? ============== Artwork Hook ============= ?//
   const { data: artworkData, onAdd } = useArtworks({ queryString: "" });
@@ -59,6 +68,7 @@ function AppContentsArtworkCreate() {
         height: value.height,
         width: value.width,
         price: `${value.price}`,
+        markupPrice: `${markupPrice}`,
         status: "DRAFT", // Default on create artwork
         approve: false, // Default on create artwork
       };
@@ -74,13 +84,6 @@ function AppContentsArtworkCreate() {
         }
       }
     });
-  };
-  // * ====================================== * //
-
-  //? ============== Handle Active Upload ============= ?//
-  const [artistSelected, setArtistSelected] = useState();
-  const handleSelectArtist = (value) => {
-    setArtistSelected(value[1]);
   };
   // * ====================================== * //
 
@@ -228,24 +231,7 @@ function AppContentsArtworkCreate() {
                     </Form.Item>
                   </Col>
                 </Row>
-                <Form.Item
-                  name="price"
-                  label="Price"
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please input price for this artwork!",
-                    },
-                  ]}
-                >
-                  <InputNumber
-                    style={{ width: "100%" }}
-                    placeholder="Input artwork price"
-                    addonBefore="Rp"
-                    formatter={(value) => priceFormatter(`Rp ${value}`, ",")}
-                    parser={(value) => value.replace(/Rp\s?|(,*)/g, "")}
-                  />
-                </Form.Item>
+                <AppFormArtworkPrice markupPrice={markupPrice} setMarkupPrice={setMarkupPrice} />
               </Form>
               <Col span={24} style={{ padding: 0, textAlign: "right" }}>
                 <Button type="primary" onClick={handleSubmit}>

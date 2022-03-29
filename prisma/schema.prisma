@@ -61,6 +61,7 @@ model Artwork {
   height         Int
   width          Int
   price          String
+  markup_price   String        @default("0")
   status         ArtStatus
   approve        Boolean
   genre          Genre[]

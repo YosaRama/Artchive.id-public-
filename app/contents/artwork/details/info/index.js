@@ -1,5 +1,5 @@
 // Libs
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
 import { Button, Col, Divider, Form, Input, InputNumber, Row, Select, Switch } from "antd";
 const { Option } = Select;
@@ -10,10 +10,8 @@ import { useUsers } from "app/hooks/user";
 import { useGenres } from "app/hooks/genre";
 
 // Components
+import AppFormArtworkPrice from "app/components/libs/form-artwork-price";
 import deleteConfirmModal from "app/components/utils/delete-modal-confirm";
-
-// Helpers
-import priceFormatter from "app/helpers/priceFormatter";
 
 function AppContentsArtworkDetailsInfo() {
   const router = useRouter();
@@ -59,6 +57,7 @@ function AppContentsArtworkDetailsInfo() {
         height: value.height,
         width: value.width,
         price: `${value.price}`,
+        markupPrice: `${markupPrice || artworkInitialValues?.markup_price}`,
         status: value.status,
         approve: value.approve,
       };
@@ -82,6 +81,10 @@ function AppContentsArtworkDetailsInfo() {
     form.setFieldsValue({ status: null });
     setIsApproved(!isApproved);
   };
+  // * ====================================== * //
+
+  //? ============== Handle Artwork Price ============= ?//
+  const [markupPrice, setMarkupPrice] = useState("");
   // * ====================================== * //
 
   return (
@@ -201,19 +204,10 @@ function AppContentsArtworkDetailsInfo() {
                   </Form.Item>
                 </Col>
               </Row>
-              <Form.Item
-                name="price"
-                label="Price"
-                rules={[{ required: true, message: "Please input price of artwork!" }]}
-              >
-                <InputNumber
-                  style={{ width: "100%" }}
-                  placeholder="Input artwork price"
-                  addonBefore="Rp"
-                  formatter={(value) => priceFormatter(`Rp ${value}`, ",")}
-                  parser={(value) => value.replace(/Rp\s?|(,*)/g, "")}
-                />
-              </Form.Item>
+              <AppFormArtworkPrice
+                markupPrice={markupPrice || artworkInitialValues.markup_price}
+                setMarkupPrice={setMarkupPrice}
+              />
               <Form.Item name="approve" label="Approved" valuePropName="checked">
                 <Switch onChange={handleApproved} />
               </Form.Item>

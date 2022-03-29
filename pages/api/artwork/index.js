@@ -66,13 +66,15 @@ apiHandler.post(async (req, res) => {
     height,
     width,
     price,
+    markupPrice,
     status,
     approve,
   } = req.body;
   try {
-    // Create Slug
+    //? ============== Create Slug ============= ?//
     const slug = await slugParse({ slugData: title, checkSlugFunc: CHECK_ARTWORK_BY_SLUG });
-    // ============
+    // * ====================================== * //
+
     const result = await CREATE_ARTWORK({
       sku,
       artist_id,
@@ -88,6 +90,7 @@ apiHandler.post(async (req, res) => {
       height,
       width,
       price,
+      markupPrice,
       status,
       approve,
     });

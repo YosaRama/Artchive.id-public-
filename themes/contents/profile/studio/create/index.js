@@ -3,7 +3,7 @@ import propTypes from "prop-types";
 import { useRouter } from "next/router";
 import moment from "moment";
 import { useState } from "react";
-import { Card, Col, Divider, Row, Button, Form, Input, Image, Select, InputNumber } from "antd";
+import { Col, Divider, Row, Button, Form, Input, Image, Select, InputNumber } from "antd";
 const { Option } = Select;
 
 // Data Hook
@@ -15,11 +15,9 @@ import { useGenres } from "app/hooks/genre";
 import ThemesHeadline from "themes/components/libs/headline";
 import ThemesButton from "themes/components/libs/button";
 import AppUploadBox from "app/components/libs/upload-box";
+import AppFormArtworkPrice from "app/components/libs/form-artwork-price";
 import deleteConfirmModal from "app/components/utils/delete-modal-confirm";
 import { WarningNotification } from "app/components/utils/notification";
-
-// Helpers
-import priceFormatter from "app/helpers/priceFormatter";
 
 // Styles
 import s from "./index.module.scss";
@@ -28,6 +26,10 @@ function ThemesContentsProfileStudioCreate(props) {
   const { artistData } = props;
   const router = useRouter();
   const [form] = Form.useForm();
+
+  //? ============== Handle Artwork Price ============= ?//
+  const [markupPrice, setMarkupPrice] = useState(0);
+  // * ====================================== * //
 
   //? ============== Artwork Hook ============= ?//
   const {
@@ -216,24 +218,7 @@ function ThemesContentsProfileStudioCreate(props) {
                   </Form.Item>
                 </Col>
               </Row>
-              <Form.Item
-                name="price"
-                label="Price"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input price for this artwork!",
-                  },
-                ]}
-              >
-                <InputNumber
-                  style={{ width: "100%" }}
-                  placeholder="Input artwork price"
-                  addonBefore="Rp"
-                  formatter={(value) => priceFormatter(`Rp ${value}`, ",")}
-                  parser={(value) => value.replace(/Rp\s?|(,*)/g, "")}
-                />
-              </Form.Item>
+              <AppFormArtworkPrice markupPrice={markupPrice} setMarkupPrice={setMarkupPrice} />
             </Form>
           </Col>
         </Row>

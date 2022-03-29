@@ -47,6 +47,7 @@ apiHandler.put(async (req, res) => {
     height,
     width,
     price,
+    markupPrice,
     status,
     approve,
   } = req.body;
@@ -64,6 +65,7 @@ apiHandler.put(async (req, res) => {
       height,
       width,
       price,
+      markupPrice,
       status,
       approve,
     });
