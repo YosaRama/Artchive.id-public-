@@ -187,7 +187,7 @@ function ThemesContentsArtworkList() {
                           artworkYear={item?.year}
                           artworkWidth={item?.width}
                           artworkHeight={item?.height}
-                          artworkPrice={item?.price}
+                          artworkPrice={item?.markup_price}
                           artworkMedia={item?.material}
                           artworkStatus={item?.status}
                           imgSrc={

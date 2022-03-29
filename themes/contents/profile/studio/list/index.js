@@ -63,7 +63,7 @@ function ThemesContentsProfileStudioList(props) {
                     id={item.id}
                     imgSrc={`${process.env.NEXT_PUBLIC_S3_URL}/${item.media_cover.url}`}
                     title={item.title}
-                    price={priceFormatter(item.price, ",")}
+                    price={priceFormatter(item.markup_price, ",")}
                   />
                 </Col>
               );

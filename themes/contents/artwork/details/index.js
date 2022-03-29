@@ -19,7 +19,7 @@ import { useArtworks } from "app/hooks/artwork";
 import priceFormatter from "app/helpers/priceFormatter";
 
 // Icons
-import { CartIcon } from "public/icons/cart-icon";
+// import { CartIcon } from "public/icons/cart-icon";
 import { WhatsappIcon } from "public/icons/whatsapp-icon";
 
 // Styles
@@ -94,7 +94,7 @@ function ThemesContentsArtworkDetails(props) {
                 </Col>
                 <Col className={s.artworkDetailsPrice}>
                   <p>
-                    <strong>IDR</strong> {priceFormatter(artworkData?.price, ",")}
+                    <strong>IDR</strong> {priceFormatter(artworkData?.markup_price, ",")}
                   </p>
                 </Col>
                 {/* <Col className={s.cardBtnContainer}>

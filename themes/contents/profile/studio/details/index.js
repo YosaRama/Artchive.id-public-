@@ -320,7 +320,7 @@ function ThemesContentsProfileStudioDetails(props) {
           <div>
             <Col md={{ span: 8 }} sm={{ span: 24 }} className={s.submitBtnContainer}>
               <Row gutter={[16, 0]} justify="end">
-                <Col md={{ span: 12 }} xs={{ span: 24, order: 2 }}>
+                <Col md={{ span: 12, order: 1 }} xs={{ span: 24, order: 2 }}>
                   <ThemesButton
                     type={`outline ${s.submitBtn}`}
                     onClick={() => deleteConfirmModal({ title: "artwork", onDelete: handleDelete })}
@@ -328,7 +328,7 @@ function ThemesContentsProfileStudioDetails(props) {
                     DELETE
                   </ThemesButton>
                 </Col>
-                <Col md={{ span: 12 }} xs={{ span: 24, order: 1 }}>
+                <Col md={{ span: 12, order: 2 }} xs={{ span: 24, order: 1 }}>
                   <ThemesButton
                     type={`primary ${s.submitBtn}`}
                     onClick={handleSubmit}

@@ -130,7 +130,7 @@ function ThemesContentsArtistDetails(props) {
                       artistName={artistData.full_name}
                       artworkHeight={item.height}
                       artworkMedia={item.material}
-                      artworkPrice={item.price}
+                      artworkPrice={item.markup_price}
                       artworkSlug={item.slug}
                       artworkStatus={item.status}
                       artworkTitle={item.title}
