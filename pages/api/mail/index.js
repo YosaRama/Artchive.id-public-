@@ -12,7 +12,7 @@ apiHandler.post(async (req, res) => {
   const {} = req.body; // Data for mail template
   try {
     const sendMail = mailer({
-      to: "yosa@test.com",
+      to: "yosamelody07@gmail.com",
       from: "halo@yosa.com",
       subject: "Just Testing",
       html: RegisterVerification({ fullName: "Yosa Rama", link: "/register" }),
