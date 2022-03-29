@@ -1,6 +1,6 @@
 // Libs
 import Image from "next/image";
-import { Button, Checkbox, Col, Form, Input, Radio, Row } from "antd";
+import { Button, Col, Form, Input, Radio, Row } from "antd";
 import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";
 
@@ -26,8 +26,10 @@ function ThemesContentsRegister() {
   const router = useRouter();
 
   //? ============== Handle Register ============= ?//
-  const { onAdd } = useUsers({ queryString: "" });
-  const { onSendMail } = useMailer({ pathName: "/register/confirmation" });
+  const { onAdd, loading: addLoading } = useUsers({ queryString: "" });
+  const { onSendMail, loading: sendMailLoading } = useMailer({
+    pathName: "/register/confirmation",
+  });
   const [form] = Form.useForm();
 
   const handleRegister = () => {
@@ -174,7 +176,11 @@ function ThemesContentsRegister() {
           </section>
 
           <Col span={24}>
-            <ThemesButton type={"default " + s.button} onClick={handleRegister}>
+            <ThemesButton
+              type={"default " + s.button}
+              onClick={handleRegister}
+              loading={addLoading || sendMailLoading}
+            >
               SIGN UP
             </ThemesButton>
           </Col>
