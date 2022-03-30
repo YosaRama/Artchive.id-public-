@@ -5,7 +5,7 @@
 .container {
   justify-content: center;
   text-align: center;
-  height: 80vh;
+  min-height: 80vh;
   display: flex;
   align-items: center;
 }
@@ -14,3 +14,14 @@
   font-size: 24px;
   margin: 30px 0;
 }
+
+//? ============== Tablet Portrait Mode ============= ?//
+@media screen and (max-width: 768px) {
+  .roleOption {
+    margin-bottom: 10px;
+  }
+  .selectBtn {
+    width: 100%;
+  }
+}
+// * ====================================== * //

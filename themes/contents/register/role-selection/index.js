@@ -40,7 +40,7 @@ function ThemesContentsRegisterRoleSelection(props) {
   return (
     <>
       <ThemesContainerMain sectionclass={s.section} containerClass={s.container}>
-        <Col span={12}>
+        <Col lg={{ span: 12 }} xs={{ span: 18 }}>
           <Col span={24}>
             <h1 className={s.title}>Role Selection</h1>
           </Col>
@@ -52,7 +52,7 @@ function ThemesContentsRegisterRoleSelection(props) {
               >
                 <Radio.Group style={{ width: "100%" }}>
                   <Row gutter={[16, 0]}>
-                    <Col span={8}>
+                    <Col lg={{ span: 8 }} xs={{ span: 24 }} className={s.roleOption}>
                       <ThemesRadioWithImage
                         value="ARTIST"
                         imgSrc="/images/frontpage-artist-icon.png"
@@ -60,7 +60,7 @@ function ThemesContentsRegisterRoleSelection(props) {
                         Artist
                       </ThemesRadioWithImage>
                     </Col>
-                    <Col span={8}>
+                    <Col lg={{ span: 8 }} xs={{ span: 24 }} className={s.roleOption}>
                       <ThemesRadioWithImage
                         value="COLLECTOR"
                         imgSrc="/images/frontpage-collector-icon.png"
@@ -68,7 +68,7 @@ function ThemesContentsRegisterRoleSelection(props) {
                         Collector
                       </ThemesRadioWithImage>
                     </Col>
-                    <Col span={8}>
+                    <Col lg={{ span: 8 }} xs={{ span: 24 }} className={s.roleOption}>
                       <ThemesRadioWithImage
                         value="GALLERY"
                         imgSrc="/images/frontpage-gallery-icon.png"
@@ -82,7 +82,9 @@ function ThemesContentsRegisterRoleSelection(props) {
             </Form>
           </Col>
           <Col span={24} style={{ margin: "30px 0" }}>
-            <ThemesButton onClick={handleEdit}>SELECT ROLE</ThemesButton>
+            <ThemesButton onClick={handleEdit} type={"default " + s.selectBtn}>
+              SELECT ROLE
+            </ThemesButton>
           </Col>
         </Col>
       </ThemesContainerMain>
