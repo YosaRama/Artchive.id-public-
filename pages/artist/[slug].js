@@ -16,6 +16,16 @@ function PageArtistDetails(props) {
 
 export default PageArtistDetails;
 
+export const getStaticPaths = async () => {
+  const artistSlug = await GET_ALL_ARTIST_SLUG();
+  return {
+    paths: artistSlug.map((item) => {
+      return { params: { slug: item.slug } };
+    }),
+    fallback: false,
+  };
+};
+
 export const getStaticProps = async (ctx) => {
   const slug = ctx.params.slug;
   const artistDataRes = await GET_USER_BY_SLUG({ slug: slug });
@@ -25,15 +35,5 @@ export const getStaticProps = async (ctx) => {
       artistData: artistData,
     },
     revalidate: 5,
-  };
-};
-
-export const getStaticPaths = async () => {
-  const artistSlug = await GET_ALL_ARTIST_SLUG();
-  return {
-    paths: artistSlug.map((item) => {
-      return { params: { slug: item.slug } };
-    }),
-    fallback: false,
   };
 };
