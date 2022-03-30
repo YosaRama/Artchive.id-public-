@@ -91,6 +91,7 @@ function ThemesContentsProfileStudioCreate(props) {
         height: value.height,
         width: value.width,
         price: `${value.price}`,
+        markupPrice: `${markupPrice}`,
         status: "DRAFT", // Default on create artwork
         approve: false, // Default on create artwork
       };
