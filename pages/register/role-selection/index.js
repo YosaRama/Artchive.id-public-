@@ -22,7 +22,8 @@ export const getServerSideProps = async (ctx) => {
   //? ============== Handle Session ============= ?//
   const session = await getSession(ctx);
   const hashEmail = session && (await hashPassword(session.user.email));
-  if (session && !session.user.role) {
+
+  if (!session?.user?.role) {
     return {
       props: {
         userId: session.user.id,
@@ -33,7 +34,7 @@ export const getServerSideProps = async (ctx) => {
   } else {
     return {
       redirect: {
-        destination: "/",
+        destination: "/profile",
         permanent: true,
       },
     };

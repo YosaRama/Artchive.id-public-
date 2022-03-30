@@ -4,6 +4,9 @@ import { getSession, useSession } from "next-auth/react";
 // Contents
 import ThemesContentsProfile from "themes/contents/profile";
 
+// Helper
+import profileSession from "app/helpers/profileSession";
+
 function PageProfile() {
   //? ============== Handle Session ============= ?//
   const { data: session, status: sessionLoading } = useSession();
@@ -21,19 +24,11 @@ export default PageProfile;
 export const getServerSideProps = async (ctx) => {
   //? ============== Handle Session ============= ?//
   const session = await getSession(ctx);
-  if (session) {
-    return {
-      props: {
-        session: session,
-      },
-    };
-  } else {
-    return {
-      redirect: {
-        destination: "/signin",
-        permanent: true,
-      },
-    };
-  }
+  const res = profileSession({ session: session, data: {} });
   // * ====================================== * //
+
+  return {
+    props: { session: session },
+    redirect: res.redirect,
+  };
 };

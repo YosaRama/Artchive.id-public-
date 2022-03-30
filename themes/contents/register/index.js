@@ -62,14 +62,14 @@ function ThemesContentsRegister() {
   // * ====================================== * //
 
   //? ============== Handle Google Login ============= ?//
-  const handleGoogleLogin = async () => {
-    const login = await signIn("google", { callbackUrl: "/register/role-selection" });
+  const handleGoogleLogin = () => {
+    signIn("google", { callbackUrl: "/register/role-selection" });
   };
   // * ====================================== * //
 
   //? ============== Handle Facebook Login ============= ?//
-  const handleFacebookLogin = async () => {
-    const login = await signIn("facebook", { callbackUrl: "/register/role-selection" });
+  const handleFacebookLogin = () => {
+    signIn("facebook", { callbackUrl: "/register/role-selection" });
   };
   // * ====================================== * //
 

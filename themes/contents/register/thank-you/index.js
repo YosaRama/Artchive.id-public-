@@ -24,6 +24,7 @@ function ThemesContentsRegisterThankYou(props) {
     if (isVerify) {
       onEditStatus({ status: true });
       onSendMail({ email: email });
+      signOut();
     }
   }, [email, id, isVerify, onEditStatus, onSendMail]);
   // * ====================================== * //

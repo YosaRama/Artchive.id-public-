@@ -2,7 +2,6 @@
 import propTypes from "prop-types";
 import { Col, Form, Radio, Row } from "antd";
 import { useRouter } from "next/router";
-import { signOut } from "next-auth/react";
 
 // Data Hook
 import { useUser } from "app/hooks/user";
