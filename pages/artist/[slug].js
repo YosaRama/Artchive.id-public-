@@ -22,7 +22,7 @@ export const getStaticPaths = async () => {
     paths: artistSlug.map((item) => {
       return { params: { slug: item.slug } };
     }),
-    fallback: false,
+    fallback: "blocking",
   };
 };
 
@@ -34,6 +34,6 @@ export const getStaticProps = async (ctx) => {
     props: {
       artistData: artistData,
     },
-    revalidate: 5,
+    revalidate: 10,
   };
 };
