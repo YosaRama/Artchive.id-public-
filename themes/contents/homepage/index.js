@@ -34,7 +34,7 @@ function ThemesContentsHomepage(props) {
           <section className={s.section}>
             <ThemesHeadline
               title="Artwork"
-              subtitle="Original artwork by indonesian artist"
+              subtitle="Original artwork by our artist"
               className={s.pageTitle}
             />
             <Row gutter={[16, 0]} className={s.list}>
