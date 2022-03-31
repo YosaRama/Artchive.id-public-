@@ -20,6 +20,7 @@ import { WarningNotification } from "app/components/utils/notification";
 
 // Style
 import s from "./index.module.scss";
+import AppUploadButton from "app/components/libs/upload-button";
 
 function AppContentsArtworkCreate() {
   const router = useRouter();
@@ -109,7 +110,16 @@ function AppContentsArtworkCreate() {
           <Row gutter={[32, 0]}>
             <Col span={10}>
               {uploadImage ? (
-                <Image alt="" src={`${process.env.NEXT_PUBLIC_S3_URL}/${uploadImage?.url}`} />
+                <>
+                  <Col>
+                    <Image alt="" src={`${process.env.NEXT_PUBLIC_S3_URL}/${uploadImage?.url}`} />
+                  </Col>
+                  <Col className={s.uploadBtn}>
+                    <AppUploadButton onUpload={handleUpload} loading={uploadLoading}>
+                      Change Image
+                    </AppUploadButton>
+                  </Col>
+                </>
               ) : (
                 <AppUploadBox
                   onUpload={handleUpload}

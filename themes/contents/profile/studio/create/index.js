@@ -21,6 +21,7 @@ import { WarningNotification } from "app/components/utils/notification";
 
 // Styles
 import s from "./index.module.scss";
+import AppUploadButton from "app/components/libs/upload-button";
 
 function ThemesContentsProfileStudioCreate(props) {
   const { artistData } = props;
@@ -121,7 +122,16 @@ function ThemesContentsProfileStudioCreate(props) {
         <Row gutter={[32, 0]} justify="center">
           <Col lg={{ span: 10 }} xs={{ span: 24 }} className={s.artworkImage}>
             {uploadImage ? (
-              <Image alt="" src={`${process.env.NEXT_PUBLIC_S3_URL}/${uploadImage?.url}`} />
+              <>
+                <Col>
+                  <Image alt="" src={`${process.env.NEXT_PUBLIC_S3_URL}/${uploadImage?.url}`} />
+                </Col>
+                <Col className={s.uploadBtn}>
+                  <AppUploadButton onUpload={handleUploadCover} loading={uploadLoading}>
+                    Change Image
+                  </AppUploadButton>
+                </Col>
+              </>
             ) : (
               <AppUploadBox
                 onUpload={handleUploadCover}
