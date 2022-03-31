@@ -73,6 +73,12 @@
   }
 }
 
+.menuOrderIcon {
+  svg {
+    width: 45px;
+  }
+}
+
 //? ============== Mobile Mode ============= ?//
 @media screen and (max-width: 500px) {
   .plusIconBox {
@@ -83,6 +89,12 @@
     svg {
       width: 60px;
       height: 60px;
+    }
+  }
+
+  .menuOrderIcon {
+    svg {
+      width: 35px;
     }
   }
 }

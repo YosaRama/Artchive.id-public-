@@ -8,10 +8,10 @@ import s from "./index.module.scss";
 
 // Icons
 import { MobileHomeIcon } from "public/icons/mobile-home-icon";
-import { MobileArtworkIcon } from "public/icons/mobile-artwork-icon";
-import { MobileArtistListIcon } from "public/icons/mobile-artist-list-icon";
 import { MobileAccountIcon } from "public/icons/mobile-account-icon";
 import { CirclePlusIcon } from "public/icons/circle-plus-icon";
+import { ProfileArtworkIcon } from "public/icons/profile-artwork";
+import { ProfileOrderIcon } from "public/icons/profile-order";
 
 function ThemesProfileMobileNavbar() {
   const router = useRouter();
@@ -40,7 +40,7 @@ function ThemesProfileMobileNavbar() {
               activeMenu == "ARTWORK" ? s.menuItemIconActive : ""
             }`}
           >
-            <MobileArtworkIcon
+            <ProfileArtworkIcon
               className={s.menuItemIcon}
               onClick={() => {
                 router.push("/profile/studio");
@@ -64,8 +64,8 @@ function ThemesProfileMobileNavbar() {
               activeMenu == "ARTIST" ? s.menuItemIconActive : ""
             }`}
           >
-            <MobileArtistListIcon
-              className={s.menuItemIcon}
+            <ProfileOrderIcon
+              className={`${s.menuItemIcon} ${s.menuOrderIcon}`}
               onClick={() => {
                 router.push("/profile/studio");
                 handleSelectMenu("ARTIST");
