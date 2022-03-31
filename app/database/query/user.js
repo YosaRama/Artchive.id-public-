@@ -38,6 +38,16 @@ export const GET_USER = ({ page = 1, limit = 15, role, email, fullName, client =
         {
           artwork: client == "true" ? { none: {} } : {},
         },
+        {
+          artwork:
+            client == "true"
+              ? {
+                  none: {
+                    approve: true,
+                  },
+                }
+              : {},
+        },
       ],
     },
     orderBy: {
