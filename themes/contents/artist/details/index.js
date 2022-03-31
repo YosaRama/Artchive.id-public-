@@ -35,7 +35,11 @@ function ThemesContentsArtistDetails(props) {
             <Col span={24} className={`${s.bannerImageContainer}`}>
               <Image src="/images/artwork-1.jpg" alt="" />
             </Col>
-            <Row gutter={[64, 0]} style={{ marginRight: 0, marginLeft: 0 }}>
+            <Row
+              gutter={[64, 0]}
+              style={{ marginRight: 0, marginLeft: 0 }}
+              className={s.profileContainer}
+            >
               <Col
                 xl={{ span: 8 }}
                 lg={{ span: 10 }}
