@@ -1,5 +1,5 @@
 // Libs
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { Button, Col, Divider, Form, Input, InputNumber, Row, Select, Switch } from "antd";
 const { Option } = Select;
@@ -76,7 +76,10 @@ function AppContentsArtworkDetailsInfo() {
   // * ====================================== * //
 
   //? ============== Handle Status Dropdown ============= ?//
-  const [isApproved, setIsApproved] = useState(false);
+  const [isApproved, setIsApproved] = useState();
+  useEffect(() => {
+    setIsApproved(artworkInitialValues?.approve);
+  }, [artworkInitialValues?.approve]);
   const handleApproved = () => {
     form.setFieldsValue({ status: null });
     setIsApproved(!isApproved);
@@ -151,7 +154,7 @@ function AppContentsArtworkDetailsInfo() {
                 rules={[{ required: true, message: "Please select status of artwork!" }]}
               >
                 <Select placeholder="Input artwork status">
-                  {isApproved || artworkInitialValues.approve ? (
+                  {isApproved ? (
                     <>
                       <Option value="PUBLISH">Publish</Option>
                       <Option value="SOLD">Sold</Option>
