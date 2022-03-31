@@ -66,6 +66,7 @@ class MyDocument extends Document {
       <Html lang="en-US">
         <Head>
           <link rel="icon" href="/images/favicon.svg" type="image/svg" sizes="16x16" />
+          {process.env.NEXT_PUBLIC_SITE_URL == "https://artchive.id/" && this.renderOGMeta()}
           {process.env.NEXT_PUBLIC_SITE_URL == "https://artchive.id/" && this.renderGTMSnippet()}
           {process.env.NEXT_PUBLIC_SITE_URL != "https://artchive.id/" && this.renderNoIndexSite()}
         </Head>
