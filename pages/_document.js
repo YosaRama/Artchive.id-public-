@@ -2,6 +2,7 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
 class MyDocument extends Document {
+  //? ============== Google Tag Manager ============= ?//
   renderGTMSnippet() {
     return (
       <script
@@ -17,7 +18,6 @@ class MyDocument extends Document {
       />
     );
   }
-
   renderGTMnoScriptSnippet() {
     return (
       <noscript
@@ -28,10 +28,38 @@ class MyDocument extends Document {
       />
     );
   }
+  // * ====================================== * //
 
+  //? ============== Share Property ============= ?//
+  renderOGMeta() {
+    const currentURL = this.props.dangerousAsPath;
+    return (
+      <>
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={process.env.NEXT_PUBLIC_SITE_NAME} />
+        <meta
+          property="og:description"
+          content="The First Indonesian Online Gallery Platform, Your trusted online gallery"
+        />
+        <meta property="og:url" content={process.env.NEXT_PUBLIC_SITE_URL + currentURL} />
+        <meta property="og:site_name" content={process.env.NEXT_PUBLIC_SITE_NAME} />
+        <meta
+          property="og:image"
+          content={`${process.env.NEXT_PUBLIC_SITE_URL}/images/logo-black.jpg`}
+        />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+      </>
+    );
+  }
+  // * ====================================== * //
+
+  //? ============== Development Settings ============= ?//
   renderNoIndexSite() {
     return <meta name="robots" content="noindex, nofollow" />;
   }
+  // * ====================================== * //
 
   render() {
     return (
