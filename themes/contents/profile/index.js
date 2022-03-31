@@ -167,7 +167,7 @@ function ThemesContentsProfile(props) {
                     <Input disabled />
                   </Form.Item>
                   <Form.Item label="Birthday" name="birth_date">
-                    <DatePicker format={"DD MMMM YYYY"} style={{ width: "50%" }} />
+                    <DatePicker format={"DD MMMM YYYY"} className={s.birthDateFrom} />
                   </Form.Item>
                   <Form.Item label="Bio" name="biography">
                     <Input.TextArea autoSize={{ maxRows: 5, minRows: 3 }} />

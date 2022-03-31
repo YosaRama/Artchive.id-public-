@@ -29,7 +29,7 @@
   border-radius: 100%;
   text-align: center;
   img {
-    height: 200px;
+    height: 200px !important;
     width: 200px;
     border-radius: 100%;
     object-fit: cover;
@@ -50,12 +50,31 @@
   text-align: right;
 }
 
-//? ============== Tablet Portrait Mode ============= ?//
-.bannerSection {
-  margin-bottom: 30px;
+.birthDateFrom {
+  width: 50%;
 }
 
-.profileImage {
-  margin-bottom: 30px;
+//? ============== Tablet Portrait Mode ============= ?//
+@media screen and (max-width: 768px) {
+  .bannerSection {
+    margin-bottom: 30px;
+  }
+
+  .profileImage {
+    margin-bottom: 30px;
+  }
 }
+
+// * ====================================== * //
+
+//? ============== Mobile Mode ============= ?//
+@media screen and (max-width: 500px) {
+  .formTitle {
+    font-size: 28px;
+  }
+  .birthDateFrom {
+    width: 100%;
+  }
+}
+
 // * ====================================== * //
