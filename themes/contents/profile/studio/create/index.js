@@ -133,6 +133,20 @@ function ThemesContentsProfileStudioCreate(props) {
           <Col lg={{ span: 12 }} xs={{ span: 24 }}>
             <Form layout="vertical" form={form}>
               <Form.Item
+                name="title"
+                label="Title"
+                rules={[{ required: true, message: "Please input title for this artwork!" }]}
+              >
+                <Input placeholder="Input artwork title" />
+              </Form.Item>
+              <Form.Item
+                name="year"
+                label="Year"
+                rules={[{ required: true, message: "Please input year for this artwork!" }]}
+              >
+                <Input placeholder="Input artwork year" />
+              </Form.Item>
+              <Form.Item
                 name="genre"
                 label="Genre"
                 rules={[{ required: true, message: "Please select genre for this artwork!" }]}
@@ -147,20 +161,6 @@ function ThemesContentsProfileStudioCreate(props) {
                       );
                     })}
                 </Select>
-              </Form.Item>
-              <Form.Item
-                name="title"
-                label="Title"
-                rules={[{ required: true, message: "Please input title for this artwork!" }]}
-              >
-                <Input placeholder="Input artwork title" />
-              </Form.Item>
-              <Form.Item
-                name="year"
-                label="Year"
-                rules={[{ required: true, message: "Please input year for this artwork!" }]}
-              >
-                <Input placeholder="Input artwork year" />
               </Form.Item>
               <Form.Item
                 name="material"
