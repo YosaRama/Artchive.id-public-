@@ -33,7 +33,14 @@ function ThemesContentsArtistDetails(props) {
         <section className={s.artistDetailsSection}>
           <Card className="artistDetails-card">
             <Col span={24} className={`${s.bannerImageContainer}`}>
-              <Image src="/images/artwork-1.jpg" alt="" />
+              <Image
+                src={
+                  artistData.banner.url
+                    ? `${process.env.NEXT_PUBLIC_S3_URL}/${artistData.banner.url}`
+                    : "/images/artwork-1.jpg"
+                }
+                alt=""
+              />
             </Col>
             <Row
               gutter={[64, 0]}
@@ -68,7 +75,8 @@ function ThemesContentsArtistDetails(props) {
                 <div className={s.profileDetailsContent}>
                   <h1 className={s.artistName}>{artistData.full_name}</h1>
                   <p className={s.artistDate}>
-                    {artistData.city}, {moment(artistData.birth_date).format("DD MMMM YYYY")}
+                    {artistData.city && `${artistData.city},`}
+                    {artistData.birth_date && moment(artistData.birth_date).format("DD MMMM YYYY")}
                   </p>
                 </div>
 
