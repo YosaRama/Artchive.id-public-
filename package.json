@@ -5,7 +5,7 @@
     "seed": "node prisma/seed.js"
   },
   "engines": {
-    "node": ">=14.x"
+    "node": "^14.x || ^16.x"
   },
   "scripts": {
     "dev": "next dev",
