@@ -37,7 +37,7 @@ function ThemesContentsArtistDetails(props) {
                 src={
                   artistData?.banner
                     ? `${process.env.NEXT_PUBLIC_S3_URL}/${artistData?.banner?.url}`
-                    : "/images/artwork-1.jpg"
+                    : "/images/default-images.jpg"
                 }
                 alt=""
               />
