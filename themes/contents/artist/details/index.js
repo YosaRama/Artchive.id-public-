@@ -35,8 +35,8 @@ function ThemesContentsArtistDetails(props) {
             <Col span={24} className={`${s.bannerImageContainer}`}>
               <Image
                 src={
-                  artistData.banner.url
-                    ? `${process.env.NEXT_PUBLIC_S3_URL}/${artistData.banner.url}`
+                  artistData?.banner
+                    ? `${process.env.NEXT_PUBLIC_S3_URL}/${artistData?.banner?.url}`
                     : "/images/artwork-1.jpg"
                 }
                 alt=""
@@ -57,8 +57,8 @@ function ThemesContentsArtistDetails(props) {
                 <div className={s.profileImageBox}>
                   <Image
                     src={
-                      artistData.profile
-                        ? `${process.env.NEXT_PUBLIC_S3_URL}/${artistData.profile.url}`
+                      artistData?.profile
+                        ? `${process.env.NEXT_PUBLIC_S3_URL}/${artistData?.profile?.url}`
                         : "/images/default-images.png"
                     }
                     alt=""
