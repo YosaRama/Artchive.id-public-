@@ -32,7 +32,7 @@ const AppSider = (props) => {
         <Col span={24} className="dashboard-header-logo-container">
           <div className="dashboard-header-logo" style={{ position: "relative" }}>
             <Image
-              src={!collapsed ? "/images/favicon.svg" : "/images/favicon.jpg"}
+              src={!collapsed ? "/images/horizontal-logo.svg" : "/images/thumbnail-white.svg"}
               objectFit="contain"
               layout="fill"
               alt=""
