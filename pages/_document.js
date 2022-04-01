@@ -55,6 +55,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
   }
   // * ====================================== * //
 
+  //? ============== Facebook Pixel ============= ?//
+  renderFacebookVerification() {
+    return <meta name="facebook-domain-verification" content="p8pb3avq9xkv6d9xmj3293gducst2l" />;
+  }
+
   //? ============== Development Settings ============= ?//
   renderNoIndexSite() {
     return <meta name="robots" content="noindex, nofollow" />;
@@ -66,9 +71,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
       <Html lang="en-US">
         <Head>
           <link rel="icon" href="/images/favicon.svg" type="image/svg" sizes="16x16" />
-          <meta name="facebook-domain-verification" content="p8pb3avq9xkv6d9xmj3293gducst2l" />
           {process.env.NEXT_PUBLIC_SITE_URL == "https://artchive.id/" && this.renderOGMeta()}
           {process.env.NEXT_PUBLIC_SITE_URL == "https://artchive.id/" && this.renderGTMSnippet()}
+          {process.env.NEXT_PUBLIC_SITE_URL == "https://artchive.id/" &&
+            this.renderFacebookVerification()}
           {process.env.NEXT_PUBLIC_SITE_URL != "https://artchive.id/" && this.renderNoIndexSite()}
         </Head>
         <body>
