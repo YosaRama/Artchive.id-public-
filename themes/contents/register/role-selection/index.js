@@ -1,5 +1,6 @@
 // Libs
 import propTypes from "prop-types";
+import { signOut } from "next-auth/react";
 import { Col, Form, Radio, Row } from "antd";
 import { useRouter } from "next/router";
 
@@ -32,7 +33,9 @@ function ThemesContentsRegisterRoleSelection(props) {
       const result = await onEditRole(submission);
 
       if (result) {
-        router.push(`/register/thank-you/${userId}/${email}/${encodeURIComponent(hashEmail)}`);
+        signOut({
+          callbackUrl: `/register/thank-you/${userId}/${email}/${encodeURIComponent(hashEmail)}`,
+        });
       }
     });
   };

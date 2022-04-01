@@ -27,13 +27,13 @@ function ThemesContentsSignIn() {
 
   //? ============== Handle Google Login ============= ?//
   const handleGoogleLogin = () => {
-    signIn("google", { callbackUrl: "/register/role-selection" });
+    signIn("google", { callbackUrl: "/profile" });
   };
   // * ====================================== * //
 
   //? ============== Handle Facebook Login ============= ?//
   const handleFacebookLogin = () => {
-    signIn("facebook", { callbackUrl: "/register/role-selection" });
+    signIn("facebook", { callbackUrl: "/profile" });
   };
   // * ====================================== * //
 

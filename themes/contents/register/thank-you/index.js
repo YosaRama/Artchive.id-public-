@@ -20,13 +20,14 @@ function ThemesContentsRegisterThankYou(props) {
   //? ============== Handle Change Status & Welcome Email ============= ?//
   const { onEditStatus } = useUser({ singleId: id });
   const { onSendMail } = useMailer({ pathName: "/register/thank-you" });
+
   useEffect(() => {
     if (isVerify) {
       onEditStatus({ status: true });
       onSendMail({ email: email });
-      signOut();
+      router.push("/signin");
     }
-  }, [email, id, isVerify, onEditStatus, onSendMail]);
+  }, [email, isVerify, onEditStatus, onSendMail, router]);
   // * ====================================== * //
 
   return (
@@ -49,7 +50,9 @@ function ThemesContentsRegisterThankYou(props) {
           }
           extra={
             <>
-              <ThemesButton onClick={() => router.push("/signin")}>SIGN IN HERE</ThemesButton>
+              {!isVerify && (
+                <ThemesButton onClick={() => router.push("/signin")}>SIGN IN HERE</ThemesButton>
+              )}
             </>
           }
         />

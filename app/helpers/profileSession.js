@@ -3,14 +3,18 @@ function profileSession({ session, data }) {
     return {
       props: data,
     };
-  } else if (session && !session?.user?.role) {
+  }
+
+  if (session && !session.user.role) {
     return {
       redirect: {
         destination: "/register/role-selection",
         permanent: true,
       },
     };
-  } else {
+  }
+
+  if (!session && !session?.user?.role) {
     return {
       redirect: {
         destination: "/signin",
