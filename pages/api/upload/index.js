@@ -1,4 +1,5 @@
 // Libs
+import { getSession } from "next-auth/react";
 import nextConnect from "next-connect";
 import { v4 as uuid } from "uuid";
 
@@ -7,8 +8,9 @@ import multer from "multer";
 import multerS3 from "multer-s3";
 import multerS3Sharp from "multer-sharp-s3";
 import aws from "aws-sdk";
+
+// Queries
 import { CREATE_MAIN_MEDIA } from "app/database/query/media";
-import { getSession } from "next-auth/react";
 
 const apiHandler = nextConnect();
 
@@ -62,8 +64,10 @@ const storage = multerS3({
     const { userId, artworkId } = req.body;
     const fullPath =
       userId && artworkId
-        ? `USER-${userId}/ART-${artworkId}/${file.originalname}`
-        : `Default/${file.originalname}`;
+        ? `STAGING/USER-${userId}/ART-${artworkId}/${uuid()}-${file.originalname}`
+        : userId
+        ? `STAGING/USER-${userId}/${uuid()}-${file.originalname}`
+        : `Default/${uuid()}-${file.originalname}`;
     cb(null, fullPath);
   },
 });
@@ -72,6 +76,10 @@ const s3Upload = multer({
   storage: storage,
 });
 // ===================
+
+//? ============== Handle upload ============= ?//
+const upload = process.env.IS_STAGING == "true" ? s3Upload : sharpUpload;
+// * ====================================== * //
 
 // Without Storage
 // const upload = multer();
@@ -82,7 +90,7 @@ const s3Upload = multer({
 //? ============== UPLOAD API ============= ?//
 
 // Upload with multer s3 sharp
-apiHandler.post(sharpUpload.single("uploadFile"), async (req, res) => {
+apiHandler.post(upload.single("uploadFile"), async (req, res) => {
   //? ============== Handle Session ============= ?//
   const session = await getSession({ req });
   // * ====================================== * //
@@ -91,8 +99,8 @@ apiHandler.post(sharpUpload.single("uploadFile"), async (req, res) => {
   const file = req.file;
   const filename = file.originalname;
   const mimetype = file.mimetype;
-  const mainUrl = file.original.Key;
-  const mediumUrl = file.medium.Key;
+  const mainUrl = file.original ? file.original?.Key : file.key;
+  const mediumUrl = file.medium?.Key;
   // * ====================================== * //
 
   try {
@@ -100,7 +108,7 @@ apiHandler.post(sharpUpload.single("uploadFile"), async (req, res) => {
       filename: filename,
       mimetype: mimetype,
       url: mainUrl,
-      mediumUrl: mediumUrl,
+      mediumUrl: mediumUrl ? mediumUrl : mainUrl,
       uploadBy: session.user.id,
     });
     if (mainResult) {
