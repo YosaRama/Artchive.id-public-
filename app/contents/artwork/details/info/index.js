@@ -11,6 +11,7 @@ import { useGenres } from "app/hooks/genre";
 
 // Components
 import AppFormArtworkPrice from "app/components/libs/form-artwork-price";
+import AppFormArtworkMaterial from "app/components/libs/form-artwork-material";
 import deleteConfirmModal from "app/components/utils/delete-modal-confirm";
 
 function AppContentsArtworkDetailsInfo() {
@@ -141,13 +142,7 @@ function AppContentsArtworkDetailsInfo() {
               >
                 <Input placeholder="Input artwork year" />
               </Form.Item>
-              <Form.Item
-                name="material"
-                label="Material"
-                rules={[{ required: true, message: "Please input material of artwork!" }]}
-              >
-                <Input placeholder="Input artwork material" />
-              </Form.Item>
+              <AppFormArtworkMaterial />
               <Form.Item
                 name="status"
                 label="Status"

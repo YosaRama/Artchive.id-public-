@@ -22,6 +22,7 @@ import { WarningNotification } from "app/components/utils/notification";
 // Styles
 import s from "./index.module.scss";
 import AppUploadButton from "app/components/libs/upload-button";
+import AppFormArtworkMaterial from "app/components/libs/form-artwork-material";
 
 function ThemesContentsProfileStudioCreate(props) {
   const { artistData } = props;
@@ -172,13 +173,7 @@ function ThemesContentsProfileStudioCreate(props) {
                     })}
                 </Select>
               </Form.Item>
-              <Form.Item
-                name="material"
-                label="Material"
-                rules={[{ required: true, message: "Please input material for this artwork!" }]}
-              >
-                <Input placeholder="Input artwork material" />
-              </Form.Item>
+              <AppFormArtworkMaterial />
               <Form.Item
                 name="description"
                 label="Description"

@@ -46,22 +46,22 @@ model User {
 }
 
 model Artwork {
-  id             Int           @id @default(autoincrement())
-  sku            String        @unique
-  artist         User          @relation(fields: [artist_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  id             Int              @id @default(autoincrement())
+  sku            String           @unique
+  artist         User             @relation(fields: [artist_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   artist_id      Int
   title          String
-  slug           String        @unique
+  slug           String           @unique
   year           String
-  material       String?
-  description    String        @db.Text
+  material       ArtworkMaterial?
+  description    String           @db.Text
   type           Type
-  media_cover    Media         @relation("cover", fields: [media_cover_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  media_cover    Media            @relation("cover", fields: [media_cover_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   media_cover_id Int
   height         Int
   width          Int
   price          String
-  markup_price   String        @default("0")
+  markup_price   String           @default("0")
   status         ArtStatus
   approve        Boolean
   genre          Genre[]
@@ -70,8 +70,8 @@ model Artwork {
   cart           Cart[]
   order          Order[]
   certificate    Certificate[]
-  createdAt      DateTime      @default(now())
-  updatedAt      DateTime?     @updatedAt
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime?        @updatedAt
 
   @@map("artwork")
 }
@@ -207,4 +207,13 @@ enum AuthProvider {
   CREDENTIALS
   GOOGLE
   FACEBOOK
+}
+
+enum ArtworkMaterial {
+  WATER_COLOUR
+  ACRYLIC_ON_CANVAS
+  ACRYLIC_ON_PAPER
+  OIL_ON_CANVAS
+  MIXED_MEDIA
+  OTHER
 }

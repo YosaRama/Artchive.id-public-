@@ -16,6 +16,7 @@ import ThemesButton from "themes/components/libs/button";
 import AppUploadBox from "app/components/libs/upload-box";
 import AppUploadButton from "app/components/libs/upload-button";
 import AppFormArtworkPrice from "app/components/libs/form-artwork-price";
+import AppFormArtworkMaterial from "app/components/libs/form-artwork-material";
 import deleteConfirmModal from "app/components/utils/delete-modal-confirm";
 import { WarningNotification } from "app/components/utils/notification";
 
@@ -199,13 +200,7 @@ function ThemesContentsProfileStudioDetails(props) {
                   >
                     <Input placeholder="Input artwork year" />
                   </Form.Item>
-                  <Form.Item
-                    name="material"
-                    label="Material"
-                    rules={[{ required: true, message: "Please input material for this artwork!" }]}
-                  >
-                    <Input placeholder="Input artwork material" />
-                  </Form.Item>
+                  <AppFormArtworkMaterial />
                   <Form.Item
                     name="description"
                     label="Description"
