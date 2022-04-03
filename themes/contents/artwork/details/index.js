@@ -24,6 +24,7 @@ import { WhatsappIcon } from "public/icons/whatsapp-icon";
 
 // Styles
 import s from "./index.module.scss";
+import ThemesShareSocial from "themes/components/libs/share-social";
 
 function ThemesContentsArtworkDetails(props) {
   const { artworkData } = props;
@@ -122,6 +123,14 @@ function ThemesContentsArtworkDetails(props) {
                     </ThemesButton>
                   </a>
                 </Col>
+                <ThemesShareSocial
+                  mail={true}
+                  facebook={true}
+                  whatsapp={true}
+                  subject={`Artchive.id Special Artwork`}
+                  message={`This artwork from ${artworkData?.artist?.full_name} is very interesting`}
+                  url={`${process.env.NEXT_PUBLIC_SITE_URL}/artwork/${router.query.slug}`}
+                />
               </Card>
             </Col>
           </Row>
