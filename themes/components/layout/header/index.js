@@ -33,7 +33,7 @@ function ThemesHeader() {
   // * ====================================== * //
 
   //? ============== User Hook ============= ?//
-  const { data: userData } = useUser({ singleId: session.user.id || null });
+  const { data: userData } = useUser({ singleId: session?.user?.id || null });
   // * ====================================== * //
 
   return (
