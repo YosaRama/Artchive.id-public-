@@ -5,6 +5,7 @@ import {
   GET_TOTAL_ARTWORK,
   CHECK_ARTWORK_BY_SLUG,
 } from "app/database/query/artwork";
+import { stringCapitalize } from "app/helpers/capitalize";
 
 // Libs
 import { slugParse } from "app/helpers/slugParse";
@@ -70,6 +71,7 @@ apiHandler.post(async (req, res) => {
     status,
     approve,
   } = req.body;
+  const titleParse = stringCapitalize(title);
   try {
     //? ============== Create Slug ============= ?//
     const slug = await slugParse({ slugData: title, checkSlugFunc: CHECK_ARTWORK_BY_SLUG });
@@ -78,7 +80,7 @@ apiHandler.post(async (req, res) => {
     const result = await CREATE_ARTWORK({
       sku,
       artist_id,
-      title,
+      title: titleParse,
       slug,
       year,
       material,

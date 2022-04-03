@@ -1,8 +1,11 @@
+// Libs
+import nextConnect from "next-connect";
+
 // Query
 import { GET_ARTWORK_BY_ID, UPDATE_ARTWORK, DELETE_ARTWORK } from "app/database/query/artwork";
 
 // Helper
-import nextConnect from "next-connect";
+import { stringCapitalize } from "app/helpers/capitalize";
 
 const apiHandler = nextConnect();
 const messageHead = "artwork";
@@ -51,12 +54,14 @@ apiHandler.put(async (req, res) => {
     status,
     approve,
   } = req.body;
+  const titleParse = stringCapitalize(title);
+
   try {
     const result = await UPDATE_ARTWORK({
       id,
       sku,
       artist_id,
-      title,
+      title: titleParse,
       year,
       material,
       description,
