@@ -162,7 +162,11 @@ function ThemesContentsProfileStudioCreate(props) {
                 label="Genre"
                 rules={[{ required: true, message: "Please select genre for this artwork!" }]}
               >
-                <Select placeholder="Select artist" showSearch mode="multiple">
+                <Select
+                  placeholder="Select genre"
+                  showSearch
+                  // mode="multiple"
+                >
                   {genreData &&
                     genreData?.map((item, index) => {
                       return (
