@@ -290,13 +290,16 @@ export const CREATE_ARTWORK = ({
           id: artist_id,
         },
       },
+      // genre: { //? For Multiple Genre
+      //   connect:
+      //     (genre_id &&
+      //       genre_id.map((item) => {
+      //         return { id: item };
+      //       })) ||
+      //     [],
+      // },
       genre: {
-        connect:
-          (genre_id &&
-            genre_id.map((item) => {
-              return { id: item };
-            })) ||
-          [],
+        connect: { id: genre_id },
       },
       media_gallery: {
         connect:
@@ -389,13 +392,17 @@ export const UPDATE_ARTWORK = ({
           id: artist_id,
         },
       },
+      // genre: {
+      //   set: [],
+      //   connect: genre_id
+      //     ? genre_id.map((item) => {
+      //         return { id: item };
+      //       })
+      //     : [],
+      // },
       genre: {
         set: [],
-        connect: genre_id
-          ? genre_id.map((item) => {
-              return { id: item };
-            })
-          : [],
+        connect: { id: genre_id },
       },
     },
     //====================

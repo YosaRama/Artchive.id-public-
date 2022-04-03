@@ -117,7 +117,10 @@ function AppContentsArtworkDetailsInfo() {
                 label="Genre"
                 rules={[{ required: true, message: "Please select minimal 1 genre of artwork!" }]}
               >
-                <Select placeholder="Select genre" mode="multiple">
+                <Select
+                  placeholder="Select genre"
+                  // mode="multiple"
+                >
                   {genreData &&
                     genreData?.map((item, index) => {
                       return (

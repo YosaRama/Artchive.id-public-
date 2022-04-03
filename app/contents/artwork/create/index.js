@@ -63,7 +63,8 @@ function AppContentsArtworkCreate() {
         year: value.year,
         material: value.material,
         description: value.description,
-        genre_id: value.genre.map((item) => item[1]),
+        // genre_id: value.genre.map((item) => item[1]), // Multiple Genre
+        genre_id: value.genre[1],
         media_id: [],
         cover_id: uploadImage?.id,
         type: value.type,
@@ -74,6 +75,7 @@ function AppContentsArtworkCreate() {
         status: "DRAFT", // Default on create artwork
         approve: false, // Default on create artwork
       };
+
       if (!submission.cover_id) {
         WarningNotification({
           message: "Failed Submit!",
