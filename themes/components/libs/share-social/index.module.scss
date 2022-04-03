@@ -1,0 +1,38 @@
+.socialIcon {
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #140c01;
+  &:hover {
+    color: #e5890a;
+    svg {
+      path {
+        fill: #e5890a;
+      }
+    }
+  }
+}
+
+.socialProfileBox {
+  justify-content: flex-end;
+}
+
+.shareTitle {
+  font-size: 20px;
+  text-align: right;
+  margin-bottom: 15px;
+}
+
+// * ====================================== * //
+
+//? ============== Mobile Mode ============= ?//
+@media screen and (max-width: 500px) {
+  .socialProfileBox {
+    justify-content: center;
+  }
+  .shareTitle {
+    font-size: 16px;
+    text-align: center;
+  }
+}
+// * ====================================== * //

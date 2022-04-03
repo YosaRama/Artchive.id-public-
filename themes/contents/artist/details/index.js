@@ -10,6 +10,7 @@ import ThemesContainerMasonry from "themes/components/container/masonry";
 import ThemesArtworkCard from "themes/components/libs/artwork-card";
 import ThemesButton from "themes/components/libs/button";
 import ThemesHeadline from "themes/components/libs/headline";
+import ThemesShareSocial from "themes/components/libs/share-social";
 
 // Helpers
 import { useWindowSize } from "app/helpers/useWindowSize";
@@ -19,6 +20,7 @@ import s from "./index.module.scss";
 
 // Icons
 import { InstagramOutlined, FacebookOutlined, MailOutlined } from "@ant-design/icons";
+import { WhatsappIcon } from "public/icons/whatsapp-icon";
 
 function ThemesContentsArtistDetails(props) {
   const { artistData } = props;
@@ -85,27 +87,14 @@ function ThemesContentsArtistDetails(props) {
                 </div>
 
                 <div className={s.socialProfileContainer}>
-                  <Row gutter={[12, 0]} className={s.socialProfileBox}>
-                    <a href={`mailto:${artistData.email}`}>
-                      <Col>
-                        <MailOutlined className={s.socialIcon} />
-                      </Col>
-                    </a>
-                    {artistData.instagram_url && (
-                      <a href={artistData.instagram_url} target={"_blank"} rel="noreferrer">
-                        <Col>
-                          <InstagramOutlined className={s.socialIcon} />
-                        </Col>
-                      </a>
-                    )}
-                    {artistData.facebook_url && (
-                      <a href={artistData.facebook_url} target={"_blank"} rel="noreferrer">
-                        <Col>
-                          <FacebookOutlined className={s.socialIcon} />
-                        </Col>
-                      </a>
-                    )}
-                  </Row>
+                  <ThemesShareSocial
+                    mail={true}
+                    facebook={true}
+                    whatsapp={true}
+                    subject={`${artistData.full_name} Profile on Artchive.id`}
+                    message={`${artistData.full_name} Profile on Artchive.id, all information about artist will serve on this sites`}
+                    url={`${process.env.NEXT_PUBLIC_SITE_URL}artist/${router.query.slug}`}
+                  />
                 </div>
               </Col>
             </Row>

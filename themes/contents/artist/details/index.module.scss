@@ -73,6 +73,11 @@
   color: #140c01;
   &:hover {
     color: #e5890a;
+    svg {
+      path {
+        fill: #e5890a;
+      }
+    }
   }
 }
 
@@ -87,6 +92,16 @@
   button {
     height: 50px !important;
   }
+}
+
+.socialProfileBox {
+  justify-content: flex-end;
+}
+
+.shareTitle {
+  font-size: 20px;
+  text-align: right;
+  margin-bottom: 15px;
 }
 
 //? ============== Tablet Landscape Mode ============= ?//
@@ -164,6 +179,10 @@
   }
   .socialProfileBox {
     justify-content: center;
+  }
+  .shareTitle {
+    font-size: 16px;
+    text-align: center;
   }
 }
 // * ====================================== * //
