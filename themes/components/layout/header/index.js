@@ -9,14 +9,17 @@ const { Header } = Layout;
 // Components
 import ThemesContainerMain from "themes/components/container/main";
 import ThemesButton from "themes/components/libs/button";
+import ThemesNavbarDrawer from "themes/components/libs/navbar-drawer";
+
+// Hooks
+import { useUser } from "app/hooks/user";
 
 // Icons
-import { CartIcon } from "public/icons/cart-icon";
+// import { CartIcon } from "public/icons/cart-icon";
 import { MenuOutlined } from "@ant-design/icons";
 
 // Styles
 import s from "./index.module.scss";
-import ThemesNavbarDrawer from "themes/components/libs/navbar-drawer";
 
 function ThemesHeader() {
   const router = useRouter();
@@ -27,6 +30,10 @@ function ThemesHeader() {
 
   //? ============== Handle Session ============= ?//
   const { data: session, status: sessionStatus } = useSession();
+  // * ====================================== * //
+
+  //? ============== User Hook ============= ?//
+  const { data: userData } = useUser({ singleId: session.user.id || null });
   // * ====================================== * //
 
   return (
@@ -50,8 +57,8 @@ function ThemesHeader() {
                 >
                   <Avatar
                     src={
-                      session?.user?.image
-                        ? `${process.env.NEXT_PUBLIC_S3_URL}/${session?.user?.image}`
+                      userData?.profile
+                        ? `${process.env.NEXT_PUBLIC_S3_URL}/${userData?.profile?.url}`
                         : "/images/profile-default.png"
                     }
                     className={s.avatar}
