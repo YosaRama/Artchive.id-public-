@@ -110,11 +110,11 @@ function ThemesContentsArtworkDetails(props) {
                     href={`https://wa.me/${
                       process.env.NEXT_PUBLIC_PHONE_NUMBER
                     }?text=${encodeURIComponent(
-                      "Hi There, really interest with this artwork " +
+                      "Hi There, I really interested in this artwork " +
                         process.env.NEXT_PUBLIC_SITE_URL +
                         "artwork/" +
                         artworkData.slug +
-                        ", Please give me more information for this artwork"
+                        ", Please give me more information about this artwork. Thank you in advance."
                     )}`}
                     target={"_blank"}
                     rel="noreferrer"
