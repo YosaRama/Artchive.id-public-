@@ -43,7 +43,7 @@ function ThemesContentsProfileStudioDetails(props) {
   // * ====================================== * //
 
   //? ============== Genre Hook ============= ?//
-  const { data: genreData } = useGenres({ queryString: "" });
+  const { data: genreData } = useGenres({ queryString: "limit=all" });
   // * ====================================== * //
 
   //? ============== Handle Initial Data ============= ?//
