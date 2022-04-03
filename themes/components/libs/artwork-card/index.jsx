@@ -7,6 +7,7 @@ import { Badge, Card, Col } from "antd";
 
 // Helpers
 import priceFormatter from "app/helpers/priceFormatter";
+import { stringCapitalize } from "app/helpers/capitalize";
 
 // Styles
 import s from "./index.module.scss";
@@ -51,7 +52,7 @@ function ThemesArtworkCard(props) {
               {artistCity && `, ${artistCity}`}
             </p>
             <p>
-              {artworkYear}, {artworkMedia}
+              {artworkYear}, {stringCapitalize(artworkMedia.replace(/_/g, " "))}
             </p>
             <p>{`${artworkWidth} x ${artworkHeight} cm`}</p>
             <p className={s.price}>{`IDR ${priceFormatter(artworkPrice, ",")}`}</p>

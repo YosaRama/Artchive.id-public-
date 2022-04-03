@@ -11,12 +11,14 @@ import ThemesArtworkWithFrame from "themes/components/libs/artwork-with-frame";
 import ThemesButton from "themes/components/libs/button";
 import ThemesDividerWithButton from "themes/components/libs/divider-with-button";
 import ThemesHeadline from "themes/components/libs/headline";
+import ThemesShareSocial from "themes/components/libs/share-social";
 
 // Data Hook
 import { useArtworks } from "app/hooks/artwork";
 
 // Helpers
 import priceFormatter from "app/helpers/priceFormatter";
+import { stringCapitalize } from "app/helpers/capitalize";
 
 // Icons
 // import { CartIcon } from "public/icons/cart-icon";
@@ -24,7 +26,6 @@ import { WhatsappIcon } from "public/icons/whatsapp-icon";
 
 // Styles
 import s from "./index.module.scss";
-import ThemesShareSocial from "themes/components/libs/share-social";
 
 function ThemesContentsArtworkDetails(props) {
   const { artworkData } = props;
@@ -84,7 +85,7 @@ function ThemesContentsArtworkDetails(props) {
                   </p>
                   <p>
                     <span>{artworkData?.year}, </span>
-                    {artworkData?.material}
+                    {stringCapitalize(artworkData?.material?.replace(/_/g, " "))}
                   </p>
                   <p>
                     <span>{artworkData?.width}</span> x <span>{artworkData?.height} cm</span>
