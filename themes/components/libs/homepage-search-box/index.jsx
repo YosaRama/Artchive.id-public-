@@ -16,8 +16,8 @@ function ThemesHomepageSearchBox() {
       </Col>
       <Col className={s.text}>
         <p>
-          It is a long established fact that a reader will be distracted by the readable content of
-          a page when looking at its layout.
+          Art is the imposing of a pattern on experience, and our aesthetic enjoyment is recognition
+          of the pattern.
         </p>
       </Col>
     </Col>
