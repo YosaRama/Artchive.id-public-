@@ -1,5 +1,8 @@
-// Components
+// Libs
 import { Col } from "antd";
+import Link from "next/link";
+
+// Components
 import ThemesContainerMain from "themes/components/container/main";
 import ThemesHeadline from "themes/components/libs/headline";
 
@@ -14,7 +17,9 @@ function ThemesContentsPrivacyPolicies() {
           <p>
             <strong>Artchive.id </strong>operates the
             <span>
-              <a> https://www.artchive.id </a>
+              <Link href={"/"}>
+                <a> https://www.artchive.id </a>
+              </Link>
             </span>
             website, which provides the SERVICE.
           </p>
@@ -30,7 +35,9 @@ function ThemesContentsPrivacyPolicies() {
             with anyone except as described in this Privacy Policy. The terms used in this Privacy
             Policy have the same meanings as in our Terms and Conditions, which is accessible at
             <span>
-              <a> https://www.artchive.id </a>
+              <Link href={"/"}>
+                <a> https://www.artchive.id </a>
+              </Link>
             </span>
             , unless otherwise defined in this Privacy Policy.
           </p>

@@ -62,12 +62,12 @@ function ThemesFooter() {
           </Col>
           <Col span={8} className={s.additionalLinkContainer}>
             <Row className={s.additionalLink}>
-              <Link href="/maintenance">
+              <Link href="/privacy-policies">
                 <a>
                   <p>Privacy Policy</p>
                 </a>
               </Link>
-              <Link href="/maintenance">
+              <Link href="/terms">
                 <a>
                   <p>Terms</p>
                 </a>
