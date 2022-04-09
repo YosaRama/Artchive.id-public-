@@ -1,5 +1,21 @@
 .container {
-  margin-top: 30px;
+  height: 100%;
+  position: relative;
+}
+.sizedBox {
+  height: 50px;
+}
+
+.bodyContainer {
+  padding: 20px;
+  overflow: auto;
+  height: calc(80% - 50px);
+}
+.footerContainer {
+  position: relative;
+  width: 100%;
+  bottom: 0;
+  height: 20%;
 }
 
 .menuItemBold {
@@ -22,12 +38,15 @@
 }
 
 .footerSection {
-  position: absolute;
+  position: relative;
   bottom: 0;
   left: 0;
   background-color: #e0e0e0;
   width: 100%;
-  padding: 20px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
   p {
     margin-bottom: 0;
     font-size: 14px;
@@ -55,11 +74,3 @@
     color: #e5890a !important;
   }
 }
-
-//? ============== Mobile Mode ============= ?//
-@media screen and (max-width: 500px) {
-  .footerSection {
-    display: none;
-  }
-}
-// * ====================================== * //

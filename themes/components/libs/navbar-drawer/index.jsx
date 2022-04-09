@@ -37,79 +37,90 @@ function ThemesNavbarDrawer(props) {
 
   return (
     <>
-      <Drawer visible={visible} onClose={onClose} width={300}>
+      <Drawer visible={visible} onClose={onClose} width={300} bodyStyle={{ padding: 0 }}>
         <section className={s.container}>
-          <section>
-            <ThemeArtistSearchBox />
-          </section>
+          <Col span={24} className={s.sizedBox} />
 
-          <section>
-            <Menu>
-              {firstMenuList.map((item, index) => {
-                return (
-                  <Menu.Item key={item.label} className={s.menuItemBold} onClick={onClose}>
-                    <Link href={item.link}>
-                      <a>{item.label}</a>
-                    </Link>
-                  </Menu.Item>
-                );
-              })}
-              <Divider className={s.divider} />
-              {secondMenuList.map((item, index) => {
-                return (
-                  <Menu.Item key={item.label} className={s.menuItemBold} onClick={onClose}>
-                    <Link href={item.link}>
-                      <a>{item.label}</a>
-                    </Link>
-                  </Menu.Item>
-                );
-              })}
-              <Divider className={s.divider} />
-              {thirdMenuList.map((item, index) => {
-                return (
-                  <Menu.Item key={item.label} className={s.menuItem} onClick={onClose}>
-                    <Link href={item.link}>
-                      <a>{item.label}</a>
-                    </Link>
-                  </Menu.Item>
-                );
-              })}
-            </Menu>
-          </section>
+          <Col span={24} className={s.bodyContainer}>
+            <section className={s.searchSection}>
+              <ThemeArtistSearchBox />
+            </section>
+            <section className={s.menuSection}>
+              <Menu>
+                {firstMenuList.map((item, index) => {
+                  return (
+                    <Menu.Item key={item.label} className={s.menuItemBold} onClick={onClose}>
+                      <Link href={item.link}>
+                        <a>{item.label}</a>
+                      </Link>
+                    </Menu.Item>
+                  );
+                })}
+                <Divider className={s.divider} />
+                {secondMenuList.map((item, index) => {
+                  return (
+                    <Menu.Item key={item.label} className={s.menuItemBold} onClick={onClose}>
+                      <Link href={item.link}>
+                        <a>{item.label}</a>
+                      </Link>
+                    </Menu.Item>
+                  );
+                })}
+                <Divider className={s.divider} />
+                {thirdMenuList.map((item, index) => {
+                  return (
+                    <Menu.Item key={item.label} className={s.menuItem} onClick={onClose}>
+                      <Link href={item.link}>
+                        <a>{item.label}</a>
+                      </Link>
+                    </Menu.Item>
+                  );
+                })}
+              </Menu>
+            </section>
+          </Col>
 
-          <section className={s.footerSection}>
-            <p className={s.footerTitle}>Contact Us :</p>
-            <Col>
-              <a href="mailto:info@artchive.id">info@artchive.id</a>
-            </Col>
-            <Col>
-              <p>
-                <a className={s.phone} href="tel:081236947277">
-                  +6281-236-947-277
-                </a>
-              </p>
-            </Col>
-            <Row>
-              <Col>
-                <a
-                  href={"https://www.instagram.com/__artchive.id/"}
-                  target={"_blank"}
-                  rel="noreferrer"
-                >
+          <Col span={24} className={s.footerContainer}>
+            <section className={s.footerSection}>
+              <div>
+                <p className={s.footerTitle}>Contact Us :</p>
+                <Col>
+                  <a href="mailto:info@artchive.id">info@artchive.id</a>
+                </Col>
+                <Col>
+                  <p>
+                    <a className={s.phone} href={`tel:${process.env.NEXT_PUBLIC_PHONE_NUMBER}`}>
+                      +62821-4566-3008
+                    </a>
+                  </p>
+                </Col>
+                <Row>
                   <Col>
-                    <InstagramOutlined className={s.socialIcon} />
+                    <a
+                      href={"https://www.instagram.com/__artchive.id/"}
+                      target={"_blank"}
+                      rel="noreferrer"
+                    >
+                      <Col>
+                        <InstagramOutlined className={s.socialIcon} />
+                      </Col>
+                    </a>
                   </Col>
-                </a>
-              </Col>
-              <Col>
-                <a href={"https://www.facebook.com/artchive.id"} target={"_blank"} rel="noreferrer">
                   <Col>
-                    <FacebookOutlined className={s.socialIcon} />
+                    <a
+                      href={"https://www.facebook.com/artchive.id"}
+                      target={"_blank"}
+                      rel="noreferrer"
+                    >
+                      <Col>
+                        <FacebookOutlined className={s.socialIcon} />
+                      </Col>
+                    </a>
                   </Col>
-                </a>
-              </Col>
-            </Row>
-          </section>
+                </Row>
+              </div>
+            </section>
+          </Col>
         </section>
       </Drawer>
     </>
