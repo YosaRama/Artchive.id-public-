@@ -31,9 +31,10 @@ function AppContentsArtworkDetailsInfo() {
   const artworkInitialValues = artworkInitialData && {
     ...artworkInitialData,
     artistId: [artworkInitialData?.artist?.full_name, artworkInitialData?.artist_id],
-    genre: artworkInitialData?.genre?.map((item) => {
-      return item.id;
-    }),
+    genre: artworkInitialData?.genre?.[0].id,
+    // genre: artworkInitialData?.genre?.map((item) => {
+    //   return item.id;
+    // }),
   };
   // * ====================================== * //
 

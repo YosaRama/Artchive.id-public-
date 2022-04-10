@@ -49,7 +49,8 @@ function ThemesContentsProfileStudioDetails(props) {
   //? ============== Handle Initial Data ============= ?//
   const initialData = artworkData && {
     ...artworkData,
-    genre: artworkData.genre.map((item) => item.id),
+    genre: artworkData?.genre?.[0]?.id,
+    // genre: artworkData.genre.map((item) => item.id),
   };
 
   // * ====================================== * //
