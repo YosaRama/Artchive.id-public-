@@ -111,7 +111,7 @@ function ThemesContentsProfileStudioDetails(props) {
         width: value.width,
         price: `${value.price}`,
         markupPrice: `${markupPrice || artworkData?.markup_price}`,
-        status: artworkData?.status,
+        status: artworkData.approve ? value.status : artworkData?.status,
         approve: artworkData?.approve,
       };
       if (!submission.cover_id) {
@@ -255,6 +255,14 @@ function ThemesContentsProfileStudioDetails(props) {
                         ]}
                       >
                         <InputNumber placeholder="Height (cm)" style={{ width: "100%" }} />
+                      </Form.Item>
+                    </Col>
+                    <Col span={24}>
+                      <Form.Item name={"status"} label="Status">
+                        <Select disabled={!initialData.approve} style={{ width: "100%" }}>
+                          <Option value={"PUBLISH"}>PUBLISH</Option>
+                          <Option value={"SOLD"}>SOLD</Option>
+                        </Select>
                       </Form.Item>
                     </Col>
                   </Row>
