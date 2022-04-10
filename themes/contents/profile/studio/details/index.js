@@ -97,32 +97,40 @@ function ThemesContentsProfileStudioDetails(props) {
   //? ============== Handle Submit ============= ?//
   const [form] = Form.useForm();
   const handleSubmit = () => {
-    form.validateFields().then(async (value) => {
-      const submission = {
-        artist_id: artistData?.id,
-        title: value.title,
-        year: value.year,
-        material: value.material,
-        description: value.description,
-        genre_id: value.genre,
-        cover_id: uploadImage?.id || artworkData?.media_cover_id,
-        type: value.type,
-        height: value.height,
-        width: value.width,
-        price: `${value.price}`,
-        markupPrice: `${markupPrice || artworkData?.markup_price}`,
-        status: artworkData.approve ? value.status : artworkData?.status,
-        approve: artworkData?.approve,
-      };
-      if (!submission.cover_id) {
+    form
+      .validateFields()
+      .then(async (value) => {
+        const submission = {
+          artist_id: artistData?.id,
+          title: value.title,
+          year: value.year,
+          material: value.material,
+          description: value.description,
+          genre_id: value.genre,
+          cover_id: uploadImage?.id || artworkData?.media_cover_id,
+          type: value.type,
+          height: value.height,
+          width: value.width,
+          price: `${value.price}`,
+          markupPrice: `${markupPrice || artworkData?.markup_price}`,
+          status: artworkData.approve ? value.status : artworkData?.status,
+          approve: artworkData?.approve,
+        };
+        if (!submission.cover_id) {
+          WarningNotification({
+            message: "Failed Submit!",
+            description: "Please upload artwork image",
+          });
+        } else {
+          const result = await onEdit(submission);
+        }
+      })
+      .catch((e) => {
         WarningNotification({
-          message: "Failed Submit!",
-          description: "Please upload artwork image",
+          message: "Oops! Something's missing",
+          description: "Please fill all required form!",
         });
-      } else {
-        const result = await onEdit(submission);
-      }
-    });
+      });
   };
   // * ====================================== * //
 

@@ -78,38 +78,46 @@ function ThemesContentsProfileStudioCreate(props) {
 
   //? ============== Handle Submit ============= ?//
   const handleSubmit = () => {
-    form.validateFields().then(async (value) => {
-      const submission = {
-        sku: `ARTCHIVE/USR-${artistData.id}/ART-${lastArtworkId}/${moment().format("DDMMYYYY")}`,
-        artist_id: artistData?.id,
-        title: value.title,
-        year: value.year,
-        material: value.material,
-        description: value.description,
-        // genre_id: value.genre.map((item) => item[1]),
-        genre_id: value.genre[1],
-        media_id: mediaGallery.map((item) => item.id),
-        cover_id: uploadImage?.id,
-        type: value.type,
-        height: value.height,
-        width: value.width,
-        price: `${value.price}`,
-        markupPrice: `${markupPrice}`,
-        status: "DRAFT", // Default on create artwork
-        approve: false, // Default on create artwork
-      };
-      if (!submission.cover_id) {
-        WarningNotification({
-          message: "Failed Submit!",
-          description: "Please upload artwork image",
-        });
-      } else {
-        const result = await onAdd(submission);
-        if (result) {
-          router.push("/profile/studio");
+    form
+      .validateFields()
+      .then(async (value) => {
+        const submission = {
+          sku: `ARTCHIVE/USR-${artistData.id}/ART-${lastArtworkId}/${moment().format("DDMMYYYY")}`,
+          artist_id: artistData?.id,
+          title: value.title,
+          year: value.year,
+          material: value.material,
+          description: value.description,
+          // genre_id: value.genre.map((item) => item[1]),
+          genre_id: value.genre[1],
+          media_id: mediaGallery.map((item) => item.id),
+          cover_id: uploadImage?.id,
+          type: value.type,
+          height: value.height,
+          width: value.width,
+          price: `${value.price}`,
+          markupPrice: `${markupPrice}`,
+          status: "DRAFT", // Default on create artwork
+          approve: false, // Default on create artwork
+        };
+        if (!submission.cover_id) {
+          WarningNotification({
+            message: "Oops! Something's missing",
+            description: "Please upload artwork image",
+          });
+        } else {
+          const result = await onAdd(submission);
+          if (result) {
+            router.push("/profile/studio");
+          }
         }
-      }
-    });
+      })
+      .catch((e) => {
+        WarningNotification({
+          message: "Oops! Something's missing",
+          description: "Please fill all required form!",
+        });
+      });
   };
   // * ====================================== * //
 
