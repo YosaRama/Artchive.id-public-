@@ -44,6 +44,8 @@ function ThemesContentsArtworkDetails(props) {
     queryString: `excludeSlug=${artworkData.slug}&genreId=${genreList}&client=true&limit=4`,
   });
   // * ====================================== * //
+
+  console.log(artworkData?.artist?.slug);
   return (
     <>
       <section style={{ margin: "50px 0" }}>
@@ -80,7 +82,17 @@ function ThemesContentsArtworkDetails(props) {
                 </Col>
                 <Col className={s.artworkDetailsText}>
                   <p>
-                    <strong>{artworkData?.artist?.full_name}, </strong>
+                    <strong>
+                      <a
+                        onClick={() =>
+                          router.push(`/artist/${encodeURIComponent(artworkData?.artist?.slug)}`)
+                        }
+                        className={s.artistName}
+                      >
+                        {artworkData?.artist?.full_name}
+                      </a>
+                      ,{" "}
+                    </strong>
                     {artworkData?.artist?.city}
                   </p>
                   <p>
