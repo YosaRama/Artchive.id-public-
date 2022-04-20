@@ -78,7 +78,7 @@ function ThemesContentsRegister() {
       <ThemesContainerTwoColumns imgSrc="/images/register-background.jpg" cardClassName="halo">
         <section style={{ textAlign: "center" }} className={s.section}>
           <Col span={24} className={s.title}>
-            <h1>{"Get's Started"}</h1>
+            <h1>{"Get Started"}</h1>
           </Col>
 
           <section className={s.socialButtonSection}>

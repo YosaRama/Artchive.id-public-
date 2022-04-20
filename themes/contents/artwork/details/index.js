@@ -45,7 +45,6 @@ function ThemesContentsArtworkDetails(props) {
   });
   // * ====================================== * //
 
-  console.log(artworkData?.artist?.slug);
   return (
     <>
       <section style={{ margin: "50px 0" }}>
