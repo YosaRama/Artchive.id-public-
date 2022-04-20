@@ -26,6 +26,17 @@
   font-size: 12px;
 }
 
+.bannerTitle {
+  text-align: center;
+  h1 {
+    margin-bottom: 0;
+  }
+  p {
+    color: #eaeaea;
+    margin-bottom: 0;
+  }
+}
+
 //? ============== Tablet Landscape Mode ============= ?//
 @media screen and (max-width: 1024px) {
   .mobileHidden {

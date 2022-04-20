@@ -88,7 +88,10 @@ function ThemesContentsArtworkList() {
       <section>
         <ThemesBanner imgSrc="/images/banner-artwork-list.jpg" className={"page-bannerContainer"}>
           <div className={"page-bannerTitle"}>
-            <h1>Artwork List</h1>
+            <Col className={s.bannerTitle}>
+              <h1>Artwork List</h1>
+              {!!artistName && <p>{`By "${artistName}"`}</p>}
+            </Col>
           </div>
         </ThemesBanner>
       </section>
