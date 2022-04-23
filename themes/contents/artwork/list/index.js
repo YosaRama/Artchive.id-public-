@@ -206,7 +206,7 @@ function ThemesContentsArtworkList() {
                 {!end && (
                   <Col span={24} style={{ textAlign: "center" }}>
                     <ThemesButton onClick={handleLoadMore} loading={artworkLoading}>
-                      Load More
+                      LOAD MORE
                     </ThemesButton>
                   </Col>
                 )}
