@@ -160,7 +160,10 @@ export const GET_USER_BY_SLUG = ({ slug }) => {
 // Get all artist slug
 export const GET_ALL_ARTIST_SLUG = () => {
   return prisma.user.findMany({
-    where: { role: "ARTIST" },
+    where: {
+      role: "ARTIST",
+      NOT: { artwork: { none: { approve: true } } },
+    },
     select: {
       slug: true,
     },
