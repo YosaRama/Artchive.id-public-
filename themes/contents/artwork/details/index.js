@@ -41,7 +41,7 @@ function ThemesContentsArtworkDetails(props) {
   const genreListData = artworkData.genre.map((item) => item.id);
   const genreList = genreListData.join(",");
   const { data: mightLikeData } = useArtworks({
-    queryString: `excludeSlug=${artworkData.slug}&genreId=${genreList}&client=true&limit=4`,
+    queryString: `excludeSlug=${artworkData.slug}&excludeArtist=${artworkData.artist_id}&genreId=${genreList}&client=true&limit=4`,
   });
   // * ====================================== * //
 

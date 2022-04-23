@@ -21,6 +21,7 @@ export const GET_ARTWORK = ({
   client = false,
   artistId,
   excludeSlug,
+  excludeArtist,
   genreId,
   artistName,
 }) => {
@@ -84,6 +85,7 @@ export const GET_ARTWORK = ({
         },
       },
       NOT: { slug: excludeSlug ? excludeSlug : {} },
+      NOT: { artist_id: excludeArtist ? +excludeArtist : {} },
     },
     orderBy: {
       id: "desc",
