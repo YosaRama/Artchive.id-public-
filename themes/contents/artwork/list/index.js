@@ -15,6 +15,7 @@ import ThemesButton from "themes/components/libs/button";
 // Data Hook
 import { useArtworksLoad } from "app/hooks/artwork";
 import { useUsers } from "app/hooks/user";
+import { useGenres } from "app/hooks/genre";
 
 // Helpers
 import { useWindowSize } from "app/helpers/useWindowSize";
@@ -24,7 +25,7 @@ import s from "./index.module.scss";
 
 function ThemesContentsArtworkList() {
   const router = useRouter();
-  const { artistName } = router.query;
+  const { artistName, genreId } = router.query;
 
   //? ============== Handle Get Viewport ============= ?//
   const viewport = useWindowSize();
@@ -45,10 +46,10 @@ function ThemesContentsArtworkList() {
     searchForm.validateFields().then((values) => {
       const submission = {
         artistName: values?.artist_name ? values?.artist_name : "",
-        genre: values.genre,
+        genre: values.genre?.[1] || "",
         artworkTitle: values.artwork_title,
       };
-      router.push(`/artwork?artistName=${submission.artistName}`);
+      router.push(`/artwork?artistName=${submission.artistName}&genreId=${submission.genre}`);
     });
   };
   // * ====================================== * //
@@ -63,7 +64,9 @@ function ThemesContentsArtworkList() {
     loading: artworkLoading,
   } = useArtworksLoad({
     limit: artworkLimit,
-    queryString: `client=true&artistName=${artistName ? artistName : ""}`,
+    queryString: `client=true&artistName=${artistName ? artistName : ""}&genreId=${
+      genreId ? genreId : ""
+    }`,
   });
   // * ====================================== * //
 
@@ -75,6 +78,10 @@ function ThemesContentsArtworkList() {
   const handleSearchName = (value) => {
     setSearchName(value);
   };
+  // * ====================================== * //
+
+  //? ============== Genre Hook ============= ?//
+  const { data: genreData } = useGenres({ queryString: "limit=all" });
   // * ====================================== * //
 
   //? ============== Handle Load More ============= ?//
@@ -133,10 +140,14 @@ function ThemesContentsArtworkList() {
                             <Input placeholder="Artwork Title" disabled />
                           </Form.Item>
                           <Form.Item name={"genre"}>
-                            <Select showSearch placeholder="Genre" disabled>
-                              <Option value={["abstract", 1]}>Abstract</Option>
-                              <Option value={["cubism", 2]}>Cubism</Option>
-                              <Option value={["realism", 3]}>Realism</Option>
+                            <Select showSearch placeholder="Genre" allowClear>
+                              {genreData.map((item, index) => {
+                                return (
+                                  <Option key={index} value={[item.title, item.id]}>
+                                    {item.title}
+                                  </Option>
+                                );
+                              })}
                             </Select>
                           </Form.Item>
                           <Col span={24} className={s.priceTitle}>
