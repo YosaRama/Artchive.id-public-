@@ -29,7 +29,14 @@ apiHandler.get(async (req, res) => {
       genreId,
       artistName,
     });
-    const total = await GET_TOTAL_ARTWORK({ client, artistId, excludeSlug, genreId, artistName });
+    const total = await GET_TOTAL_ARTWORK({
+      client,
+      artistId,
+      excludeSlug,
+      excludeArtist,
+      genreId,
+      artistName,
+    });
     if (result) {
       res.status(200).json({
         success: true,

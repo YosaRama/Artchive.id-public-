@@ -59,15 +59,7 @@ export const GET_ARTWORK = ({
     },
     where: {
       AND: {
-        OR: [
-          { status: client == "true" ? "SOLD" : {} },
-          { status: client == "true" ? "PUBLISH" : {} },
-        ],
-        NOT: [
-          { status: client == "true" ? "DRAFT" : {} },
-          { status: client == "true" ? "EDIT" : {} },
-        ],
-
+        NOT: [{ approve: client == "true" ? false : {} }],
         OR: genreList
           ? genreList.map((item) => {
               return {
@@ -84,8 +76,11 @@ export const GET_ARTWORK = ({
           full_name: artistName ? { contains: artistName } : {},
         },
       },
-      NOT: { slug: excludeSlug ? excludeSlug : {} },
-      NOT: { artist_id: excludeArtist ? +excludeArtist : {} },
+      NOT: [
+        { slug: excludeSlug ? excludeSlug : {} },
+        { artist_id: excludeArtist ? +excludeArtist : {} },
+        { artist: client == "true" ? { status: false } : {} },
+      ],
     },
     orderBy: {
       id: "desc",
@@ -99,6 +94,7 @@ export const GET_TOTAL_ARTWORK = ({
   client = false,
   artistId,
   excludeSlug,
+  excludeArtist,
   genreId,
   artistName,
 }) => {
@@ -108,14 +104,7 @@ export const GET_TOTAL_ARTWORK = ({
   return prisma.artwork.count({
     where: {
       AND: {
-        OR: [
-          { status: client == "true" ? "SOLD" : {} },
-          { status: client == "true" ? "PUBLISH" : {} },
-        ],
-        NOT: [
-          { status: client == "true" ? "DRAFT" : {} },
-          { status: client == "true" ? "EDIT" : {} },
-        ],
+        NOT: [{ approve: client == "true" ? false : {} }],
         OR: genreList
           ? genreList.map((item) => {
               return {
@@ -132,7 +121,11 @@ export const GET_TOTAL_ARTWORK = ({
           full_name: artistName ? { contains: artistName } : {},
         },
       },
-      NOT: { slug: excludeSlug ? excludeSlug : {} },
+      NOT: [
+        { slug: excludeSlug ? excludeSlug : {} },
+        { artist_id: excludeArtist ? +excludeArtist : {} },
+        { artist: client == "true" ? { status: false } : {} },
+      ],
     },
   });
 };
