@@ -245,6 +245,7 @@ export const GET_ALL_ARTWORK_SLUG = () => {
     select: {
       slug: true,
     },
+    where: { approve: true },
   });
 };
 // ==================================
