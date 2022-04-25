@@ -46,7 +46,7 @@ function AppLayout({ children }) {
         <Header className="site-layout-background dashboard-layout-header" style={{ padding: 0 }}>
           <Row justify="end">
             <Col span={1} className="dashboard-header-ava">
-              <Dropdown placement="bottomCenter" trigger="click" overlay={popOverContent}>
+              <Dropdown placement="bottom" trigger="click" overlay={popOverContent}>
                 <Avatar src="/images/profile-default.png" />
               </Dropdown>
             </Col>

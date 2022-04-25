@@ -288,17 +288,19 @@ export const CREATE_ARTWORK = ({
           id: artist_id,
         },
       },
-      // genre: { //? For Multiple Genre
-      //   connect:
-      //     (genre_id &&
-      //       genre_id.map((item) => {
-      //         return { id: item };
-      //       })) ||
-      //     [],
-      // },
       genre: {
-        connect: { id: genre_id },
+        //? For Multiple Genre
+        connect:
+          (genre_id &&
+            genre_id.map((item) => {
+              return { id: item };
+            })) ||
+          [],
       },
+      // genre: {
+      //? For Single Genre
+      //   connect: { id: genre_id },
+      // },
       media_gallery: {
         connect:
           (media_id &&
@@ -390,18 +392,20 @@ export const UPDATE_ARTWORK = ({
           id: artist_id,
         },
       },
-      // genre: {
-      //   set: [],
-      //   connect: genre_id
-      //     ? genre_id.map((item) => {
-      //         return { id: item };
-      //       })
-      //     : [],
-      // },
       genre: {
+        //? For multiple genre
         set: [],
-        connect: { id: genre_id },
+        connect: genre_id
+          ? genre_id.map((item) => {
+              return { id: item };
+            })
+          : [],
       },
+      // genre: {
+      //? For single Genre
+      //   set: [],
+      //   connect: { id: genre_id },
+      // },
     },
     //====================
 

@@ -88,8 +88,8 @@ function ThemesContentsProfileStudioCreate(props) {
           year: value.year,
           material: value.material,
           description: value.description,
-          // genre_id: value.genre.map((item) => item[1]),
-          genre_id: value.genre[1],
+          genre_id: value.genre.map((item) => item), //? For multiple genre
+          // genre_id: value.genre[1], //? For single genre
           media_id: mediaGallery.map((item) => item.id),
           cover_id: uploadImage?.id,
           type: value.type,
@@ -174,12 +174,16 @@ function ThemesContentsProfileStudioCreate(props) {
                 <Select
                   placeholder="Select genre"
                   showSearch
-                  // mode="multiple"
+                  mode="multiple"
+                  filterOption={(input, option) =>
+                    option.children.toString().toLowerCase().indexOf(input.toLowerCase()) >= 0 ||
+                    option.value.toString().toLowerCase().indexOf(input.toLowerCase()) >= 0
+                  }
                 >
                   {genreData &&
                     genreData?.map((item, index) => {
                       return (
-                        <Option key={index} value={[item.title, item.id]}>
+                        <Option key={index} value={item.id}>
                           {item.title}
                         </Option>
                       );

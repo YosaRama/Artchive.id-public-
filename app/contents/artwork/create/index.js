@@ -3,6 +3,7 @@ import moment from "moment";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { Button, Col, Form, Input, Row, Image, Select, InputNumber } from "antd";
+import { v4 as uuid } from "uuid";
 const { Option } = Select;
 
 // Data Hook
@@ -34,7 +35,7 @@ function AppContentsArtworkCreate() {
   //? ============== Handle Active Upload ============= ?//
   const [artistSelected, setArtistSelected] = useState();
   const handleSelectArtist = (value) => {
-    setArtistSelected(value[1]);
+    setArtistSelected(value);
   };
   // * ====================================== * //
 
@@ -55,16 +56,14 @@ function AppContentsArtworkCreate() {
   const handleSubmit = () => {
     form.validateFields().then(async (value) => {
       const submission = {
-        sku: `ARTCHIVE/USR-${value.artistId?.[1]}/ART-${lastArtworkId}/${moment().format(
-          "DDMMYYYY"
-        )}`,
-        artist_id: value.artistId?.[1],
+        sku: `ARTCHIVE/USR-${value.artistId}/ART-${lastArtworkId}/${moment().format("DDMMYYYY")}`,
+        artist_id: value.artistId,
         title: value.title,
         year: value.year,
         material: value.material,
         description: value.description,
-        // genre_id: value.genre.map((item) => item[1]), // Multiple Genre
-        genre_id: value.genre[1],
+        genre_id: value.genre.map((item) => item), //? Multiple Genre
+        // genre_id: value.genre[1], //? Single Genre
         media_id: [],
         cover_id: uploadImage?.id,
         type: value.type,
@@ -144,11 +143,19 @@ function AppContentsArtworkCreate() {
                   label="Artist"
                   rules={[{ required: true, message: "Please select artist for this artwork!" }]}
                 >
-                  <Select placeholder="Select artist" showSearch onSelect={handleSelectArtist}>
+                  <Select
+                    placeholder="Select artist"
+                    showSearch
+                    onSelect={handleSelectArtist}
+                    filterOption={(input, option) =>
+                      option.children.toString().toLowerCase().indexOf(input.toLowerCase()) >= 0 ||
+                      option.value.toString().toLowerCase().indexOf(input.toLowerCase()) >= 0
+                    }
+                  >
                     {artistData &&
                       artistData?.map((item, index) => {
                         return (
-                          <Option key={index} value={[item.full_name, item.id]}>
+                          <Option key={uuid()} value={item.id}>
                             {item.full_name}
                           </Option>
                         );
@@ -163,12 +170,16 @@ function AppContentsArtworkCreate() {
                   <Select
                     placeholder="Select genre"
                     showSearch
-                    // mode="multiple"
+                    mode="multiple"
+                    filterOption={(input, option) =>
+                      option.children.toString().toLowerCase().indexOf(input.toLowerCase()) >= 0 ||
+                      option.value.toString().toLowerCase().indexOf(input.toLowerCase()) >= 0
+                    }
                   >
                     {genreData &&
                       genreData?.map((item, index) => {
                         return (
-                          <Option key={index} value={[item.title, item.id]}>
+                          <Option key={uuid()} value={item.id}>
                             {item.title}
                           </Option>
                         );
@@ -189,13 +200,6 @@ function AppContentsArtworkCreate() {
                 >
                   <Input placeholder="Input artwork year" />
                 </Form.Item>
-                {/* <Form.Item
-                  name="material"
-                  label="Material"
-                  rules={[{ required: true, message: "Please input material for this artwork!" }]}
-                >
-                  <Input placeholder="Input artwork material" />
-                </Form.Item> */}
                 <AppFormArtworkMaterial />
                 <Form.Item
                   name="description"

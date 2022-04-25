@@ -31,10 +31,11 @@ function AppContentsArtworkDetailsInfo() {
   const artworkInitialValues = artworkInitialData && {
     ...artworkInitialData,
     artistId: [artworkInitialData?.artist?.full_name, artworkInitialData?.artist_id],
-    genre: artworkInitialData?.genre?.[0].id,
-    // genre: artworkInitialData?.genre?.map((item) => {
-    //   return item.id;
-    // }),
+    // genre: artworkInitialData?.genre?.[0].id, //? For single genre
+    genre: artworkInitialData?.genre?.map((item) => {
+      //? For multiple genre
+      return item.id;
+    }),
   };
   // * ====================================== * //
 
@@ -118,10 +119,7 @@ function AppContentsArtworkDetailsInfo() {
                 label="Genre"
                 rules={[{ required: true, message: "Please select minimal 1 genre of artwork!" }]}
               >
-                <Select
-                  placeholder="Select genre"
-                  // mode="multiple"
-                >
+                <Select placeholder="Select genre" mode="multiple">
                   {genreData &&
                     genreData?.map((item, index) => {
                       return (

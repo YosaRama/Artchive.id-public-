@@ -49,8 +49,8 @@ function ThemesContentsProfileStudioDetails(props) {
   //? ============== Handle Initial Data ============= ?//
   const initialData = artworkData && {
     ...artworkData,
-    genre: artworkData?.genre?.[0]?.id,
-    // genre: artworkData.genre.map((item) => item.id),
+    // genre: artworkData?.genre?.[0]?.id, //? For single genre
+    genre: artworkData.genre.map((item) => item.id),
   };
 
   // * ====================================== * //
@@ -184,11 +184,7 @@ function ThemesContentsProfileStudioDetails(props) {
                     label="Genre"
                     rules={[{ required: true, message: "Please select genre for this artwork!" }]}
                   >
-                    <Select
-                      placeholder="Select artist"
-                      showSearch
-                      // mode="multiple"
-                    >
+                    <Select placeholder="Select artist" showSearch mode="multiple">
                       {genreData &&
                         genreData?.map((item, index) => {
                           return (
