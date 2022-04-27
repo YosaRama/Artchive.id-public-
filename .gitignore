@@ -37,3 +37,12 @@ yarn.lock
 
 # vscode
 .vscode
+
+# PWA Configuration
+ **/public/sw.js
+ **/public/workbox-*.js
+ **/public/worker-*.js
+ **/public/sw-*.js
+ **/public/workbox-*.js.map
+ **/public/worker-*.js.map
+ 

@@ -70,6 +70,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
     return (
       <Html lang="en-US">
         <Head>
+          <link rel="manifest" href="/manifest.json" />
+          <link rel="apple-touch-icon" href="/icon.png" />
+          <meta name="theme-color" content="#fff" />
           <link rel="icon" href="/images/favicon.svg" type="image/svg" sizes="16x16" />
           {process.env.NEXT_PUBLIC_SITE_URL == "https://artchive.id/" && this.renderOGMeta()}
           {process.env.NEXT_PUBLIC_SITE_URL == "https://artchive.id/" && this.renderGTMSnippet()}
