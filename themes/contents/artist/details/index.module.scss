@@ -23,6 +23,9 @@
   left: 50%;
   transform: translate(-50%, 0px);
   top: -150px;
+  > div {
+    text-align: center;
+  }
 }
 
 .profileImage {
