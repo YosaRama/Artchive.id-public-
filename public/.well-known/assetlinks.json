@@ -1,6 +1,12 @@
-[{
-        "relation": ["delegate_permission/common.handle_all_urls"],
-        "target" : { "namespace": "android_app", "package_name": "id.artchive.twa",
-                     "sha256_cert_fingerprints": ["5A:CA:2B:78:13:C8:28:42:4F:B1:E0:2C:88:B0:0E:85:CD:39:59:AA:E3:29:45:AB:FF:1D:5B:70:87:C6:A1:FE"] }
-      }
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "id.artchive.twa",
+      "sha256_cert_fingerprints": [
+        "FE:6D:E4:BE:8C:18:37:73:C1:B1:38:BF:04:87:CB:AC:26:37:3B:1C:3A:99:35:6E:B3:63:76:E1:CB:57:2A:AE"
+      ]
+    }
+  }
 ]
