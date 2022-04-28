@@ -1,0 +1,6 @@
+[{
+        "relation": ["delegate_permission/common.handle_all_urls"],
+        "target" : { "namespace": "android_app", "package_name": "id.artchive.twa",
+                     "sha256_cert_fingerprints": ["5A:CA:2B:78:13:C8:28:42:4F:B1:E0:2C:88:B0:0E:85:CD:39:59:AA:E3:29:45:AB:FF:1D:5B:70:87:C6:A1:FE"] }
+      }
+]
