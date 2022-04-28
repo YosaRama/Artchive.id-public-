@@ -33,7 +33,7 @@ function AppFormArtworkPrice(props) {
         <InputNumber
           style={{ width: "100%" }}
           placeholder="Input artwork price"
-          addonBefore="Rp"
+          // addonBefore="Rp"
           formatter={(value) => priceFormatter(`Rp ${value}`, ",")}
           parser={(value) => value.replace(/Rp\s?|(,*)/g, "")}
           onChange={handleCreateMarkupPrice}
