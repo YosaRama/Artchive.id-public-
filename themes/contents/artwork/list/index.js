@@ -15,6 +15,7 @@ import ThemesButton from "themes/components/libs/button";
 // Data Hook
 import { useArtworksLoad } from "app/hooks/artwork";
 import { useUsers } from "app/hooks/user";
+import { useGenres } from "app/hooks/genre";
 
 // Helpers
 import { useWindowSize } from "app/helpers/useWindowSize";
@@ -24,7 +25,7 @@ import s from "./index.module.scss";
 
 function ThemesContentsArtworkList() {
   const router = useRouter();
-  const { artistName } = router.query;
+  const { artistName, genreId } = router.query;
 
   //? ============== Handle Get Viewport ============= ?//
   const viewport = useWindowSize();
@@ -48,7 +49,7 @@ function ThemesContentsArtworkList() {
         genre: values.genre,
         artworkTitle: values.artwork_title,
       };
-      router.push(`/artwork?artistName=${submission.artistName}`);
+      router.push(`/artwork?artistName=${submission.artistName}&genreId=${submission.genre}`);
     });
   };
   // * ====================================== * //
@@ -63,7 +64,9 @@ function ThemesContentsArtworkList() {
     loading: artworkLoading,
   } = useArtworksLoad({
     limit: artworkLimit,
-    queryString: `client=true&artistName=${artistName ? artistName : ""}`,
+    queryString: `client=true&artistName=${artistName ? artistName : ""}&genreId=${
+      genreId ? genreId : ""
+    }`,
   });
   // * ====================================== * //
 
@@ -77,6 +80,10 @@ function ThemesContentsArtworkList() {
   };
   // * ====================================== * //
 
+  //? ============== Genre Hook ============= ?//
+  const { data: genreData } = useGenres({ queryString: "limit=all" });
+  // * ====================================== * //
+
   //? ============== Handle Load More ============= ?//
   const handleLoadMore = () => {
     setSize(size + 1);
@@ -85,6 +92,7 @@ function ThemesContentsArtworkList() {
 
   return (
     <>
+      {/* //? ============== Banner Section ============= ?// */}
       <section>
         <ThemesBanner imgSrc="/images/banner-artwork-list.jpg" className={"page-bannerContainer"}>
           <div className={"page-bannerTitle"}>
@@ -95,11 +103,14 @@ function ThemesContentsArtworkList() {
           </div>
         </ThemesBanner>
       </section>
+      {/* // * ====================================== * // */}
 
+      {/* //? ============== Main Content ============= ?// */}
       <section className="">
         <ThemesContainerMain containerClass="">
           <section style={{ margin: "50px 0" }} className="">
             <Row justify="space-between" className="boundary">
+              {/* //? ============== Desktop Search Section ============= ?// */}
               <Col span={6} className={`${s.mobileHidden} `} style={{ height: "auto" }}>
                 <div className="affixContainer">
                   <Sticky
@@ -133,10 +144,28 @@ function ThemesContentsArtworkList() {
                             <Input placeholder="Artwork Title" disabled />
                           </Form.Item>
                           <Form.Item name={"genre"}>
-                            <Select showSearch placeholder="Genre" disabled>
-                              <Option value={["abstract", 1]}>Abstract</Option>
-                              <Option value={["cubism", 2]}>Cubism</Option>
-                              <Option value={["realism", 3]}>Realism</Option>
+                            <Select
+                              showSearch
+                              placeholder="Genre"
+                              allowClear
+                              filterOption={(input, option) =>
+                                option.children
+                                  .toString()
+                                  .toLowerCase()
+                                  .indexOf(input.toLowerCase()) >= 0 ||
+                                option.value
+                                  .toString()
+                                  .toLowerCase()
+                                  .indexOf(input.toLowerCase()) >= 0
+                              }
+                            >
+                              {genreData?.map((item, index) => {
+                                return (
+                                  <Option key={index} value={item.id}>
+                                    {item.title}
+                                  </Option>
+                                );
+                              })}
                             </Select>
                           </Form.Item>
                           <Col span={24} className={s.priceTitle}>
@@ -168,7 +197,8 @@ function ThemesContentsArtworkList() {
                   </Sticky>
                 </div>
               </Col>
-
+              {/* // * ====================================== * // */}
+              {/* //? ============== Artwork List Section ============= ?// */}
               <Col xl={{ span: 17 }} lg={{ span: 24 }}>
                 <ThemesContainerMasonry
                   breakPoint={
@@ -211,10 +241,12 @@ function ThemesContentsArtworkList() {
                   </Col>
                 )}
               </Col>
+              {/* // * ====================================== * // */}
             </Row>
           </section>
         </ThemesContainerMain>
       </section>
+      {/* // * ====================================== * // */}
     </>
   );
 }
