@@ -46,7 +46,7 @@ function ThemesContentsArtworkList() {
     searchForm.validateFields().then((values) => {
       const submission = {
         artistName: values?.artist_name ? values?.artist_name : "",
-        genre: values.genre,
+        genre: values.genre ? values.genre : "",
         artworkTitle: values.artwork_title,
       };
       router.push(`/artwork?artistName=${submission.artistName}&genreId=${submission.genre}`);
@@ -94,11 +94,17 @@ function ThemesContentsArtworkList() {
     <>
       {/* //? ============== Banner Section ============= ?// */}
       <section>
-        <ThemesBanner imgSrc="/images/banner-artwork-list.jpg" className={"page-bannerContainer"}>
+        <ThemesBanner
+          imgSrc={
+            !!artistName && artworkData
+              ? `${process.env.NEXT_PUBLIC_S3_URL}/${artworkData?.[0]?.media_cover?.url}`
+              : "/images/banner-artwork-list.jpg"
+          }
+          className={"page-bannerContainer"}
+        >
           <div className={"page-bannerTitle"}>
             <Col className={s.bannerTitle}>
-              <h1>Artwork List</h1>
-              {!!artistName && <p>{`By "${artistName}"`}</p>}
+              <h1>{!!artistName ? artistName : "Artwork List"}</h1>
             </Col>
           </div>
         </ThemesBanner>
