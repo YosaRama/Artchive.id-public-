@@ -2,7 +2,7 @@
 import moment from "moment";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { Button, Col, Form, Input, Row, Image, Select, InputNumber } from "antd";
+import { Button, Col, Form, Input, Row, Image, Select, InputNumber, DatePicker } from "antd";
 import { v4 as uuid } from "uuid";
 const { Option } = Select;
 
@@ -59,7 +59,7 @@ function AppContentsArtworkCreate() {
         sku: `ARTCHIVE/USR-${value.artistId}/ART-${lastArtworkId}/${moment().format("DDMMYYYY")}`,
         artist_id: value.artistId,
         title: value.title,
-        year: value.year,
+        year: moment(value.year).format("YYYY"),
         material: value.material,
         description: value.description,
         genre_id: value.genre.map((item) => item), //? Multiple Genre
@@ -198,7 +198,7 @@ function AppContentsArtworkCreate() {
                   label="Year"
                   rules={[{ required: true, message: "Please input year for this artwork!" }]}
                 >
-                  <Input placeholder="Input artwork year" />
+                  <DatePicker picker="year" style={{ width: "100%" }} />
                 </Form.Item>
                 <AppFormArtworkMaterial />
                 <Form.Item

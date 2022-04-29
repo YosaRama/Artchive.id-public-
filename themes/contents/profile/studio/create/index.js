@@ -3,7 +3,18 @@ import propTypes from "prop-types";
 import { useRouter } from "next/router";
 import moment from "moment";
 import { useState } from "react";
-import { Col, Divider, Row, Button, Form, Input, Image, Select, InputNumber } from "antd";
+import {
+  Col,
+  Divider,
+  Row,
+  Button,
+  Form,
+  Input,
+  Image,
+  Select,
+  InputNumber,
+  DatePicker,
+} from "antd";
 const { Option } = Select;
 
 // Data Hook
@@ -85,7 +96,7 @@ function ThemesContentsProfileStudioCreate(props) {
           sku: `ARTCHIVE/USR-${artistData.id}/ART-${lastArtworkId}/${moment().format("DDMMYYYY")}`,
           artist_id: artistData?.id,
           title: value.title,
-          year: value.year,
+          year: moment(value.year).format("YYYY"),
           material: value.material,
           description: value.description,
           genre_id: value.genre.map((item) => item), //? For multiple genre
@@ -164,7 +175,7 @@ function ThemesContentsProfileStudioCreate(props) {
                 label="Year"
                 rules={[{ required: true, message: "Please input year for this artwork!" }]}
               >
-                <Input placeholder="Input artwork year" />
+                <DatePicker picker="year" style={{ width: "100%" }} />
               </Form.Item>
               <Form.Item
                 name="genre"

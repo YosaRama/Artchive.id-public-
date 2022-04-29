@@ -2,7 +2,19 @@
 import propTypes from "prop-types";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { Col, Divider, Row, Button, Form, Input, Image, Select, InputNumber } from "antd";
+import {
+  Col,
+  Divider,
+  Row,
+  Button,
+  Form,
+  Input,
+  Image,
+  Select,
+  InputNumber,
+  DatePicker,
+} from "antd";
+import moment from "moment";
 const { Option } = Select;
 
 // Data Hook
@@ -51,6 +63,7 @@ function ThemesContentsProfileStudioDetails(props) {
     ...artworkData,
     // genre: artworkData?.genre?.[0]?.id, //? For single genre
     genre: artworkData.genre.map((item) => item.id),
+    year: moment(`${artworkData.year}-12-30`),
   };
 
   // * ====================================== * //
@@ -103,7 +116,7 @@ function ThemesContentsProfileStudioDetails(props) {
         const submission = {
           artist_id: artistData?.id,
           title: value.title,
-          year: value.year,
+          year: moment(value.year).format("YYYY"),
           material: value.material,
           description: value.description,
           genre_id: value.genre,
@@ -184,7 +197,16 @@ function ThemesContentsProfileStudioDetails(props) {
                     label="Genre"
                     rules={[{ required: true, message: "Please select genre for this artwork!" }]}
                   >
-                    <Select placeholder="Select artist" showSearch mode="multiple">
+                    <Select
+                      placeholder="Select artist"
+                      showSearch
+                      mode="multiple"
+                      filterOption={(input, option) =>
+                        option.children.toString().toLowerCase().indexOf(input.toLowerCase()) >=
+                          0 ||
+                        option.value.toString().toLowerCase().indexOf(input.toLowerCase()) >= 0
+                      }
+                    >
                       {genreData &&
                         genreData?.map((item, index) => {
                           return (
@@ -207,7 +229,8 @@ function ThemesContentsProfileStudioDetails(props) {
                     label="Year"
                     rules={[{ required: true, message: "Please input year for this artwork!" }]}
                   >
-                    <Input placeholder="Input artwork year" />
+                    {/* <Input placeholder="Input artwork year" /> */}
+                    <DatePicker picker="year" style={{ width: "100%" }} />
                   </Form.Item>
                   <AppFormArtworkMaterial />
                   <Form.Item

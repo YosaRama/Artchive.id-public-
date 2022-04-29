@@ -1,7 +1,19 @@
 // Libs
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { Button, Col, Divider, Form, Input, InputNumber, Row, Select, Switch } from "antd";
+import {
+  Button,
+  Col,
+  DatePicker,
+  Divider,
+  Form,
+  Input,
+  InputNumber,
+  Row,
+  Select,
+  Switch,
+} from "antd";
+import moment from "moment";
 const { Option } = Select;
 
 // Data Hook
@@ -36,6 +48,7 @@ function AppContentsArtworkDetailsInfo() {
       //? For multiple genre
       return item.id;
     }),
+    year: moment(`${artworkInitialData.year}-12-30`),
   };
   // * ====================================== * //
 
@@ -51,7 +64,7 @@ function AppContentsArtworkDetailsInfo() {
         sku: value.sku,
         artist_id: value.artistId[1],
         title: value.title,
-        year: value.year,
+        year: moment(value.year).format("YYYY"),
         material: value.material,
         description: value.description,
         genre_id: value.genre,
@@ -142,7 +155,8 @@ function AppContentsArtworkDetailsInfo() {
                 label="Year"
                 rules={[{ required: true, message: "Please input year of artwork!" }]}
               >
-                <Input placeholder="Input artwork year" />
+                {/* <Input placeholder="Input artwork year" /> */}
+                <DatePicker picker="year" style={{ width: "100%" }} />
               </Form.Item>
               <AppFormArtworkMaterial />
               <Form.Item
