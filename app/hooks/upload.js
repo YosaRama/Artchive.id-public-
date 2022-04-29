@@ -24,7 +24,8 @@ export const useUploads = () => {
 
     try {
       setLoading(true);
-      const res = await axios.post("/api/upload", fmData, config);
+      // const res = await axios.post("/api/upload", fmData, config);
+      const res = await axios.post("/api/media/upload", fmData, config);
       if (res.data.success) {
         SuccessNotification({
           message: "Success",
