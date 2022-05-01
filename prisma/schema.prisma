@@ -176,9 +176,9 @@ model Article {
   created_by User          @relation("article_created_by", fields: [created_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   created_id Int
   created_at DateTime      @default(now())
-  updated_by User          @relation("article_updated_by", fields: [updated_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  updated_id Int
-  updated_at DateTime      @updatedAt
+  updated_by User?         @relation("article_updated_by", fields: [updated_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  updated_id Int?
+  updated_at DateTime?     @updatedAt
 
   @@map("article")
 }
