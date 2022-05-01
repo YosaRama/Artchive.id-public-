@@ -2,7 +2,7 @@
 import propTypes from "prop-types";
 import { Card } from "antd";
 
-function ContainerCard(props) {
+function AppContainerCard(props) {
   return (
     <Card className="dashboard-card-container" {...props}>
       {props.children}
@@ -10,8 +10,8 @@ function ContainerCard(props) {
   );
 }
 
-ContainerCard.propTypes = {
+AppContainerCard.propTypes = {
   title: propTypes.string,
 };
 
-export default ContainerCard;
+export default AppContainerCard;

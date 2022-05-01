@@ -2,7 +2,7 @@
 import { Col } from "antd";
 import propTypes from "prop-types";
 
-function ContainerBox(props) {
+function AppContainerBox(props) {
   const { sectionclass, containerClass, children } = props;
   return (
     <section className={sectionclass}>
@@ -13,10 +13,10 @@ function ContainerBox(props) {
   );
 }
 
-ContainerBox.propTypes = {
+AppContainerBox.propTypes = {
   sectionclass: propTypes.string,
   containerClass: propTypes.string,
   children: propTypes.node,
 };
 
-export default ContainerBox;
+export default AppContainerBox;
