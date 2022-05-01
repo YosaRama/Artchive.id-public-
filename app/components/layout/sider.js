@@ -8,17 +8,22 @@ const { Sider } = Layout;
 const { SubMenu } = Menu;
 
 // Icon
-import { HomeOutlined, UserOutlined, PictureOutlined, PartitionOutlined } from "@ant-design/icons";
+import {
+  HomeOutlined,
+  UserOutlined,
+  PictureOutlined,
+  PartitionOutlined,
+  BookOutlined,
+} from "@ant-design/icons";
 
 const AppSider = (props) => {
   const router = useRouter();
 
-  // Handle collapse menu
+  //? Handle collapse menu
   const [collapsed, setCollapsed] = useState(false);
   const onCollapse = (collapsed) => {
     setCollapsed(collapsed);
   };
-  // =======================
 
   return (
     <>
@@ -41,13 +46,13 @@ const AppSider = (props) => {
         </Col>
         {/* Menu Section */}
         <Menu theme="light" mode="inline" selectedKeys={router.pathname}>
-          {/* Homepage Menu Section */}
+          {/* //? ============== Homepage Menu Section ============= ?// */}
           <Menu.Item key="/dashboard" icon={<HomeOutlined />}>
             <Link href="/dashboard">Home</Link>
           </Menu.Item>
-          {/* ============================ */}
+          {/* // * ====================================== * // */}
 
-          {/* User Menu Section */}
+          {/* //? ============== User Menu Section ============= ?// */}
           <SubMenu icon={<UserOutlined />} title="Users" key="1">
             <Menu.Item key="/dashboard/users/artist">
               <Link href="/dashboard/users/artist">Artist</Link>
@@ -59,19 +64,25 @@ const AppSider = (props) => {
               <Link href="/dashboard/users/gallery">Gallery</Link>
             </Menu.Item>
           </SubMenu>
-          {/* ============================ */}
+          {/* // * ====================================== * // */}
 
-          {/* Artwork Menu Section */}
+          {/* //? ============== Artwork Menu Section ============= ?// */}
           <Menu.Item key="/dashboard/artworks" icon={<PictureOutlined />}>
             <Link href="/dashboard/artworks">Artwork</Link>
           </Menu.Item>
-          {/* ============================ */}
+          {/* // * ====================================== * // */}
 
-          {/* Genre Menu Section */}
+          {/* //? ============== Genre Menu Section ============= ?// */}
           <Menu.Item key="/dashboard/genre" icon={<PartitionOutlined />}>
             <Link href="/dashboard/genre">Genre</Link>
           </Menu.Item>
-          {/* ============================ */}
+          {/* // * ====================================== * // */}
+
+          {/* //? ============== Genre Menu Section ============= ?// */}
+          <Menu.Item key="/dashboard/articles" icon={<BookOutlined />}>
+            <Link href="/dashboard/articles">Articles</Link>
+          </Menu.Item>
+          {/* // * ====================================== * // */}
         </Menu>
         {/* ============================ */}
       </Sider>
