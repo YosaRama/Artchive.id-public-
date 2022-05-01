@@ -17,9 +17,15 @@ import { useGenres } from "app/hooks/genre";
 function AppContentsGenreList() {
   const router = useRouter();
 
-  //? ============== Genre Hook ============= ?//
-  const [page, setPage] = useState();
+  //? ============== Handle Pagination ============= ?//
   const pageSize = 10;
+  const [page, setPage] = useState();
+  const handlePagination = (pagination, sort, filter) => {
+    setPage(pagination.current);
+  };
+  // * ====================================== * //
+
+  //? ============== Genre Hook ============= ?//
   const { data, onDelete, loading, total } = useGenres({
     queryString: `limit=${pageSize}&page=${page}`,
   });
@@ -33,12 +39,6 @@ function AppContentsGenreList() {
 
   //? ============== Handle Column ============= ?//
   const columns = GenreColumns({ onDelete: handleDelete });
-  // * ====================================== * //
-
-  //? ============== Handle Pagination ============= ?//
-  const handlePagination = (pagination, sort, filter) => {
-    setPage(pagination.current);
-  };
   // * ====================================== * //
 
   return (

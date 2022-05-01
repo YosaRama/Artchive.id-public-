@@ -1,12 +1,8 @@
 // Libs
-import { Col, Row, Tooltip } from "antd";
 import { useRouter } from "next/router";
 
-// Icons
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-
-// Styles
-import s from "./util.module.scss";
+// Components
+import AppTableAction from "app/components/libs/table-action";
 
 function GenreColumns({ onDelete }) {
   const router = useRouter();
@@ -41,20 +37,7 @@ function GenreColumns({ onDelete }) {
       width: 100,
       key: "action",
       render: (t, r) => {
-        return (
-          <Row gutter={[16, 0]}>
-            <Col>
-              <Tooltip title="Edit">
-                <EditOutlined onClick={() => handleEdit(r.id)} className={s.action} />
-              </Tooltip>
-            </Col>
-            <Col>
-              <Tooltip title="Delete">
-                <DeleteOutlined onClick={() => handleDelete(r.id)} className={s.action} />
-              </Tooltip>
-            </Col>
-          </Row>
-        );
+        return <AppTableAction id={r.id} onEdit={handleEdit} onDelete={handleDelete} />;
       },
     },
   ];
