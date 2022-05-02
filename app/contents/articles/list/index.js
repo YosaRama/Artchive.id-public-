@@ -2,6 +2,7 @@
 import { Empty, Table } from "antd";
 import { useState } from "react";
 import { v4 as uuid } from "uuid";
+import { useRouter } from "next/router";
 
 // Components
 import AppContainerBox from "app/components/container/box";
@@ -14,10 +15,7 @@ import deleteConfirmModal from "app/components/utils/delete-modal-confirm";
 import { useArticles } from "app/hooks/articles";
 
 function AppContentsArticleList() {
-  //? ============== Article Hook ============= ?//
-  const { data: articlesData, loading, onDelete, total } = useArticles({ queryString: "" });
-  console.log(articlesData);
-  // * ====================================== * //
+  const router = useRouter();
 
   //? ============== Handle Pagination ============= ?//
   const pageSize = 10;
@@ -25,6 +23,15 @@ function AppContentsArticleList() {
   const handlePagination = (pagination, sort, filter) => {
     setPage(pagination.current);
   };
+  // * ====================================== * //
+
+  //? ============== Article Hook ============= ?//
+  const {
+    data: articlesData,
+    loading,
+    onDelete,
+    total,
+  } = useArticles({ queryString: `page=${page}&limit=${pageSize}` });
   // * ====================================== * //
 
   //? ============== Handle Delete ============= ?//
@@ -41,7 +48,9 @@ function AppContentsArticleList() {
     <>
       <AppContainerBox>
         <AppContainerCard title="Articles List">
-          <AppAddButton>Add Articles</AppAddButton>
+          <AppAddButton onCreate={() => router.push("/dashboard/articles/create")}>
+            Add Articles
+          </AppAddButton>
           {articlesData && (
             <Table
               columns={columns}
