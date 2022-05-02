@@ -69,7 +69,7 @@ function ArticlesColumn({ onDelete }) {
             <p>{`Created At : ${
               r.created_at ? moment(r.created_at).format("DD MMMM YYYY") : "-"
             }`}</p>
-            <p>{`Updated By : ${r.updated_by ? r.updated_by : "-"}`}</p>
+            <p>{`Updated By : ${r.updated_by ? r.updated_by.full_name : "-"}`}</p>
             <p>{`Updated At : ${
               r.updated_at ? moment(r.updated_at).format("DD MMMM YYYY") : "-"
             }`}</p>

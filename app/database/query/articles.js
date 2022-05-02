@@ -17,6 +17,7 @@ export const GET_ARTICLES = ({ page = 1, limit = 15 }) => {
     skip: skip ? +skip : undefined,
     take: limit != "all" ? +limit : undefined,
     include: {
+      updated_by: true,
       created_by: true,
       thumbnail: true,
     },
@@ -34,6 +35,9 @@ export const GET_TOTAL_ARTICLES = () => {
 
 export const GET_ARTICLES_BY_ID = ({ id }) => {
   return queryFrom.findUnique({
+    include: {
+      thumbnail: true,
+    },
     where: { id: +id },
   });
 };

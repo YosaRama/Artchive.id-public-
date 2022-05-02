@@ -1,7 +1,7 @@
 // Libs
 import propTypes from "prop-types";
 import { Button, Col, Form, Input, Switch } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
@@ -16,7 +16,7 @@ import AppUploadImages from "../upload-images";
 import s from "./index.module.scss";
 
 function AppFormArticles(props) {
-  const { onSubmit } = props;
+  const { onSubmit, isEdit, initialData } = props;
   const router = useRouter();
 
   //? ============== Handle Session ============= ?//
@@ -31,6 +31,15 @@ function AppFormArticles(props) {
   const [uploadImage, setUploadImage] = useState();
   // * ====================================== * //
 
+  //? ============== Handle Initial Data ============= ?//
+  useEffect(() => {
+    if (isEdit) {
+      setUploadImage({ id: initialData?.thumbnail?.id, url: initialData?.thumbnail?.url });
+      setTextEditorValue(initialData.content);
+    }
+  }, []);
+  // * ====================================== * //
+
   //? ============== Handle Submit ============= ?//
   const [form] = Form.useForm();
   const handleSubmit = () => {
@@ -42,6 +51,7 @@ function AppFormArticles(props) {
         content: textEditorValue,
         thumbnailId: uploadImage?.id,
         createdId: session?.user?.id,
+        updatedId: session?.user?.id,
       };
       if (!submission.thumbnailId) {
         WarningNotification({
@@ -59,13 +69,14 @@ function AppFormArticles(props) {
   // * ====================================== * //
   return (
     <>
-      <Form layout="vertical" form={form}>
+      <Form layout="vertical" form={form} initialValues={isEdit ? initialData : {}}>
         <Form.Item label="Thumbnail">
           <Col style={{ height: 500, marginBottom: 30 }}>
             <AppUploadImages
               uploadImage={uploadImage}
               setUploadImage={setUploadImage}
               imageHeight={500}
+              userId={session?.user?.id}
             />
           </Col>
         </Form.Item>
@@ -95,7 +106,9 @@ function AppFormArticles(props) {
 }
 
 AppFormArticles.propTypes = {
-  onSubmit: propTypes.func,
+  onSubmit: propTypes.func.isRequired,
+  isEdit: propTypes.bool,
+  initialData: propTypes.any,
 };
 
 export default AppFormArticles;
