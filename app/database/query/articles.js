@@ -16,6 +16,10 @@ export const GET_ARTICLES = ({ page = 1, limit = 15 }) => {
   return queryFrom.findMany({
     skip: skip ? +skip : undefined,
     take: limit != "all" ? +limit : undefined,
+    include: {
+      created_by: true,
+      thumbnail: true,
+    },
 
     //? Handle order
     orderBy: {
@@ -39,7 +43,7 @@ export const GET_ARTICLES_BY_ID = ({ id }) => {
 //? ============== CREATE QUERY ============= ?//
 
 export const CREATE_ARTICLES = ({ data }) => {
-  const { title, author, status, content, createdId } = data;
+  const { title, author, status, content, createdId, thumbnailId } = data;
 
   return queryFrom.create({
     data: {
@@ -48,6 +52,7 @@ export const CREATE_ARTICLES = ({ data }) => {
       status: status,
       content: content,
       created_id: createdId,
+      thumbnail_id: thumbnailId,
     },
   });
 };
@@ -57,7 +62,7 @@ export const CREATE_ARTICLES = ({ data }) => {
 //? ============== UPDATE QUERY ============= ?//
 
 export const UPDATE_ARTICLES = ({ id, data }) => {
-  const { title, content, status, author, updatedId } = data;
+  const { title, content, status, author, updatedId, thumbnailId } = data;
 
   return queryFrom.update({
     data: {
@@ -66,6 +71,7 @@ export const UPDATE_ARTICLES = ({ id, data }) => {
       status: status,
       author: author,
       updated_id: updatedId,
+      thumbnail_id: thumbnailId,
     },
     where: { id: +id },
   });
