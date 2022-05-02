@@ -1,9 +1,13 @@
 // Libs
+import propTypes from "prop-types";
 import { Button, Col, Form, Input, Switch } from "antd";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 
 // Components
 import AppTextEditor from "../text-editor";
+import { WarningNotification } from "app/components/utils/notification";
 
 // Data Hook
 import AppUploadImages from "../upload-images";
@@ -11,7 +15,14 @@ import AppUploadImages from "../upload-images";
 // Styles
 import s from "./index.module.scss";
 
-function AppFormArticles() {
+function AppFormArticles(props) {
+  const { onSubmit } = props;
+  const router = useRouter();
+
+  //? ============== Handle Session ============= ?//
+  const { data: session } = useSession();
+  // * ====================================== * //
+
   //? ============== Handle Text Editor ============= ?//
   const [textEditorValue, setTextEditorValue] = useState("");
   // * ====================================== * //
@@ -21,13 +32,34 @@ function AppFormArticles() {
   // * ====================================== * //
 
   //? ============== Handle Submit ============= ?//
+  const [form] = Form.useForm();
   const handleSubmit = () => {
-    console.log(textEditorValue);
+    form.validateFields().then(async (value) => {
+      const submission = {
+        title: value.title,
+        author: value.author,
+        status: value.status ? "PUBLISHED" : "DRAFT",
+        content: textEditorValue,
+        thumbnailId: uploadImage?.id,
+        createdId: session?.user?.id,
+      };
+      if (!submission.thumbnailId) {
+        WarningNotification({
+          message: "Missing Fields!",
+          description: "Please upload thumbnail image!",
+        });
+      } else {
+        const result = await onSubmit(submission);
+        if (result) {
+          router.push("/dashboard/articles");
+        }
+      }
+    });
   };
   // * ====================================== * //
   return (
     <>
-      <Form layout="vertical">
+      <Form layout="vertical" form={form}>
         <Form.Item label="Thumbnail">
           <Col style={{ height: 500, marginBottom: 30 }}>
             <AppUploadImages
@@ -49,7 +81,7 @@ function AppFormArticles() {
             <AppTextEditor value={textEditorValue} setValue={setTextEditorValue} />
           </Col>
         </Col>
-        <Form.Item name={"status"} label="Published">
+        <Form.Item name={"status"} label="Published" valuePropName="checked">
           <Switch checkedChildren="YES" unCheckedChildren="NO" />
         </Form.Item>
         <Col span={24}>
@@ -61,5 +93,9 @@ function AppFormArticles() {
     </>
   );
 }
+
+AppFormArticles.propTypes = {
+  onSubmit: propTypes.func,
+};
 
 export default AppFormArticles;

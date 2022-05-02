@@ -38,7 +38,7 @@ function ArticlesColumn({ onDelete }) {
           <>
             <Col>
               <Image
-                src="/images/artwork-1.jpg"
+                src={`${process.env.NEXT_PUBLIC_S3_URL}/${r.thumbnail.url}`}
                 style={{ width: "100%", height: "150px", objectFit: "cover" }}
               />
             </Col>
