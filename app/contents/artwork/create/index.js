@@ -2,27 +2,22 @@
 import moment from "moment";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { Button, Col, Form, Input, Row, Image, Select, InputNumber, DatePicker } from "antd";
+import { Button, Col, Form, Input, Row, Select, InputNumber, DatePicker } from "antd";
 import { v4 as uuid } from "uuid";
 const { Option } = Select;
 
 // Data Hook
-import { useUploads } from "app/hooks/upload";
 import { useArtworks } from "app/hooks/artwork";
 import { useUsers } from "app/hooks/user";
 import { useGenres } from "app/hooks/genre";
 
 // Components
-import AppUploadBox from "app/components/libs/upload-box";
 import AppContainerBox from "app/components/container/box";
 import AppContainerCard from "app/components/container/card";
 import AppFormArtworkPrice from "app/components/libs/form-artwork-price";
-import AppUploadButton from "app/components/libs/upload-button";
 import AppFormArtworkMaterial from "app/components/libs/form-artwork-material";
+import AppUploadImage from "app/components/libs/upload-images";
 import { WarningNotification } from "app/components/utils/notification";
-
-// Style
-import s from "./index.module.scss";
 
 function AppContentsArtworkCreate() {
   const router = useRouter();
@@ -91,18 +86,7 @@ function AppContentsArtworkCreate() {
   // * ====================================== * //
 
   //? ============== Handle Upload ============= ?//
-  const { loading: uploadLoading, onUpload } = useUploads();
   const [uploadImage, setUploadImage] = useState();
-  const handleUpload = async (file) => {
-    const result = await onUpload({
-      file: file.file,
-      userId: artistSelected,
-      artworkId: lastArtworkId,
-    });
-    if (result.success) {
-      setUploadImage({ id: result.data.id, url: result.data.url });
-    }
-  };
   // * ====================================== * //
 
   return (
@@ -110,26 +94,14 @@ function AppContentsArtworkCreate() {
       <AppContainerBox>
         <AppContainerCard title="CREATE NEW ARTWORK">
           <Row gutter={[32, 0]}>
-            <Col span={10}>
-              {uploadImage ? (
-                <>
-                  <Col>
-                    <Image alt="" src={`${process.env.NEXT_PUBLIC_S3_URL}/${uploadImage?.url}`} />
-                  </Col>
-                  <Col className={s.uploadBtn}>
-                    <AppUploadButton onUpload={handleUpload} loading={uploadLoading}>
-                      Change Image
-                    </AppUploadButton>
-                  </Col>
-                </>
-              ) : (
-                <AppUploadBox
-                  onUpload={handleUpload}
-                  loading={uploadLoading}
-                  className={s.upload}
-                  disabled={!artistSelected}
-                />
-              )}
+            <Col span={10} style={{ height: 300 }}>
+              <AppUploadImage
+                uploadImage={uploadImage}
+                setUploadImage={setUploadImage}
+                uploadDisabled={!artistSelected}
+                userId={artistSelected}
+                artworkId={lastArtworkId}
+              />
               {!artistSelected && (
                 <p style={{ margin: "10px 0 0", fontStyle: "italic", opacity: "0.5" }}>
                   *Note : Please select artist first

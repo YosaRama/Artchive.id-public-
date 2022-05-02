@@ -28,12 +28,12 @@ import ThemesButton from "themes/components/libs/button";
 import AppUploadBox from "app/components/libs/upload-box";
 import AppFormArtworkPrice from "app/components/libs/form-artwork-price";
 import deleteConfirmModal from "app/components/utils/delete-modal-confirm";
+import AppFormArtworkMaterial from "app/components/libs/form-artwork-material";
+import AppUploadImage from "app/components/libs/upload-images";
 import { WarningNotification } from "app/components/utils/notification";
 
 // Styles
 import s from "./index.module.scss";
-import AppUploadButton from "app/components/libs/upload-button";
-import AppFormArtworkMaterial from "app/components/libs/form-artwork-material";
 
 function ThemesContentsProfileStudioCreate(props) {
   const { artistData } = props;
@@ -142,24 +142,9 @@ function ThemesContentsProfileStudioCreate(props) {
       <div className={s.contentContainer}>
         <Row gutter={[32, 0]} justify="center">
           <Col lg={{ span: 10 }} xs={{ span: 24 }} className={s.artworkImage}>
-            {uploadImage ? (
-              <>
-                <Col>
-                  <Image alt="" src={`${process.env.NEXT_PUBLIC_S3_URL}/${uploadImage?.url}`} />
-                </Col>
-                <Col className={s.uploadBtn}>
-                  <AppUploadButton onUpload={handleUploadCover} loading={uploadLoading}>
-                    Change Image
-                  </AppUploadButton>
-                </Col>
-              </>
-            ) : (
-              <AppUploadBox
-                onUpload={handleUploadCover}
-                loading={uploadLoading}
-                className={s.upload}
-              />
-            )}
+            <Col className={s.upload}>
+              <AppUploadImage uploadImage={uploadImage} setUploadImage={setUploadImage} />
+            </Col>
           </Col>
           <Col lg={{ span: 12 }} xs={{ span: 24 }}>
             <Form layout="vertical" form={form}>

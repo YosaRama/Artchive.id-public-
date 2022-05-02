@@ -21,10 +21,9 @@
 }
 
 .upload {
-  > div {
-    width: 100% !important;
-    height: 500px !important;
-  }
+  height: 500px;
+  padding-right: 0 !important;
+  padding-left: 0 !important;
 }
 
 .submitBtnContainer {
@@ -82,9 +81,7 @@
 //? ============== Phone Mode ============= ?//
 @media screen and (max-width: 500px) {
   .upload {
-    > div {
-      height: 300px !important;
-    }
+    height: 300px;
   }
   .mediaGalleryBox {
     padding: 0;
