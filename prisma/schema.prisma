@@ -89,22 +89,23 @@ model Genre {
 }
 
 model Media {
-  id            Int       @id @default(autoincrement())
-  filename      String    @db.Text
-  mimetype      String
-  url           String    @unique
-  medium_url    String?   @unique
-  title         String?   @db.Text
-  description   String?   @db.Text
-  created_at    DateTime  @default(now())
-  updated_at    DateTime? @updatedAt
-  user_id       User?     @relation("upload_by", references: [id], fields: [upload_by], onDelete: SetNull, onUpdate: Cascade)
-  upload_by     Int?
-  artwork       Artwork[]
-  artwork_cover Artwork[] @relation("cover")
-  profile       User?     @relation("profile")
-  signature     User?     @relation("signature")
-  banner        User[]    @relation("banner")
+  id                Int       @id @default(autoincrement())
+  filename          String    @db.Text
+  mimetype          String
+  url               String    @unique
+  medium_url        String?   @unique
+  title             String?   @db.Text
+  description       String?   @db.Text
+  created_at        DateTime  @default(now())
+  updated_at        DateTime? @updatedAt
+  user_id           User?     @relation("upload_by", references: [id], fields: [upload_by], onDelete: SetNull, onUpdate: Cascade)
+  upload_by         Int?
+  artwork           Artwork[]
+  artwork_cover     Artwork[] @relation("cover")
+  profile           User?     @relation("profile")
+  signature         User?     @relation("signature")
+  banner            User[]    @relation("banner")
+  article_thumbnail Article[] @relation("article_thumbnail")
 
   @@map("media")
 }
@@ -168,17 +169,19 @@ model Certificate {
 }
 
 model Article {
-  id         Int           @id @default(autoincrement())
-  title      String        @db.Text
-  content    String        @db.Text
-  status     ArticleStatus @default(DRAFT)
-  author     String        @db.Text
-  created_by User          @relation("article_created_by", fields: [created_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  created_id Int
-  created_at DateTime      @default(now())
-  updated_by User?         @relation("article_updated_by", fields: [updated_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  updated_id Int?
-  updated_at DateTime?     @updatedAt
+  id           Int           @id @default(autoincrement())
+  title        String        @db.Text
+  content      String        @db.Text
+  status       ArticleStatus @default(DRAFT)
+  author       String        @db.Text
+  thumbnail    Media         @relation("article_thumbnail", fields: [thumbnail_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  thumbnail_id Int
+  created_by   User          @relation("article_created_by", fields: [created_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  created_id   Int
+  created_at   DateTime      @default(now())
+  updated_by   User?         @relation("article_updated_by", fields: [updated_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  updated_id   Int?
+  updated_at   DateTime?     @updatedAt
 
   @@map("article")
 }
