@@ -18,6 +18,7 @@ import ThemesLayout from "themes/components/layout";
 import "antd/dist/antd.less";
 import "app/styles/dashboard.scss";
 import "themes/styles/theme.scss";
+import "react-quill/dist/quill.snow.css";
 
 function MyApp({ Component, pageProps: { session, ...pageProps }, router }) {
   // Handle useLayoutEffect
