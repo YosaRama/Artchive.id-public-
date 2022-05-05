@@ -196,7 +196,7 @@ model Article {
 model Exhibition {
   id                Int                     @id @default(autoincrement())
   title             String                  @db.Text
-  slug              String                  @db.Text
+  slug              String                  @unique
   description       String                  @db.Text
   short_description String?                 @db.Text
   start_date        DateTime
@@ -214,11 +214,11 @@ model Exhibition {
   artworks          ArtworksOnExhibitions[]
   artists           ArtistsOnExhibitions[]
   created_at        DateTime                @default(now())
-  created_by        User                    @relation("exhibition_created_by", fields: [created_by_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  created_by_id     Int
+  created_by_rel    User                    @relation("exhibition_created_by", fields: [created_by], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  created_by        Int
   updated_at        DateTime?               @updatedAt
-  updated_by        User?                   @relation("exhibition_updated_by", fields: [updated_by_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  updated_by_id     Int?
+  updated_by_rel    User?                   @relation("exhibition_updated_by", fields: [updated_by], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  updated_by        Int?
 
   @@map("exhibition")
 }
