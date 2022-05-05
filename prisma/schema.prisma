@@ -224,12 +224,13 @@ model Exhibition {
 }
 
 model ArtistsOnExhibitions {
-  id            Int        @id @default(autoincrement())
   exhibition    Exhibition @relation(fields: [exhibition_id], references: [id])
   exhibition_id Int
-  user          User?      @relation(fields: [user_id], references: [id])
-  user_id       Int?
+  user          User       @relation(fields: [user_id], references: [id])
+  user_id       Int
 
+  @@id([exhibition_id, user_id])
+  @@unique([exhibition_id, user_id])
   @@map("artists_on_exhibitions")
 }
 
