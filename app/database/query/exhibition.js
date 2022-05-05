@@ -162,10 +162,10 @@ export const UPDATE_EXHIBITION_ARTIST = ({ id, artistId }) => {
   });
 };
 
-export const UPDATE_EXHIBITION_ARTWORK = ({ id, artworkId }) => {
+export const UPDATE_EXHIBITION_ARTWORK = ({ id, artworkId, price }) => {
   return queryFrom.update({
     where: { id: +id },
-    data: { artwork: { connect: { id: artworkId } } },
+    data: { artworks: { create: { artwork_id: artworkId, exhibition_price: price } } },
   });
 };
 
@@ -189,7 +189,11 @@ export const DELETE_EXHIBITION_ARTIST = ({ id, artistId }) => {
 export const DELETE_EXHIBITION_ARTWORK = ({ id, artworkId }) => {
   return queryFrom.update({
     where: { id: +id },
-    data: { artworks: { disconnect: { id: artworkId } } },
+    data: {
+      artworks: {
+        delete: { exhibition_id_artwork_id: { artwork_id: +artworkId, exhibition_id: +id } },
+      },
+    },
   });
 };
 
