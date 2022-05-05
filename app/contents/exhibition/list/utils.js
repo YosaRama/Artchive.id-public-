@@ -27,6 +27,7 @@ function ExhibitionColumn({ onDelete }) {
       title: "Thumbnail",
       dataIndex: "thumbnail",
       key: "thumbnail",
+      width: 350,
       render: (t, r) => {
         return (
           <>

@@ -12,7 +12,7 @@ function AppContentsExhibitionCreate() {
   return (
     <>
       <AppContainerBox>
-        <PageHeader title="Create New Exhibitions" onBack={() => router.back} />
+        <PageHeader title="Create New Exhibitions" onBack={() => router.back()} />
         <AppContainerCard>
           <AppFormExhibitionDetails />
         </AppContainerCard>

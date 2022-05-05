@@ -14,6 +14,7 @@ import {
   PictureOutlined,
   PartitionOutlined,
   BookOutlined,
+  FlagOutlined,
 } from "@ant-design/icons";
 
 const AppSider = (props) => {
@@ -78,9 +79,15 @@ const AppSider = (props) => {
           </Menu.Item>
           {/* // * ====================================== * // */}
 
-          {/* //? ============== Genre Menu Section ============= ?// */}
+          {/* //? ============== Article Menu Section ============= ?// */}
           <Menu.Item key="/dashboard/articles" icon={<BookOutlined />}>
             <Link href="/dashboard/articles">Articles</Link>
+          </Menu.Item>
+          {/* // * ====================================== * // */}
+
+          {/* //? ============== Article Menu Section ============= ?// */}
+          <Menu.Item key="/dashboard/exhibitions" icon={<FlagOutlined />}>
+            <Link href="/dashboard/exhibitions">Exhibitions</Link>
           </Menu.Item>
           {/* // * ====================================== * // */}
         </Menu>
