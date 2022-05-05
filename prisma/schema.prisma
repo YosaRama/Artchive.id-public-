@@ -235,13 +235,14 @@ model ArtistsOnExhibitions {
 }
 
 model ArtworksOnExhibitions {
-  id               Int          @id @default(autoincrement())
   artwork_id       Int
-  artwork          Artwork[]
+  artwork          Artwork    @relation(fields: [artwork_id], references: [id])
   exhibition_id    Int
-  exhibition       Exhibition[]
-  exhibition_price String?      @db.Text
+  exhibition       Exhibition @relation(fields: [exhibition_id], references: [id])
+  exhibition_price String?    @db.Text
 
+  @@id([artwork_id, exhibition_id])
+  @@unique([exhibition_id, artwork_id])
   @@map("artworks_on_exhibitions")
 }
 
