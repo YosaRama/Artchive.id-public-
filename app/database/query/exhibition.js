@@ -24,6 +24,10 @@ export const GET_EXHIBITION = ({ page = 1, limit = 15 }) => {
     skip: skip ? +skip : undefined, // Disable by undefined
     take: limit != "all" ? +limit : undefined, // Disable by undefined
 
+    include: {
+      thumbnail: true,
+    },
+
     //? Handle order
     orderBy: {
       id: "desc",
