@@ -5,6 +5,13 @@ import { prisma } from "../connection";
 const queryFrom = prisma.exhibition;
 
 //? ============== OPTION QUERY ============= ?//
+export const CHECK_EXHIBITION_BY_SLUG = ({ slug }) => {
+  return queryFrom.findUnique({
+    where: {
+      slug: slug,
+    },
+  });
+};
 
 // * ====================================== * //
 
@@ -69,7 +76,7 @@ export const CREATE_EXHIBITION = (data) => {
       lat: lat,
       lng: lng,
       catalogue_link: catalogueLink,
-      created_by_id: createdBy,
+      created_by: createdBy,
       start_time: startTime,
       end_time: endTime,
       thumbnail_id: thumbnail,
@@ -81,28 +88,28 @@ export const CREATE_EXHIBITION = (data) => {
 
 //? ============== UPDATE QUERY ============= ?//
 
-export const UPDATE_EXHIBITION_DETAILS = ({
-  id,
-  title,
-  slug,
-  shortDescription,
-  description,
-  startDate,
-  endDate,
-  organizedBy,
-  address,
-  lat,
-  lng,
-  catalogueLink,
-  createdBy,
-  startTime,
-  endTime,
-  thumbnail,
-}) => {
+export const UPDATE_EXHIBITION_DETAILS = ({ id, data }) => {
+  const {
+    title,
+    shortDescription,
+    description,
+    startDate,
+    endDate,
+    organizedBy,
+    address,
+    lat,
+    lng,
+    catalogueLink,
+    createdBy,
+    startTime,
+    endTime,
+    thumbnail,
+    updatedBy,
+  } = data;
+
   return queryFrom.update({
     data: {
       title: title,
-      slug: slug,
       short_description: shortDescription,
       description: description,
       start_date: startDate,
@@ -116,6 +123,7 @@ export const UPDATE_EXHIBITION_DETAILS = ({
       start_time: startTime,
       end_time: endTime,
       thumbnail_id: thumbnail,
+      updated_by: updatedBy,
     },
     where: { id: +id },
   });
