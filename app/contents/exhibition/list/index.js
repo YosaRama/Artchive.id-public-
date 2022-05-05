@@ -2,6 +2,7 @@
 import { Empty, Table } from "antd";
 import { useState } from "react";
 import { v4 as uuid } from "uuid";
+import { useRouter } from "next/router";
 
 // Components
 import AppContainerBox from "app/components/container/box";
@@ -14,6 +15,7 @@ import ExhibitionColumn from "./utils";
 import { useExhibitions } from "app/hooks/exhibition";
 
 function AppContentsExhibitionList() {
+  const router = useRouter();
   //? ============== Handle Pagination ============= ?//
   const pageSize = 10;
   const [page, setPage] = useState();
@@ -46,16 +48,20 @@ function AppContentsExhibitionList() {
     <>
       <AppContainerBox>
         <AppContainerCard>
-          <AppAddButton>Add Exhibition</AppAddButton>
-          <Table
-            columns={columns}
-            rowKey={() => uuid()}
-            dataSource={exhibitionData}
-            loading={loading}
-            pagination={{ pageSize: pageSize, total: total }}
-            onChange={handlePagination}
-          />
-          <Empty />
+          <AppAddButton onCreate={() => router.push("/dashboard/exhibitions/create")}>
+            Add Exhibition
+          </AppAddButton>
+          {exhibitionData && (
+            <Table
+              columns={columns}
+              rowKey={() => uuid()}
+              dataSource={exhibitionData}
+              loading={loading}
+              pagination={{ pageSize: pageSize, total: total }}
+              onChange={handlePagination}
+            />
+          )}
+          {!exhibitionData && <Empty />}
         </AppContainerCard>
       </AppContainerBox>
     </>
