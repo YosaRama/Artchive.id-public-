@@ -93,9 +93,9 @@ export const CREATE_EXHIBITION = (data) => {
       lat: lat,
       lng: lng,
       catalogue_link: catalogueLink,
-      created_by: createdBy,
       start_time: startTime,
       end_time: endTime,
+      created_by: createdBy,
       thumbnail_id: thumbnail,
     },
   });

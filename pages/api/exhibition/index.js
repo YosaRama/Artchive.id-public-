@@ -72,7 +72,6 @@ apiHandler.post(async (req, res) => {
     // * ====================================== * //
 
     const result = await CREATE_EXHIBITION(data);
-    // const result = true;
     if (result) {
       res.status(200).json({
         success: true,

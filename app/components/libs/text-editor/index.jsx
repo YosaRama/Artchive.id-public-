@@ -41,7 +41,7 @@ function AppTextEditor(props) {
     <ReactQuill
       theme="snow"
       onChange={setValue}
-      value={value}
+      value={value || ""}
       formats={formats}
       modules={modules}
       placeholder={placeholder || ""}

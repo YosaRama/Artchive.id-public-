@@ -1,5 +1,6 @@
 // Libs
 import propTypes from "prop-types";
+import moment from "moment";
 import { Button, Col, DatePicker, Form, Input, Row, TimePicker } from "antd";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
@@ -11,32 +12,59 @@ import AppUploadImage from "../upload-images";
 // Styles
 import s from "./index.module.scss";
 
-function AppFormExhibitionDetails() {
+function AppFormExhibitionDetails(props) {
+  const { onSubmit } = props;
   //? ============== Handle Session ============= ?//
   const { data: session } = useSession();
   // * ====================================== * //
 
   //? ============== Handle Description ============= ?//
-  const [descriptionValue, setDescriptionValue] = useState();
+  const [descriptionValue, setDescriptionValue] = useState("");
   // * ====================================== * //
 
   //? ============== Handle Upload ============= ?//
   const [uploadImage, setUploadImage] = useState();
   // * ====================================== * //
 
+  //? ============== Handle Submission ============= ?//
+  const [form] = Form.useForm();
+  const handleSubmit = () => {
+    form.validateFields().then(async (value) => {
+      const submission = {
+        title: value.title,
+        shortDescription: value.short_description,
+        description: descriptionValue,
+        startDate: moment(value.exhibition_date[0]).format(),
+        endDate: moment(value.exhibition_date[1]).format(),
+        organizedBy: value.organized_by,
+        address: value.address,
+        lat: value.lat,
+        lng: value.lng,
+        catalogueLink: value.catalogue_link,
+        startTime: moment(value.exhibition_time[0]).format("hh:mm A"),
+        endTime: moment(value.exhibition_time[1]).format("hh:mm A"),
+        thumbnail: +uploadImage?.id,
+        createdBy: +session?.user?.id,
+        updatedBy: +session?.user?.id,
+      };
+      onSubmit(submission);
+    });
+  };
+  // * ====================================== * //
+
   return (
     <>
-      <Form layout="vertical">
-        <Col className={s.customFormContainer}>
-          <p>Exhibition Thumbnail</p>
-          <Col span={6} style={{ height: 300 }}>
+      <Form layout="vertical" form={form}>
+        <Form.Item name={"thumbnail"} label="Exhibition Thumbnail">
+          <Col span={6}>
             <AppUploadImage
               uploadImage={uploadImage}
               setUploadImage={setUploadImage}
+              imageHeight={300}
               userId={session?.user?.id}
             />
           </Col>
-        </Col>
+        </Form.Item>
         <Form.Item name={"title"} label="Exhibition Name">
           <Input placeholder="Input exhibition name here" />
         </Form.Item>
@@ -49,9 +77,6 @@ function AppFormExhibitionDetails() {
             <AppTextEditor value={descriptionValue} setValue={setDescriptionValue} />
           </Col>
         </Col>
-        <Form.Item name={"description"} label="Exhibition Description / Press Released">
-          <Input placeholder="Input full description of exhibition" />
-        </Form.Item>
         <Form.Item name={"exhibition_date"} label="Exhibition Date">
           <DatePicker.RangePicker />
         </Form.Item>
@@ -80,11 +105,17 @@ function AppFormExhibitionDetails() {
           </Col>
         </Row>
         <Col span={24} style={{ textAlign: "right" }}>
-          <Button type="primary">SAVE</Button>
+          <Button type="primary" onClick={handleSubmit}>
+            SAVE
+          </Button>
         </Col>
       </Form>
     </>
   );
 }
+
+AppFormExhibitionDetails.propTypes = {
+  onSubmit: propTypes.func,
+};
 
 export default AppFormExhibitionDetails;

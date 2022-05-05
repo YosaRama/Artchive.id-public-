@@ -34,26 +34,30 @@ function AppUploadImage(props) {
       {uploadImage ? (
         <>
           <Col>
-            <Image
-              alt=""
-              src={`${process.env.NEXT_PUBLIC_S3_URL}/${uploadImage?.url}`}
-              height={imageHeight ? imageHeight : ""}
-              style={{ objectFit: "cover" }}
-            />
-          </Col>
-          <Col style={{ textAlign: "center" }}>
-            <AppUploadButton onUpload={handleUpload} loading={uploadLoading}>
-              Change Image
-            </AppUploadButton>
+            <Col>
+              <Image
+                alt=""
+                src={`${process.env.NEXT_PUBLIC_S3_URL}/${uploadImage?.url}`}
+                height={imageHeight ? imageHeight : ""}
+                style={{ objectFit: "cover" }}
+              />
+            </Col>
+            <Col style={{ textAlign: "center" }}>
+              <AppUploadButton onUpload={handleUpload} loading={uploadLoading}>
+                Change Image
+              </AppUploadButton>
+            </Col>
           </Col>
         </>
       ) : (
-        <AppUploadBox
-          onUpload={handleUpload}
-          loading={uploadLoading}
-          className={s.uploadBox}
-          disabled={uploadDisabled}
-        />
+        <Col style={{ height: imageHeight ? imageHeight : "" }}>
+          <AppUploadBox
+            onUpload={handleUpload}
+            loading={uploadLoading}
+            className={s.uploadBox}
+            disabled={uploadDisabled}
+          />
+        </Col>
       )}
     </>
   );
