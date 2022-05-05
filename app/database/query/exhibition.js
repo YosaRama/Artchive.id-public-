@@ -177,6 +177,13 @@ export const DELETE_EXHIBITION = ({ id }) => {
   return queryFrom.delete({ where: { id: +id } });
 };
 
+export const DELETE_EXHIBITION_MEDIA_GALLERY = ({ id, mediaGallery }) => {
+  return queryFrom.update({
+    where: { id: +id },
+    data: { media_gallery: { disconnect: { id: mediaGallery } } },
+  });
+};
+
 export const DELETE_EXHIBITION_ARTIST = ({ id, artistId }) => {
   return queryFrom.update({
     where: { id: +id },
