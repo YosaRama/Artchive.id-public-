@@ -151,7 +151,7 @@ model Collection {
   id         Int       @id @default(autoincrement())
   collector  User      @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   user_id    Int
-  artwork    Artwork   @relation(fields: [artwork_id], references: [id], onDelete: Cascade, onUpdate: Cascade) //TODO: Check one-to-one relation
+  artwork    Artwork   @relation(fields: [artwork_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   artwork_id Int       @unique //TODO : Check one-to-one relation
   order      Order     @relation(fields: [order_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   order_id   Int
@@ -224,9 +224,9 @@ model Exhibition {
 }
 
 model ArtistsOnExhibitions {
-  exhibition    Exhibition @relation(fields: [exhibition_id], references: [id])
+  exhibition    Exhibition @relation(fields: [exhibition_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   exhibition_id Int
-  user          User       @relation(fields: [user_id], references: [id])
+  user          User       @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   user_id       Int
 
   @@id([exhibition_id, user_id])
@@ -236,9 +236,9 @@ model ArtistsOnExhibitions {
 
 model ArtworksOnExhibitions {
   artwork_id       Int
-  artwork          Artwork    @relation(fields: [artwork_id], references: [id])
+  artwork          Artwork    @relation(fields: [artwork_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   exhibition_id    Int
-  exhibition       Exhibition @relation(fields: [exhibition_id], references: [id])
+  exhibition       Exhibition @relation(fields: [exhibition_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   exhibition_price String?    @db.Text
 
   @@id([artwork_id, exhibition_id])
