@@ -38,6 +38,19 @@ export const GET_TOTAL_EXHIBITION = () => {
 export const GET_EXHIBITION_BY_ID = ({ id }) => {
   return queryFrom.findUnique({
     where: { id: +id },
+    include: {
+      artists: {
+        select: {
+          user: {
+            select: {
+              full_name: true,
+              slug: true,
+              profile: true,
+            },
+          },
+        },
+      },
+    },
   });
 };
 
@@ -143,7 +156,10 @@ export const UPDATE_EXHIBITION_MEDIA_GALLERY = ({ id, mediaGallery }) => {
 };
 
 export const UPDATE_EXHIBITION_ARTIST = ({ id, artistId }) => {
-  return queryFrom.update({ where: { id: +id }, data: { artists: { connect: { id: artistId } } } });
+  return queryFrom.update({
+    where: { id: +id },
+    data: { artists: { create: { user_id: artistId } } },
+  });
 };
 
 export const UPDATE_EXHIBITION_ARTWORK = ({ id, artworkId }) => {
@@ -164,7 +180,9 @@ export const DELETE_EXHIBITION = ({ id }) => {
 export const DELETE_EXHIBITION_ARTIST = ({ id, artistId }) => {
   return queryFrom.update({
     where: { id: +id },
-    data: { artists: { disconnect: { id: artistId } } },
+    data: {
+      artists: { delete: { exhibition_id_user_id: { user_id: artistId, exhibition_id: +id } } },
+    },
   });
 };
 

@@ -19,11 +19,19 @@ apiHandler.get(async (req, res) => {
   const id = req.query.id;
   try {
     const result = await GET_EXHIBITION_BY_ID({ id });
+
+    //? ============== Handle Data Parse ============= ?//
+    const data = {
+      ...result,
+      artists: result.artists.map((item) => item.user),
+    };
+    // * ====================================== * //
+
     if (result) {
       res.status(200).json({
         success: true,
         message: `Successfully get single ${messageHead} - ${id}`,
-        data: result,
+        data: data,
       });
     } else {
       res.status(200).json({
