@@ -224,11 +224,11 @@ model Exhibition {
 }
 
 model ArtistsOnExhibitions {
-  id            Int          @id @default(autoincrement())
+  id            Int        @id @default(autoincrement())
+  exhibition    Exhibition @relation(fields: [exhibition_id], references: [id])
   exhibition_id Int
-  exhibition    Exhibition[]
+  user          User?      @relation(fields: [user_id], references: [id])
   user_id       Int?
-  user          User[]
 
   @@map("artists_on_exhibitions")
 }
