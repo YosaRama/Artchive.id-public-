@@ -264,6 +264,7 @@ enum ArtStatus {
   DRAFT
   PUBLISH
   EDIT
+  EXHIBITION
 }
 
 enum Dimension {
