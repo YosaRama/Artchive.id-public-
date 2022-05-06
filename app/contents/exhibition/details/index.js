@@ -6,14 +6,30 @@ import { useState } from "react";
 // Components
 import AppContainerBox from "app/components/container/box";
 import AppContainerCard from "app/components/container/card";
+
+// Contents
 import AppContentsExhibitionDetailsNavbar from "./navbar";
 import AppContentsExhibitionDetailsGeneral from "./general";
+import AppContentsExhibitionDetailsArtwork from "./artwork";
+import AppContentsExhibitionDetailsArtist from "./artist";
+
+// Data Hook
+import { useExhibition } from "app/hooks/exhibition";
 
 function AppContentsExhibitionDetails() {
   const router = useRouter();
 
   //? ============== Handle Menu ============= ?//
   const [currentMenu, setCurrentMenu] = useState(1);
+  // * ====================================== * //
+
+  //? ============== Exhibition Hook ============= ?//
+  const {
+    data: exhibitionData,
+    onEdit,
+    onAddArtist,
+    onDeleteArtist,
+  } = useExhibition({ singleId: router?.query?.id || "" });
   // * ====================================== * //
 
   return (
@@ -41,7 +57,20 @@ function AppContentsExhibitionDetails() {
                   : ""
               }
             >
-              {currentMenu == 1 && <AppContentsExhibitionDetailsGeneral />}
+              {currentMenu == 1 && (
+                <AppContentsExhibitionDetailsGeneral
+                  exhibitionData={exhibitionData}
+                  onEdit={onEdit}
+                />
+              )}
+              {currentMenu == 2 && (
+                <AppContentsExhibitionDetailsArtist
+                  artistData={exhibitionData?.artists || []}
+                  onAddArtist={onAddArtist}
+                  onDeleteArtist={onDeleteArtist}
+                />
+              )}
+              {currentMenu == 3 && <AppContentsExhibitionDetailsArtwork />}
             </AppContainerCard>
           </Col>
         </Row>

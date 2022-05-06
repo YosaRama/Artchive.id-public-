@@ -1,18 +1,13 @@
 // Libs
-import { PageHeader } from "antd";
+import propTypes from "prop-types";
 import { useRouter } from "next/router";
 
 // Components
 import AppFormExhibitionDetails from "app/components/libs/form-exhibitions-details";
 
-// Data Hook
-import { useExhibition } from "app/hooks/exhibition";
-
-function AppContentsExhibitionDetailsGeneral() {
+function AppContentsExhibitionDetailsGeneral(props) {
+  const { exhibitionData, onEdit } = props;
   const router = useRouter();
-  //? ============== Exhibition Hook ============= ?//
-  const { data: exhibitionData, onEdit } = useExhibition({ singleId: router?.query?.id || "" });
-  // * ====================================== * //
 
   return (
     <>
@@ -22,5 +17,10 @@ function AppContentsExhibitionDetailsGeneral() {
     </>
   );
 }
+
+AppContentsExhibitionDetailsGeneral.propTypes = {
+  exhibitionData: propTypes.any,
+  onEdit: propTypes.func,
+};
 
 export default AppContentsExhibitionDetailsGeneral;

@@ -37,8 +37,6 @@ function AppFormExhibitionDetails(props) {
     ],
   };
 
-  console.log(initialValues);
-
   useEffect(() => {
     if (isEdit) {
       setUploadImage({ id: initialData?.thumbnail?.id, url: initialData?.thumbnail?.url });

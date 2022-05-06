@@ -48,6 +48,7 @@ export const GET_EXHIBITION_BY_ID = ({ id }) => {
         select: {
           user: {
             select: {
+              id: true,
               full_name: true,
               slug: true,
               profile: true,
@@ -191,7 +192,7 @@ export const DELETE_EXHIBITION_ARTIST = ({ id, artistId }) => {
   return queryFrom.update({
     where: { id: +id },
     data: {
-      artists: { delete: { exhibition_id_user_id: { user_id: artistId, exhibition_id: +id } } },
+      artists: { delete: { exhibition_id_user_id: { user_id: +artistId, exhibition_id: +id } } },
     },
   });
 };

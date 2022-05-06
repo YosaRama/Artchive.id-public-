@@ -179,7 +179,7 @@ export const useExhibition = ({ singleId }) => {
   );
 
   //? Edit Artist on Exhibition Hook
-  const onAddArtist = useCallback(() => {
+  const onAddArtist = useCallback(
     async (data) => {
       try {
         setLoading(true);
@@ -209,15 +209,16 @@ export const useExhibition = ({ singleId }) => {
       } finally {
         setLoading(false);
       }
-    };
-  }, [mutate, pathKeys]);
+    },
+    [mutate, pathKeys]
+  );
 
   //? Delete Artist on Exhibition Hook
-  const onDeleteArtist = useCallback(() => {
+  const onDeleteArtist = useCallback(
     async (data) => {
       try {
         setLoading(true);
-        const { data: res } = await api.delete(`${pathKeys}/artist`, data);
+        const { data: res } = await api.delete(`${pathKeys}/artist?artistId=${data}`);
         if (res.success) {
           mutate();
           SuccessNotification({
@@ -243,11 +244,12 @@ export const useExhibition = ({ singleId }) => {
       } finally {
         setLoading(false);
       }
-    };
-  }, [mutate, pathKeys]);
+    },
+    [mutate, pathKeys]
+  );
 
   //? Edit Artwork on Exhibition Hook
-  const onAddArtwork = useCallback(() => {
+  const onAddArtwork = useCallback(
     async (data) => {
       try {
         setLoading(true);
@@ -277,15 +279,16 @@ export const useExhibition = ({ singleId }) => {
       } finally {
         setLoading(false);
       }
-    };
-  }, [mutate, pathKeys]);
+    },
+    [mutate, pathKeys]
+  );
 
   //? Edit Artwork on Exhibition Hook
-  const onDeleteArtwork = useCallback(() => {
-    async (data) => {
+  const onDeleteArtwork = useCallback(
+    async (id) => {
       try {
         setLoading(true);
-        const { data: res } = await api.delete(`${pathKeys}/artwork`, data);
+        const { data: res } = await api.delete(`${pathKeys}/artwork?artworkId=${id}`);
         if (res.success) {
           mutate();
           SuccessNotification({
@@ -311,11 +314,12 @@ export const useExhibition = ({ singleId }) => {
       } finally {
         setLoading(false);
       }
-    };
-  }, [mutate, pathKeys]);
+    },
+    [mutate, pathKeys]
+  );
 
   //? Edit Media Gallery on Exhibition Hook
-  const onAddGallery = useCallback(() => {
+  const onAddGallery = useCallback(
     async (data) => {
       try {
         setLoading(true);
@@ -345,15 +349,16 @@ export const useExhibition = ({ singleId }) => {
       } finally {
         setLoading(false);
       }
-    };
-  }, [mutate, pathKeys]);
+    },
+    [mutate, pathKeys]
+  );
 
   //? Delete Media Gallery on Exhibition Hook
-  const onDeleteGallery = useCallback(() => {
-    async (data) => {
+  const onDeleteGallery = useCallback(
+    async (id) => {
       try {
         setLoading(true);
-        const { data: res } = await api.put(`${pathKeys}/media-gallery`, data);
+        const { data: res } = await api.put(`${pathKeys}/media-gallery?galleryId=${id}`);
         if (res.success) {
           mutate();
           SuccessNotification({
@@ -379,8 +384,9 @@ export const useExhibition = ({ singleId }) => {
       } finally {
         setLoading(false);
       }
-    };
-  }, [mutate, pathKeys]);
+    },
+    [mutate, pathKeys]
+  );
 
   return {
     data: results,

@@ -34,8 +34,7 @@ apiHandler.put(async (req, res) => {
 });
 
 apiHandler.delete(async (req, res) => {
-  const id = req.query.id;
-  const { artistId } = req.body;
+  const { id, artistId } = req.query;
 
   try {
     const result = await DELETE_EXHIBITION_ARTIST({ id, artistId: artistId });
