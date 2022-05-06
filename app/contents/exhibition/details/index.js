@@ -37,7 +37,7 @@ function AppContentsExhibitionDetails() {
       <AppContainerBox>
         <PageHeader title="Exhibition Details" onBack={() => router.back()} />
         <Row gutter={16}>
-          <Col span={4}>
+          <Col span={6}>
             <AppContainerCard>
               <AppContentsExhibitionDetailsNavbar
                 currentMenu={currentMenu}
@@ -45,7 +45,7 @@ function AppContentsExhibitionDetails() {
               />
             </AppContainerCard>
           </Col>
-          <Col span={20}>
+          <Col span={18}>
             <AppContainerCard
               title={
                 currentMenu == 1

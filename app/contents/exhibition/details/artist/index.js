@@ -1,7 +1,7 @@
 // Libs
 import propTypes from "prop-types";
 import { useState } from "react";
-import { Button, Col, Empty, Row } from "antd";
+import { Button, Col, Divider, Empty, Row } from "antd";
 
 // Components
 import AppCardExhibitionArtist from "app/components/libs/card-exhibition-artist";
@@ -39,12 +39,11 @@ function AppContentsExhibitionDetailsArtist(props) {
           </Col>
         </Row>
       </Col>
-      <h1>ARTIST LIST</h1>
       {artistData.length != 0 ? (
         artistData.map((item, index) => {
           return (
             <Row key={index} gutter={16} align="middle">
-              <Col span={10} style={{ marginBottom: 10 }}>
+              <Col span={20} style={{ marginBottom: 10 }}>
                 <AppCardExhibitionArtist
                   name={item?.full_name}
                   city={item?.city}
@@ -63,6 +62,7 @@ function AppContentsExhibitionDetailsArtist(props) {
                   Remove
                 </a>
               </Col>
+              <Divider />
             </Row>
           );
         })

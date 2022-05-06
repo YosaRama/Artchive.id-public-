@@ -52,6 +52,7 @@ export const GET_EXHIBITION_BY_ID = ({ id }) => {
               full_name: true,
               slug: true,
               profile: true,
+              city: true,
             },
           },
         },
