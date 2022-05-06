@@ -2,6 +2,7 @@
 import { getSession } from "next-auth/react";
 
 // Contents
+import AppContentsExhibitionDetails from "app/contents/exhibition/details";
 
 // Helpers
 import dashboardSession from "app/helpers/dashboardSession";
@@ -9,7 +10,7 @@ import dashboardSession from "app/helpers/dashboardSession";
 function PageDashboardExhibitionDetails() {
   return (
     <>
-      <></>
+      <AppContentsExhibitionDetails />
     </>
   );
 }

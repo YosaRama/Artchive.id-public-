@@ -43,6 +43,7 @@ export const GET_EXHIBITION_BY_ID = ({ id }) => {
   return queryFrom.findUnique({
     where: { id: +id },
     include: {
+      thumbnail: true,
       artists: {
         select: {
           user: {
@@ -117,7 +118,6 @@ export const UPDATE_EXHIBITION_DETAILS = ({ id, data }) => {
     lat,
     lng,
     catalogueLink,
-    createdBy,
     startTime,
     endTime,
     thumbnail,
@@ -136,7 +136,6 @@ export const UPDATE_EXHIBITION_DETAILS = ({ id, data }) => {
       lat: lat,
       lng: lng,
       catalogue_link: catalogueLink,
-      created_by_id: createdBy,
       start_time: startTime,
       end_time: endTime,
       thumbnail_id: thumbnail,

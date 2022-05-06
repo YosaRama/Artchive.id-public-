@@ -3,7 +3,7 @@ import propTypes from "prop-types";
 import moment from "moment";
 import { Button, Col, DatePicker, Form, Input, Row, TimePicker } from "antd";
 import { useSession } from "next-auth/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // Components
 import AppTextEditor from "../text-editor";
@@ -13,7 +13,7 @@ import AppUploadImage from "../upload-images";
 import s from "./index.module.scss";
 
 function AppFormExhibitionDetails(props) {
-  const { onSubmit } = props;
+  const { onSubmit, isEdit, initialData } = props;
   //? ============== Handle Session ============= ?//
   const { data: session } = useSession();
   // * ====================================== * //
@@ -24,6 +24,27 @@ function AppFormExhibitionDetails(props) {
 
   //? ============== Handle Upload ============= ?//
   const [uploadImage, setUploadImage] = useState();
+  // * ====================================== * //
+
+  //? ============== Handle Initial Data ============= ?//
+  //? Data Parse
+  const initialValues = {
+    ...initialData,
+    exhibition_date: [moment(initialData?.start_date), moment(initialData?.end_date)],
+    exhibition_time: [
+      moment(`2022-02-02 ${initialData?.start_time}`),
+      moment(`2022-02-02 ${initialData?.end_time}`),
+    ],
+  };
+
+  console.log(initialValues);
+
+  useEffect(() => {
+    if (isEdit) {
+      setUploadImage({ id: initialData?.thumbnail?.id, url: initialData?.thumbnail?.url });
+      setDescriptionValue(initialData?.description);
+    }
+  }, []);
   // * ====================================== * //
 
   //? ============== Handle Submission ============= ?//
@@ -54,7 +75,7 @@ function AppFormExhibitionDetails(props) {
 
   return (
     <>
-      <Form layout="vertical" form={form}>
+      <Form layout="vertical" form={form} initialValues={isEdit ? initialValues : {}}>
         <Form.Item name={"thumbnail"} label="Exhibition Thumbnail">
           <Col span={6}>
             <AppUploadImage
@@ -71,9 +92,9 @@ function AppFormExhibitionDetails(props) {
         <Form.Item name={"short_description"} label="Exhibition Summary">
           <Input placeholder="Input short description of exhibition" />
         </Form.Item>
-        <Col className={s.customFormContainer}>
+        <Col className={s.customFormContainer} style={{ padding: 0 }}>
           <p>Exhibition Description / Press Released</p>
-          <Col className={s.editor}>
+          <Col className={s.editor} style={{ padding: 0 }}>
             <AppTextEditor value={descriptionValue} setValue={setDescriptionValue} />
           </Col>
         </Col>
@@ -116,6 +137,8 @@ function AppFormExhibitionDetails(props) {
 
 AppFormExhibitionDetails.propTypes = {
   onSubmit: propTypes.func,
+  isEdit: propTypes.bool,
+  initialData: propTypes.any,
 };
 
 export default AppFormExhibitionDetails;
