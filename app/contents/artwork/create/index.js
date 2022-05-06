@@ -94,13 +94,14 @@ function AppContentsArtworkCreate() {
       <AppContainerBox>
         <AppContainerCard title="CREATE NEW ARTWORK">
           <Row gutter={[32, 0]}>
-            <Col span={10} style={{ height: 300 }}>
+            <Col span={10}>
               <AppUploadImage
                 uploadImage={uploadImage}
                 setUploadImage={setUploadImage}
                 uploadDisabled={!artistSelected}
                 userId={artistSelected}
                 artworkId={lastArtworkId}
+                imageHeight={300}
               />
               {!artistSelected && (
                 <p style={{ margin: "10px 0 0", fontStyle: "italic", opacity: "0.5" }}>
