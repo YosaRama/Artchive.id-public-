@@ -8,11 +8,12 @@ import priceFormatter from "app/helpers/priceFormatter";
 
 // Components
 import AppCardFinalPrice from "../card-final-price";
+import AppFormPrice from "../form-price";
 
 function AppFormArtworkPrice(props) {
   const { markupPrice, setMarkupPrice } = props;
+
   //? ============== Handle Create Markup Price ============= ?//
-  //   const [markupPrice, setMarkupPrice] = useState(0);
   const handleCreateMarkupPrice = (value) => {
     setMarkupPrice(Math.round(value * 1.4));
   };
@@ -20,25 +21,7 @@ function AppFormArtworkPrice(props) {
 
   return (
     <>
-      <Form.Item
-        name="price"
-        label="Price"
-        rules={[
-          {
-            required: true,
-            message: "Please input price for this artwork!",
-          },
-        ]}
-      >
-        <InputNumber
-          style={{ width: "100%" }}
-          placeholder="Input artwork price"
-          // addonBefore="Rp"
-          formatter={(value) => priceFormatter(`Rp ${value}`, ",")}
-          parser={(value) => value.replace(/Rp\s?|(,*)/g, "")}
-          onChange={handleCreateMarkupPrice}
-        />
-      </Form.Item>
+      <AppFormPrice onChange={handleCreateMarkupPrice} />
       <AppCardFinalPrice markupPrice={markupPrice} />
       <Form.Item name={"markupPrice"} hidden>
         <Input value={markupPrice} />

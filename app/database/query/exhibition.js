@@ -57,6 +57,21 @@ export const GET_EXHIBITION_BY_ID = ({ id }) => {
           },
         },
       },
+      artworks: {
+        select: {
+          artwork: {
+            include: {
+              media_cover: true,
+              artist: {
+                select: {
+                  full_name: true,
+                  profile: true,
+                },
+              },
+            },
+          },
+        },
+      },
     },
   });
 };

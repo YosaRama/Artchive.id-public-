@@ -29,6 +29,8 @@ function AppContentsExhibitionDetails() {
     onEdit,
     onAddArtist,
     onDeleteArtist,
+    onAddArtwork,
+    onDeleteArtwork,
   } = useExhibition({ singleId: router?.query?.id || "" });
   // * ====================================== * //
 
@@ -70,7 +72,13 @@ function AppContentsExhibitionDetails() {
                   onDeleteArtist={onDeleteArtist}
                 />
               )}
-              {currentMenu == 3 && <AppContentsExhibitionDetailsArtwork />}
+              {currentMenu == 3 && (
+                <AppContentsExhibitionDetailsArtwork
+                  artworkData={exhibitionData?.artworks}
+                  onAddArtwork={onAddArtwork}
+                  onDeleteArtwork={onDeleteArtwork}
+                />
+              )}
             </AppContainerCard>
           </Col>
         </Row>

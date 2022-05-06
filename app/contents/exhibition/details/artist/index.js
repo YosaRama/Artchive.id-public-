@@ -11,14 +11,14 @@ import deleteConfirmModal from "app/components/utils/delete-modal-confirm";
 function AppContentsExhibitionDetailsArtist(props) {
   const { artistData, onAddArtist, onDeleteArtist } = props;
 
-  //? ============== Add Artist ============= ?//
+  //? ============== Handle Add Artist ============= ?//
   const [artistSearchResult, setArtistSearchResult] = useState("");
   const handleAddArtist = () => {
     onAddArtist({ artistId: +artistSearchResult });
   };
   // * ====================================== * //
 
-  //? ============== Delete Artist ============= ?//
+  //? ============== Handle Delete Artist ============= ?//
   const handleDeleteArtist = (artistId) => {
     onDeleteArtist(artistId);
   };
@@ -39,8 +39,8 @@ function AppContentsExhibitionDetailsArtist(props) {
           </Col>
         </Row>
       </Col>
-      {artistData.length != 0 ? (
-        artistData.map((item, index) => {
+      {artistData?.length != 0 ? (
+        artistData?.map((item, index) => {
           return (
             <Row key={index} gutter={16} align="middle">
               <Col span={20} style={{ marginBottom: 10 }}>

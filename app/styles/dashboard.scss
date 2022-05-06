@@ -100,6 +100,16 @@
     width: 100% !important;
     height: 100% !important;
   }
+
+  //? Artwork Exhibition Selection
+  .AppArtworkExhibitionSelect {
+    .ant-select-selector {
+      height: 100%;
+    }
+    .ant-row-middle {
+      height: 100%;
+    }
+  }
 }
 
 //* =========================================== *//

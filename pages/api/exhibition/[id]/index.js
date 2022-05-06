@@ -24,6 +24,7 @@ apiHandler.get(async (req, res) => {
     const data = {
       ...result,
       artists: result.artists.map((item) => item.user),
+      artworks: result.artworks.map((item) => item.artwork),
     };
     // * ====================================== * //
 
