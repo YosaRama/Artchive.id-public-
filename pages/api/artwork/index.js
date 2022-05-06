@@ -16,8 +16,17 @@ const messageHead = "artwork";
 
 // GET HANDLER
 apiHandler.get(async (req, res) => {
-  const { page, limit, client, artistId, excludeSlug, excludeArtist, genreId, artistName } =
-    req.query;
+  const {
+    page,
+    limit,
+    client,
+    artistId,
+    excludeSlug,
+    excludeArtist,
+    genreId,
+    artistName,
+    isExhibition,
+  } = req.query;
   try {
     const result = await GET_ARTWORK({
       page,
@@ -28,6 +37,7 @@ apiHandler.get(async (req, res) => {
       excludeArtist,
       genreId,
       artistName,
+      isExhibition,
     });
     const total = await GET_TOTAL_ARTWORK({
       client,
@@ -36,6 +46,7 @@ apiHandler.get(async (req, res) => {
       excludeArtist,
       genreId,
       artistName,
+      isExhibition,
     });
     if (result) {
       res.status(200).json({

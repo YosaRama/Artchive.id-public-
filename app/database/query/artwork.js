@@ -24,6 +24,7 @@ export const GET_ARTWORK = ({
   excludeArtist,
   genreId,
   artistName,
+  isExhibition,
 }) => {
   // Handle Pagination
   const skip = limit != "all" ? (+page - 1) * +limit : undefined;
@@ -59,7 +60,10 @@ export const GET_ARTWORK = ({
     },
     where: {
       AND: {
-        NOT: [{ approve: client == "true" ? false : {} }],
+        NOT: [
+          { approve: client == "true" ? false : {} },
+          { status: client == "true" ? "EXHIBITION" : {} },
+        ],
         OR: genreList
           ? genreList.map((item) => {
               return {
@@ -75,6 +79,7 @@ export const GET_ARTWORK = ({
         artist: {
           full_name: artistName ? { contains: artistName } : {},
         },
+        status: isExhibition == "true" ? "EXHIBITION" : {},
       },
       NOT: [
         { slug: excludeSlug ? excludeSlug : {} },
@@ -97,6 +102,7 @@ export const GET_TOTAL_ARTWORK = ({
   excludeArtist,
   genreId,
   artistName,
+  isExhibition,
 }) => {
   // Handle Multiple Genre
   const genreList = genreId && genreId.split(",");
@@ -104,7 +110,10 @@ export const GET_TOTAL_ARTWORK = ({
   return prisma.artwork.count({
     where: {
       AND: {
-        NOT: [{ approve: client == "true" ? false : {} }],
+        NOT: [
+          { approve: client == "true" ? false : {} },
+          { status: client == "true" ? "EXHIBITION" : {} },
+        ],
         OR: genreList
           ? genreList.map((item) => {
               return {
@@ -120,6 +129,7 @@ export const GET_TOTAL_ARTWORK = ({
         artist: {
           full_name: artistName ? { contains: artistName } : {},
         },
+        status: isExhibition == "true" ? "EXHIBITION" : {},
       },
       NOT: [
         { slug: excludeSlug ? excludeSlug : {} },

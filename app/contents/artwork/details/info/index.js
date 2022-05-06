@@ -169,6 +169,7 @@ function AppContentsArtworkDetailsInfo() {
                     <>
                       <Option value="PUBLISH">Publish</Option>
                       <Option value="SOLD">Sold</Option>
+                      <Option value="EXHIBITION">In Exhibition</Option>
                     </>
                   ) : (
                     <>
