@@ -31,7 +31,9 @@ function ThemesArtworkCard(props) {
     <>
       <Badge.Ribbon
         text={artworkStatus == "SOLD" ? "SOLD" : "Waiting Approval"}
-        className={`artwork-ribbon ${artworkStatus == "PUBLISH" && "hide"}`}
+        className={`artwork-ribbon ${
+          (artworkStatus == "PUBLISH" || artworkStatus == "EXHIBITION") && "hide"
+        }`}
       >
         <Card
           className={s.card + " cardWithoutPadding"}
@@ -42,7 +44,11 @@ function ThemesArtworkCard(props) {
             <img
               src={imgSrc}
               alt=""
-              className={artworkStatus != "PUBLISH" ? `artwork-not-publish` : ""}
+              className={
+                artworkStatus == "PUBLISH" || artworkStatus == "EXHIBITION"
+                  ? ``
+                  : "artwork-not-publish"
+              }
             />
           </Col>
           <Col className={s.artworkDetails}>
