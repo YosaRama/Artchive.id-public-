@@ -20,15 +20,15 @@ function ThemesContentsHomepage(props) {
   const router = useRouter();
   return (
     <>
-      {/* Banner Section */}
+      {/* //? ============== Banner Section ============= ?// */}
       <ThemesBanner imgSrc="/images/banner-homepage.jpg">
         <div className={s.searchBox}>
           <ThemesHomepageSearchBox />
         </div>
       </ThemesBanner>
-      {/* ============================ */}
+      {/* // * ====================================== * // */}
 
-      {/* Artwork Section */}
+      {/* //? ============== Artwork Section ============= ?// */}
       <ThemesContainerMain sectionclass={s.sectionContainer}>
         {artworkData && (
           <section className={s.section}>
@@ -58,17 +58,17 @@ function ThemesContentsHomepage(props) {
             </Row>
           </section>
         )}
-        {/* ============================ */}
+        {/* // * ====================================== * // */}
 
-        {/* Divider Section */}
+        {/* //? ============== Divider Section ============= ?// */}
         <section className={s.divider}>
           <ThemesDividerWithButton onClick={() => router.push("/artwork")}>
             SEE MORE
           </ThemesDividerWithButton>
         </section>
-        {/* ============================ */}
+        {/* // * ====================================== * // */}
 
-        {/* Artist Section */}
+        {/* //? ============== Artist Section ============= ?// */}
         {artistData && (
           <section className={s.section}>
             <ThemesHeadline title="Our New Artist" className={s.pageTitle} />
@@ -94,15 +94,15 @@ function ThemesContentsHomepage(props) {
             </Row>
           </section>
         )}
-        {/* ============================ */}
+        {/* // * ====================================== * // */}
 
-        {/* Divider Section */}
+        {/* //? ============== Divider Section ============= ?// */}
         <section className={s.divider}>
           <ThemesDividerWithButton onClick={() => router.push("/artist")}>
             SEE MORE
           </ThemesDividerWithButton>
         </section>
-        {/* ============================ */}
+        {/* // * ====================================== * // */}
       </ThemesContainerMain>
     </>
   );

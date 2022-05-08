@@ -1,0 +1,139 @@
+.detailsImageContainer {
+  height: 150px;
+  position: relative;
+  .detailsImage {
+    height: 100%;
+  }
+  img {
+    object-fit: cover;
+  }
+}
+
+.detailsCard {
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.25);
+  h1 {
+    margin-bottom: 0;
+  }
+  p {
+    margin-bottom: 0;
+  }
+  span {
+    margin-bottom: 0;
+  }
+}
+
+.artworkDetailsTitle {
+  margin-bottom: 20px;
+  h1 {
+    font-size: 32px;
+  }
+}
+
+.artworkDetailsText {
+  margin-bottom: 20px;
+  font-size: 16px;
+  p {
+  }
+}
+
+.artworkDetailsDescription {
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.artworkDetailsPrice {
+  margin-bottom: 50px;
+  font-size: 16px;
+  p {
+    font-style: italic;
+  }
+}
+
+.cardButton {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  span {
+    display: flex;
+    align-items: center;
+    svg {
+      path {
+        fill: #ffffff;
+        transition: all 0.3s ease;
+      }
+      width: 25px;
+      height: auto;
+      fill: #ffffff;
+      transition: all 0.3s ease;
+    }
+  }
+  &:hover {
+    svg {
+      path {
+        fill: #e5890a;
+      }
+      fill: #e5890a;
+    }
+  }
+}
+
+.artistName {
+  color: #140c01;
+}
+
+//? ============== Tablet Landscape Mode ============= ?//
+@media screen and (max-width: 1024px) {
+  .artworkDetailsTitle {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+  .artworkDetailsText {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+  .artworkDetailsPrice {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+  .artworkDetailsDescription {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+  .cardBtnContainer {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+  .detailsImageSection {
+    flex-wrap: nowrap;
+    overflow: auto;
+  }
+  .detailsImageContainer {
+    height: 100px;
+  }
+}
+// * ====================================== * //
+
+//? ============== Tablet Portrait Mode ============= ?//
+@media screen and (max-width: 768px) {
+  .detailsImageSection {
+    margin-bottom: 30px;
+  }
+  .detailsImageContainer {
+    height: 150px;
+  }
+}
+// * ====================================== * //
+
+//? ============== Tablet Portrait Mode ============= ?//
+@media screen and (max-width: 500px) {
+  .detailsImageContainer {
+    height: 100px;
+  }
+  .cardButton {
+    svg {
+      width: 20px;
+    }
+    font-size: 14px !important;
+  }
+}
+// * ====================================== * //

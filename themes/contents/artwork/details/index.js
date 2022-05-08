@@ -3,26 +3,19 @@
 // Libs
 import propTypes from "prop-types";
 import { useRouter } from "next/router";
-import { Card, Col, Image, Row } from "antd";
+import { Col, Row } from "antd";
+
+// Contents
+import ThemesContentsArtworkDetailsInformation from "./information";
 
 // Components
 import ThemesContainerMain from "themes/components/container/main";
 import ThemesArtworkWithFrame from "themes/components/libs/artwork-with-frame";
-import ThemesButton from "themes/components/libs/button";
 import ThemesDividerWithButton from "themes/components/libs/divider-with-button";
 import ThemesHeadline from "themes/components/libs/headline";
-import ThemesShareSocial from "themes/components/libs/share-social";
 
 // Data Hook
 import { useArtworks } from "app/hooks/artwork";
-
-// Helpers
-import priceFormatter from "app/helpers/priceFormatter";
-import { stringCapitalize } from "app/helpers/capitalize";
-
-// Icons
-// import { CartIcon } from "public/icons/cart-icon";
-import { WhatsappIcon } from "public/icons/whatsapp-icon";
 
 // Styles
 import s from "./index.module.scss";
@@ -49,105 +42,7 @@ function ThemesContentsArtworkDetails(props) {
     <>
       <section style={{ margin: "50px 0" }}>
         <ThemesContainerMain>
-          <Row gutter={[64, 0]}>
-            <Col lg={{ span: 12 }} xs={{ span: 24 }}>
-              <Col span={24} style={{ paddingLeft: 0, paddingRight: 0, marginBottom: 10 }}>
-                <Image
-                  src={`${process.env.NEXT_PUBLIC_S3_URL}/${artworkData?.media_cover?.url}`}
-                  alt=""
-                />
-              </Col>
-              <Row gutter={[16, 0]} className={s.detailsImageSection}>
-                {artworkData?.media_gallery?.map((item) => {
-                  return (
-                    <Col
-                      xl={{ span: 6 }}
-                      lg={{ span: 7 }}
-                      md={{ span: 6 }}
-                      xs={{ span: 11 }}
-                      className={s.detailsImageContainer + " artworkDetails-details-image"}
-                      key={item.id}
-                    >
-                      <Image src={`${process.env.NEXT_PUBLIC_S3_URL}/${item.url}`} alt="" />
-                    </Col>
-                  );
-                })}
-              </Row>
-            </Col>
-            <Col lg={{ span: 12 }} xs={{ span: 24 }}>
-              <Card className={s.detailsCard}>
-                <Col className={s.artworkDetailsTitle}>
-                  <h1>{artworkData?.title}</h1>
-                </Col>
-                <Col className={s.artworkDetailsText}>
-                  <p>
-                    <strong>
-                      <a
-                        onClick={() =>
-                          router.push(`/artist/${encodeURIComponent(artworkData?.artist?.slug)}`)
-                        }
-                        className={s.artistName}
-                      >
-                        {artworkData?.artist?.full_name}
-                      </a>
-                      ,{" "}
-                    </strong>
-                    {artworkData?.artist?.city}
-                  </p>
-                  <p>
-                    <span>{artworkData?.year}, </span>
-                    {artworkData?.material &&
-                      stringCapitalize(artworkData?.material?.replace(/_/g, " "))}
-                  </p>
-                  <p>
-                    <span>{artworkData?.width}</span> x <span>{artworkData?.height} cm</span>
-                  </p>
-                </Col>
-                <Col className={s.artworkDetailsDescription}>
-                  <p>{artworkData?.description}</p>
-                </Col>
-                <Col className={s.artworkDetailsPrice}>
-                  <p>
-                    <strong>IDR</strong>{" "}
-                    {artworkData?.markup_price && priceFormatter(artworkData?.markup_price, ",")}
-                  </p>
-                </Col>
-                {/* <Col className={s.cardBtnContainer}>
-                  <ThemesButton type={"default " + s.cartBtn}>
-                    <CartIcon />
-                    ADD TO CART
-                  </ThemesButton>
-                </Col> */}
-                <Col className={s.cardBtnContainer}>
-                  <a
-                    href={`https://wa.me/${
-                      process.env.NEXT_PUBLIC_PHONE_NUMBER
-                    }?text=${encodeURIComponent(
-                      "Hi There, I really interested in this artwork " +
-                        process.env.NEXT_PUBLIC_SITE_URL +
-                        "artwork/" +
-                        artworkData?.slug +
-                        ", Please give me more information about this artwork. Thank you in advance."
-                    )}`}
-                    target={"_blank"}
-                    rel="noreferrer"
-                  >
-                    <ThemesButton type={"default " + s.cardButton}>
-                      <WhatsappIcon /> REQUEST THIS ARTWORK
-                    </ThemesButton>
-                  </a>
-                </Col>
-                <ThemesShareSocial
-                  mail={true}
-                  facebook={true}
-                  whatsapp={true}
-                  subject={`Artchive.id Special Artwork`}
-                  message={`This artwork from ${artworkData?.artist?.full_name} is very interesting`}
-                  url={`${process.env.NEXT_PUBLIC_SITE_URL}/artwork/${router.query.slug}`}
-                />
-              </Card>
-            </Col>
-          </Row>
+          <ThemesContentsArtworkDetailsInformation artworkData={artworkData} />
 
           {otherArtworkData?.length != 0 && (
             <section style={{ margin: "100px 0" }}>
