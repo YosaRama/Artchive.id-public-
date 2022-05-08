@@ -24,7 +24,7 @@ function ThemesNavbarDrawer(props) {
   const secondMenuList = [
     { link: "/artist", label: "ARTIST" },
     { link: "/artwork", label: "ARTWORK" },
-    { link: "/maintenance", label: "EXHIBITION" },
+    { link: "/exhibition", label: "EXHIBITION" },
     { link: "/maintenance", label: "NFT GALLERY" },
   ];
 
