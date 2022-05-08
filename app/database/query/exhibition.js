@@ -76,6 +76,64 @@ export const GET_EXHIBITION_BY_ID = ({ id }) => {
   });
 };
 
+export const GET_EXHIBITION_BY_SLUG = ({ slug }) => {
+  return queryFrom.findUnique({
+    where: { slug: slug },
+    include: {
+      thumbnail: { select: { url: true } },
+      media_gallery: true,
+      artists: {
+        select: {
+          user: {
+            select: {
+              id: true,
+              full_name: true,
+              slug: true,
+              profile: { select: { url: true } },
+              city: true,
+            },
+          },
+        },
+      },
+      artworks: {
+        select: {
+          artwork: {
+            select: {
+              title: true,
+              slug: true,
+              year: true,
+              material: true,
+              description: true,
+              type: true,
+              media_cover: { select: { url: true } },
+              height: true,
+              width: true,
+              status: true,
+              genre: { select: { title: true } },
+              media_gallery: { select: { url: true } },
+              artist: {
+                select: {
+                  full_name: true,
+                  profile: { select: { url: true } },
+                  city: true,
+                },
+              },
+              exhibitions: {
+                where: { exhibition: { slug: { equals: slug } } },
+                select: { exhibition_price: true },
+              },
+            },
+          },
+        },
+      },
+    },
+  });
+};
+
+export const GET_ALL_EXHIBITION_SLUG = () => {
+  return queryFrom.findMany({ select: { slug: true } });
+};
+
 // * ====================================== * //
 
 //? ============== CREATE QUERY ============= ?//

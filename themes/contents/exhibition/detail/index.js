@@ -1,6 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 
 // Libs
+import moment from "moment";
+import propTypes from "prop-types";
 import { Col, Row } from "antd";
 
 // Components
@@ -22,7 +24,9 @@ import s from "./index.module.scss";
 // Icons
 import { ClockCircleOutlined, CalendarOutlined, PushpinOutlined } from "@ant-design/icons";
 
-function ThemesContentsExhibitionDetails() {
+function ThemesContentsExhibitionDetails(props) {
+  const { exhibitionData } = props;
+
   //? ============== Handle Get Viewport ============= ?//
   const viewport = useWindowSize();
   // * ====================================== * //
@@ -38,44 +42,46 @@ function ThemesContentsExhibitionDetails() {
         <ThemesContainerMain>
           <Col className={s.titleContainer}>
             <ThemesHeadline
-              title="Exhibition Title"
-              subtitle="short description lorem ipsum dolor sit amet"
+              title={exhibitionData?.title}
+              subtitle={exhibitionData?.short_description}
             />
             <ThemesButton type={`primary ${s.catalogueButton}`}>VIEW CATALOGUE</ThemesButton>
           </Col>
-          <section className={s.artworkListContainer}>
-            <ThemesContainerMasonry
-              breakPoint={
-                viewport?.width > 1024
-                  ? 4
-                  : viewport?.width <= 1024 && viewport?.width > 768
-                  ? 3
-                  : viewport?.width <= 768 && viewport?.width > 500
-                  ? 2
-                  : 1
-              }
-            >
-              {artworkDummyData.map((item, index) => {
-                return (
-                  <Col key={index}>
-                    <ThemesArtworkCard
-                      artistName="Yosa"
-                      artistCity="Denpasar"
-                      artworkHeight={20}
-                      artworkMedia="Acrylic_on_canvas"
-                      artworkPrice="8000000"
-                      artworkUrl="/exhibition/jepun-artfriends/artwork/slug"
-                      artworkStatus="EXHIBITION"
-                      artworkTitle="Artwork Title"
-                      artworkWidth={80}
-                      artworkYear="2022"
-                      imgSrc={`/images/artwork-${index + 1}.jpg`}
-                    />
-                  </Col>
-                );
-              })}
-            </ThemesContainerMasonry>
-          </section>
+          {exhibitionData?.artworks && (
+            <section className={s.artworkListContainer}>
+              <ThemesContainerMasonry
+                breakPoint={
+                  viewport?.width > 1024
+                    ? 4
+                    : viewport?.width <= 1024 && viewport?.width > 768
+                    ? 3
+                    : viewport?.width <= 768 && viewport?.width > 500
+                    ? 2
+                    : 1
+                }
+              >
+                {exhibitionData?.artworks?.map((item, index) => {
+                  return (
+                    <Col key={index}>
+                      <ThemesArtworkCard
+                        artistName={item.artist.full_name}
+                        artistCity={item.artist.city}
+                        artworkHeight={item.height}
+                        artworkWidth={item.width}
+                        artworkMedia={item.material}
+                        artworkPrice={item.exhibitions[0].exhibition_price}
+                        artworkUrl={`/exhibition/jepun-artfriends/artwork/${item.slug}`}
+                        artworkStatus={item.status}
+                        artworkTitle={item.title}
+                        artworkYear={item.year}
+                        imgSrc={`${process.env.NEXT_PUBLIC_S3_URL}/${item.media_cover.url}`}
+                      />
+                    </Col>
+                  );
+                })}
+              </ThemesContainerMasonry>
+            </section>
+          )}
         </ThemesContainerMain>
       </section>
       {/* // * ====================================== * // */}
@@ -85,60 +91,53 @@ function ThemesContentsExhibitionDetails() {
         <ThemesContainerMain>
           <Col>
             <h1 className={s.title}>Press Release</h1>
-            <Col>
-              <Row gutter={16}>
-                <Col span={12} className={s.pressImageContainer}>
-                  <img
-                    src="/images/artwork-1.jpg"
-                    className={`${s.pressImage} ${s.pressLargeImage}`}
-                    alt=""
-                  />
-                </Col>
-                <Col span={12} className={s.pressImageContainer}>
-                  <Row gutter={16} className={s.pressImageContainer}>
-                    <Col span={12} className={s.pressHalfImageContainer}>
-                      <img
-                        src="/images/artwork-1.jpg"
-                        className={`${s.pressImage} ${s.pressHalfImage}`}
-                        alt=""
-                      />
-                    </Col>
-                    <Col span={12} className={s.pressHalfImageContainer}>
-                      <img
-                        src="/images/artwork-1.jpg"
-                        className={`${s.pressImage} ${s.pressHalfImage}`}
-                        alt=""
-                      />
-                    </Col>
-                    <Col span={12} className={s.pressHalfImageContainer}>
-                      <img
-                        src="/images/artwork-1.jpg"
-                        className={`${s.pressImage} ${s.pressHalfImage}`}
-                        alt=""
-                      />
-                    </Col>
-                    <Col span={12} className={s.pressHalfImageContainer}>
-                      <img
-                        src="/images/artwork-1.jpg"
-                        className={`${s.pressImage} ${s.pressHalfImage}`}
-                        alt=""
-                      />
-                    </Col>
-                  </Row>
-                </Col>
-              </Row>
-            </Col>
+            {exhibitionData.media_gallery.length != 0 && (
+              <Col>
+                <Row gutter={16}>
+                  <Col span={12} className={s.pressImageContainer}>
+                    <img
+                      src="/images/artwork-1.jpg"
+                      className={`${s.pressImage} ${s.pressLargeImage}`}
+                      alt=""
+                    />
+                  </Col>
+                  <Col span={12} className={s.pressImageContainer}>
+                    <Row gutter={16} className={s.pressImageContainer}>
+                      <Col span={12} className={s.pressHalfImageContainer}>
+                        <img
+                          src="/images/artwork-1.jpg"
+                          className={`${s.pressImage} ${s.pressHalfImage}`}
+                          alt=""
+                        />
+                      </Col>
+                      <Col span={12} className={s.pressHalfImageContainer}>
+                        <img
+                          src="/images/artwork-1.jpg"
+                          className={`${s.pressImage} ${s.pressHalfImage}`}
+                          alt=""
+                        />
+                      </Col>
+                      <Col span={12} className={s.pressHalfImageContainer}>
+                        <img
+                          src="/images/artwork-1.jpg"
+                          className={`${s.pressImage} ${s.pressHalfImage}`}
+                          alt=""
+                        />
+                      </Col>
+                      <Col span={12} className={s.pressHalfImageContainer}>
+                        <img
+                          src="/images/artwork-1.jpg"
+                          className={`${s.pressImage} ${s.pressHalfImage}`}
+                          alt=""
+                        />
+                      </Col>
+                    </Row>
+                  </Col>
+                </Row>
+              </Col>
+            )}
             <p className={s.pressDescription}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. At accumsan tellus sed nec
-              nunc elit tincidunt morbi. Amet cras viverra leo non neque tortor. Cursus faucibus
-              leo, vitae, eros quisque maecenas sagittis. Eget aliquam eget mi ac sit. Feugiat
-              neque, aliquam suspendisse tellus lobortis ligula consequat laoreet nec. Non mattis
-              amet dis congue. Varius fusce tincidunt vestibulum luctus amet porttitor sed. Turpis
-              duis dui vulputate nisl urna. Est nunc a pellentesque justo semper enim felis, est et.
-              Malesuada hendrerit habitasse luctus aenean. Quis sociis potenti risus massa felis,
-              egestas habitant vulputate quis. Iaculis purus feugiat fames urna congue adipiscing.
-              Tellus pretium aliquet cursus vitae eget etiam quam laoreet dictum. Amet quis vitae
-              curabitur volutpat est sit nisl sed.
+              <div dangerouslySetInnerHTML={{ __html: exhibitionData?.description }} />
             </p>
           </Col>
         </ThemesContainerMain>
@@ -158,7 +157,10 @@ function ThemesContentsExhibitionDetails() {
                   </span>
                   Date
                 </h1>
-                <h4>Start Date - End Date Year</h4>
+                <h4>
+                  {moment(exhibitionData?.start_date).format("DD MMMM")} -{" "}
+                  {moment(exhibitionData?.end_date).format("DD MMMM YYYY")}
+                </h4>
               </Col>
               <Col span={8} className={s.locTimeDetailsContainer}>
                 <h1>
@@ -167,7 +169,7 @@ function ThemesContentsExhibitionDetails() {
                   </span>
                   Location
                 </h1>
-                <h4>Location</h4>
+                <h4>{exhibitionData?.address}</h4>
               </Col>
               <Col span={8} className={s.locTimeDetailsContainer}>
                 <h1>
@@ -176,7 +178,9 @@ function ThemesContentsExhibitionDetails() {
                   </span>
                   Time
                 </h1>
-                <h4>Start Time - End Time</h4>
+                <h4>
+                  {exhibitionData?.start_time} - {exhibitionData?.end_time}
+                </h4>
               </Col>
               <Col span={24} style={{ paddingLeft: 0, paddingRight: 0 }}>
                 <ThemesMapsGoogleLocation />
@@ -192,13 +196,17 @@ function ThemesContentsExhibitionDetails() {
         <ThemesContainerMain>
           <h1 className={s.title}>Artist On Exhibition</h1>
           <Row>
-            <Col span={12}>
-              <ThemesThumbnailCard
-                title="Yosa Rama"
-                subtitle="Denpasar"
-                // profile="/images/profile-1.jpg"
-              />
-            </Col>
+            {exhibitionData?.artists?.map((item, index) => {
+              return (
+                <Col span={12} key={index}>
+                  <ThemesThumbnailCard
+                    title={item.full_name}
+                    subtitle={item.city}
+                    profile={item?.profile?.url}
+                  />
+                </Col>
+              );
+            })}
           </Row>
         </ThemesContainerMain>
       </section>
@@ -225,5 +233,9 @@ function ThemesContentsExhibitionDetails() {
     </>
   );
 }
+
+ThemesContentsExhibitionDetails.propTypes = {
+  exhibitionData: propTypes.any.isRequired,
+};
 
 export default ThemesContentsExhibitionDetails;
