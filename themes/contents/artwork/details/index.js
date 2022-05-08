@@ -33,15 +33,15 @@ function ThemesContentsArtworkDetails(props) {
 
   //? ============== Other Artwork Hook ============= ?//
   const { data: otherArtworkData } = useArtworks({
-    queryString: `excludeSlug=${artworkData.slug}&artistId=${artworkData.artist_id}&client=true&limit=4`,
+    queryString: `excludeSlug=${artworkData?.slug}&artistId=${artworkData?.artist_id}&client=true&limit=4`,
   });
   // * ====================================== * //
 
   //? ============== Might Like Artwork Hook ============= ?//
-  const genreListData = artworkData.genre.map((item) => item.id);
-  const genreList = genreListData.join(",");
+  const genreListData = artworkData?.genre.map((item) => item.id);
+  const genreList = genreListData?.join(",");
   const { data: mightLikeData } = useArtworks({
-    queryString: `excludeSlug=${artworkData.slug}&excludeArtist=${artworkData.artist_id}&genreId=${genreList}&client=true&limit=4`,
+    queryString: `excludeSlug=${artworkData?.slug}&excludeArtist=${artworkData?.artist_id}&genreId=${genreList}&client=true&limit=4`,
   });
   // * ====================================== * //
 
@@ -96,7 +96,8 @@ function ThemesContentsArtworkDetails(props) {
                   </p>
                   <p>
                     <span>{artworkData?.year}, </span>
-                    {stringCapitalize(artworkData?.material?.replace(/_/g, " "))}
+                    {artworkData?.material &&
+                      stringCapitalize(artworkData?.material?.replace(/_/g, " "))}
                   </p>
                   <p>
                     <span>{artworkData?.width}</span> x <span>{artworkData?.height} cm</span>
@@ -107,7 +108,8 @@ function ThemesContentsArtworkDetails(props) {
                 </Col>
                 <Col className={s.artworkDetailsPrice}>
                   <p>
-                    <strong>IDR</strong> {priceFormatter(artworkData?.markup_price, ",")}
+                    <strong>IDR</strong>{" "}
+                    {artworkData?.markup_price && priceFormatter(artworkData?.markup_price, ",")}
                   </p>
                 </Col>
                 {/* <Col className={s.cardBtnContainer}>
@@ -124,7 +126,7 @@ function ThemesContentsArtworkDetails(props) {
                       "Hi There, I really interested in this artwork " +
                         process.env.NEXT_PUBLIC_SITE_URL +
                         "artwork/" +
-                        artworkData.slug +
+                        artworkData?.slug +
                         ", Please give me more information about this artwork. Thank you in advance."
                     )}`}
                     target={"_blank"}
