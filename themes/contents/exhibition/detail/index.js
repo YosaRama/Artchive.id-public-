@@ -64,7 +64,7 @@ function ThemesContentsExhibitionDetails() {
                       artworkHeight={20}
                       artworkMedia="Acrylic_on_canvas"
                       artworkPrice="8000000"
-                      artworkSlug="slug"
+                      artworkUrl="/exhibition/jepun-artfriends/artwork/slug"
                       artworkStatus="EXHIBITION"
                       artworkTitle="Artwork Title"
                       artworkWidth={80}

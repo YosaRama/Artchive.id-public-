@@ -15,7 +15,7 @@ import s from "./index.module.scss";
 function ThemesArtworkCard(props) {
   const {
     imgSrc,
-    artworkSlug,
+    artworkUrl,
     artworkTitle,
     artistName,
     artistCity,
@@ -38,7 +38,7 @@ function ThemesArtworkCard(props) {
         <Card
           className={s.card + " cardWithoutPadding"}
           bordered={false}
-          onClick={() => router.push(`/artwork/${artworkSlug}`)}
+          onClick={() => router.push(`${artworkUrl}`)}
         >
           <Col span={24} className={s.image}>
             <img
@@ -71,7 +71,7 @@ function ThemesArtworkCard(props) {
 
 ThemesArtworkCard.propTypes = {
   imgSrc: propTypes.string.isRequired,
-  artworkSlug: propTypes.string.isRequired,
+  artworkUrl: propTypes.string.isRequired,
   artworkTitle: propTypes.string.isRequired,
   artistName: propTypes.string.isRequired,
   artistCity: propTypes.string,
