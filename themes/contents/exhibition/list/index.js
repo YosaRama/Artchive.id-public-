@@ -1,5 +1,6 @@
 // Libs
-import { Col, Row } from "antd";
+import { Col, Empty, Row, Spin } from "antd";
+import { useExhibitionLoad } from "app/hooks/exhibition";
 
 // Components
 import ThemesContainerMain from "themes/components/container/main";
@@ -10,7 +11,9 @@ import ThemesExhibitionCard from "themes/components/libs/exhibition-card";
 import s from "./index.module.scss";
 
 function ThemesContentsExhibitionList() {
-  const dummyData = [{}, {}, {}, {}];
+  //? ============== Exhibition Hook ============= ?//
+  const { data: exhibitionData } = useExhibitionLoad({ limit: 10 });
+  // * ====================================== * //
 
   return (
     <>
@@ -29,23 +32,31 @@ function ThemesContentsExhibitionList() {
       {/* //? ============== Exhibition List Section ============= ?// */}
       <section className={s.listSection}>
         <ThemesContainerMain>
-          <Row gutter={[32, 32]}>
-            {dummyData.map((item, index) => {
-              return (
-                <Col sm={{ span: 12 }} xs={{ span: 24 }} className={s.cardList} key={index}>
-                  <ThemesExhibitionCard
-                    // thumbnail="/images/artwork-1.jpg"
-                    title="Exhibition Title"
-                    organizedBy="Group Exhibition from Jepun Artfriends"
-                    startDate="2022-05-05"
-                    endDate="2022-05-05"
-                    description="lorem ipsum dolor sit amet"
-                    slug="jepun-artfriends"
-                  />
-                </Col>
-              );
-            })}
-          </Row>
+          {exhibitionData ? (
+            <Row gutter={[32, 32]}>
+              {exhibitionData?.map((item, index) => {
+                return (
+                  <Col sm={{ span: 12 }} xs={{ span: 24 }} className={s.cardList} key={index}>
+                    <ThemesExhibitionCard
+                      thumbnail={`${item?.thumbnail.url}`}
+                      title={item?.title}
+                      organizedBy={item?.organizedBy}
+                      startDate={item.start_date}
+                      endDate={item.end_date}
+                      description={item.short_description}
+                      slug={item.slug}
+                    />
+                  </Col>
+                );
+              })}
+            </Row>
+          ) : (
+            <Col span={24}>
+              <Spin>
+                <Empty />
+              </Spin>
+            </Col>
+          )}
         </ThemesContainerMain>
       </section>
       {/* // * ====================================== * // */}

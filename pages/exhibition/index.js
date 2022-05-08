@@ -10,3 +10,11 @@ function PageExhibitionList() {
 }
 
 export default PageExhibitionList;
+
+export const getStaticProps = async (ctx) => {
+  return {
+    props: {
+      data: null,
+    },
+  };
+};
