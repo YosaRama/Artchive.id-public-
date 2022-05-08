@@ -1,4 +1,5 @@
 // Libs
+import propTypes from "prop-types";
 import { useRouter } from "next/router";
 import { Avatar, Col, Divider, Row } from "antd";
 
@@ -15,14 +16,16 @@ import { artworkDetailsDummyData, artworkListDummyData } from "app/database/dumm
 // Styles
 import s from "./index.module.scss";
 
-function ThemesContentsExhibitionArtwork() {
+function ThemesContentsExhibitionArtwork(props) {
+  const { artworkDetails } = props;
+
   const router = useRouter();
   return (
     <>
       {/* //? ============== Artwork Details Information Section ============= ?// */}
       <section className={s.section}>
         <ThemesContainerMain>
-          <ThemesContentsArtworkDetailsInformation artworkData={artworkDetailsDummyData} />
+          <ThemesContentsArtworkDetailsInformation artworkData={artworkDetails} />
         </ThemesContainerMain>
       </section>
       {/* // * ====================================== * // */}
@@ -34,17 +37,24 @@ function ThemesContentsExhibitionArtwork() {
             <h1>About Artist</h1>
           </Col>
           <Col className={s.artistAvatarContainer}>
-            <Avatar src="/images/profile-1.jpg" className={s.artistAvatar} />
+            <Avatar
+              src={
+                artworkDetails.artist.profile
+                  ? `${process.env.NEXT_PUBLIC_S3_URL}/${artworkDetails.artist.profile.url}`
+                  : "/images/profile-default.png"
+              }
+              className={s.artistAvatar}
+            />
           </Col>
           <Col>
             <Col className={s.artistNameContainer}>
-              <h1>Artist Name</h1>
+              <h1>{artworkDetails.artist.full_name}</h1>
             </Col>
             <Col className={s.artistCityContainer}>
-              <h4>Artist City</h4>
+              <h4>{artworkDetails.artist?.city}</h4>
             </Col>
             <Col className={s.artistDescriptionContainer}>
-              <p>Artist Description</p>
+              <p>{artworkDetails?.artist?.biography}</p>
             </Col>
             <Col className={s.artistDividerContainer}>
               <Divider className={s.artistDivider} />
@@ -92,5 +102,9 @@ function ThemesContentsExhibitionArtwork() {
     </>
   );
 }
+
+ThemesContentsExhibitionArtwork.propTypes = {
+  artworkDetails: propTypes.any,
+};
 
 export default ThemesContentsExhibitionArtwork;

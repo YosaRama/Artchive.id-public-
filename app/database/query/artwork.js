@@ -253,6 +253,29 @@ export const GET_ALL_ARTWORK_SLUG = () => {
 };
 // ==================================
 
+export const GET_EXHIBITION_ARTWORK_DETAILS_BY_SLUG = ({ slug, exhibitionSlug }) => {
+  return prisma.artwork.findUnique({
+    where: { slug: slug },
+    include: {
+      media_cover: { select: { url: true } },
+      media_gallery: { select: { url: true } },
+      exhibitions: {
+        where: { exhibition: { slug: exhibitionSlug } },
+        select: { exhibition_price: true },
+      },
+      artist: {
+        select: {
+          full_name: true,
+          profile: { select: { url: true } },
+          biography: true,
+          city: true,
+          slug: true,
+        },
+      },
+    },
+  });
+};
+
 // * ====================================== * //
 
 //? ============== CREATE QUERY ============= ?//

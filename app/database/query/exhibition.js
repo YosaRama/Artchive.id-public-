@@ -134,6 +134,12 @@ export const GET_ALL_EXHIBITION_SLUG = () => {
   return queryFrom.findMany({ select: { slug: true } });
 };
 
+export const GET_ALL_ARTWORK_EXHIBITION_SLUG = () => {
+  return queryFrom.findMany({
+    select: { slug: true, artworks: { select: { artwork: { select: { slug: true } } } } },
+  });
+};
+
 // * ====================================== * //
 
 //? ============== CREATE QUERY ============= ?//

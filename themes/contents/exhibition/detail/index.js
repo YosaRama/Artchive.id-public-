@@ -70,7 +70,7 @@ function ThemesContentsExhibitionDetails(props) {
                         artworkWidth={item.width}
                         artworkMedia={item.material}
                         artworkPrice={item.exhibitions[0].exhibition_price}
-                        artworkUrl={`/exhibition/jepun-artfriends/artwork/${item.slug}`}
+                        artworkUrl={`/exhibition/${exhibitionData.slug}/artwork/${item.slug}`}
                         artworkStatus={item.status}
                         artworkTitle={item.title}
                         artworkYear={item.year}

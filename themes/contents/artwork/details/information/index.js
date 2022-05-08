@@ -98,8 +98,7 @@ function ThemesContentsArtworkDetailsInformation(props) {
                 }?text=${encodeURIComponent(
                   "Hi There, I really interested in this artwork " +
                     process.env.NEXT_PUBLIC_SITE_URL +
-                    "artwork/" +
-                    artworkData?.slug +
+                    artworkData?.link +
                     ", Please give me more information about this artwork. Thank you in advance."
                 )}`}
                 target={"_blank"}
@@ -116,7 +115,7 @@ function ThemesContentsArtworkDetailsInformation(props) {
               whatsapp={true}
               subject={`Artchive.id Special Artwork`}
               message={`This artwork from ${artworkData?.artist?.full_name} is very interesting`}
-              url={`${process.env.NEXT_PUBLIC_SITE_URL}/artwork/${router.query.slug}`}
+              url={`${process.env.NEXT_PUBLIC_SITE_URL}${artworkData.link}`}
             />
           </Card>
         </Col>

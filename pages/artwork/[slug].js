@@ -32,7 +32,15 @@ export const getStaticProps = async (ctx) => {
   const { GET_ARTWORK_BY_SLUG } = require("app/database/query/artwork");
 
   const artworkDataRes = await GET_ARTWORK_BY_SLUG({ slug: ctx.params.slug });
-  const artworkData = JSON.parse(JSON.stringify(artworkDataRes));
+
+  //? ============== Artwork Data Parse ============= ?//
+  const artworkDataParse = {
+    ...artworkDataRes,
+    link: `artwork/${artworkDataRes.slug}`,
+  };
+  // * ====================================== * //
+
+  const artworkData = JSON.parse(JSON.stringify(artworkDataParse));
   return {
     props: {
       artworkData: artworkData,
