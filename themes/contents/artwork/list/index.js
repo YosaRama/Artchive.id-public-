@@ -219,7 +219,7 @@ function ThemesContentsArtworkList() {
                     return (
                       <Col span={24} key={item?.id}>
                         <ThemesArtworkCard
-                          artworkSlug={`/artwork/${item?.slug}`}
+                          artworkUrl={`/artwork/${item?.slug}`}
                           artworkTitle={item?.title}
                           artistName={item?.artist?.full_name}
                           artistCity={item?.artist?.city}
