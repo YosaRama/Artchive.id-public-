@@ -30,6 +30,7 @@ function AppContentsExhibitionDetailsArtwork(props) {
     };
     onAddArtwork(submission);
     handlePriceModal();
+    priceForm.resetFields();
   };
   // * ====================================== * //
 
