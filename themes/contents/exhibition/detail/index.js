@@ -183,7 +183,7 @@ function ThemesContentsExhibitionDetails(props) {
                 </h4>
               </Col>
               <Col span={24} style={{ paddingLeft: 0, paddingRight: 0 }}>
-                <ThemesMapsGoogleLocation />
+                <ThemesMapsGoogleLocation lat={exhibitionData?.lat} lng={exhibitionData?.lng} />
               </Col>
             </Row>
           </Col>
