@@ -19,7 +19,9 @@ function ThemesContentsExhibitionArtwork(props) {
 
   //? ============== Exhibition Hook ============= ?//
   const { data: exhibitionData } = useExhibition({ singleId: artworkDetails?.exhibition_id });
-  const otherArtworkList = exhibitionData?.artworks?.filter((item) => item.id != artworkDetails.id);
+  const otherArtworkList = exhibitionData?.artworks?.filter(
+    (item, index) => item.id != artworkDetails.id && index < 5
+  );
   // * ====================================== * //
 
   const router = useRouter();
