@@ -10,14 +10,17 @@ import ThemesHeadline from "themes/components/libs/headline";
 import ThemesArtworkWithFrame from "themes/components/libs/artwork-with-frame";
 import ThemesDividerWithButton from "themes/components/libs/divider-with-button";
 
-// Dummy Data
-import { artworkDetailsDummyData, artworkListDummyData } from "app/database/dummy/artwork";
-
 // Styles
 import s from "./index.module.scss";
+import { useExhibition } from "app/hooks/exhibition";
 
 function ThemesContentsExhibitionArtwork(props) {
   const { artworkDetails } = props;
+
+  //? ============== Exhibition Hook ============= ?//
+  const { data: exhibitionData } = useExhibition({ singleId: artworkDetails?.exhibition_id });
+  const otherArtworkList = exhibitionData?.artworks?.filter((item) => item.id != artworkDetails.id);
+  // * ====================================== * //
 
   const router = useRouter();
   return (
@@ -65,39 +68,43 @@ function ThemesContentsExhibitionArtwork(props) {
       {/* // * ====================================== * // */}
 
       {/* //? ============== Other Artwork on Exhibition Section ============= ?// */}
-      <section className={s.section}>
-        <ThemesContainerMain>
-          <ThemesHeadline
-            title="Artwork"
-            subtitle="Original artwork by our artist"
-            className={s.otherArtworkTitleContainer}
-          />
-          <Row gutter={[16, 0]}>
-            {artworkListDummyData?.map((item, index) => (
-              <Col
-                xl={{ span: 6 }}
-                lg={{ span: 7 }}
-                md={{ span: 11 }}
-                xs={{ span: 19 }}
-                key={index}
+      {otherArtworkList && (
+        <section className={s.section}>
+          <ThemesContainerMain>
+            <ThemesHeadline
+              title="Other Artwork"
+              subtitle="see other artwork from this exhibition"
+              className={s.otherArtworkTitleContainer}
+            />
+            <Row gutter={[16, 0]}>
+              {otherArtworkList?.map((item, index) => (
+                <Col
+                  xl={{ span: 6 }}
+                  lg={{ span: 7 }}
+                  md={{ span: 11 }}
+                  xs={{ span: 19 }}
+                  key={index}
+                >
+                  <ThemesArtworkWithFrame
+                    artworkSlug={`/exhibition/${exhibitionData.slug}/artwork/${item.slug}`}
+                    artworkTitle={item.title}
+                    artworkSize={item.size}
+                    imgSrc={`${process.env.NEXT_PUBLIC_S3_URL}/${item.media_cover.url}`}
+                    artworkStatus={item.status}
+                  />
+                </Col>
+              ))}
+            </Row>
+            <section className={s.otherArtworkDivider}>
+              <ThemesDividerWithButton
+                onClick={() => router.push(`/exhibition/${exhibitionData.slug}`)}
               >
-                <ThemesArtworkWithFrame
-                  artworkSlug={item.slug}
-                  artworkTitle={item.title}
-                  artworkSize={item.size}
-                  imgSrc={item.imgUrl}
-                  artworkStatus={item.status}
-                />
-              </Col>
-            ))}
-          </Row>
-          <section className={s.otherArtworkDivider}>
-            <ThemesDividerWithButton onClick={() => router.push("/artwork")}>
-              SEE MORE
-            </ThemesDividerWithButton>
-          </section>
-        </ThemesContainerMain>
-      </section>
+                SEE MORE
+              </ThemesDividerWithButton>
+            </section>
+          </ThemesContainerMain>
+        </section>
+      )}
       {/* // * ====================================== * // */}
     </>
   );

@@ -261,7 +261,7 @@ export const GET_EXHIBITION_ARTWORK_DETAILS_BY_SLUG = ({ slug, exhibitionSlug })
       media_gallery: { select: { url: true } },
       exhibitions: {
         where: { exhibition: { slug: exhibitionSlug } },
-        select: { exhibition_price: true },
+        select: { exhibition_price: true, exhibition_id: true },
       },
       artist: {
         select: {

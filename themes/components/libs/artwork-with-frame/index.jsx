@@ -13,10 +13,12 @@ function ThemesArtworkWithFrame(props) {
   return (
     <Badge.Ribbon
       text={artworkStatus == "SOLD" ? "SOLD" : "Waiting Approval"}
-      className={`artwork-ribbon ${artworkStatus == "PUBLISH" && "hide"}`}
+      className={`artwork-ribbon ${
+        (artworkStatus == "PUBLISH" || artworkStatus == "EXHIBITION") && "hide"
+      }`}
     >
       <Col span={24} className={s.container}>
-        <Col span={24} className={s.image} onClick={() => router.push(`/artwork/${artworkSlug}`)}>
+        <Col span={24} className={s.image} onClick={() => router.push(`${artworkSlug}`)}>
           <Image
             src={imgSrc ? imgSrc : "/images/default-images.png"}
             alt=""
@@ -24,7 +26,11 @@ function ThemesArtworkWithFrame(props) {
             objectFit="cover"
             objectPosition="center"
             preview={false}
-            className={artworkStatus != "PUBLISH" ? `artwork-not-publish` : ""}
+            className={
+              artworkStatus == "PUBLISH" || artworkStatus == "EXHIBITION"
+                ? ""
+                : `artwork-not-publish`
+            }
           />
         </Col>
         <Col className={s.content}>

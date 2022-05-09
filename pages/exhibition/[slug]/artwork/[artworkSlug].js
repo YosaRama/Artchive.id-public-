@@ -57,6 +57,7 @@ export const getStaticProps = async (ctx) => {
     ...artworkDetailsRes,
     markup_price: artworkDetailsRes.exhibitions[0].exhibition_price,
     link: `exhibition/${slug}/artwork/${artworkDetailsRes.slug}`,
+    exhibition_id: artworkDetailsRes.exhibitions[0].exhibition_id,
   };
   // * ====================================== * //
 

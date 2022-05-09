@@ -66,7 +66,7 @@ function ThemesContentsArtworkDetails(props) {
                         artworkStatus={item.status}
                         artworkTitle={item.title}
                         artworkSize={`${item.width} x ${item.height}`}
-                        artworkSlug={item.slug}
+                        artworkSlug={`/artwork/${item.slug}`}
                       />
                     </Col>
                   );
@@ -102,7 +102,7 @@ function ThemesContentsArtworkDetails(props) {
                         artworkStatus={item.status}
                         artworkTitle={item.title}
                         artworkSize={`${item.width} x ${item.height}`}
-                        artworkSlug={item.slug}
+                        artworkSlug={`/artwork/${item.slug}`}
                       />
                     </Col>
                   );

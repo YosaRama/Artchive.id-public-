@@ -47,7 +47,7 @@ function ThemesContentsHomepage(props) {
                   key={index}
                 >
                   <ThemesArtworkWithFrame
-                    artworkSlug={item.slug}
+                    artworkSlug={`/artwork/${item.slug}`}
                     artworkTitle={item.title}
                     artworkSize={item.size}
                     imgSrc={item.imgUrl}
