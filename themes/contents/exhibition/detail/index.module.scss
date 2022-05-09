@@ -74,3 +74,22 @@
   }
 }
 // * ====================================== * //
+
+//? ============== Tablet Portrait Version ============= ?//
+@media screen and (max-width: 768px) {
+  .artistThumbnailContainer {
+    margin-bottom: 15px;
+  }
+}
+// * ====================================== * //
+
+//? ============== Mobile Version ============= ?//
+@media screen and (max-width: 500px) {
+  .title {
+    font-size: 28px;
+  }
+  .articleCard {
+    margin-bottom: 30px;
+  }
+}
+// * ====================================== * //

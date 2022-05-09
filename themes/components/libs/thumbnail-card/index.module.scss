@@ -8,3 +8,27 @@
 .title {
   font-size: 22px;
 }
+
+//? ============== Tablet Landscape Version ============= ?//
+@media screen and (max-width: 1024px) {
+  .image {
+    height: 100px !important;
+  }
+}
+// * ====================================== * //
+
+//? ============== Tablet Portrait Version ============= ?//
+@media screen and (max-width: 768px) {
+  .image {
+    height: 150px !important;
+  }
+}
+// * ====================================== * //
+
+//? ============== Mobile Version ============= ?//
+@media screen and (max-width: 500px) {
+  .image {
+    height: 120px !important;
+  }
+}
+// * ====================================== * //

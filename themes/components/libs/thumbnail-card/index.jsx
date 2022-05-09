@@ -12,7 +12,7 @@ function ThemesThumbnailCard(props) {
   return (
     <>
       <Row gutter={32} align="middle">
-        <Col span={6}>
+        <Col sm={{ span: 6 }} xs={{ span: 10 }}>
           <Image
             src={
               profile
@@ -22,7 +22,7 @@ function ThemesThumbnailCard(props) {
             className={s.image}
           />
         </Col>
-        <Col span={18}>
+        <Col sm={{ spang: 18 }} xs={{ span: 14 }}>
           <h1 style={{ marginBottom: 0 }} className={s.title}>
             {title && title}
           </h1>

@@ -150,7 +150,7 @@ function ThemesContentsExhibitionDetails(props) {
           <h1 className={s.title}>Location & Time</h1>
           <Col span={24}>
             <Row gutter={16}>
-              <Col span={8} className={s.locTimeDetailsContainer}>
+              <Col sm={{ span: 8 }} xs={{ span: 24 }} className={s.locTimeDetailsContainer}>
                 <h1>
                   <span>
                     <CalendarOutlined />{" "}
@@ -162,7 +162,7 @@ function ThemesContentsExhibitionDetails(props) {
                   {moment(exhibitionData?.end_date).format("DD MMMM YYYY")}
                 </h4>
               </Col>
-              <Col span={8} className={s.locTimeDetailsContainer}>
+              <Col sm={{ span: 8 }} xs={{ span: 24 }} className={s.locTimeDetailsContainer}>
                 <h1>
                   <span>
                     <PushpinOutlined />{" "}
@@ -171,7 +171,7 @@ function ThemesContentsExhibitionDetails(props) {
                 </h1>
                 <h4>{exhibitionData?.address}</h4>
               </Col>
-              <Col span={8} className={s.locTimeDetailsContainer}>
+              <Col sm={{ span: 8 }} xs={{ span: 24 }} className={s.locTimeDetailsContainer}>
                 <h1>
                   <span>
                     <ClockCircleOutlined />{" "}
@@ -198,7 +198,12 @@ function ThemesContentsExhibitionDetails(props) {
           <Row>
             {exhibitionData?.artists?.map((item, index) => {
               return (
-                <Col span={12} key={index}>
+                <Col
+                  lg={{ span: 12 }}
+                  xs={{ span: 24 }}
+                  key={index}
+                  className={s.artistThumbnailContainer}
+                >
                   <ThemesThumbnailCard
                     title={item.full_name}
                     subtitle={item.city}
@@ -217,13 +222,13 @@ function ThemesContentsExhibitionDetails(props) {
         <ThemesContainerMain>
           <h1 className={s.title}>Article For You</h1>
           <Row gutter={16}>
-            <Col span={8}>
+            <Col sm={{ span: 8 }} xs={{ span: 24 }} className={s.articleCard}>
               <ThemesArticleCard />
             </Col>
-            <Col span={8}>
+            <Col sm={{ span: 8 }} xs={{ span: 24 }} className={s.articleCard}>
               <ThemesArticleCard />
             </Col>
-            <Col span={8}>
+            <Col sm={{ span: 8 }} xs={{ span: 24 }} className={s.articleCard}>
               <ThemesArticleCard />
             </Col>
           </Row>
