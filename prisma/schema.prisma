@@ -58,7 +58,7 @@ model Artwork {
   title          String
   slug           String                  @unique
   year           String
-  material       ArtworkMaterial?
+  material       String?
   description    String                  @db.Text
   type           Type
   media_cover    Media                   @relation("cover", fields: [media_cover_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
@@ -289,15 +289,6 @@ enum AuthProvider {
   CREDENTIALS
   GOOGLE
   FACEBOOK
-}
-
-enum ArtworkMaterial {
-  WATER_COLOUR
-  ACRYLIC_ON_CANVAS
-  ACRYLIC_ON_PAPER
-  OIL_ON_CANVAS
-  MIXED_MEDIA
-  OTHER
 }
 
 enum ArticleStatus {

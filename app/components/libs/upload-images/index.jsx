@@ -13,7 +13,15 @@ import { useUploads } from "app/hooks/upload";
 import s from "./index.module.scss";
 
 function AppUploadImage(props) {
-  const { userId, artworkId, uploadImage, setUploadImage, imageHeight, uploadDisabled } = props;
+  const {
+    userId,
+    artworkId,
+    uploadImage,
+    setUploadImage,
+    imageHeight,
+    uploadDisabled,
+    uploadBoxClassName,
+  } = props;
 
   //? ============== Handle Upload ============= ?//
   const { loading: uploadLoading, onUpload } = useUploads();
@@ -50,11 +58,11 @@ function AppUploadImage(props) {
           </Col>
         </>
       ) : (
-        <Col style={{ height: imageHeight ? imageHeight : "" }}>
+        <Col style={{ height: imageHeight ? imageHeight : "" }} className={`${uploadBoxClassName}`}>
           <AppUploadBox
             onUpload={handleUpload}
             loading={uploadLoading}
-            className={s.uploadBox}
+            className={`${s.uploadBox} `}
             disabled={uploadDisabled}
           />
         </Col>
@@ -70,6 +78,7 @@ AppUploadImage.propTypes = {
   setUploadImage: propTypes.func.isRequired,
   imageHeight: propTypes.number,
   uploadDisabled: propTypes.bool,
+  uploadBoxClassName: propTypes.string,
 };
 
 export default AppUploadImage;

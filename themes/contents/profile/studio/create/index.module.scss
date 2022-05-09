@@ -53,10 +53,15 @@
 }
 
 .mediaGalleryImageBox {
-  height: 250px !important;
   img {
+    height: 250px !important;
     object-fit: cover;
+    height: auto;
   }
+}
+
+.uploadImageBox {
+  height: 100%;
 }
 
 //? ============== Tablet Landscape Mode ============= ?//
@@ -81,10 +86,13 @@
 //? ============== Phone Mode ============= ?//
 @media screen and (max-width: 500px) {
   .upload {
+    height: auto;
+  }
+  .uploadImageBox {
     height: 300px;
   }
   .mediaGalleryBox {
-    padding: 0;
+    padding: 0 0 40px;
   }
 }
 // * ====================================== * //

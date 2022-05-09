@@ -143,7 +143,11 @@ function ThemesContentsProfileStudioCreate(props) {
         <Row gutter={[32, 0]} justify="center">
           <Col lg={{ span: 10 }} xs={{ span: 24 }} className={s.artworkImage}>
             <Col className={s.upload}>
-              <AppUploadImage uploadImage={uploadImage} setUploadImage={setUploadImage} />
+              <AppUploadImage
+                uploadImage={uploadImage}
+                setUploadImage={setUploadImage}
+                uploadBoxClassName={s.uploadImageBox}
+              />
             </Col>
           </Col>
           <Col lg={{ span: 12 }} xs={{ span: 24 }}>
