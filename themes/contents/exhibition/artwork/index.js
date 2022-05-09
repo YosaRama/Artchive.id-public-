@@ -76,7 +76,7 @@ function ThemesContentsExhibitionArtwork(props) {
               subtitle="see other artwork from this exhibition"
               className={s.otherArtworkTitleContainer}
             />
-            <Row gutter={[16, 0]}>
+            <Row gutter={[16, 0]} className={s.otherArtworkListContainer}>
               {otherArtworkList?.map((item, index) => (
                 <Col
                   xl={{ span: 6 }}

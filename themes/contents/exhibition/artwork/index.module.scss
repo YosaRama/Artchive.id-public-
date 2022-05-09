@@ -60,3 +60,15 @@
   margin: 20px 0;
 }
 // * ====================================== * //
+
+//? ============== Tablet Landscape Version ============= ?//
+@media screen and (max-width: 1024px) {
+  .otherArtworkListContainer {
+    flex-wrap: nowrap;
+    overflow: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+// * ====================================== * //
