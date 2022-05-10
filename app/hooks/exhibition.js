@@ -358,7 +358,7 @@ export const useExhibition = ({ singleId }) => {
     async (id) => {
       try {
         setLoading(true);
-        const { data: res } = await api.put(`${pathKeys}/media-gallery?galleryId=${id}`);
+        const { data: res } = await api.delete(`${pathKeys}/media-gallery?galleryId=${id}`);
         if (res.success) {
           mutate();
           SuccessNotification({

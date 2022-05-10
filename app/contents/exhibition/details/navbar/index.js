@@ -16,6 +16,7 @@ function AppContentsExhibitionDetailsNavbar(props) {
     { id: 1, title: "General Information" },
     { id: 2, title: "Artist on Exhibition" },
     { id: 3, title: "Artwork on Exhibition" },
+    { id: 4, title: "Gallery on Exhibition" },
   ];
   // * ====================================== * //
 

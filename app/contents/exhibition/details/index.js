@@ -15,6 +15,7 @@ import AppContentsExhibitionDetailsArtist from "./artist";
 
 // Data Hook
 import { useExhibition } from "app/hooks/exhibition";
+import AppContentsExhibitionDetailsGallery from "./gallery";
 
 function AppContentsExhibitionDetails() {
   const router = useRouter();
@@ -31,6 +32,8 @@ function AppContentsExhibitionDetails() {
     onDeleteArtist,
     onAddArtwork,
     onDeleteArtwork,
+    onAddGallery,
+    onDeleteGallery,
   } = useExhibition({ singleId: router?.query?.id || "" });
   // * ====================================== * //
 
@@ -56,6 +59,8 @@ function AppContentsExhibitionDetails() {
                   ? "Artist on Exhibition"
                   : currentMenu == 3
                   ? "Artwork on Exhibition"
+                  : currentMenu == 4
+                  ? "Gallery on Exhibition"
                   : ""
               }
             >
@@ -77,6 +82,13 @@ function AppContentsExhibitionDetails() {
                   artworkData={exhibitionData?.artworks}
                   onAddArtwork={onAddArtwork}
                   onDeleteArtwork={onDeleteArtwork}
+                />
+              )}
+              {currentMenu == 4 && (
+                <AppContentsExhibitionDetailsGallery
+                  galleryData={exhibitionData?.media_gallery}
+                  onAddGallery={onAddGallery}
+                  onDeleteGallery={onDeleteGallery}
                 />
               )}
             </AppContainerCard>

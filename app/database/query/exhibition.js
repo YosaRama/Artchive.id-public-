@@ -72,6 +72,7 @@ export const GET_EXHIBITION_BY_ID = ({ id }) => {
           },
         },
       },
+      media_gallery: true,
     },
   });
 };
@@ -264,7 +265,7 @@ export const DELETE_EXHIBITION = ({ id }) => {
 export const DELETE_EXHIBITION_MEDIA_GALLERY = ({ id, mediaGallery }) => {
   return queryFrom.update({
     where: { id: +id },
-    data: { media_gallery: { disconnect: { id: mediaGallery } } },
+    data: { media_gallery: { disconnect: { id: +mediaGallery } } },
   });
 };
 
