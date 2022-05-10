@@ -41,7 +41,7 @@ function AppFormArtworkMaterial() {
     const addMaterial = newMaterial.current.input.value;
     const newOption = {
       label: stringCapitalize(addMaterial),
-      value: addMaterial.toUpperCase().replace(/ /g, "_"),
+      value: stringCapitalize(addMaterial),
     };
     setOption([...option, newOption]);
   };
