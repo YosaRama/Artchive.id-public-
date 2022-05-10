@@ -16,5 +16,6 @@ export const getStaticProps = async (ctx) => {
     props: {
       data: null,
     },
+    revalidate: 10,
   };
 };

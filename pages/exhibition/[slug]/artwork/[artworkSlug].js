@@ -67,5 +67,6 @@ export const getStaticProps = async (ctx) => {
     props: {
       artworkDetails: artworkDetails,
     },
+    revalidate: 10,
   };
 };
