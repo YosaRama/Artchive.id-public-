@@ -82,7 +82,7 @@ export const GET_EXHIBITION_BY_SLUG = ({ slug }) => {
     where: { slug: slug },
     include: {
       thumbnail: { select: { url: true } },
-      media_gallery: true,
+      media_gallery: { select: { url: true } },
       artists: {
         select: {
           user: {

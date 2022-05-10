@@ -31,10 +31,6 @@ function ThemesContentsExhibitionDetails(props) {
   const viewport = useWindowSize();
   // * ====================================== * //
 
-  //? ============== Artwork Hook ============= ?//
-  const artworkDummyData = [{}, {}, {}, {}];
-  // * ====================================== * //
-
   return (
     <>
       {/* //? ============== Artwork List Section ============= ?// */}
@@ -96,41 +92,26 @@ function ThemesContentsExhibitionDetails(props) {
                 <Row gutter={16}>
                   <Col span={12} className={s.pressImageContainer}>
                     <img
-                      src="/images/artwork-1.jpg"
+                      src={`${process.env.NEXT_PUBLIC_S3_URL}/${exhibitionData?.media_gallery?.[0]?.url}`}
                       className={`${s.pressImage} ${s.pressLargeImage}`}
                       alt=""
                     />
                   </Col>
                   <Col span={12} className={s.pressImageContainer}>
                     <Row gutter={16} className={s.pressImageContainer}>
-                      <Col span={12} className={s.pressHalfImageContainer}>
-                        <img
-                          src="/images/artwork-1.jpg"
-                          className={`${s.pressImage} ${s.pressHalfImage}`}
-                          alt=""
-                        />
-                      </Col>
-                      <Col span={12} className={s.pressHalfImageContainer}>
-                        <img
-                          src="/images/artwork-1.jpg"
-                          className={`${s.pressImage} ${s.pressHalfImage}`}
-                          alt=""
-                        />
-                      </Col>
-                      <Col span={12} className={s.pressHalfImageContainer}>
-                        <img
-                          src="/images/artwork-1.jpg"
-                          className={`${s.pressImage} ${s.pressHalfImage}`}
-                          alt=""
-                        />
-                      </Col>
-                      <Col span={12} className={s.pressHalfImageContainer}>
-                        <img
-                          src="/images/artwork-1.jpg"
-                          className={`${s.pressImage} ${s.pressHalfImage}`}
-                          alt=""
-                        />
-                      </Col>
+                      {exhibitionData?.media_gallery
+                        ?.filter((item, index) => index > 0 && index < 5)
+                        .map((item, index) => {
+                          return (
+                            <Col span={12} className={s.pressHalfImageContainer} key={index}>
+                              <img
+                                src={`${process.env.NEXT_PUBLIC_S3_URL}/${item.url}`}
+                                className={`${s.pressImage} ${s.pressHalfImage}`}
+                                alt=""
+                              />
+                            </Col>
+                          );
+                        })}
                     </Row>
                   </Col>
                 </Row>

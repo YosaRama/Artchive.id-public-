@@ -38,7 +38,6 @@ apiHandler.put(async (req, res) => {
 
 apiHandler.delete(async (req, res) => {
   const { id, galleryId } = req.query;
-  console.log(galleryId);
 
   try {
     const result = await DELETE_EXHIBITION_MEDIA_GALLERY({ id, mediaGallery: galleryId });
