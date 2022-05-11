@@ -178,6 +178,7 @@ model Certificate {
 model Article {
   id           Int           @id @default(autoincrement())
   title        String        @db.Text
+  slug         String        @unique
   content      String        @db.Text
   status       ArticleStatus @default(DRAFT)
   author       String        @db.Text

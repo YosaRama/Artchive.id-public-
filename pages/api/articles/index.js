@@ -1,8 +1,17 @@
 // Query
-import { GET_ARTICLES, GET_TOTAL_ARTICLES, CREATE_ARTICLES } from "app/database/query/articles";
+import {
+  GET_ARTICLES,
+  GET_TOTAL_ARTICLES,
+  CREATE_ARTICLES,
+  CHECK_ARTICLE_BY_SLUG,
+} from "app/database/query/articles";
+
+// Libs
+import nextConnect from "next-connect";
 
 // Helper
-import nextConnect from "next-connect";
+import { stringCapitalize } from "app/helpers/capitalize";
+import { slugParse } from "app/helpers/slugParse";
 
 const apiHandler = nextConnect();
 const messageHead = "Articles";
@@ -37,9 +46,28 @@ apiHandler.get(async (req, res) => {
 
 // POST HANDLER
 apiHandler.post(async (req, res) => {
-  const data = req.body;
+  const request = req.body;
 
   try {
+    //? ============== Title Parse ============= ?//
+    const titleParse = stringCapitalize(request.title);
+    // * ====================================== * //
+
+    //? ============== Create Slug ============= ?//
+    const slug = await slugParse({
+      slugData: request.title,
+      checkSlugFunc: CHECK_ARTICLE_BY_SLUG,
+    });
+    // * ====================================== * //
+
+    //? ============== Data Parse ============= ?//
+    const data = {
+      ...request,
+      title: titleParse,
+      slug: slug,
+    };
+    // * ====================================== * //
+
     const result = await CREATE_ARTICLES({ data });
     if (result) {
       res.status(200).json({

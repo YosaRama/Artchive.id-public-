@@ -5,6 +5,13 @@ import { prisma } from "../connection";
 const queryFrom = prisma.article;
 
 //? ============== OPTION QUERY ============= ?//
+export const CHECK_ARTICLE_BY_SLUG = ({ slug }) => {
+  return queryFrom.findUnique({
+    where: {
+      slug: slug,
+    },
+  });
+};
 
 // * ====================================== * //
 
@@ -47,11 +54,12 @@ export const GET_ARTICLES_BY_ID = ({ id }) => {
 //? ============== CREATE QUERY ============= ?//
 
 export const CREATE_ARTICLES = ({ data }) => {
-  const { title, author, status, content, createdId, thumbnailId } = data;
+  const { title, slug, author, status, content, createdId, thumbnailId } = data;
 
   return queryFrom.create({
     data: {
       title: title,
+      slug: slug,
       author: author,
       status: status,
       content: content,
