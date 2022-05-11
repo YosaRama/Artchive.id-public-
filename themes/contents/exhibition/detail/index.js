@@ -203,7 +203,8 @@ function ThemesContentsExhibitionDetails(props) {
       {/* // * ====================================== * // */}
 
       {/* //? ============== Article Section ============= ?// */}
-      <section className={s.section}>
+      {/* //TODO : Create Connection With Article List// */}
+      {/* <section className={s.section}>
         <ThemesContainerMain>
           <h1 className={s.title}>Article For You</h1>
           <Row gutter={16}>
@@ -218,7 +219,7 @@ function ThemesContentsExhibitionDetails(props) {
             </Col>
           </Row>
         </ThemesContainerMain>
-      </section>
+      </section> */}
       {/* // * ====================================== * // */}
     </>
   );
