@@ -4,6 +4,7 @@
 import moment from "moment";
 import propTypes from "prop-types";
 import { Col, Row } from "antd";
+import { useRouter } from "next/router";
 
 // Components
 import ThemesButton from "themes/components/libs/button";
@@ -25,6 +26,7 @@ import s from "./index.module.scss";
 import { ClockCircleOutlined, CalendarOutlined, PushpinOutlined } from "@ant-design/icons";
 
 function ThemesContentsExhibitionDetails(props) {
+  const router = useRouter();
   const { exhibitionData } = props;
 
   //? ============== Handle Get Viewport ============= ?//
@@ -41,7 +43,9 @@ function ThemesContentsExhibitionDetails(props) {
               title={exhibitionData?.title}
               subtitle={exhibitionData?.short_description}
             />
-            <ThemesButton type={`primary ${s.catalogueButton}`}>VIEW CATALOGUE</ThemesButton>
+            <a href={exhibitionData?.catalogue_link} target="_blank" rel="noreferrer">
+              <ThemesButton type={`primary ${s.catalogueButton}`}>VIEW CATALOGUE</ThemesButton>
+            </a>
           </Col>
           {exhibitionData?.artworks && (
             <section className={s.artworkListContainer}>
