@@ -58,7 +58,7 @@ function ThemesContentsExhibitionArtwork(props) {
             <Col className={s.artistCityContainer}>
               <h4>{artworkDetails.artist?.city}</h4>
             </Col>
-            <Col className={s.artistDescriptionContainer}>
+            <Col className={s.artistDescriptionContainer} sm={{ span: 16 }} xs={{ span: 24 }}>
               <p>{artworkDetails?.artist?.biography}</p>
             </Col>
             <Col className={s.artistDividerContainer}>
