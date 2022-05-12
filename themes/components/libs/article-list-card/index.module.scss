@@ -1,0 +1,32 @@
+.imageContainer {
+  img {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.contentContainer {
+  background-color: #ffffff;
+  border: none;
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.contentTitleContainer {
+  h1 {
+    font-size: 24px;
+    margin-bottom: 0;
+  }
+}
+
+.contentDescriptionContainer {
+  p {
+    margin: 30px 0;
+  }
+}
+
+.contentSubContainer {
+  margin: 5px 0;
+  color: #e5890a;
+}
