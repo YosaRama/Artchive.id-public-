@@ -2,6 +2,7 @@
 import propTypes from "prop-types";
 import Link from "next/link";
 import { Col } from "antd";
+import { useRouter } from "next/router";
 
 // Components
 import ThemesButton from "../button";
@@ -10,13 +11,14 @@ import ThemesButton from "../button";
 import s from "./index.module.scss";
 
 function ThemesArticleListCard(props) {
+  const router = useRouter();
   const { className } = props;
 
   return (
     <>
       <Col className={className}>
         <Col span={24} className={s.imageContainer}>
-          <Link href={""}>
+          <Link href={"/articles/whats-going-on"}>
             <a>
               <img src="/images/artwork-1.jpg" />
             </a>
@@ -36,7 +38,11 @@ function ThemesArticleListCard(props) {
             <p>lorem ipsum dolor sit amet </p>
           </Col>
           <Col className={s.contentBtnContainer}>
-            <ThemesButton>READ MORE</ThemesButton>
+            <a>
+              <ThemesButton onClick={() => router.push("/articles/whats-going-on")}>
+                READ MORE
+              </ThemesButton>
+            </a>
           </Col>
         </Col>
       </Col>

@@ -170,6 +170,15 @@ function ThemesContentsExhibitionDetails(props) {
               <Col span={24} style={{ paddingLeft: 0, paddingRight: 0 }}>
                 <ThemesMapsGoogleLocation lat={exhibitionData?.lat} lng={exhibitionData?.lng} />
               </Col>
+              <Col className={s.btnDirection} span={24}>
+                <a
+                  href={`https://www.google.com/maps/place/${exhibitionData?.lat},${exhibitionData?.lng}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <ThemesButton>GET DIRECTION</ThemesButton>
+                </a>
+              </Col>
             </Row>
           </Col>
         </ThemesContainerMain>
