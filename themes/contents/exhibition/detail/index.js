@@ -40,6 +40,7 @@ function ThemesContentsExhibitionDetails(props) {
         <ThemesContainerMain>
           <Col className={s.titleContainer}>
             <ThemesHeadline
+              className={s.headline}
               title={exhibitionData?.title}
               subtitle={exhibitionData?.short_description}
             />

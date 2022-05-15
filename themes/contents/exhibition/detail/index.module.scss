@@ -12,6 +12,12 @@
 }
 
 //? ============== Artwork Section ============= ?//
+.headline {
+  p {
+    width: 50%;
+    margin: 20px auto 0;
+  }
+}
 
 .catalogueButton {
   margin: 20px 0;
@@ -86,6 +92,19 @@
 }
 // * ====================================== * //
 
+//? ============== Tablet Landscape Version ============= ?//
+@media screen and (max-width: 1024px) {
+  .headline {
+    p {
+      width: 80%;
+    }
+  }
+  .artistThumbnailContainer {
+    margin-bottom: 15px;
+  }
+}
+// * ====================================== * //
+
 //? ============== Tablet Portrait Version ============= ?//
 @media screen and (max-width: 768px) {
   .artistThumbnailContainer {
@@ -101,6 +120,11 @@
   }
   .articleCard {
     margin-bottom: 30px;
+  }
+  .headline {
+    p {
+      width: 100%;
+    }
   }
 }
 // * ====================================== * //
