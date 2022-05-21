@@ -10,10 +10,10 @@ import { InstagramOutlined, FacebookOutlined, MailOutlined } from "@ant-design/i
 import { WhatsappIcon } from "public/icons/whatsapp-icon";
 
 function ThemesShareSocial(props) {
-  const { mail, facebook, instagram, whatsapp, subject, url, message } = props;
+  const { mail, facebook, instagram, whatsapp, subject, url, message, className } = props;
   return (
     <>
-      <Row gutter={[12, 0]} className={s.socialProfileBox}>
+      <Row gutter={[12, 0]} className={`${s.socialProfileBox} ${className}`}>
         <Col span={24}>
           <p className={s.shareTitle}>Share to:</p>
         </Col>
@@ -68,6 +68,7 @@ ThemesShareSocial.propTypes = {
   subject: propTypes.string,
   url: propTypes.string,
   message: propTypes.string,
+  className: propTypes.string,
 };
 
 export default ThemesShareSocial;

@@ -1,0 +1,26 @@
+.sideTitle {
+  font-size: 24px;
+}
+
+.shareSection {
+  justify-content: left;
+  p {
+    text-align: left;
+  }
+}
+
+.thumbnailSection {
+  margin-top: 20px;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.thumbnailCard {
+  margin-bottom: 10px;
+  img {
+    height: 100px !important;
+  }
+  p {
+    color: #c4c4c4;
+  }
+}
