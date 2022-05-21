@@ -9,6 +9,7 @@ import ThemesContentsArticleSidebar from "./sidebar";
 
 // Styles
 import s from "./index.module.scss";
+import ThemesContentsArticleInformation from "./information";
 
 function ThemesContentsArticlesDetails() {
   return (
@@ -17,7 +18,9 @@ function ThemesContentsArticlesDetails() {
       <section>
         <ThemesContainerMain>
           <Row gutter={[16, 0]}>
-            <Col span={16}>Here Content</Col>
+            <Col span={16}>
+              <ThemesContentsArticleInformation />
+            </Col>
             <Col span={8}>
               <ThemesContentsArticleSidebar />
             </Col>
