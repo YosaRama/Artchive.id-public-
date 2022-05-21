@@ -35,7 +35,7 @@ function ThemesArtworkWithFrame(props) {
         </Col>
         <Col className={s.content}>
           {artworkTitle && (
-            <h1 className={s.title} onClick={() => router.push(`/artwork/${artworkSlug}`)}>
+            <h1 className={s.title} onClick={() => router.push(`${artworkSlug}`)}>
               {artworkTitle}
             </h1>
           )}
