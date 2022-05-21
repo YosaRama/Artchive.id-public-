@@ -29,7 +29,7 @@ function ThemesNavbarDrawer(props) {
   ];
 
   const thirdMenuList = [
-    { link: "/maintenance", label: "ART ARTICLE" },
+    { link: "/articles", label: "ART ARTICLE" },
     { link: "/maintenance", label: "ABOUT US" },
     { link: "/contact-us", label: "CONTACT US" },
   ];
