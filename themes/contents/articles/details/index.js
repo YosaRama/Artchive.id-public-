@@ -15,9 +15,9 @@ function ThemesContentsArticlesDetails() {
   return (
     <>
       {/* //? ============== Article Content Section ============= ?// */}
-      <section>
+      <section className={`${s.section}`}>
         <ThemesContainerMain>
-          <Row gutter={[16, 0]}>
+          <Row gutter={[32, 0]}>
             <Col span={16}>
               <ThemesContentsArticleInformation />
             </Col>
@@ -30,7 +30,7 @@ function ThemesContentsArticlesDetails() {
       {/* // * ====================================== * // */}
 
       {/* //? ============== Other Articles ============= ?// */}
-      <section>
+      <section className={`${s.section}`}>
         <ThemesContainerMain>
           <ThemesHeadline title="Other Articles for You" className={s.otherTitle} />
           <Row gutter={[16, 0]}>
