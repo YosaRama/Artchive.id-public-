@@ -30,10 +30,12 @@ function ThemesContentsArticleSidebar() {
         />
       </Col>
       <Col span={24} className={s.thumbnailSection}>
+        <h1 className={s.sideTitle}>Popular Article</h1>
         <ThemesThumbnailCard
           title="[Article Title]"
           subtitle="[post date]"
           imageWidthDesktop={8}
+          imageWidthMobile={10}
           className={s.thumbnailCard}
         />
       </Col>

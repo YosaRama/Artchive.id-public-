@@ -39,7 +39,7 @@ function ThemesThumbnailCard(props) {
         </Col>
         <Col
           sm={{ span: imageWidthDesktop ? 24 - imageWidthDesktop : 18 }}
-          xs={{ span: imageWidthDesktop ? 24 - imageWidthDesktop : 14 }}
+          xs={{ span: imageWidthDesktop ? 24 - imageWidthMobile : 14 }}
         >
           <a onClick={url ? handleGoToLink : () => {}}>
             <h1 style={{ marginBottom: 0 }} className={`${s.title}`}>

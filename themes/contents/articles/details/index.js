@@ -12,16 +12,25 @@ import s from "./index.module.scss";
 import ThemesContentsArticleInformation from "./information";
 
 function ThemesContentsArticlesDetails() {
+  //? ============== Handle Other Article ============= ?//
+  const dummyOtherArticle = [{}, {}, {}, {}];
+  // * ====================================== * //
   return (
     <>
       {/* //? ============== Article Content Section ============= ?// */}
       <section className={`${s.section}`}>
         <ThemesContainerMain>
           <Row gutter={[32, 0]}>
-            <Col span={16}>
+            <Col xl={{ span: 16 }} xs={{ span: 24 }} className={`${s.rmPadding}`}>
               <ThemesContentsArticleInformation />
             </Col>
-            <Col span={8}>
+            <Col
+              xl={{ span: 8 }}
+              lg={{ span: 11 }}
+              md={{ span: 14 }}
+              sm={{ span: 24 }}
+              className={`${s.rmPadding}`}
+            >
               <ThemesContentsArticleSidebar />
             </Col>
           </Row>
@@ -33,19 +42,20 @@ function ThemesContentsArticlesDetails() {
       <section className={`${s.section}`}>
         <ThemesContainerMain>
           <ThemesHeadline title="Other Articles for You" className={s.otherTitle} />
-          <Row gutter={[16, 0]}>
-            <Col span={6}>
-              <ThemesArticleCard />
-            </Col>
-            <Col span={6}>
-              <ThemesArticleCard />
-            </Col>
-            <Col span={6}>
-              <ThemesArticleCard />
-            </Col>
-            <Col span={6}>
-              <ThemesArticleCard />
-            </Col>
+          <Row gutter={[16, 0]} className={s.otherArticleContainer}>
+            {dummyOtherArticle.map((item, index) => {
+              return (
+                <Col
+                  key={index}
+                  xl={{ span: 6 }}
+                  lg={{ span: 7 }}
+                  md={{ span: 10 }}
+                  xs={{ span: 21 }}
+                >
+                  <ThemesArticleCard />
+                </Col>
+              );
+            })}
           </Row>
         </ThemesContainerMain>
       </section>

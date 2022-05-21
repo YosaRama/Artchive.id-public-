@@ -1,3 +1,8 @@
+.rmPadding {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
 .section {
   margin: 50px 0;
 }
@@ -6,3 +11,13 @@
   text-align: left;
   margin-bottom: 30px;
 }
+
+//? ============== Tablet Landscape Version ============= ?//
+@media screen and (max-width: 1024px) {
+  .otherArticleContainer {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: auto;
+  }
+}
+// * ====================================== * //
