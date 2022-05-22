@@ -12,6 +12,12 @@
   padding-top: 5px;
   p {
     margin-bottom: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
   }
 }
 

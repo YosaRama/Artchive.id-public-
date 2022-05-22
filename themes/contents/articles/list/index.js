@@ -13,10 +13,15 @@ import { useWindowSize } from "app/helpers/useWindowSize";
 // Styles
 import s from "./index.module.scss";
 import ThemesButton from "themes/components/libs/button";
+import { useArticlesLoad } from "app/hooks/articles";
 
 function ThemesContentsArticlesList() {
   //? ============== Handle Get Viewport ============= ?//
   const viewport = useWindowSize();
+  // * ====================================== * //
+
+  //? ============== Articles Hooks ============= ?//
+  const { data: articleListData } = useArticlesLoad({ limit: 6 });
   // * ====================================== * //
 
   return (
@@ -43,13 +48,21 @@ function ThemesContentsArticlesList() {
             className={s.articleListContainer}
             columnClassName={s.articleListCard}
           >
-            <ThemesArticleListCard className={s.articleListContent} />
-            <ThemesArticleListCard className={s.articleListContent} />
-            <ThemesArticleListCard className={s.articleListContent} />
-            <ThemesArticleListCard className={s.articleListContent} />
-            <ThemesArticleListCard className={s.articleListContent} />
-            <ThemesArticleListCard className={s.articleListContent} />
-            <ThemesArticleListCard className={s.articleListContent} />
+            {articleListData &&
+              articleListData?.map((item, index) => {
+                return (
+                  <ThemesArticleListCard
+                    className={s.articleListContent}
+                    key={index}
+                    title={item.title}
+                    shortDescription={item.short_description}
+                    author={item.author}
+                    postDate={item.updated_at}
+                    thumbnailSrc={`${process.env.NEXT_PUBLIC_S3_URL}/${item.thumbnail.url}`}
+                    url={`/articles/${item.slug}`}
+                  />
+                );
+              })}
           </ThemesContainerMasonry>
         </ThemesContainerMain>
         <Col className={s.articleLoadBtn}>
