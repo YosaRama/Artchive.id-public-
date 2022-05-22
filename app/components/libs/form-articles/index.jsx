@@ -32,6 +32,10 @@ function AppFormArticles(props) {
   // * ====================================== * //
 
   //? ============== Handle Initial Data ============= ?//
+  const initialDataParse = {
+    ...initialData,
+    shortDescription: initialData?.short_description,
+  };
   useEffect(() => {
     if (isEdit) {
       setUploadImage({ id: initialData?.thumbnail?.id, url: initialData?.thumbnail?.url });
@@ -48,6 +52,7 @@ function AppFormArticles(props) {
         title: value.title,
         author: value.author,
         status: value.status ? "PUBLISHED" : "DRAFT",
+        shortDescription: value.shortDescription,
         content: textEditorValue,
         thumbnailId: uploadImage?.id,
         createdId: session?.user?.id,
@@ -69,7 +74,7 @@ function AppFormArticles(props) {
   // * ====================================== * //
   return (
     <>
-      <Form layout="vertical" form={form} initialValues={isEdit ? initialData : {}}>
+      <Form layout="vertical" form={form} initialValues={isEdit ? initialDataParse : {}}>
         <Form.Item label="Thumbnail">
           <Col style={{ height: 500, marginBottom: 30 }}>
             <AppUploadImages
@@ -85,6 +90,9 @@ function AppFormArticles(props) {
         </Form.Item>
         <Form.Item name={"author"} label="Author">
           <Input />
+        </Form.Item>
+        <Form.Item name={"shortDescription"} label="Short Description">
+          <Input.TextArea autoSize={{ minRows: 6 }} />
         </Form.Item>
         <Col className={s.contentForm}>
           <p>Contents</p>

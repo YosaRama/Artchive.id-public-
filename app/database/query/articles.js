@@ -54,7 +54,7 @@ export const GET_ARTICLES_BY_ID = ({ id }) => {
 //? ============== CREATE QUERY ============= ?//
 
 export const CREATE_ARTICLES = ({ data }) => {
-  const { title, slug, author, status, content, createdId, thumbnailId } = data;
+  const { title, slug, author, status, content, createdId, thumbnailId, shortDescription } = data;
 
   return queryFrom.create({
     data: {
@@ -63,6 +63,7 @@ export const CREATE_ARTICLES = ({ data }) => {
       author: author,
       status: status,
       content: content,
+      short_description: shortDescription,
       created_id: createdId,
       thumbnail_id: thumbnailId,
     },
@@ -74,7 +75,7 @@ export const CREATE_ARTICLES = ({ data }) => {
 //? ============== UPDATE QUERY ============= ?//
 
 export const UPDATE_ARTICLES = ({ id, data }) => {
-  const { title, content, status, author, updatedId, thumbnailId } = data;
+  const { title, content, status, author, updatedId, thumbnailId, shortDescription } = data;
 
   return queryFrom.update({
     data: {
@@ -83,6 +84,7 @@ export const UPDATE_ARTICLES = ({ id, data }) => {
       status: status,
       author: author,
       updated_id: updatedId,
+      short_description: shortDescription,
       thumbnail_id: thumbnailId,
     },
     where: { id: +id },

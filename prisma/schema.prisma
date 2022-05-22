@@ -176,20 +176,21 @@ model Certificate {
 }
 
 model Article {
-  id           Int           @id @default(autoincrement())
-  title        String        @db.Text
-  slug         String        @unique
-  content      String        @db.Text
-  status       ArticleStatus @default(DRAFT)
-  author       String        @db.Text
-  thumbnail    Media         @relation("article_thumbnail", fields: [thumbnail_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  thumbnail_id Int
-  created_by   User          @relation("article_created_by", fields: [created_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  created_id   Int
-  created_at   DateTime      @default(now())
-  updated_by   User?         @relation("article_updated_by", fields: [updated_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  updated_id   Int?
-  updated_at   DateTime?     @updatedAt
+  id                Int           @id @default(autoincrement())
+  title             String        @db.Text
+  slug              String        @unique
+  short_description String?       @db.Text
+  content           String        @db.Text
+  status            ArticleStatus @default(DRAFT)
+  author            String        @db.Text
+  thumbnail         Media         @relation("article_thumbnail", fields: [thumbnail_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  thumbnail_id      Int
+  created_by        User          @relation("article_created_by", fields: [created_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  created_id        Int
+  created_at        DateTime      @default(now())
+  updated_by        User?         @relation("article_updated_by", fields: [updated_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  updated_id        Int?
+  updated_at        DateTime?     @updatedAt
 
   @@map("article")
 }
