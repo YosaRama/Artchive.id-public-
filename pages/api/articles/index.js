@@ -18,9 +18,9 @@ const messageHead = "Articles";
 
 // GET HANDLER
 apiHandler.get(async (req, res) => {
-  const { page, limit } = req.query;
+  const { page, limit, excludeSlug } = req.query;
   try {
-    const result = await GET_ARTICLES({ page, limit });
+    const result = await GET_ARTICLES({ page, limit, excludeSlug });
     const total = await GET_TOTAL_ARTICLES();
     if (result) {
       res.status(200).json({

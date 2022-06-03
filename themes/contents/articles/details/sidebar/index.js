@@ -1,4 +1,6 @@
 // Libs
+import moment from "moment";
+import propTypes from "prop-types";
 import { Col } from "antd";
 
 // Components
@@ -8,16 +10,17 @@ import ThemesThumbnailCard from "themes/components/libs/thumbnail-card";
 // Styles
 import s from "./index.module.scss";
 
-function ThemesContentsArticleSidebar() {
+function ThemesContentsArticleSidebar(props) {
+  const { title, author, postDate, slug } = props;
   return (
     <>
       <Col span={24}>
         <h1 className={s.sideTitle}>Author</h1>
-        <p>[Author Name]</p>
+        <p>{author && author}</p>
       </Col>
       <Col span={24}>
         <h1 className={s.sideTitle}>Posted Date</h1>
-        <p>[Article Date]</p>
+        <p>{postDate && moment(postDate).format("DD MMMM YYYY")}</p>
       </Col>
       <Col span={24}>
         <ThemesShareSocial
@@ -25,22 +28,29 @@ function ThemesContentsArticleSidebar() {
           facebook={true}
           mail={true}
           whatsapp={true}
-          url="/[this-link]"
-          message="Did you know about this ? article from Artchive.id with title [article title]"
+          url={`/articles/${slug}`}
+          message={`Did you know about this ? article from Artchive.id with title ${title}`}
         />
       </Col>
-      <Col span={24} className={s.thumbnailSection}>
+      {/* <Col span={24} className={s.thumbnailSection}> //TODO : Create Algorithm for popular articles
         <h1 className={s.sideTitle}>Popular Article</h1>
         <ThemesThumbnailCard
-          title="[Article Title]"
-          subtitle="[post date]"
+          title={title}
+          subtitle={postDate}
           imageWidthDesktop={8}
           imageWidthMobile={10}
           className={s.thumbnailCard}
         />
-      </Col>
+      </Col> */}
     </>
   );
 }
+
+ThemesContentsArticleSidebar.propsType = {
+  title: propTypes.string,
+  author: propTypes.string,
+  date: propTypes.string,
+  slug: propTypes.string,
+};
 
 export default ThemesContentsArticleSidebar;

@@ -17,7 +17,7 @@ export const CHECK_ARTICLE_BY_SLUG = ({ slug }) => {
 
 //? ============== GET QUERY ============= ?//
 
-export const GET_ARTICLES = ({ page = 1, limit = 15 }) => {
+export const GET_ARTICLES = ({ page = 1, limit = 15, excludeSlug }) => {
   //? Handle Pagination
   const skip = limit != "all" ? (+page - 1) * +limit : undefined;
   return queryFrom.findMany({
@@ -33,6 +33,11 @@ export const GET_ARTICLES = ({ page = 1, limit = 15 }) => {
     orderBy: {
       id: "desc",
     },
+
+    //? Handle Filter
+    where: {
+      NOT: excludeSlug ? { slug: excludeSlug } : {},
+    },
   });
 };
 
@@ -46,6 +51,21 @@ export const GET_ARTICLES_BY_ID = ({ id }) => {
       thumbnail: true,
     },
     where: { id: +id },
+  });
+};
+
+export const GET_ARTICLE_BY_SLUG = ({ slug }) => {
+  return queryFrom.findUnique({
+    where: { slug: slug },
+    include: {
+      thumbnail: true,
+    },
+  });
+};
+
+export const GET_ALL_ARTICLES_SLUG = () => {
+  return queryFrom.findMany({
+    select: { slug: true },
   });
 };
 

@@ -10,3 +10,11 @@ function PageArticlesList() {
 }
 
 export default PageArticlesList;
+
+export const getStaticProps = async (ctx) => {
+  return {
+    props: {
+      data: null,
+    },
+  };
+};
