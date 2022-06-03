@@ -1,7 +1,7 @@
 // Libs
 import { useRouter } from "next/router";
 import Sticky from "react-sticky-el";
-import { Card, Col, Form, Input, Row, Select, Slider } from "antd";
+import { Card, Col, Empty, Form, Input, Row, Select, Slider, Spin } from "antd";
 import { useState } from "react";
 const { Option } = Select;
 
@@ -11,6 +11,7 @@ import ThemesContainerMasonry from "themes/components/container/masonry";
 import ThemesArtworkCard from "themes/components/libs/artwork-card";
 import ThemesBanner from "themes/components/libs/banner";
 import ThemesButton from "themes/components/libs/button";
+import ThemesNoData from "themes/components/libs/no-data";
 
 // Data Hook
 import { useArtworksLoad } from "app/hooks/artwork";
@@ -96,7 +97,7 @@ function ThemesContentsArtworkList() {
       <section>
         <ThemesBanner
           imgSrc={
-            !!artistName && artworkData
+            !!artistName && artworkData.length != 0
               ? `${process.env.NEXT_PUBLIC_S3_URL}/${artworkData?.[0]?.media_cover?.url}`
               : "/images/banner-artwork-list.jpg"
           }
@@ -206,39 +207,46 @@ function ThemesContentsArtworkList() {
               {/* // * ====================================== * // */}
               {/* //? ============== Artwork List Section ============= ?// */}
               <Col xl={{ span: 17 }} lg={{ span: 24 }}>
-                <ThemesContainerMasonry
-                  breakPoint={
-                    viewport?.width > 768
-                      ? 3
-                      : viewport?.width <= 768 && viewport?.width > 500
-                      ? 2
-                      : 1
-                  }
-                >
-                  {artworkData?.map((item) => {
-                    return (
-                      <Col span={24} key={item?.id}>
-                        <ThemesArtworkCard
-                          artworkUrl={`/artwork/${item?.slug}`}
-                          artworkTitle={item?.title}
-                          artistName={item?.artist?.full_name}
-                          artistCity={item?.artist?.city}
-                          artworkYear={item?.year}
-                          artworkWidth={item?.width}
-                          artworkHeight={item?.height}
-                          artworkPrice={item?.markup_price}
-                          artworkMedia={item?.material}
-                          artworkStatus={item?.status}
-                          imgSrc={
-                            item?.media_cover
-                              ? `${process.env.NEXT_PUBLIC_S3_URL}/${item?.media_cover?.url}`
-                              : "/images/default-images.jpg"
-                          }
-                        />
-                      </Col>
-                    );
-                  })}
-                </ThemesContainerMasonry>
+                {artworkData?.length !== 0 && (
+                  <Spin spinning={artworkLoading}>
+                    <ThemesContainerMasonry
+                      breakPoint={
+                        viewport?.width > 768
+                          ? 3
+                          : viewport?.width <= 768 && viewport?.width > 500
+                          ? 2
+                          : 1
+                      }
+                    >
+                      {artworkData?.map((item) => {
+                        return (
+                          <Col span={24} key={item?.id}>
+                            <ThemesArtworkCard
+                              artworkUrl={`/artwork/${item?.slug}`}
+                              artworkTitle={item?.title}
+                              artistName={item?.artist?.full_name}
+                              artistCity={item?.artist?.city}
+                              artworkYear={item?.year}
+                              artworkWidth={item?.width}
+                              artworkHeight={item?.height}
+                              artworkPrice={item?.markup_price}
+                              artworkMedia={item?.material}
+                              artworkStatus={item?.status}
+                              imgSrc={
+                                item?.media_cover
+                                  ? `${process.env.NEXT_PUBLIC_S3_URL}/${item?.media_cover?.url}`
+                                  : "/images/default-images.jpg"
+                              }
+                            />
+                          </Col>
+                        );
+                      })}
+                    </ThemesContainerMasonry>
+                  </Spin>
+                )}
+
+                {artworkData?.length == 0 && <ThemesNoData />}
+
                 {!end && (
                   <Col span={24} style={{ textAlign: "center" }}>
                     <ThemesButton onClick={handleLoadMore} loading={artworkLoading}>

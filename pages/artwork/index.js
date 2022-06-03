@@ -10,3 +10,11 @@ function PageArtworkList() {
 }
 
 export default PageArtworkList;
+
+export const getStaticProps = async (ctx) => {
+  return {
+    props: {
+      data: null,
+    },
+  };
+};
