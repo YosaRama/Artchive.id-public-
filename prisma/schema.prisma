@@ -46,6 +46,7 @@ model User {
   updated_article    Article[]              @relation("article_updated_by")
   created_exhibition Exhibition[]           @relation("exhibition_created_by")
   updated_exhibition Exhibition[]           @relation("exhibition_updated_by")
+  PaymentHistory     PaymentHistory[]
 
   @@map("user")
 }
@@ -76,6 +77,7 @@ model Artwork {
   order          Order[]
   certificate    Certificate[]
   exhibitions    ArtworksOnExhibitions[]
+  PaymentHistory PaymentHistory[]
   createdAt      DateTime                @default(now())
   updatedAt      DateTime?               @updatedAt
 
@@ -246,6 +248,26 @@ model ArtworksOnExhibitions {
   @@id([artwork_id, exhibition_id])
   @@unique([exhibition_id, artwork_id])
   @@map("artworks_on_exhibitions")
+}
+
+model PaymentHistory {
+  id                 Int     @id @default(autoincrement())
+  user_id            Int
+  user               User    @relation(references: [id], fields: [user_id])
+  artwork_id         Int
+  artwork            Artwork @relation(references: [id], fields: [artwork_id])
+  transaction_time   String  @db.Text
+  transaction_status String
+  transaction_id     String
+  signature_key      String
+  payment_type       String
+  order_id           String
+  gross_amount       String
+  fraud_status       String
+  currency           String
+  merchant_id        String
+
+  @@map("payment_history")
 }
 
 // ENUM
