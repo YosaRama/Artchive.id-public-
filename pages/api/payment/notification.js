@@ -1,6 +1,7 @@
 // Libs
 import nextConnect from "next-connect";
 import midtransClient from "midtrans-client";
+import { CREATE_PAYMENT_HISTORY } from "app/database/query/payment-history";
 
 const apiHandler = nextConnect();
 
@@ -15,13 +16,27 @@ apiHandler.post(async (req, res) => {
   const paymentData = req.body;
   const notification = await apiClient.transaction.notification(paymentData);
 
-  let orderId = notification.order_id;
-  let transactionStatus = notification.transaction_status;
-  let fraudStatus = notification.fraud_status;
+  const data = {
+    currency: notification.currency,
+    fraudStatus: notification.fraud_status,
+    grossAmount: notification.gross_amount,
+    merchantId: notification.merchant_id,
+    orderId: notification.order_id,
+    paymentType: notification.payment_type,
+    signatureKey: notification.signature_key,
+    transactionId: notification.transaction_id,
+    transactionStatus: notification.transaction_status,
+    transactionTime: notification.transaction_time,
+    artworkId: 1,
+    userId: 3,
+  };
+
+  const result = await CREATE_PAYMENT_HISTORY(data);
 
   res.status(200).json({
     success: true,
-    message: `Transaction notification received. Order ID: ${orderId}. Transaction status: ${transactionStatus}. Fraud status: ${fraudStatus}`,
+    message: `Transaction notification received. Order ID: ${data.orderId}. Transaction status: ${data.transactionStatus}. Fraud status: ${data.fraudStatus}`,
+    data: result,
   });
 
   // Sample transactionStatus handling logic
