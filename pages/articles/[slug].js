@@ -36,12 +36,6 @@ export const getStaticProps = async (ctx) => {
   const articleData = JSON.parse(JSON.stringify(articleDataRes));
   // * ====================================== * //
 
-  if (!articleData) {
-    return {
-      notFound: true,
-    };
-  }
-
   return {
     props: {
       articleData: articleData,
