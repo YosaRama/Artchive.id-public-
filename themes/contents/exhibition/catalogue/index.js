@@ -28,45 +28,62 @@ function ThemesContentsExhibitionCatalogue() {
           >
             <div>
               <div style={{ height: "100%", width: "100%" }}>
-                <img src="/images/artwork-1.jpg" style={{ width: "100%", height: "100%" }} />
+                <img src="/images/catalogue-1.jpg" style={{ width: "100%", height: "100%" }} />
               </div>
             </div>
             <div>
               <div style={{ height: "100%", width: "100%" }}>
-                <img src="/images/artwork-2.jpg" style={{ width: "100%", height: "100%" }} />
+                <img src="/images/catalogue-1.jpg" style={{ width: "100%", height: "100%" }} />
               </div>
             </div>
             <div>
               <div style={{ height: "100%", width: "100%" }}>
-                <img src="/images/artwork-3.jpg" style={{ width: "100%", height: "100%" }} />
+                <img src="/images/catalogue-2.jpg" style={{ width: "100%", height: "100%" }} />
               </div>
             </div>
             <div>
               <div style={{ height: "100%", width: "100%" }}>
-                <img src="/images/artwork-4.jpg" style={{ width: "100%", height: "100%" }} />
+                <img src="/images/catalogue-3.jpg" style={{ width: "100%", height: "100%" }} />
               </div>
             </div>
             <div>
               <div style={{ height: "100%", width: "100%" }}>
-                <img src="/images/artwork-5.jpg" style={{ width: "100%", height: "100%" }} />
+                <img src="/images/catalogue-4.jpg" style={{ width: "100%", height: "100%" }} />
               </div>
             </div>
             <div>
               <div style={{ height: "100%", width: "100%" }}>
-                <img src="/images/artwork-1.jpg" style={{ width: "100%", height: "100%" }} />
+                <img src="/images/catalogue-5.jpg" style={{ width: "100%", height: "100%" }} />
               </div>
             </div>
             <div>
               <div style={{ height: "100%", width: "100%" }}>
-                <img src="/images/artwork-2.jpg" style={{ width: "100%", height: "100%" }} />
+                <img src="/images/catalogue-6.jpg" style={{ width: "100%", height: "100%" }} />
               </div>
             </div>
             <div>
               <div style={{ height: "100%", width: "100%" }}>
-                <div style={{ position: "absolute", top: "50%", left: "50%" }}>
-                  <Spin />
-                </div>
-                <img src="/images/default-images.jpg" style={{ width: "100%", height: "100%" }} />
+                <img src="/images/catalogue-7.jpg" style={{ width: "100%", height: "100%" }} />
+              </div>
+            </div>
+            <div>
+              <div style={{ height: "100%", width: "100%" }}>
+                <img src="/images/catalogue-8.jpg" style={{ width: "100%", height: "100%" }} />
+              </div>
+            </div>
+            <div>
+              <div style={{ height: "100%", width: "100%" }}>
+                <img src="/images/catalogue-9.jpg" style={{ width: "100%", height: "100%" }} />
+              </div>
+            </div>
+            <div>
+              <div style={{ height: "100%", width: "100%" }}>
+                <img src="/images/catalogue-10.jpg" style={{ width: "100%", height: "100%" }} />
+              </div>
+            </div>
+            <div>
+              <div style={{ height: "100%", width: "100%" }}>
+                <img src="/images/catalogue-11.jpg" style={{ width: "100%", height: "100%" }} />
               </div>
             </div>
           </FlipBook>
