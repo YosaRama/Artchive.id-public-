@@ -1,0 +1,45 @@
+.camelCase {
+  color: yellow;
+  text-align: center;
+  margin-top: 2em;
+}
+.image {
+  justify-content: center;
+  display: flex;
+  padding-top: 5%;
+}
+.title {
+  color: orange;
+  font-size: 22px;
+  font-weight: 500;
+  font-family: "DM_serif_display", Arial, serif;
+  padding-top: 2%;
+  // text-align: center;
+}
+
+.description {
+  color: black;
+  font-size: 14px;
+  font-family: "DM_serif_display", Arial, serif;
+
+  // text-align: center;
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.textContainer {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.imageCircle {
+  background-color: orange;
+  border-radius: 100%;
+  width: 150px;
+  height: 150px;
+  padding: 30px;
+}

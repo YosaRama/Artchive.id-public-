@@ -1,8 +1,11 @@
 // Libs
-import { Col } from "antd";
+import propTypes from "prop-types";
+import { useRouter } from "next/router";
+import { Col, Row } from "antd";
 
 // Components
 import ThemesBanner from "themes/components/libs/banner";
+import ThemesContainerMain from "themes/components/container/main";
 import ThemesAboutBenefits from "themes/components/libs/about-benefits";
 
 // Styles
@@ -23,9 +26,53 @@ function ThemesContentsAbout() {
         </ThemesBanner>
       </section>
       {/* // * ====================================== * // */}
-
-      <ThemesAboutBenefits />
-      <ThemesHeadline title="Halo Bandung" />
+      {/* //? ============== Who Are We Section ============= ?// */}
+      {/* // * ====================================== * // */}
+      {/* //? ============== Benefit Section ============= ?// */}
+      <section className={s.titleSection}>
+        <ThemesHeadline
+          title="Benefits"
+          subtitle="Benefit Joining Arthcive"
+          className={s.pageTitle}
+        />
+      </section>
+      {/* <section>
+        <Row gutter={[16, 0]} className={s.list}>
+          {ThemesAboutBenefits(() => (
+            <Col></Col>
+          ))}
+          {ThemesAboutBenefits(() => (
+            <Col></Col>
+          ))}
+        </Row>
+        <Row gutter={[16, 0]} className={s.list}>
+          {ThemesAboutBenefits(() => (
+            <Col></Col>
+          ))}
+          {ThemesAboutBenefits(() => (
+            <Col></Col>
+          ))}
+        </Row>
+      </section> */}
+      <Row gutter={[16, 32]}>
+        <Col span={12}>
+          <ThemesAboutBenefits></ThemesAboutBenefits>
+        </Col>
+        <Col span={12}>
+          <ThemesAboutBenefits></ThemesAboutBenefits>
+        </Col>
+        <Col span={12}>
+          <ThemesAboutBenefits></ThemesAboutBenefits>
+        </Col>
+        <Col span={12}>
+          <ThemesAboutBenefits></ThemesAboutBenefits>
+        </Col>
+      </Row>
+      {/* // * ====================================== * // */}
+      {/* //? ============== Banner Section ============= ?// */}
+      {/* // * ====================================== * // */}
+      {/* //? ============== Banner Section ============= ?// */}
+      {/* // * ====================================== * // */} );
     </>
   );
 }
