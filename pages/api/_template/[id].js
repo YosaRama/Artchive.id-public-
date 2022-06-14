@@ -8,6 +8,15 @@ const apiHandler = nextConnect();
 const messageHead = "Template";
 
 // GET SINGLE HANDLER
+/**
+ * @swagger
+ * /api/_template/{:id}:
+ *   get:
+ *     description: GET Single Template API
+ *     responses:
+ *       200:
+ *         description: this is just an get single template API from artchive.id
+ */
 apiHandler.get(async (req, res) => {
   const id = req.query.id;
   try {
@@ -33,6 +42,15 @@ apiHandler.get(async (req, res) => {
 });
 
 // EDIT SINGLE HANDLER
+/**
+ * @swagger
+ * /api/_template/{:id}:
+ *   put:
+ *     description: PUT Single Template API
+ *     responses:
+ *       200:
+ *         description: this is just an update single template API from artchive.id
+ */
 apiHandler.put(async (req, res) => {
   const id = req.query.id;
   try {
@@ -59,6 +77,15 @@ apiHandler.put(async (req, res) => {
 });
 
 // DELETE SINGLE HANDLER
+/**
+ * @swagger
+ * /api/_template/{:id}:
+ *   delete:
+ *     description: DELETE Single Template API
+ *     responses:
+ *       200:
+ *         description: this is just an delete single template API from artchive.id
+ */
 apiHandler.delete(async (req, res) => {
   const id = req.query.id;
   try {

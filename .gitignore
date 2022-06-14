@@ -49,3 +49,6 @@ yarn-error.log*
 # Sitemap Configuration
 /public/sitemap-0.xml
 /public/sitemap.xml
+
+# Swagger Configuration
+/public/swagger.json

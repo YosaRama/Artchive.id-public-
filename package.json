@@ -11,10 +11,11 @@
     "dev": "next dev",
     "ngrok": "ngrok http 3000",
     "build": "prisma generate && prisma migrate deploy && next build",
-    "postbuild": "next-sitemap",
+    "postbuild": "next-sitemap && next-swagger-doc-cli next-swagger-doc.json",
     "start": "next start",
     "lint": "next lint",
-    "cypress": "cypress open"
+    "cypress": "cypress open",
+    "swagger": "next-swagger-doc-cli next-swagger-doc.json"
   },
   "dependencies": {
     "@babel/core": "7.17.5",
@@ -35,6 +36,7 @@
     "next-compose-plugins": "^2.2.1",
     "next-connect": "^0.11.0",
     "next-pwa": "^5.5.2",
+    "next-swagger-doc": "^0.3.4",
     "next-with-less": "^2.0.4",
     "node-sass": "^7.0.1",
     "nodemailer": "^6.7.2",
@@ -51,6 +53,7 @@
     "rxjs": "^6.5.1",
     "sharp": "^0.25.1",
     "slugify": "^1.6.5",
+    "swagger-ui-react": "^4.12.0",
     "swr": "^1.0.1",
     "typescript": "4.7.0-dev.20220221",
     "uuid": "^8.3.2",

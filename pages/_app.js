@@ -46,7 +46,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps }, router }) {
             </Head>
 
             <>
-              {router.pathname.startsWith("/dashboard") && router.pathname != "/dashboard/login" ? (
+              {router.pathname.startsWith("/dashboard") && router.pathname != "/dashboard/login" && (
                 <>
                   {content && (
                     <AppLayout>
@@ -54,24 +54,27 @@ function MyApp({ Component, pageProps: { session, ...pageProps }, router }) {
                     </AppLayout>
                   )}
                 </>
-              ) : (
+              )}
+
+              {router.pathname.startsWith("/profile") && (
                 <>
-                  {router.pathname.startsWith("/profile") ? (
-                    <>
-                      {content && (
-                        <ThemesLayout>
-                          <Component {...pageProps} />
-                        </ThemesLayout>
-                      )}
-                    </>
-                  ) : (
-                    <>
-                      <ThemesLayout>
-                        <Component {...pageProps} />
-                      </ThemesLayout>
-                    </>
+                  {content && (
+                    <ThemesLayout>
+                      <Component {...pageProps} />
+                    </ThemesLayout>
                   )}
                 </>
+              )}
+
+              {router.pathname === "/api-doc" && <Component {...pageProps} />}
+
+              {((!router.pathname.startsWith("/dashboard") &&
+                !router.pathname.startsWith("/profile") &&
+                router.pathname !== "/api-doc") ||
+                router.pathname === "/dashboard/login") && (
+                <ThemesLayout>
+                  <Component {...pageProps} />
+                </ThemesLayout>
               )}
             </>
           </GlobalContext>
