@@ -23,7 +23,7 @@ function ThemesContentsArticlesList() {
   // * ====================================== * //
 
   //? ============== Articles Hooks ============= ?//
-  const { data: articleListData } = useArticlesLoad({ limit: 6 });
+  const { data: articleListData, total: articleListDataTotal } = useArticlesLoad({ limit: 6 });
   // * ====================================== * //
 
   return (
@@ -67,9 +67,11 @@ function ThemesContentsArticlesList() {
               })}
           </ThemesContainerMasonry>
         </ThemesContainerMain>
-        <Col className={s.articleLoadBtn}>
-          <ThemesButton>LOAD MORE</ThemesButton>
-        </Col>
+        {articleListData.length != articleListDataTotal && (
+          <Col className={s.articleLoadBtn}>
+            <ThemesButton>LOAD MORE</ThemesButton>
+          </Col>
+        )}
       </section>
       {/* // * ====================================== * // */}
     </>
