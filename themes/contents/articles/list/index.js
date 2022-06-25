@@ -67,7 +67,7 @@ function ThemesContentsArticlesList() {
               })}
           </ThemesContainerMasonry>
         </ThemesContainerMain>
-        {articleListData.length != articleListDataTotal && (
+        {articleListData?.length != articleListDataTotal && (
           <Col className={s.articleLoadBtn}>
             <ThemesButton>LOAD MORE</ThemesButton>
           </Col>
