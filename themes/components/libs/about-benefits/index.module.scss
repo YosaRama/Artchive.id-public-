@@ -1,28 +1,27 @@
-.camelCase {
-  color: yellow;
-  text-align: center;
-  margin-top: 2em;
-}
 .image {
   justify-content: center;
   display: flex;
   padding-top: 5%;
+  object-fit: contain;
+  width: 65%;
+  margin: auto;
 }
 .title {
-  color: orange;
-  font-size: 22px;
-  font-weight: 500;
+  color: #e5890a;
+  font-size: 24px;
+  font-weight: 400;
   font-family: "DM_serif_display", Arial, serif;
-  padding-top: 2%;
-  // text-align: center;
+  margin-top: 20px;
+  line-height: 33px;
 }
 
 .description {
   color: black;
-  font-size: 14px;
-  font-family: "DM_serif_display", Arial, serif;
-
-  // text-align: center;
+  font-size: 20px;
+  font-weight: normal;
+  width: 70%;
+  margin: 0 auto;
+  line-height: 24px;
 }
 
 .imageContainer {
@@ -37,9 +36,59 @@
 }
 
 .imageCircle {
-  background-color: orange;
+  background-color: #e5890a;
   border-radius: 100%;
-  width: 150px;
-  height: 150px;
+  width: 194px;
+  height: 194px;
   padding: 30px;
 }
+
+//? ============== Tablet Landscape Mode ============= ?//
+@media screen and (max-width: 1024px) {
+  .image {
+    justify-content: center;
+    display: flex;
+    padding-top: 5%;
+    object-fit: contain;
+    width: 65%;
+    margin: auto;
+  }
+  .title {
+    color: #e5890a;
+    font-size: 24px;
+    font-weight: 400;
+    font-family: "DM_serif_display", Arial, serif;
+    margin-top: 15px;
+    line-height: 33px;
+  }
+
+  .description {
+    color: black;
+    font-size: 16px;
+    font-weight: normal;
+    width: 100%;
+    margin: 15px auto 0px;
+    line-height: 19px;
+  }
+
+  .imageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .textContainer {
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .imageCircle {
+    background-color: #e5890a;
+    border-radius: 100%;
+    width: 149px;
+    height: 149px;
+    padding: 30px;
+  }
+}
+
+// * ====================================== * //

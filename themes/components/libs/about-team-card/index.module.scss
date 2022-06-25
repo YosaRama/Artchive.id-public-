@@ -1,0 +1,173 @@
+.card {
+  padding: 50px 0px;
+  margin: 24px auto;
+  width: 411px;
+  height: auto;
+  position: relative;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.25);
+  transition: all 250ms ease-in-out;
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 15px;
+    transform: translateY(-3px);
+  }
+}
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  height: 250px;
+  margin: 0 auto 20px;
+}
+.imageTeam {
+  justify-content: center;
+  display: flex;
+  border-radius: 100%;
+  object-fit: cover;
+  margin: auto;
+}
+
+.customizemask {
+  border-radius: 100%;
+}
+
+.name {
+  margin: 20px auto 0px;
+  font-family: "DM Serif Display";
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 1;
+}
+
+.position {
+  margin: 23px auto;
+  font-weight: 700;
+  font-size: 24px;
+  font-family: Aileron;
+  color: #e5890a;
+}
+
+.description {
+  margin: 20px 24px;
+  font-family: Aileron;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.cardContainerDescription {
+  text-align: center;
+}
+
+.socialMediaRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.socialMedia1 {
+  cursor: pointer;
+  width: auto;
+  height: 22px;
+  border: none;
+  margin: 10px 5px 0px;
+}
+
+.socialMedia2 {
+  cursor: pointer;
+  width: auto;
+  height: 22px;
+  border: none;
+  margin: 10px 5px 0px;
+}
+
+//? ============== Tablet Landscape Mode ============= ?//
+@media screen and (max-width: 1024px) {
+  .card {
+    padding: 0px 0px;
+    margin: 15px auto;
+    width: 150px;
+    height: auto;
+    position: relative;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.25);
+    transition: all 250ms ease-in-out;
+    &:hover {
+      box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 15px;
+      transform: translateY(-3px);
+    }
+  }
+
+  .imageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 5px;
+  }
+  .imageTeam {
+    justify-content: center;
+    display: flex;
+    border-radius: 100%;
+    object-fit: cover;
+    margin: auto;
+  }
+
+  .name {
+    margin: 10px auto 0px;
+    font-family: "DM Serif Display";
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1;
+  }
+
+  .position {
+    margin: 5px auto;
+    font-weight: 700;
+    font-size: 12px;
+    font-family: Aileron;
+    color: #e5890a;
+  }
+
+  .description {
+    margin: 10px 0px;
+    font-family: Aileron;
+    font-weight: 400;
+    font-size: 8px;
+    line-height: 10px;
+  }
+
+  .cardContainerDescription {
+    text-align: center;
+  }
+
+  .socialMediaRow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .socialMedia1 {
+    cursor: pointer;
+    width: auto;
+    height: 16px;
+    border: none;
+    margin: 5px 4px 0px;
+  }
+
+  .socialMedia2 {
+    cursor: pointer;
+    width: auto;
+    height: 16px;
+    border: none;
+    margin: 5px 4px 0px;
+  }
+}
+
+// * ====================================== * //

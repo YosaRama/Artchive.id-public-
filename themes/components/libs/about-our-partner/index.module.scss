@@ -1,0 +1,14 @@
+.logoPartner {
+  height: 50px;
+  width: auto;
+  margin: 0 12px;
+}
+
+//? ============== Tablet Landscape Mode ============= ?//
+@media screen and (max-width: 1024px) {
+  .logoPartner {
+    height: 25px;
+    width: auto;
+    margin: 0 8px;
+  }
+}

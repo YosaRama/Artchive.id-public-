@@ -10,15 +10,160 @@
   }
 }
 // * ====================================== * //
-//? ============== Benefit Section ============= ?//
-.titleSection {
-  color: orange;
-  margin-top: 5%;
+//? ============== About Us Description Section ============= ?//
+.backgroundAboutDescription {
+  background-color: white;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  // padding-left: 80px;
+  // padding-right: 80px;
 }
-.benefitSection {
-  justify-content: center;
+.aboutUsDescContainer {
   align-items: center;
-  display: flex;
-  gap: 20px;
+  margin: 0px 200px;
 }
 // * ====================================== * //
+//? ============== Benefit Section ============= ?//
+.benefitItemContainer {
+  margin: 50px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.list {
+  width: 50%;
+  height: auto;
+}
+.titleSection {
+  color: orange;
+  margin-top: 50px;
+}
+
+// * ====================================== * //
+//? ============== Our Team Section ============= ?//
+
+.containerTeamsCard {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-top: 40px;
+  padding-bottom: 50px;
+}
+.card {
+  margin: 0px 12px;
+}
+.titleSection1 {
+  color: orange;
+  padding-top: 50px;
+}
+
+.backgroundAboutOurTeam {
+  background-color: white;
+  margin: 0px auto;
+}
+
+// * ====================================== * //
+//? ============== Our Partners Section ============= ?//
+
+.ourPartnerContainer {
+  margin: 50px 320px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ourPartnerLogo {
+  margin: 25px 0px;
+  justify-content: center;
+  display: flex;
+}
+// * ====================================== * //
+
+//? ============== Tablet Landscape Mode ============= ?//
+@media screen and (max-width: 1024px) {
+  //? ============== Banner Section ============= ?//
+  .bannerTitle {
+    text-align: center;
+    h1 {
+      margin-bottom: 0;
+    }
+    p {
+      color: #eaeaea;
+      margin-bottom: 0;
+    }
+  }
+  // * ====================================== * //
+  //? ============== About Us Description Section ============= ?//
+  .backgroundAboutDescription {
+    background-color: white;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .aboutUsDescContainer {
+    align-items: center;
+    margin: 0 auto;
+  }
+  // * ====================================== * //
+  //? ============== Benefit Section ============= ?//
+  .benefitItemContainer {
+    margin: 50px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .list {
+    width: 100%;
+    height: auto;
+  }
+  .titleSection {
+    color: orange;
+    margin-top: 50px;
+  }
+  // * ====================================== * //
+  //? ============== Our Team Section ============= ?//
+
+  .containerTeamsCard {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 30px;
+    padding-top: 15px;
+  }
+
+  .card {
+    margin: 0px 8px;
+  }
+
+  .titleSection1 {
+    color: orange;
+    padding-top: 50px;
+  }
+
+  .backgroundAboutOurTeam {
+    background-color: white;
+    margin: 0px auto;
+  }
+
+  // * ====================================== * //
+  //? ============== Our Partners Section ============= ?//
+
+  .ourPartnerContainer {
+    margin: 50px 80px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .ourPartnerLogo {
+    margin: 10px 0px;
+    justify-content: center;
+    display: flex;
+  }
+  // * ====================================== * //
+}
