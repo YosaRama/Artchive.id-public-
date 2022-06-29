@@ -1,25 +1,20 @@
 // Libs
 import propTypes from "prop-types";
-import { useRouter } from "next/router";
+import Link from "next/link";
 
 // Icons
 import { ArrowRightOutlined } from "@ant-design/icons";
 
 function ThemesLinkWithArrow(props) {
-  const router = useRouter();
   const { text, link } = props;
-
-  //? ============== Handle Direction ============= ?//
-  const handleLink = () => {
-    router.push(link);
-  };
-  // * ====================================== * //
 
   return (
     <>
-      <a onClick={handleLink}>
-        {text} <ArrowRightOutlined />
-      </a>
+      <Link href={link ? link : "/"}>
+        <a>
+          {text} <ArrowRightOutlined />
+        </a>
+      </Link>
     </>
   );
 }

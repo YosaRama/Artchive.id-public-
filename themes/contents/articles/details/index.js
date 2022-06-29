@@ -72,6 +72,7 @@ function ThemesContentsArticlesDetails(props) {
                       imageSrc={item.thumbnail.url}
                       postedDate={item.updated_at}
                       shortDescription={item.short_description}
+                      url={item.slug}
                     />
                   </Col>
                 );

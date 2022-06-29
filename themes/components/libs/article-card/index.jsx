@@ -10,6 +10,7 @@ import ThemesLinkWithArrow from "../link-with-arrow";
 
 // Styles
 import s from "./index.module.scss";
+import Link from "next/link";
 
 function ThemesArticleCard(props) {
   const { title, shortDescription, postedDate, url, imageSrc } = props;
@@ -17,18 +18,26 @@ function ThemesArticleCard(props) {
     <>
       <Card bodyStyle={{ padding: 0 }}>
         <Col style={{ paddingLeft: 0, paddingRight: 0 }} className={s.imageContainer}>
-          <img
-            src={
-              imageSrc
-                ? `${process.env.NEXT_PUBLIC_S3_URL}/${imageSrc}`
-                : `/images/default-images.jpg`
-            }
-            alt=""
-          />
+          <Link href={url ? url : "/"}>
+            <a>
+              <img
+                src={
+                  imageSrc
+                    ? `${process.env.NEXT_PUBLIC_S3_URL}/${imageSrc}`
+                    : `/images/default-images.jpg`
+                }
+                alt=""
+              />
+            </a>
+          </Link>
         </Col>
         <Col className={s.contentContainer}>
           <Col className={s.titleContainer}>
-            <h1>{title && title}</h1>
+            <Link href={url ? url : "/"}>
+              <a>
+                <h1>{title && title}</h1>
+              </a>
+            </Link>
           </Col>
           <Col className={s.descriptionContainer}>
             <p>{shortDescription && shortDescription}</p>

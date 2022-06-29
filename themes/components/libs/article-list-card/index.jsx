@@ -28,9 +28,11 @@ function ThemesArticleListCard(props) {
         </Col>
         <Col span={24} className={s.contentContainer}>
           <Col className={s.contentTitleContainer}>
-            <a>
-              <h1>{title}</h1>
-            </a>
+            <Link href={url ? url : "/"}>
+              <a>
+                <h1>{title}</h1>
+              </a>
+            </Link>
           </Col>
           <Col className={s.contentSubContainer}>
             <p>By {author}</p>
@@ -40,9 +42,11 @@ function ThemesArticleListCard(props) {
             <p>{shortDescription}</p>
           </Col>
           <Col className={s.contentBtnContainer}>
-            <a>
-              <ThemesButton onClick={() => router.push(`${url}`)}>READ MORE</ThemesButton>
-            </a>
+            <Link href={url ? url : "/"}>
+              <a>
+                <ThemesButton>READ MORE</ThemesButton>
+              </a>
+            </Link>
           </Col>
         </Col>
       </Col>
