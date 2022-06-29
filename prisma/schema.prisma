@@ -114,7 +114,7 @@ model Media {
   article_thumbnail        Article[]    @relation("article_thumbnail")
   exhibition_thumbnail     Exhibition?  @relation("exhibition_thumbnail")
   exhibition_media_gallery Exhibition[] @relation("exhibition_media_gallery")
-
+  article_gallery          Article[]
 
   @@map("media")
 }
@@ -187,6 +187,7 @@ model Article {
   author            String        @db.Text
   thumbnail         Media         @relation("article_thumbnail", fields: [thumbnail_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   thumbnail_id      Int
+  gallery           Media[]
   created_by        User          @relation("article_created_by", fields: [created_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   created_id        Int
   created_at        DateTime      @default(now())
