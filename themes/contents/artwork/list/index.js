@@ -97,7 +97,7 @@ function ThemesContentsArtworkList() {
       <section>
         <ThemesBanner
           imgSrc={
-            !!artistName && artworkData.length != 0
+            !!artistName && artworkData?.length != 0
               ? `${process.env.NEXT_PUBLIC_S3_URL}/${artworkData?.[0]?.media_cover?.url}`
               : "/images/banner-artwork-list.jpg"
           }
