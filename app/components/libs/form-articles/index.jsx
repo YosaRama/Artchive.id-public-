@@ -7,10 +7,9 @@ import { useRouter } from "next/router";
 
 // Components
 import AppTextEditor from "../text-editor";
-import { WarningNotification } from "app/components/utils/notification";
-
-// Data Hook
+import AppUploadGalleries from "../upload-galleries";
 import AppUploadImages from "../upload-images";
+import { WarningNotification } from "app/components/utils/notification";
 
 // Styles
 import s from "./index.module.scss";
@@ -31,6 +30,17 @@ function AppFormArticles(props) {
   const [uploadImage, setUploadImage] = useState();
   // * ====================================== * //
 
+  //? ============== Handle Upload Gallery ============= ?//
+  const [gallery, setGallery] = useState([]);
+  const onAddGallery = (file) => {
+    setGallery([...gallery, { id: file.data.id, url: file.data.url }]);
+  };
+  const onDeleteGallery = (id) => {
+    const filterItem = gallery.filter((item) => item.id !== id);
+    setGallery(filterItem);
+  };
+  // * ====================================== * //
+
   //? ============== Handle Initial Data ============= ?//
   const initialDataParse = {
     ...initialData,
@@ -39,7 +49,8 @@ function AppFormArticles(props) {
   useEffect(() => {
     if (isEdit) {
       setUploadImage({ id: initialData?.thumbnail?.id, url: initialData?.thumbnail?.url });
-      setTextEditorValue(initialData.content);
+      setTextEditorValue(initialData?.content);
+      setGallery(initialData?.gallery.map((item) => ({ id: item.id, url: item.url })));
     }
   }, []);
   // * ====================================== * //
@@ -57,6 +68,7 @@ function AppFormArticles(props) {
         thumbnailId: uploadImage?.id,
         createdId: session?.user?.id,
         updatedId: session?.user?.id,
+        galleryId: gallery.length != 0 ? gallery.map((item) => item.id) : null,
       };
       if (!submission.thumbnailId) {
         WarningNotification({
@@ -84,6 +96,15 @@ function AppFormArticles(props) {
               userId={session?.user?.id}
             />
           </Col>
+        </Form.Item>
+        <Form.Item label="Gallery">
+          <AppUploadGalleries
+            limit={6}
+            initialGallery={gallery}
+            onAddGallery={onAddGallery}
+            handleDelete={onDeleteGallery}
+            deleteTitle={"item on article gallery"}
+          />
         </Form.Item>
         <Form.Item name={"title"} label="Article Title">
           <Input />

@@ -23,6 +23,7 @@
   margin-bottom: 20px;
   img {
     object-fit: cover;
+    height: 400px !important;
   }
 }
 
@@ -32,5 +33,14 @@
   }
   h1 {
     font-size: 28px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .bannerImgContainer {
+    height: 250px;
+    img {
+      height: 250px !important;
+    }
   }
 }

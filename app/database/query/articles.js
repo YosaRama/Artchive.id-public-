@@ -49,6 +49,7 @@ export const GET_ARTICLES_BY_ID = ({ id }) => {
   return queryFrom.findUnique({
     include: {
       thumbnail: true,
+      gallery: true,
     },
     where: { id: +id },
   });
@@ -59,6 +60,7 @@ export const GET_ARTICLE_BY_SLUG = ({ slug }) => {
     where: { slug: slug },
     include: {
       thumbnail: true,
+      gallery: true,
     },
   });
 };
@@ -74,7 +76,17 @@ export const GET_ALL_ARTICLES_SLUG = () => {
 //? ============== CREATE QUERY ============= ?//
 
 export const CREATE_ARTICLES = ({ data }) => {
-  const { title, slug, author, status, content, createdId, thumbnailId, shortDescription } = data;
+  const {
+    title,
+    slug,
+    author,
+    status,
+    content,
+    createdId,
+    thumbnailId,
+    shortDescription,
+    galleryId,
+  } = data;
 
   return queryFrom.create({
     data: {
@@ -86,6 +98,14 @@ export const CREATE_ARTICLES = ({ data }) => {
       short_description: shortDescription,
       created_id: createdId,
       thumbnail_id: thumbnailId,
+      gallery: {
+        connect:
+          (galleryId &&
+            galleryId.map((item) => {
+              return { id: item };
+            })) ||
+          [],
+      },
     },
   });
 };
@@ -95,7 +115,8 @@ export const CREATE_ARTICLES = ({ data }) => {
 //? ============== UPDATE QUERY ============= ?//
 
 export const UPDATE_ARTICLES = ({ id, data }) => {
-  const { title, content, status, author, updatedId, thumbnailId, shortDescription } = data;
+  const { title, content, status, author, updatedId, thumbnailId, shortDescription, galleryId } =
+    data;
 
   return queryFrom.update({
     data: {
@@ -106,6 +127,15 @@ export const UPDATE_ARTICLES = ({ id, data }) => {
       updated_id: updatedId,
       short_description: shortDescription,
       thumbnail_id: thumbnailId,
+      gallery: {
+        set: [],
+        connect:
+          (galleryId &&
+            galleryId.map((item) => {
+              return { id: item };
+            })) ||
+          [],
+      },
     },
     where: { id: +id },
   });

@@ -12,9 +12,17 @@ import ThemesContentsArticleSidebar from "./sidebar";
 // Styles
 import s from "./index.module.scss";
 import { useArticles } from "app/hooks/articles";
+import { useState } from "react";
 
 function ThemesContentsArticlesDetails(props) {
   const { articleData } = props;
+
+  //? ============== Handle Gallery ============= ?//
+  const gallery = [
+    { id: articleData.thumbnail.id, url: articleData.thumbnail.url },
+    articleData.gallery.map((item) => ({ id: item.id, url: item.url })),
+  ].flat(1);
+  // * ====================================== * //
 
   //? ============== Handle Other Article ============= ?//
   const { data: otherArticles } = useArticles({ queryString: `excludeSlug=${articleData.slug}` });
@@ -30,7 +38,7 @@ function ThemesContentsArticlesDetails(props) {
                 title={articleData.title}
                 description={articleData.content}
                 postDate={articleData.updated_at}
-                imageSrc={articleData.thumbnail.url}
+                gallery={gallery}
               />
             </Col>
             <Col
