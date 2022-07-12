@@ -99,7 +99,7 @@ function ThemesContentsArtworkList() {
           imgSrc={
             !!artistName && artworkData?.length != 0
               ? `${process.env.NEXT_PUBLIC_S3_URL}/${artworkData?.[0]?.media_cover?.url}`
-              : "/images/banner-artwork-list.jpg"
+              : "/images/banner-artwork-list-1.png"
           }
           className={"page-bannerContainer"}
         >

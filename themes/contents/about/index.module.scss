@@ -11,21 +11,23 @@
 }
 // * ====================================== * //
 //? ============== About Us Description Section ============= ?//
-.backgroundAboutDescription {
-  background-color: white;
-  padding-top: 50px;
-  padding-bottom: 50px;
-  // padding-left: 80px;
-  // padding-right: 80px;
-}
+
 .aboutUsDescContainer {
-  align-items: center;
-  margin: 0px 200px;
+  padding-top: 50px;
+  padding-bottom: 1px;
+  align-content: center;
+  background-color: white;
 }
+
 // * ====================================== * //
 //? ============== Benefit Section ============= ?//
+.titleSection {
+  color: orange;
+  margin-top: 50px;
+}
+
 .benefitItemContainer {
-  margin: 50px auto;
+  margin: 50px auto 100px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,40 +37,83 @@
   width: 50%;
   height: auto;
 }
-.titleSection {
-  color: orange;
-  margin-top: 50px;
-}
 
 // * ====================================== * //
 //? ============== Our Team Section ============= ?//
 
-.containerTeamsCard {
-  display: flex;
-  flex-wrap: nowrap;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-  padding-top: 40px;
-  padding-bottom: 50px;
-}
-.card {
-  margin: 0px 12px;
-}
 .titleSection1 {
-  color: orange;
-  padding-top: 50px;
+  color: #e5890a;
 }
 
-.backgroundAboutOurTeam {
+.aboutUsTeamContainer {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  align-content: center;
   background-color: white;
+}
+
+.card {
+  margin: 0px 10px;
+}
+
+.carousel {
+  width: auto;
   margin: 0px auto;
+}
+
+.carousel {
+  :global(.slick-arrow) {
+    border-radius: 10%;
+    background-color: #e5890a !important;
+    opacity: 1;
+    width: 40px;
+    height: 50px;
+    box-shadow: 0px 1px 2px 1px rgb(200, 200, 200);
+    transition: all 0.7s ease;
+    &:hover {
+      box-shadow: 0px 1px 3px 2px rgb(170, 170, 170);
+      transition: all 0.7s ease;
+    }
+    &::before {
+      font-size: 24px;
+      color: white;
+      display: block;
+      margin-bottom: 5px;
+    }
+  }
+  :global(.slick-prev) {
+    left: 30px;
+    z-index: 9;
+  }
+  :global(.slick-next) {
+    right: 25px;
+    z-index: 9;
+  }
+  :global(.slick-dots) {
+    margin-top: 15px;
+    position: relative;
+    z-index: 9;
+  }
+  :global(.slick-dots) {
+    li {
+      position: relative;
+      background: grey;
+    }
+  }
+  :global(.slick-dots li.slick-active) {
+    position: relative;
+    background: #e5890a;
+    content-visibility: hidden;
+  }
 }
 
 // * ====================================== * //
 //? ============== Our Partners Section ============= ?//
 
 .ourPartnerContainer {
-  margin: 50px 320px;
+  margin: 50px 0px;
+  max-width: 900px;
+  min-width: 800px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -96,74 +141,168 @@
   }
   // * ====================================== * //
   //? ============== About Us Description Section ============= ?//
-  .backgroundAboutDescription {
-    background-color: white;
-    padding-top: 50px;
-    padding-bottom: 50px;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-  .aboutUsDescContainer {
-    align-items: center;
-    margin: 0 auto;
-  }
+
   // * ====================================== * //
   //? ============== Benefit Section ============= ?//
+
   .benefitItemContainer {
-    margin: 50px auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+    margin: 50px auto 50px;
   }
-  .list {
-    width: 100%;
-    height: auto;
-  }
-  .titleSection {
-    color: orange;
-    margin-top: 50px;
-  }
+
   // * ====================================== * //
   //? ============== Our Team Section ============= ?//
 
-  .containerTeamsCard {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 30px;
-    padding-top: 15px;
+  .aboutUsTeamContainer {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    align-content: center;
+    background-color: white;
   }
 
   .card {
-    margin: 0px 8px;
+    margin: 0px 10px;
   }
 
-  .titleSection1 {
-    color: orange;
-    padding-top: 50px;
-  }
-
-  .backgroundAboutOurTeam {
-    background-color: white;
-    margin: 0px auto;
+  .carousel {
+    :global(.slick-prev) {
+      left: 30px;
+      z-index: 9;
+    }
+    :global(.slick-next) {
+      right: 30px;
+      z-index: 9;
+    }
   }
 
   // * ====================================== * //
   //? ============== Our Partners Section ============= ?//
 
   .ourPartnerContainer {
-    margin: 50px 80px;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    margin: 40px auto;
   }
 
   .ourPartnerLogo {
     margin: 10px 0px;
-    justify-content: center;
-    display: flex;
   }
+
+  // * ====================================== * //
+}
+
+//? ============== Potrait Table View ============= ?//
+@media screen and (max-width: 768px) {
+  //? ============== Banner Section ============= ?//
+  .bannerTitle {
+    text-align: center;
+    h1 {
+      margin-bottom: 0;
+    }
+    p {
+      color: #eaeaea;
+      margin-bottom: 0;
+    }
+  }
+  // * ====================================== * //
+  //? ============== About Us Description Section ============= ?//
+
+  // * ====================================== * //
+  //? ============== Benefit Section ============= ?//
+
+  .benefitItemContainer {
+    margin: 50px auto 50px;
+  }
+
+  .list {
+    width: 80%;
+    height: auto;
+    margin: 0px auto;
+  }
+
+  // * ====================================== * //
+  //? ============== Our Team Section ============= ?//
+
+  .aboutUsTeamContainer {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    align-content: center;
+    background-color: white;
+  }
+
+  .card {
+    margin: 0px 10px;
+  }
+
+  .carousel {
+    :global(.slick-arrow) {
+      width: 40px;
+      height: 50px;
+    }
+
+    &::before {
+      font-size: 16px;
+    }
+  }
+}
+// * ====================================== * //
+//? ============== Our Partners Section ============= ?//
+
+.ourPartnerContainer {
+  margin: 40px auto;
+  max-width: 600px;
+  min-width: 500px;
+}
+
+.ourPartnerLogo {
+  margin: 10px 0px;
+}
+
+// * ====================================== * //
+
+//? ============== Mobile View ============= ?//
+@media screen and (max-width: 500px) {
+  // * ====================================== * //
+  //? ============== About Us Description Section ============= ?//
+
+  // * ====================================== * //
+  //? ============== Benefit Section ============= ?//
+
+  .list {
+    width: 100%;
+    height: auto;
+    margin: 10px auto;
+  }
+
+  // * ====================================== * //
+  //? ============== Our Team Section ============= ?//
+
+  .aboutUsTeamContainer {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    align-content: center;
+    background-color: white;
+  }
+
+  .card {
+    margin: 0px 10px;
+  }
+
+  .carousel {
+    :global(.slick-arrow) {
+      width: 40px;
+      height: 50px;
+
+      &::before {
+        font-size: 24px;
+      }
+    }
+  }
+  // * ====================================== * //
+  //? ============== Our Partners Section ============= ?//
+
+  .ourPartnerContainer {
+    margin: 40px auto;
+    max-width: 300px;
+    min-width: 200px;
+  }
+
   // * ====================================== * //
 }

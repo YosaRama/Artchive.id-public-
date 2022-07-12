@@ -1,0 +1,19 @@
+.socialMediaContainer {
+  display: flex;
+  justify-content: center;
+  height: 20px;
+}
+
+.socialIcon {
+  font-size: 22px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #140c01;
+  &:hover {
+    svg {
+      path {
+        color: #e5890a;
+      }
+    }
+  }
+}

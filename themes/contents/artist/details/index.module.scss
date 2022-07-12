@@ -36,6 +36,12 @@
   border: 10px solid #ffffff;
 }
 
+.customizemask {
+  border-radius: 100%;
+  width: 350px;
+  margin: 0px auto;
+}
+
 .profileDetails {
   margin-top: 20px;
   padding-right: 50px !important;
@@ -112,9 +118,15 @@
   .profileImageBox {
     height: 300px;
   }
+
   .profileImage {
     width: 300px;
   }
+
+  .customizemask {
+    width: 300px;
+  }
+
   .artistName {
     font-size: 42px;
   }
@@ -133,6 +145,11 @@
   .profileImage {
     width: 350px;
   }
+
+  .customizemask {
+    width: 350px;
+  }
+
   .profileDetails {
     margin-top: 0px;
     padding-right: 32px !important;
@@ -168,6 +185,11 @@
   .profileImage {
     width: 200px;
   }
+
+  .customizemask {
+    width: 200px;
+  }
+
   .profileDetails {
     text-align: center;
     top: 0px;

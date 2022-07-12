@@ -65,6 +65,9 @@ function ThemesContentsArtistDetails(props) {
                     }
                     alt=""
                     className={s.profileImage}
+                    preview={{
+                      maskClassName: s.customizemask,
+                    }}
                   />
                 </div>
               </Col>

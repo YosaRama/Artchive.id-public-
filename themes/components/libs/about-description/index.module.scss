@@ -1,27 +1,19 @@
 .title {
   font-family: "DM_serif_display";
   font-weight: 400;
-  font-size: 48px;
-  line-height: 66px;
+  font-size: 32px;
+  line-height: 33px;
 }
 .description {
+  margin: 10px auto 50px;
   font-weight: 400;
-  font-size: 24px;
-  line-height: 29px;
+  font-size: 16px;
+  line-height: 25px;
 }
 
 //? ============== Tablet Landscape Mode ============= ?//
 @media screen and (max-width: 1024px) {
-  .title {
-    font-family: "DM_serif_display";
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 33px;
-  }
   .description {
-    font-weight: 400;
-    font-size: 16px;
     line-height: 20px;
-    line-height: 19px;
   }
 }
