@@ -54,6 +54,13 @@ const carouselProperties = {
       },
     },
     {
+      breakpoint: 740,
+      settings: {
+        centerPadding: "0px",
+        slidesToShow: 1,
+      },
+    },
+    {
       breakpoint: 500,
       settings: {
         centerPadding: "50px",

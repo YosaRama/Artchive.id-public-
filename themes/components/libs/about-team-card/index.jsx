@@ -2,11 +2,10 @@
 import propType from "prop-types";
 import { Col, Card, Row, Image } from "antd";
 import React from "react";
+import { LinkedinOutlined, MailOutlined } from "@ant-design/icons";
 
 //Styles
 import s from "./index.module.scss";
-
-import ThemesAboutSocialMediaTeam from "../about-teams-social-media";
 
 function ThemesAboutTeamCard(props) {
   const { imageTeam, name, position, description, socialMedia1, socialMedia2 } = props;
@@ -30,7 +29,14 @@ function ThemesAboutTeamCard(props) {
           <p className={s.description}>{description}</p>
         </Col>
         <Col span={24}>
-          <ThemesAboutSocialMediaTeam className={s.socialMediaRow} />
+          <Row gutter={[10, 0]} className={s.socialMediaContainer}>
+            <Col>
+              <LinkedinOutlined className={s.socialIcon} />
+            </Col>
+            <Col>
+              <MailOutlined className={s.socialIcon} />
+            </Col>
+          </Row>
         </Col>
       </Card>
     </>

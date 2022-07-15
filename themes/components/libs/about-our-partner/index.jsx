@@ -1,6 +1,6 @@
 // Libs
 import propType from "prop-types";
-import { Col, Row, Image } from "antd";
+import { Col, Image } from "antd";
 
 // Styles
 import s from "./index.module.scss";
@@ -8,16 +8,9 @@ import s from "./index.module.scss";
 function ThemesAboutOurPartner(props) {
   const { logoPartner } = props;
   return (
-    <>
-      <input
-        type="Image"
-        span={24}
-        className={s.logoPartner}
-        src={logoPartner}
-        disabled="disabled"
-        alt=""
-      />
-    </>
+    <Col className={s.partnerContainer}>
+      <Image span={24} src={logoPartner} preview={false} alt="" />
+    </Col>
   );
 }
 
