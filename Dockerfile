@@ -4,11 +4,7 @@ FROM node:16-alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile \
-    && yarn build \
-    && rm -rf node_modules \
-    && yarn install --production --prefer-offline \
-    && yarn cache clean --all
+RUN yarn install --frozen-lockfile
 
 # If using npm with a `package-lock.json` comment out above and use below instead
 # COPY package.json package-lock.json ./ 
