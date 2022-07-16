@@ -3,6 +3,7 @@
 // Libs
 import moment from "moment";
 import propTypes from "prop-types";
+import Link from "next/link";
 import { Card, Col } from "antd";
 
 // Components
@@ -10,7 +11,6 @@ import ThemesLinkWithArrow from "../link-with-arrow";
 
 // Styles
 import s from "./index.module.scss";
-import Link from "next/link";
 
 function ThemesArticleCard(props) {
   const { title, shortDescription, postedDate, url, imageSrc } = props;

@@ -8,7 +8,8 @@ import { useRouter } from "next/router";
 import s from "./index.module.scss";
 
 function ThemesArtistCard(props) {
-  const { artistName, artistCity, avatarSrc, bannerSrc, artistId, artistSlug } = props;
+  const { artistName, artistCity, avatarSrc, bannerSrc, artistId, artistSlug, imageOptimize } =
+    props;
   const router = useRouter();
   return (
     <Col className={s.card} onClick={() => router.push(`/artist/${artistSlug}`)}>
@@ -18,6 +19,7 @@ function ThemesArtistCard(props) {
           layout="fill"
           alt=""
           objectFit="cover"
+          unoptimized={!imageOptimize}
         />
       </Col>
       <Col className={s.avatar}>
@@ -26,6 +28,7 @@ function ThemesArtistCard(props) {
           layout="fill"
           alt=""
           objectFit="cover"
+          unoptimized={!imageOptimize}
         />
       </Col>
       <Col className={s.content}>
@@ -43,6 +46,7 @@ ThemesArtistCard.propTypes = {
   artistCity: propTypes.string,
   avatarSrc: propTypes.string,
   bannerSrc: propTypes.string,
+  imageOptimize: propTypes.bool,
 };
 
 export default ThemesArtistCard;

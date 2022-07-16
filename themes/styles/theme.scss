@@ -3,25 +3,25 @@
 @font-face {
   font-family: "DM_serif_display";
   src: local("DM_Serif_Display"),
-    url("/fonts/DM_Serif_Display/DMSerifDisplay-Regular.ttf") format("truetype");
+    url("../../public/fonts/DM_Serif_Display/DMSerifDisplay-Regular.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Aileron";
   font-weight: normal;
-  src: local("Aileron"), url("/fonts/Aileron/Aileron-Regular.ttf") format("truetype");
+  src: local("Aileron"), url("../../public/fonts/Aileron/Aileron-Regular.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Aileron";
   font-weight: bold;
-  src: local("Aileron_Bold"), url("/fonts/Aileron/Aileron-Bold.ttf") format("truetype");
+  src: local("Aileron_Bold"), url("../../public/fonts/Aileron/Aileron-Bold.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Aileron";
   font-weight: 200;
-  src: local("Aileron_Thin"), url("/fonts/Aileron/Aileron-Thin.ttf") format("truetype");
+  src: local("Aileron_Thin"), url("../../public/fonts/Aileron/Aileron-Thin.ttf") format("truetype");
 }
 
 //* ============================================================ *//
