@@ -29,13 +29,9 @@ function ThemesAboutTeamCard(props) {
           <p className={s.description}>{description}</p>
         </Col>
         <Col span={24}>
-          <Row gutter={[10, 0]} className={s.socialMediaContainer}>
-            <Col>
-              <LinkedinOutlined className={s.socialIcon} />
-            </Col>
-            <Col>
-              <MailOutlined className={s.socialIcon} />
-            </Col>
+          <Row gutter={[50, 10]} className={s.socialMediaContainer}>
+            <LinkedinOutlined className={s.socialIcon} />
+            <MailOutlined className={s.socialIcon} />
           </Row>
         </Col>
       </Card>

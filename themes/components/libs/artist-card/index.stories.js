@@ -17,10 +17,10 @@ const Template = (args) => (
 
 export const Primary = Template.bind({});
 Primary.args = {
-  artistName: "John Doe",
-  artistCity: "Bali",
+  artistName: "Artist Name",
+  artistCity: "Artist City",
   avatarSrc: "/images/profile-default.png",
   bannerSrc: "/images/default-images.jpg",
   artistId: 1,
-  artistSlug: "john-doe",
+  artistSlug: "Artist-Slug",
 };

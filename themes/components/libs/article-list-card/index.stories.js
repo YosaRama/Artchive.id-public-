@@ -19,8 +19,8 @@ const Template = (args) => (
 
 export const Primary = Template.bind({});
 Primary.args = {
-  title: "Some Article",
-  author: "John Doe",
+  title: "Article Title",
+  author: "Author",
   postDate: "02-02-2022",
   shortDescription: "lorem ipsum dolor sit amet",
   url: "https://artchive.id",

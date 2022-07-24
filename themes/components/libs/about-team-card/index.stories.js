@@ -17,7 +17,8 @@ Primary.args = {
   imageTeam: "/images/artwork-1.jpg",
   name: "John Doe",
   position: "Director of Product",
-  description: "Lorem ipsum dolor sit amet",
+  description:
+    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
   socialMedia1: "/images/about-linkedn.png",
   socialMedia2: "/images/about-mail.png",
 };

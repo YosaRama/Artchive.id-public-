@@ -111,37 +111,25 @@
 //? ============== Our Partners Section ============= ?//
 
 .ourPartnerContainer {
-  margin: 50px 0px;
-  max-width: 900px;
-  min-width: 800px;
+  margin: 50px auto;
+  width: 80%;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
 }
 
 .ourPartnerLogo {
-  margin: 25px 0px;
+  margin: 10px 8px !important;
   justify-content: center;
   display: flex;
+  height: 50px;
+  width: auto;
 }
+
 // * ====================================== * //
 
 //? ============== Tablet Landscape Mode ============= ?//
 @media screen and (max-width: 1024px) {
-  //? ============== Banner Section ============= ?//
-  .bannerTitle {
-    text-align: center;
-    h1 {
-      margin-bottom: 0;
-    }
-    p {
-      color: #eaeaea;
-      margin-bottom: 0;
-    }
-  }
-  // * ====================================== * //
-  //? ============== About Us Description Section ============= ?//
-
   // * ====================================== * //
   //? ============== Benefit Section ============= ?//
 
@@ -173,37 +161,16 @@
       z-index: 9;
     }
   }
-
   // * ====================================== * //
   //? ============== Our Partners Section ============= ?//
-
-  .ourPartnerContainer {
-    margin: 40px auto;
-  }
-
   .ourPartnerLogo {
-    margin: 10px 0px;
+    height: 35px;
   }
-
   // * ====================================== * //
 }
 
 //? ============== Potrait Table View ============= ?//
 @media screen and (max-width: 768px) {
-  //? ============== Banner Section ============= ?//
-  .bannerTitle {
-    text-align: center;
-    h1 {
-      margin-bottom: 0;
-    }
-    p {
-      color: #eaeaea;
-      margin-bottom: 0;
-    }
-  }
-  // * ====================================== * //
-  //? ============== About Us Description Section ============= ?//
-
   // * ====================================== * //
   //? ============== Benefit Section ============= ?//
 
@@ -245,26 +212,11 @@
 // * ====================================== * //
 //? ============== Our Partners Section ============= ?//
 
-.ourPartnerContainer {
-  margin: 40px auto;
-  max-width: 600px;
-  min-width: 500px;
-}
-
-.ourPartnerLogo {
-  margin: 10px 0px;
-}
-
 // * ====================================== * //
 
 //? ============== Mobile View ============= ?//
 @media screen and (max-width: 500px) {
-  // * ====================================== * //
-  //? ============== About Us Description Section ============= ?//
-
-  // * ====================================== * //
   //? ============== Benefit Section ============= ?//
-
   .list {
     width: 100%;
     height: auto;
@@ -297,12 +249,8 @@
   }
   // * ====================================== * //
   //? ============== Our Partners Section ============= ?//
-
-  .ourPartnerContainer {
-    margin: 40px auto;
-    max-width: 300px;
-    min-width: 200px;
+  .ourPartnerLogo {
+    height: 25px;
   }
-
   // * ====================================== * //
 }

@@ -9,7 +9,7 @@ export default {
 
 const Template = (args) => (
   <>
-    <Col span={4}>
+    <Col span={6}>
       <CardArtwork {...args} />
     </Col>
   </>
@@ -17,12 +17,12 @@ const Template = (args) => (
 
 export const Primary = Template.bind({});
 Primary.args = {
-  title: "Artwork One",
+  title: "Artwork Title",
   size: "90 x 90",
   image: "https://m.media-amazon.com/images/I/91uylFCg2yL._SL1500_.jpg",
   status: "PUBLISH",
   featured: true,
   id: 1,
   artistImage: "/images/artist-1.jpg",
-  artistName: "John Doe",
+  artistName: "Artist Name",
 };

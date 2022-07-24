@@ -11,7 +11,7 @@ import React from "react";
 
 import propTypes from "prop-types";
 import { useRouter } from "next/router";
-import { Col, Row, Carousel } from "antd";
+import { Col, Row, Carousel, Image } from "antd";
 
 // Components
 import ThemesBanner from "themes/components/libs/banner";
@@ -19,7 +19,6 @@ import ThemesBanner from "themes/components/libs/banner";
 import ThemesAboutBenefits from "themes/components/libs/about-benefits";
 import ThemesAboutDescription from "themes/components/libs/about-description";
 import ThemesAboutTeamCard from "themes/components/libs/about-team-card";
-import ThemesAboutOurPartner from "themes/components/libs/about-our-partner";
 import ThemesContainerMain from "themes/components/container/main";
 import ThemesHeadline from "themes/components/libs/headline";
 
@@ -28,7 +27,7 @@ import s from "./index.module.scss";
 
 const carouselProperties = {
   className: s.carousel,
-  centerPadding: "100px",
+  centerPadding: "80px",
   infinite: true,
   slidesToShow: 3,
   speed: 500,
@@ -39,6 +38,13 @@ const carouselProperties = {
   pauseOnFocus: true,
   swipeToSlide: true,
   responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        centerPadding: "50px",
+        slidesToShow: 2,
+      },
+    },
     {
       breakpoint: 950,
       settings: {
@@ -56,14 +62,21 @@ const carouselProperties = {
     {
       breakpoint: 740,
       settings: {
-        centerPadding: "0px",
-        slidesToShow: 1,
+        centerPadding: "30px",
+        slidesToShow: 2,
       },
     },
+    // {
+    //   breakpoint: 650,
+    //   settings: {
+    //     centerPadding: "150px",
+    //     slidesToShow: 1,
+    //   },
+    // },
     {
       breakpoint: 500,
       settings: {
-        centerPadding: "50px",
+        centerPadding: "30px",
         slidesToShow: 1,
       },
     },
@@ -161,19 +174,18 @@ function ThemesContentsAbout(prop) {
             className={s.pageTitle}
           />
         </section>
-
         <Col span={24} className={s.ourPartnerContainer}>
           {logoPartner.map((item, index) => {
             return (
               <Col key={index} className={s.ourPartnerLogo}>
-                <ThemesAboutOurPartner logoPartner={item.logoPartner} />
+                <Image span={24} src={item.logoPartner} preview={false} alt={index} />
               </Col>
             );
           })}
         </Col>
-
-        {/* // * ====================================== * // */}
       </ThemesContainerMain>
+
+      {/* // * ====================================== * // */}
     </>
   );
 }

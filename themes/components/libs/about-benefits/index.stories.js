@@ -11,6 +11,7 @@ const Template = (args) => <ThemesAboutBenefits {...args} />;
 export const Primary = Template.bind({});
 Primary.args = {
   title: "First Benefit",
-  description: "lorem ipsum dolor sit amet",
-  imageSrc: "http://artchive.id/images/benefit-1.png",
+  description:
+    "There are many famous artists that join with Artchive.id! You can find your luxury artwork here!",
+  imageSrc: "/images/benefit-2.png",
 };
