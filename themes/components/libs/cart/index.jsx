@@ -1,16 +1,23 @@
 // Libs
-import React from "react";
-import { Col, Row, Image } from "antd";
 import propTypes from "prop-types";
+import { Col, Row, Image } from "antd";
+import { useRouter } from "next/router";
+
+// Helper
+import priceFormatter from "/app/helpers/priceFormatter.js";
+
+// Icons
 import { BsTruck } from "react-icons/bs";
 import { AiFillDelete, AiOutlineHeart } from "react-icons/ai";
-import { Router, useRouter } from "next/router";
 
 // Styles
 import s from "./index.module.scss";
 
 function ThemesCartItem(props) {
   const { title, imgUrl, price, artist, material, width, height } = props;
+
+  const router = useRouter();
+
   return (
     <>
       <Col className={s.cartContainer}>
@@ -21,12 +28,12 @@ function ThemesCartItem(props) {
               className={s.imgSrc}
               alt=""
               src={imgUrl}
-              onClick={() => Router.push(`/artwork/${title}`)}
+              onClick={() => router.push(`/artwork/${title}`)}
             />
           </Col>
           <Row className={s.container}>
             <Col className={s.descContainer}>
-              <h2 className={s.title} onClick={() => Router.push(`/artwork/${title}`)}>
+              <h2 className={s.title} onClick={() => router.push(`/artwork/${title}`)}>
                 {title}
               </h2>
               <p className={s.artist} style={{ fontWeight: "600" }}>
@@ -34,20 +41,12 @@ function ThemesCartItem(props) {
                 {artist}
               </p>
               <p className={s.material}>{material}</p>
-              <p className={s.size}>
-                {width}
-                {` x `}
-                {height}
-                {` cm`}
-              </p>
+              <p className={s.size}>{`${width} x ${height} cm`}</p>
             </Col>
             <Col className={s.priceContainer}>
               <h2>Price</h2>
               <Col className={s.price}>
-                <h2 style={{ fontWeight: "700" }}>
-                  {`IDR `}
-                  {price}
-                </h2>
+                <h2 style={{ fontWeight: "700" }}>{`IDR ${priceFormatter(price, ",")}`}</h2>
               </Col>
             </Col>
           </Row>

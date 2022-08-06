@@ -41,6 +41,7 @@ export const artworkDetailsDummyData = {
   ],
 };
 
+//TODO : Move to dummy data cart//
 export const artworkListDummyData = [
   {
     id: 4,

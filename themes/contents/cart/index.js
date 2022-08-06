@@ -1,17 +1,18 @@
-import React from "react";
+// Libs
 import propTypes from "prop-types";
 import { useRouter } from "next/router";
+import { Col, Row, Input, Empty, Button } from "antd";
 
-// DUmmyData
+// DummyData
 import { artworkListDummyData } from "app/database/dummy/artwork";
-// Libs
+
+// Components
 import ThemesCartItem from "themes/components/libs/cart";
 import ThemesButton from "themes/components/libs/button";
 import ThemesHeadline from "themes/components/libs/headline";
 import ThemesContainerMain from "themes/components/container/main";
 import ThemesArtworkWithFrame from "themes/components/libs/artwork-with-frame";
 import ThemesDividerWithButton from "themes/components/libs/divider-with-button";
-import { Col, Row, Input, Empty, Button } from "antd";
 
 // Data Hook
 import { useArtworks } from "app/hooks/artwork";
@@ -47,6 +48,7 @@ function ThemesContentsCart(props) {
     <>
       <ThemesContainerMain>
         {/* //? ============== Cart Item Section ============= ?// */}
+
         <ThemesHeadline title="Your Cart" className={s.headline} />
         {/* {data?.length != 0 &&
           data?.map((item, index) => {
@@ -68,10 +70,7 @@ function ThemesContentsCart(props) {
             );
           })}
         </Col>
-        {/* );
-          })}
 
-        {data?.length == 0 && ( */}
         <Col
           span={24}
           style={{

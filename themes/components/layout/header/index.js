@@ -2,8 +2,8 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
-import Image from "next/image";
 import { Avatar, Button, Col, Popover, Layout, Row } from "antd";
+import Image from "next/image";
 const { Header } = Layout;
 
 // Components
@@ -11,6 +11,8 @@ import ThemesContainerMain from "themes/components/container/main";
 import ThemesButton from "themes/components/libs/button";
 import ThemesNavbarDrawer from "themes/components/libs/navbar-drawer";
 import ThemesCartModal from "themes/components/libs/cart-modal";
+import ThemesHeaderProfileAvatar from "./avatar";
+import ThemesHeaderCart from "./cart";
 
 // Hooks
 import { useUser } from "app/hooks/user";
@@ -26,6 +28,7 @@ function ThemesHeader() {
   const router = useRouter();
 
   //? ============== Open Cart Modal ============= ?//
+  //TODO : Clean up all comment//
   // const [openCartModal, setOpenCartModal] = useState(false);
   // const [cartLoading, setCartLoading] = useState(false);
   // const showModal = () => {
@@ -77,6 +80,7 @@ function ThemesHeader() {
               />
             </Col>
             <Col className={s.menu}>
+              {/* //TODO : Clean up comment// */}
               {/* <CartIcon
                 style={{ marginRight: "15px", width: "25px" }}
                 className={`${s.mobileHidden} ${s.cartIcon}`}
@@ -90,6 +94,7 @@ function ThemesHeader() {
                   />
                 </Button>
               </Popover>
+              {/* //TODO : Clean up this comment// */}
               {/* <Modal
                 title="Your Cart"
                 visible={openCartModal}
@@ -122,20 +127,25 @@ function ThemesHeader() {
                 <ThemesCartModal />
               </Modal> */}
               {session && (
-                <div
-                  style={{ marginRight: "15px" }}
-                  onClick={() => router.push("/profile")}
-                  className={`${s.mobileHidden}`}
-                >
-                  <Avatar
-                    src={
-                      userData?.profile
-                        ? `${process.env.NEXT_PUBLIC_S3_URL}/${userData?.profile?.url}`
-                        : "/images/profile-default.png"
-                    }
-                    className={s.avatar}
-                  />
-                </div>
+                <>
+                  {/* //TODO : Clean up with new components// */}
+                  {/* <ThemesHeaderProfileAvatar /> */}
+                  {/* <ThemesHeaderCart /> */}
+                  <div
+                    style={{ marginRight: "15px" }}
+                    onClick={() => router.push("/profile")}
+                    className={`${s.mobileHidden}`}
+                  >
+                    <Avatar
+                      src={
+                        userData?.profile
+                          ? `${process.env.NEXT_PUBLIC_S3_URL}/${userData?.profile?.url}`
+                          : "/images/profile-default.png"
+                      }
+                      className={s.avatar}
+                    />
+                  </div>
+                </>
               )}
               {!session && (
                 <>

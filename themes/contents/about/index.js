@@ -7,8 +7,6 @@ import {
 } from "app/database/dummy/benefit";
 
 // Libs
-import React from "react";
-
 import propTypes from "prop-types";
 import { useRouter } from "next/router";
 import { Col, Row, Carousel, Image, Input } from "antd";
@@ -24,6 +22,7 @@ import ThemesHeadline from "themes/components/libs/headline";
 // Styles
 import s from "./index.module.scss";
 
+//TODO : Move Carousel to individual components//
 const carouselProperties = {
   className: s.carousel,
   centerPadding: "80px",
