@@ -1,0 +1,35 @@
+.modalItemContainer {
+  max-height: 400px;
+  overflow-y: hidden;
+  scrollbar-gutter: stable;
+  &:hover {
+    overflow-y: auto;
+  }
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    // background-color: #e5890a;
+    background-image: linear-gradient(180deg, #e5890a 0%, #ffa82e 99%);
+    border-radius: 100px;
+  }
+}
+
+.cartBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5px 0 5px 0;
+  width: 100%;
+  align-self: flex-end;
+}
+
+.priceTotal {
+  margin-top: 30px;
+  font-size: 18px;
+  display: flex;
+  justify-content: flex-end;
+}

@@ -8,7 +8,7 @@ import { LinkedinOutlined, MailOutlined } from "@ant-design/icons";
 import s from "./index.module.scss";
 
 function ThemesAboutTeamCard(props) {
-  const { imageTeam, name, position, description, socialMedia1, socialMedia2 } = props;
+  const { imageTeam, name, position, description } = props;
   return (
     <>
       <Card className={s.card}>

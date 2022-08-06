@@ -11,11 +11,10 @@ import React from "react";
 
 import propTypes from "prop-types";
 import { useRouter } from "next/router";
-import { Col, Row, Carousel, Image } from "antd";
+import { Col, Row, Carousel, Image, Input } from "antd";
 
 // Components
 import ThemesBanner from "themes/components/libs/banner";
-
 import ThemesAboutBenefits from "themes/components/libs/about-benefits";
 import ThemesAboutDescription from "themes/components/libs/about-description";
 import ThemesAboutTeamCard from "themes/components/libs/about-team-card";

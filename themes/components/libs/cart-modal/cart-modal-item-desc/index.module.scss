@@ -1,0 +1,38 @@
+.itemContainer {
+  margin-bottom: 10px;
+  height: 80px;
+}
+
+.imgContainer {
+  width: 80px;
+  height: 80px;
+  cursor: pointer;
+}
+
+.imgSrc {
+  object-fit: cover;
+}
+
+.itemDesc {
+  margin: 0px 0px 0px 15px;
+  width: 140px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 400;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  font-family: "DM Serif Display" !important;
+  margin: 0px;
+}
+
+.price .artist {
+  font-size: 12px;
+  font-weight: 400;
+}

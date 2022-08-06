@@ -1,0 +1,167 @@
+.cartContainer {
+  width: 100%;
+  margin-bottom: 20px;
+  background: white;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 40px;
+  justify-content: space-between;
+}
+
+.cartItemContainer {
+  width: 100%;
+  margin-bottom: 40px;
+  display: flex;
+
+  justify-content: space-between;
+}
+
+.imgSrcContainer {
+  width: 200px;
+  height: 200px;
+}
+
+.imgSrc {
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.container {
+  width: 70%;
+}
+
+.descContainer {
+  width: 60%;
+  margin-right: 40px;
+  margin-bottom: 10px;
+  h2 {
+    font-weight: 700;
+  }
+  p {
+    font-size: 16px;
+    margin: 0px;
+  }
+}
+
+.title {
+  cursor: pointer;
+}
+
+.priceContainer {
+  h2 {
+    margin: 0px;
+  }
+  .price {
+    h2 {
+      font-family: "Aileron" !important;
+      color: #e5890a;
+      margin: 0px !important;
+    }
+  }
+}
+
+.btncontainer {
+  width: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.iconBtn {
+  font-size: 24px;
+  transition: all 300ms ease;
+  margin-bottom: 10px;
+  cursor: pointer;
+  &:hover {
+    color: #e5890a;
+    transition: all 300ms ease;
+  }
+}
+
+.orderServices {
+  h3 {
+    font-size: 16px;
+  }
+  p {
+    font-size: 12px;
+    margin: 0px;
+  }
+}
+
+//? ============== Tablet Landscape Mode ============= ?//
+@media screen and (max-width: 1024px) {
+  .descContainer {
+    width: 50%;
+  }
+}
+
+//? ============== Tablet Potrait Mode ============= ?//
+@media screen and (max-width: 768px) {
+  .container {
+    width: 40%;
+  }
+
+  .descContainer {
+    width: 100%;
+    margin-right: 40px;
+    p {
+      font-size: 16px;
+      margin: 0px;
+    }
+  }
+  .imgSrcContainer {
+    margin-right: -80px;
+  }
+}
+
+//? ============== Mobile Mode ============= ?//
+@media screen and (max-width: 500px) {
+  .cartContainer {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    padding: 30px;
+  }
+
+  .cartItemContainer {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .imgSrcContainer {
+    width: 100%;
+    height: auto;
+    margin: 0px 0px 20px;
+  }
+
+  .imgSrc {
+    max-width: 400px;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .descContainer {
+    margin-bottom: 20px;
+    h2 {
+      font-size: 24px;
+    }
+  }
+
+  .container {
+    width: 90%;
+  }
+
+  .btncontainer {
+    min-width: 200px;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .iconBtn {
+    margin-top: 10px;
+    margin-bottom: 0px;
+  }
+
+  .orderServices {
+    width: 100%;
+  }
+}

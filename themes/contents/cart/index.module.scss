@@ -1,0 +1,180 @@
+.headline {
+  margin: 40px 0px;
+}
+
+.couponItem {
+  width: 100%;
+  background: white;
+  display: flex;
+  height: 90px;
+  padding: 40px;
+  justify-content: space-between;
+}
+
+.couponDesc {
+  // width: none;
+  font-size: 16px;
+  margin: 0px;
+  display: flex;
+  align-items: center;
+}
+
+.couponBtnContainer {
+  width: 600px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.couponInput {
+  max-width: 400px;
+  margin-right: 20px;
+  height: 50px;
+}
+
+.couponBtn {
+  height: 50px !important;
+}
+
+.checkoutSection {
+  height: 160px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: black;
+  margin-bottom: 20px;
+  padding: 40px;
+  h1 {
+    color: white !important;
+    font-size: 32px;
+    color: #e5890a !important;
+    margin: 0px;
+    font-family: "Aileron" !important;
+  }
+  h3 {
+    color: white !important;
+    font-size: 18px;
+    margin: 0px;
+  }
+}
+
+.checkoutDesc {
+  width: none;
+  font-size: 16px;
+  margin: 0px;
+  h1 {
+    font-weight: 700;
+  }
+}
+
+.checkoutBtnContainer {
+  display: flex;
+  justify-content: flex-end;
+  height: 80px;
+}
+
+.checkoutBtn {
+  width: 200px;
+}
+
+@media screen and (max-width: 1024px) {
+  .couponInput {
+    max-width: 300px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .couponBtnContainer {
+    width: 350px;
+  }
+
+  .couponInput {
+    height: 40px;
+  }
+
+  .couponBtn {
+    height: 40px !important;
+  }
+
+  .checkoutSection {
+    height: 120px;
+
+    h1 {
+      font-size: 24px;
+    }
+  }
+
+  .checkoutDesc {
+    width: none;
+    font-size: 16px;
+    margin: 0px;
+  }
+
+  .checkoutBtnContainer {
+    display: flex;
+    justify-content: flex-end;
+    height: 60px;
+  }
+
+  .checkoutBtn {
+    width: 200px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .couponItem {
+    height: auto;
+    flex-direction: column;
+  }
+
+  .couponDesc {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .couponBtnContainer {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .couponInput {
+    width: 100%;
+    margin-right: 0px;
+    margin-bottom: 20px;
+  }
+
+  .couponBtn {
+    height: 40px !important;
+    width: 100%;
+  }
+
+  .checkoutSection {
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    h1 {
+      font-size: 32px;
+      margin: 0px;
+    }
+    h3 {
+      font-size: 18px;
+      margin: 0px;
+    }
+  }
+
+  .checkoutDesc {
+    width: 100%;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  .checkoutBtnContainer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .checkoutBtn {
+    width: 100%;
+  }
+}

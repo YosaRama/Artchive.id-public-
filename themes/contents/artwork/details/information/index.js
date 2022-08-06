@@ -85,13 +85,10 @@ function ThemesContentsArtworkDetailsInformation(props) {
                 {artworkData?.markup_price && priceFormatter(artworkData?.markup_price, ",")}
               </p>
             </Col>
-            {/* <Col className={s.cardBtnContainer}>
-                  <ThemesButton type={"default " + s.cartBtn}>
-                    <CartIcon />
-                    ADD TO CART
-                  </ThemesButton>
-                </Col> */}
             <Col className={s.cardBtnContainer}>
+              <ThemesButton type={"default " + s.cartBtn} href="/cart">
+                ADD TO CART
+              </ThemesButton>
               <a
                 href={`https://wa.me/${
                   process.env.NEXT_PUBLIC_PHONE_NUMBER
@@ -104,7 +101,7 @@ function ThemesContentsArtworkDetailsInformation(props) {
                 target={"_blank"}
                 rel="noreferrer"
               >
-                <ThemesButton type={"default " + s.cardButton}>
+                <ThemesButton type={"outlined " + s.requestBtn}>
                   <WhatsappIcon /> REQUEST ARTWORK
                 </ThemesButton>
               </a>

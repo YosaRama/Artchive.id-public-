@@ -17,6 +17,7 @@ export const artworkDetailsDummyData = {
   approve: true,
   createdAt: "2022-04-29T16:22:59.638Z",
   updatedAt: "2022-04-29T16:26:08.667Z",
+  imgSrc: "/public/images/artwork-1.jpg",
   artist: {
     id: 3,
     email: "yosarama@gmail.com",
@@ -43,12 +44,45 @@ export const artworkDetailsDummyData = {
 export const artworkListDummyData = [
   {
     id: 4,
-    slug: "this-is-artwork",
-    title: "This Is Artwork",
+    slug: "just-testing",
+    title: "Just Testing",
     size: "80 x 90",
     imgUrl:
       "https://s3.ap-southeast-1.amazonaws.com/artchivestagingbucket/USER-3/ART-4/cc96cd71-def9-4475-a8fd-a25b5b3d500a-artwork-7.jpg",
     status: "PUBLISH",
+    price: "8000000",
+    artist: "Bahrain Ardy",
+    material: "MIXED_MEDIA",
+    height: 90,
+    width: 80,
+  },
+  {
+    id: 4,
+    slug: "just-testing",
+    title: "Just Testing",
+    size: "80 x 90",
+    imgUrl:
+      "https://s3.ap-southeast-1.amazonaws.com/artchivestagingbucket/USER-3/ART-4/cc96cd71-def9-4475-a8fd-a25b5b3d500a-artwork-7.jpg",
+    status: "PUBLISH",
+    price: "8000000",
+    artist: "Bahrain Ardy",
+    material: "MIXED_MEDIA",
+    height: 90,
+    width: 80,
+  },
+  {
+    id: 4,
+    slug: "just-testing",
+    title: "Just Testing",
+    size: "80 x 90",
+    imgUrl:
+      "https://s3.ap-southeast-1.amazonaws.com/artchivestagingbucket/USER-3/ART-4/cc96cd71-def9-4475-a8fd-a25b5b3d500a-artwork-7.jpg",
+    status: "PUBLISH",
+    price: "8000000",
+    artist: "Bahrain Ardy",
+    material: "MIXED_MEDIA",
+    height: 90,
+    width: 80,
   },
   {
     id: 3,
@@ -58,6 +92,11 @@ export const artworkListDummyData = [
     imgUrl:
       "https://s3.ap-southeast-1.amazonaws.com/artchivestagingbucket/USER-3/ART-3/2eefc959-8613-4b1e-afe9-76ebff21089d-europeana-5TK1F5VfdIk-unsplash.jpg",
     status: "PUBLISH",
+    price: "8000000",
+    artist: "John Doe",
+    material: "ARCRYLYC_ON_CANVAS",
+    height: 90,
+    width: 80,
   },
   {
     id: 2,
@@ -67,6 +106,11 @@ export const artworkListDummyData = [
     imgUrl:
       "https://s3.ap-southeast-1.amazonaws.com/artchivestagingbucket/USER-2/ART-2/958cf7fb-e65d-4459-8d54-3a7be5f17c18-birmingham-museums-trust-sJr8LDyEf7k-unsplash.jpg",
     status: "SOLD",
+    price: "8000000",
+    artist: "Popomangun",
+    material: "MIXED_MEDIA",
+    height: 90,
+    width: 80,
   },
   {
     id: 1,
@@ -76,5 +120,10 @@ export const artworkListDummyData = [
     imgUrl:
       "https://s3.ap-southeast-1.amazonaws.com/artchivestagingbucket/USER-3/ART-1/b19e9e27-7e65-4fc0-a1ec-812e9cd7a072-adrianna-geo-1rBg5YSi00c-unsplash.jpg",
     status: "PUBLISH",
+    price: "8000000",
+    artist: "Dion3",
+    material: "MIXED_MEDIA",
+    height: 90,
+    width: 80,
   },
 ];

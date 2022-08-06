@@ -32,8 +32,6 @@
 .artworkDetailsText {
   margin-bottom: 20px;
   font-size: 16px;
-  p {
-  }
 }
 
 .artworkDetailsDescription {
@@ -49,31 +47,49 @@
   }
 }
 
-.cardButton {
+.cardBtnContainer {
+  margin-bottom: 30px;
+}
+
+.cartBtn {
   display: flex;
   align-items: center;
-  margin-bottom: 30px;
+  justify-content: center;
+  margin: 5px 0 5px 0;
+  width: 260px;
+}
+
+.requestBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5px 0 5px 0;
+  width: 260px;
+
   span {
     display: flex;
     align-items: center;
     svg {
       path {
-        fill: #ffffff;
+        fill: #000000;
         transition: all 0.3s ease;
       }
-      width: 25px;
+      width: 20px;
       height: auto;
-      fill: #ffffff;
+      fill: #000000;
       transition: all 0.3s ease;
     }
   }
   &:hover {
     svg {
       path {
-        fill: #e5890a;
+        fill: #25d366;
       }
-      fill: #e5890a;
+      fill: #25d366;
     }
+
+    background: #075e54 !important;
+    color: #ffffff !important;
   }
 }
 
@@ -129,11 +145,15 @@
   .detailsImageContainer {
     height: 100px;
   }
-  .cardButton {
-    svg {
-      width: 20px;
-    }
+
+  .cartBtn {
     font-size: 14px !important;
+    width: 100%;
+  }
+
+  .requestBtn {
+    font-size: 14px !important;
+    width: 100%;
   }
 }
 // * ====================================== * //

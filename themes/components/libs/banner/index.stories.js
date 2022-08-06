@@ -17,7 +17,7 @@ const Template = (args) => (
 
 export const Primary = Template.bind({});
 Primary.args = {
-  imgSrc: "/public/images/artwork-1.jpg",
+  imgSrc: "/images/artwork-1.jpg",
   children: "Banner",
   className: "Banner",
 };

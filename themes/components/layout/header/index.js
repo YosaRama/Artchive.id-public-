@@ -3,19 +3,20 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
-import { Avatar, Col, Drawer, Layout, Row } from "antd";
+import { Avatar, Button, Col, Popover, Layout, Row } from "antd";
 const { Header } = Layout;
 
 // Components
 import ThemesContainerMain from "themes/components/container/main";
 import ThemesButton from "themes/components/libs/button";
 import ThemesNavbarDrawer from "themes/components/libs/navbar-drawer";
+import ThemesCartModal from "themes/components/libs/cart-modal";
 
 // Hooks
 import { useUser } from "app/hooks/user";
 
 // Icons
-// import { CartIcon } from "public/icons/cart-icon";
+import { CartIcon } from "public/icons/cart-icon";
 import { MenuOutlined } from "@ant-design/icons";
 
 // Styles
@@ -23,6 +24,26 @@ import s from "./index.module.scss";
 
 function ThemesHeader() {
   const router = useRouter();
+
+  //? ============== Open Cart Modal ============= ?//
+  // const [openCartModal, setOpenCartModal] = useState(false);
+  // const [cartLoading, setCartLoading] = useState(false);
+  // const showModal = () => {
+  //   setOpenCartModal(true);
+  // };
+  // const handleOk = () => {
+  //   setTimeout(() => {
+  //     setOpenCartModal(false);
+  //     setCartLoading(false);
+  //   }, 3000);
+  // };
+
+  // const handleCancel = () => {
+  //   setOpenCartModal(false);
+  // };
+
+  const content = <ThemesCartModal />;
+  // * ====================================== * //
 
   //? ============== Open Menu Drawer ============= ?//
   const [openMenu, setOpenMenu] = useState(false);
@@ -42,13 +63,64 @@ function ThemesHeader() {
         <ThemesContainerMain>
           <Row style={{ height: "100%" }} justify="space-between">
             <Col className={s.logo} onClick={() => router.push("/")}>
-              <Image src="/images/logo-without-text.png" alt="" layout="fill" objectFit="contain" />
+              <Image
+                src="/images/logo-without-text.png"
+                alt=""
+                layout="fill"
+                objectFit="contain"
+                okButtonProps={{
+                  visible: false,
+                }}
+                cancelButtonProps={{
+                  visible: false,
+                }}
+              />
             </Col>
             <Col className={s.menu}>
               {/* <CartIcon
                 style={{ marginRight: "15px", width: "25px" }}
-                className={`${s.mobileHidden}`}
+                className={`${s.mobileHidden} ${s.cartIcon}`}
+                onClick={() => setOpenCartModal(true)}
               /> */}
+              <Popover placement="bottomRight" content={content} trigger="focus" arrowPointAtCenter>
+                <Button shape="round" type="link">
+                  <CartIcon
+                    style={{ marginRight: "15px", width: "25px" }}
+                    className={`${s.mobileHidden} ${s.cartIcon}`}
+                  />
+                </Button>
+              </Popover>
+              {/* <Modal
+                title="Your Cart"
+                visible={openCartModal}
+                onOk={handleOk}
+                onCancel={handleCancel}
+                centered
+                width={350}
+                style={{ top: 30 }}
+                footer={[
+                  <Button
+                    key="link"
+                    href="/cart"
+                    type="primary"
+                    loading={cartLoading}
+                    onClick={handleOk}
+                    style={{
+                      width: "100%",
+                      height: "35px",
+                      alignItems: "center",
+                      display: "flex",
+                      justifyContent: "center",
+                      fontSize: "16px",
+                      fontWeight: 700,
+                    }}
+                  >
+                    Go To Cart
+                  </Button>,
+                ]}
+              >
+                <ThemesCartModal />
+              </Modal> */}
               {session && (
                 <div
                   style={{ marginRight: "15px" }}
