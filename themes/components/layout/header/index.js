@@ -2,7 +2,7 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
-import { Avatar, Button, Col, Popover, Layout, Row } from "antd";
+import { Avatar, Col, Layout, Row } from "antd";
 import Image from "next/image";
 const { Header } = Layout;
 
@@ -10,15 +10,12 @@ const { Header } = Layout;
 import ThemesContainerMain from "themes/components/container/main";
 import ThemesButton from "themes/components/libs/button";
 import ThemesNavbarDrawer from "themes/components/libs/navbar-drawer";
-import ThemesCartModal from "themes/components/libs/cart-modal";
-import ThemesHeaderProfileAvatar from "./avatar";
-import ThemesHeaderCart from "./cart";
+import ThemesHeaderCart from "./cart-modal";
 
 // Hooks
 import { useUser } from "app/hooks/user";
 
 // Icons
-import { CartIcon } from "public/icons/cart-icon";
 import { MenuOutlined } from "@ant-design/icons";
 
 // Styles
@@ -27,25 +24,6 @@ import s from "./index.module.scss";
 function ThemesHeader() {
   const router = useRouter();
 
-  //? ============== Open Cart Modal ============= ?//
-  //TODO : Clean up all comment//
-  // const [openCartModal, setOpenCartModal] = useState(false);
-  // const [cartLoading, setCartLoading] = useState(false);
-  // const showModal = () => {
-  //   setOpenCartModal(true);
-  // };
-  // const handleOk = () => {
-  //   setTimeout(() => {
-  //     setOpenCartModal(false);
-  //     setCartLoading(false);
-  //   }, 3000);
-  // };
-
-  // const handleCancel = () => {
-  //   setOpenCartModal(false);
-  // };
-
-  const content = <ThemesCartModal />;
   // * ====================================== * //
 
   //? ============== Open Menu Drawer ============= ?//
@@ -80,57 +58,13 @@ function ThemesHeader() {
               />
             </Col>
             <Col className={s.menu}>
-              {/* //TODO : Clean up comment// */}
-              {/* <CartIcon
-                style={{ marginRight: "15px", width: "25px" }}
-                className={`${s.mobileHidden} ${s.cartIcon}`}
-                onClick={() => setOpenCartModal(true)}
-              /> */}
-              <Popover placement="bottomRight" content={content} trigger="focus" arrowPointAtCenter>
-                <Button shape="round" type="link">
-                  <CartIcon
-                    style={{ marginRight: "15px", width: "25px" }}
-                    className={`${s.mobileHidden} ${s.cartIcon}`}
-                  />
-                </Button>
-              </Popover>
-              {/* //TODO : Clean up this comment// */}
-              {/* <Modal
-                title="Your Cart"
-                visible={openCartModal}
-                onOk={handleOk}
-                onCancel={handleCancel}
-                centered
-                width={350}
-                style={{ top: 30 }}
-                footer={[
-                  <Button
-                    key="link"
-                    href="/cart"
-                    type="primary"
-                    loading={cartLoading}
-                    onClick={handleOk}
-                    style={{
-                      width: "100%",
-                      height: "35px",
-                      alignItems: "center",
-                      display: "flex",
-                      justifyContent: "center",
-                      fontSize: "16px",
-                      fontWeight: 700,
-                    }}
-                  >
-                    Go To Cart
-                  </Button>,
-                ]}
-              >
-                <ThemesCartModal />
-              </Modal> */}
+              {/* //TODO : Clean up with new components// */}
+              {/* <ThemesHeaderProfileAvatar /> */}
+              {/* <ThemesHeaderCart /> */}
+
               {session && (
                 <>
-                  {/* //TODO : Clean up with new components// */}
-                  {/* <ThemesHeaderProfileAvatar /> */}
-                  {/* <ThemesHeaderCart /> */}
+                  <ThemesHeaderCart />
                   <div
                     style={{ marginRight: "15px" }}
                     onClick={() => router.push("/profile")}

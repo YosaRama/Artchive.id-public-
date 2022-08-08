@@ -1,11 +1,13 @@
 // Libs
 import propTypes from "prop-types";
-import { Card, Col, Image, Row } from "antd";
+import { Card, Col, Image, Row, Modal, Button } from "antd";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 // Components
 import ThemesShareSocial from "themes/components/libs/share-social";
 import ThemesButton from "themes/components/libs/button";
+import ThemesLoginModal from "themes/components/libs/login-modal";
 
 // Helper
 import { stringCapitalize } from "app/helpers/capitalize";
@@ -20,6 +22,16 @@ import s from "./index.module.scss";
 function ThemesContentsArtworkDetailsInformation(props) {
   const { artworkData } = props;
   const router = useRouter();
+
+  const [modalLoading, setModalLoading] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const modalLogin = () => setModalVisible(true);
+
+  const modalClose = () => {
+    setModalVisible(false);
+  };
+
   return (
     <>
       <Row gutter={[64, 0]}>
@@ -86,7 +98,26 @@ function ThemesContentsArtworkDetailsInformation(props) {
               </p>
             </Col>
             <Col className={s.cardBtnContainer}>
-              <ThemesButton type={"default " + s.cartBtn} href="/cart">
+              {/* //? ============== Modal Login ============= ?//*/}
+              {/* <ThemesButton type={"default "} onClick={modalLogin}>
+                {" "}
+                TEST
+              </ThemesButton>
+              <Modal
+                width={"70%"}
+                title={false}
+                visible={modalVisible}
+                closable={false}
+                footer={[
+                  <Button key="back" onClick={modalClose}>
+                    Close
+                  </Button>,
+                ]}
+              >
+                <ThemesLoginModal />
+              </Modal> */}
+              {/*  // * ====================================== * // */}
+              <ThemesButton type={"default " + s.cartBtn} onClick={() => router.push(`/cart`)}>
                 ADD TO CART
               </ThemesButton>
               <a

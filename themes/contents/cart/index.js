@@ -2,9 +2,10 @@
 import propTypes from "prop-types";
 import { useRouter } from "next/router";
 import { Col, Row, Input, Empty, Button } from "antd";
+import { useState } from "react";
 
 // DummyData
-import { artworkListDummyData } from "app/database/dummy/artwork";
+import { cartListDummyData } from "app/database/dummy/cart";
 
 // Components
 import ThemesCartItem from "themes/components/libs/cart";
@@ -44,67 +45,78 @@ function ThemesContentsCart(props) {
   // });
   // * ====================================== * //
 
+  //? ============== Empty Cart State ============= ?//
+  const [emptyCart, setEmptyCart] = useState(false);
+  // * ====================================== * //
+
+  //? ============== No Coupon State ============= ?//
+  const [noCoupon, setNoCoupon] = useState(false);
+  // * ====================================== * //
+
+  //? ============== No Wishlist State ============= ?//
+  const [emptyWishlist, setEmptyWishlist] = useState(false);
+  // * ====================================== * //
   return (
     <>
       <ThemesContainerMain>
         {/* //? ============== Cart Item Section ============= ?// */}
 
         <ThemesHeadline title="Your Cart" className={s.headline} />
-        {/* {data?.length != 0 &&
-          data?.map((item, index) => {
-            return ( */}
-        <Col>
-          {artworkListDummyData.map((item, index) => {
-            return (
-              <Col key={index}>
-                <ThemesCartItem
-                  imgUrl={item.imgUrl}
-                  price={item.price}
-                  title={item.title}
-                  artist={item.artist}
-                  material={item.material}
-                  width={item.width}
-                  height={item.height}
-                />
-              </Col>
-            );
-          })}
-        </Col>
-
-        <Col
-          span={24}
-          style={{
-            margin: "20px 0px",
-            paddingTop: "50px",
-            paddingBottom: "50px",
-            background: "white",
-          }}
-        >
-          <Empty
-            image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
-            imageStyle={{
-              height: 60,
+        {!emptyCart && (
+          <Col>
+            {cartListDummyData.map((item, index) => {
+              return (
+                <Col key={index}>
+                  <ThemesCartItem
+                    imgUrl={item.imgUrl}
+                    price={item.price}
+                    title={item.title}
+                    artist={item.artist}
+                    material={item.material}
+                    width={item.width}
+                    height={item.height}
+                  />
+                </Col>
+              );
+            })}
+          </Col>
+        )}
+        {emptyCart && (
+          <Col
+            span={24}
+            style={{
+              margin: "20px 0px",
+              paddingTop: "50px",
+              paddingBottom: "50px",
+              backgroundImage: "linear-gradient(transparent, white 50%)",
             }}
-            description={<span>{"Let's grab something!"}</span>}
           >
-            <Button type="primary" href="/artwork">
-              Taste and Take!
-            </Button>
-          </Empty>
-        </Col>
-        {/* )} */}
+            <Empty
+              imageStyle={{
+                height: 60,
+              }}
+              description={<span>{"Let's grab something!"}</span>}
+            >
+              <Button type="primary" onClick={() => router.push(`/artwork`)}>
+                Taste and Take!
+              </Button>
+            </Empty>
+          </Col>
+        )}
 
         {/* // * ====================================== * // */}
 
         {/* //? ============== Coupon Section ============= ?// */}
-        <Col span={24} className={s.couponItem}>
-          <Col className={s.couponDesc}>Do you have any coupon?</Col>
+        {!noCoupon && (
+          <Col span={24} className={s.couponItem}>
+            <Col className={s.couponDesc}>Do you have any coupon?</Col>
 
-          <Col className={s.couponBtnContainer}>
-            <Input className={s.couponInput} placeholder="Enter your coupon" />
-            <ThemesButton type={"default " + s.couponBtn}>SUBMIT</ThemesButton>
+            <Col className={s.couponBtnContainer}>
+              <Input className={s.couponInput} placeholder="Enter your coupon" />
+              <ThemesButton type={"default " + s.couponBtn}>SUBMIT</ThemesButton>
+            </Col>
           </Col>
-        </Col>
+        )}
         {/* // * ====================================== * //  */}
 
         {/* //? ============== Checkout Item Section ============= ?// */}
@@ -112,7 +124,9 @@ function ThemesContentsCart(props) {
           <Col className={s.checkoutDesc}>
             <h3>Total:</h3>
 
-            <h1>{`IDR `} XXX.XXX.XXX</h1>
+            <h1>
+              {`IDR `} <span style={{ fontWeight: 400 }}>XXX.XXX.XXX</span>
+            </h1>
           </Col>
           <Col className={s.checkoutBtnContainer}>
             <ThemesButton
@@ -127,6 +141,42 @@ function ThemesContentsCart(props) {
 
         {/* //? ============== Wishlist Item Section ============= ?// */}
         <ThemesHeadline title="Wishlist" className={s.headline} />
+        {!emptyWishlist && (
+          <Col>
+            {cartListDummyData.map((item, index) => {
+              return (
+                <Col key={index}>
+                  <ThemesCartItem
+                    imgUrl={item.imgUrl}
+                    price={item.price}
+                    title={item.title}
+                    artist={item.artist}
+                    material={item.material}
+                    width={item.width}
+                    height={item.height}
+                  />
+                </Col>
+              );
+            })}
+          </Col>
+        )}
+        {emptyWishlist && (
+          <Col
+            span={24}
+            style={{
+              margin: "20px 0px",
+              paddingTop: "50px",
+              paddingBottom: "50px",
+            }}
+          >
+            <Empty
+              imageStyle={{
+                height: 60,
+              }}
+              description={<span>{"Sadly there is no wishlist..."}</span>}
+            ></Empty>
+          </Col>
+        )}
         {/* // * ====================================== * //  */}
 
         {/* //? ============== Might Also Like Section ============= ?// */}

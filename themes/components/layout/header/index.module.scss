@@ -10,18 +10,6 @@
   cursor: pointer;
 }
 
-//TODO : Move this style to each components//
-.cartIcon {
-  &:hover {
-    color: #e5890a !important;
-    transition: all 0.3s ease !important;
-  }
-}
-
-.popOver {
-  cursor: pointer;
-}
-
 .menu {
   display: flex;
   align-items: center;
