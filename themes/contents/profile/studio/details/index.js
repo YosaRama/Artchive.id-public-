@@ -32,6 +32,9 @@ import AppFormArtworkMaterial from "app/components/libs/form-artwork-material";
 import deleteConfirmModal from "app/components/utils/delete-modal-confirm";
 import { WarningNotification } from "app/components/utils/notification";
 
+// Helpers
+import priceFormatter from "app/helpers/priceFormatter";
+
 // Styles
 import s from "./index.module.scss";
 
@@ -124,7 +127,7 @@ function ThemesContentsProfileStudioDetails(props) {
           type: value.type,
           height: value.height,
           width: value.width,
-          price: `${value.price}`,
+          price: `${priceFormatter(value.price.replace(/\D/g, ""), ",")}`,
           markupPrice: `${markupPrice || artworkData?.markup_price}`,
           status: artworkData.approve ? value.status : artworkData?.status,
           approve: artworkData?.approve,

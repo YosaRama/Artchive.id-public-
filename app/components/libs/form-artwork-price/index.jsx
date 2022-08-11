@@ -13,15 +13,23 @@ import AppFormPrice from "../form-price";
 function AppFormArtworkPrice(props) {
   const { markupPrice, setMarkupPrice } = props;
 
+  //? ============== Handle Price ============= ?//
+  const [inputPrice, setInputPrice] = useState("");
+  // * ====================================== * //
+
   //? ============== Handle Create Markup Price ============= ?//
   const handleCreateMarkupPrice = (value) => {
-    setMarkupPrice(Math.round(value * 1.4));
+    const parseValue = value.target.value.replace(/\D/g, "").replace(/Rp\s?|(,*)/g, "");
+    setInputPrice(priceFormatter(`${parseValue}`, ","));
+    setMarkupPrice(Math.round(parseValue * 1.4));
+
+    // setMarkupPrice(Math.round(value * 1.4));
   };
   // * ====================================== * //
 
   return (
     <>
-      <AppFormPrice onChange={handleCreateMarkupPrice} />
+      <AppFormPrice onChange={handleCreateMarkupPrice} initialValue={inputPrice} />
       <AppCardFinalPrice markupPrice={markupPrice} />
       <Form.Item name={"markupPrice"} hidden>
         <Input value={markupPrice} />

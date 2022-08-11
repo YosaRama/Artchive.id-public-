@@ -26,6 +26,9 @@ import AppFormArtworkPrice from "app/components/libs/form-artwork-price";
 import AppFormArtworkMaterial from "app/components/libs/form-artwork-material";
 import deleteConfirmModal from "app/components/utils/delete-modal-confirm";
 
+// Helpers
+import priceFormatter from "app/helpers/priceFormatter";
+
 function AppContentsArtworkDetailsInfo() {
   const router = useRouter();
 
@@ -72,7 +75,7 @@ function AppContentsArtworkDetailsInfo() {
         type: value.type,
         height: value.height,
         width: value.width,
-        price: `${value.price}`,
+        price: `${priceFormatter(value.price.replace(/\D/g, ""), ",")}`,
         markupPrice: `${markupPrice || artworkInitialValues?.markup_price}`,
         status: value.status,
         approve: value.approve,

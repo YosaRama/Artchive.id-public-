@@ -19,6 +19,9 @@ import AppFormArtworkMaterial from "app/components/libs/form-artwork-material";
 import AppUploadImage from "app/components/libs/upload-images";
 import { WarningNotification } from "app/components/utils/notification";
 
+// Helpers
+import priceFormatter from "app/helpers/priceFormatter";
+
 function AppContentsArtworkCreate() {
   const router = useRouter();
   const [form] = Form.useForm();
@@ -64,7 +67,7 @@ function AppContentsArtworkCreate() {
         type: value.type,
         height: value.height,
         width: value.width,
-        price: `${value.price}`,
+        price: `${priceFormatter(value.price.replace(/\D/g, ""), ",")}`,
         markupPrice: `${markupPrice}`,
         status: "DRAFT", // Default on create artwork
         approve: false, // Default on create artwork
