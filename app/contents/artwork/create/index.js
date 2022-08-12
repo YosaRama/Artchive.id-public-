@@ -89,7 +89,7 @@ function AppContentsArtworkCreate() {
   // * ====================================== * //
 
   //? ============== Handle Upload ============= ?//
-  const [uploadImage, setUploadImage] = useState();
+  const [uploadImage, setUploadImage] = useState("");
   // * ====================================== * //
 
   return (

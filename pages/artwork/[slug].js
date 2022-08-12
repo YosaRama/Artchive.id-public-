@@ -36,22 +36,6 @@ function PageArtworkDetails(props) {
 
 export default PageArtworkDetails;
 
-export const getStaticPaths = async () => {
-  const { GET_ALL_ARTWORK_SLUG } = require("app/database/query/artwork");
-  const artworkSlug = await GET_ALL_ARTWORK_SLUG();
-
-  return {
-    paths: artworkSlug.map((item) => {
-      return {
-        params: {
-          slug: item.slug,
-        },
-      };
-    }),
-    fallback: false,
-  };
-};
-
 export const getStaticProps = async (ctx) => {
   const { GET_ARTWORK_BY_SLUG } = require("app/database/query/artwork");
 
@@ -70,5 +54,21 @@ export const getStaticProps = async (ctx) => {
       artworkData: artworkData,
     },
     revalidate: 10,
+  };
+};
+
+export const getStaticPaths = async () => {
+  const { GET_ALL_ARTWORK_SLUG } = require("app/database/query/artwork");
+  const artworkSlug = await GET_ALL_ARTWORK_SLUG();
+
+  return {
+    paths: artworkSlug.map((item) => {
+      return {
+        params: {
+          slug: item.slug,
+        },
+      };
+    }),
+    fallback: "blocking",
   };
 };

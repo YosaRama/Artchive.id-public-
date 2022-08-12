@@ -3,9 +3,10 @@
 export default async function handler(req, res) {
   const { path } = req.query;
   try {
-    await res.unstable_revalidate(path);
+    await res.revalidate(path);
     return res.json({ revalidated: true });
   } catch (err) {
-    return res.status(500).send("Error revalidating");
+    console.log(err);
+    return res.status(500).json({ success: false, message: "Error revalidating", error: err });
   }
 }
