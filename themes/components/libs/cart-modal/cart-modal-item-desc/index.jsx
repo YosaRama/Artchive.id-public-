@@ -23,16 +23,16 @@ function ThemesCartModalItemDesc(props) {
               height={"80px"}
               width={"80px"}
               alt=""
-              src={imgUrl}
+              src={`${process.env.NEXT_PUBLIC_S3_URL}/${imgUrl}`}
               preview={false}
-              onClick={() => router.push(`${artworkUrl}`)}
+              onClick={() => router.push(`/artwork/${artworkUrl}`)}
             />
           </Col>
           <Col className={s.itemDesc}>
             {/* <Col>{artworkTitle}</Col>
             <Col>{artistName}</Col>
             <p className={s.price}>{`IDR ${priceFormatter(artworkPrice, ",")}`}</p> */}
-            <h4 className={s.title} onClick={() => router.push(`${artworkUrl}`)}>
+            <h4 className={s.title} onClick={() => router.push(`/artwork/${artworkUrl}`)}>
               {title}
             </h4>
             <h5 className={s.artsit} style={{ fontWeight: "700" }}>
@@ -40,7 +40,7 @@ function ThemesCartModalItemDesc(props) {
             </h5>
             <h5 className={s.price}>
               <span style={{ fontWeight: "700" }}>{`IDR `}</span>
-              {price}
+              {priceFormatter(price, ",")}
             </h5>
           </Col>
         </Row>
@@ -54,6 +54,7 @@ ThemesCartModalItemDesc.propTypes = {
   title: propTypes.string,
   artist: propTypes.string,
   price: propTypes.string,
+  artworkUrl: propTypes.string,
 };
 
 export default ThemesCartModalItemDesc;

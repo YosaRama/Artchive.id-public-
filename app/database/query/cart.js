@@ -13,6 +13,7 @@ export const GET_CART_BY_USER_ID = ({ userId }) => {
       artwork: {
         select: {
           title: true,
+          slug: true,
           markup_price: true,
           width: true,
           height: true,

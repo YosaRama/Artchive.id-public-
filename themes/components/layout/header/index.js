@@ -67,10 +67,6 @@ function ThemesHeader() {
               />
             </Col>
             <Col className={s.menu}>
-              {/* //TODO : Clean up with new components// */}
-              {/* <ThemesHeaderProfileAvatar /> */}
-              {/* <ThemesHeaderCart /> */}
-
               {session && (
                 <>
                   {width >= 500 && <ThemesHeaderCart onChange={(e) => setIconVisible()} />}

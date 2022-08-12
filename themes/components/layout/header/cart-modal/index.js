@@ -1,11 +1,18 @@
 // Libs
 import { Popover, Button, Col, Row, Empty } from "antd";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 
 // Components
 import ThemesCartModalItemDesc from "themes/components/libs/cart-modal/cart-modal-item-desc";
 import ThemesButton from "themes/components/libs/button";
+
+// Hooks
+import { useCarts } from "app/hooks/cart";
+
+// Helpers
+import priceFormatter from "app/helpers/priceFormatter";
 
 // Icons
 import { CartIcon } from "public/icons/cart-icon";
@@ -13,29 +20,36 @@ import { CartIcon } from "public/icons/cart-icon";
 // Styles
 import s from "./index.module.scss";
 
-// Dummy
-import { cartListDummyData } from "app/database/dummy/cart";
-
 function ThemesHeaderCart() {
   const router = useRouter();
 
-  //? ============== useState Empty ============= ?//
-  const [emptyCartModal, setEmptyCartModal] = useState(false);
+  //? ============== Handle User ============= ?//
+  const { data: session } = useSession();
+  const userId = session.user.id;
+  // * ====================================== * //
+
+  //? ============== Cart Hooks ============= ?//
+  const { data: cartItem } = useCarts({ queryString: `id=${userId}` }); //TODO : Change ID with current user ID//
+  // * ====================================== * //
+
+  //? ============== Handle Total ============= ?//
+  const cartTotal = cartItem?.map((item) => +item.artwork.markup_price).reduce((a, b) => a + b, 0);
   // * ====================================== * //
 
   const ModalItemCart = (
     <>
       {/* //? ============== Cart Filled ============= ?// */}
-      {!emptyCartModal && (
+      {cartItem.length != 0 && (
         <Col className={s.modalItemContainer}>
-          {cartListDummyData.map((item, index) => {
+          {cartItem?.map((item, index) => {
             return (
               <ThemesCartModalItemDesc
                 key={index}
-                imgUrl={item.imgUrl}
-                title={item.title}
-                artist={item.artist}
-                price={item.price}
+                imgUrl={item.artwork.media_cover.url}
+                title={item.artwork.title}
+                artist={item.artwork.artist.full_name}
+                price={item.artwork.markup_price}
+                artworkUrl={item.artwork.slug}
               />
             );
           })}
@@ -43,13 +57,16 @@ function ThemesHeaderCart() {
       )}
 
       {/* //? ============== Cart Empty ============= ?// */}
-      {emptyCartModal && (
+      {cartItem.length == 0 && (
         <Empty imageStyle={{ height: 60, marginTop: "20px" }} description="Empty Cart" />
       )}
 
       {/* //? ============== Cart Price ============= ?// */}
       <Col className={s.priceTotal}>
-        {`Total: IDR `} <span style={{ fontWeight: "400" }}>{`1.000.000.000`}</span>
+        {`Total: IDR `}{" "}
+        <span style={{ fontWeight: "400", paddingLeft: 5 }}>
+          {priceFormatter(`${cartTotal}`, ",")}
+        </span>
       </Col>
 
       {/* //? ============== Cart Button ============= ?// */}
@@ -65,7 +82,7 @@ function ThemesHeaderCart() {
           <ThemesButton
             type={"default " + s.cartBtn}
             onClick={() => router.push("/checkout")}
-            disabled={emptyCartModal}
+            disabled={cartItem.length == 0}
           >
             {" "}
             Proceed
@@ -74,6 +91,7 @@ function ThemesHeaderCart() {
       </Row>
     </>
   );
+
   return (
     <>
       <Popover placement="bottomRight" content={ModalItemCart} trigger="hover" arrowPointAtCenter>

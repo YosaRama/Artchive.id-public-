@@ -1,8 +1,9 @@
 // Libs
 import propTypes from "prop-types";
-import { Card, Col, Image, Row, Modal, Button } from "antd";
+import { Card, Col, Image, Row, Modal } from "antd";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 
 // Components
 import ThemesShareSocial from "themes/components/libs/share-social";
@@ -35,7 +36,7 @@ function ThemesContentsArtworkDetailsInformation(props) {
   // * ====================================== * //
 
   //? ============== Handle Session ============= ?//
-  // const { data: session, status: sessionStatus } = useSession();
+  const { data: session, status: sessionStatus } = useSession();
   // * ====================================== * //
 
   //? ============== User Hook ============= ?//
@@ -109,26 +110,18 @@ function ThemesContentsArtworkDetailsInformation(props) {
             </Col>
             <Col className={s.cardBtnContainer}>
               {/* //? ============== Modal Login ============= ?//*/}
-              <ThemesButton type={"default " + s.cartBtn} onClick={modalLogin}>
-                ADD TO CART
-              </ThemesButton>
-              <Modal
-                destroyOnClose={true}
-                centered
-                width={"60%"}
-                title={false}
-                visible={modalVisible}
-                closable={true}
-                onCancel={modalClose}
-                footer={null}
-              >
-                <ThemesLoginModal />
-              </Modal>
+              {sessionStatus == "unauthenticated" && (
+                <ThemesButton type={"default " + s.cartBtn} onClick={modalLogin}>
+                  ADD TO CART
+                </ThemesButton>
+              )}
               {/*  // * ====================================== * // */}
 
-              <ThemesButton type={"default " + s.cartBtn} onClick={() => router.push(`/cart`)}>
-                ADD TO CART
-              </ThemesButton>
+              {sessionStatus == "authenticated" && (
+                <ThemesButton type={"default " + s.cartBtn} onClick={() => router.push(`/cart`)}>
+                  ADD TO CART
+                </ThemesButton>
+              )}
 
               <a
                 href={`https://wa.me/${
@@ -158,6 +151,21 @@ function ThemesContentsArtworkDetailsInformation(props) {
           </Card>
         </Col>
       </Row>
+
+      {/* //? ============== Modal Register ============= ?// */}
+      <Modal
+        destroyOnClose={true}
+        centered
+        width={"60%"}
+        title={false}
+        visible={modalVisible}
+        closable={true}
+        onCancel={modalClose}
+        footer={null}
+      >
+        <ThemesLoginModal />
+      </Modal>
+      {/* // * ====================================== * // */}
     </>
   );
 }
