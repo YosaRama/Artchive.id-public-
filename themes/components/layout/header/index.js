@@ -64,7 +64,7 @@ function ThemesHeader() {
 
               {session && (
                 <>
-                  <ThemesHeaderCart />
+                  {/* <ThemesHeaderCart /> */}
                   <div
                     style={{ marginRight: "15px" }}
                     onClick={() => router.push("/profile")}

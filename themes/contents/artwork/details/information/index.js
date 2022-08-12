@@ -117,9 +117,9 @@ function ThemesContentsArtworkDetailsInformation(props) {
                 <ThemesLoginModal />
               </Modal> */}
               {/*  // * ====================================== * // */}
-              <ThemesButton type={"default " + s.cartBtn} onClick={() => router.push(`/cart`)}>
+              {/* <ThemesButton type={"default " + s.cartBtn} onClick={() => router.push(`/cart`)}>
                 ADD TO CART
-              </ThemesButton>
+              </ThemesButton> */}
               <a
                 href={`https://wa.me/${
                   process.env.NEXT_PUBLIC_PHONE_NUMBER
