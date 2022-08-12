@@ -120,15 +120,14 @@ model Media {
 }
 
 model Cart {
-  id         Int        @id @default(autoincrement())
-  user       User       @relation(fields: [user_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  id         Int       @id @default(autoincrement())
+  user       User      @relation(fields: [user_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
   user_id    Int
-  artwork    Artwork    @relation(fields: [artwork_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  artwork    Artwork   @relation(fields: [artwork_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
   artwork_id Int
-  status     CartStatus
   order      Order[]
-  createdAt  DateTime   @default(now())
-  updatedAt  DateTime?  @updatedAt
+  created_at DateTime  @default(now())
+  updated_at DateTime? @updatedAt
 
   @@map("cart")
 }
@@ -297,12 +296,6 @@ enum Dimension {
   LARGE
   MEDIUM
   SMALL
-}
-
-enum CartStatus {
-  PAID
-  CANCEL
-  CART
 }
 
 enum CertificateType {
