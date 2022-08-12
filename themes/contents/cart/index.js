@@ -1,7 +1,7 @@
 // Libs
 import propTypes from "prop-types";
 import { useRouter } from "next/router";
-import { Col, Row, Input, Empty, Button } from "antd";
+import { Col, Row, Input, Empty, Button, Radio } from "antd";
 import { useState } from "react";
 
 // DummyData
@@ -20,6 +20,8 @@ import { useArtworks } from "app/hooks/artwork";
 
 // Styles
 import s from "./index.module.scss";
+
+import ThemesRadioWithImage from "themes/components/libs/radio-with-image";
 
 function ThemesContentsCart(props) {
   const { artworkData } = props;
@@ -113,7 +115,7 @@ function ThemesContentsCart(props) {
 
             <Col className={s.couponBtnContainer}>
               <Input className={s.couponInput} placeholder="Enter your coupon" />
-              <ThemesButton type={"default " + s.couponBtn}>SUBMIT</ThemesButton>
+              <ThemesButton type={"outlined " + s.couponBtn}>SUBMIT</ThemesButton>
             </Col>
           </Col>
         )}

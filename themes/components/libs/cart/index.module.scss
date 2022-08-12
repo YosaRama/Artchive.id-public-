@@ -9,7 +9,7 @@
 }
 
 .cartItemContainer {
-  width: 100%;
+  width: 90%;
   margin-bottom: 40px;
   display: flex;
 
@@ -26,13 +26,8 @@
   cursor: pointer;
 }
 
-.container {
-  width: 70%;
-}
-
 .descContainer {
-  width: 60%;
-  margin-right: 40px;
+  width: 35%;
   margin-bottom: 10px;
   h2 {
     font-weight: 700;
@@ -48,6 +43,7 @@
 }
 
 .priceContainer {
+  width: 35%;
   h2 {
     margin: 0px;
   }
@@ -61,15 +57,17 @@
 }
 
 .btncontainer {
-  width: 25px;
   display: flex;
-  flex-direction: column;
+  width: 10%;
+  height: auto;
 }
-
 .iconBtn {
-  font-size: 24px;
+  width: 24px;
+  height: 24px;
   transition: all 300ms ease;
   margin-bottom: 10px;
+  margin-right: 10px;
+  color: #c4c4c4;
   cursor: pointer;
   &:hover {
     color: #e5890a;
@@ -89,36 +87,155 @@
 
 //? ============== Tablet Landscape Mode ============= ?//
 @media screen and (max-width: 1024px) {
-  .descContainer {
-    width: 50%;
+  .cartContainer {
+    padding: 30px;
   }
-}
 
-//? ============== Tablet Potrait Mode ============= ?//
-@media screen and (max-width: 768px) {
-  .container {
+  .cartItemContainer {
+    width: 90%;
+  }
+
+  .imgSrcContainer {
+    width: 150px;
+    height: 150px;
+  }
+
+  .descContainer {
     width: 40%;
-  }
-
-  .descContainer {
-    width: 100%;
-    margin-right: 40px;
+    margin-bottom: 10px;
+    h2 {
+      font-weight: 700;
+    }
     p {
       font-size: 16px;
       margin: 0px;
     }
   }
+
+  .title {
+    cursor: pointer;
+  }
+
+  .priceContainer {
+    width: 30%;
+    h2 {
+      margin: 0px;
+    }
+    .price {
+      h2 {
+        font-family: "Aileron" !important;
+        color: #e5890a;
+        margin: 0px !important;
+      }
+    }
+  }
+
+  .btncontainer {
+    display: flex;
+    width: 10%;
+    height: auto;
+  }
+  .iconBtn {
+    width: 24px;
+    height: 24px;
+    transition: all 300ms ease;
+    margin-bottom: 10px;
+    color: #c4c4c4;
+    cursor: pointer;
+    &:hover {
+      color: #e5890a;
+      transition: all 300ms ease;
+    }
+  }
+
+  .orderServices {
+    h3 {
+      font-size: 16px;
+    }
+    p {
+      font-size: 12px;
+      margin: 0px;
+    }
+  }
+}
+
+//? ============== Tablet Potrait Mode ============= ?//
+@media screen and (max-width: 768px) {
+  .cartContainer {
+    padding: 30px;
+  }
+
+  .cartItemContainer {
+    width: 90%;
+  }
+
   .imgSrcContainer {
-    margin-right: -80px;
+    width: 150px;
+    height: 150px;
+  }
+
+  .descContainer {
+    width: 35%;
+    margin-bottom: 10px;
+    h2 {
+      font-weight: 700;
+    }
+    p {
+      font-size: 16px;
+      margin: 0px;
+    }
+  }
+
+  .title {
+    cursor: pointer;
+  }
+
+  .priceContainer {
+    width: 25%;
+    h2 {
+      margin: 0px;
+    }
+    .price {
+      h2 {
+        font-family: "Aileron" !important;
+        color: #e5890a;
+        margin: 0px !important;
+      }
+    }
+  }
+
+  .btncontainer {
+    display: flex;
+    width: 10%;
+    height: auto;
+  }
+  .iconBtn {
+    width: 24px;
+    height: 24px;
+    transition: all 300ms ease;
+    margin-bottom: 10px;
+    color: #c4c4c4;
+    cursor: pointer;
+    &:hover {
+      color: #e5890a;
+      transition: all 300ms ease;
+    }
+  }
+
+  .orderServices {
+    h3 {
+      font-size: 16px;
+    }
+    p {
+      font-size: 12px;
+      margin: 0px;
+    }
   }
 }
 
 //? ============== Mobile Mode ============= ?//
 @media screen and (max-width: 500px) {
   .cartContainer {
-    width: 100%;
-    height: auto;
-    margin-bottom: 20px;
     padding: 30px;
   }
 
@@ -128,40 +245,69 @@
   }
 
   .imgSrcContainer {
-    width: 100%;
-    height: auto;
-    margin: 0px 0px 20px;
-  }
-
-  .imgSrc {
-    max-width: 400px;
-    height: auto;
-    object-fit: cover;
+    width: 80px;
+    height: 80px;
   }
 
   .descContainer {
-    margin-bottom: 20px;
+    width: 65%;
+    margin-bottom: 10px;
     h2 {
-      font-size: 24px;
+      font-weight: 700;
+      line-height: 24px;
+    }
+    p {
+      font-size: 12px;
+      margin: 0px;
+      line-height: 14px;
     }
   }
 
-  .container {
-    width: 90%;
+  .title {
+    cursor: pointer;
+  }
+
+  .priceContainer {
+    width: 70%;
+    h2 {
+      margin: 0px;
+    }
+    .price {
+      h2 {
+        font-family: "Aileron" !important;
+        color: #e5890a;
+        margin: 0px !important;
+        font-size: 24px;
+      }
+    }
   }
 
   .btncontainer {
-    min-width: 200px;
     display: flex;
-    flex-direction: row;
+    width: 20%;
+    height: 30px;
   }
-
   .iconBtn {
-    margin-top: 10px;
-    margin-bottom: 0px;
+    width: 24px;
+    height: 24px;
+    transition: all 300ms ease;
+    margin-bottom: 10px;
+    color: #c4c4c4;
+    cursor: pointer;
+    &:hover {
+      color: #e5890a;
+      transition: all 300ms ease;
+    }
   }
 
   .orderServices {
     width: 100%;
+    h3 {
+      font-size: 16px;
+    }
+    p {
+      font-size: 12px;
+      margin: 0px;
+    }
   }
 }

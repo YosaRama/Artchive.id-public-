@@ -8,7 +8,7 @@ import priceFormatter from "/app/helpers/priceFormatter.js";
 
 // Icons
 import { BsTruck } from "react-icons/bs";
-import { AiFillDelete, AiOutlineHeart } from "react-icons/ai";
+import { AiFillDelete, AiFillHeart } from "react-icons/ai";
 
 // Styles
 import s from "./index.module.scss";
@@ -21,7 +21,7 @@ function ThemesCartItem(props) {
   return (
     <>
       <Col className={s.cartContainer}>
-        <Row span={20} className={s.cartItemContainer}>
+        <Row gutter={[0, 10]} className={s.cartItemContainer}>
           <Col className={s.imgSrcContainer}>
             <Image
               preview={false}
@@ -31,39 +31,37 @@ function ThemesCartItem(props) {
               onClick={() => router.push(`/artwork/${title}`)}
             />
           </Col>
-          <Row className={s.container}>
-            <Col className={s.descContainer}>
-              <h2 className={s.title} onClick={() => router.push(`/artwork/${title}`)}>
-                {title}
-              </h2>
-              <p className={s.artist} style={{ fontWeight: "600" }}>
-                {`by `}
-                {artist}
-              </p>
-              <p className={s.material}>{material}</p>
-              <p className={s.size}>{`${width} x ${height} cm`}</p>
+          <Col className={s.descContainer}>
+            <h2 className={s.title} onClick={() => router.push(`/artwork/${title}`)}>
+              {title}
+            </h2>
+            <p className={s.artist} style={{ fontWeight: "600" }}>
+              {`by `}
+              {artist}
+            </p>
+            <p className={s.material}>{material}</p>
+            <p className={s.size}>{`${width} x ${height} cm`}</p>
+          </Col>
+          <Col className={s.priceContainer}>
+            <h2 className={s.priceTitle}>Price</h2>
+            <Col className={s.price}>
+              <h2 style={{ fontWeight: "700" }}>{`IDR ${priceFormatter(price, ",")}`}</h2>
             </Col>
-            <Col className={s.priceContainer}>
-              <h2>Price</h2>
-              <Col className={s.price}>
-                <h2 style={{ fontWeight: "700" }}>{`IDR ${priceFormatter(price, ",")}`}</h2>
-              </Col>
-            </Col>
-          </Row>
-          <Col className={s.btnContainer}>
-            <Col>
-              <AiOutlineHeart className={s.iconBtn} />
-            </Col>
-            <Col>
-              <AiFillDelete className={s.iconBtn} />
-            </Col>
+          </Col>
+        </Row>
+        <Row className={s.btnContainer}>
+          <Col className={s.iconBtn}>
+            <AiFillDelete style={{ fontSize: "24px" }} />
+          </Col>
+          <Col className={s.iconBtn}>
+            <AiFillHeart style={{ fontSize: "24px" }} />
           </Col>
         </Row>
 
         <Col className={s.orderServices}>
           <h3>Order Services</h3>
-          <p>
-            <BsTruck /> {` `}
+          <p style={{ display: "flex", alignItems: "center" }}>
+            <BsTruck style={{ fontSize: "24px", marginRight: "10px" }} /> {` `}
             Shipped from Indonesia
           </p>
         </Col>

@@ -117,19 +117,21 @@ function ThemesLoginModal() {
 
   // * ====================================== * //
 
-  const [isRegistered, setIsRegistered] = useState(true);
   const [isLogin, setIsLogin] = useState(false);
-  const openModalLogin = () => {
-    setIsRegistered;
-    setIsLogin;
+  const haveAccount = () => {
+    setIsLogin(true);
+  };
+  const noAccount = () => {
+    setIsLogin(false);
   };
 
   return (
     <ThemesContainerTwoColumns imgSrc="/images/register-background.jpg" cardClassName="halo">
-      {isRegistered && (
+      {/*  //? ============== LOGIN MODAL SECTION ============= ?// */}
+      {!isLogin && (
         <section style={{ textAlign: "center" }} className={s.section}>
           <Col span={24} className={s.title}>
-            <h1>{"Register"}</h1>
+            <h1>{"REGISTER"}</h1>
           </Col>
 
           <Divider orientation="center">Fill you personal information </Divider>
@@ -156,14 +158,13 @@ function ThemesLoginModal() {
 
                 <Divider orientation="center">{`What's your role?`}</Divider>
                 <Col span={24}>
-                  {/* <h1 style={{ fontSize: 24, marginBottom: 20 }}>Who Are You ?</h1> */}
                   <Form.Item
                     name="role"
                     rules={[{ required: true, message: "Please select your role!" }]}
                   >
                     <Radio.Group>
-                      <Row>
-                        <Col lg={{ span: 7 }} xs={{ span: 24 }}>
+                      <Row gutter={[10, 0]}>
+                        <Col lg={{ span: 8 }} xs={{ span: 24 }}>
                           <ThemesRadioWithImage
                             value="ARTIST"
                             imgSrc="/images/frontpage-artist-icon.png"
@@ -171,7 +172,7 @@ function ThemesLoginModal() {
                             Artist
                           </ThemesRadioWithImage>
                         </Col>
-                        <Col lg={{ span: 7 }} xs={{ span: 24 }}>
+                        <Col lg={{ span: 8 }} xs={{ span: 24 }}>
                           <ThemesRadioWithImage
                             value="COLLECTOR"
                             imgSrc="/images/frontpage-collector-icon.png"
@@ -179,7 +180,7 @@ function ThemesLoginModal() {
                             Collector
                           </ThemesRadioWithImage>
                         </Col>
-                        <Col lg={{ span: 7 }} xs={{ span: 24 }}>
+                        <Col lg={{ span: 8 }} xs={{ span: 24 }}>
                           <ThemesRadioWithImage
                             value="GALLERY"
                             imgSrc="/images/frontpage-gallery-icon.png"
@@ -242,55 +243,29 @@ function ThemesLoginModal() {
           <Col span={24}>
             {`Already have account?`}
             <Divider type="vertical" orientation="center" />
-            <a onClick={() => router.push("/signin")}>Login</a>
+            <a onClick={haveAccount}>Login</a>
             {/* <ThemesButton type={"outlined " + s.button} onClick={() => router.push("/signin")}>
             LOG IN
           </ThemesButton> */}
           </Col>
         </section>
       )}
+      {/*  //? ============== REGISTER MODAL SECTION ============= ?// */}
       {isLogin && (
         <section style={{ textAlign: "center" }} className={s.section}>
           <Col span={24} className={s.title}>
             <h1>Sign In</h1>
           </Col>
 
-          <section className={s.socialButtonSection}>
-            <Col span={24}>
-              <Button className={s.socialButton} onClick={handleGoogleLogin}>
-                <Row align="middle">
-                  <span className={s.socialButtonIcon}>
-                    <Image src="/images/google-icon.png" alt="" layout="fill" objectFit="contain" />
-                  </span>
-                  <p>Continue With Google</p>
-                </Row>
-              </Button>
-            </Col>
-            <Col span={24}>
-              <Button className={s.socialButton} onClick={handleFacebookLogin}>
-                <Row>
-                  <span className={s.socialButtonIcon}>
-                    <Image
-                      src="/images/facebook-icon.png"
-                      alt=""
-                      layout="fill"
-                      objectFit="contain"
-                    />
-                  </span>
-                  <p>Continue With Facebook</p>
-                </Row>
-              </Button>
-            </Col>
-          </section>
-
+          <Divider />
           <section className={s.formSection}>
             <Col span={24}>
               <Form layout="vertical" form={form}>
                 <Form.Item name="email" label="Email">
-                  <Input placeholder="Email Address" />
+                  <Input placeholder="Email Address" className={s.inputSection} />
                 </Form.Item>
                 <Form.Item name="password" label="Password">
-                  <Input.Password placeholder="Password" />
+                  <Input.Password placeholder="Password" className={s.inputSection} />
                 </Form.Item>
                 <Row justify="space-between">
                   <Col>
@@ -313,13 +288,43 @@ function ThemesLoginModal() {
               LOG IN
             </ThemesButton>
           </Col>
+          <Divider orientation="center">Continue with following methods.</Divider>
+          <Row gutter={[10, 10]}>
+            <Col span={12}>
+              <Button className={s.socialButton} onClick={handleGoogleLogin}>
+                <Row align="middle">
+                  <span className={s.socialButtonIcon}>
+                    <Image src="/images/google-icon.png" alt="" layout="fill" objectFit="contain" />
+                  </span>
+                  <p>Google</p>
+                </Row>
+              </Button>
+            </Col>
+            <Col span={12}>
+              <Button className={s.socialButton} onClick={handleFacebookLogin}>
+                <Row>
+                  <span className={s.socialButtonIcon}>
+                    <Image
+                      src="/images/facebook-icon.png"
+                      alt=""
+                      layout="fill"
+                      objectFit="contain"
+                    />
+                  </span>
+                  <p>Facebook</p>
+                </Row>
+              </Button>
+            </Col>
+          </Row>
+
           <Col span={24}>
-            <ThemesButton type={"outlined " + s.button} onClick={() => router.push("/register")}>
-              CREATE ACCOUNT
-            </ThemesButton>
+            {`Don't have Arthive.id account?`}
+            <Divider type="vertical" orientation="center" />
+            <a onClick={noAccount}>Create Account.</a>
           </Col>
         </section>
       )}
+      {/*  // * ====================================== * // */}
     </ThemesContainerTwoColumns>
   );
 }

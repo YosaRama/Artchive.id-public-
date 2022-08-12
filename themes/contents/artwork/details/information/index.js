@@ -23,6 +23,7 @@ function ThemesContentsArtworkDetailsInformation(props) {
   const { artworkData } = props;
   const router = useRouter();
 
+  //? ============== Modal Handle ============= ?//
   const [modalLoading, setModalLoading] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -31,6 +32,15 @@ function ThemesContentsArtworkDetailsInformation(props) {
   const modalClose = () => {
     setModalVisible(false);
   };
+  // * ====================================== * //
+
+  //? ============== Handle Session ============= ?//
+  // const { data: session, status: sessionStatus } = useSession();
+  // * ====================================== * //
+
+  //? ============== User Hook ============= ?//
+  // const { data: userData } = useUser({ singleId: session?.user?.id || null });
+  // * ====================================== * //
 
   return (
     <>
@@ -99,27 +109,27 @@ function ThemesContentsArtworkDetailsInformation(props) {
             </Col>
             <Col className={s.cardBtnContainer}>
               {/* //? ============== Modal Login ============= ?//*/}
-              {/* <ThemesButton type={"default "} onClick={modalLogin}>
-                {" "}
-                TEST
+              <ThemesButton type={"default " + s.cartBtn} onClick={modalLogin}>
+                ADD TO CART
               </ThemesButton>
               <Modal
-                width={"70%"}
+                destroyOnClose={true}
+                centered
+                width={"60%"}
                 title={false}
                 visible={modalVisible}
-                closable={false}
-                footer={[
-                  <Button key="back" onClick={modalClose}>
-                    Close
-                  </Button>,
-                ]}
+                closable={true}
+                onCancel={modalClose}
+                footer={null}
               >
                 <ThemesLoginModal />
-              </Modal> */}
+              </Modal>
               {/*  // * ====================================== * // */}
-              {/* <ThemesButton type={"default " + s.cartBtn} onClick={() => router.push(`/cart`)}>
+
+              <ThemesButton type={"default " + s.cartBtn} onClick={() => router.push(`/cart`)}>
                 ADD TO CART
-              </ThemesButton> */}
+              </ThemesButton>
+
               <a
                 href={`https://wa.me/${
                   process.env.NEXT_PUBLIC_PHONE_NUMBER

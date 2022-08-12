@@ -2,7 +2,7 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
-import { Avatar, Col, Layout, Row } from "antd";
+import { Avatar, Col, Layout, Row, Button } from "antd";
 import Image from "next/image";
 const { Header } = Layout;
 
@@ -14,16 +14,23 @@ import ThemesHeaderCart from "./cart-modal";
 
 // Hooks
 import { useUser } from "app/hooks/user";
+import { useWindowSize } from "app/helpers/useWindowSize";
 
 // Icons
 import { MenuOutlined } from "@ant-design/icons";
+import { CartIcon, CheckCircleFilled } from "public/icons/cart-icon";
 
 // Styles
 import s from "./index.module.scss";
+import { Mobile } from "aws-sdk";
+import { push } from "next-pwa/cache";
 
 function ThemesHeader() {
   const router = useRouter();
 
+  // * ====================================== * //
+  //? ============== User Hook ============= ?//
+  const [iconVisible, setIconVisible] = useState(false);
   // * ====================================== * //
 
   //? ============== Open Menu Drawer ============= ?//
@@ -37,6 +44,8 @@ function ThemesHeader() {
   //? ============== User Hook ============= ?//
   const { data: userData } = useUser({ singleId: session?.user?.id || null });
   // * ====================================== * //
+
+  const { width } = useWindowSize();
 
   return (
     <>
@@ -64,7 +73,13 @@ function ThemesHeader() {
 
               {session && (
                 <>
-                  {/* <ThemesHeaderCart /> */}
+                  {width >= 500 && <ThemesHeaderCart onChange={(e) => setIconVisible()} />}
+                  {width < 500 && (
+                    <Button shape="round" type="link" onClick={() => router.push("/cart")}>
+                      <CartIcon style={{ width: "25px" }} />
+                    </Button>
+                  )}
+
                   <div
                     style={{ marginRight: "15px" }}
                     onClick={() => router.push("/profile")}
