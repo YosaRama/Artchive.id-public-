@@ -41,20 +41,23 @@ function ThemesContentsArtworkDetailsInformation(props) {
 
   //? ============== Handle Session ============= ?//
   const { data: session, status: sessionStatus } = useSession();
-
   // * ====================================== * //
 
   //? ============== Cart Hooks ============= ?//
-  const { onAdd } = useCarts({ queryString: "" });
+  const { onAdd, data: cartItem } = useCarts({ queryString: `id=${session?.user?.id}` });
   // * ====================================== * //
 
   //? ============== Handle Add To Cart ============= ?//
   const handleAddToCart = () => {
     const submission = { artworkId: artworkData.id, userId: session.user.id };
-    // onAdd(submission);
-    console.log(submission);
+    onAdd(submission);
   };
   // * ====================================== * //
+
+  //? ============== Handle Already in Cart ============= ?//
+  const isOnCart = cartItem?.findIndex((item) => item.artwork.id === artworkData.id) > -1;
+  // * ====================================== * //
+
   return (
     <>
       <Row gutter={[64, 0]}>
@@ -121,19 +124,13 @@ function ThemesContentsArtworkDetailsInformation(props) {
               </p>
             </Col>
             <Col className={s.cardBtnContainer}>
-              {/* //? ============== Modal Login ============= ?//*/}
-              {sessionStatus == "unauthenticated" && (
-                <ThemesButton type={"default " + s.cartBtn} onClick={modalLogin}>
-                  ADD TO CART
-                </ThemesButton>
-              )}
-              {/*  // * ====================================== * // */}
-
-              {sessionStatus == "authenticated" && (
-                <ThemesButton type={"default " + s.cartBtn} onClick={handleAddToCart}>
-                  ADD TO CART
-                </ThemesButton>
-              )}
+              <ThemesButton
+                type={"default " + s.cartBtn}
+                onClick={sessionStatus == "authenticated" ? handleAddToCart : modalLogin}
+                disabled={isOnCart ? true : false}
+              >
+                ADD TO CART
+              </ThemesButton>
 
               <a
                 href={`https://wa.me/${

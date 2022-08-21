@@ -1,6 +1,5 @@
 // Libs
-import useSWR from "swr";
-import useSWRInfinite from "swr/infinite";
+import useSWR, { mutate } from "swr";
 import api from "app/utils/swr";
 import { useCallback, useState } from "react";
 
@@ -90,12 +89,18 @@ export const useCarts = ({ queryString = "" }) => {
   );
   // ==========================
 
+  //? Mutate
+  const onMutate = useCallback(() => {
+    mutate();
+  }, [mutate]);
+
   return {
     data: results,
     total,
     loading: (!error && !data) || isValidating || loading,
     onAdd,
     onDelete,
+    onMutate,
   };
 };
 

@@ -36,7 +36,7 @@ function ThemesContentsCart(props) {
   // * ====================================== * //
 
   //? ============== Cart Page Hook ============= ?//
-  const { data: cartPageItem, onDeleteCart } = useCarts({ queryString: `id=${userId}` });
+  const { data: cartPageItem, onDelete } = useCarts({ queryString: `id=${userId}` });
   // * ====================================== * //
 
   const { artworkData } = props;

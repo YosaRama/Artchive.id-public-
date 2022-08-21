@@ -28,14 +28,10 @@ function ThemesCartItem(props) {
   // * ====================================== * //
 
   //? ============== Cart Hooks ============= ?//
-  const { data: cartItem } = useCarts({ queryString: `id=${userId}` }); //TODO : Change ID with current user ID//
+  const { data: cartItem, onDelete } = useCarts({ queryString: `id=${userId}` }); //TODO : Change ID with current user ID//
   // * ====================================== * //
 
   const { artworkData } = props;
-
-  //? ============== Cart Hooks ============= ?//
-  const { onDelete } = useCarts({ queryString: "" });
-  // * ====================================== * //
 
   return (
     <>
