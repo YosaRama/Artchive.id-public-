@@ -10,7 +10,6 @@ import priceFormatter from "app/helpers/priceFormatter";
 import s from "./index.module.scss";
 
 function ThemesCartModalItemDesc(props) {
-  //   const { imgSrc, artworkUrl, artworkTitle, artistName, artworkPrice } = props;
   const { imgUrl, title, artist, price, artworkUrl } = props;
   const router = useRouter();
   return (

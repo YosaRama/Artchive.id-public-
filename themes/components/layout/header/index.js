@@ -15,6 +15,7 @@ import ThemesHeaderCart from "./cart-modal";
 // Hooks
 import { useUser } from "app/hooks/user";
 import { useWindowSize } from "app/helpers/useWindowSize";
+import { useCarts } from "app/hooks/cart";
 
 // Icons
 import { MenuOutlined } from "@ant-design/icons";
@@ -22,8 +23,8 @@ import { CartIcon, CheckCircleFilled } from "public/icons/cart-icon";
 
 // Styles
 import s from "./index.module.scss";
-import { Mobile } from "aws-sdk";
-import { push } from "next-pwa/cache";
+import ThemesContentsNotification from "themes/contents/notification";
+import ThemesNotificationModal from "./notification-header";
 
 function ThemesHeader() {
   const router = useRouter();
@@ -37,12 +38,17 @@ function ThemesHeader() {
   const [openMenu, setOpenMenu] = useState(false);
   // * ====================================== * //
 
-  //? ============== Handle Session ============= ?//
+  //? ============== Handle User ============= ?//
   const { data: session, status: sessionStatus } = useSession();
+  const userId = session?.user.id;
   // * ====================================== * //
 
   //? ============== User Hook ============= ?//
   const { data: userData } = useUser({ singleId: session?.user?.id || null });
+  // * ====================================== * //
+
+  //? ============== Cart Hooks ============= ?//
+  const { data: cartItem } = useCarts({ queryString: `id=${userId}` }); //TODO : Change ID with current user ID//
   // * ====================================== * //
 
   const { width } = useWindowSize();
@@ -69,11 +75,27 @@ function ThemesHeader() {
             <Col className={s.menu}>
               {session && (
                 <>
-                  {width >= 500 && <ThemesHeaderCart onChange={(e) => setIconVisible()} />}
+                  {width >= 500 && (
+                    <Row
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      {cartItem?.length !== 0 && <Col className={s.dot1}>{cartItem?.length}</Col>}
+                      <ThemesNotificationModal />
+                      {cartItem?.length !== 0 && <Col className={s.dot2}>{cartItem?.length}</Col>}
+
+                      <ThemesHeaderCart onChange={(e) => setIconVisible()} />
+                    </Row>
+                  )}
                   {width < 500 && (
-                    <Button shape="round" type="link" onClick={() => router.push("/cart")}>
-                      <CartIcon style={{ width: "25px" }} />
-                    </Button>
+                    <Row>
+                      {cartItem?.length !== 0 && <Col className={s.dot}>{cartItem?.length}</Col>}
+                      <Button shape="round" type="link" onClick={() => router.push("/cart")}>
+                        <CartIcon style={{ width: "25px" }} />
+                      </Button>
+                    </Row>
                   )}
 
                   <div

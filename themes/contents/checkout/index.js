@@ -1,5 +1,7 @@
 // Libs
 import { Col, Row } from "antd";
+import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 
 // Style
 import s from "./index.module.scss";
@@ -11,10 +13,28 @@ import ThemesCheckoutForm from "themes/components/libs/checkout-form";
 import ThemesCheckoutItems from "themes/components/libs/checkout-items";
 import ThemesButton from "themes/components/libs/button";
 
-// Dummy
-import { cartListDummyData } from "app/database/dummy/cart";
+// Helper
+import priceFormatter from "app/helpers/priceFormatter";
+
+// Hooks
+import { useCarts } from "app/hooks/cart";
 
 function ThemesContentsCheckout() {
+  const router = useRouter();
+
+  const { data: session, status: sessionStatus } = useSession();
+  const userId = session?.user.id;
+
+  //? ============== Cart Page Hook ============= ?//
+  const { data: cartCheckoutItem, onDeleteCart } = useCarts({ queryString: `id=${userId}` });
+  // * ====================================== * //
+
+  //? ============== Handle Total ============= ?//
+  const cartTotal = cartCheckoutItem
+    ?.map((item) => +item.artwork.markup_price)
+    .reduce((a, b) => a + b, 0);
+  // * ====================================== * //
+
   return (
     <>
       <ThemesContainerMain>
@@ -25,17 +45,18 @@ function ThemesContentsCheckout() {
           </Col>
           <Col span={11}>
             <Col className={s.checkoutItemContainer}>
-              {cartListDummyData.map((item, index) => {
+              {cartCheckoutItem?.map((item, index) => {
                 return (
                   <Col key={index}>
                     <ThemesCheckoutItems
-                      imgUrl={item.imgUrl}
-                      price={item.price}
-                      title={item.title}
-                      artist={item.artist}
-                      material={item.material}
-                      width={item.width}
-                      height={item.height}
+                      imgUrl={item.artwork.media_cover.url}
+                      price={item.artwork.markup_price}
+                      title={item.artwork.title}
+                      artist={item.artwork.artist.full_name}
+                      material={item.artwork.material}
+                      width={item.artwork.width}
+                      height={item.artwork.height}
+                      artworkUrl={item.artwork.slug}
                     />
                   </Col>
                 );
@@ -57,7 +78,8 @@ function ThemesContentsCheckout() {
               <h2>{`Total:`}</h2>
               <h2 style={{ color: "#e5890a", fontFamily: "Aileron" }}>
                 {/* total price data is here */}
-                {`IDR`} <span style={{ fontWeight: "400" }}>{`300.000`}</span>
+                {`IDR`}{" "}
+                <span style={{ fontWeight: "400" }}>{priceFormatter(`${cartTotal}`, ",")}</span>
               </h2>
             </Col>
             <Col

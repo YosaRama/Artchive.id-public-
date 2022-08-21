@@ -3,9 +3,10 @@ import propTypes from "prop-types";
 import { useRouter } from "next/router";
 import { Col, Row, Input, Empty, Button, Radio } from "antd";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 
 // DummyData
-import { cartListDummyData } from "app/database/dummy/cart";
+// import { cartListDummyData } from "app/database/dummy/cart";
 
 // Components
 import ThemesCartItem from "themes/components/libs/cart";
@@ -17,15 +18,40 @@ import ThemesDividerWithButton from "themes/components/libs/divider-with-button"
 
 // Data Hook
 import { useArtworks } from "app/hooks/artwork";
+import { useCarts } from "app/hooks/cart";
 
 // Styles
 import s from "./index.module.scss";
 
-import ThemesRadioWithImage from "themes/components/libs/radio-with-image";
+// Helper
+import priceFormatter from "app/helpers/priceFormatter";
+import Link from "next/link";
 
 function ThemesContentsCart(props) {
-  const { artworkData } = props;
   const router = useRouter();
+
+  //? ============== Handle User ============= ?//
+  const { data: session, status: sessionStatus } = useSession();
+  const userId = session?.user.id;
+  // * ====================================== * //
+
+  //? ============== Cart Page Hook ============= ?//
+  const { data: cartPageItem, onDeleteCart } = useCarts({ queryString: `id=${userId}` });
+  // * ====================================== * //
+
+  const { artworkData } = props;
+
+  // //? ============== Cart Hooks ============= ?//
+  // const { onDelete } = useCarts({ queryString: "" });
+  // // * ====================================== * //
+
+  // //? ============== Delete Cart Handler ============= ?//
+  // const handleDeleteCart = () => {
+  //   const submission = { cartId: artworkData.id };
+  //   onDelete(submission);
+  // };
+
+  // * ====================================== * //
 
   //? ============== Other Artwork Hook ============= ?//
   const { data: otherArtworkData } = useArtworks({
@@ -47,43 +73,48 @@ function ThemesContentsCart(props) {
   // });
   // * ====================================== * //
 
-  //? ============== Empty Cart State ============= ?//
-  const [emptyCart, setEmptyCart] = useState(false);
-  // * ====================================== * //
-
   //? ============== No Coupon State ============= ?//
   const [noCoupon, setNoCoupon] = useState(false);
   // * ====================================== * //
 
   //? ============== No Wishlist State ============= ?//
-  const [emptyWishlist, setEmptyWishlist] = useState(false);
+  // const [emptyWishlist, setEmptyWishlist] = useState(false);
   // * ====================================== * //
+
+  //? ============== Handle Total ============= ?//
+  const cartTotal = cartPageItem
+    ?.map((item) => +item.artwork.markup_price)
+    .reduce((a, b) => a + b, 0);
+  // * ====================================== * //
+
   return (
     <>
       <ThemesContainerMain>
         {/* //? ============== Cart Item Section ============= ?// */}
 
         <ThemesHeadline title="Your Cart" className={s.headline} />
-        {!emptyCart && (
+        {cartPageItem?.length != 0 && (
           <Col>
-            {cartListDummyData.map((item, index) => {
+            {cartPageItem?.map((item, index) => {
               return (
-                <Col key={index}>
-                  <ThemesCartItem
-                    imgUrl={item.imgUrl}
-                    price={item.price}
-                    title={item.title}
-                    artist={item.artist}
-                    material={item.material}
-                    width={item.width}
-                    height={item.height}
-                  />
-                </Col>
+                <ThemesCartItem
+                  key={index}
+                  imgUrl={item.artwork.media_cover.url}
+                  price={item.artwork.markup_price}
+                  title={item.artwork.title}
+                  artist={item.artwork.artist.full_name}
+                  material={item.artwork.material}
+                  width={item.artwork.width}
+                  height={item.artwork.height}
+                  artworkUrl={item.artwork.slug}
+                  cartId={item.id}
+                />
               );
             })}
           </Col>
         )}
-        {emptyCart && (
+
+        {cartPageItem?.length == 0 && (
           <Col
             span={24}
             style={{
@@ -99,7 +130,7 @@ function ThemesContentsCart(props) {
               }}
               description={<span>{"Let's grab something!"}</span>}
             >
-              <Button type="primary" onClick={() => router.push(`/artwork`)}>
+              <Button type="primary" onClick={() => router.push("/artwork")}>
                 Taste and Take!
               </Button>
             </Empty>
@@ -127,22 +158,23 @@ function ThemesContentsCart(props) {
             <h3>Total:</h3>
 
             <h1>
-              {`IDR `} <span style={{ fontWeight: 400 }}>XXX.XXX.XXX</span>
+              {`IDR `}{" "}
+              <span style={{ fontWeight: 400 }}> {priceFormatter(`${cartTotal}`, ",")}</span>
             </h1>
           </Col>
           <Col className={s.checkoutBtnContainer}>
             <ThemesButton
               type={"default " + s.checkoutBtn}
-              onClick={() => (router.push = `/pages/checkout`)}
+              onClick={() => router.push("/checkout")}
             >
-              CHECKOUT
+              PROCEED
             </ThemesButton>
           </Col>
         </Col>
         {/* // * ====================================== * //  */}
 
         {/* //? ============== Wishlist Item Section ============= ?// */}
-        <ThemesHeadline title="Wishlist" className={s.headline} />
+        {/* <ThemesHeadline title="Wishlist" className={s.headline} />
         {!emptyWishlist && (
           <Col>
             {cartListDummyData.map((item, index) => {
@@ -178,7 +210,7 @@ function ThemesContentsCart(props) {
               description={<span>{"Sadly there is no wishlist..."}</span>}
             ></Empty>
           </Col>
-        )}
+        )} */}
         {/* // * ====================================== * //  */}
 
         {/* //? ============== Might Also Like Section ============= ?// */}

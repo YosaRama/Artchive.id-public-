@@ -1,6 +1,6 @@
 // Libs
 import { BellFilled, DeleteFilled, CheckOutlined, SettingFilled } from "@ant-design/icons";
-import { Popover, Col, Row, Button, Empty } from "antd";
+import { Popover, Col, Row, Button, Empty, notification } from "antd";
 import { useState } from "react";
 
 // Components
@@ -97,7 +97,6 @@ function ThemesNotificationModal() {
             {emptyNotification && (
               <>
                 {notificationList.map((item, index) => {
-                  console.log(item);
                   return (
                     <ThemesNotificationModalItem
                       key={index}

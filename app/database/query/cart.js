@@ -10,14 +10,17 @@ export const GET_CART_BY_USER_ID = ({ userId }) => {
   return queryFrom.findMany({
     where: { user_id: +userId },
     select: {
+      id: true,
       artwork: {
         select: {
+          id: true,
           title: true,
           slug: true,
           markup_price: true,
           width: true,
           height: true,
           type: true,
+          material: true,
           media_cover: {
             select: {
               url: true,

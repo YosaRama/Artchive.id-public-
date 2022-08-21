@@ -39,7 +39,7 @@ function ThemesHeaderCart() {
   const ModalItemCart = (
     <>
       {/* //? ============== Cart Filled ============= ?// */}
-      {cartItem.length != 0 && (
+      {cartItem?.length != 0 && (
         <Col className={s.modalItemContainer}>
           {cartItem?.map((item, index) => {
             return (
@@ -57,7 +57,7 @@ function ThemesHeaderCart() {
       )}
 
       {/* //? ============== Cart Empty ============= ?// */}
-      {cartItem.length == 0 && (
+      {cartItem?.length == 0 && (
         <Empty imageStyle={{ height: 60, marginTop: "20px" }} description="Empty Cart" />
       )}
 
@@ -82,7 +82,7 @@ function ThemesHeaderCart() {
           <ThemesButton
             type={"default " + s.cartBtn}
             onClick={() => router.push("/checkout")}
-            disabled={cartItem.length == 0}
+            disabled={cartItem?.length == 0}
           >
             {" "}
             Proceed
@@ -94,10 +94,14 @@ function ThemesHeaderCart() {
 
   return (
     <>
-      <Popover placement="bottomRight" content={ModalItemCart} trigger="hover" arrowPointAtCenter>
-        <Button shape="round" type="link">
-          <CartIcon style={{ width: "25px" }} />
-        </Button>
+      <Popover
+        zIndex={2}
+        placement="bottomRight"
+        content={ModalItemCart}
+        trigger="hover"
+        arrowPointAtCenter
+      >
+        <CartIcon style={{ width: "30px", marginRight: "20px" }} />
       </Popover>
     </>
   );

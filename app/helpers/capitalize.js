@@ -6,3 +6,5 @@ export function stringCapitalize(str) {
 
   return splitStr.join(" ");
 }
+
+export default stringCapitalize;

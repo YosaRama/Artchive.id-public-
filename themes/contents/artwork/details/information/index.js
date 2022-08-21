@@ -14,6 +14,9 @@ import ThemesLoginModal from "themes/components/libs/login-modal";
 import { stringCapitalize } from "app/helpers/capitalize";
 import priceFormatter from "app/helpers/priceFormatter";
 
+// Hooks
+import { useCarts } from "app/hooks/cart";
+
 // Icons
 import { WhatsappIcon } from "public/icons/whatsapp-icon";
 
@@ -22,6 +25,7 @@ import s from "./index.module.scss";
 
 function ThemesContentsArtworkDetailsInformation(props) {
   const { artworkData } = props;
+
   const router = useRouter();
 
   //? ============== Modal Handle ============= ?//
@@ -37,12 +41,20 @@ function ThemesContentsArtworkDetailsInformation(props) {
 
   //? ============== Handle Session ============= ?//
   const { data: session, status: sessionStatus } = useSession();
+
   // * ====================================== * //
 
-  //? ============== User Hook ============= ?//
-  // const { data: userData } = useUser({ singleId: session?.user?.id || null });
+  //? ============== Cart Hooks ============= ?//
+  const { onAdd } = useCarts({ queryString: "" });
   // * ====================================== * //
 
+  //? ============== Handle Add To Cart ============= ?//
+  const handleAddToCart = () => {
+    const submission = { artworkId: artworkData.id, userId: session.user.id };
+    // onAdd(submission);
+    console.log(submission);
+  };
+  // * ====================================== * //
   return (
     <>
       <Row gutter={[64, 0]}>
@@ -118,7 +130,7 @@ function ThemesContentsArtworkDetailsInformation(props) {
               {/*  // * ====================================== * // */}
 
               {sessionStatus == "authenticated" && (
-                <ThemesButton type={"default " + s.cartBtn} onClick={() => router.push(`/cart`)}>
+                <ThemesButton type={"default " + s.cartBtn} onClick={handleAddToCart}>
                   ADD TO CART
                 </ThemesButton>
               )}
