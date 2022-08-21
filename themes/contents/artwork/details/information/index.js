@@ -162,18 +162,7 @@ function ThemesContentsArtworkDetailsInformation(props) {
       </Row>
 
       {/* //? ============== Modal Register ============= ?// */}
-      <Modal
-        destroyOnClose={true}
-        centered
-        width={"60%"}
-        title={false}
-        visible={modalVisible}
-        closable={true}
-        onCancel={modalClose}
-        footer={null}
-      >
-        <ThemesLoginModal />
-      </Modal>
+      <ThemesLoginModal visible={modalVisible} onCancel={modalClose} />
       {/* // * ====================================== * // */}
     </>
   );
