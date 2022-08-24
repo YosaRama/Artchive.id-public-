@@ -26,6 +26,8 @@ import s from "./index.module.scss";
 function ThemesContentsArtworkDetailsInformation(props) {
   const { artworkData } = props;
 
+  const genre = artworkData.genre;
+
   const router = useRouter();
 
   //? ============== Modal Handle ============= ?//
@@ -114,9 +116,23 @@ function ThemesContentsArtworkDetailsInformation(props) {
                 <span>{artworkData?.width}</span> x <span>{artworkData?.height} cm</span>
               </p>
             </Col>
+
+            <Col>
+              <Row gutter={[10, 10]}>
+                {genre?.map((item, index) => {
+                  return (
+                    <Col key={index} className={s.genreBorder}>
+                      <p style={{ fontSize: "14px", padding: "5px 5px" }}>{item.title}</p>
+                    </Col>
+                  );
+                })}
+              </Row>
+            </Col>
+
             <Col className={s.artworkDetailsDescription}>
               <p>{artworkData?.description}</p>
             </Col>
+
             <Col className={s.artworkDetailsPrice}>
               <p>
                 <strong>IDR</strong>{" "}

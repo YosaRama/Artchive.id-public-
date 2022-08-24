@@ -1,5 +1,5 @@
 // Libs
-import { Popover, Button, Col, Row, Empty } from "antd";
+import { Popover, Button, Col, Row, Empty, Divider } from "antd";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
@@ -62,12 +62,14 @@ function ThemesHeaderCart() {
       )}
 
       {/* //? ============== Cart Price ============= ?// */}
+      <Divider style={{ marginTop: "10px", marginBottom: "10px" }} />
       <Col className={s.priceTotal}>
         {`Total: IDR `}{" "}
         <span style={{ fontWeight: "400", paddingLeft: 5 }}>
           {priceFormatter(`${cartTotal}`, ",")}
         </span>
       </Col>
+      <Divider style={{ marginTop: "10px", marginBottom: "10px" }} />
 
       {/* //? ============== Cart Button ============= ?// */}
       <Row gutter={[10, 10]}>
