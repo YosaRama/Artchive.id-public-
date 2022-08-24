@@ -91,7 +91,6 @@ export const GET_USER_BY_ID = ({ id }) => {
           artist: true,
         },
       },
-      collection: true,
     },
   });
 };
@@ -129,7 +128,6 @@ export const GET_USER_BY_SLUG = ({ slug }) => {
       cart: true,
       certificate: true,
       city: true,
-      collection: true,
       email: true,
       facebook_url: true,
       full_name: true,
