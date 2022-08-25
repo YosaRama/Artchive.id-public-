@@ -20,9 +20,7 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 12px;
-  max-height: 700px;
-  overflow: hidden;
-  white-space: nowrap;
+  height: auto;
 }
 
 .dot {
@@ -53,10 +51,9 @@
 .message {
   margin-bottom: 5px;
   font-size: 14px;
-
+  height: auto;
+  width: 300px;
   overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }
 
 .dotDotDot {

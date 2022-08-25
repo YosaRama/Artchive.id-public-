@@ -12,6 +12,7 @@ import s from "./index.module.scss";
 import { notificationList } from "app/database/dummy/notification";
 
 function ThemesNotificationModal() {
+  console.log("KumpulanBiji", notificationList);
   //? ============== Empty State ============= ?//
   const [emptyNotification, setEmptyNotification] = useState(true);
   // * ====================================== * //
@@ -76,42 +77,55 @@ function ThemesNotificationModal() {
                 <Button onClick={() => setEmptyNotification(true)}> Ada </Button>
               </Col>
             </Row>
+            <Col className={s.containerItem}>
+              {!emptyNotification && (
+                <Empty
+                  description={
+                    <p
+                      style={{
+                        fontFamily: "Aileron",
+                        fontSize: "16px",
+                        fontWeight: "700",
+                        color: "#C4C4C4",
+                      }}
+                    >
+                      {`YOU DON'T HAVE ANY NOTIFICATION`}
+                    </p>
+                  }
+                />
+              )}
 
-            {!emptyNotification && (
-              <Empty
-                description={
-                  <p
-                    style={{
-                      fontFamily: "Aileron",
-                      fontSize: "16px",
-                      fontWeight: "700",
-                      color: "#C4C4C4",
-                    }}
-                  >
-                    {`YOU DON'T HAVE ANY NOTIFICATION`}
-                  </p>
-                }
-              />
-            )}
-
-            {emptyNotification && (
-              <>
-                {notificationList.map((item, index) => {
-                  return (
-                    <ThemesNotificationModalItem
-                      key={index}
-                      tittle={item.tittle}
-                      message={item.message}
-                      id={item.id}
-                    />
-                  );
-                })}
-              </>
-            )}
+              {emptyNotification && (
+                <>
+                  {/* {notificationList
+                    .filter((item, index) => index < 3)
+                    .map((item, index) => {
+                      return (
+                        <ThemesNotificationModalItem
+                          key={index}
+                          tittle={item.tittle}
+                          message={item.message}
+                          id={item.id}
+                        />
+                      );
+                    })} */}
+                  {notificationList.map((item, index) => {
+                    return (
+                      <ThemesNotificationModalItem
+                        key={index}
+                        tittle={item.tittle}
+                        message={item.message}
+                        id={item.id}
+                      />
+                    );
+                  })}
+                </>
+              )}
+            </Col>
           </Col>
         </Col>
       }
-      trigger="hover"
+      trigger="click"
     >
       <BellFilled style={{ fontSize: "25px", color: "black" }} />
     </Popover>

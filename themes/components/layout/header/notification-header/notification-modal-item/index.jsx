@@ -1,5 +1,5 @@
 // Libs
-import { Col, Popover, Row } from "antd";
+import { Col, Popover, Row, Divider } from "antd";
 import { EllipsisOutlined, DeleteFilled, CheckOutlined } from "@ant-design/icons";
 import propTypes from "prop-types";
 
@@ -32,11 +32,12 @@ function ThemesNotificationModalItem(props) {
 
   return (
     <>
+      <Divider style={{ margin: "6px 0px 12px" }} />
       <Row className={s.container}>
         <Col span={1}>
           <Col className={s.dot} />
         </Col>
-        <Col span={21} className={s.itemContainer}>
+        <Col span={20} className={s.itemContainer}>
           <p className={s.title}>{tittle}</p>
           <p className={s.message}>{message}</p>
           <p className={s.days}>2 days ago</p>

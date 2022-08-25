@@ -103,7 +103,7 @@ function ThemesHeaderCart() {
         trigger="hover"
         arrowPointAtCenter
       >
-        <CartIcon style={{ width: "30px", marginRight: "20px" }} />
+        <CartIcon style={{ width: "25px" }} />
       </Popover>
     </>
   );

@@ -2,7 +2,7 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
-import { Avatar, Col, Layout, Row, Button } from "antd";
+import { Avatar, Col, Layout, Row, Button, Badge } from "antd";
 import Image from "next/image";
 const { Header } = Layout;
 
@@ -76,25 +76,74 @@ function ThemesHeader() {
               {session && (
                 <>
                   {width >= 500 && (
-                    <Row
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                      }}
-                    >
-                      {cartItem?.length !== 0 && <Col className={s.dot1}>{cartItem?.length}</Col>}
-                      <ThemesNotificationModal />
-                      {cartItem?.length !== 0 && <Col className={s.dot2}>{cartItem?.length}</Col>}
-
-                      <ThemesHeaderCart onChange={(e) => setIconVisible()} />
+                    <Row>
+                      <Col
+                        style={{
+                          marginRight: "12px",
+                          width: "30px",
+                          color: "black",
+                          display: "flex",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Badge
+                          count={cartItem?.length}
+                          size="small"
+                          style={{ backgroundColor: "#e5890a", color: "black" }}
+                        >
+                          <ThemesNotificationModal onChange={(e) => setIconVisible()} />
+                        </Badge>
+                      </Col>
+                      <Col
+                        style={{
+                          marginRight: "12px",
+                          width: "30px",
+                          color: "black",
+                          display: "flex",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Badge
+                          count={cartItem?.length}
+                          size="small"
+                          style={{ backgroundColor: "#e5890a", color: "black" }}
+                        >
+                          <ThemesHeaderCart onChange={(e) => setIconVisible()} />
+                        </Badge>
+                      </Col>
                     </Row>
                   )}
+
                   {width < 500 && (
                     <Row>
-                      {cartItem?.length !== 0 && <Col className={s.dot}>{cartItem?.length}</Col>}
+                      <Badge
+                        count={cartItem?.length}
+                        size="small"
+                        style={{ backgroundColor: "#e5890a", color: "black" }}
+                      >
+                        <CartIcon
+                          style={{ width: "25px", cursor: "pointer" }}
+                          type="link"
+                          onClick={() => router.push("/notification")}
+                        />
+                      </Badge>
+                      <Badge
+                        count={cartItem?.length}
+                        size="small"
+                        style={{ backgroundColor: "#e5890a", color: "black" }}
+                      >
+                        {/* <Button shape="round" type="link" onClick={() => router.push("/cart")}> */}
+                        <CartIcon
+                          style={{ width: "25px", cursor: "pointer" }}
+                          type="link"
+                          onClick={() => router.push("/cart")}
+                        />
+                        {/* </Button> */}
+                      </Badge>
+                      {/* {cartItem?.length !== 0 && <Col className={s.dot}>{cartItem?.length}</Col>}
                       <Button shape="round" type="link" onClick={() => router.push("/cart")}>
                         <CartIcon style={{ width: "25px" }} />
-                      </Button>
+                      </Button> */}
                     </Row>
                   )}
 

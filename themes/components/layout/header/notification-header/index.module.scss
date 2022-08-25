@@ -61,3 +61,10 @@
     transform: rotateZ(180deg);
   }
 }
+
+.containerItem {
+  overflow-y: auto;
+  width: auto;
+  max-height: 450px;
+  padding-right: 12px;
+}
