@@ -37,6 +37,14 @@
   }
 }
 
+// .ant-collapse > .ant-collapse-item > .ant-collapse-header {
+//   background: #e5890a !important;
+// }
+
+.searchCollapse {
+  background: #e5890a;
+}
+
 //? ============== Tablet Landscape Mode ============= ?//
 @media screen and (max-width: 1024px) {
   .mobileHidden {

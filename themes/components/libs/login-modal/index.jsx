@@ -1,12 +1,24 @@
 // Libs
 import propTypes from "prop-types";
-import { Button, Checkbox, Col, Form, Input, Row, Image, Divider, Radio } from "antd";
+import {
+  Button,
+  Checkbox,
+  Col,
+  Form,
+  Input,
+  Row,
+  Image,
+  Divider,
+  Radio,
+  Segmented,
+  Tooltip,
+} from "antd";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Link from "next/link";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
-import { CloseCircleOutlined } from "@ant-design/icons";
+import { CloseOutlined } from "@ant-design/icons";
 
 // Components
 import ThemesModal from "../modal-container";
@@ -36,6 +48,7 @@ function ThemesLoginModal(props) {
 
   //? ============== Handle Login to Register, Vice Versa ============= ?//
   const [modal, setModal] = useState(true);
+  const modalHandler = () => (modal === false ? setModal(true) : setModal(false));
 
   // * ====================================== * //
 
@@ -52,7 +65,7 @@ function ThemesLoginModal(props) {
   // * ====================================== * //
 
   //? ============== Handle Credentials Login ============= ?//
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState();
   // const { onSendMail } = useMailer({ pathName: "/register/confirmation" });
 
   const handleLogin = () => {
@@ -125,9 +138,6 @@ function ThemesLoginModal(props) {
       }
     });
   };
-  const destroyAll = () => {
-    Modal.destroyAll();
-  };
 
   return (
     <>
@@ -139,18 +149,31 @@ function ThemesLoginModal(props) {
         onCancel={onCancel}
         width={800}
         closeIcon={
-          <CloseCircleOutlined onClick={() => setModal(true)} style={{ fontSize: "20px" }} />
+          <CloseOutlined
+            onClick={() => setModal(true)}
+            style={{ fontSize: "20px", opacity: "0" }}
+          />
         }
       >
-        <div style={{ height: 650 }}>
-          <Row justify="center">
-            <Col span={12} style={{ zIndex: "2" }}>
-              <h1 style={{ textAlign: "center" }}>Login</h1>
-            </Col>
-            <Col span={12} style={{ zIndex: "2" }}>
-              <h1 style={{ textAlign: "center" }}>Register</h1>
-            </Col>
-          </Row>
+        <div style={{ height: "auto" }}>
+          <Col span={24} style={{ zIndex: 2 }}>
+            <Segmented
+              onChange={modalHandler}
+              size="large"
+              block
+              options={[
+                {
+                  label: <h1 style={{ fontSize: "24px", marginBottom: "0px" }}>Login</h1>,
+                  value: "Login",
+                },
+                {
+                  label: <h1 style={{ fontSize: "24px", marginBottom: "0px" }}>Register</h1>,
+                  value: "Register",
+                },
+              ]}
+            />
+          </Col>
+
           {/* //? ============== Login Section ============= ?// */}
           {modal && (
             <Row gutter={[24]}>
@@ -162,8 +185,9 @@ function ThemesLoginModal(props) {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  height: "600px",
-                  padding: "0px",
+                  height: "auto",
+                  marginTop: "24px",
+                  width: "auto",
                 }}
               >
                 <Col
@@ -242,12 +266,6 @@ function ThemesLoginModal(props) {
                       </Col>
                     </Row>
                   </Col>
-
-                  <Col className={s.link}>
-                    {`Don't have account?`}
-                    <Divider type="vertical" />
-                    <a onClick={() => setModal(false)}>{`Register Here`}</a>
-                  </Col>
                 </Col>
               </Col>
 
@@ -255,12 +273,13 @@ function ThemesLoginModal(props) {
                 lg={{ span: 12 }}
                 md={{ span: 12 }}
                 xs={{ span: 0 }}
-                className={s.imageContainerLogin}
-              />
+                style={{ marginTop: "24px", height: "550px", paddingLeft: "0px" }}
+              >
+                <Image alt="" src="/images/signin-background.jpg" preview={false} />
+              </Col>
             </Row>
           )}
           {/* // * ====================================== * // */}
-
           {/* //? ============== Register Section ============= ?// */}
           {!modal && (
             <Row gutter={[24]}>
@@ -268,13 +287,22 @@ function ThemesLoginModal(props) {
                 lg={{ span: 12 }}
                 md={{ span: 12 }}
                 xs={{ span: 0 }}
-                className={s.imageContainerRegister}
-              />
+                style={{ marginTop: "24px", height: "550px", paddingRight: "0px" }}
+              >
+                <Image alt="" src="/images/register-background.jpg" preview={false} />
+              </Col>
               <Col
                 lg={{ span: 12 }}
                 md={{ span: 12 }}
                 xs={{ span: 24 }}
-                style={{ display: "flex", alignItems: "center", height: "600px" }}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  height: "auto",
+                  marginTop: "24px",
+                  width: "auto",
+                }}
               >
                 <Col>
                   <Col style={{ display: "flex", justifyContent: "center" }}>
@@ -349,30 +377,36 @@ function ThemesLoginModal(props) {
                           >
                             <Radio.Group style={{ width: "100%" }}>
                               <Row gutter={[3, 0]}>
-                                <Col lg={{ span: 8 }} md={{ span: 8 }} xs={{ span: 8 }}>
-                                  <ThemesRadioWithImageModalLogin
-                                    value="ARTIST"
-                                    imgSrc="/images/frontpage-artist-icon.png"
-                                  >
-                                    Artist
-                                  </ThemesRadioWithImageModalLogin>
-                                </Col>
-                                <Col lg={{ span: 8 }} md={{ span: 8 }} xs={{ span: 8 }}>
-                                  <ThemesRadioWithImageModalLogin
-                                    value="COLLECTOR"
-                                    imgSrc="/images/frontpage-collector-icon.png"
-                                  >
-                                    Collector
-                                  </ThemesRadioWithImageModalLogin>
-                                </Col>
-                                <Col lg={{ span: 8 }} md={{ span: 8 }} xs={{ span: 8 }}>
-                                  <ThemesRadioWithImageModalLogin
-                                    value="GALLERY"
-                                    imgSrc="/images/frontpage-gallery-icon.png"
-                                  >
-                                    Gallery
-                                  </ThemesRadioWithImageModalLogin>
-                                </Col>
+                                <Tooltip title="Your role as an artist is archive and sell artworks.">
+                                  <Col lg={{ span: 8 }} md={{ span: 8 }} xs={{ span: 8 }}>
+                                    <ThemesRadioWithImageModalLogin
+                                      value="ARTIST"
+                                      imgSrc="/images/frontpage-artist-icon.png"
+                                    >
+                                      Artist
+                                    </ThemesRadioWithImageModalLogin>
+                                  </Col>
+                                </Tooltip>
+                                <Tooltip title="Your role as a collector is show your collection, tradde with other collector, and auction">
+                                  <Col lg={{ span: 8 }} md={{ span: 8 }} xs={{ span: 8 }}>
+                                    <ThemesRadioWithImageModalLogin
+                                      value="COLLECTOR"
+                                      imgSrc="/images/frontpage-collector-icon.png"
+                                    >
+                                      Collector
+                                    </ThemesRadioWithImageModalLogin>
+                                  </Col>
+                                </Tooltip>
+                                <Tooltip title="Your role as a Gallery is show you gallery collection in 3d">
+                                  <Col lg={{ span: 8 }} md={{ span: 8 }} xs={{ span: 8 }}>
+                                    <ThemesRadioWithImageModalLogin
+                                      value="GALLERY"
+                                      imgSrc="/images/frontpage-gallery-icon.png"
+                                    >
+                                      Gallery
+                                    </ThemesRadioWithImageModalLogin>
+                                  </Col>
+                                </Tooltip>
                               </Row>
                             </Radio.Group>
                           </Form.Item>
@@ -397,11 +431,6 @@ function ThemesLoginModal(props) {
                     >
                       SIGN UP
                     </ThemesButton>
-                  </Col>
-                  <Col className={s.link}>
-                    {`Already have account?`}
-                    <Divider type="vertical" />
-                    <a onClick={() => setModal(true)}>{`Login Here`}</a>
                   </Col>
                 </Col>
               </Col>
