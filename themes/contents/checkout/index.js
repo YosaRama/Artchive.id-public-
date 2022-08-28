@@ -61,11 +61,11 @@ function ThemesContentsCheckout() {
                   </Col>
                 );
               })}
-              <Row>
-                <Col style={{ width: "150px", marginRight: "24px", fontSize: "16px" }}>
+              <Row style={{ display: "felx", justifyContent: "space-between" }}>
+                <Col span={6} style={{ width: "150px", fontSize: "16px" }}>
                   <p style={{ fontWeight: "700" }}>{`Shipping Charge`} </p>
                 </Col>
-                <Col style={{ fontSize: "16px" }}>
+                <Col span={16} style={{ fontSize: "16px" }}>
                   {/* input data shipping charge */}
                   <span style={{ fontWeight: "700" }}>{`IDR `} </span> {`900.000`}
                 </Col>

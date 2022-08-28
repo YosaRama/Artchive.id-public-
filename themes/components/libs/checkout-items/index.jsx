@@ -1,5 +1,5 @@
 // Libs
-import { Col, Row, Image } from "antd";
+import { Col, Row, Image, Divider } from "antd";
 import propTypes from "prop-types";
 
 // Helper
@@ -13,20 +13,18 @@ function ThemesCheckoutItems(props) {
   const { imgUrl, title, artist, material, width, height, price } = props;
   return (
     <>
-      <Row>
-        <Col className={s.imgContainer}>
+      <Row style={{ display: "flex", justifyContent: "space-between" }}>
+        <Col className={s.imgSrcContainer}>
           <Image
             src={`${process.env.NEXT_PUBLIC_S3_URL}/${imgUrl}`}
             alt=""
-            className={s.imgSrc}
-            height={"150px"}
-            width={"150px"}
             preview={false}
+            className={s.imgSrc}
             onClick={() => router.push(`/artwork/${artworkUrl}`)}
           />
         </Col>
         <Col className={s.itemsContainer}>
-          <h2>{title}</h2>
+          <h2 onClick={() => router.push(`/artwork/${artworkUrl}`)}>{title}</h2>
           <Col className={s.style}>
             <p>
               {`by `} <span style={{ fontWeight: "700" }}>{artist}</span>
@@ -43,6 +41,7 @@ function ThemesCheckoutItems(props) {
           </p>
         </Col>
       </Row>
+      <Divider style={{ margin: "12px 0px " }} />
     </>
   );
 }

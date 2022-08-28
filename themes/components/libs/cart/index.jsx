@@ -1,24 +1,26 @@
 // Libs
 import propTypes from "prop-types";
-import { Col, Row, Image } from "antd";
+import { Col, Row, Image, Divider } from "antd";
 import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 
 // Helper
 import priceFormatter from "/app/helpers/priceFormatter.js";
 import stringCapitalize from "app/helpers/capitalize";
+import { useWindowSize } from "app/helpers/useWindowSize";
 
 // Icons
 import { BsTruck } from "react-icons/bs";
 import { AiFillDelete, AiFillHeart } from "react-icons/ai";
 
-import { useSession } from "next-auth/react";
+// Hooks
 import { useCarts } from "app/hooks/cart";
 
 // Styles
 import s from "./index.module.scss";
 
 function ThemesCartItem(props) {
-  const { title, imgUrl, price, artist, material, width, height, artworkUrl, cartId } = props;
+  const { title, imgUrl, price, artist, material, imgWidth, height, artworkUrl, cartId } = props;
 
   const router = useRouter();
 
@@ -33,59 +35,131 @@ function ThemesCartItem(props) {
 
   const { artworkData } = props;
 
+  const { width } = useWindowSize();
+
   return (
     <>
-      <Col className={s.cartContainer}>
-        <Row gutter={[0, 10]} className={s.cartItemContainer}>
-          <Col className={s.imgSrcContainer}>
-            <Image
-              preview={false}
-              className={s.imgSrc}
-              alt=""
-              src={`${process.env.NEXT_PUBLIC_S3_URL}/${imgUrl}`}
-              onClick={() => router.push(`/artwork/${artworkUrl}`)}
-            />
-          </Col>
-          <Col className={s.descContainer}>
-            <h2 className={s.title} onClick={() => router.push(`/artwork/${artworkUrl}`)}>
-              {title}
-            </h2>
-            <p className={s.artist} style={{ fontWeight: "600" }}>
-              {`by `}
-              {artist}
-            </p>
-            <p className={s.material}>{stringCapitalize(material.replace(/_/g, " "))}</p>
-            <p className={s.size}>{`${width} x ${height} cm`}</p>
-          </Col>
-          <Col className={s.priceContainer}>
-            <h2 className={s.priceTitle}>Price</h2>
-            <Col className={s.price}>
-              <h2 style={{ fontWeight: "700" }}>{`IDR ${priceFormatter(price, ",")}`}</h2>
+      {width >= 500 && (
+        <Col className={s.cartContainer}>
+          <Row gutter={[0, 10]} className={s.cartItemContainer}>
+            <Col className={s.imgSrcContainer}>
+              <Image
+                preview={false}
+                className={s.imgSrc}
+                alt=""
+                src={`${process.env.NEXT_PUBLIC_S3_URL}/${imgUrl}`}
+                onClick={() => router.push(`/artwork/${artworkUrl}`)}
+              />
             </Col>
-          </Col>
-        </Row>
-        <Row className={s.btnContainer}>
-          <Col
-            className={s.iconBtn}
-            onClick={() => {
-              onDelete(cartId);
-            }}
-          >
-            <AiFillDelete style={{ fontSize: "24px" }} />
-          </Col>
-          <Col className={s.iconBtn}>
-            <AiFillHeart style={{ fontSize: "24px" }} />
-          </Col>
-        </Row>
+            <Col className={s.descContainer}>
+              <Col style={{ height: "85%", lineHeight: "22px" }}>
+                <h2 className={s.title} onClick={() => router.push(`/artwork/${artworkUrl}`)}>
+                  {title}
+                </h2>
+                <p className={s.artist} style={{ fontWeight: "600" }}>
+                  {`by `}
+                  {artist}
+                </p>
+                <p className={s.material}>{stringCapitalize(material.replace(/_/g, " "))}</p>
+                <p className={s.size}>{`${imgWidth} x ${height} cm`}</p>
+              </Col>
+              <Col className={s.orderServices}>
+                <p style={{ display: "flex", alignItems: "center", color: "#C4C4C4" }}>
+                  <BsTruck style={{ fontSize: "24px", marginRight: "10px" }} /> {` `}
+                  Shipped from Indonesia
+                </p>
+              </Col>
+            </Col>
+            <Col className={s.priceContainer}>
+              <Col style={{ height: "50%" }}>
+                <h2 style={{ lineHeight: " 33px" }}>Price</h2>
+                <Col className={s.price}>
+                  <h2 style={{ fontWeight: "700", lineHeight: " 29px" }}>{`IDR ${priceFormatter(
+                    price,
+                    ","
+                  )}`}</h2>
+                </Col>
+              </Col>
 
-        <Col className={s.orderServices}>
-          <h3>Order Services</h3>
-          <p style={{ display: "flex", alignItems: "center" }}>
-            <BsTruck style={{ fontSize: "24px", marginRight: "10px" }} /> {` `}
-            Shipped from Indonesia
-          </p>
+              <Row className={s.btnContainer}>
+                <Col
+                  className={s.iconBtn}
+                  onClick={() => {
+                    onDelete(cartId);
+                  }}
+                >
+                  <AiFillDelete style={{ fontSize: "24px" }} />
+                </Col>
+                <Col className={s.iconBtn}>
+                  <AiFillHeart style={{ fontSize: "24px" }} />
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+
+          <Divider style={{ margin: "20px 0px 20px 0px" }} />
         </Col>
-      </Col>
+      )}
+
+      {width < 500 && (
+        <Col className={s.cartContainer}>
+          <Row gutter={[0, 10]} className={s.cartItemContainer}>
+            <Col className={s.imgSrcContainer}>
+              <Image
+                preview={false}
+                className={s.imgSrc}
+                alt=""
+                src={`${process.env.NEXT_PUBLIC_S3_URL}/${imgUrl}`}
+                onClick={() => router.push(`/artwork/${artworkUrl}`)}
+              />
+            </Col>
+            <Col className={s.descContainer}>
+              <Col style={{ height: "85%", lineHeight: "22px" }}>
+                <h2 className={s.title} onClick={() => router.push(`/artwork/${artworkUrl}`)}>
+                  {title}
+                </h2>
+                <p className={s.artist} style={{ fontWeight: "600" }}>
+                  {`by `}
+                  {artist}
+                </p>
+                <p className={s.material}>{stringCapitalize(material.replace(/_/g, " "))}</p>
+                <p className={s.size}>{`${imgWidth} x ${height} cm`}</p>
+              </Col>
+            </Col>
+          </Row>
+
+          <Row className={s.priceContainer}>
+            <Col className={s.price}>
+              <h2 style={{ fontWeight: "700", lineHeight: " 29px" }}>{`IDR ${priceFormatter(
+                price,
+                ","
+              )}`}</h2>
+            </Col>
+            <Row className={s.btnContainer}>
+              <Col
+                className={s.iconBtn}
+                onClick={() => {
+                  onDelete(cartId);
+                }}
+              >
+                <AiFillDelete style={{ fontSize: "24px" }} />
+              </Col>
+              <Col className={s.iconBtn}>
+                <AiFillHeart style={{ fontSize: "24px" }} />
+              </Col>
+            </Row>
+          </Row>
+
+          <Col className={s.orderServices}>
+            <p style={{ display: "flex", alignItems: "center", color: "#C4C4C4" }}>
+              <BsTruck style={{ fontSize: "24px", marginRight: "10px" }} /> {` `}
+              Shipped from Indonesia
+            </p>
+          </Col>
+
+          <Divider style={{ margin: "20px 0px 20px 0px" }} />
+        </Col>
+      )}
     </>
   );
 }

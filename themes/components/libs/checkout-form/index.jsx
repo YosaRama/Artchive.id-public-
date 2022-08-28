@@ -4,6 +4,7 @@ import { Col, Form, Input, Button, Row } from "antd";
 // Styles
 import s from "antd";
 import ThemesButton from "../button";
+import TextArea from "antd/lib/input/TextArea";
 
 function ThemesCheckoutForm() {
   const [form] = Form.useForm();
@@ -26,13 +27,30 @@ function ThemesCheckoutForm() {
           <Input placeholder="Input your email" />
         </Form.Item>
 
-        <Form.Item
-          label="Full Name"
-          name="fullname"
-          rules={[{ required: true, message: "Please input your full name!" }]}
-        >
-          <Input placeholder="Input your full name" />
-        </Form.Item>
+        <Row gutter={[20, 0]}>
+          <Col span={12}>
+            <Form.Item
+              labelCol={{ span: 8 }}
+              // wrapperCol={{ span: 22 }}
+              label="First Name"
+              name="firstName"
+              rules={[{ required: true, message: "Please input your first name!" }]}
+            >
+              <Input placeholder="Input your first name" />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item
+              labelCol={{ span: 8 }}
+              // wrapperCol={{ span: 22 }}
+              label="Last Name"
+              name="lastName"
+              rules={[{ required: true, message: "Please input your last name!" }]}
+            >
+              <Input placeholder="Input your last name" />
+            </Form.Item>
+          </Col>
+        </Row>
 
         <Form.Item
           label="Phone Number"
@@ -49,30 +67,14 @@ function ThemesCheckoutForm() {
         >
           <Input placeholder="Input your recipent name" />
         </Form.Item>
-        <Row gutter={[20, 0]}>
-          <Col span={12}>
-            <Form.Item
-              labelCol={{ span: 8 }}
-              // wrapperCol={{ span: 22 }}
-              label="Address"
-              name="address"
-              rules={[{ required: true, message: "Please input your address!" }]}
-            >
-              <Input placeholder="Input your first address" />
-            </Form.Item>
-          </Col>
-          <Col span={12}>
-            <Form.Item
-              labelCol={{ span: 8 }}
-              // wrapperCol={{ span: 22 }}
-              label="Address"
-              name="address"
-              rules={[{ required: true, message: "Please input your address!" }]}
-            >
-              <Input placeholder="Input your second address" />
-            </Form.Item>
-          </Col>
-        </Row>
+
+        <Form.Item
+          label="Address"
+          name="address"
+          rules={[{ required: true, message: "Please input your address!" }]}
+        >
+          <Input placeholder="Input your first address" />
+        </Form.Item>
 
         <Form.Item
           label="City"
@@ -98,15 +100,9 @@ function ThemesCheckoutForm() {
           <Input placeholder="Input your country" />
         </Form.Item>
 
-        <Form.Item label="Notes" name="notes">
-          <Input placeholder="Input some notes for your purchase" />
+        <Form.Item label="Notes (Optional)" name="notes">
+          <TextArea rows={4} placeholder="Input some notes for your purchase" />
         </Form.Item>
-
-        {/* <Form.Item wrapperCol={{ offset: 20 }}>
-          <ThemesButton type={"default "} htmlType="submit">
-            SUBMIT
-          </ThemesButton>
-        </Form.Item> */}
       </Form>
     </>
   );

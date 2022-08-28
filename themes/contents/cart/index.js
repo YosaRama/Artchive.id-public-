@@ -1,7 +1,7 @@
 // Libs
 import propTypes from "prop-types";
 import { useRouter } from "next/router";
-import { Col, Row, Input, Empty, Button, Radio } from "antd";
+import { Col, Row, Input, Empty, Button, Divider, Select } from "antd";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 
@@ -87,14 +87,30 @@ function ThemesContentsCart(props) {
     .reduce((a, b) => a + b, 0);
   // * ====================================== * //
 
+  const titleCart = (
+    <>
+      <h1 className={s.title}>
+        {`Your Cart Item : `}{" "}
+        {cartPageItem?.length < 2 && (
+          <span style={{ color: "#e5890a" }}>{cartPageItem.length} item</span>
+        )}
+        {cartPageItem?.length >= 2 && (
+          <span style={{ color: "#e5890a" }}>{cartPageItem.length} items</span>
+        )}
+      </h1>
+    </>
+  );
+
+  const { Option } = Select;
+
   return (
     <>
       <ThemesContainerMain>
         {/* //? ============== Cart Item Section ============= ?// */}
 
-        <ThemesHeadline title="Your Cart" className={s.headline} />
+        <ThemesHeadline title={titleCart} className={s.headline} />
         {cartPageItem?.length != 0 && (
-          <Col>
+          <Col className={s.cartContainerMain}>
             {cartPageItem?.map((item, index) => {
               return (
                 <ThemesCartItem
@@ -104,7 +120,7 @@ function ThemesContentsCart(props) {
                   title={item.artwork.title}
                   artist={item.artwork.artist.full_name}
                   material={item.artwork.material}
-                  width={item.artwork.width}
+                  imgWidth={item.artwork.width}
                   height={item.artwork.height}
                   artworkUrl={item.artwork.slug}
                   cartId={item.id}
@@ -136,6 +152,52 @@ function ThemesContentsCart(props) {
             </Empty>
           </Col>
         )}
+
+        {/* // * ====================================== * // */}
+
+        {/* //? ============== Shipping Tax Section ============= ?// */}
+        <Col span={24} className={s.shippingSection}>
+          <Row className={s.shippingContainer}>
+            <Col
+              xl={{ span: 16 }}
+              lg={{ span: 15 }}
+              md={{ span: 13 }}
+              // xs={{ span: 24 }}
+              className={s.searchCountry}
+            >
+              <Select
+                showSearch
+                style={{
+                  width:'auto',
+                }}
+                size="large"
+                className={s.searchCountry}
+                placeholder="Select your destination"
+                optionFilterProp="children"
+                filterOption={(input, option) => option.children.includes(input)}
+                filterSort={(optionA, optionB) =>
+                  optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())
+                }
+              >
+                <Option value="1">Indonesia</Option>
+                <Option value="2">Singapore</Option>
+                <Option value="3">Malaysia</Option>
+                <Option value="4">Philiphines</Option>
+                <Option value="5">Japan</Option>
+                <Option value="6">China</Option>
+              </Select>
+            </Col>
+            <Col
+              xl={{ span: 6 }}
+              lg={{ span: 6 }}
+              md={{ span: 8 }}
+              // xs={{ span: 24 }}
+              className={s.shippingCharge}
+            >
+              Shipping Charge: IDR 5.000.000
+            </Col>
+          </Row>
+        </Col>
 
         {/* // * ====================================== * // */}
 
