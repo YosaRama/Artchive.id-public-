@@ -2,6 +2,17 @@ const withPlugins = require("next-compose-plugins");
 const withLess = require("next-with-less");
 const withPwa = require("next-pwa");
 
+/**
+ * @type {import('next').NextConfig}
+ */
+const nextConfig = {
+  reactStrictMode: true,
+  images: {
+    domains: ["s3.ap-southeast-1.amazonaws.com"],
+  },
+  output: "standalone",
+};
+
 const config = withPlugins(
   [
     [
@@ -30,13 +41,7 @@ const config = withPlugins(
       },
     ],
   ],
-  {
-    reactStrictMode: true,
-    images: {
-      domains: ["s3.ap-southeast-1.amazonaws.com"],
-    },
-    output: "standalone",
-  }
+  nextConfig
 );
 
 module.exports = config;
