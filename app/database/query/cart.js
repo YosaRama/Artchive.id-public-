@@ -8,7 +8,7 @@ const queryFrom = prisma.cart;
 
 export const GET_CART_BY_USER_ID = ({ userId }) => {
   return queryFrom.findMany({
-    where: { user_id: +userId },
+    where: { user_id: +userId, status: false },
     select: {
       id: true,
       artwork: {
