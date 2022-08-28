@@ -1,7 +1,8 @@
 // Libs
 import { BellFilled, DeleteFilled, CheckOutlined, SettingFilled } from "@ant-design/icons";
-import { Popover, Col, Row, Button, Empty, notification } from "antd";
+import { Popover, Col, Row, Button, Empty } from "antd";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 // Components
 import ThemesNotificationModalItem from "./notification-modal-item";
@@ -10,9 +11,10 @@ import s from "./index.module.scss";
 
 // Dummy
 import { notificationList } from "app/database/dummy/notification";
+import ThemesButton from "themes/components/libs/button";
 
 function ThemesNotificationModal() {
-  console.log("KumpulanBiji", notificationList);
+  const router = useRouter();
   //? ============== Empty State ============= ?//
   const [emptyNotification, setEmptyNotification] = useState(true);
   // * ====================================== * //
@@ -33,6 +35,12 @@ function ThemesNotificationModal() {
       <Col className={s.readNotif}>
         <CheckOutlined />
         <span style={{ marginLeft: "5px" }}>{`Read all`} </span>
+      </Col>
+      <Col>
+        <Button onClick={() => setEmptyNotification(false)}> Tiada </Button>
+      </Col>
+      <Col>
+        <Button onClick={() => setEmptyNotification(true)}> Ada </Button>
       </Col>
     </Col>
   );
@@ -57,7 +65,7 @@ function ThemesNotificationModal() {
                   placement="right"
                   title={false}
                   content={generalSetting}
-                  trigger="click"
+                  trigger="hover"
                 >
                   <SettingFilled />
                 </Popover>
@@ -69,12 +77,6 @@ function ThemesNotificationModal() {
               </Col>
               <Col span={4} className={s.unread}>
                 <p>Unread</p>
-              </Col>
-              <Col span={3}>
-                <Button onClick={() => setEmptyNotification(false)}> Tiada </Button>
-              </Col>
-              <Col span={4}>
-                <Button onClick={() => setEmptyNotification(true)}> Ada </Button>
               </Col>
             </Row>
             <Col className={s.containerItem}>
@@ -97,7 +99,7 @@ function ThemesNotificationModal() {
 
               {emptyNotification && (
                 <>
-                  {/* {notificationList
+                  {notificationList
                     .filter((item, index) => index < 3)
                     .map((item, index) => {
                       return (
@@ -108,24 +110,22 @@ function ThemesNotificationModal() {
                           id={item.id}
                         />
                       );
-                    })} */}
-                  {notificationList.map((item, index) => {
-                    return (
-                      <ThemesNotificationModalItem
-                        key={index}
-                        tittle={item.tittle}
-                        message={item.message}
-                        id={item.id}
-                      />
-                    );
-                  })}
+                    })}
                 </>
               )}
+            </Col>
+            <Col span={24}>
+              <ThemesButton
+                style={{ width: "356px", marginTop: "12px" }}
+                onClick={() => router.push("/notification")}
+              >
+                SEE ALL
+              </ThemesButton>
             </Col>
           </Col>
         </Col>
       }
-      trigger="click"
+      trigger="hover"
     >
       <BellFilled style={{ fontSize: "25px", color: "black" }} />
     </Popover>

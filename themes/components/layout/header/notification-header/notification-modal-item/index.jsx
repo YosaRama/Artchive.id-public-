@@ -2,6 +2,7 @@
 import { Col, Popover, Row, Divider } from "antd";
 import { EllipsisOutlined, DeleteFilled, CheckOutlined } from "@ant-design/icons";
 import propTypes from "prop-types";
+import Link from "next";
 
 // Styles
 import s from "./index.module.scss";
@@ -32,7 +33,7 @@ function ThemesNotificationModalItem(props) {
 
   return (
     <>
-      <Divider style={{ margin: "6px 0px 12px" }} />
+      <Divider style={{ margin: "6px 0px 6px" }} />
       <Row className={s.container}>
         <Col span={1}>
           <Col className={s.dot} />
@@ -40,9 +41,10 @@ function ThemesNotificationModalItem(props) {
         <Col span={20} className={s.itemContainer}>
           <p className={s.title}>{tittle}</p>
           <p className={s.message}>{message}</p>
+          <p>Read details...</p>
           <p className={s.days}>2 days ago</p>
         </Col>
-        <Col span={1} className={s.dotDotDot}>
+        <Col span={2} className={s.dotDotDot}>
           <Popover
             zIndex={2}
             placement="right"

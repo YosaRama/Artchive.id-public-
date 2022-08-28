@@ -117,8 +117,8 @@ function ThemesContentsArtworkDetailsInformation(props) {
               </p>
             </Col>
 
-            <Col>
-              <Row gutter={[10, 10]}>
+            <Col className={s.borderContainer}>
+              <Row>
                 {genre?.map((item, index) => {
                   return (
                     <Col key={index} className={s.genreBorder}>

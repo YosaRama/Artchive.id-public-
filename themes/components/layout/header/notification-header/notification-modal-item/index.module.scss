@@ -39,12 +39,14 @@
     font-family: "Aileron" !important;
     font-size: 16px;
     font-weight: 700 !important;
+    margin-bottom: 12px;
   }
 
   .days {
     color: #e5890a;
     font-size: 14px;
     font-weight: 700;
+    margin: 0px;
   }
 }
 
@@ -52,8 +54,10 @@
   margin-bottom: 5px;
   font-size: 14px;
   height: auto;
-  width: 300px;
+  width: 280px;
   overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .dotDotDot {
@@ -61,6 +65,7 @@
   color: #e0e0e0;
   cursor: pointer;
   font-size: 25px;
+  top: -8px;
   &:hover {
     color: #e5890a;
     transition: all 300ms ease;

@@ -47,7 +47,7 @@ function ThemesNotificationItem(props) {
             placement="right"
             title={false}
             content={singleSetting}
-            trigger="click"
+            trigger="hover"
           >
             <EllipsisOutlined />
           </Popover>

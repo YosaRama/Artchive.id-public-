@@ -55,7 +55,7 @@ function ThemesContentsNotification() {
                   placement="right"
                   title={false}
                   content={generalSetting}
-                  trigger="click"
+                  trigger="hover"
                 >
                   <SettingFilled />
                 </Popover>

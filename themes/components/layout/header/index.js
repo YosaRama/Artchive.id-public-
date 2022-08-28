@@ -18,13 +18,16 @@ import { useWindowSize } from "app/helpers/useWindowSize";
 import { useCarts } from "app/hooks/cart";
 
 // Icons
-import { MenuOutlined } from "@ant-design/icons";
+import { MenuOutlined, BellFilled } from "@ant-design/icons";
 import { CartIcon, CheckCircleFilled } from "public/icons/cart-icon";
 
 // Styles
 import s from "./index.module.scss";
 import ThemesContentsNotification from "themes/contents/notification";
 import ThemesNotificationModal from "./notification-header";
+
+// Dummy
+import { notificationList } from "app/database/dummy/notification";
 
 function ThemesHeader() {
   const router = useRouter();
@@ -79,24 +82,7 @@ function ThemesHeader() {
                     <Row>
                       <Col
                         style={{
-                          marginRight: "12px",
-                          width: "30px",
-                          color: "black",
-                          display: "flex",
-                          alignItems: "center",
-                        }}
-                      >
-                        <Badge
-                          count={cartItem?.length}
-                          size="small"
-                          style={{ backgroundColor: "#e5890a", color: "black" }}
-                        >
-                          <ThemesNotificationModal onChange={(e) => setIconVisible()} />
-                        </Badge>
-                      </Col>
-                      <Col
-                        style={{
-                          marginRight: "12px",
+                          marginRight: "16px",
                           width: "30px",
                           color: "black",
                           display: "flex",
@@ -111,39 +97,62 @@ function ThemesHeader() {
                           <ThemesHeaderCart onChange={(e) => setIconVisible()} />
                         </Badge>
                       </Col>
+                      <Col
+                        style={{
+                          marginRight: "16px",
+                          width: "30px",
+                          color: "black",
+                          display: "flex",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Badge
+                          count={notificationList?.length}
+                          size="small"
+                          style={{ backgroundColor: "#e5890a", color: "black" }}
+                        >
+                          <ThemesNotificationModal onChange={(e) => setIconVisible()} />
+                        </Badge>
+                      </Col>
                     </Row>
                   )}
 
                   {width < 500 && (
                     <Row>
-                      <Badge
-                        count={cartItem?.length}
-                        size="small"
-                        style={{ backgroundColor: "#e5890a", color: "black" }}
-                      >
-                        <CartIcon
-                          style={{ width: "25px", cursor: "pointer" }}
-                          type="link"
-                          onClick={() => router.push("/notification")}
-                        />
-                      </Badge>
-                      <Badge
-                        count={cartItem?.length}
-                        size="small"
-                        style={{ backgroundColor: "#e5890a", color: "black" }}
-                      >
-                        {/* <Button shape="round" type="link" onClick={() => router.push("/cart")}> */}
-                        <CartIcon
-                          style={{ width: "25px", cursor: "pointer" }}
-                          type="link"
-                          onClick={() => router.push("/cart")}
-                        />
-                        {/* </Button> */}
-                      </Badge>
-                      {/* {cartItem?.length !== 0 && <Col className={s.dot}>{cartItem?.length}</Col>}
-                      <Button shape="round" type="link" onClick={() => router.push("/cart")}>
-                        <CartIcon style={{ width: "25px" }} />
-                      </Button> */}
+                      <Col style={{ marginRight: "19px" }}>
+                        <Badge
+                          count={cartItem?.length}
+                          size="small"
+                          style={{ backgroundColor: "#e5890a", color: "black" }}
+                        >
+                          <CartIcon
+                            style={{
+                              fontSize: "25px",
+                              width: "25px",
+                              paddingRight: "0px",
+                              paddingLeft: "0px",
+                            }}
+                            onClick={() => router.push("/cart")}
+                          />
+                        </Badge>
+                      </Col>
+                      <Col style={{ marginRight: "19px" }}>
+                        <Badge
+                          count={notificationList?.length}
+                          size="small"
+                          style={{ backgroundColor: "#e5890a", color: "black" }}
+                        >
+                          <BellFilled
+                            onClick={() => router.push("/notification")}
+                            style={{
+                              fontSize: "25px",
+                              color: "black",
+                              paddingRight: "0px",
+                              paddingLeft: "0px",
+                            }}
+                          />
+                        </Badge>
+                      </Col>
                     </Row>
                   )}
 

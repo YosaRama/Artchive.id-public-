@@ -101,9 +101,9 @@
   background: #e0e0e0;
   border-radius: 15px;
   margin-right: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin-bottom: 10px;
+  padding-right: 6px;
+  padding-left: 6px;
 }
 
 .loginModalCard {
@@ -138,6 +138,10 @@
   }
   .detailsImageContainer {
     height: 100px;
+  }
+  .borderContainer {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
   }
 }
 // * ====================================== * //
