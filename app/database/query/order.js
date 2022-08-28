@@ -82,7 +82,7 @@ export const CREATE_ORDER = (data) => {
       transaction_time: transactionTime,
       order_item: {
         connect: artworks.map((item) => {
-          return { sku: item.id };
+          return { id: item.id };
         }),
       },
       user_id: +userId,
@@ -95,19 +95,25 @@ export const CREATE_ORDER = (data) => {
 
 //? ============== UPDATE QUERY ============= ?//
 
-export const UPDATE_ORDER = ({ orderId, data }) => {
-  const { fraud, status, transactionId } = data;
-  return queryFrom.update({
-    where: { order_id: orderId },
-    data: { fraud: fraud, status: status, transaction_id: transactionId },
-  });
+export const UPDATE_ORDER_AFTER_PROCEED = ({ orderId, data }) => {
+  const { fraud, status, transactionId, artworkIdList, userId } = data;
+  return prisma.$transaction([
+    queryFrom.update({
+      where: { order_id: orderId },
+      data: { fraud: fraud, status: status, transaction_id: transactionId },
+    }),
+    prisma.artwork.updateMany({ where: { id: { in: artworkIdList } }, data: { status: "SOLD" } }),
+    prisma.cart.updateMany({
+      where: { user_id: userId, artwork_id: { in: artworkIdList } },
+      data: { status: true },
+    }),
+  ]);
 };
 // ==================================
 
 // * ====================================== * //
 
 //? ============== DELETE QUERY ============= ?//
-
 export const DELETE_DATA = ({ id }) => {
   return queryFrom.delete({ where: { id: +id } });
 };

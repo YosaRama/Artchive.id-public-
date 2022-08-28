@@ -73,7 +73,13 @@ apiHandler.post(async (req, res) => {
         postal_code: shippingPostalCode,
       },
     },
-    item_details: items,
+    item_details: items.map((item) => {
+      return { ...item, sku: undefined, id: item.sku };
+    }),
+    metadata: {
+      userId: userId,
+      artworkIdList: items.map((item) => item.id),
+    },
   };
 
   const createOrder = await CREATE_ORDER({

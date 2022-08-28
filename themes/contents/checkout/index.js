@@ -48,7 +48,8 @@ function ThemesContentsCheckout() {
       const submission = {
         items: cartCheckoutItem.map((item) => {
           return {
-            id: item.artwork.sku,
+            id: item.artwork.id,
+            sku: item.artwork.sku,
             name: item.artwork.title,
             quantity: 1,
             price: +item.artwork.markup_price,
