@@ -1,7 +1,8 @@
 // Libs
-import { Col, Row } from "antd";
+import { Col, Form, Row } from "antd";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
+import moment from "moment";
 
 // Style
 import s from "./index.module.scss";
@@ -18,6 +19,7 @@ import priceFormatter from "app/helpers/priceFormatter";
 
 // Hooks
 import { useCarts } from "app/hooks/cart";
+import { useOrders } from "app/hooks/order";
 
 function ThemesContentsCheckout() {
   const router = useRouter();
@@ -35,13 +37,48 @@ function ThemesContentsCheckout() {
     .reduce((a, b) => a + b, 0);
   // * ====================================== * //
 
+  //? ============== Order Hooks ============= ?//
+  const { onTransaction } = useOrders({ queryString: "" });
+  // * ====================================== * //
+
+  //? ============== Handle Checkout ============= ?//
+  const [form] = Form.useForm();
+  const handleTransaction = () => {
+    form.validateFields().then((value) => {
+      const submission = {
+        items: cartCheckoutItem.map((item) => {
+          return {
+            id: item.artwork.sku,
+            name: item.artwork.title,
+            quantity: 1,
+            price: +item.artwork.markup_price,
+          };
+        }),
+        orderId: `ARTCHIVEID/ORDER/${moment().format("x")}`,
+        total: cartTotal,
+        userEmail: session?.user.email,
+        shippingFirstName: value.recipientName,
+        shippingPhone: value.phoneNumber,
+        shippingAddress: value.address,
+        shippingCity: value.city,
+        shippingCountry: value.country,
+        shippingPostalCode: value.zipCode,
+        transactionTime: moment().format(),
+        notes: value.notes,
+        userId: userId,
+      };
+      onTransaction(submission);
+    });
+  };
+  // * ====================================== * //
+
   return (
     <>
       <ThemesContainerMain>
         <ThemesHeadline title="CHECKOUT" className={s.headline} />
         <Col className={s.checkoutContainer}>
           <Col span={12}>
-            <ThemesCheckoutForm />
+            <ThemesCheckoutForm form={form} />
           </Col>
           <Col span={11}>
             <Col className={s.checkoutItemContainer}>
@@ -67,7 +104,7 @@ function ThemesContentsCheckout() {
                 </Col>
                 <Col span={16} style={{ fontSize: "16px" }}>
                   {/* input data shipping charge */}
-                  <span style={{ fontWeight: "700" }}>{`IDR `} </span> {`900.000`}
+                  <span style={{ fontWeight: "700" }}>{`IDR `} </span> {`0`}
                 </Col>
               </Row>
               <Col
@@ -102,7 +139,9 @@ function ThemesContentsCheckout() {
               <span className={s.link}>Contact Us</span>
             </p>
             <Col style={{ marginTop: "24px", marginBottom: "24px" }}>
-              <ThemesButton style={{ width: "160px", height: "80px" }}>SUBMIT</ThemesButton>
+              <ThemesButton style={{ width: "160px", height: "80px" }} onClick={handleTransaction}>
+                SUBMIT
+              </ThemesButton>
             </Col>
             <Col span={24} style={{ background: "white", padding: "24px", marginBottom: "24px" }}>
               LOGO LOGO BCA MIDTRANS

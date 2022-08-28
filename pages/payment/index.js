@@ -1,4 +1,4 @@
-import { usePaymentHistories } from "app/hooks/payment-history";
+import { usePaymentHistories } from "app/hooks/order";
 import ThemesContainerMain from "themes/components/container/main";
 import ThemesButton from "themes/components/libs/button";
 

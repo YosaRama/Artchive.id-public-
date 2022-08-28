@@ -12,7 +12,7 @@ const pathName = "/payment"; // End point
 const msgHead = "payment"; // Just For message
 
 //? ============== GENERAL HOOK (ALL DATA) ============= ?//
-export const usePaymentHistories = ({ queryString = "" }) => {
+export const useOrders = ({ queryString = "" }) => {
   const router = useRouter();
   const pathKeys = pathName + "?" + queryString;
   const [loading, setLoading] = useState(false);

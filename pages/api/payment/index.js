@@ -5,6 +5,7 @@ import { v4 as uuid } from "uuid";
 
 // Queries
 import { GET_PAYMENT_HISTORY } from "app/database/query/payment-history";
+import { CREATE_ORDER } from "app/database/query/order";
 
 const apiHandler = nextConnect();
 const messageHead = "Template";
@@ -35,6 +36,22 @@ apiHandler.get(async (req, res) => {
 });
 
 apiHandler.post(async (req, res) => {
+  const {
+    items,
+    orderId,
+    total,
+    userEmail,
+    shippingFirstName,
+    shippingPhone,
+    shippingAddress,
+    shippingCity,
+    shippingPostalCode,
+    shippingCountry,
+    transactionTime,
+    notes,
+    userId,
+  } = req.body;
+
   const snap = new midtransClient.Snap({
     isProduction: process.env.MIDTRANS_STATE === "production" ? true : false,
     serverKey: process.env.MIDTRANS_SERVER_KEY,
@@ -42,39 +59,48 @@ apiHandler.post(async (req, res) => {
 
   const parameter = {
     transaction_details: {
-      order_id: uuid(),
-      gross_amount: "8000000",
+      order_id: orderId,
+      gross_amount: total,
     },
     customer_details: {
-      first_name: "Yosa",
-      last_name: "Rama",
-      email: "yosamelody07@gmail.com",
-      phone: "08111222333",
+      email: userEmail,
+      shipping_address: {
+        first_name: shippingFirstName,
+        email: userEmail,
+        phone: shippingPhone,
+        address: shippingAddress,
+        city: shippingCity,
+        postal_code: shippingPostalCode,
+      },
     },
-    item_details: [
-      {
-        id: "a01",
-        price: 5000000,
-        quantity: 1,
-        name: "Apple Art",
-      },
-      {
-        id: "b02",
-        price: 3000000,
-        quantity: 1,
-        name: "Orange Art",
-      },
-    ],
+    item_details: items,
   };
 
-  const transaction = await snap.createTransaction(parameter);
+  const createOrder = await CREATE_ORDER({
+    orderId: orderId,
+    recipientName: shippingFirstName,
+    recipientPhone: shippingPhone,
+    shippingAddress: shippingAddress,
+    shippingCity: shippingCity,
+    shippingCountry: shippingCountry,
+    shippingPostalCode: shippingPostalCode,
+    total: total,
+    transactionTime: transactionTime,
+    artworks: items,
+    notes: notes,
+    userId: userId,
+  });
 
-  if (transaction) {
-    res.status(200).json({ success: true, data: transaction });
-  }
+  if (createOrder) {
+    const transaction = await snap.createTransaction(parameter);
 
-  if (!transaction) {
-    res.status(200).json({ success: false, error: transaction });
+    if (transaction) {
+      res.status(200).json({ success: true, data: transaction });
+    }
+
+    if (!transaction) {
+      res.status(200).json({ success: false, error: transaction });
+    }
   }
 });
 

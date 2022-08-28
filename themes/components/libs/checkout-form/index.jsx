@@ -1,13 +1,12 @@
 // Libs
-import { Col, Form, Input, Button, Row } from "antd";
+import propTypes from "prop-types";
+import { Col, Form, Input, Row } from "antd";
 
-// Styles
-import s from "antd";
-import ThemesButton from "../button";
+// Components
 import TextArea from "antd/lib/input/TextArea";
 
-function ThemesCheckoutForm() {
-  const [form] = Form.useForm();
+function ThemesCheckoutForm(props) {
+  const { form } = props;
   return (
     <>
       <Form
@@ -15,8 +14,6 @@ function ThemesCheckoutForm() {
         layout="vertical"
         initialValues={{ remember: true }}
         form={form}
-        // onFinish={onFinish}
-        // onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
         <Form.Item
@@ -27,42 +24,25 @@ function ThemesCheckoutForm() {
           <Input placeholder="Input your email" />
         </Form.Item>
 
-        <Row gutter={[20, 0]}>
-          <Col span={12}>
-            <Form.Item
-              labelCol={{ span: 8 }}
-              // wrapperCol={{ span: 22 }}
-              label="First Name"
-              name="firstName"
-              rules={[{ required: true, message: "Please input your first name!" }]}
-            >
-              <Input placeholder="Input your first name" />
-            </Form.Item>
-          </Col>
-          <Col span={12}>
-            <Form.Item
-              labelCol={{ span: 8 }}
-              // wrapperCol={{ span: 22 }}
-              label="Last Name"
-              name="lastName"
-              rules={[{ required: true, message: "Please input your last name!" }]}
-            >
-              <Input placeholder="Input your last name" />
-            </Form.Item>
-          </Col>
-        </Row>
+        <Form.Item
+          label="Full Name"
+          name="fullname"
+          rules={[{ required: true, message: "Please input your full name!" }]}
+        >
+          <Input placeholder="Input your full name" />
+        </Form.Item>
 
         <Form.Item
           label="Phone Number"
-          name="phonenumber"
+          name="phoneNumber"
           rules={[{ required: true, message: "Please input your phone number!" }]}
         >
           <Input placeholder="Input your phone number" />
         </Form.Item>
 
         <Form.Item
-          label="Recipent Name"
-          name="recipentname"
+          label="Recipient Name"
+          name="recipientName"
           rules={[{ required: true, message: "Please input your recipent name!" }]}
         >
           <Input placeholder="Input your recipent name" />
@@ -86,7 +66,7 @@ function ThemesCheckoutForm() {
 
         <Form.Item
           label="Zip Code"
-          name="zipcode"
+          name="zipCode"
           rules={[{ required: true, message: "Please input your zip code!" }]}
         >
           <Input placeholder="Input your zip code" />
@@ -107,5 +87,9 @@ function ThemesCheckoutForm() {
     </>
   );
 }
+
+ThemesCheckoutForm.propTypes = {
+  form: propTypes.func,
+};
 
 export default ThemesCheckoutForm;

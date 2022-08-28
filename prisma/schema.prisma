@@ -238,20 +238,23 @@ model PaymentHistory {
 }
 
 model Order {
-  id                    Int         @id @default(autoincrement())
-  user                  User        @relation(references: [id], fields: [user_id])
-  user_id               Int
-  order_item            Artwork[]
-  status                OrderStatus @default(PENDING)
-  fraud                 OrderFraud  @default(PENDING)
-  total_amount          String
-  transaction_time      DateTime
-  shipping_address      String
-  shipping_city         String
-  shipping_country      String
-  shipping_zip_code     String
-  recipent_name         String
-  recipent_phone_number String
+  id                     Int         @id @default(autoincrement())
+  order_id               String      @unique
+  user                   User        @relation(references: [id], fields: [user_id])
+  user_id                Int
+  order_item             Artwork[]
+  status                 OrderStatus @default(PENDING)
+  fraud                  OrderFraud  @default(PENDING)
+  total_amount           String
+  transaction_time       DateTime
+  shipping_address       String
+  shipping_city          String
+  shipping_country       String
+  shipping_zip_code      String
+  recipient_name         String
+  recipient_phone_number String
+  notes                  String
+  transaction_id         String?
 
   @@map("order")
 }
