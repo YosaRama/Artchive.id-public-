@@ -76,7 +76,7 @@ function ThemesHeaderCart() {
         <Col span={12}>
           <ThemesButton type={"outlined " + s.cartBtn} onClick={() => router.push("/cart")}>
             {" "}
-            Go To Cart
+            GO TO CART
           </ThemesButton>
         </Col>
 
@@ -87,7 +87,7 @@ function ThemesHeaderCart() {
             disabled={cartItem?.length == 0}
           >
             {" "}
-            Proceed
+            PROCEED
           </ThemesButton>
         </Col>
       </Row>

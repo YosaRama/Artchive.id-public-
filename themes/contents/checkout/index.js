@@ -77,11 +77,11 @@ function ThemesContentsCheckout() {
     <>
       <ThemesContainerMain>
         <ThemesHeadline title="CHECKOUT" className={s.headline} />
-        <Col className={s.checkoutContainer}>
-          <Col span={12}>
+        <Row className={s.checkoutContainer}>
+          <Col xl={{ span: 12 }} lg={{ span: 12 }} md={{ span: 12 }} xs={{ span: 24 }}>
             <ThemesCheckoutForm form={form} />
           </Col>
-          <Col span={11}>
+          <Col xl={{ span: 11 }} lg={{ span: 11 }} md={{ span: 11 }} xs={{ span: 24 }}>
             <Col className={s.checkoutItemContainer}>
               {cartCheckoutItem?.map((item, index) => {
                 return (
@@ -100,10 +100,10 @@ function ThemesContentsCheckout() {
                 );
               })}
               <Row style={{ display: "felx", justifyContent: "space-between" }}>
-                <Col span={6} style={{ width: "150px", fontSize: "16px" }}>
+                <Col style={{ width: "90px", fontSize: "16px" }}>
                   <p style={{ fontWeight: "700" }}>{`Shipping Charge`} </p>
                 </Col>
-                <Col span={16} style={{ fontSize: "16px" }}>
+                <Col span={14} style={{ fontSize: "16px" }}>
                   {/* input data shipping charge */}
                   <span style={{ fontWeight: "700" }}>{`IDR `} </span> {`0`}
                 </Col>
@@ -137,10 +137,15 @@ function ThemesContentsCheckout() {
             </Col>
             <p style={{ color: "#e5890a" }}>
               {`Lorem ipsum dolor sit amet, consectetur adipiscing elit? `}
-              <span className={s.link}>Contact Us</span>
+              <span
+                className={s.link}
+                href={`https://wa.me/${process.env.NEXT_PUBLIC_PHONE_NUMBER}`}
+              >
+                Contact Us
+              </span>
             </p>
             <Col style={{ marginTop: "24px", marginBottom: "24px" }}>
-              <ThemesButton style={{ width: "160px", height: "80px" }} onClick={handleTransaction}>
+              <ThemesButton type={"default " + s.btnStyle} onClick={handleTransaction}>
                 SUBMIT
               </ThemesButton>
             </Col>
@@ -148,7 +153,7 @@ function ThemesContentsCheckout() {
               LOGO LOGO BCA MIDTRANS
             </Col>
           </Col>
-        </Col>
+        </Row>
       </ThemesContainerMain>
     </>
   );

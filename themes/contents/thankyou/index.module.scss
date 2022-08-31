@@ -1,0 +1,96 @@
+.thankyouContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  padding: 48px 0px;
+  margin: 48px 80px;
+  height: 550px;
+}
+
+.thankyouDescription {
+  text-align: center;
+  h1 {
+    font-size: 48px !important;
+    margin-bottom: 15px;
+  }
+  h4 {
+    font-size: 32px !important;
+    font-weight: 400 !important;
+  }
+  p {
+    font-size: 16px !important;
+    margin: 16px 0px 0px;
+  }
+}
+
+.description {
+  width: 464px;
+  text-align: center;
+}
+
+.link {
+  text-decoration: underline;
+  cursor: pointer;
+  transition: all 300ms ease;
+  &:hover {
+    transition: all 300ms ease;
+    color: #e5890a;
+  }
+}
+
+//? ============== Tablet View Potrait ============= ?//
+@media screen and (max-width: 1024px) {
+}
+
+// * ====================================== * //
+
+//? ============== Tablet View Landscape ============= ?//
+@media screen and (max-width: 768px) {
+  .thankyouDescription {
+    h1 {
+      font-size: 32px !important;
+      margin-bottom: 15px;
+    }
+    h4 {
+      font-size: 24px !important;
+      font-weight: 400 !important;
+    }
+  }
+
+  .description {
+    width: 464px;
+    text-align: center;
+  }
+}
+// * ====================================== * //
+
+//? ============== Tablet View Landscape ============= ?//
+@media screen and (max-width: 768px) {
+  .thankyouContainer {
+    padding: 36px 24px;
+    margin: 40px 24px;
+    height: auto;
+  }
+
+  .thankyouDescription {
+    h1 {
+      font-size: 32px !important;
+      margin-bottom: 15px;
+      margin-top: 15px;
+    }
+    h4 {
+      font-size: 18px !important;
+      font-weight: 400 !important;
+    }
+    p {
+      font-size: 14px !important;
+      margin: 16px 0px 0px;
+    }
+  }
+
+  .description {
+    width: 270px;
+  }
+}
+// * ====================================== * //
