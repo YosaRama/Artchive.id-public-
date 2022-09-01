@@ -16,6 +16,7 @@ import priceFormatter from "app/helpers/priceFormatter";
 
 // Icons
 import { CartIcon } from "public/icons/cart-icon";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
 
 // Styles
 import s from "./index.module.scss";
@@ -36,6 +37,10 @@ function ThemesHeaderCart() {
   const cartTotal = cartItem?.map((item) => +item.artwork.markup_price).reduce((a, b) => a + b, 0);
   // * ====================================== * //
 
+  //? ============== Status List Handle ============= ?//
+  const statusList = cartItem && cartItem?.every((item) => item.artwork.status == "PUBLISH");
+  // * ====================================== * //
+
   const ModalItemCart = (
     <>
       {/* //? ============== Cart Filled ============= ?// */}
@@ -43,14 +48,25 @@ function ThemesHeaderCart() {
         <Col className={s.modalItemContainer}>
           {cartItem?.map((item, index) => {
             return (
-              <ThemesCartModalItemDesc
-                key={index}
-                imgUrl={item.artwork.media_cover.url}
-                title={item.artwork.title}
-                artist={item.artwork.artist.full_name}
-                price={item.artwork.markup_price}
-                artworkUrl={item.artwork.slug}
-              />
+              <>
+                <ThemesCartModalItemDesc
+                  key={index}
+                  imgUrl={item.artwork.media_cover.url}
+                  title={item.artwork.title}
+                  artist={item.artwork.artist.full_name}
+                  price={item.artwork.markup_price}
+                  artworkUrl={item.artwork.slug}
+                />
+                {item.artwork.status == "SOLD" && (
+                  <Col className={s.warningSold}>
+                    <ExclamationCircleOutlined style={{ marginRight: "4px", color: "red" }} />
+                    {` Sorry,`} <span style={{ fontWeight: 600 }}> {item.artwork.title}</span>{" "}
+                    {`has been sold.
+            Remove this item from your cart to continue checkout.`}
+                    <Divider style={{ margin: "10px 0px 10px 0px" }} />
+                  </Col>
+                )}
+              </>
             );
           })}
         </Col>
@@ -64,9 +80,9 @@ function ThemesHeaderCart() {
       {/* //? ============== Cart Price ============= ?// */}
       <Divider style={{ marginTop: "10px", marginBottom: "10px" }} />
       <Col className={s.priceTotal}>
-        {`Total: IDR `}{" "}
-        <span style={{ fontWeight: "400", paddingLeft: 5 }}>
-          {priceFormatter(`${cartTotal}`, ",")}
+        {`Total: `}{" "}
+        <span style={{ fontWeight: "700", paddingLeft: 5 }}>
+          {priceFormatter(`IDR ${cartTotal}`, ",")}
         </span>
       </Col>
       <Divider style={{ marginTop: "10px", marginBottom: "10px" }} />
@@ -84,7 +100,7 @@ function ThemesHeaderCart() {
           <ThemesButton
             type={"default " + s.cartBtn}
             onClick={() => router.push("/checkout")}
-            disabled={cartItem?.length == 0}
+            disabled={cartItem == 0 ? true : statusList === false ? true : false}
           >
             {" "}
             PROCEED

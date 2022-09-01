@@ -31,5 +31,12 @@
   font-size: 18px;
   display: flex;
 
-  font-weight: 700;
+  font-weight: 400;
+}
+
+.warningSold {
+  margin: 12px 0px 12px;
+  font-size: 12px;
+  color: red;
+  width: 250px;
 }

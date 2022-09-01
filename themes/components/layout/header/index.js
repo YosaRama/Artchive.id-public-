@@ -92,7 +92,7 @@ function ThemesHeader() {
                         <Badge
                           count={cartItem?.length}
                           size="small"
-                          style={{ backgroundColor: "#e5890a", color: "black" }}
+                          style={{ backgroundColor: "#e5890a" }}
                         >
                           <ThemesHeaderCart onChange={(e) => setIconVisible()} />
                         </Badge>
@@ -109,7 +109,7 @@ function ThemesHeader() {
                         <Badge
                           count={notificationList?.length}
                           size="small"
-                          style={{ backgroundColor: "#e5890a", color: "black" }}
+                          style={{ backgroundColor: "#e5890a" }}
                         >
                           <ThemesNotificationModal onChange={(e) => setIconVisible()} />
                         </Badge>
@@ -123,7 +123,7 @@ function ThemesHeader() {
                         <Badge
                           count={cartItem?.length}
                           size="small"
-                          style={{ backgroundColor: "#e5890a", color: "black" }}
+                          style={{ backgroundColor: "#e5890a" }}
                         >
                           <CartIcon
                             style={{
@@ -140,7 +140,7 @@ function ThemesHeader() {
                         <Badge
                           count={notificationList?.length}
                           size="small"
-                          style={{ backgroundColor: "#e5890a", color: "black" }}
+                          style={{ backgroundColor: "#e5890a" }}
                         >
                           <BellFilled
                             onClick={() => router.push("/notification")}
@@ -154,6 +154,38 @@ function ThemesHeader() {
                         </Badge>
                       </Col>
                     </Row>
+                  )}
+                  {width > 500 && (
+                    <div className={s.nameContainer}>
+                      <div
+                        style={{
+                          margin: "0px",
+                          padding: "0px",
+                          width: "auto",
+                          height: "15px",
+                          lineHeight: "15px",
+                          fontWeight: 700,
+                          fontSize: "14px",
+                          whiteSpace: "nowrap",
+                          overflow: "hidden",
+                        }}
+                      >
+                        {session.user.full_name}
+                      </div>
+                      <p
+                        style={{
+                          margin: "4px 0px 0px 0px",
+                          padding: "0px",
+                          width: "auto",
+                          height: "10px",
+                          lineHeight: "10px",
+                          color: "rgb(229, 137, 10)",
+                          fontSize: "10px",
+                        }}
+                      >
+                        {session.user.role}
+                      </p>
+                    </div>
                   )}
 
                   <div

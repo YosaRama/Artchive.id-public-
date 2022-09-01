@@ -6,11 +6,15 @@ import propTypes from "prop-types";
 import priceFormatter from "app/helpers/priceFormatter";
 import stringCapitalize from "app/helpers/capitalize";
 
+// Hooks
+import { useWindowSize } from "app/helpers/useWindowSize";
+
 // Styles
 import s from "./index.module.scss";
 
 function ThemesCheckoutItems(props) {
-  const { imgUrl, title, artist, material, width, height, price } = props;
+  const { imgUrl, title, artist, material, widthImage, heightImage, price } = props;
+  const { width } = useWindowSize();
   return (
     <>
       <Row style={{ display: "flex", justifyContent: "space-between" }}>
@@ -31,15 +35,32 @@ function ThemesCheckoutItems(props) {
             </p>
             <p>{stringCapitalize(material.replace(/_/g, " "))}</p>
             <p>
-              {width} {` x `} {height}
+              {widthImage} {` x `} {heightImage} {`cm`}
             </p>
           </Col>
-          <p>
-            <span style={{ fontWeight: "700" }}>{`IDR `}</span>
-
-            {priceFormatter(`${price}`, `,`)}
-          </p>
+          {width > 500 && (
+            <p style={{ fontWeight: "700", color: "#e5890a" }}>
+              <span>{`IDR `}</span>
+              {priceFormatter(`${price}`, `,`)}
+            </p>
+          )}
         </Col>
+        {width < 500 && (
+          <Col span={24}>
+            <p
+              style={{
+                width: "100%",
+                fontSize: "24px",
+                margin: "12px 0px",
+                fontWeight: "700",
+                color: "#e5890a",
+              }}
+            >
+              <span>{`IDR `}</span>
+              {priceFormatter(`${price}`, `,`)}
+            </p>
+          </Col>
+        )}
       </Row>
       <Divider style={{ margin: "12px 0px " }} />
     </>

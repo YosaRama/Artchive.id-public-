@@ -143,7 +143,7 @@ function ThemesContentsArtworkDetailsInformation(props) {
               <ThemesButton
                 type={"default " + s.cartBtn}
                 onClick={sessionStatus == "authenticated" ? handleAddToCart : modalLogin}
-                disabled={isOnCart ? true : false}
+                disabled={artworkData?.status == "SOLD" ? true : isOnCart ? true : false}
               >
                 ADD TO CART
               </ThemesButton>

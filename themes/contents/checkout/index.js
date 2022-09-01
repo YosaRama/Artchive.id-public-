@@ -92,18 +92,18 @@ function ThemesContentsCheckout() {
                       title={item.artwork.title}
                       artist={item.artwork.artist.full_name}
                       material={item.artwork.material}
-                      width={item.artwork.width}
-                      height={item.artwork.height}
+                      widthImage={item.artwork.width}
+                      heightImage={item.artwork.height}
                       artworkUrl={item.artwork.slug}
                     />
                   </Col>
                 );
               })}
               <Row style={{ display: "felx", justifyContent: "space-between" }}>
-                <Col style={{ width: "90px", fontSize: "16px" }}>
+                <Col style={{ width: "150px", fontSize: "16px" }}>
                   <p style={{ fontWeight: "700" }}>{`Shipping Charge`} </p>
                 </Col>
-                <Col span={14} style={{ fontSize: "16px" }}>
+                <Col className={s.shipingCharge}>
                   {/* input data shipping charge */}
                   <span style={{ fontWeight: "700" }}>{`IDR `} </span> {`0`}
                 </Col>
@@ -146,7 +146,7 @@ function ThemesContentsCheckout() {
             </p>
             <Col style={{ marginTop: "24px", marginBottom: "24px" }}>
               <ThemesButton type={"default " + s.btnStyle} onClick={handleTransaction}>
-                SUBMIT
+                PROCEED
               </ThemesButton>
             </Col>
             <Col span={24} style={{ background: "white", padding: "24px", marginBottom: "24px" }}>

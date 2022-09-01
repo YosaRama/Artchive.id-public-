@@ -80,7 +80,7 @@ function ThemesCheckoutForm(props) {
           <Input placeholder="Input your country" />
         </Form.Item>
 
-        <Form.Item label="Notes (Optional)" name="notes">
+        <Form.Item label="Notes (Optional)" name="notes" rules={[{ required: false }]}>
           <TextArea rows={4} placeholder="Input some notes for your purchase" />
         </Form.Item>
       </Form>

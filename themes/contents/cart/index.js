@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { Col, Row, Input, Empty, Button, Divider, Select } from "antd";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
 
 // DummyData
 // import { cartListDummyData } from "app/database/dummy/cart";
@@ -19,6 +20,7 @@ import ThemesDividerWithButton from "themes/components/libs/divider-with-button"
 // Data Hook
 import { useArtworks } from "app/hooks/artwork";
 import { useCarts } from "app/hooks/cart";
+import { useUploads } from "app/hooks/upload";
 
 // Styles
 import s from "./index.module.scss";
@@ -41,23 +43,13 @@ function ThemesContentsCart(props) {
 
   const { artworkData } = props;
 
-  // //? ============== Cart Hooks ============= ?//
-  // const { onDelete } = useCarts({ queryString: "" });
+  // * ====================================== * //
+
+  // //? ============== Other Artwork Hook ============= ?//
+  // const { data: otherArtworkData } = useArtworks({
+  //   queryString: `excludeSlug=${artworkData?.slug}&artistId=${artworkData?.artist_id}&client=true&limit=4`,
+  // });
   // // * ====================================== * //
-
-  // //? ============== Delete Cart Handler ============= ?//
-  // const handleDeleteCart = () => {
-  //   const submission = { cartId: artworkData.id };
-  //   onDelete(submission);
-  // };
-
-  // * ====================================== * //
-
-  //? ============== Other Artwork Hook ============= ?//
-  const { data: otherArtworkData } = useArtworks({
-    queryString: `excludeSlug=${artworkData?.slug}&artistId=${artworkData?.artist_id}&client=true&limit=4`,
-  });
-  // * ====================================== * //
 
   //? ============== Might Like Artwork Hook ============= ?//
   const genreListData = artworkData?.genre.map((item) => item.id);
@@ -82,9 +74,18 @@ function ThemesContentsCart(props) {
   // * ====================================== * //
 
   //? ============== Handle Total ============= ?//
-  const cartTotal = cartPageItem
+  const cartItemTotal = cartPageItem
     ?.map((item) => +item.artwork.markup_price)
     .reduce((a, b) => a + b, 0);
+
+  const charge = 0;
+  const cartTotal = cartItemTotal + charge;
+  // * ====================================== * //
+
+  //? ============== Status List Handle ============= ?//
+  const statusList =
+    cartPageItem && cartPageItem?.every((item) => item.artwork.status == "PUBLISH");
+
   // * ====================================== * //
 
   const titleCart = (
@@ -103,6 +104,23 @@ function ThemesContentsCart(props) {
 
   const { Option } = Select;
 
+  //? ============== Handle Upload Loading ============= ?//
+  // const { loading: uploadLoading, onUpload } = useUploads();
+
+  // // Handle Upload Cover Image
+  // const [uploadImage, setUploadImage] = useState();
+  // const handleUploadCover = async (file) => {
+  //   const result = await onUpload({
+  //     file: file.file,
+  //     userId: artistData.id,
+  //     artworkId: lastArtworkId,
+  //   });
+  //   if (result.success) {
+  //     setUploadImage({ id: result.data.id, url: result.data.url });
+  //   }
+  // };
+  // * ====================================== * //
+
   return (
     <>
       <ThemesContainerMain>
@@ -113,18 +131,30 @@ function ThemesContentsCart(props) {
           <Col className={s.cartContainerMain}>
             {cartPageItem?.map((item, index) => {
               return (
-                <ThemesCartItem
-                  key={index}
-                  imgUrl={item.artwork.media_cover.url}
-                  price={item.artwork.markup_price}
-                  title={item.artwork.title}
-                  artist={item.artwork.artist.full_name}
-                  material={item.artwork.material}
-                  imgWidth={item.artwork.width}
-                  height={item.artwork.height}
-                  artworkUrl={item.artwork.slug}
-                  cartId={item.id}
-                />
+                <>
+                  <ThemesCartItem
+                    key={index}
+                    imgUrl={item.artwork.media_cover.url}
+                    price={item.artwork.markup_price}
+                    title={item.artwork.title}
+                    artist={item.artwork.artist.full_name}
+                    material={item.artwork.material}
+                    imgWidth={item.artwork.width}
+                    height={item.artwork.height}
+                    artworkUrl={item.artwork.slug}
+                    cartId={item.id}
+                    status={item.status}
+                  />
+                  {item.artwork.status == "SOLD" && (
+                    <Col className={s.warningSold}>
+                      <ExclamationCircleOutlined style={{ marginRight: "4px", color: "red" }} />
+                      {` Sorry,`} <span style={{ fontWeight: 600 }}> {item.artwork.title}</span>{" "}
+                      {`has been sold.
+            Remove this item from your cart to continue checkout.`}
+                    </Col>
+                  )}
+                  <Divider style={{ margin: "20px 0px 20px 0px" }} />
+                </>
               );
             })}
           </Col>
@@ -158,17 +188,11 @@ function ThemesContentsCart(props) {
         {/* //? ============== Shipping Tax Section ============= ?// */}
         <Col span={24} className={s.shippingSection}>
           <Row className={s.shippingContainer}>
-            <Col
-              xl={{ span: 16 }}
-              lg={{ span: 15 }}
-              md={{ span: 13 }}
-              // xs={{ span: 24 }}
-              className={s.searchCountry}
-            >
+            <Col className={s.searchCountry}>
               <Select
                 showSearch
                 style={{
-                  width:'auto',
+                  maxWidth: "400px",
                 }}
                 size="large"
                 className={s.searchCountry}
@@ -184,17 +208,11 @@ function ThemesContentsCart(props) {
                 <Option value="3">Malaysia</Option>
                 <Option value="4">Philiphines</Option>
                 <Option value="5">Japan</Option>
-                <Option value="6">China</Option>
               </Select>
             </Col>
-            <Col
-              xl={{ span: 6 }}
-              lg={{ span: 6 }}
-              md={{ span: 8 }}
-              // xs={{ span: 24 }}
-              className={s.shippingCharge}
-            >
-              Shipping Charge: IDR 5.000.000
+            <Col className={s.shippingCharge}>
+              Shipping Charge:{` `}
+              <span style={{ fontWeight: 700, marginLeft: "8px" }}>IDR {charge}</span>
             </Col>
           </Row>
         </Col>
@@ -216,18 +234,23 @@ function ThemesContentsCart(props) {
 
         {/* //? ============== Checkout Item Section ============= ?// */}
         <Col className={s.checkoutSection}>
-          <Col className={s.checkoutDesc}>
-            <h3>Total:</h3>
+          {cartPageItem?.length > 0 && (
+            <Col className={s.checkoutDesc}>
+              <h3>Total:</h3>
+              <h1>
+                {`IDR `}{" "}
+                <span style={{ fontWeight: 400 }}> {priceFormatter(`${cartTotal}`, ",")}</span>
+              </h1>
+            </Col>
+          )}
 
-            <h1>
-              {`IDR `}{" "}
-              <span style={{ fontWeight: 400 }}> {priceFormatter(`${cartTotal}`, ",")}</span>
-            </h1>
-          </Col>
+          {cartPageItem?.length == 0 && <Col className={s.checkoutDesc} />}
+
           <Col className={s.checkoutBtnContainer}>
             <ThemesButton
               type={"default " + s.checkoutBtn}
               onClick={() => router.push("/checkout")}
+              disabled={cartPageItem == 0 ? true : statusList === false ? true : false}
             >
               PROCEED
             </ThemesButton>

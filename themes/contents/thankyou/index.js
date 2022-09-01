@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 
 // Components
 import ThemesButton from "themes/components/libs/button";
+import ThemesContainerMain from "themes/components/container/main";
 
 // Icon
 import { ThankyouIcon } from "public/icons/thankyou-icon";
@@ -14,7 +15,7 @@ import s from "./index.module.scss";
 function ThemesThankyou() {
   const router = useRouter();
   return (
-    <>
+    <ThemesContainerMain>
       <Col className={s.thankyouContainer}>
         <Col className={s.thankyouDescription}>
           <ThankyouIcon style={{ width: "auto" }} />
@@ -38,7 +39,7 @@ function ThemesThankyou() {
           </p>
         </Col>
       </Col>
-    </>
+    </ThemesContainerMain>
   );
 }
 

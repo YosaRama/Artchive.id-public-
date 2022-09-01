@@ -12,6 +12,7 @@ import { useWindowSize } from "app/helpers/useWindowSize";
 // Icons
 import { BsTruck } from "react-icons/bs";
 import { AiFillDelete, AiFillHeart } from "react-icons/ai";
+import { InfoCircleOutlined } from "@ant-design/icons";
 
 // Hooks
 import { useCarts } from "app/hooks/cart";
@@ -20,7 +21,8 @@ import { useCarts } from "app/hooks/cart";
 import s from "./index.module.scss";
 
 function ThemesCartItem(props) {
-  const { title, imgUrl, price, artist, material, imgWidth, height, artworkUrl, cartId } = props;
+  const { title, imgUrl, price, artist, material, imgWidth, height, artworkUrl, cartId, status } =
+    props;
 
   const router = useRouter();
 
@@ -34,7 +36,6 @@ function ThemesCartItem(props) {
   // * ====================================== * //
 
   const { artworkData } = props;
-
   const { width } = useWindowSize();
 
   return (
@@ -96,8 +97,6 @@ function ThemesCartItem(props) {
               </Row>
             </Col>
           </Row>
-
-          <Divider style={{ margin: "20px 0px 20px 0px" }} />
         </Col>
       )}
 
@@ -156,8 +155,6 @@ function ThemesCartItem(props) {
               Shipped from Indonesia
             </p>
           </Col>
-
-          <Divider style={{ margin: "20px 0px 20px 0px" }} />
         </Col>
       )}
     </>
@@ -174,6 +171,7 @@ ThemesCartItem.propTypes = {
   material: propTypes.string,
   artworkUrl: propTypes.string,
   cartId: propTypes.number,
+  status: propTypes.string,
 };
 
 export default ThemesCartItem;
