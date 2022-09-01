@@ -22,6 +22,7 @@ export const GET_CART_BY_USER_ID = ({ userId }) => {
           height: true,
           type: true,
           material: true,
+          status: true,
           media_cover: {
             select: {
               url: true,
