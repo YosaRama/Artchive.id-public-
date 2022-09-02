@@ -127,7 +127,7 @@ function ThemesNotificationModal() {
       }
       trigger="hover"
     >
-      <BellFilled style={{ fontSize: "25px", color: "black" }} />
+      <BellFilled style={{ fontSize: "25px", color: "black", cursor: "pointer" }} />
     </Popover>
   );
 }

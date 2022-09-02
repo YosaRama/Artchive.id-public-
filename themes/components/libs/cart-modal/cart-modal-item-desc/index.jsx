@@ -31,7 +31,11 @@ function ThemesCartModalItemDesc(props) {
             {/* <Col>{artworkTitle}</Col>
             <Col>{artistName}</Col>
             <p className={s.price}>{`IDR ${priceFormatter(artworkPrice, ",")}`}</p> */}
-            <h4 className={s.title} onClick={() => router.push(`/artwork/${artworkUrl}`)}>
+            <h4
+              className={s.title}
+              value={title}
+              onClick={() => router.push(`/artwork/${artworkUrl}`)}
+            >
               {title}
             </h4>
             <h5 className={s.artsit} style={{ fontWeight: "700" }}>

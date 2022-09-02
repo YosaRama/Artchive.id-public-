@@ -7,8 +7,12 @@
   }
 }
 
-.searchButton {
-  width: 100%;
+.mobileSearchContainer {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 64px;
+  z-index: 1;
+  background: white;
 }
 
 .priceTitle {
@@ -37,12 +41,43 @@
   }
 }
 
-// .ant-collapse > .ant-collapse-item > .ant-collapse-header {
-//   background: #e5890a !important;
-// }
-
 .searchCollapse {
   background: #e5890a;
+  text-align: center;
+  padding: 8px 0px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 16px;
+  color: white;
+  box-shadow: 0px 10px 25px -10px rgba(0, 0, 0, 0.5);
+  .searchArrowIconActive {
+    font-size: 16px;
+    transform: rotate(180deg);
+    transition: all 500ms ease;
+    transition-delay: 300ms;
+  }
+  .searchArrowIcon {
+    font-size: 16px;
+    transition: all 500ms ease;
+    transition-delay: 300ms;
+  }
+}
+
+.containerSearch {
+  transform: scaleY(0);
+  height: 0px;
+  padding: 0px 0px;
+  background: white;
+  opacity: 0;
+  transition: all 600ms ease;
+}
+.containerSearchCollapsed {
+  transform: scaleY(1);
+  height: 475px;
+  padding: 30px 30px;
+  background: white;
+  opacity: 1;
+  transition: all 600ms ease;
 }
 
 //? ============== Tablet Landscape Mode ============= ?//

@@ -4,6 +4,7 @@ import Sticky from "react-sticky-el";
 import { Card, Col, Empty, Form, Input, Row, Select, Slider, Spin, Collapse } from "antd";
 import { useState } from "react";
 const { Option } = Select;
+import { DownOutlined } from "@ant-design/icons";
 
 // Components
 import ThemesContainerMain from "themes/components/container/main";
@@ -41,6 +42,14 @@ function ThemesContentsArtworkList() {
   };
   // * ====================================== * //
 
+  //? ============== Handle Collapse State ============= ?//
+  const [searchVisible, setSearchVisible] = useState(false);
+  const handleSearchVisible = () =>
+    searchVisible == false ? setSearchVisible(true) : setSearchVisible(false);
+  const active = searchVisible == true ? s.searchArrowIconActive : s.searchArrowIcon;
+  const handleCollapse = searchVisible == false ? s.containerSearch : s.containerSearchCollapsed;
+  // * ====================================== * //
+
   //? ============== Handle Search ============= ?//
   const [searchForm] = Form.useForm();
   const handleSearch = () => {
@@ -51,14 +60,9 @@ function ThemesContentsArtworkList() {
         artworkTitle: values.artwork_title,
       };
       router.push(`/artwork?artistName=${submission.artistName}&genreId=${submission.genre}`);
+      searchVisible == true ? setSearchVisible(false) : "";
     });
   };
-  // * ====================================== * //
-
-  //? ============== Handle Search State ============= ?//
-  const [searchVisible, setSearchVisible] = useState(false);
-  const handleSearchVisible = () =>
-    searchVisible == false ? setSearchVisible(true) : setSearchVisible(false);
   // * ====================================== * //
 
   //? ============== Artwork Hook ============= ?//
@@ -99,8 +103,6 @@ function ThemesContentsArtworkList() {
 
   const { width } = useWindowSize();
 
-  const { Panel } = Collapse;
-
   return (
     <>
       {/* //? ============== Banner Section ============= ?// */}
@@ -120,6 +122,78 @@ function ThemesContentsArtworkList() {
           </div>
         </ThemesBanner>
       </section>
+      {/* // * ====================================== * // */}
+
+      {/* //? ============== Mobile Search Section ============= ?// */}
+      {width < 500 && (
+        <Col className={s.mobileSearchContainer} tabindex="1" span={24}>
+          <Col span={24} className={`${handleCollapse}`}>
+            <h1 style={{ textAlign: "center", fontSize: "24px" }}>SEARCH</h1>
+            <Form form={searchForm}>
+              <Form.Item name="artist_name">
+                <Select showSearch placeholder="Artist Name" onSearch={handleSearchName} allowClear>
+                  {artistData?.map((item, index) => {
+                    return (
+                      <Option value={item.full_name} key={index}>
+                        {item.full_name}
+                      </Option>
+                    );
+                  })}
+                </Select>
+              </Form.Item>
+              <Form.Item name="artwork_title">
+                <Input placeholder="Artwork Title" disabled />
+              </Form.Item>
+              <Form.Item name={"genre"}>
+                <Select
+                  showSearch
+                  placeholder="Genre"
+                  allowClear
+                  filterOption={(input, option) =>
+                    option.children.toString().toLowerCase().indexOf(input.toLowerCase()) >= 0 ||
+                    option.value.toString().toLowerCase().indexOf(input.toLowerCase()) >= 0
+                  }
+                >
+                  {genreData?.map((item, index) => {
+                    return (
+                      <Option key={index} value={item.id}>
+                        {item.title}
+                      </Option>
+                    );
+                  })}
+                </Select>
+              </Form.Item>
+              <Col span={24} className={s.priceTitle}>
+                <p>Price</p>
+              </Col>
+              <Row justify="space-between">
+                <Col className={s.priceTag}>IDR {minPrice}</Col>
+                <Col className={s.priceTag}>IDR {maxPrice}</Col>
+              </Row>
+              <Form.Item>
+                <Slider
+                  range
+                  defaultValue={[minPrice, maxPrice]}
+                  max={100000000}
+                  min={1000000}
+                  step={1000000}
+                  onChange={handlePriceChange}
+                  disabled
+                />
+              </Form.Item>
+            </Form>
+            <Col span={24}>
+              <ThemesButton type={"default " + s.searchButton} onClick={handleSearch}>
+                SEARCH
+              </ThemesButton>
+            </Col>
+          </Col>
+
+          <Col span={24} className={s.searchCollapse} onClick={handleSearchVisible}>
+            FILTER <DownOutlined className={`${active}`} />
+          </Col>
+        </Col>
+      )}
       {/* // * ====================================== * // */}
 
       {/* //? ============== Main Content ============= ?// */}
@@ -214,101 +288,6 @@ function ThemesContentsArtworkList() {
                   </Sticky>
                 </div>
               </Col>
-              {/* // * ====================================== * // */}
-
-              {/* //? ============== Mobile Search Section ============= ?// */}
-              {width < 500 && (
-                <Col style={{ margin: "0px 0px 24px 0px" }} span={24}>
-                  {searchVisible == false && (
-                    <Col
-                      span={24}
-                      style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        width: "100%",
-                        padding: "15px 12px",
-                        background: "white",
-                      }}
-                    >
-                      <Form form={searchForm}>
-                        <Form.Item name="artist_name">
-                          <Select
-                            showSearch
-                            placeholder="Artist Name"
-                            onSearch={handleSearchName}
-                            allowClear
-                          >
-                            {artistData?.map((item, index) => {
-                              return (
-                                <Option value={item.full_name} key={index}>
-                                  {item.full_name}
-                                </Option>
-                              );
-                            })}
-                          </Select>
-                        </Form.Item>
-                        <Form.Item name="artwork_title">
-                          <Input placeholder="Artwork Title" disabled />
-                        </Form.Item>
-                        <Form.Item name={"genre"}>
-                          <Select
-                            showSearch
-                            placeholder="Genre"
-                            allowClear
-                            filterOption={(input, option) =>
-                              option.children
-                                .toString()
-                                .toLowerCase()
-                                .indexOf(input.toLowerCase()) >= 0 ||
-                              option.value.toString().toLowerCase().indexOf(input.toLowerCase()) >=
-                                0
-                            }
-                          >
-                            {genreData?.map((item, index) => {
-                              return (
-                                <Option key={index} value={item.id}>
-                                  {item.title}
-                                </Option>
-                              );
-                            })}
-                          </Select>
-                        </Form.Item>
-                        <Col span={24} className={s.priceTitle}>
-                          <p>Price</p>
-                        </Col>
-                        <Row justify="space-between">
-                          <Col className={s.priceTag}>IDR {minPrice}</Col>
-                          <Col className={s.priceTag}>IDR {maxPrice}</Col>
-                        </Row>
-                        <Form.Item>
-                          <Slider
-                            range
-                            defaultValue={[minPrice, maxPrice]}
-                            max={100000000}
-                            min={1000000}
-                            step={1000000}
-                            onChange={handlePriceChange}
-                            disabled
-                          />
-                        </Form.Item>
-                      </Form>
-                    </Col>
-                  )}
-
-                  <Col
-                    span={24}
-                    style={{
-                      textAlign: "center",
-                      background: "red",
-                      padding: "8px 0px",
-                      cursor: "pointer",
-                    }}
-                    onClick={handleSearchVisible}
-                  >
-                    SEARCH
-                  </Col>
-                </Col>
-              )}
               {/* // * ====================================== * // */}
 
               {/* //? ============== Artwork List Section ============= ?// */}

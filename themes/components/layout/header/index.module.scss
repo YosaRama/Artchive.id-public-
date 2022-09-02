@@ -15,10 +15,12 @@
   text-align: right;
   margin: 0px 12px;
   width: auto;
-  transition: width 1s;
-
+  transition: all 300ms ease;
+  cursor: pointer;
   &:hover {
     width: auto;
+    color: #e5890a;
+    transition: all 300ms ease;
   }
 }
 

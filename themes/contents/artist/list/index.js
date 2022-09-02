@@ -2,6 +2,8 @@
 import propTypes from "prop-types";
 import { useRouter } from "next/router";
 import { Affix, Col, Form, Input, Row, Select } from "antd";
+import { DownOutlined } from "@ant-design/icons";
+import { useState } from "react";
 
 // Components
 import ThemesContainerMain from "themes/components/container/main";
@@ -12,13 +14,25 @@ import ThemesButton from "themes/components/libs/button";
 // Data Hook
 import { useUsersLoad } from "app/hooks/user";
 
+// Helpers
+import { useWindowSize } from "app/helpers/useWindowSize";
+
 // Styles
 import s from "./index.module.scss";
 
 function ThemesContentsArtistList(props) {
   const router = useRouter();
+  const { width } = useWindowSize();
   const { fullName: queryFullName, genre: queryGenre, city: queryCity } = router?.query;
   const { initialArtistData } = props;
+
+  //? ============== Handle Collapse State ============= ?//
+  const [searchVisible, setSearchVisible] = useState(false);
+  const handleSearchVisible = () =>
+    searchVisible == false ? setSearchVisible(true) : setSearchVisible(false);
+  const active = searchVisible == true ? s.searchArrowIconActive : s.searchArrowIcon;
+  const handleCollapse = searchVisible == false ? s.containerSearch : s.containerSearchCollapsed;
+  // * ====================================== * //
 
   //? ============== Handle Search ============= ?//
   const [searchForm] = Form.useForm();
@@ -33,6 +47,7 @@ function ThemesContentsArtistList(props) {
       router.push(
         `/artist?fullName=${submission?.fullName}&genre=${submission?.genre}&city=${submission?.city}`
       );
+      searchVisible == true ? setSearchVisible(false) : "";
     });
   };
   // =========================
@@ -75,6 +90,44 @@ function ThemesContentsArtistList(props) {
           </div>
         </ThemesBanner>
       </section>
+
+      {/* //? ============== Mobile Search Section ============= ?// */}
+      {width < 500 && (
+        <Col className={s.mobileSearchContainer} tabindex="1" span={24}>
+          <Col span={24} className={`${handleCollapse}`}>
+            <h1 style={{ textAlign: "center", fontSize: "24px" }}>SEARCH</h1>
+            <Form form={searchForm}>
+              <Form.Item name={"city"}>
+                <Input placeholder="Search by City..." width={"100%"} disabled />
+              </Form.Item>
+
+              <Form.Item name={"genre"}>
+                <Input placeholder="Search by Genre..." width={"100%"} disabled />
+              </Form.Item>
+
+              <Form.Item name={"name"}>
+                <Input placeholder="Search by Name..." width={"100%"} />
+              </Form.Item>
+
+              {/* <Col span={24}>
+                <ThemesButton type={`outlined ${s.button}`} onClick={handleResetSearch}>
+                  RESET
+                </ThemesButton>
+              </Col> */}
+              <Col span={24}>
+                <ThemesButton type={`default ${s.button}`} onClick={handleSearch}>
+                  SEARCH
+                </ThemesButton>
+              </Col>
+            </Form>
+          </Col>
+
+          <Col span={24} className={s.searchCollapse} onClick={handleSearchVisible}>
+            FILTER <DownOutlined className={`${active}`} />
+          </Col>
+        </Col>
+      )}
+      {/* // * ====================================== * // */}
 
       <div className={s.mobileHidden}>
         <Affix>

@@ -118,8 +118,9 @@ function ThemesHeaderCart() {
         content={ModalItemCart}
         trigger="hover"
         arrowPointAtCenter
+        className={s.cartIcon}
       >
-        <CartIcon style={{ width: "25px" }} />
+        <CartIcon style={{ width: "25px", cursor: "pointer" }} />
       </Popover>
     </>
   );

@@ -118,7 +118,7 @@ function ThemesHeader() {
                   )}
 
                   {width < 500 && (
-                    <Row>
+                    <Row style={{ display: "flex", alignItems: "center" }}>
                       <Col style={{ marginRight: "19px" }}>
                         <Badge
                           count={cartItem?.length}
@@ -156,7 +156,7 @@ function ThemesHeader() {
                     </Row>
                   )}
                   {width > 500 && (
-                    <div className={s.nameContainer}>
+                    <div className={s.nameContainer} onClick={() => router.push("/profile")}>
                       <div
                         style={{
                           margin: "0px",
