@@ -60,9 +60,9 @@ function ThemesHeaderCart() {
                 {item.artwork.status == "SOLD" && (
                   <Col className={s.warningSold}>
                     <ExclamationCircleOutlined style={{ marginRight: "4px", color: "red" }} />
-                    {` Sorry,`} <span style={{ fontWeight: 600 }}> {item.artwork.title}</span>{" "}
-                    {`has been sold.
-            Remove this item from your cart to continue checkout.`}
+                    Sorry,
+                    <span style={{ fontWeight: 600 }}> {item.artwork.title} </span>
+                    {` `} has been sold. Remove this item from your cart to continue checkout.
                     <Divider style={{ margin: "10px 0px 10px 0px" }} />
                   </Col>
                 )}
@@ -74,11 +74,11 @@ function ThemesHeaderCart() {
 
       {/* //? ============== Cart Empty ============= ?// */}
       {cartItem?.length == 0 && (
-        <Empty imageStyle={{ height: 60, marginTop: "20px" }} description="Empty Cart" />
+        <Empty imageStyle={{ height: 60, margin: "20px 0px" }} description="Empty Cart" />
       )}
 
       {/* //? ============== Cart Price ============= ?// */}
-      <Divider style={{ marginTop: "10px", marginBottom: "10px" }} />
+      {/* <Divider style={{ marginTop: "10px", marginBottom: "10px" }} /> */}
       <Col className={s.priceTotal}>
         {`Total: `}{" "}
         <span style={{ fontWeight: "700", paddingLeft: 5 }}>
@@ -118,9 +118,8 @@ function ThemesHeaderCart() {
         content={ModalItemCart}
         trigger="hover"
         arrowPointAtCenter
-        className={s.cartIcon}
       >
-        <CartIcon style={{ width: "25px", cursor: "pointer" }} />
+        <CartIcon className={s.cartIcon} />
       </Popover>
     </>
   );

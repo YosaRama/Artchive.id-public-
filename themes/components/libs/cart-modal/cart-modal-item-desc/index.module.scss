@@ -23,6 +23,18 @@
   }
 }
 
+.imgSrcSold {
+  object-fit: cover;
+  transition: all 300ms ease;
+  filter: grayscale(100%);
+  &:hover {
+    object-fit: cover;
+    transform: scale(1.05);
+    transition: all 300ms ease;
+    filter: grayscale(0%);
+  }
+}
+
 .itemDesc {
   margin: 0px 0px 0px 15px;
   width: 140px;

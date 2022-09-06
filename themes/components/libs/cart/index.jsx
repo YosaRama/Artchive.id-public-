@@ -1,6 +1,6 @@
 // Libs
 import propTypes from "prop-types";
-import { Col, Row, Image, Divider } from "antd";
+import { Col, Row, Image, Divider, Spin, Badge } from "antd";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 
@@ -32,56 +32,133 @@ function ThemesCartItem(props) {
   // * ====================================== * //
 
   //? ============== Cart Hooks ============= ?//
-  const { data: cartItem, onDelete } = useCarts({ queryString: `id=${userId}` }); //TODO : Change ID with current user ID//
+  const {
+    data: cartItem,
+    loading: cartLoading,
+    onDelete,
+  } = useCarts({ queryString: `id=${userId}` }); //TODO : Change ID with current user ID//
   // * ====================================== * //
 
   const { artworkData } = props;
   const { width } = useWindowSize();
-
+  //? ============== Handle Cart Sold Badge ============= ?//
+  const statusSoldBadge = cartItem && cartItem.every((item) => item.artwork.status == "SOLD");
+  // * ====================================== * //
   return (
     <>
       {width >= 500 && (
-        <Col className={s.cartContainer}>
-          <Row gutter={[0, 10]} className={s.cartItemContainer}>
-            <Col className={s.imgSrcContainer}>
-              <Image
-                preview={false}
-                className={s.imgSrc}
-                alt=""
-                src={`${process.env.NEXT_PUBLIC_S3_URL}/${imgUrl}`}
-                onClick={() => router.push(`/artwork/${artworkUrl}`)}
-              />
-            </Col>
-            <Col className={s.descContainer}>
-              <Col style={{ height: "85%", lineHeight: "22px" }}>
-                <h2 className={s.title} onClick={() => router.push(`/artwork/${artworkUrl}`)}>
-                  {title}
-                </h2>
-                <p className={s.artist} style={{ fontWeight: "600" }}>
-                  {`by `}
-                  {artist}
-                </p>
-                <p className={s.material}>{stringCapitalize(material.replace(/_/g, " "))}</p>
-                <p className={s.size}>{`${imgWidth} x ${height} cm`}</p>
-              </Col>
-              <Col className={s.orderServices}>
-                <p style={{ display: "flex", alignItems: "center", color: "#C4C4C4" }}>
-                  <BsTruck style={{ fontSize: "24px", marginRight: "10px" }} /> {` `}
-                  Shipped from Indonesia
-                </p>
-              </Col>
-            </Col>
-            <Col className={s.priceContainer}>
-              <Col style={{ height: "50%" }}>
-                <h2 style={{ lineHeight: " 33px" }}>Price</h2>
-                <Col className={s.price}>
-                  <h2 style={{ fontWeight: "700", lineHeight: " 29px" }}>{`IDR ${priceFormatter(
-                    price,
-                    ","
-                  )}`}</h2>
+        <Spin spinning={cartLoading}>
+          <Col className={s.cartContainer}>
+            <Row gutter={[0, 10]} className={s.cartItemContainer}>
+              {statusSoldBadge == false && (
+                <Col className={s.imgSrcContainer}>
+                  <Image
+                    preview={false}
+                    className={s.imgSrc}
+                    alt=""
+                    src={`${process.env.NEXT_PUBLIC_S3_URL}/${imgUrl}`}
+                    onClick={() => router.push(`/artwork/${artworkUrl}`)}
+                  />
+                </Col>
+              )}
+              {statusSoldBadge == true && (
+                <Badge.Ribbon text="SOLD" color="#e5890a">
+                  <Col className={s.imgSrcContainer}>
+                    <Image
+                      preview={false}
+                      className={s.imgSrcSold}
+                      alt=""
+                      src={`${process.env.NEXT_PUBLIC_S3_URL}/${imgUrl}`}
+                      onClick={() => router.push(`/artwork/${artworkUrl}`)}
+                    />
+                  </Col>
+                </Badge.Ribbon>
+              )}
+
+              <Col className={s.descContainer}>
+                <Col style={{ height: "85%", lineHeight: "22px" }}>
+                  <h2 className={s.title} onClick={() => router.push(`/artwork/${artworkUrl}`)}>
+                    {title}
+                  </h2>
+                  <p className={s.artist} style={{ fontWeight: "600" }}>
+                    {`by `}
+                    {artist}
+                  </p>
+                  <p className={s.material}>{stringCapitalize(material.replace(/_/g, " "))}</p>
+                  <p className={s.size}>{`${imgWidth} x ${height} cm`}</p>
+                </Col>
+                <Col className={s.orderServices}>
+                  <p style={{ display: "flex", alignItems: "center", color: "#C4C4C4" }}>
+                    <BsTruck style={{ fontSize: "24px", marginRight: "10px" }} /> {` `}
+                    Shipped from Indonesia
+                  </p>
                 </Col>
               </Col>
+              <Col className={s.priceContainer}>
+                <Col style={{ height: "50%" }}>
+                  <h2 style={{ lineHeight: " 33px" }}>Price</h2>
+                  <Col className={s.price}>
+                    <h2 style={{ fontWeight: "700", lineHeight: " 29px" }}>{`IDR ${priceFormatter(
+                      price,
+                      ","
+                    )}`}</h2>
+                  </Col>
+                </Col>
 
+                <Row className={s.btnContainer}>
+                  <Col
+                    className={s.iconBtn}
+                    onClick={() => {
+                      onDelete(cartId);
+                    }}
+                  >
+                    <AiFillDelete style={{ fontSize: "24px" }} />
+                  </Col>
+                  <Col className={s.iconBtn}>
+                    <AiFillHeart style={{ fontSize: "24px" }} />
+                  </Col>
+                </Row>
+              </Col>
+            </Row>
+          </Col>
+        </Spin>
+      )}
+
+      {width < 500 && (
+        <Spin spinning={cartLoading}>
+          <Col className={s.cartContainer}>
+            <Row gutter={[0, 10]} className={s.cartItemContainer}>
+              <Col className={s.imgSrcContainer}>
+                <Image
+                  preview={false}
+                  className={s.imgSrc}
+                  alt=""
+                  src={`${process.env.NEXT_PUBLIC_S3_URL}/${imgUrl}`}
+                  onClick={() => router.push(`/artwork/${artworkUrl}`)}
+                />
+              </Col>
+              <Col className={s.descContainer}>
+                <Col style={{ height: "85%", lineHeight: "22px" }}>
+                  <h2 className={s.title} onClick={() => router.push(`/artwork/${artworkUrl}`)}>
+                    {title}
+                  </h2>
+                  <p className={s.artist} style={{ fontWeight: "600" }}>
+                    {`by `}
+                    {artist}
+                  </p>
+                  <p className={s.material}>{stringCapitalize(material.replace(/_/g, " "))}</p>
+                  <p className={s.size}>{`${imgWidth} x ${height} cm`}</p>
+                </Col>
+              </Col>
+            </Row>
+
+            <Row className={s.priceContainer}>
+              <Col className={s.price}>
+                <h2 style={{ fontWeight: "700", lineHeight: " 29px" }}>{`IDR ${priceFormatter(
+                  price,
+                  ","
+                )}`}</h2>
+              </Col>
               <Row className={s.btnContainer}>
                 <Col
                   className={s.iconBtn}
@@ -95,67 +172,16 @@ function ThemesCartItem(props) {
                   <AiFillHeart style={{ fontSize: "24px" }} />
                 </Col>
               </Row>
-            </Col>
-          </Row>
-        </Col>
-      )}
-
-      {width < 500 && (
-        <Col className={s.cartContainer}>
-          <Row gutter={[0, 10]} className={s.cartItemContainer}>
-            <Col className={s.imgSrcContainer}>
-              <Image
-                preview={false}
-                className={s.imgSrc}
-                alt=""
-                src={`${process.env.NEXT_PUBLIC_S3_URL}/${imgUrl}`}
-                onClick={() => router.push(`/artwork/${artworkUrl}`)}
-              />
-            </Col>
-            <Col className={s.descContainer}>
-              <Col style={{ height: "85%", lineHeight: "22px" }}>
-                <h2 className={s.title} onClick={() => router.push(`/artwork/${artworkUrl}`)}>
-                  {title}
-                </h2>
-                <p className={s.artist} style={{ fontWeight: "600" }}>
-                  {`by `}
-                  {artist}
-                </p>
-                <p className={s.material}>{stringCapitalize(material.replace(/_/g, " "))}</p>
-                <p className={s.size}>{`${imgWidth} x ${height} cm`}</p>
-              </Col>
-            </Col>
-          </Row>
-
-          <Row className={s.priceContainer}>
-            <Col className={s.price}>
-              <h2 style={{ fontWeight: "700", lineHeight: " 29px" }}>{`IDR ${priceFormatter(
-                price,
-                ","
-              )}`}</h2>
-            </Col>
-            <Row className={s.btnContainer}>
-              <Col
-                className={s.iconBtn}
-                onClick={() => {
-                  onDelete(cartId);
-                }}
-              >
-                <AiFillDelete style={{ fontSize: "24px" }} />
-              </Col>
-              <Col className={s.iconBtn}>
-                <AiFillHeart style={{ fontSize: "24px" }} />
-              </Col>
             </Row>
-          </Row>
 
-          <Col className={s.orderServices}>
-            <p style={{ display: "flex", alignItems: "center", color: "#C4C4C4" }}>
-              <BsTruck style={{ fontSize: "24px", marginRight: "10px" }} /> {` `}
-              Shipped from Indonesia
-            </p>
+            <Col className={s.orderServices}>
+              <p style={{ display: "flex", alignItems: "center", color: "#C4C4C4" }}>
+                <BsTruck style={{ fontSize: "24px", marginRight: "10px" }} /> {` `}
+                Shipped from Indonesia
+              </p>
+            </Col>
           </Col>
-        </Col>
+        </Spin>
       )}
     </>
   );

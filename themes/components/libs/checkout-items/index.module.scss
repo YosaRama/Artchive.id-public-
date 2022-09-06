@@ -40,24 +40,15 @@
   }
 }
 
+.itemPrice {
+  font-weight: 700;
+  color: #e5890a;
+}
+
 @media screen and (max-width: 1024px) {
   .imgSrcContainer {
     width: 125px;
     height: 125px;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .imgSrcContainer {
-    width: 90px;
-    height: 90px;
-  }
-
-  .itemsContainer {
-    width: 60%;
-    h2 {
-      font-size: 18px;
-    }
   }
 }
 
@@ -72,5 +63,27 @@
     h2 {
       font-size: 24px;
     }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .imgSrcContainer {
+    width: 90px;
+    height: 90px;
+  }
+
+  .itemsContainer {
+    width: 60%;
+    h2 {
+      font-size: 18px;
+    }
+  }
+
+  .mobileItemPrice {
+    width: 100%;
+    font-size: 24px;
+    margin: 12px 0px;
+    font-weight: 700;
+    color: #e5890a;
   }
 }

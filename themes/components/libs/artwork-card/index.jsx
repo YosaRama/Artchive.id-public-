@@ -3,7 +3,7 @@
 // Libs
 import { useRouter } from "next/router";
 import propTypes from "prop-types";
-import { Badge, Card, Col } from "antd";
+import { Badge, Card, Col, Divider } from "antd";
 
 // Helpers
 import priceFormatter from "app/helpers/priceFormatter";
@@ -53,6 +53,8 @@ function ThemesArtworkCard(props) {
           </Col>
           <Col className={s.artworkDetails}>
             <h1 className={s.title}>{artworkTitle}</h1>
+
+            <Col className={s.divider} />
             <p>
               <span className={s.artist}>{artistName}</span>
               {artistCity && `, ${artistCity}`}

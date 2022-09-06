@@ -157,34 +157,8 @@ function ThemesHeader() {
                   )}
                   {width > 500 && (
                     <div className={s.nameContainer} onClick={() => router.push("/profile")}>
-                      <div
-                        style={{
-                          margin: "0px",
-                          padding: "0px",
-                          width: "auto",
-                          height: "15px",
-                          lineHeight: "15px",
-                          fontWeight: 700,
-                          fontSize: "14px",
-                          whiteSpace: "nowrap",
-                          overflow: "hidden",
-                        }}
-                      >
-                        {session.user.full_name}
-                      </div>
-                      <p
-                        style={{
-                          margin: "4px 0px 0px 0px",
-                          padding: "0px",
-                          width: "auto",
-                          height: "10px",
-                          lineHeight: "10px",
-                          color: "rgb(229, 137, 10)",
-                          fontSize: "10px",
-                        }}
-                      >
-                        {session.user.role}
-                      </p>
+                      <div className={s.userName}>{session.user.full_name}</div>
+                      <p className={s.userRole}>{session.user.role}</p>
                     </div>
                   )}
 

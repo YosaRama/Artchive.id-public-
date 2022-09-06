@@ -16,9 +16,10 @@ function ThemesAboutTeamCard(props) {
           <Image
             className={s.imageTeam}
             src={imageTeam}
-            preview={{
-              maskClassName: s.customizemask,
-            }}
+            // preview={{
+            //   maskClassName: s.customizemask,
+            // }}
+            preview={false}
             alt=""
           />
         </Col>

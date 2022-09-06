@@ -26,8 +26,9 @@
 
 .priceTag {
   background-color: #eaeaea;
-  padding: 5px;
+  padding: 5px 10px;
   font-size: 12px;
+  border-radius: 5px;
 }
 
 .bannerTitle {
@@ -78,6 +79,10 @@
   background: white;
   opacity: 1;
   transition: all 600ms ease;
+}
+
+.searchButton {
+  width: 100%;
 }
 
 //? ============== Tablet Landscape Mode ============= ?//

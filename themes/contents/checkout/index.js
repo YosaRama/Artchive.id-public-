@@ -145,7 +145,7 @@ function ThemesContentsCheckout() {
               </span>
             </p>
             <Col style={{ marginTop: "24px", marginBottom: "24px" }}>
-              <ThemesButton type={"default " + s.btnStyle} onClick={handleTransaction}>
+              <ThemesButton type={"default " + s.button} onClick={handleTransaction}>
                 PROCEED
               </ThemesButton>
             </Col>

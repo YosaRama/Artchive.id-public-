@@ -1,9 +1,10 @@
 // Libs
 import propTypes from "prop-types";
-import { Card, Col, Image, Row, Modal } from "antd";
+import { Card, Col, Image, Row, Modal, Badge } from "antd";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
+import { CartIcon } from "public/icons/cart-icon";
 
 // Components
 import ThemesShareSocial from "themes/components/libs/share-social";
@@ -31,7 +32,7 @@ function ThemesContentsArtworkDetailsInformation(props) {
   const router = useRouter();
 
   //? ============== Modal Handle ============= ?//
-  const [modalLoading, setModalLoading] = useState(false);
+
   const [modalVisible, setModalVisible] = useState(false);
 
   const modalLogin = () => setModalVisible(true);
@@ -46,7 +47,11 @@ function ThemesContentsArtworkDetailsInformation(props) {
   // * ====================================== * //
 
   //? ============== Cart Hooks ============= ?//
-  const { onAdd, data: cartItem } = useCarts({ queryString: `id=${session?.user?.id}` });
+  const {
+    onAdd,
+    data: cartItem,
+    loading: cartLoading,
+  } = useCarts({ queryString: `id=${session?.user?.id}` });
   // * ====================================== * //
 
   //? ============== Handle Add To Cart ============= ?//
@@ -60,15 +65,30 @@ function ThemesContentsArtworkDetailsInformation(props) {
   const isOnCart = cartItem?.findIndex((item) => item.artwork.id === artworkData.id) > -1;
   // * ====================================== * //
 
+  //? ============== Handle Cart Button Hover when Disabled ============= ?//
+  const statusArtwork = artworkData?.status == "SOLD" || isOnCart;
+  // * ====================================== * //
+
   return (
     <>
       <Row gutter={[64, 0]}>
         <Col lg={{ span: 12 }} xs={{ span: 24 }}>
           <Col span={24} style={{ paddingLeft: 0, paddingRight: 0, marginBottom: 10 }}>
+            {/* {artworkData.status != "SOLD" && ( */}
             <Image
               src={`${process.env.NEXT_PUBLIC_S3_URL}/${artworkData?.media_cover?.url}`}
               alt=""
             />
+            {/* )} */}
+            {/* {artworkData.status == "SOLD" && (
+              <Badge.Ribbon text="SOLD" color="#e5890a">
+                <Image
+                  src={`${process.env.NEXT_PUBLIC_S3_URL}/${artworkData?.media_cover?.url}`}
+                  alt=""
+                  className={s.artworkSold}
+                />
+              </Badge.Ribbon>
+            )} */}
           </Col>
           <Row gutter={[16, 0]} className={s.detailsImageSection}>
             {artworkData?.media_gallery?.map((item) => {
@@ -141,11 +161,12 @@ function ThemesContentsArtworkDetailsInformation(props) {
             </Col>
             <Col className={s.cardBtnContainer}>
               <ThemesButton
-                type={"default " + s.cartBtn}
+                type={"default " + statusArtwork ? s.cartBtnDisable : s.cartBtn}
+                loading={cartLoading}
                 onClick={sessionStatus == "authenticated" ? handleAddToCart : modalLogin}
-                disabled={artworkData?.status == "SOLD" ? true : isOnCart ? true : false}
+                disabled={statusArtwork}
               >
-                ADD TO CART
+                <CartIcon /> ADD TO CART
               </ThemesButton>
 
               <a

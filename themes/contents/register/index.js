@@ -1,6 +1,6 @@
 // Libs
 import Image from "next/image";
-import { Button, Col, Form, Input, Radio, Row } from "antd";
+import { Button, Col, Form, Input, Radio, Row, Tooltip } from "antd";
 import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";
 
@@ -137,30 +137,36 @@ function ThemesContentsRegister() {
                   >
                     <Radio.Group style={{ width: "100%" }}>
                       <Row gutter={[16, 0]}>
-                        <Col lg={{ span: 8 }} xs={{ span: 24 }}>
-                          <ThemesRadioWithImage
-                            value="ARTIST"
-                            imgSrc="/images/frontpage-artist-icon.png"
-                          >
-                            Artist
-                          </ThemesRadioWithImage>
-                        </Col>
-                        <Col lg={{ span: 8 }} xs={{ span: 24 }}>
-                          <ThemesRadioWithImage
-                            value="COLLECTOR"
-                            imgSrc="/images/frontpage-collector-icon.png"
-                          >
-                            Collector
-                          </ThemesRadioWithImage>
-                        </Col>
-                        <Col lg={{ span: 8 }} xs={{ span: 24 }}>
-                          <ThemesRadioWithImage
-                            value="GALLERY"
-                            imgSrc="/images/frontpage-gallery-icon.png"
-                          >
-                            Gallery
-                          </ThemesRadioWithImage>
-                        </Col>
+                        <Tooltip title="Your role as an Artist is to show and archive artwork.">
+                          <Col lg={{ span: 8 }} xs={{ span: 24 }}>
+                            <ThemesRadioWithImage
+                              value="ARTIST"
+                              imgSrc="/images/frontpage-artist-icon.png"
+                            >
+                              Artist
+                            </ThemesRadioWithImage>
+                          </Col>
+                        </Tooltip>
+                        <Tooltip title="Your role as a Collector is to show your artwork collection, trade artwork with other collector, and do auction.">
+                          <Col lg={{ span: 8 }} xs={{ span: 24 }}>
+                            <ThemesRadioWithImage
+                              value="COLLECTOR"
+                              imgSrc="/images/frontpage-collector-icon.png"
+                            >
+                              Collector
+                            </ThemesRadioWithImage>
+                          </Col>
+                        </Tooltip>
+                        <Tooltip title="Your role as a Gallery is to show your gallery collection.">
+                          <Col lg={{ span: 8 }} xs={{ span: 24 }}>
+                            <ThemesRadioWithImage
+                              value="GALLERY"
+                              imgSrc="/images/frontpage-gallery-icon.png"
+                            >
+                              Gallery
+                            </ThemesRadioWithImage>
+                          </Col>
+                        </Tooltip>
                       </Row>
                     </Radio.Group>
                   </Form.Item>

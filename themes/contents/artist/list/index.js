@@ -28,10 +28,11 @@ function ThemesContentsArtistList(props) {
 
   //? ============== Handle Collapse State ============= ?//
   const [searchVisible, setSearchVisible] = useState(false);
-  const handleSearchVisible = () =>
-    searchVisible == false ? setSearchVisible(true) : setSearchVisible(false);
-  const active = searchVisible == true ? s.searchArrowIconActive : s.searchArrowIcon;
-  const handleCollapse = searchVisible == false ? s.containerSearch : s.containerSearchCollapsed;
+  const handleSearchVisible = () => {
+    setSearchVisible(!searchVisible);
+  };
+  const active = searchVisible ? s.searchArrowIconActive : s.searchArrowIcon;
+  const handleCollapse = !searchVisible ? s.containerSearch : s.containerSearchCollapsed;
   // * ====================================== * //
 
   //? ============== Handle Search ============= ?//
@@ -47,7 +48,7 @@ function ThemesContentsArtistList(props) {
       router.push(
         `/artist?fullName=${submission?.fullName}&genre=${submission?.genre}&city=${submission?.city}`
       );
-      searchVisible == true ? setSearchVisible(false) : "";
+      setSearchVisible(!searchVisible);
     });
   };
   // =========================

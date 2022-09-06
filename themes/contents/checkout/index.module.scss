@@ -41,7 +41,7 @@
   }
 }
 
-.btnStyle {
+.button {
   width: 180px;
 }
 
@@ -60,7 +60,7 @@
 
 //? ============== Mobile Landscape Mode ============= ?//
 @media screen and (max-width: 500px) {
-  .btnStyle {
+  .button {
     width: 100%;
     height: 80px;
   }

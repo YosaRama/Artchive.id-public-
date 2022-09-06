@@ -18,7 +18,7 @@ import { useEffect } from "react";
 import Link from "next/link";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
-import { CloseOutlined } from "@ant-design/icons";
+import { CloseCircleOutlined } from "@ant-design/icons";
 
 // Components
 import ThemesModal from "../modal-container";
@@ -40,11 +40,13 @@ import { hashPassword } from "app/helpers/auth";
 
 // Styles
 import s from "./index.module.scss";
+import { useWindowSize } from "app/helpers/useWindowSize";
 
 function ThemesLoginModal(props) {
   const { visible, onCancel } = props;
   const router = useRouter();
   const [form] = Form.useForm();
+  const width = useWindowSize();
 
   //? ============== Handle Login to Register, Vice Versa ============= ?//
   const [modal, setModal] = useState(true);
@@ -139,6 +141,11 @@ function ThemesLoginModal(props) {
     });
   };
 
+  //? ============== Handle Modal Close Icon ============= ?//
+  // const closeHandle =
+  //   modal === true ? { fontSize: "15px", opacity: "0" } : { fontSize: "15px", opacity: "0.5" };
+  // * ====================================== * //
+
   return (
     <>
       <ThemesModal
@@ -148,15 +155,10 @@ function ThemesLoginModal(props) {
         visible={visible}
         onCancel={onCancel}
         width={800}
-        closeIcon={
-          <CloseOutlined
-            onClick={() => setModal(true)}
-            style={{ fontSize: "20px", opacity: "0" }}
-          />
-        }
+        closeIcon={<CloseCircleOutlined style={{ fontSize: "15px", opacity: "0" }} />}
       >
         <div style={{ height: "auto" }}>
-          <Col span={24} style={{ zIndex: 2 }}>
+          <Col span={24} style={{ zIndex: 2, marginTop: "15px" }}>
             <Segmented
               onChange={modalHandler}
               size="large"
@@ -193,6 +195,7 @@ function ThemesLoginModal(props) {
                 <Col
                   style={{
                     padding: "0px",
+                    width: "100%",
                   }}
                 >
                   <section className={s.formSection}>
@@ -229,7 +232,7 @@ function ThemesLoginModal(props) {
                     </ThemesButton>
                   </Col>
 
-                  <Divider plain>or Continue with</Divider>
+                  <Divider plain>or Login with</Divider>
                   <Col style={{ display: "flex", justifyContent: "center" }}>
                     <Row gutter={[10, 0]} className={s.socialButtonSection}>
                       <Col span={12}>
@@ -304,7 +307,7 @@ function ThemesLoginModal(props) {
                   width: "auto",
                 }}
               >
-                <Col>
+                <Col style={{ width: "100%", padding: "0px" }}>
                   <Col style={{ display: "flex", justifyContent: "center" }}>
                     <Row gutter={[10, 0]} className={s.socialButtonSection}>
                       <Col span={12}>
@@ -342,7 +345,7 @@ function ThemesLoginModal(props) {
                     </Row>
                   </Col>
 
-                  <Divider plain>or</Divider>
+                  <Divider plain>or Register by Filling Form</Divider>
                   <section className={s.formSection}>
                     <Col span={24}>
                       <Form layout="vertical" form={form}>
@@ -377,7 +380,7 @@ function ThemesLoginModal(props) {
                           >
                             <Radio.Group style={{ width: "100%" }}>
                               <Row gutter={[3, 0]}>
-                                <Tooltip title="Your role as an artist is archive and sell artworks.">
+                                <Tooltip title="Your role as an Artist is to show and archive artwork.">
                                   <Col lg={{ span: 8 }} md={{ span: 8 }} xs={{ span: 8 }}>
                                     <ThemesRadioWithImageModalLogin
                                       value="ARTIST"
@@ -387,7 +390,7 @@ function ThemesLoginModal(props) {
                                     </ThemesRadioWithImageModalLogin>
                                   </Col>
                                 </Tooltip>
-                                <Tooltip title="Your role as a collector is show your collection, tradde with other collector, and auction">
+                                <Tooltip title="Your role as a Collector is to show your artwork collection, trade artwork with other collector, and do auction.">
                                   <Col lg={{ span: 8 }} md={{ span: 8 }} xs={{ span: 8 }}>
                                     <ThemesRadioWithImageModalLogin
                                       value="COLLECTOR"
@@ -397,7 +400,7 @@ function ThemesLoginModal(props) {
                                     </ThemesRadioWithImageModalLogin>
                                   </Col>
                                 </Tooltip>
-                                <Tooltip title="Your role as a Gallery is show you gallery collection in 3d">
+                                <Tooltip title="Your role as a Gallery is to show your gallery collection.">
                                   <Col lg={{ span: 8 }} md={{ span: 8 }} xs={{ span: 8 }}>
                                     <ThemesRadioWithImageModalLogin
                                       value="GALLERY"
@@ -412,13 +415,23 @@ function ThemesLoginModal(props) {
                           </Form.Item>
                         </Col>
 
-                        <Row justify="space-between">
-                          <Col>
-                            <Checkbox style={{ fontSize: "12px" }}>
-                              I Accept The Terms & Condition & Privacy Policy
+                        <Col>
+                          <Row>
+                            <Checkbox style={{ fontSize: "12px", margin: "0px 0px 20px" }}>
+                              <span className={s.acc}>I Accept</span>
+                              <span className={s.terms} onClick={() => router.push("/terms")}>
+                                The Terms & Condition
+                              </span>
+                              {" & "}
+                              <span
+                                className={s.terms}
+                                onClick={() => router.push("/privacy-policies")}
+                              >
+                                Privacy Policy
+                              </span>{" "}
                             </Checkbox>
-                          </Col>
-                        </Row>
+                          </Row>
+                        </Col>
                       </Form>
                     </Col>
                   </section>

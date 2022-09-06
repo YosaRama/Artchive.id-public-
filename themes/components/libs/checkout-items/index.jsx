@@ -39,7 +39,7 @@ function ThemesCheckoutItems(props) {
             </p>
           </Col>
           {width > 500 && (
-            <p style={{ fontWeight: "700", color: "#e5890a" }}>
+            <p className={s.itemPrice}>
               <span>{`IDR `}</span>
               {priceFormatter(`${price}`, `,`)}
             </p>
@@ -47,15 +47,7 @@ function ThemesCheckoutItems(props) {
         </Col>
         {width < 500 && (
           <Col span={24}>
-            <p
-              style={{
-                width: "100%",
-                fontSize: "24px",
-                margin: "12px 0px",
-                fontWeight: "700",
-                color: "#e5890a",
-              }}
-            >
+            <p className={s.mobileItemPrice}>
               <span>{`IDR `}</span>
               {priceFormatter(`${price}`, `,`)}
             </p>

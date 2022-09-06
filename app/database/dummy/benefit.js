@@ -37,49 +37,49 @@ export const benefitList = [
 
 export const aboutTeamsCard = [
   {
-    imageTeam: "/images/artwork-1.jpg",
+    imageTeam: "/images/team-2.jpg",
     name: "Dion Pramana",
     position: "Kacung Artchive",
     description:
       "Hi! I'am Dion Pramana as Content Designer, Web Tester, a bit Frontend Developer maybe.",
   },
   {
-    imageTeam: "/images/artwork-2.jpg",
+    imageTeam: "/images/team-5.jpg",
     name: "Yosa Rama Dinata",
     position: "Web Developer",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Luctus mattis justo aliquet dui vel mauris duis cum et",
   },
   {
-    imageTeam: "/images/artwork-3.jpg",
+    imageTeam: "/images/team-3.jpg",
     name: "Dwipayadnya",
     position: "UI/UX Designer",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus mi mauris in quis vitae integer. Luctus mattis justo aliquet dui vel mauris duis cum et",
   },
   {
-    imageTeam: "/images/artwork-4.jpg",
+    imageTeam: "/images/team-7.jpg",
     name: "Surya Jaya",
     position: "UI/UX Designer",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus mi mauris in quis vitae integer. Luctus mattis justo ",
   },
   {
-    imageTeam: "/images/artwork-1.jpg",
+    imageTeam: "/images/team-6.jpg",
     name: "Gek Ria",
     position: "Content Idea",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus mi mauris in quis vitae integer. Luctus mattis justo aliquet dui vel mauris duis cum et",
   },
   {
-    imageTeam: "/images/artwork-2.jpg",
+    imageTeam: "/images/team-1.jpg",
     name: "Wayan Arnata",
     position: "Content Writer",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus mi mauris in quis vitae integer. Luctus mattis justo aliquet dui vel mauris duis cum et",
   },
   {
-    imageTeam: "/images/artwork-2.jpg",
+    imageTeam: "/images/team-4.jpg",
     name: "Nina Valentina",
     position: "Bussiness",
     description:

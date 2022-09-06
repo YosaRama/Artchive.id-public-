@@ -1,7 +1,7 @@
 // Libs
 import { useRouter } from "next/router";
 import Sticky from "react-sticky-el";
-import { Card, Col, Empty, Form, Input, Row, Select, Slider, Spin, Collapse } from "antd";
+import { Card, Col, Empty, Form, Input, Row, Select, Slider, Spin, Divider } from "antd";
 import { useState } from "react";
 const { Option } = Select;
 import { DownOutlined } from "@ant-design/icons";
@@ -21,6 +21,7 @@ import { useGenres } from "app/hooks/genre";
 
 // Helpers
 import { useWindowSize } from "app/helpers/useWindowSize";
+import priceFormatter from "app/helpers/priceFormatter";
 
 // Styles
 import s from "./index.module.scss";
@@ -44,10 +45,9 @@ function ThemesContentsArtworkList() {
 
   //? ============== Handle Collapse State ============= ?//
   const [searchVisible, setSearchVisible] = useState(false);
-  const handleSearchVisible = () =>
-    searchVisible == false ? setSearchVisible(true) : setSearchVisible(false);
-  const active = searchVisible == true ? s.searchArrowIconActive : s.searchArrowIcon;
-  const handleCollapse = searchVisible == false ? s.containerSearch : s.containerSearchCollapsed;
+  const handleSearchVisible = () => setSearchVisible(!searchVisible);
+  const active = searchVisible ? s.searchArrowIconActive : s.searchArrowIcon;
+  const handleCollapse = !searchVisible ? s.containerSearch : s.containerSearchCollapsed;
   // * ====================================== * //
 
   //? ============== Handle Search ============= ?//
@@ -60,7 +60,7 @@ function ThemesContentsArtworkList() {
         artworkTitle: values.artwork_title,
       };
       router.push(`/artwork?artistName=${submission.artistName}&genreId=${submission.genre}`);
-      searchVisible == true ? setSearchVisible(false) : "";
+      setSearchVisible(!searchVisible);
     });
   };
   // * ====================================== * //
@@ -163,6 +163,7 @@ function ThemesContentsArtworkList() {
                   })}
                 </Select>
               </Form.Item>
+              <Divider style={{ margin: "8px 0px" }} />
               <Col span={24} className={s.priceTitle}>
                 <p>Price</p>
               </Col>
@@ -259,6 +260,7 @@ function ThemesContentsArtworkList() {
                               })}
                             </Select>
                           </Form.Item>
+                          <Divider style={{ margin: "8px 0px" }} />
                           <Col span={24} className={s.priceTitle}>
                             <p>Price</p>
                           </Col>

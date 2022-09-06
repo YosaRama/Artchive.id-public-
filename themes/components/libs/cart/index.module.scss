@@ -32,6 +32,18 @@
   }
 }
 
+.imgSrcSold {
+  object-fit: cover;
+  cursor: pointer;
+  transition: all 200ms ease;
+  filter: grayscale(100%);
+  &:hover {
+    transition: all 200ms ease;
+    scale: 1.01;
+    filter: grayscale(0%);
+  }
+}
+
 .descContainer {
   width: 50%;
   height: 100%;

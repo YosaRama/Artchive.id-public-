@@ -38,7 +38,11 @@ function ThemesContentsCart(props) {
   // * ====================================== * //
 
   //? ============== Cart Page Hook ============= ?//
-  const { data: cartPageItem, onDelete } = useCarts({ queryString: `id=${userId}` });
+  const {
+    data: cartPageItem,
+    loading: cartPageLoading,
+    onDelete: cartPageDelete,
+  } = useCarts({ queryString: `id=${userId}` });
   // * ====================================== * //
 
   const { artworkData } = props;
@@ -57,12 +61,6 @@ function ThemesContentsCart(props) {
   const { data: mightLikeData } = useArtworks({
     queryString: `excludeSlug=${artworkData?.slug}&excludeArtist=${artworkData?.artist_id}&genreId=${genreList}&client=true&limit=4`,
   });
-  // * ====================================== * //
-
-  //? ============== Data Fetching ============= ?//
-  // const { data, total, loading } = useArtworks({
-  //   queryString: `limit=${pageSize}&page=${currentPage}`,
-  // });
   // * ====================================== * //
 
   //? ============== No Coupon State ============= ?//
@@ -103,23 +101,6 @@ function ThemesContentsCart(props) {
   );
 
   const { Option } = Select;
-
-  //? ============== Handle Upload Loading ============= ?//
-  // const { loading: uploadLoading, onUpload } = useUploads();
-
-  // // Handle Upload Cover Image
-  // const [uploadImage, setUploadImage] = useState();
-  // const handleUploadCover = async (file) => {
-  //   const result = await onUpload({
-  //     file: file.file,
-  //     userId: artistData.id,
-  //     artworkId: lastArtworkId,
-  //   });
-  //   if (result.success) {
-  //     setUploadImage({ id: result.data.id, url: result.data.url });
-  //   }
-  // };
-  // * ====================================== * //
 
   return (
     <>

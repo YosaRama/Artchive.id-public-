@@ -16,7 +16,7 @@ function ThemesThankyou() {
   const router = useRouter();
   return (
     <ThemesContainerMain>
-      <Col className={s.thankyouContainer}>
+      <Col className={s.container}>
         <Col className={s.thankyouDescription}>
           <ThankyouIcon style={{ width: "auto" }} />
           <h1>Thank You</h1>

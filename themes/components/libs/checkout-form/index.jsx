@@ -19,7 +19,7 @@ function ThemesCheckoutForm(props) {
         <Form.Item
           label="Email"
           name="email"
-          rules={[{ required: true, message: "Please input your email!" }]}
+          rules={[{ required: true, message: "Please input your email!", type: "email" }]}
         >
           <Input placeholder="Input your email" />
         </Form.Item>
