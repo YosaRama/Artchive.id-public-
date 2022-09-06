@@ -11,9 +11,26 @@ import { ThankyouIcon } from "public/icons/thankyou-icon";
 
 // Styles
 import s from "./index.module.scss";
+import { useEffect, useState } from "react";
 
 function ThemesThankyou() {
   const router = useRouter();
+
+  //? ============== Handle Timeout ============= ?//
+  const [timer, setTimer] = useState(10);
+  useEffect(() => {
+    const timerChange = setTimeout(() => {
+      setTimer(timer - 1);
+    }, 1000);
+
+    if (timer < 1) {
+      router.push("/");
+    }
+
+    return () => clearTimeout(timerChange);
+  }, [timer, router]);
+  // * ====================================== * //
+
   return (
     <ThemesContainerMain>
       <Col className={s.container}>
@@ -28,6 +45,7 @@ function ThemesThankyou() {
             </p>
           </Col>
           <ThemesButton onClick={() => router.push("/")}>BACK TO HOME</ThemesButton>
+          <p>You will be redirect to homepage at {timer} ...</p>
           <p>
             If you have any issues{" "}
             <span
