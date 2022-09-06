@@ -1,7 +1,7 @@
 // Libs
 import propTypes from "prop-types";
 import { useRouter } from "next/router";
-import { Col, Row, Input, Empty, Button, Divider, Select } from "antd";
+import { Col, Row, Input, Empty, Button, Divider, Select, Skeleton, Space } from "antd";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
@@ -89,13 +89,10 @@ function ThemesContentsCart(props) {
   const titleCart = (
     <>
       <h1 className={s.title}>
-        {`Your Cart Item : `}{" "}
-        {cartPageItem?.length < 2 && (
-          <span style={{ color: "#e5890a" }}>{cartPageItem.length} item</span>
-        )}
-        {cartPageItem?.length >= 2 && (
-          <span style={{ color: "#e5890a" }}>{cartPageItem.length} items</span>
-        )}
+        Your Cart Item :{" "}
+        <span style={{ color: "#e5890a" }}>
+          {cartPageItem?.length} {cartPageItem?.length < 2 ? "item" : "items"}
+        </span>
       </h1>
     </>
   );
@@ -106,8 +103,22 @@ function ThemesContentsCart(props) {
     <>
       <ThemesContainerMain>
         {/* //? ============== Cart Item Section ============= ?// */}
+        {cartPageItem && <ThemesHeadline title={titleCart} className={s.headline} />}
 
-        <ThemesHeadline title={titleCart} className={s.headline} />
+        {!cartPageItem && (
+          <>
+            <Col className={s.headline}>
+              <Skeleton paragraph={false} title={{ width: 350 }} />
+            </Col>
+            <Col className={s.cartContainerMain}>
+              <Skeleton
+                avatar={{ shape: "square", size: "large" }}
+                className={s.skeletonCartItem}
+              />
+            </Col>
+          </>
+        )}
+
         {cartPageItem?.length != 0 && (
           <Col className={s.cartContainerMain}>
             {cartPageItem?.map((item, index) => {
@@ -130,8 +141,7 @@ function ThemesContentsCart(props) {
                     <Col className={s.warningSold}>
                       <ExclamationCircleOutlined style={{ marginRight: "4px", color: "red" }} />
                       {` Sorry,`} <span style={{ fontWeight: 600 }}> {item.artwork.title}</span>{" "}
-                      {`has been sold.
-            Remove this item from your cart to continue checkout.`}
+                      {`has been sold. Remove this item from your cart to continue checkout.`}
                     </Col>
                   )}
                   <Divider style={{ margin: "20px 0px 20px 0px" }} />

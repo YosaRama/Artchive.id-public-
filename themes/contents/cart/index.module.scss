@@ -130,6 +130,13 @@
   width: 90%;
 }
 
+.skeletonCartItem {
+  :global(.ant-skeleton-avatar) {
+    width: 200px;
+    height: 200px;
+  }
+}
+
 @media screen and (max-width: 1024px) {
   .couponInput {
     max-width: 300px;
