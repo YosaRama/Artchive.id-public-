@@ -1,5 +1,10 @@
-import { GET_CART_BY_USER_ID } from "app/database/query/cart";
+// Libs
 import { getSession } from "next-auth/react";
+
+// Queries
+import { GET_CART_BY_USER_ID } from "app/database/query/cart";
+
+// Contents
 import ThemesContentsCheckout from "themes/contents/checkout";
 
 function PageCheckout() {
