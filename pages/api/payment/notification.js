@@ -7,7 +7,6 @@ import { UPDATE_ORDER_AFTER_PROCEED } from "app/database/query/order";
 const apiHandler = nextConnect();
 
 apiHandler.post(async (req, res) => {
-  // Create Core API / Snap instance (both have shared `transactions` methods)
   let apiClient = new midtransClient.Snap({
     isProduction: process.env.MIDTRANS_STATE === "production" ? true : false,
     serverKey: process.env.MIDTRANS_SERVER_KEY,
@@ -18,38 +17,9 @@ apiHandler.post(async (req, res) => {
   const notification = await apiClient.transaction.notification(paymentData);
   const transactionStatus = notification.transaction_status;
   const fraudStatus = notification.fraud_status;
-  console.log("paymentData", paymentData);
-  console.log("notification", notification);
-
-  // const data = {
-  //   currency: notification.currency,
-  //   fraudStatus: notification.fraud_status,
-  //   grossAmount: notification.gross_amount,
-  //   merchantId: notification.merchant_id,
-  //   orderId: notification.order_id,
-  //   paymentType: notification.payment_type,
-  //   signatureKey: notification.signature_key,
-  //   transactionId: notification.transaction_id,
-  //   transactionStatus: notification.transaction_status,
-  //   transactionTime: notification.transaction_time,
-  //   artworkId: 1,
-  //   userId: 3,
-  // };
-
-  // const result = await CREATE_PAYMENT_HISTORY(data);
-
-  // res.status(200).json({
-  //   success: true,
-  //   message: `Transaction notification received. Order ID: ${data.orderId}. Transaction status: ${data.transactionStatus}. Fraud status: ${data.fraudStatus}`,
-  //   data: result,
-  // });
-
-  // Sample transactionStatus handling logic
 
   if (transactionStatus == "capture") {
     if (fraudStatus == "challenge") {
-      // TODO set transaction status on your database to 'challenge'
-      // and response with 200 OK
     } else if (fraudStatus == "accept") {
       try {
         const data = {

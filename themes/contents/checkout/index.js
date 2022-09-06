@@ -55,7 +55,7 @@ function ThemesContentsCheckout() {
             price: +item.artwork.markup_price,
           };
         }),
-        orderId: `ARTCHIVEID/ORDER/${moment().format("x")}`,
+        orderId: `ARTCHIVEID/ORDER/USR-${userId}/${moment().format("x")}`,
         total: cartTotal,
         userEmail: session?.user.email,
         shippingFirstName: value.recipientName,
