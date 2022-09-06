@@ -86,7 +86,7 @@ export const CREATE_ORDER = (data) => {
         }),
       },
       user_id: +userId,
-      notes: notes,
+      notes: notes ? notes : null,
     },
   });
 };
