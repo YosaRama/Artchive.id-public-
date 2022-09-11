@@ -1,5 +1,5 @@
 // Libs
-import { Col } from "antd";
+import { Col, Row } from "antd";
 import { useRouter } from "next/router";
 
 // Components
@@ -13,7 +13,7 @@ import { ThankyouIcon } from "public/icons/thankyou-icon";
 import s from "./index.module.scss";
 import { useEffect, useState } from "react";
 
-function ThemesThankyou() {
+function ThemesCheckoutThankYou() {
   const router = useRouter();
 
   //? ============== Handle Timeout ============= ?//
@@ -44,10 +44,17 @@ function ThemesThankyou() {
               provided. Please keep it for your records.
             </p>
           </Col>
-          <ThemesButton onClick={() => router.push("/")}>BACK TO HOME</ThemesButton>
-          <p>You will be redirect to homepage at {timer} ...</p>
+          {/* <Row gutter={[20, 20]} className={s.buttonContainer}> */}
+          <ThemesButton onClick={() => router.push("/")} type={"default " + s.button}>
+            BACK TO HOME
+          </ThemesButton>
+          {/* <ThemesButton onClick={() => router.push("/profile")} type={"default " + s.button}>
+              BACK TO HOME
+            </ThemesButton> */}
+          {/* </Row> */}
+          <p className={s.redirect}>You will be redirected to Homepage in {timer} ...</p>
           <p>
-            If you have any issues{" "}
+            Have any issues?{" "}
             <span
               className={s.link}
               href={`https://wa.me/${process.env.NEXT_PUBLIC_PHONE_NUMBER}`}
@@ -61,4 +68,4 @@ function ThemesThankyou() {
   );
 }
 
-export default ThemesThankyou;
+export default ThemesCheckoutThankYou;
