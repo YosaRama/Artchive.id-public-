@@ -80,6 +80,8 @@
   margin: 5px 0 10px 0;
   width: 260px;
   height: 40px !important;
+  background: #e5890a !important;
+  color: white;
 
   span {
     display: flex;
@@ -96,6 +98,7 @@
     }
   }
   &:hover {
+    background: white !important;
     svg {
       path {
         fill: #e5890a;

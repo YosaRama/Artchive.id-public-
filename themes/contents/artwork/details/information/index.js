@@ -69,6 +69,10 @@ function ThemesContentsArtworkDetailsInformation(props) {
   const statusArtwork = artworkData?.status == "SOLD" || isOnCart;
   // * ====================================== * //
 
+  //? ============== Handle Cart Button Type ============= ?//
+  const cartButtonType = statusArtwork ? "outlined " + s.cartBtnDisable : "default " + s.cartBtn;
+  // * ====================================== * //
+
   return (
     <>
       <Row gutter={[64, 0]}>
@@ -161,7 +165,8 @@ function ThemesContentsArtworkDetailsInformation(props) {
             </Col>
             <Col className={s.cardBtnContainer}>
               <ThemesButton
-                type={"default " + statusArtwork ? s.cartBtnDisable : s.cartBtn}
+                // type={"default " + statusArtwork ? s.cartBtnDisable : s.cartBtn}
+                type={cartButtonType}
                 loading={cartLoading}
                 onClick={sessionStatus == "authenticated" ? handleAddToCart : modalLogin}
                 disabled={statusArtwork}
