@@ -5,18 +5,9 @@ import { CREATE_DATA, GET_DATA } from "app/database/query/_template";
 import nextConnect from "next-connect";
 
 const apiHandler = nextConnect();
-const messageHead = "Template";
+const messageHead = "Template"; //TODO : Change with entity name//
 
-// GET HANDLER
-/**
- * @swagger
- * /api/_template:
- *   get:
- *     description: GET Template API
- *     responses:
- *       200:
- *         description: this is just an get template API from artchive.id
- */
+//? ============== GET ENDPOINT ============= ?//
 apiHandler.get(async (req, res) => {
   try {
     const result = await GET_DATA();
@@ -40,17 +31,9 @@ apiHandler.get(async (req, res) => {
     });
   }
 });
+// * ====================================== * //
 
-// POST HANDLER
-/**
- * @swagger
- * /api/_template:
- *   post:
- *     description: POST Template API
- *     responses:
- *       200:
- *         description: this is just an post template API from artchive.id
- */
+//? ============== POST ENDPOINT ============= ?//
 apiHandler.post(async (req, res) => {
   try {
     const result = await CREATE_DATA({});
@@ -74,5 +57,6 @@ apiHandler.post(async (req, res) => {
     });
   }
 });
+// * ====================================== * //
 
 export default apiHandler;

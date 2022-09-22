@@ -308,7 +308,7 @@ enum OrderStatus {
   PENDING
   PROCEED
   SHIPPING
-  SUCCEESS
+  SUCCESS
 }
 
 enum OrderFraud {

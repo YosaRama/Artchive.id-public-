@@ -4,13 +4,8 @@ import { prisma } from "../connection";
 // Set Data Source
 const queryFrom = prisma.order;
 
-//? ============== OPTION QUERY ============= ?//
-
-// * ====================================== * //
-
 //? ============== GET QUERY ============= ?//
-
-export const GET_DATA = ({ page = 1, limit = 15, something }) => {
+export const GET_ORDER = ({ page = 1, limit = 15, userId, status }) => {
   //? Handle Pagination
   const skip = limit != "all" ? (+page - 1) * +limit : undefined;
   return queryFrom.findMany({
@@ -20,7 +15,24 @@ export const GET_DATA = ({ page = 1, limit = 15, something }) => {
     //? Handle query condition
     where: {
       AND: {
-        something: something ? something : {}, // Can disable by empty object
+        user_id: userId ? +userId : {},
+        status: status ? status : {},
+      },
+    },
+
+    //? Data
+    include: {
+      order_item: {
+        select: {
+          height: true,
+          width: true,
+          title: true,
+          artist: { select: { full_name: true } },
+          material: true,
+          markup_price: true,
+          media_cover: true,
+          slug: true,
+        },
       },
     },
 
@@ -31,29 +43,30 @@ export const GET_DATA = ({ page = 1, limit = 15, something }) => {
   });
 };
 
-export const GET_TOTAL_DATA = ({ role, email, fullName }) => {
+export const GET_TOTAL_ORDER = ({ userId, status }) => {
   return queryFrom.count({
     //? Handle query condition
     where: {
       AND: {
-        role: role ? role : {},
-        email: email ? { contains: email } : {},
-        full_name: fullName ? { contains: fullName } : {},
+        user_id: userId ? +userId : {},
+        status: status ? status : {},
       },
     },
   });
 };
 
-export const GET_DATA_BY_ID = ({ id }) => {
+export const GET_ORDER_BY_ID = ({ id }) => {
   return queryFrom.findUnique({
     where: { id: +id },
+    include: {
+      user: { include: { profile: true } },
+      order_item: { include: { artist: true, media_cover: true } },
+    },
   });
 };
-
 // * ====================================== * //
 
 //? ============== CREATE QUERY ============= ?//
-
 export const CREATE_ORDER = (data) => {
   const {
     orderId,
@@ -90,11 +103,11 @@ export const CREATE_ORDER = (data) => {
     },
   });
 };
-
 // * ====================================== * //
 
 //? ============== UPDATE QUERY ============= ?//
 
+//? Update order after success from midtrans
 export const UPDATE_ORDER_AFTER_PROCEED = ({ orderId, data }) => {
   const { fraud, status, transactionId, artworkIdList, userId } = data;
   return prisma.$transaction([
@@ -109,14 +122,22 @@ export const UPDATE_ORDER_AFTER_PROCEED = ({ orderId, data }) => {
     }),
   ]);
 };
-// ==================================
 
-// * ====================================== * //
-
-//? ============== DELETE QUERY ============= ?//
-export const DELETE_DATA = ({ id }) => {
-  return queryFrom.delete({ where: { id: +id } });
+//? Update from admin dashboard
+export const UPDATE_ORDER_DETAILS = ({ data, id }) => {
+  return queryFrom.update({
+    where: { id: +id },
+    data: {
+      shipping_address: data?.shippingAddress,
+      notes: data?.notes,
+      recipient_name: data?.recipientName,
+      recipient_phone_number: data?.recipientPhone,
+      shipping_city: data?.shippingCity,
+      shipping_country: data?.shippingCountry,
+      shipping_zip_code: data?.shippingPostalCode,
+      status: data?.status,
+    },
+  });
 };
-// ==================================
 
 // * ====================================== * //
