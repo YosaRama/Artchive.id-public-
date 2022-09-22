@@ -1,5 +1,5 @@
 .title {
-  font-size: 32px;
+  font-size: 24px;
 
   margin: 0px;
 }
@@ -7,7 +7,12 @@
 .headline {
   margin: 40px 0px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
+}
+
+.cartCount {
+  width: 100%;
+  text-align: right;
 }
 
 .cartContainerMain {

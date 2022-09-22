@@ -3,6 +3,7 @@ import { Col, Form, Row } from "antd";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import moment from "moment";
+import { RightOutlined } from "@ant-design/icons";
 
 // Style
 import s from "./index.module.scss";
@@ -13,6 +14,7 @@ import ThemesHeadline from "themes/components/libs/headline";
 import ThemesCheckoutForm from "themes/components/libs/checkout-form";
 import ThemesCheckoutItems from "themes/components/libs/checkout-items";
 import ThemesButton from "themes/components/libs/button";
+import ThemesCheckoutLogoPayment from "themes/components/libs/checkout-logo-payment";
 
 // Helper
 import priceFormatter from "app/helpers/priceFormatter";
@@ -20,6 +22,9 @@ import priceFormatter from "app/helpers/priceFormatter";
 // Hooks
 import { useCarts } from "app/hooks/cart";
 import { useOrders } from "app/hooks/order";
+
+// Dummy
+import { logoDummy } from "app/database/dummy/checkout-logo";
 
 function ThemesContentsCheckout() {
   const router = useRouter();
@@ -71,6 +76,7 @@ function ThemesContentsCheckout() {
       onTransaction(submission);
     });
   };
+
   // * ====================================== * //
 
   return (
@@ -146,11 +152,23 @@ function ThemesContentsCheckout() {
             </p>
             <Col style={{ marginTop: "24px", marginBottom: "24px" }}>
               <ThemesButton type={"default " + s.button} onClick={handleTransaction}>
-                PROCEED
+                PROCEED <RightOutlined />
               </ThemesButton>
             </Col>
-            <Col span={24} style={{ background: "white", padding: "24px", marginBottom: "24px" }}>
-              LOGO LOGO BCA MIDTRANS
+            <Col
+              span={24}
+              style={{
+                background: "white",
+                padding: "24px",
+                marginBottom: "24px",
+                display: "flex",
+                justifyContent: "flex-start",
+                flexWrap: "wrap",
+              }}
+            >
+              {logoDummy.map((item, index) => {
+                return <ThemesCheckoutLogoPayment key={index} logo={item.logo} />;
+              })}
             </Col>
           </Col>
         </Row>

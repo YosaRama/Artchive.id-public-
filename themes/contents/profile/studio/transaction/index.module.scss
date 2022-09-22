@@ -1,0 +1,50 @@
+.container {
+  margin-left: 110px;
+}
+
+.transactionMenuBar {
+  background: white;
+  height: 60px;
+  width: 100%;
+  margin-top: 40px;
+  margin-bottom: 0px;
+}
+
+.menuContainer {
+  display: flex;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  background: white;
+  margin: 40px 0px 24px;
+  width: 100%;
+}
+
+.menuItem {
+  min-width: 200px;
+  text-align: center;
+  height: 60px;
+  margin-top: 10px !important;
+}
+
+.menuBarButtonContainer {
+  display: flex;
+  justify-content: space-evenly;
+  height: 100%;
+  align-items: center;
+}
+
+.menuBarButton {
+  font-size: 16px;
+  font-weight: 700;
+  transition: all 300ms ease;
+  cursor: pointer;
+  width: 22%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  &:hover {
+    color: #e5890a;
+    transition: all 300ms ease;
+  }
+}

@@ -40,8 +40,8 @@ function ThemesProfileNavbar() {
         </Col>
         <Col className={s.iconBox} span={24}>
           <ProfileOrderIcon
-            className={`${s.icon} ${router.pathname == "/profile/order" && s.active}`}
-            onClick={() => router.push("/maintenance")}
+            className={`${s.icon} ${router.pathname == "/profile/transaction" && s.active}`}
+            onClick={() => router.push("/profile/transaction")}
           />
         </Col>
       </div>

@@ -1,0 +1,196 @@
+.itemContainer {
+  margin: 20px 0px;
+  padding: 40px;
+  background: white;
+  height: auto;
+  width: 100%;
+}
+
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.transactionId {
+  color: #e5890a;
+  margin: auto 0px;
+}
+
+.statusPending {
+  background: #e0e0e0;
+  padding: 5px 6px;
+  border-radius: 10px;
+  color: black;
+  font-size: 12px;
+  // display: flex;
+  margin: auto 0px;
+  // align-items: center;
+}
+
+.statusProceed {
+  background: #e5890a;
+  padding: 5px 6px;
+  border-radius: 10px;
+  color: white;
+  font-size: 12px;
+  margin: auto 0px;
+}
+
+.statusShipping {
+  background: rgb(80, 136, 179);
+  padding: 5px 6px;
+  border-radius: 10px;
+  color: white;
+  font-size: 12px;
+  margin: auto 0px;
+}
+
+.statusCancel {
+  background: red;
+  padding: 5px 6px;
+  border-radius: 10px;
+  color: white;
+  font-size: 12px;
+  margin: auto 0px;
+}
+
+.statusSuccess {
+  background: #21df34;
+  padding: 5px 6px;
+  border-radius: 10px;
+  color: white;
+  font-size: 12px;
+  margin: auto 0px;
+}
+
+.divider {
+  margin: 20px 0px;
+}
+
+.transactionItemContainer {
+  width: 100%;
+  // margin-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.imgSrcContainer {
+  width: 120px;
+  height: 120px;
+}
+
+.imgSrc {
+  object-fit: cover;
+  cursor: pointer;
+  transition: all 200ms ease;
+  &:hover {
+    transition: all 200ms ease;
+    scale: 1.01;
+  }
+}
+
+.descContainer {
+  width: 60%;
+  height: 100%;
+  transition: all 300ms ease;
+  margin: auto 0px;
+  padding-right: 12px;
+
+  line-height: 22px;
+
+  h2 {
+    font-weight: 400;
+    font-size: 24px;
+    &:hover {
+      color: #e5890a;
+      transition: all 300ms ease;
+    }
+  }
+  p {
+    font-size: 16px;
+    margin: 0px;
+  }
+}
+
+.title {
+  cursor: pointer;
+}
+
+.priceContainer {
+  min-width: 180px;
+  height: 100%;
+  margin: auto 0px;
+  text-align: right;
+  color: #e5890a;
+  font-size: 24px;
+  font-weight: 700;
+  font-family: "Aileron" !important;
+  display: flex;
+  justify-content: space-between;
+}
+
+.shippingFeeContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.space {
+  width: 120px !important;
+  margin: auto 0px;
+}
+
+.shippingText {
+  width: 60%;
+  margin: auto 0px;
+}
+
+.shippingFee {
+  min-width: 180px;
+  text-align: right;
+  margin: auto 0px;
+  color: #e5890a;
+  font-size: 24px;
+  font-weight: 700;
+  font-family: "Aileron" !important;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footerContainer {
+  // width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.invoiceButton {
+  width: 200px;
+  height: 32px;
+}
+
+.totalPrice {
+  min-width: 260px;
+  height: 100%;
+  margin: auto 0px;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.textTotal {
+  font-family: "DM Serif Display" !important;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.total {
+  min-width: 180px;
+  height: 100%;
+  margin: auto 0px;
+  text-align: right;
+  color: #e5890a;
+  font-size: 24px;
+  font-weight: 700;
+  font-family: "Aileron" !important;
+  display: flex;
+  justify-content: space-between;
+}

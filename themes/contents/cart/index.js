@@ -89,9 +89,11 @@ function ThemesContentsCart(props) {
   const titleCart = (
     <>
       <h1 className={s.title}>
-        Your Cart Item :{" "}
-        <span style={{ color: "#e5890a" }}>
-          {cartPageItem?.length} {cartPageItem?.length < 2 ? "item" : "items"}
+        Total {cartPageItem?.length < 2 ? "item" : "items"} :{" "}
+        <span
+        // style={{ color: "#e5890a" }}
+        >
+          {cartPageItem?.length}
         </span>
       </h1>
     </>
@@ -103,7 +105,8 @@ function ThemesContentsCart(props) {
     <>
       <ThemesContainerMain>
         {/* //? ============== Cart Item Section ============= ?// */}
-        {cartPageItem && <ThemesHeadline title={titleCart} className={s.headline} />}
+        <ThemesHeadline title={"Cart Details"} className={s.headline} />
+        {cartPageItem && <Col className={s.cartCount}>{titleCart}</Col>}
 
         {!cartPageItem && (
           <>
@@ -290,7 +293,7 @@ function ThemesContentsCart(props) {
         {/* // * ====================================== * //  */}
 
         {/* //? ============== Might Also Like Section ============= ?// */}
-        {mightLikeData?.length != 0 && (
+        {/* {mightLikeData?.length != 0 && (
           <section style={{ margin: "100px 0" }}>
             <ThemesHeadline title="You Might Also Like" className={s.sectionTitle} />
             <Row gutter={[16, 0]} className={s.otherSection}>
@@ -316,7 +319,7 @@ function ThemesContentsCart(props) {
             </Row>
             <ThemesDividerWithButton>SEE MORE</ThemesDividerWithButton>
           </section>
-        )}
+        )} */}
         {/* // * ====================================== * // */}
       </ThemesContainerMain>
     </>

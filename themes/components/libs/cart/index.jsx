@@ -98,10 +98,9 @@ function ThemesCartItem(props) {
                 <Col style={{ height: "50%" }}>
                   <h2 style={{ lineHeight: " 33px" }}>Price</h2>
                   <Col className={s.price}>
-                    <h2 style={{ fontWeight: "700", lineHeight: " 29px" }}>{`IDR ${priceFormatter(
-                      price,
-                      ","
-                    )}`}</h2>
+                    <h2 style={{ fontWeight: "700", lineHeight: " 29px" }}>
+                      {`IDR ${priceFormatter(price, ",")}`}
+                    </h2>
                   </Col>
                 </Col>
 
