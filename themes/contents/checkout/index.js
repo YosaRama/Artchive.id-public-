@@ -21,7 +21,7 @@ import priceFormatter from "app/helpers/priceFormatter";
 
 // Hooks
 import { useCarts } from "app/hooks/cart";
-import { useOrders } from "app/hooks/order";
+import { usePayments } from "app/hooks/payment";
 
 // Dummy
 import { logoDummy } from "app/database/dummy/checkout-logo";
@@ -43,7 +43,7 @@ function ThemesContentsCheckout() {
   // * ====================================== * //
 
   //? ============== Order Hooks ============= ?//
-  const { onTransaction } = useOrders({ queryString: "" });
+  const { onTransaction } = usePayments({ queryString: "" });
   // * ====================================== * //
 
   //? ============== Handle Checkout ============= ?//

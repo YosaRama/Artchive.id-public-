@@ -5,14 +5,14 @@ import { useCallback, useState } from "react";
 import { useRouter } from "next/router";
 
 // Component
-import { SuccessNotification, ErrorNotification } from "app/components/utils/notification";
+import { ErrorNotification } from "app/components/utils/notification";
 
 //TODO: Match with backend endpoint
 const pathName = "/payment"; // End point
 const msgHead = "payment"; // Just For message
 
 //? ============== GENERAL HOOK (ALL DATA) ============= ?//
-export const useOrders = ({ queryString = "" }) => {
+export const usePayments = ({ queryString = "" }) => {
   const router = useRouter();
   const pathKeys = pathName + "?" + queryString;
   const [loading, setLoading] = useState(false);
