@@ -1,61 +1,92 @@
 // Libs
-import { Col, Row, Divider, Menu } from "antd";
-import propTypes from "prop-types";
+import { Col, Menu } from "antd";
 import { useState } from "react";
+import propTypes from "prop-types";
+
+// Components
+import ThemesProfileItemTransaction from "themes/components/libs/profile-transaction";
+import ThemesButton from "themes/components/libs/button";
+
+// Hooks
+import { useOrderLoad } from "app/hooks/order";
 
 // Styles
 import s from "./index.module.scss";
 
-// Components
-import ThemesProfileItemTransaction from "themes/components/libs/profile-transaction";
-
-// Dummy
-import { transactionList } from "app/database/dummy/transaction";
-
 function ThemesContentsProfileTransaction(props) {
+  const { userId } = props;
+
+  //? ============== Handle Menu ============= ?//
+  const menuItems = [
+    { label: <div className={s.menuItem}>All</div>, key: "" },
+    { label: <div className={s.menuItem}>Proceed</div>, key: "proceed" },
+    { label: <div className={s.menuItem}>Delivered</div>, key: "shipping" },
+    { label: <div className={s.menuItem}>Success</div>, key: "success" },
+  ];
+  // * ====================================== * //
+
+  //? ============== Handle Filter ============= ?//
+  const [currentStatus, setCurrentStatus] = useState("");
+  const handleOrderStatus = (value) => {
+    const parseKey = value.key.toUpperCase();
+    setCurrentStatus(parseKey);
+  };
+  // * ====================================== * //
+
+  //? ============== Order Hooks ============= ?//
+  const {
+    data: orderData,
+    total,
+    size,
+    setSize,
+    loading,
+  } = useOrderLoad({
+    limit: 10,
+    queryString: `userId=${userId || ""}&status=${currentStatus || ""}`,
+  });
+  // * ====================================== * //
+
+  //? ============== Handle Load More ============= ?//
+  const handleLoadMore = () => {
+    setSize(size + 1);
+  };
+  // * ====================================== * //
+
   return (
     <>
       <Col className={s.container}>
-        {/* <Col className={s.transactionMenuBar}> */}
-        <Menu mode="horizontal" defaultSelectedKeys={["all"]} className={s.menuContainer}>
-          <Menu.Item key="all" className={s.menuItem} value="All">
-            All
-          </Menu.Item>
-          <Menu.Item key="proceed" className={s.menuItem} value="Proceed">
-            Proceed
-          </Menu.Item>
-          <Menu.Item key="delivered" className={s.menuItem} value="Delivered">
-            Delivered
-          </Menu.Item>
-          <Menu.Item key="success" className={s.menuItem} value="Success">
-            Success
-          </Menu.Item>
-        </Menu>
-        {/* <Row className={s.menuBarButtonContainer}>
-            <Col className={s.menuBarButton}>All</Col>
-            <Divider type="vertical" style={{ height: "40px", margin: "0px" }} />
-            <Col className={s.menuBarButton}>Proceed</Col>
-            <Divider type="vertical" style={{ height: "40px", margin: "0px" }} />
-            <Col className={s.menuBarButton}>Delivered</Col>
-            <Divider type="vertical" style={{ height: "40px", margin: "0px" }} />
-            <Col className={s.menuBarButton}>Done</Col>
-          </Row> */}
-        {/* </Col> */}
+        <Menu
+          mode="horizontal"
+          defaultSelectedKeys={[""]}
+          className={s.menuContainer}
+          items={menuItems}
+          onSelect={handleOrderStatus}
+        />
 
-        {transactionList.map((item, index) => {
-          return (
-            <ThemesProfileItemTransaction
-              key={index}
-              transactionTime={item.transaction_time}
-              orderId={item.order_id}
-              status={item.status}
-              total={item.total_amount}
-            />
-          );
-        })}
+        {orderData &&
+          orderData?.map((item, index) => {
+            return (
+              <ThemesProfileItemTransaction
+                key={index}
+                transactionTime={item.transaction_time}
+                orderId={item.order_id}
+                status={item.status}
+                total={item.total_amount}
+              />
+            );
+          })}
+        {orderData?.length !== total && (
+          <Col span={24} style={{ textAlign: "center", marginBottom: 60 }}>
+            <ThemesButton onClick={handleLoadMore}>LOAD MORE</ThemesButton>
+          </Col>
+        )}
       </Col>
     </>
   );
 }
+
+ThemesContentsProfileTransaction.propTypes = {
+  userId: propTypes.number,
+};
 
 export default ThemesContentsProfileTransaction;

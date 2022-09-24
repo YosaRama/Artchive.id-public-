@@ -11,12 +11,23 @@ function PageProfileTransaction() {
   //? ============== Handle Session ============= ?//
   const { data: session, status: sessionLoading } = useSession();
   // * ====================================== * //
-
   return (
     <>
-      <ThemesContentsProfileTransaction />
+      <ThemesContentsProfileTransaction userId={session.user.id} />
     </>
   );
 }
 
 export default PageProfileTransaction;
+
+export const getServerSideProps = async (ctx) => {
+  //? ============== Handle Session ============= ?//
+  const session = await getSession(ctx);
+  const res = profileSession({ session: session, data: {} });
+  // * ====================================== * //
+
+  return {
+    props: { session: session },
+    redirect: res?.redirect,
+  };
+};
