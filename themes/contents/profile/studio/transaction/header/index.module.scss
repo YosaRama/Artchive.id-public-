@@ -1,11 +1,3 @@
-.itemContainer {
-  margin: 20px 0px;
-  padding: 40px;
-  background: white;
-  height: auto;
-  width: 100%;
-}
-
 .headerContainer {
   display: flex;
   justify-content: space-between;
@@ -22,13 +14,11 @@
   border-radius: 10px;
   color: black;
   font-size: 12px;
-  // display: flex;
   margin: auto 0px;
-  // align-items: center;
 }
 
 .statusProceed {
-  background: #e5890a;
+  background: #eebb72;
   padding: 5px 6px;
   border-radius: 10px;
   color: white;
@@ -129,68 +119,35 @@
   justify-content: space-between;
 }
 
-.shippingFeeContainer {
-  display: flex;
-  justify-content: space-between;
-}
+//? ============== Mobile View ============= ?//
+@media screen and (max-width: 500px) {
+  .statusPending {
+    text-align: center;
+    width: 100px;
+    margin-bottom: 12px;
+  }
 
-.space {
-  width: 120px !important;
-  margin: auto 0px;
-}
+  .statusProceed {
+    text-align: center;
+    width: 100px;
+    margin-bottom: 12px;
+  }
 
-.shippingText {
-  width: 60%;
-  margin: auto 0px;
-}
+  .statusShipping {
+    text-align: center;
+    width: 100px;
+    margin-bottom: 12px;
+  }
 
-.shippingFee {
-  min-width: 180px;
-  text-align: right;
-  margin: auto 0px;
-  color: #e5890a;
-  font-size: 24px;
-  font-weight: 700;
-  font-family: "Aileron" !important;
-  display: flex;
-  justify-content: space-between;
-}
+  .statusCancel {
+    text-align: center;
+    width: 100px;
+    margin-bottom: 12px;
+  }
 
-.footerContainer {
-  // width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
-
-.invoiceButton {
-  width: 200px;
-  height: 32px;
-}
-
-.totalPrice {
-  min-width: 260px;
-  height: 100%;
-  margin: auto 0px;
-
-  display: flex;
-  justify-content: space-between;
-}
-
-.textTotal {
-  font-family: "DM Serif Display" !important;
-  font-weight: 700;
-  font-size: 24px;
-}
-
-.total {
-  min-width: 180px;
-  height: 100%;
-  margin: auto 0px;
-  text-align: right;
-  color: #e5890a;
-  font-size: 24px;
-  font-weight: 700;
-  font-family: "Aileron" !important;
-  display: flex;
-  justify-content: space-between;
+  .statusSuccess {
+    text-align: center;
+    width: 100px;
+    margin-bottom: 12px;
+  }
 }

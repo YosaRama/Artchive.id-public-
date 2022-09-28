@@ -142,7 +142,7 @@ function ThemesContentsCheckout() {
               </p>
             </Col>
             <p style={{ color: "#e5890a" }}>
-              {`Lorem ipsum dolor sit amet, consectetur adipiscing elit? `}
+              {`Got trouble with your transaction? `}
               <span
                 className={s.link}
                 href={`https://wa.me/${process.env.NEXT_PUBLIC_PHONE_NUMBER}`}
@@ -155,17 +155,7 @@ function ThemesContentsCheckout() {
                 PROCEED <RightOutlined />
               </ThemesButton>
             </Col>
-            <Col
-              span={24}
-              style={{
-                background: "white",
-                padding: "24px",
-                marginBottom: "24px",
-                display: "flex",
-                justifyContent: "flex-start",
-                flexWrap: "wrap",
-              }}
-            >
+            <Col span={24} className={s.logoPaymentContainer}>
               {logoDummy.map((item, index) => {
                 return <ThemesCheckoutLogoPayment key={index} logo={item.logo} />;
               })}

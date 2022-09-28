@@ -1,0 +1,138 @@
+.subTotalContainer {
+  display: flex;
+  justify-content: flex-end;
+  min-width: 300px;
+  height: 100%;
+  margin: auto 0px;
+  .subTotalPrice {
+    display: flex;
+    justify-content: flex-end;
+    .textSubtotal {
+      font-family: "DM Serif Display" !important;
+      font-weight: 700;
+      font-size: 24px;
+      width: auto;
+      margin-right: 20px;
+      text-align: right;
+      color: rgb(167, 167, 167);
+    }
+    .subtotal {
+      min-width: 180px;
+      height: 100%;
+      margin: auto 0px;
+      text-align: right;
+      color: #e5890a;
+      font-size: 24px;
+      font-weight: 400;
+      font-family: "Aileron" !important;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
+
+.footerContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.invoiceButton {
+  width: 200px;
+  height: 32px;
+}
+
+.totalPrice {
+  min-width: 300px;
+  height: 100%;
+  margin: auto 0px;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.textTotal {
+  font-family: "DM Serif Display" !important;
+  font-weight: 700;
+  font-size: 24px;
+  width: 150px;
+  margin-right: 20px;
+  text-align: right;
+}
+
+.total {
+  width: 180px;
+  height: 100%;
+  margin: auto 0px;
+  text-align: right;
+  color: #e5890a;
+  font-size: 24px;
+  font-weight: 700;
+  font-family: "Aileron" !important;
+  display: flex;
+  justify-content: space-between;
+}
+
+.divider {
+  margin: 20px 0px;
+}
+
+//? ============== Mobile View ============= ?//
+@media screen and (max-width: 500px) {
+  .footerContainer {
+    display: flex;
+    justify-content: flex-end;
+    width: auto;
+    height: 100%;
+    margin: auto 0px;
+  }
+
+  .subTotalContainer {
+    min-width: 200px;
+  }
+
+  .textSubtotal {
+    font-size: 18px;
+  }
+
+  .subtotal {
+    font-size: 18px;
+    font-weight: 700;
+    min-width: 135px;
+  }
+
+  .totalPrice {
+    display: flex;
+    justify-content: flex-end;
+    min-width: 200px;
+  }
+
+  .textTotal {
+    font-family: "DM Serif Display" !important;
+    font-weight: 700;
+    font-size: 18px;
+    width: auto;
+    margin-right: 20px;
+    text-align: right;
+    color: rgb(0, 0, 0);
+  }
+
+  .total {
+    width: 135px;
+    height: 100%;
+    margin: auto 0px;
+    text-align: right;
+    color: #e5890a;
+    font-size: 18px;
+    font-weight: 700;
+    font-family: "Aileron" !important;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .invoiceButton {
+    width: 100% !important;
+    height: 32px;
+    margin: 40px auto 10px;
+    text-align: center;
+  }
+}

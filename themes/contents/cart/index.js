@@ -1,7 +1,7 @@
 // Libs
 import propTypes from "prop-types";
 import { useRouter } from "next/router";
-import { Col, Row, Input, Empty, Button, Divider, Select, Skeleton, Space } from "antd";
+import { Col, Row, Input, Empty, Button, Divider, Select, Skeleton, Image } from "antd";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
@@ -89,12 +89,7 @@ function ThemesContentsCart(props) {
   const titleCart = (
     <>
       <h1 className={s.title}>
-        Total {cartPageItem?.length < 2 ? "item" : "items"} :{" "}
-        <span
-        // style={{ color: "#e5890a" }}
-        >
-          {cartPageItem?.length}
-        </span>
+        Total {cartPageItem?.length < 2 ? "item" : "items"} : <span>{cartPageItem?.length}</span>
       </h1>
     </>
   );
@@ -147,7 +142,7 @@ function ThemesContentsCart(props) {
                       {`has been sold. Remove this item from your cart to continue checkout.`}
                     </Col>
                   )}
-                  <Divider style={{ margin: "20px 0px 20px 0px" }} />
+                  <Divider className={s.divider} />
                 </>
               );
             })}
@@ -155,25 +150,23 @@ function ThemesContentsCart(props) {
         )}
 
         {cartPageItem?.length == 0 && (
-          <Col
-            span={24}
-            style={{
-              margin: "20px 0px",
-              paddingTop: "50px",
-              paddingBottom: "50px",
-              backgroundImage: "linear-gradient(transparent, white 50%)",
-            }}
-          >
-            <Empty
-              imageStyle={{
-                height: 60,
-              }}
-              description={<span>{"Let's grab something!"}</span>}
-            >
+          <Col span={24} className={s.emptyContainer}>
+            <Col style={{ textAlign: "center" }}>
+              <Col className={s.emptyCartLogo}>
+                <Image
+                  src="/images/empty-cart.png"
+                  alt=""
+                  preview={false}
+                  className={s.emptyImage}
+                />
+              </Col>
+
+              <h1>Your Cart is Empty!</h1>
+              <p>Look you haven’t made your choice yet..</p>
               <Button type="primary" onClick={() => router.push("/artwork")}>
-                Taste and Take!
+                CONTINUE SHOPPING
               </Button>
-            </Empty>
+            </Col>
           </Col>
         )}
 

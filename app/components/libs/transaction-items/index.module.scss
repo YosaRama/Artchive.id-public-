@@ -1,0 +1,98 @@
+.transactionItemContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 12px 0px;
+}
+
+.imgSrcContainer {
+  width: 150px;
+  // height: 150px;
+}
+
+.imgSrc {
+  object-fit: cover;
+  cursor: pointer;
+  transition: all 200ms ease;
+  &:hover {
+    transition: all 200ms ease;
+    scale: 1.01;
+  }
+}
+
+.descContainer {
+  width: 60%;
+  height: 100%;
+  transition: all 300ms ease;
+  margin: auto 0px;
+  padding-right: 12px;
+  line-height: 22px;
+
+  h2 {
+    font-weight: 400;
+    font-size: 24px;
+    &:hover {
+      color: #e5890a;
+      transition: all 300ms ease;
+    }
+  }
+  p {
+    font-size: 16px;
+    margin: 0px;
+  }
+}
+
+.title {
+  line-height: 30px;
+  cursor: pointer;
+}
+
+.priceContainer {
+  width: 180px;
+  height: 100%;
+  margin: auto 0px;
+  text-align: right;
+  color: #e5890a;
+  font-size: 24px;
+  font-weight: 400;
+  font-family: "Aileron" !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.divider {
+  margin: 20px 0px;
+}
+
+//? ============== Tablet Potrait View ============= ?//
+@media screen and (max-width: 768px) {
+  .descContainer {
+    width: 75%;
+  }
+
+  .spaceRight {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+//? ============== Mobile View ============= ?//
+@media screen and (max-width: 500px) {
+  .imgSrcContainer {
+    width: 100%;
+    height: 150px;
+    margin-bottom: 15px;
+  }
+
+  .descContainer {
+    width: 100%;
+  }
+
+  .priceContainer {
+    font-size: 18px;
+    font-weight: 700;
+    width: 135px;
+  }
+}

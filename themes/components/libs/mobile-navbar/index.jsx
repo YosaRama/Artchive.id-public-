@@ -1,10 +1,14 @@
 // Libs
-import { Card, Col, Row } from "antd";
+import { Card, Col, Row, Avatar } from "antd";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 
 // Styles
 import s from "./index.module.scss";
+
+// Hooks
+import { useUser } from "app/hooks/user";
 
 // Icons
 import { ArtworkIcon } from "/public/icons/artwork-icon";
@@ -22,6 +26,16 @@ function ThemesMobileNavbar() {
     setActiveMenu(value);
   };
   // * ====================================== * //
+
+  //? ============== Handle User ============= ?//
+  const { data: session, status: sessionStatus } = useSession();
+  const userId = session?.user.id;
+  // * ====================================== * //
+
+  //? ============== User Hook ============= ?//
+  const { data: userData } = useUser({ singleId: session?.user?.id || null });
+  // * ====================================== * //
+
   return (
     <>
       <Card bodyStyle={{ padding: 0 }} className={s.card}>
@@ -69,13 +83,27 @@ function ThemesMobileNavbar() {
               activeMenu == "PROFILE" ? s.menuItemIconActive : ""
             }`}
           >
-            <MobileAccountIcon
+            {/* <MobileAccountIcon
               className={s.menuItemIcon}
               onClick={() => {
                 router.push("/profile");
                 handleSelectMenu("PROFILE");
               }}
-            />
+            /> */}
+            <div
+              style={{ margin: "0px 15px" }}
+              onClick={() => router.push("/profile")}
+              className={`${s.mobileHidden}`}
+            >
+              <Avatar
+                src={
+                  userData?.profile
+                    ? `${process.env.NEXT_PUBLIC_S3_URL}/${userData?.profile?.url}`
+                    : "/images/profile-default.png"
+                }
+                className={s.avatar}
+              />
+            </div>
           </Col>
         </Row>
       </Card>

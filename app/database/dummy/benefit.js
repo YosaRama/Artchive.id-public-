@@ -41,61 +41,56 @@ export const aboutTeamsCard = [
     name: "Dion Pramana",
     position: "Kacung Artchive",
     description:
-      "Hi! I'am Dion Pramana as Content Designer, Web Tester, a bit Frontend Developer maybe.",
+      "Create a creative design for social media content and website content for digital marketing.",
   },
   {
     imageTeam: "/images/team-5.jpg",
     name: "Yosa Rama Dinata",
     position: "Web Developer",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Luctus mattis justo aliquet dui vel mauris duis cum et",
+    description: "Specialist Project Management & Technology Implementating.",
   },
   {
     imageTeam: "/images/team-3.jpg",
     name: "Dwipayadnya",
     position: "UI/UX Designer",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus mi mauris in quis vitae integer. Luctus mattis justo aliquet dui vel mauris duis cum et",
+    description: "Create a creative design for Artchive.id platform.",
   },
   {
     imageTeam: "/images/team-7.jpg",
     name: "Surya Jaya",
     position: "UI/UX Designer",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus mi mauris in quis vitae integer. Luctus mattis justo ",
+    description: "Create flow and design system for Artchive.id platform. ",
   },
   {
     imageTeam: "/images/team-6.jpg",
     name: "Gek Ria",
     position: "Content Idea",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus mi mauris in quis vitae integer. Luctus mattis justo aliquet dui vel mauris duis cum et",
+    description: "reate ideas for content for digital marketing on social media and website. ",
   },
-  {
-    imageTeam: "/images/team-1.jpg",
-    name: "Wayan Arnata",
-    position: "Content Writer",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus mi mauris in quis vitae integer. Luctus mattis justo aliquet dui vel mauris duis cum et",
-  },
+  // {
+  //   imageTeam: "/images/team-1.jpg",
+  //   name: "Wayan Arnata",
+  //   position: "Content Writer",
+  //   description:
+  //     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus mi mauris in quis vitae integer. Luctus mattis justo aliquet dui vel mauris duis cum et",
+  // },
   {
     imageTeam: "/images/team-4.jpg",
     name: "Nina Valentina",
     position: "Bussiness",
-    description:
-      "Lorem ipsum dolor sit amet. Risus mi mauris in quis vitae integer. Luctus mattis justo aliquet dui vel mauris duis cum et",
+    description: "Do some market research & business development",
   },
 ];
 
 export const logoPartner = [
-  { logoPartner: "/images/our-partner-1.png" },
-  { logoPartner: "/images/our-partner-2.png" },
-  { logoPartner: "/images/our-partner-3.png" },
-  { logoPartner: "/images/our-partner-4.png" },
-  { logoPartner: "/images/our-partner-5.png" },
-  { logoPartner: "/images/our-partner-3.png" },
-  { logoPartner: "/images/our-partner-1.png" },
-  { logoPartner: "/images/our-partner-4.png" },
-  { logoPartner: "/images/our-partner-5.png" },
-  { logoPartner: "/images/our-partner-2.png" },
+  { logoPartner: "/images/logo-jepun.png" },
+  // { logoPartner: "/images/our-partner-2.png" },
+  // { logoPartner: "/images/our-partner-3.png" },
+  // { logoPartner: "/images/our-partner-4.png" },
+  // { logoPartner: "/images/our-partner-5.png" },
+  // { logoPartner: "/images/our-partner-3.png" },
+  // { logoPartner: "/images/our-partner-1.png" },
+  // { logoPartner: "/images/our-partner-4.png" },
+  // { logoPartner: "/images/our-partner-5.png" },
+  // { logoPartner: "/images/our-partner-2.png" },
 ];

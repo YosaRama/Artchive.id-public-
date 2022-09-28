@@ -2,7 +2,7 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
-import { Avatar, Col, Layout, Row, Button, Badge } from "antd";
+import { Avatar, Col, Layout, Row, Badge } from "antd";
 import Image from "next/image";
 const { Header } = Layout;
 
@@ -19,11 +19,10 @@ import { useCarts } from "app/hooks/cart";
 
 // Icons
 import { MenuOutlined, BellFilled } from "@ant-design/icons";
-import { CartIcon, CheckCircleFilled } from "public/icons/cart-icon";
+import { CartIcon } from "public/icons/cart-icon";
 
 // Styles
 import s from "./index.module.scss";
-import ThemesContentsNotification from "themes/contents/notification";
 import ThemesNotificationModal from "./notification-header";
 
 // Dummy
