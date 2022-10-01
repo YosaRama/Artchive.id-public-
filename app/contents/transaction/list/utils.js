@@ -2,6 +2,7 @@
 
 // Libs
 import { useRouter } from "next/router";
+import moment from "moment";
 
 // Components
 import AppTableAction from "app/components/libs/table-action";
@@ -55,7 +56,7 @@ function OrderColumn() {
       title: "Transaction Time",
       dataIndex: "transaction_time",
       key: "transaction_time",
-      render: (t, r) => <Col>{t}</Col>,
+      render: (t, r) => <Col>{moment(t).format("MMMM DD, YYYY")}</Col>,
     },
     {
       title: "Total Payment",
