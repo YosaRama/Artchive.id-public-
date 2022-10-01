@@ -1,14 +1,15 @@
 // Libs
 import { useRouter } from "next/router";
-import { Button, Col, Form, Input, Row, Divider, PageHeader, Spin, Select } from "antd";
+import { useState } from "react";
+import { Button, Col, Row, Divider, PageHeader, Select } from "antd";
 
 // Components
 import AppContainerBox from "app/components/container/box";
 import AppContainerCard from "app/components/container/card";
-import { useOrder } from "app/hooks/order";
 import AppTransactionItem from "app/components/libs/transaction-items";
 
 // Data Hook
+import { useOrder } from "app/hooks/order";
 
 // Helper
 import priceFormatter from "app/helpers/priceFormatter";
@@ -21,21 +22,17 @@ function AppContentsTransactionDetails() {
   const { Option } = Select;
 
   //? ============== Transaction Hook ============= ?//
-  const { data: dataDetails, onEdit, loading } = useOrder({ singleId: router.query.id });
+  const { data: orderDetails, onEdit, loading } = useOrder({ singleId: router.query.id });
+  console.log("orderDetails", orderDetails);
   // * ====================================== * //
 
   //? ============== Handle Update ============= ?//
-  const [form] = Form.useForm();
-  const handleUpdate = () => {
-    form.validateFields().then(async (value) => {
-      const submission = {
-        title: value.title,
-      };
-      const result = await onEdit(submission);
-      if (result) {
-        router.push("/dashboard/genre");
-      }
-    });
+  const [selectStatus, setSelectStatus] = useState();
+  const handleUpdate = async () => {
+    const submission = {
+      status: selectStatus,
+    };
+    await onEdit(submission);
   };
   // * ====================================== * //
 
@@ -47,8 +44,8 @@ function AppContentsTransactionDetails() {
           <Col>
             <h1 className={s.textTitle}>Order Items</h1>
           </Col>
-          {dataDetails?.order_item &&
-            dataDetails?.order_item?.map((item, index) => {
+          {orderDetails?.order_item &&
+            orderDetails?.order_item?.map((item, index) => {
               return (
                 <AppTransactionItem
                   key={index}
@@ -63,19 +60,6 @@ function AppContentsTransactionDetails() {
                 />
               );
             })}
-
-          <Col>
-            <h1 className={s.textTitle}>Change Status</h1>
-            <Select style={{ width: 120 }} defaultValue={dataDetails.status}>
-              {" "}
-              {/* //TODO : This isn't fix yet*/ / */}
-              <Option value="succees">SUCCESS</Option>
-              <Option value="shipping">SHIPPING</Option>
-              <Option value="pending">PENDING</Option>
-              <Option value="proceed">PROCEED</Option>
-            </Select>
-          </Col>
-          <Divider />
           <Col>
             <Col className={s.subTotalContainer}>
               <Col className={s.subTotalPrice}>
@@ -101,14 +85,36 @@ function AppContentsTransactionDetails() {
                 <Col className={s.textTotal}>Total </Col>
                 <Col className={s.total}>
                   <Col>IDR</Col>
-                  <Col>{priceFormatter(`${dataDetails?.total_amount}`, ",")} </Col>
+                  <Col>{priceFormatter(`${orderDetails?.total_amount}`, ",")} </Col>
                 </Col>
               </Col>
             </Col>
           </Col>
 
+          <section>
+            <Row gutter={[16, 0]}>
+              <Col>
+                <h1 className={s.textTitle}>Change Status</h1>
+              </Col>
+              <Col>
+                {orderDetails && (
+                  <Select
+                    style={{ width: 120 }}
+                    defaultValue={orderDetails?.status}
+                    onChange={(value) => setSelectStatus(value)}
+                  >
+                    <Option value="SUCCESS">SUCCESS</Option>
+                    <Option value="SHIPPING">SHIPPING</Option>
+                    <Option value="PENDING">PENDING</Option>
+                    <Option value="PROCEED">PROCEED</Option>
+                  </Select>
+                )}
+              </Col>
+            </Row>
+          </section>
+
           <Col span={24} style={{ textAlign: "right", marginTop: "40px" }}>
-            <Button type="primary" loading={loading}>
+            <Button type="primary" loading={loading} onClick={handleUpdate}>
               Save Changes
             </Button>
           </Col>

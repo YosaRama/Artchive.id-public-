@@ -2,7 +2,7 @@
 import { getSession } from "next-auth/react";
 
 // Contents
-import AppContentsTranscationDetails from "app/contents/transaction/details";
+import AppContentsTransactionDetails from "app/contents/transaction/details";
 
 // Helpers
 import dashboardSession from "app/helpers/dashboardSession";
@@ -10,7 +10,7 @@ import dashboardSession from "app/helpers/dashboardSession";
 function PageDashboardTransactionDetails() {
   return (
     <>
-      <AppContentsTranscationDetails />
+      <AppContentsTransactionDetails />
     </>
   );
 }
