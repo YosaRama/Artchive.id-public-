@@ -110,7 +110,6 @@ function ThemesContentsProfileTransaction(props) {
     limit: 5,
     queryString: `userId=${userId || ""}&status=${currentStatus || ""}`,
   });
-  console.log("orderData", orderData);
   // * ====================================== * //
 
   //? ============== Handle Load More ============= ?//
@@ -136,7 +135,7 @@ function ThemesContentsProfileTransaction(props) {
               <Col key={index} className={s.itemContainer}>
                 <Spin spinning={orderLoading}>
                   <ThemesProfileTransactionItemHeader
-                    transactionTime={item?.transaction_time.slice(0, 10)}
+                    transactionTime={item?.transaction_time}
                     orderId={item?.order_id}
                     status={item?.status}
                   />

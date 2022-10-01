@@ -37,7 +37,6 @@ apiHandler.post(async (req, res) => {
           data: result,
         });
       } catch (error) {
-        console.log(error);
         res.status(200).json({
           success: false,
           message: "Something wrong when update order data!",

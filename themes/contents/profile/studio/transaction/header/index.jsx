@@ -1,15 +1,8 @@
 // Libs
-import { Col, Row, Divider, Image, Badge, Spin } from "antd";
+import { Col, Row, Divider } from "antd";
 import { useRouter } from "next/router";
-import { useState } from "react";
 import propTypes from "prop-types";
-import {
-  ClockCircleOutlined,
-  SyncOutlined,
-  CompassOutlined,
-  ExclamationCircleOutlined,
-  CheckCircleOutlined,
-} from "@ant-design/icons";
+import moment from "moment";
 
 // Helper
 import stringCapitalize from "app/helpers/capitalize";
@@ -18,40 +11,25 @@ import { useWindowSize } from "app/helpers/useWindowSize";
 // Styles
 import s from "./index.module.scss";
 
-import { useOrderLoad } from "app/hooks/order";
+// Icons
+import {
+  ClockCircleOutlined,
+  SyncOutlined,
+  CompassOutlined,
+  ExclamationCircleOutlined,
+  CheckCircleOutlined,
+} from "@ant-design/icons";
 
 function ThemesProfileTransactionItemHeader(props) {
   const { status, transactionTime, orderId } = props;
   const router = useRouter();
   const { width } = useWindowSize();
 
-  const { userId } = props;
-
-  //? ============== Handle Filter ============= ?//
-  const [currentStatus, setCurrentStatus] = useState("");
-  const handleOrderStatus = (value) => {
-    const parseKey = value.key.toUpperCase();
-    setCurrentStatus(parseKey);
-  };
-  // * ====================================== * //
-
-  //? ============== Order Hooks ============= ?//
-  const {
-    data: orderData,
-    total,
-    size,
-    setSize,
-    loading: orderFilterLoading,
-  } = useOrderLoad({
-    queryString: `userId=${userId || ""}&status=${currentStatus || ""}`,
-  });
-  // * ====================================== * //
-
   return (
     <>
       {width > 500 && (
         <Col>
-          <Col>{transactionTime}</Col>
+          <Col>{moment(transactionTime).format("MMMM DD, YYYY")}</Col>
           <Row className={s.headerContainer}>
             <Col className={s.transactionId}>{orderId}</Col>
             <Col
@@ -89,7 +67,7 @@ function ThemesProfileTransactionItemHeader(props) {
         <Col>
           <Row className={s.headerContainer}>
             <Col style={{ width: "60%" }}>
-              <Col>{transactionTime}</Col>
+              <Col>{moment(transactionTime).format("MMMM DD, YYYY")}</Col>
               <Col className={s.transactionId}>{orderId}</Col>
             </Col>
             <Col>
