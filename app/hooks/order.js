@@ -42,7 +42,6 @@ export const useOrderLoad = ({ limit = 15, queryString = "" }) => {
 // * ====================================== * //
 
 //? ============== GENERAL HOOK (ALL DATA) ============= ?//
-
 export const useOrders = ({ queryString = "" }) => {
   const pathKeys = pathName + "?" + queryString;
   const [loading, setLoading] = useState(false);
@@ -57,7 +56,6 @@ export const useOrders = ({ queryString = "" }) => {
     loading: (!error && !data) || isValidating || loading,
   };
 };
-
 // * ====================================== * //
 
 //? ============== SPECIFIC HOOK (SINGLE DATA) ============= ?//

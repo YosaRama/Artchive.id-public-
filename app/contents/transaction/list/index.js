@@ -1,4 +1,5 @@
 // Libs
+import { useState } from "react";
 import { Empty, Table } from "antd";
 import { useRouter } from "next/router";
 import { v4 as uuid } from "uuid";
@@ -9,36 +10,48 @@ import AppContainerCard from "app/components/container/card";
 import OrderColumn from "./utils";
 
 // Data Hook
-import { useOrderLoad } from "app/hooks/order";
+import { useOrders } from "app/hooks/order";
 
 // Icon
 
-function AppContentsTranscationLists(props) {
+function AppContentsTransactionLists(props) {
   const router = useRouter();
+
+  //? ============== Handle Pagination ============= ?//
+  const pageSize = 10;
+  const [page, setPage] = useState();
+  const handlePagination = (pagination, sort, filter) => {
+    setPage(pagination.current);
+  };
+  // * ====================================== * //
 
   //? ============== Order Hooks ============= ?//
   const {
     data: orderData,
     total,
-    size,
-    setSize,
     loading,
-  } = useOrderLoad({
-    limit: 5,
-    queryString: `userId=${userId || ""}`,
+  } = useOrders({
+    queryString: `limit=${pageSize}&page=${page}`,
   });
 
   // * ====================================== * //
-  console.log(orderData);
-  const { userId } = props;
 
+  //? ============== Handle Column ============= ?//
   const column = OrderColumn();
+  // * ====================================== * //
 
   return (
     <AppContainerBox>
       <AppContainerCard title="Transaction List" style={{ margin: "30px 0" }}>
         {orderData && (
-          <Table columns={column} dataSource={orderData} rowKey={() => uuid()} loading={loading} />
+          <Table
+            columns={column}
+            dataSource={orderData}
+            rowKey={() => uuid()}
+            loading={loading}
+            pagination={{ pageSize: pageSize, total: total }}
+            onChange={handlePagination}
+          />
         )}
         {!orderData && <Empty />}
       </AppContainerCard>
@@ -46,4 +59,4 @@ function AppContentsTranscationLists(props) {
   );
 }
 
-export default AppContentsTranscationLists;
+export default AppContentsTransactionLists;
