@@ -34,7 +34,7 @@ function ThemesContentsProfileTransaction(props) {
     { label: <div className={s.menuItem}>All Order</div>, key: "" },
     { label: <div className={s.menuItem}> Proceed</div>, key: "proceed" },
     { label: <div className={s.menuItem}>Delivered</div>, key: "shipping" },
-    { label: <div className={s.menuItem}>Success</div>, key: "succeess" }, //TODO : Should be "success"//
+    { label: <div className={s.menuItem}>Success</div>, key: "success" },
   ];
   // * ====================================== * //
 
@@ -83,7 +83,7 @@ function ThemesContentsProfileTransaction(props) {
               <p>Success</p>
             </div>
           ),
-          key: "succeess",
+          key: "success",
         },
       ],
     },
@@ -110,6 +110,7 @@ function ThemesContentsProfileTransaction(props) {
     limit: 5,
     queryString: `userId=${userId || ""}&status=${currentStatus || ""}`,
   });
+  console.log("orderData", orderData);
   // * ====================================== * //
 
   //? ============== Handle Load More ============= ?//
@@ -129,7 +130,7 @@ function ThemesContentsProfileTransaction(props) {
           onSelect={handleOrderStatus}
         />
 
-        {orderData &&
+        {orderData?.length !== 0 &&
           orderData?.map((item, index) => {
             return (
               <Col key={index} className={s.itemContainer}>
@@ -139,22 +140,23 @@ function ThemesContentsProfileTransaction(props) {
                     orderId={item?.order_id}
                     status={item?.status}
                   />
-                  {item.order_item.map((items, index) => {
-                    return (
-                      <>
-                        <ThemesProfileTransactionItem
-                          imgUrl={items.media_cover.url}
-                          artworkUrl={items.slug}
-                          title={items.title}
-                          artist={items.artist.full_name}
-                          material={items.material}
-                          imgWidth={items.width}
-                          imgHeight={items.height}
-                          total={items.markup_price}
-                        />
-                      </>
-                    );
-                  })}
+                  {item?.order_item?.length !== 0 &&
+                    item?.order_item.map((items, index) => {
+                      return (
+                        <>
+                          <ThemesProfileTransactionItem
+                            imgUrl={items.media_cover.url}
+                            artworkUrl={items.slug}
+                            title={items.title}
+                            artist={items.artist.full_name}
+                            material={items.material}
+                            imgWidth={items.width}
+                            imgHeight={items.height}
+                            total={items.markup_price}
+                          />
+                        </>
+                      );
+                    })}
 
                   <ThemesProfileTransactionItemFooter totalAmount={item?.total_amount} />
                 </Spin>
