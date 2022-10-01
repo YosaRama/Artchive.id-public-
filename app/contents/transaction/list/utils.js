@@ -69,8 +69,7 @@ function OrderColumn() {
       dataIndex: "action",
       key: "action",
       render: (t, r) => {
-        console.log(r);
-        return <AppTableAction id={r.id} onEdit={handleEdit} />;
+        return <AppTableAction id={r.id} onEdit={handleEdit} activeDelete={false} />;
       },
     },
   ];
