@@ -83,27 +83,30 @@ function ThemesMobileNavbar() {
               activeMenu == "PROFILE" ? s.menuItemIconActive : ""
             }`}
           >
-            {/* <MobileAccountIcon
-              className={s.menuItemIcon}
-              onClick={() => {
-                router.push("/profile");
-                handleSelectMenu("PROFILE");
-              }}
-            /> */}
-            <div
-              style={{ margin: "0px 15px" }}
-              onClick={() => router.push("/profile")}
-              className={`${s.mobileHidden}`}
-            >
-              <Avatar
-                src={
-                  userData?.profile
-                    ? `${process.env.NEXT_PUBLIC_S3_URL}/${userData?.profile?.url}`
-                    : "/images/profile-default.png"
-                }
-                className={s.avatar}
+            {!userId ? (
+              <MobileAccountIcon
+                className={s.menuItemIcon}
+                onClick={() => {
+                  router.push("/profile");
+                  handleSelectMenu("PROFILE");
+                }}
               />
-            </div>
+            ) : (
+              <div
+                style={{ margin: "0px 15px" }}
+                onClick={() => router.push("/profile")}
+                className={`${s.mobileHidden}`}
+              >
+                <Avatar
+                  src={
+                    userData?.profile
+                      ? `${process.env.NEXT_PUBLIC_S3_URL}/${userData?.profile?.url}`
+                      : "/images/profile-default.png"
+                  }
+                  className={s.avatar}
+                />
+              </div>
+            )}
           </Col>
         </Row>
       </Card>
