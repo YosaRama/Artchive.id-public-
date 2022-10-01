@@ -3,7 +3,7 @@ import { Col, Form, Row } from "antd";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import moment from "moment";
-import { RightOutlined } from "@ant-design/icons";
+import { ArrowRightOutlined } from "@ant-design/icons";
 
 // Style
 import s from "./index.module.scss";
@@ -152,7 +152,7 @@ function ThemesContentsCheckout() {
             </p>
             <Col style={{ marginTop: "24px", marginBottom: "24px" }}>
               <ThemesButton type={"default " + s.button} onClick={handleTransaction}>
-                PROCEED <RightOutlined />
+                PROCEED <ArrowRightOutlined />
               </ThemesButton>
             </Col>
             <Col span={24} className={s.logoPaymentContainer}>
