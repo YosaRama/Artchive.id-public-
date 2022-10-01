@@ -163,9 +163,7 @@ function ThemesContentsCart(props) {
 
               <h1>Your Cart is Empty!</h1>
               <p>Look you haven’t made your choice yet..</p>
-              <Button type="primary" onClick={() => router.push("/artwork")}>
-                CONTINUE SHOPPING
-              </Button>
+              <ThemesButton onClick={() => router.push("/artwork")}>CONTINUE SHOPPING</ThemesButton>
             </Col>
           </Col>
         )}
