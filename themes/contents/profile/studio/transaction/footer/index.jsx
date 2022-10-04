@@ -22,7 +22,7 @@ function ThemesProfileTransactionItemFooter(props) {
           <Col className={s.textSubtotal}>Subtotal </Col>
           <Col className={s.subtotal}>
             <Col>IDR</Col>
-            <Col>{priceFormatter(`10000000`, ",")} </Col>
+            <Col>{priceFormatter(`${totalAmount}`, ",")} </Col>
           </Col>
         </Col>
       </Col>
@@ -31,7 +31,7 @@ function ThemesProfileTransactionItemFooter(props) {
           <Col className={s.textSubtotal}>Shipping </Col>
           <Col className={s.subtotal}>
             <Col>IDR</Col>
-            <Col>{priceFormatter(`10000000`, ",")} </Col>
+            <Col>{priceFormatter(`0`, ",")} </Col>
           </Col>
         </Col>
       </Col>

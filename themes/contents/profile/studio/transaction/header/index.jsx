@@ -5,7 +5,7 @@ import propTypes from "prop-types";
 import moment from "moment";
 
 // Helper
-import stringCapitalize from "app/helpers/capitalize";
+import { stringCapitalize } from "app/helpers/capitalize";
 import { useWindowSize } from "app/helpers/useWindowSize";
 
 // Styles
@@ -29,9 +29,10 @@ function ThemesProfileTransactionItemHeader(props) {
     <>
       {width > 500 && (
         <Col>
-          <Col>{moment(transactionTime).format("MMMM DD, YYYY")}</Col>
           <Row className={s.headerContainer}>
-            <Col className={s.transactionId}>{orderId}</Col>
+            <Col className={s.transactionId}>
+              {moment(transactionTime)?.format("MMMM DD, YYYY")}
+            </Col>
             <Col
               className={
                 status == "PENDING"
@@ -45,7 +46,7 @@ function ThemesProfileTransactionItemHeader(props) {
                   : s.statusSuccess
               }
             >
-              {status == "PENDING" ? (
+              {/* {status == "PENDING" ? (
                 <ClockCircleOutlined style={{ marginRight: "6px" }} />
               ) : status == "PROCEED" ? (
                 <SyncOutlined style={{ marginRight: "6px" }} />
@@ -55,11 +56,13 @@ function ThemesProfileTransactionItemHeader(props) {
                 <ExclamationCircleOutlined style={{ marginRight: "6px" }} />
               ) : (
                 <CheckCircleOutlined style={{ marginRight: "6px" }} />
-              )}
+              )} */}
 
               {stringCapitalize(status)}
+              {/* {status} */}
             </Col>
           </Row>
+          <Col>{orderId}</Col>
           <Divider className={s.divider} />
         </Col>
       )}
@@ -67,7 +70,7 @@ function ThemesProfileTransactionItemHeader(props) {
         <Col>
           <Row className={s.headerContainer}>
             <Col style={{ width: "60%" }}>
-              <Col>{moment(transactionTime).format("MMMM DD, YYYY")}</Col>
+              <Col>{moment(transactionTime)?.format("MMMM DD, YYYY")}</Col>
               <Col className={s.transactionId}>{orderId}</Col>
             </Col>
             <Col>

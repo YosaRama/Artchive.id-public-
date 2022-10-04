@@ -14,7 +14,7 @@
       width: auto;
       margin-right: 20px;
       text-align: right;
-      color: rgb(167, 167, 167);
+      color: rgb(0, 0, 0);
     }
     .subtotal {
       min-width: 180px;
@@ -85,19 +85,17 @@
     height: 100%;
     margin: auto 0px;
   }
-
   .subTotalContainer {
     min-width: 200px;
-  }
-
-  .textSubtotal {
-    font-size: 18px;
-  }
-
-  .subtotal {
-    font-size: 18px;
-    font-weight: 700;
-    min-width: 135px;
+    .subTotalPrice {
+      .textSubtotal {
+        font-size: 18px;
+      }
+      .subtotal {
+        min-width: 135px;
+        font-size: 18px;
+      }
+    }
   }
 
   .totalPrice {

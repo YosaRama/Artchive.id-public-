@@ -1,9 +1,11 @@
 // Libs
 import { Col } from "antd";
 import { useRouter } from "next/router";
+import { motion } from "framer-motion";
 
 // Styles
 import s from "./index.module.scss";
+import { fadingLeftToRight } from "app/database/framer-motion";
 
 // Icons
 import { MobileAccountIcon } from "public/icons/mobile-account-icon";
@@ -17,7 +19,12 @@ function ThemesProfileNavbar() {
 
   return (
     <>
-      <div className={s.container}>
+      <motion.div
+        variants={fadingLeftToRight}
+        initial="hidden"
+        animate="visible"
+        className={s.container}
+      >
         <Col className={s.iconBox} span={24}>
           <MobileHomeIcon className={s.icon} onClick={() => router.push("/")} />
         </Col>
@@ -44,7 +51,7 @@ function ThemesProfileNavbar() {
             onClick={() => router.push("/profile/transaction")}
           />
         </Col>
-      </div>
+      </motion.div>
     </>
   );
 }

@@ -26,17 +26,12 @@ import s from "./index.module.scss";
 
 function ThemesContentsArtworkDetailsInformation(props) {
   const { artworkData } = props;
-
   const genre = artworkData.genre;
-
   const router = useRouter();
 
   //? ============== Modal Handle ============= ?//
-
   const [modalVisible, setModalVisible] = useState(false);
-
   const modalLogin = () => setModalVisible(true);
-
   const modalClose = () => {
     setModalVisible(false);
   };

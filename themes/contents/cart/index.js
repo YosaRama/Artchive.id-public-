@@ -20,14 +20,12 @@ import ThemesDividerWithButton from "themes/components/libs/divider-with-button"
 // Data Hook
 import { useArtworks } from "app/hooks/artwork";
 import { useCarts } from "app/hooks/cart";
-import { useUploads } from "app/hooks/upload";
 
 // Styles
 import s from "./index.module.scss";
 
 // Helper
 import priceFormatter from "app/helpers/priceFormatter";
-import Link from "next/link";
 
 function ThemesContentsCart(props) {
   const router = useRouter();
@@ -53,7 +51,7 @@ function ThemesContentsCart(props) {
   // const { data: otherArtworkData } = useArtworks({
   //   queryString: `excludeSlug=${artworkData?.slug}&artistId=${artworkData?.artist_id}&client=true&limit=4`,
   // });
-  // // * ====================================== * //
+  // * ====================================== * //
 
   //? ============== Might Like Artwork Hook ============= ?//
   const genreListData = artworkData?.genre.map((item) => item.id);

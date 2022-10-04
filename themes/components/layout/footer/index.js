@@ -15,7 +15,7 @@ function ThemesFooter() {
   const router = useRouter();
   //? ============== Footer Menu ============= ?//
   const footerMenu = [
-    { title: "About Us", link: "/maintenance" },
+    { title: "About Us", link: "/about" },
     { title: "Artist", link: "/artist" },
     { title: "Artwork", link: "/artwork" },
     { title: "Contact Us", link: "/contact-us" },

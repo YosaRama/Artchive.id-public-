@@ -1,5 +1,5 @@
 // Libs
-import { Col, Menu, Spin } from "antd";
+import { Col, Menu, Spin, Dropdown, Empty, Row, Carousel } from "antd";
 import { useState } from "react";
 import propTypes from "prop-types";
 import {
@@ -9,12 +9,14 @@ import {
   CompassOutlined,
   CheckCircleOutlined,
 } from "@ant-design/icons";
+import { motion } from "framer-motion";
 
 // Components
 import ThemesButton from "themes/components/libs/button";
 import ThemesProfileTransactionItemHeader from "./header";
 import ThemesProfileTransactionItem from "./list";
 import ThemesProfileTransactionItemFooter from "./footer";
+import ThemesCarouselMenu from "themes/components/libs/carousel-menu";
 
 // Helpers
 import { useWindowSize } from "app/helpers/useWindowSize";
@@ -24,72 +26,11 @@ import { useOrderLoad } from "app/hooks/order";
 
 // Styles
 import s from "./index.module.scss";
+import { fadeTopToBottom, fadingLeftToRight } from "app/database/framer-motion";
 
 function ThemesContentsProfileTransaction(props) {
   const { userId } = props;
   const { width } = useWindowSize();
-
-  //? ============== Handle Menu ============= ?//
-  const menuItems = [
-    { label: <div className={s.menuItem}>All Order</div>, key: "" },
-    { label: <div className={s.menuItem}> Proceed</div>, key: "proceed" },
-    { label: <div className={s.menuItem}>Delivered</div>, key: "shipping" },
-    { label: <div className={s.menuItem}>Success</div>, key: "success" },
-  ];
-  // * ====================================== * //
-
-  //? ============== Handle Menu Mobile ============= ?//
-  const menuItemsMobile = [
-    {
-      label: (
-        <div className={s.menuContainerMobile}>
-          Your Order Status <DownOutlined className={s.menuIcon} style={{ marginLeft: "6px" }} />
-        </div>
-      ),
-
-      key: "submenu",
-      children: [
-        {
-          label: (
-            <div className={s.menuItemMobile}>
-              <ClockCircleOutlined className={s.menuIcon} />
-              <p>All Order</p>
-            </div>
-          ),
-          key: "",
-        },
-        {
-          label: (
-            <div className={s.menuItemMobile}>
-              <SyncOutlined className={s.menuIcon} />
-              <p>Proceed</p>
-            </div>
-          ),
-          key: "proceed",
-        },
-        {
-          label: (
-            <div className={s.menuItemMobile}>
-              <CompassOutlined className={s.menuIcon} />
-              <p>Delivered</p>
-            </div>
-          ),
-          key: "shipping",
-        },
-        {
-          label: (
-            <div className={s.menuItemMobile}>
-              <CheckCircleOutlined className={s.menuIcon} />
-              <p>Success</p>
-            </div>
-          ),
-          key: "success",
-        },
-      ],
-    },
-    //TODO : Should be "success"//
-  ];
-  // * ====================================== * //
 
   //? ============== Handle Filter ============= ?//
   const [currentStatus, setCurrentStatus] = useState("");
@@ -118,22 +59,49 @@ function ThemesContentsProfileTransaction(props) {
   };
   // * ====================================== * //
 
+  //? ============== Handle Menu ============= ?//
+  const menuItems = [
+    { label: <div className={s.menuItem}>All Order</div>, key: "" },
+    { label: <div className={s.menuItem}>Proceed</div>, key: "proceed" },
+    { label: <div className={s.menuItem}>Delivered</div>, key: "shipping" },
+    { label: <div className={s.menuItem}>Success</div>, key: "success" },
+  ];
+  // * ====================================== * //
+
   return (
     <>
       <Col className={s.container}>
-        <Menu
-          mode="horizontal"
-          defaultSelectedKeys={[""]}
-          className={s.menuContainer}
-          items={width > 500 ? menuItems : menuItemsMobile}
-          onSelect={handleOrderStatus}
-        />
+        {width > 500 && (
+          <Menu
+            mode="horizontal"
+            defaultSelectedKeys={[""]}
+            className={s.menuContainer}
+            items={menuItems}
+            onSelect={handleOrderStatus}
+          />
+        )}
+        {width < 500 && <ThemesCarouselMenu />}
 
+        {orderData?.length == 0 && (
+          <motion.div
+            variants={fadeTopToBottom}
+            initial="hidden"
+            animate="visible"
+            className={s.empty}
+          >
+            <Empty description={<p>Ups, there is no item</p>} />
+          </motion.div>
+        )}
         {orderData?.length !== 0 &&
           orderData?.map((item, index) => {
             return (
-              <Col key={index} className={s.itemContainer}>
-                <Spin spinning={orderLoading}>
+              <Spin key={index} spinning={orderLoading}>
+                <motion.div
+                  variants={fadingLeftToRight}
+                  initial="hidden"
+                  animate="visible"
+                  className={s.itemContainer}
+                >
                   <ThemesProfileTransactionItemHeader
                     transactionTime={item?.transaction_time}
                     orderId={item?.order_id}
@@ -158,12 +126,17 @@ function ThemesContentsProfileTransaction(props) {
                     })}
 
                   <ThemesProfileTransactionItemFooter totalAmount={item?.total_amount} />
-                </Spin>
-              </Col>
+                </motion.div>
+              </Spin>
             );
           })}
 
-        {orderData?.length !== total && (
+        {/* {orderData?.length !== total && (
+          <Col span={24} style={{ textAlign: "center", marginBottom: 60 }}>
+            <ThemesButton onClick={handleLoadMore}>LOAD MORE</ThemesButton>
+          </Col>
+        )} */}
+        {orderData?.length > 1 && orderData?.length !== total && (
           <Col span={24} style={{ textAlign: "center", marginBottom: 60 }}>
             <ThemesButton onClick={handleLoadMore}>LOAD MORE</ThemesButton>
           </Col>

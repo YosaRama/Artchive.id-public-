@@ -54,7 +54,10 @@ function ThemesArtworkCard(props) {
           <Col className={s.artworkDetails}>
             <h1 className={s.title}>{artworkTitle}</h1>
 
-            <Col className={s.divider} />
+            <Col style={{ width: "80%", margin: "0px auto" }}>
+              <Divider className={s.divider} />
+            </Col>
+
             <p>
               <span className={s.artist}>{artistName}</span>
               {artistCity && `, ${artistCity}`}

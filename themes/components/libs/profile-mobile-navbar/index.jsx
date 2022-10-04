@@ -3,9 +3,11 @@ import { Card, Col, Row, Avatar } from "antd";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
+import { motion } from "framer-motion";
 
 // Styles
 import s from "./index.module.scss";
+import { fadingBottomToTop } from "app/database/framer-motion";
 
 // Hooks
 import { useUser } from "app/hooks/user";
@@ -38,86 +40,88 @@ function ThemesProfileMobileNavbar() {
 
   return (
     <>
-      <Card bodyStyle={{ padding: 0 }} className={s.card}>
-        <Row justify="center" align="middle">
-          <Col className={`${s.menuItemContainer}`}>
-            <MobileHomeIcon
-              onClick={() => {
-                router.push("/");
-                handleSelectMenu("HOME");
-              }}
-              className={`${s.menuItemIcon}  ${activeMenu == "HOME" ? s.menuItemIconActive : ""}`}
-            />
-          </Col>
-          <Col
-            className={`${s.menuItemContainer} ${
-              activeMenu == "ARTWORK" ? s.menuItemIconActive : ""
-            }`}
-          >
-            <ProfileArtworkIcon
-              className={s.menuItemIcon}
-              onClick={() => {
-                router.push("/profile/studio");
-                handleSelectMenu("ARTWORK");
-              }}
-            />
-          </Col>
-          <Col className={`${s.menuItemContainer} ${s.iconPlus}`}>
-            <div
-              className={s.plusIconBox}
-              onClick={() => {
-                router.push("/profile/studio/create");
-                handleSelectMenu();
-              }}
+      <motion.div variants={fadingBottomToTop} initial="hidden" animate="visible">
+        <Card bodyStyle={{ padding: 0 }} className={s.card}>
+          <Row justify="center" align="middle">
+            <Col className={`${s.menuItemContainer}`}>
+              <MobileHomeIcon
+                onClick={() => {
+                  router.push("/");
+                  handleSelectMenu("HOME");
+                }}
+                className={`${s.menuItemIcon}  ${activeMenu == "HOME" ? s.menuItemIconActive : ""}`}
+              />
+            </Col>
+            <Col
+              className={`${s.menuItemContainer} ${
+                activeMenu == "ARTWORK" ? s.menuItemIconActive : ""
+              }`}
             >
-              <CirclePlusIcon className={s.plusIcon} />
-            </div>
-          </Col>
-          <Col
-            className={`${s.menuItemContainer} ${
-              activeMenu == "ARTIST" ? s.menuItemIconActive : ""
-            }`}
-          >
-            <ProfileOrderIcon
-              className={`${s.menuItemIcon} ${s.menuOrderIcon}`}
-              onClick={() => {
-                router.push("/profile/transaction");
-                handleSelectMenu("ARTIST");
-              }}
-            />
-          </Col>
-          <Col
-            className={`${s.menuItemContainer} ${
-              activeMenu == "PROFILE" ? s.menuItemIconActive : ""
-            }`}
-          >
-            {!userId ? (
-              <MobileAccountIcon
+              <ProfileArtworkIcon
                 className={s.menuItemIcon}
                 onClick={() => {
-                  router.push("/profile");
-                  handleSelectMenu("PROFILE");
+                  router.push("/profile/studio");
+                  handleSelectMenu("ARTWORK");
                 }}
               />
-            ) : (
+            </Col>
+            <Col className={`${s.menuItemContainer} ${s.iconPlus}`}>
               <div
-                // style={{ margin: "0px 15px" }}
-                onClick={() => router.push("/profile")}
-                className={`${s.mobileHidden}`}
+                className={s.plusIconBox}
+                onClick={() => {
+                  router.push("/profile/studio/create");
+                  handleSelectMenu();
+                }}
               >
-                <Avatar
-                  src={
-                    userData?.profile
-                      ? `${process.env.NEXT_PUBLIC_S3_URL}/${userData?.profile?.url}`
-                      : "/images/profile-default.png"
-                  }
-                  className={s.avatar}
-                />
+                <CirclePlusIcon className={s.plusIcon} />
               </div>
-            )}
-          </Col>
-        </Row>
-      </Card>
+            </Col>
+            <Col
+              className={`${s.menuItemContainer} ${
+                activeMenu == "ARTIST" ? s.menuItemIconActive : ""
+              }`}
+            >
+              <ProfileOrderIcon
+                className={`${s.menuItemIcon} ${s.menuOrderIcon}`}
+                onClick={() => {
+                  router.push("/profile/transaction");
+                  handleSelectMenu("ARTIST");
+                }}
+              />
+            </Col>
+            <Col
+              className={`${s.menuItemContainer} ${
+                activeMenu == "PROFILE" ? s.menuItemIconActive : ""
+              }`}
+            >
+              {!userId ? (
+                <MobileAccountIcon
+                  className={s.menuItemIcon}
+                  onClick={() => {
+                    router.push("/profile");
+                    handleSelectMenu("PROFILE");
+                  }}
+                />
+              ) : (
+                <div
+                  // style={{ margin: "0px 15px" }}
+                  onClick={() => router.push("/profile")}
+                  className={`${s.mobileHidden}`}
+                >
+                  <Avatar
+                    src={
+                      userData?.profile
+                        ? `${process.env.NEXT_PUBLIC_S3_URL}/${userData?.profile?.url}`
+                        : "/images/profile-default.png"
+                    }
+                    className={s.avatar}
+                  />
+                </div>
+              )}
+            </Col>
+          </Row>
+        </Card>
+      </motion.div>
     </>
   );
 }

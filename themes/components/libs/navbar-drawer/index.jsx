@@ -30,7 +30,7 @@ function ThemesNavbarDrawer(props) {
 
   const thirdMenuList = [
     { link: "/articles", label: "ART ARTICLE" },
-    { link: "/maintenance", label: "ABOUT US" },
+    { link: "/about", label: "ABOUT US" },
     { link: "/contact-us", label: "CONTACT US" },
   ];
   // * ====================================== * //

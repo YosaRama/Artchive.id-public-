@@ -5,6 +5,7 @@ import { Card, Col, Empty, Form, Input, Row, Select, Slider, Spin, Divider } fro
 import { useState } from "react";
 const { Option } = Select;
 import { DownOutlined } from "@ant-design/icons";
+import { motion } from "framer-motion";
 
 // Components
 import ThemesContainerMain from "themes/components/container/main";
@@ -25,6 +26,7 @@ import priceFormatter from "app/helpers/priceFormatter";
 
 // Styles
 import s from "./index.module.scss";
+import { searchCollapse } from "app/database/framer-motion";
 
 function ThemesContentsArtworkList() {
   const router = useRouter();
@@ -190,9 +192,16 @@ function ThemesContentsArtworkList() {
             </Col>
           </Col>
 
-          <Col span={24} className={s.searchCollapse} onClick={handleSearchVisible}>
+          <motion.div
+            variants={searchCollapse}
+            initial="hidden"
+            animate="visible"
+            span={24}
+            className={s.searchCollapse}
+            onClick={handleSearchVisible}
+          >
             FILTER <DownOutlined className={`${active}`} />
-          </Col>
+          </motion.div>
         </Col>
       )}
       {/* // * ====================================== * // */}

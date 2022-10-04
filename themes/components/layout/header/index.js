@@ -5,6 +5,8 @@ import { useSession } from "next-auth/react";
 import { Avatar, Col, Layout, Row, Badge } from "antd";
 import Image from "next/image";
 const { Header } = Layout;
+import ThemesNotificationModal from "./notification-header";
+import { motion } from "framer-motion";
 
 // Components
 import ThemesContainerMain from "themes/components/container/main";
@@ -23,7 +25,7 @@ import { CartIcon } from "public/icons/cart-icon";
 
 // Styles
 import s from "./index.module.scss";
-import ThemesNotificationModal from "./notification-header";
+import { fadeTopToBottom } from "app/database/framer-motion";
 
 // Dummy
 import { notificationList } from "app/database/dummy/notification";
@@ -60,21 +62,29 @@ function ThemesHeader() {
       <Header className={s.container}>
         <ThemesContainerMain>
           <Row style={{ height: "100%" }} justify="space-between">
-            <Col className={s.logo} onClick={() => router.push("/")}>
-              <Image
-                src="/images/logo-without-text.png"
-                alt=""
-                layout="fill"
-                objectFit="contain"
-                okButtonProps={{
-                  visible: false,
-                }}
-                cancelButtonProps={{
-                  visible: false,
-                }}
-              />
-            </Col>
-            <Col className={s.menu}>
+            <motion.div variants={fadeTopToBottom} initial="hidden" animate="visible">
+              <Col className={s.logo} onClick={() => router.push("/")}>
+                {" "}
+                <Image
+                  src="/images/logo-without-text.png"
+                  alt=""
+                  layout="fill"
+                  objectFit="contain"
+                  okButtonProps={{
+                    visible: false,
+                  }}
+                  cancelButtonProps={{
+                    visible: false,
+                  }}
+                />
+              </Col>
+            </motion.div>
+            <motion.div
+              variants={fadeTopToBottom}
+              initial="hidden"
+              animate="visible"
+              className={s.menu}
+            >
               {session && (
                 <>
                   {width >= 500 && (
@@ -117,8 +127,8 @@ function ThemesHeader() {
                   )}
 
                   {width < 500 && (
-                    <Row style={{ display: "flex", alignItems: "center" }}>
-                      <Col style={{ marginRight: "19px" }}>
+                    <Row style={{ display: "flex" }}>
+                      <Col style={{ marginRight: "20px" }}>
                         <Badge
                           count={cartItem?.length}
                           size="small"
@@ -135,7 +145,7 @@ function ThemesHeader() {
                           />
                         </Badge>
                       </Col>
-                      <Col style={{ marginRight: "19px" }}>
+                      <Col style={{ marginRight: "20px" }}>
                         <Badge
                           count={notificationList?.length}
                           size="small"
@@ -196,7 +206,7 @@ function ThemesHeader() {
                 </>
               )}
               <MenuOutlined className={`${s.hamburger}`} onClick={() => setOpenMenu(true)} />
-            </Col>
+            </motion.div>
           </Row>
         </ThemesContainerMain>
       </Header>

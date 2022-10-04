@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { Affix, Col, Form, Input, Row, Select } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 // Components
 import ThemesContainerMain from "themes/components/container/main";
@@ -19,6 +20,7 @@ import { useWindowSize } from "app/helpers/useWindowSize";
 
 // Styles
 import s from "./index.module.scss";
+import { searchCollapse } from "app/database/framer-motion";
 
 function ThemesContentsArtistList(props) {
   const router = useRouter();
@@ -123,9 +125,17 @@ function ThemesContentsArtistList(props) {
             </Form>
           </Col>
 
-          <Col span={24} className={s.searchCollapse} onClick={handleSearchVisible}>
+          <motion.div
+            variants={searchCollapse}
+            initial="hidden"
+            animate="visible"
+            span={24}
+            className={s.searchCollapse}
+            onClick={handleSearchVisible}
+          >
+            {" "}
             FILTER <DownOutlined className={`${active}`} />
-          </Col>
+          </motion.div>
         </Col>
       )}
       {/* // * ====================================== * // */}

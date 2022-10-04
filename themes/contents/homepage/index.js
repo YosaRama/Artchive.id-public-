@@ -2,6 +2,7 @@
 import propTypes from "prop-types";
 import { useRouter } from "next/router";
 import { Col, Row } from "antd";
+import { AnimatePresence, motion } from "framer-motion";
 
 // Components
 import ThemesContainerMain from "themes/components/container/main";
@@ -14,6 +15,12 @@ import ThemesHeadline from "themes/components/libs/headline";
 
 // Styles
 import s from "./index.module.scss";
+import {
+  fadeTopToBottom,
+  fadeTopToBottomShowcase,
+  fading,
+  fadingExit,
+} from "app/database/framer-motion";
 
 function ThemesContentsHomepage(props) {
   const { artworkData, artistData } = props;
@@ -22,21 +29,33 @@ function ThemesContentsHomepage(props) {
     <>
       {/* //? ============== Banner Section ============= ?// */}
       <ThemesBanner imgSrc="/images/banner-homepage.jpg">
-        <div className={s.searchBox}>
+        <motion.div
+          variants={fadeTopToBottomShowcase}
+          initial="hidden"
+          animate="visible"
+          className={s.searchBox}
+        >
           <ThemesHomepageSearchBox />
-        </div>
+        </motion.div>
       </ThemesBanner>
+
       {/* // * ====================================== * // */}
 
       {/* //? ============== Artwork Section ============= ?// */}
       <ThemesContainerMain sectionclass={s.sectionContainer}>
         {artworkData && (
-          <section className={s.section}>
+          <motion.section
+            variants={fading}
+            initial="hidden"
+            animate="visible"
+            className={s.section}
+          >
             <ThemesHeadline
               title="Artwork"
               subtitle="Original artwork by our artist"
               className={s.pageTitle}
             />
+
             <Row gutter={[16, 0]} className={s.list}>
               {artworkData.map((item, index) => (
                 <Col
@@ -56,7 +75,7 @@ function ThemesContentsHomepage(props) {
                 </Col>
               ))}
             </Row>
-          </section>
+          </motion.section>
         )}
         {/* // * ====================================== * // */}
 
