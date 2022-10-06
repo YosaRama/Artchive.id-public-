@@ -61,10 +61,10 @@ function ThemesContentsProfileTransaction(props) {
 
   //? ============== Handle Menu ============= ?//
   const menuItems = [
-    { label: <div className={s.menuItem}>All Order</div>, key: "" },
-    { label: <div className={s.menuItem}>Proceed</div>, key: "proceed" },
-    { label: <div className={s.menuItem}>Delivered</div>, key: "shipping" },
-    { label: <div className={s.menuItem}>Success</div>, key: "success" },
+    { label: "All Order", key: "" },
+    { label: "Proceed", key: "proceed" },
+    { label: "Delivered", key: "shipping" },
+    { label: "Success", key: "success" },
   ];
   // * ====================================== * //
 
@@ -76,11 +76,19 @@ function ThemesContentsProfileTransaction(props) {
             mode="horizontal"
             defaultSelectedKeys={[""]}
             className={s.menuContainer}
-            items={menuItems}
+            items={menuItems.map((item) => {
+              return { label: <div className={s.menuItem}>{item.label}</div>, key: item.key };
+            })}
             onSelect={handleOrderStatus}
           />
         )}
-        {width < 500 && <ThemesCarouselMenu />}
+        {width < 500 && (
+          <ThemesCarouselMenu
+            menuList={menuItems}
+            handleSetMenu={handleOrderStatus}
+            currentMenu={currentStatus}
+          />
+        )}
 
         {orderData?.length == 0 && (
           <motion.div
@@ -131,11 +139,6 @@ function ThemesContentsProfileTransaction(props) {
             );
           })}
 
-        {/* {orderData?.length !== total && (
-          <Col span={24} style={{ textAlign: "center", marginBottom: 60 }}>
-            <ThemesButton onClick={handleLoadMore}>LOAD MORE</ThemesButton>
-          </Col>
-        )} */}
         {orderData?.length > 1 && orderData?.length !== total && (
           <Col span={24} style={{ textAlign: "center", marginBottom: 60 }}>
             <ThemesButton onClick={handleLoadMore}>LOAD MORE</ThemesButton>

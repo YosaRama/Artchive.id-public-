@@ -49,10 +49,38 @@
 .menuItem {
   text-align: center;
   background: white;
-  height: 60px;
+  height: 50px;
   margin: 20px 0px 0px;
+  position: relative;
+  transition: all 0.3s ease;
   p {
     position: relative;
     top: 30%;
+    transition: all 0.3s ease;
   }
+  &::after {
+    content: "";
+    width: 0;
+    height: 2px;
+    background: #e5890a;
+    transition: all 0.3s ease;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  &.active {
+    p {
+      color: #e5890a;
+      position: relative;
+    }
+    &::after {
+      content: "";
+      width: 100%;
+    }
+  }
+}
+
+.menuContainer {
+  flex-wrap: nowrap;
+  overflow: auto;
 }
