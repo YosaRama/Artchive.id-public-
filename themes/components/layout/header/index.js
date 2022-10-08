@@ -106,7 +106,7 @@ function ThemesHeader() {
                           <ThemesHeaderCart onChange={(e) => setIconVisible()} />
                         </Badge>
                       </Col>
-                      <Col
+                      {/* <Col
                         style={{
                           marginRight: "16px",
                           width: "30px",
@@ -122,7 +122,7 @@ function ThemesHeader() {
                         >
                           <ThemesNotificationModal onChange={(e) => setIconVisible()} />
                         </Badge>
-                      </Col>
+                      </Col> */}
                     </Row>
                   )}
 
@@ -145,7 +145,7 @@ function ThemesHeader() {
                           />
                         </Badge>
                       </Col>
-                      <Col style={{ marginRight: "20px" }}>
+                      {/* <Col style={{ marginRight: "20px" }}>
                         <Badge
                           count={notificationList?.length}
                           size="small"
@@ -161,7 +161,7 @@ function ThemesHeader() {
                             }}
                           />
                         </Badge>
-                      </Col>
+                      </Col> */}
                     </Row>
                   )}
                   {width > 500 && (
