@@ -121,12 +121,11 @@ function ThemesContentsCheckout() {
             <Col className={s.totalPrice}>
               <h2>{`Total:`}</h2>
               <h2 style={{ color: "#e5890a", fontFamily: "Aileron" }}>
-                {/* total price data is here */}
                 {`IDR`}{" "}
                 <span style={{ fontWeight: "400" }}>{priceFormatter(`${cartTotal}`, ",")}</span>
               </h2>
             </Col>
-            <Col
+            {/* <Col
               style={{
                 padding: "24px",
                 background: "white",
@@ -140,14 +139,16 @@ function ThemesContentsCheckout() {
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Bibendum euismod mattis sed
                 enim sed pulvinar.
               </p>
-            </Col>
-            <p style={{ color: "#e5890a" }}>
+            </Col> */}
+            <p style={{ color: "#e5890a", marginTop: 20 }}>
               {`Got trouble with your transaction? `}
-              <span
-                className={s.link}
-                href={`https://wa.me/${process.env.NEXT_PUBLIC_PHONE_NUMBER}`}
-              >
-                Contact Us
+              <span className={s.link}>
+                <a
+                  href={`https://wa.me/${process.env.NEXT_PUBLIC_PHONE_NUMBER}`}
+                  style={{ textDecoration: "underline" }}
+                >
+                  Contact Us
+                </a>
               </span>
             </p>
             <Col style={{ marginTop: "24px", marginBottom: "24px" }}>
