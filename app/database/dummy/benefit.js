@@ -37,17 +37,16 @@ export const benefitList = [
 
 export const aboutTeamsCard = [
   {
-    imageTeam: "/images/team-2.jpg",
-    name: "Dion Pramana",
-    position: "Kacung Artchive",
-    description:
-      "Create a creative design for social media content and website content for digital marketing.",
-  },
-  {
     imageTeam: "/images/team-5.jpg",
     name: "Yosa Rama Dinata",
-    position: "Web Developer",
+    position: "Project Manager",
     description: "Specialist Project Management & Technology Implementating.",
+  },
+  {
+    imageTeam: "/images/team-2.jpg",
+    name: "Dion Pramana",
+    position: "Web Developer",
+    description: "Do Program and manage all the things about development on artchive.id.",
   },
   {
     imageTeam: "/images/team-3.jpg",
@@ -67,13 +66,6 @@ export const aboutTeamsCard = [
     position: "Content Idea",
     description: "reate ideas for content for digital marketing on social media and website. ",
   },
-  // {
-  //   imageTeam: "/images/team-1.jpg",
-  //   name: "Wayan Arnata",
-  //   position: "Content Writer",
-  //   description:
-  //     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus mi mauris in quis vitae integer. Luctus mattis justo aliquet dui vel mauris duis cum et",
-  // },
   {
     imageTeam: "/images/team-4.jpg",
     name: "Nina Valentina",
@@ -82,15 +74,4 @@ export const aboutTeamsCard = [
   },
 ];
 
-export const logoPartner = [
-  { logoPartner: "/images/logo-jepun.png" },
-  // { logoPartner: "/images/our-partner-2.png" },
-  // { logoPartner: "/images/our-partner-3.png" },
-  // { logoPartner: "/images/our-partner-4.png" },
-  // { logoPartner: "/images/our-partner-5.png" },
-  // { logoPartner: "/images/our-partner-3.png" },
-  // { logoPartner: "/images/our-partner-1.png" },
-  // { logoPartner: "/images/our-partner-4.png" },
-  // { logoPartner: "/images/our-partner-5.png" },
-  // { logoPartner: "/images/our-partner-2.png" },
-];
+export const logoPartner = [{ logoPartner: "/images/logo-jepun.png" }];
