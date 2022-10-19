@@ -49,12 +49,12 @@
 }
 
 .priceContainer {
-  width: 180px;
+  width: 150px;
   height: 100%;
   margin: auto 0px;
   text-align: right;
   color: #e5890a;
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 400;
   font-family: "Aileron" !important;
   display: flex;
@@ -63,6 +63,7 @@
 
 .divider {
   margin: 20px 0px;
+  background: rgb(20, 20, 20);
 }
 
 //? ============== Tablet Potrait View ============= ?//
@@ -93,6 +94,6 @@
   .priceContainer {
     font-size: 18px;
     font-weight: 400;
-    width: 135px;
+    width: 125px;
   }
 }

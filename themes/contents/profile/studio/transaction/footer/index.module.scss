@@ -1,28 +1,28 @@
 .subTotalContainer {
   display: flex;
   justify-content: flex-end;
-  min-width: 300px;
+  min-width: 280px;
   height: 100%;
   margin: auto 0px;
   .subTotalPrice {
     display: flex;
     justify-content: flex-end;
     .textSubtotal {
-      font-family: "DM Serif Display" !important;
+      font-family: "Aileron" !important;
       font-weight: 700;
-      font-size: 24px;
+      font-size: 18px;
       width: auto;
       margin-right: 20px;
       text-align: right;
       color: rgb(0, 0, 0);
     }
     .subtotal {
-      min-width: 180px;
+      min-width: 150px;
       height: 100%;
       margin: auto 0px;
       text-align: right;
       color: #e5890a;
-      font-size: 24px;
+      font-size: 18px;
       font-weight: 400;
       font-family: "Aileron" !important;
       display: flex;
@@ -42,7 +42,7 @@
 }
 
 .totalPrice {
-  min-width: 300px;
+  min-width: 280px;
   height: 100%;
   margin: auto 0px;
 
@@ -51,21 +51,21 @@
 }
 
 .textTotal {
-  font-family: "DM Serif Display" !important;
+  font-family: "Aileron" !important;
   font-weight: 700;
-  font-size: 24px;
-  width: 150px;
+  font-size: 18px;
+  width: 120px;
   margin-right: 20px;
   text-align: right;
 }
 
 .total {
-  width: 180px;
+  width: 150px;
   height: 100%;
   margin: auto 0px;
   text-align: right;
   color: #e5890a;
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 700;
   font-family: "Aileron" !important;
   display: flex;
@@ -74,6 +74,7 @@
 
 .divider {
   margin: 20px 0px;
+  background: rgb(20, 20, 20);
 }
 
 //? ============== Mobile View ============= ?//
@@ -90,9 +91,10 @@
     .subTotalPrice {
       .textSubtotal {
         font-size: 18px;
+        margin-right: 5px;
       }
       .subtotal {
-        min-width: 135px;
+        min-width: 125px;
         font-size: 18px;
       }
     }
@@ -105,26 +107,14 @@
   }
 
   .textTotal {
-    font-family: "DM Serif Display" !important;
-    font-weight: 700;
     font-size: 18px;
-    width: auto;
-    margin-right: 20px;
-    text-align: right;
-    color: rgb(0, 0, 0);
+    margin-right: 5px;
   }
 
   .total {
-    width: 135px;
-    height: 100%;
-    margin: auto 0px;
-    text-align: right;
-    color: #e5890a;
+    width: 125px;
     font-size: 18px;
-    font-weight: 700;
     font-family: "Aileron" !important;
-    display: flex;
-    justify-content: space-between;
   }
 
   .invoiceButton {

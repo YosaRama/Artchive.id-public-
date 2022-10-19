@@ -1,6 +1,7 @@
 // Libs
 import { Col, Row, Divider } from "antd";
 import propTypes from "prop-types";
+import { DownloadOutlined } from "@ant-design/icons";
 
 // Components
 import ThemesButton from "themes/components/libs/button";
@@ -19,7 +20,7 @@ function ThemesProfileTransactionItemFooter(props) {
     <Col>
       <Col className={s.subTotalContainer}>
         <Col className={s.subTotalPrice}>
-          <Col className={s.textSubtotal}>Subtotal </Col>
+          <Col className={s.textSubtotal}>Subtotal : </Col>
           <Col className={s.subtotal}>
             <Col>IDR</Col>
             <Col>{priceFormatter(`${totalAmount}`, ",")} </Col>
@@ -28,7 +29,9 @@ function ThemesProfileTransactionItemFooter(props) {
       </Col>
       <Col className={s.subTotalContainer}>
         <Col className={s.subTotalPrice}>
-          <Col className={s.textSubtotal}>Shipping </Col>
+          {width > 500 && <Col className={s.textSubtotal}>Shipping Fee : </Col>}
+          {width < 500 && <Col className={s.textSubtotal}>Shipping : </Col>}
+
           <Col className={s.subtotal}>
             <Col>IDR</Col>
             <Col>{priceFormatter(`0`, ",")} </Col>
@@ -41,11 +44,14 @@ function ThemesProfileTransactionItemFooter(props) {
         <Row className={s.footerContainer}>
           <Col className={s.invoiceButton}>
             {" "}
-            <ThemesButton>DOWNLOAD INVOICE</ThemesButton>
+            <ThemesButton>
+              <DownloadOutlined style={{ fontSize: "17px" }} />
+              DOWNLOAD INVOICE
+            </ThemesButton>
           </Col>
 
           <Col className={s.totalPrice}>
-            <Col className={s.textTotal}>Total </Col>
+            <Col className={s.textTotal}>Total : </Col>
             <Col className={s.total}>
               <Col>IDR</Col>
               <Col>{priceFormatter(`${totalAmount}`, ",")} </Col>
@@ -57,7 +63,7 @@ function ThemesProfileTransactionItemFooter(props) {
         <Col>
           <Col className={s.footerContainer}>
             <Col className={s.totalPrice}>
-              <Col className={s.textTotal}>Total </Col>
+              <Col className={s.textTotal}>Total :</Col>
               <Col className={s.total}>
                 <Col>IDR</Col>
                 <Col>{priceFormatter(`${totalAmount}`, ",")}</Col>
@@ -66,7 +72,10 @@ function ThemesProfileTransactionItemFooter(props) {
           </Col>
           <Col className={s.invoiceButton}>
             {" "}
-            <ThemesButton>DOWNLOAD INVOICE</ThemesButton>
+            <ThemesButton>
+              <DownloadOutlined style={{ fontSize: "17px" }} />
+              DOWNLOAD INVOICE
+            </ThemesButton>
           </Col>
         </Col>
       )}

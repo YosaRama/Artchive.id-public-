@@ -9,12 +9,22 @@ import ThemesContainerMain from "themes/components/container/main";
 // Icon
 import { ThankyouIcon } from "public/icons/thankyou-icon";
 
+// Hooks
+import { useOrder } from "app/hooks/order";
+
 // Styles
 import s from "./index.module.scss";
 import { useEffect, useState } from "react";
 
 function ThemesCheckoutThankYou() {
   const router = useRouter();
+
+  //? ============== Order Hooks ============= ?//
+  const { data } = useOrder({
+    singleId: 11, //TODO : get latest single id of order//
+  });
+
+  // * ====================================== * //
 
   //? ============== Handle Timeout ============= ?//
   const [timer, setTimer] = useState(10);
@@ -38,6 +48,9 @@ function ThemesCheckoutThankYou() {
           <ThankyouIcon style={{ width: "auto" }} />
           <h1>Thank You</h1>
           <h4>Your order was completely successfully</h4>
+          <Col style={{ fontSize: "24px" }}>
+            ORDER ID: <span style={{ color: "#e5890a" }}>{data?.order_id}</span>
+          </Col>
           <Col style={{ display: "flex", justifyContent: "center", marginBottom: "16px" }}>
             <p className={s.description}>
               An email receipt including details about your order has been sent to the email address
@@ -45,14 +58,21 @@ function ThemesCheckoutThankYou() {
             </p>
           </Col>
           {/* <Row gutter={[20, 20]} className={s.buttonContainer}> */}
-          <ThemesButton onClick={() => router.push("/")} type={"default " + s.button}>
-            BACK TO HOME
+          <ThemesButton
+            onClick={() => router.push("/profile/transaction")}
+            type={"default " + s.button}
+          >
+            CHECK YOUR ORDER STATUS
           </ThemesButton>
           {/* <ThemesButton onClick={() => router.push("/profile")} type={"default " + s.button}>
               BACK TO HOME
             </ThemesButton> */}
           {/* </Row> */}
-          <p className={s.redirect}>You will be redirected to Homepage in {timer} ...</p>
+          <p className={s.redirect}>
+            You will be redirected to Homepage in
+            {/* {timer} */}
+            ...
+          </p>
           <p>
             Have any issues?{" "}
             <span

@@ -64,6 +64,7 @@
 
 .menuContainer {
   display: flex;
+  flex: 0 0 25% !important;
   justify-content: center;
   font-size: 16px;
   font-weight: 700;
@@ -156,7 +157,7 @@
 
   .menuContainer {
     display: flex;
-    // justify-content: center;
+
     align-items: center;
     font-size: 16px;
     font-weight: 700;
@@ -171,7 +172,8 @@
   .menuItem {
     text-align: center;
     background: white;
-    // height: auto;
+    width: 80px;
+
     p {
       position: relative;
       top: 30%;

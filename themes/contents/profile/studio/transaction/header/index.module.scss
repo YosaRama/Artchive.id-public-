@@ -55,6 +55,7 @@
 
 .divider {
   margin: 20px 0px;
+  background: rgb(20, 20, 20);
 }
 
 .transactionItemContainer {
@@ -121,33 +122,32 @@
 
 //? ============== Mobile View ============= ?//
 @media screen and (max-width: 500px) {
+  .transactionId {
+    margin: 0px 0px;
+  }
+
   .statusPending {
     text-align: center;
     width: 100px;
-    margin-bottom: 12px;
   }
 
   .statusProceed {
     text-align: center;
     width: 100px;
-    margin-bottom: 12px;
   }
 
   .statusShipping {
     text-align: center;
     width: 100px;
-    margin-bottom: 12px;
   }
 
   .statusCancel {
     text-align: center;
     width: 100px;
-    margin-bottom: 12px;
   }
 
   .statusSuccess {
     text-align: center;
     width: 100px;
-    margin-bottom: 12px;
   }
 }
