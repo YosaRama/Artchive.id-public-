@@ -61,10 +61,10 @@ function ThemesContentsProfileTransaction(props) {
 
   //? ============== Handle Menu ============= ?//
   const menuItems = [
-    { label: "All Order", key: "" },
-    { label: "Proceed", key: "proceed" },
-    { label: "Delivered", key: "shipping" },
-    { label: "Success", key: "success" },
+    { label: <div style={{ fontWeight: 700 }}>All Order</div>, key: "" },
+    { label: <div style={{ fontWeight: 700 }}>Proceed</div>, key: "proceed" },
+    { label: <div style={{ fontWeight: 700 }}>Delivered</div>, key: "shipping" },
+    { label: <div style={{ fontWeight: 700 }}>Success</div>, key: "success" },
   ];
   // * ====================================== * //
 

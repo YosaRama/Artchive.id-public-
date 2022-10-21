@@ -22,7 +22,7 @@ function ThemesProfileTransactionItemFooter(props) {
         <Col className={s.subTotalPrice}>
           <Col className={s.textSubtotal}>Subtotal : </Col>
           <Col className={s.subtotal}>
-            <Col>IDR</Col>
+            <Col style={{ marginRight: 5 }}>IDR</Col>
             <Col>{priceFormatter(`${totalAmount}`, ",")} </Col>
           </Col>
         </Col>
@@ -33,12 +33,17 @@ function ThemesProfileTransactionItemFooter(props) {
           {width < 500 && <Col className={s.textSubtotal}>Shipping : </Col>}
 
           <Col className={s.subtotal}>
-            <Col>IDR</Col>
+            <Col style={{ marginRight: 5 }}>IDR</Col>
             <Col>{priceFormatter(`0`, ",")} </Col>
           </Col>
         </Col>
       </Col>
-      <Divider className={s.divider} />
+      <Col className={s.dividerContainer}>
+        <Col style={{ width: 300 }}>
+          {" "}
+          <Divider className={s.divider} />
+        </Col>
+      </Col>
 
       {width > 500 && (
         <Row className={s.footerContainer}>
@@ -53,7 +58,7 @@ function ThemesProfileTransactionItemFooter(props) {
           <Col className={s.totalPrice}>
             <Col className={s.textTotal}>Total : </Col>
             <Col className={s.total}>
-              <Col>IDR</Col>
+              <Col style={{ marginRight: 5 }}>IDR</Col>
               <Col>{priceFormatter(`${totalAmount}`, ",")} </Col>
             </Col>
           </Col>
@@ -65,7 +70,7 @@ function ThemesProfileTransactionItemFooter(props) {
             <Col className={s.totalPrice}>
               <Col className={s.textTotal}>Total :</Col>
               <Col className={s.total}>
-                <Col>IDR</Col>
+                <Col style={{ marginRight: 5 }}>IDR</Col>
                 <Col>{priceFormatter(`${totalAmount}`, ",")}</Col>
               </Col>
             </Col>
@@ -73,7 +78,7 @@ function ThemesProfileTransactionItemFooter(props) {
           <Col className={s.invoiceButton}>
             {" "}
             <ThemesButton>
-              <DownloadOutlined style={{ fontSize: "17px" }} />
+              <DownloadOutlined style={{ fontSize: "20px" }} />
               DOWNLOAD INVOICE
             </ThemesButton>
           </Col>

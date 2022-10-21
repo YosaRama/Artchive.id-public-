@@ -38,11 +38,10 @@ function ThemesProfileTransactionItem(props) {
           <p className={s.material}>{stringCapitalize(material.replace(/_/g, " "))}</p>
           <p className={s.size}>{`${imgWidth} x ${imgHeight} cm`}</p>
         </Col>
-        <Col className={s.spaceRight}>
-          <Col className={s.priceContainer}>
-            <Col>IDR </Col>
-            <Col>{priceFormatter(`${total}`, ",")}</Col>
-          </Col>
+
+        <Col className={s.priceContainer}>
+          <Col style={{ marginRight: 5 }}>IDR </Col>
+          <Col>{priceFormatter(`${total}`, ",")}</Col>
         </Col>
       </Row>
       <Divider className={s.divider} />
