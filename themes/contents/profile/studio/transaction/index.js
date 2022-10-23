@@ -10,11 +10,12 @@ import {
   CheckCircleOutlined,
 } from "@ant-design/icons";
 import { motion } from "framer-motion";
+import { useRouter } from "next/router";
 
 // Components
 import ThemesButton from "themes/components/libs/button";
 import ThemesProfileTransactionItemHeader from "./header";
-import ThemesProfileTransactionItem from "./list";
+import ThemesProfileTransactionItem from "./item";
 import ThemesProfileTransactionItemFooter from "./footer";
 import ThemesCarouselMenu from "themes/components/libs/carousel-menu";
 
@@ -31,6 +32,7 @@ import { fadeTopToBottom, fadingLeftToRight } from "app/database/framer-motion";
 function ThemesContentsProfileTransaction(props) {
   const { userId } = props;
   const { width } = useWindowSize();
+  const { router } = useRouter();
 
   //? ============== Handle Filter ============= ?//
   const [currentStatus, setCurrentStatus] = useState("");
@@ -97,7 +99,11 @@ function ThemesContentsProfileTransaction(props) {
             animate="visible"
             className={s.empty}
           >
-            <Empty description={<p>Ups, there is no item</p>} />
+            <Col>
+              {" "}
+              <Empty description={<p>Ups, there is no item</p>} />
+              <ThemesButton href={"/artwork"}>CONTINUE SHOPPING</ThemesButton>
+            </Col>
           </motion.div>
         )}
         {orderData?.length !== 0 &&

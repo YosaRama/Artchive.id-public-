@@ -16,6 +16,13 @@ import s from "./index.module.scss";
 function ThemesProfileTransactionItemFooter(props) {
   const { totalAmount } = props;
   const { width } = useWindowSize();
+
+  function kFormatter(num) {
+    return Math.abs(num) > 999999999
+      ? Math.sign(num) * (Math.abs(num) / 100000000).toFixed(1) + " Billion"
+      : Math.sign(num) * Math.abs(num);
+  }
+  console.log(kFormatter(12000000000));
   return (
     <Col>
       <Col className={s.subTotalContainer}>
@@ -23,7 +30,8 @@ function ThemesProfileTransactionItemFooter(props) {
           <Col className={s.textSubtotal}>Subtotal : </Col>
           <Col className={s.subtotal}>
             <Col style={{ marginRight: 5 }}>IDR</Col>
-            <Col>{priceFormatter(`${totalAmount}`, ",")} </Col>
+
+            <Col> {priceFormatter(`${kFormatter(totalAmount)}`, ",")} </Col>
           </Col>
         </Col>
       </Col>
@@ -44,7 +52,6 @@ function ThemesProfileTransactionItemFooter(props) {
           <Divider className={s.divider} />
         </Col>
       </Col>
-
       {width > 500 && (
         <Row className={s.footerContainer}>
           <Col className={s.invoiceButton}>
@@ -59,7 +66,8 @@ function ThemesProfileTransactionItemFooter(props) {
             <Col className={s.textTotal}>Total : </Col>
             <Col className={s.total}>
               <Col style={{ marginRight: 5 }}>IDR</Col>
-              <Col>{priceFormatter(`${totalAmount}`, ",")} </Col>
+              {/* <Col>{priceFormatter(`${totalAmount}`, ",")} </Col> */}
+              <Col> {priceFormatter(`${kFormatter(totalAmount)}`, ",")} </Col>
             </Col>
           </Col>
         </Row>
@@ -71,7 +79,8 @@ function ThemesProfileTransactionItemFooter(props) {
               <Col className={s.textTotal}>Total :</Col>
               <Col className={s.total}>
                 <Col style={{ marginRight: 5 }}>IDR</Col>
-                <Col>{priceFormatter(`${totalAmount}`, ",")}</Col>
+                {/* <Col>{priceFormatter(`${totalAmount}`, ",")}</Col> */}
+                <Col> {priceFormatter(`${kFormatter(totalAmount)}`, ",")} </Col>
               </Col>
             </Col>
           </Col>

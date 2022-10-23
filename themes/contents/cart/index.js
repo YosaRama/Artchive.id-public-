@@ -169,36 +169,38 @@ function ThemesContentsCart(props) {
         {/* // * ====================================== * // */}
 
         {/* //? ============== Shipping Tax Section ============= ?// */}
-        <Col span={24} className={s.shippingSection}>
-          <Row className={s.shippingContainer}>
-            <Col className={s.searchCountry}>
-              <Select
-                showSearch
-                style={{
-                  maxWidth: "400px",
-                }}
-                size="large"
-                className={s.searchCountry}
-                placeholder="Select your destination"
-                optionFilterProp="children"
-                filterOption={(input, option) => option.children.includes(input)}
-                filterSort={(optionA, optionB) =>
-                  optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())
-                }
-              >
-                <Option value="1">Indonesia</Option>
-                <Option value="2">Singapore</Option>
-                <Option value="3">Malaysia</Option>
-                <Option value="4">Philiphines</Option>
-                <Option value="5">Japan</Option>
-              </Select>
-            </Col>
-            <Col className={s.shippingCharge}>
-              Shipping Charge:{` `}
-              <span style={{ fontWeight: 700, marginLeft: "8px" }}>IDR {charge}</span>
-            </Col>
-          </Row>
-        </Col>
+        {cartPageItem?.length != 0 && (
+          <Col span={24} className={s.shippingSection}>
+            <Row className={s.shippingContainer}>
+              <Col className={s.searchCountry}>
+                <Select
+                  showSearch
+                  style={{
+                    maxWidth: "400px",
+                  }}
+                  size="large"
+                  className={s.searchCountry}
+                  placeholder="Select your destination"
+                  optionFilterProp="children"
+                  filterOption={(input, option) => option.children.includes(input)}
+                  filterSort={(optionA, optionB) =>
+                    optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())
+                  }
+                >
+                  <Option value="1">Indonesia</Option>
+                  <Option value="2">Singapore</Option>
+                  <Option value="3">Malaysia</Option>
+                  <Option value="4">Philiphines</Option>
+                  <Option value="5">Japan</Option>
+                </Select>
+              </Col>
+              <Col className={s.shippingCharge}>
+                Shipping Charge:{` `}
+                <span style={{ fontWeight: 700, marginLeft: "8px" }}>IDR {charge}</span>
+              </Col>
+            </Row>
+          </Col>
+        )}
 
         {/* // * ====================================== * // */}
 
