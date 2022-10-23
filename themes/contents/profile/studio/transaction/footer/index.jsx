@@ -18,11 +18,13 @@ function ThemesProfileTransactionItemFooter(props) {
   const { width } = useWindowSize();
 
   function kFormatter(num) {
-    return Math.abs(num) > 999999999
-      ? Math.sign(num) * (Math.abs(num) / 100000000).toFixed(1) + " Billion"
+    return 999999999999 > Math.abs(num) > 999999999
+      ? Math.sign(num) * (Math.abs(num) / 1000000000).toFixed(1) + " Billion"
+      : Math.abs(num) > 999999999999
+      ? Math.sign(num) * (Math.abs(num) / 1000000000000).toFixed(1) + " Trillion"
       : Math.sign(num) * Math.abs(num);
   }
-  console.log(kFormatter(12000000000));
+
   return (
     <Col>
       <Col className={s.subTotalContainer}>
