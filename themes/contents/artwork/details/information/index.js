@@ -140,7 +140,11 @@ function ThemesContentsArtworkDetailsInformation(props) {
               <Row>
                 {genre?.map((item, index) => {
                   return (
-                    <Col key={index} className={s.genreBorder}>
+                    <Col
+                      key={index}
+                      className={s.genreBorder}
+                      onClick={() => router.push(`/artwork?artistName=&genreId=${item.id}`)}
+                    >
                       <p style={{ fontSize: "14px", padding: "5px 5px" }}>{item.title}</p>
                     </Col>
                   );
