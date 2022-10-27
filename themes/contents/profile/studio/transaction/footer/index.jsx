@@ -17,11 +17,21 @@ function ThemesProfileTransactionItemFooter(props) {
   const { totalAmount } = props;
   const { width } = useWindowSize();
 
+  // function kFormatter(num) {
+  //   return 999999999999 >= Math.abs(num) >= 999999999
+  //     ? Math.sign(num) * (Math.abs(num) / 1000000000).toFixed(1) + " Billion"
+  //     : Math.abs(num) > 999999999999
+  //     ? Math.sign(num) * (Math.abs(num) / 1000000000000).toFixed(1) + " Trillion"
+  //     : Math.sign(num) * Math.abs(num);
+  // }
+
   function kFormatter(num) {
-    return 999999999999 > Math.abs(num) > 999999999
-      ? Math.sign(num) * (Math.abs(num) / 1000000000).toFixed(1) + " Billion"
-      : Math.abs(num) > 999999999999
+    return Math.abs(num) >= 999999999999999
+      ? Math.sign(num) * (Math.abs(num) / 1000000000000000).toFixed(1) + " Quadrillion"
+      : Math.abs(num) >= 999999999999
       ? Math.sign(num) * (Math.abs(num) / 1000000000000).toFixed(1) + " Trillion"
+      : Math.abs(num) >= 999999999
+      ? Math.sign(num) * (Math.abs(num) / 1000000000).toFixed(1) + " Billion"
       : Math.sign(num) * Math.abs(num);
   }
 
@@ -58,7 +68,7 @@ function ThemesProfileTransactionItemFooter(props) {
         <Row className={s.footerContainer}>
           <Col className={s.invoiceButton}>
             {" "}
-            <ThemesButton>
+            <ThemesButton disabled={true}>
               <DownloadOutlined style={{ fontSize: "17px" }} />
               DOWNLOAD INVOICE
             </ThemesButton>
@@ -88,7 +98,8 @@ function ThemesProfileTransactionItemFooter(props) {
           </Col>
           <Col className={s.invoiceButton}>
             {" "}
-            <ThemesButton>
+            <ThemesButton disabled={true}>
+              {" "}
               <DownloadOutlined style={{ fontSize: "20px" }} />
               DOWNLOAD INVOICE
             </ThemesButton>

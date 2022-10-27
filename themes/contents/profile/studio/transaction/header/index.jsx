@@ -22,6 +22,7 @@ import {
 function ThemesProfileTransactionItemHeader(props) {
   const { status, transactionTime, orderId } = props;
   const { width } = useWindowSize();
+
   return (
     <>
       <Col>
@@ -63,6 +64,7 @@ function ThemesProfileTransactionItemHeader(props) {
             </Col>
           </Row>
         )}
+
         {width < 500 && (
           <Col>
             <Col
@@ -73,6 +75,7 @@ function ThemesProfileTransactionItemHeader(props) {
               <Col style={{ display: "flex", alignItems: "center" }}>
                 {moment(transactionTime)?.format("MMMM DD, YYYY")}
               </Col>
+
               <Col
                 style={{ padding: "5px 15px" }}
                 className={
