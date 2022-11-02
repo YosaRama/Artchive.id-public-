@@ -76,6 +76,7 @@ model Artwork {
   certificate    Certificate[]
   exhibitions    ArtworksOnExhibitions[]
   PaymentHistory PaymentHistory[]
+  isDeleted      Boolean                 @default(false)
   createdAt      DateTime                @default(now())
   updatedAt      DateTime?               @updatedAt
 

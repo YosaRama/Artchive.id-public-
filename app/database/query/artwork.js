@@ -85,6 +85,7 @@ export const GET_ARTWORK = ({
         { slug: excludeSlug ? excludeSlug : {} },
         { artist_id: excludeArtist ? +excludeArtist : {} },
         { artist: client == "true" ? { status: false } : {} },
+        { isDeleted: true },
       ],
     },
     orderBy: {
@@ -135,6 +136,7 @@ export const GET_TOTAL_ARTWORK = ({
         { slug: excludeSlug ? excludeSlug : {} },
         { artist_id: excludeArtist ? +excludeArtist : {} },
         { artist: client == "true" ? { status: false } : {} },
+        { isDeleted: true },
       ],
     },
   });
@@ -476,7 +478,7 @@ export const UPDATE_ARTWORK_COVER_IMAGE = ({ id, cover_id }) => {
 
 // Delete data with specific ID
 export const DELETE_ARTWORK = ({ id }) => {
-  return prisma.artwork.delete({ where: { id: +id } });
+  return prisma.artwork.update({ where: { id: +id }, data: { isDeleted: true } });
 };
 // ==================================
 
