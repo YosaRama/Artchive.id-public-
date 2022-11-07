@@ -20,7 +20,13 @@ apiHandler.post(async (req, res) => {
 
   if (transactionStatus == "capture") {
     if (fraudStatus == "challenge") {
+      console.log("Midtrans Challenge Proceed");
+      res.status(200).json({
+        success: false,
+        message: "Not yet handle for capture challenge",
+      });
     } else if (fraudStatus == "accept") {
+      console.log("Midtrans Accept Proceed");
       try {
         const data = {
           fraud: "SETTLEMENT",
@@ -47,6 +53,29 @@ apiHandler.post(async (req, res) => {
   } else if (transactionStatus == "settlement") {
     // TODO set transaction status on your database to 'success'
     // and response with 200 OK
+    console.log("Midtrans Settlement Proceed");
+    try {
+      const data = {
+        fraud: "SETTLEMENT",
+        status: "PROCEED",
+        transactionId: notification.transaction_id,
+        artworkIdList: notification.metadata.artworkIdList,
+        userId: notification.metadata.userId,
+      };
+      const result = await UPDATE_ORDER_AFTER_PROCEED({ orderId: notification.order_id, data });
+
+      res.status(200).json({
+        success: true,
+        message: `Transaction notification capture. Order ID: ${notification.order_id}. Transaction status: ${transactionStatus}. Fraud status: ${fraudStatus}`,
+        data: result,
+      });
+    } catch (error) {
+      res.status(200).json({
+        success: false,
+        message: "Something wrong when update order data!",
+        error: error.message,
+      });
+    }
   } else if (
     transactionStatus == "cancel" ||
     transactionStatus == "deny" ||
@@ -54,9 +83,19 @@ apiHandler.post(async (req, res) => {
   ) {
     // TODO set transaction status on your database to 'failure'
     // and response with 200 OK
+    console.log("Midtrans Cancel,Deny, Expired Proceed");
+    res.status(200).json({
+      success: false,
+      message: "Not handle for cancel, deny, expired process",
+    });
   } else if (transactionStatus == "pending") {
     // TODO set transaction status on your database to 'pending' / waiting payment
     // and response with 200 OK
+    console.log("Midtrans Pending Proceed");
+    res.status(200).json({
+      success: false,
+      message: "Not handle for pending process",
+    });
   }
 });
 
