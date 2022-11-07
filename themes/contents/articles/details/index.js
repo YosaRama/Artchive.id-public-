@@ -46,7 +46,7 @@ function ThemesContentsArticlesDetails(props) {
               lg={{ span: 11 }}
               md={{ span: 14 }}
               sm={{ span: 24 }}
-              className={`${s.rmPadding}`}
+              className={`${s.rmPaddingSideBar}`}
             >
               <ThemesContentsArticleSidebar
                 author={articleData.author}

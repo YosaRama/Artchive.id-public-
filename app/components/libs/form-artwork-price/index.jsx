@@ -5,6 +5,7 @@ import { useState } from "react";
 
 // Helper
 import priceFormatter from "app/helpers/priceFormatter";
+import markupPriceGenerator from "app/helpers/markupPriceGenerator";
 
 // Components
 import AppCardFinalPrice from "../card-final-price";
@@ -21,9 +22,10 @@ function AppFormArtworkPrice(props) {
   const handleCreateMarkupPrice = (value) => {
     const parseValue = value.target.value.replace(/\D/g, "").replace(/Rp\s?|(,*)/g, "");
     setInputPrice(priceFormatter(`${parseValue}`, ","));
-    setMarkupPrice(Math.round(parseValue * 1.4));
-
+    // setMarkupPrice(Math.round(parseValue * 1.4));
+    const finalPrice = markupPriceGenerator(parseValue);
     // setMarkupPrice(Math.round(value * 1.4));
+    console.log(finalPrice);
   };
   // * ====================================== * //
 

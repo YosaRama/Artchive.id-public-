@@ -20,6 +20,73 @@
   margin-bottom: 45px;
 }
 
+.carousel {
+  width: auto;
+  margin: 0px auto;
+}
+
+//TODO : This one is on test//
+.container {
+  // padding-right: 0 !important;
+  // padding-left: 0 !important;
+  // margin-top: 100px;
+  .image {
+    width: auto;
+    height: 300px;
+
+    // border: 3px solid #140c01;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    img {
+      padding: 3px !important;
+      transition: all 0.3s ease;
+      object-fit: contain;
+    }
+    &:hover {
+      cursor: pointer;
+      img {
+        padding: 0 !important;
+        transform: scale(0.95);
+      }
+    }
+  }
+  .content {
+    margin-top: 15px;
+    text-align: center;
+    .title {
+      margin-bottom: 0;
+      font-size: 18px;
+      transition: all 0.3s ease;
+      &:hover {
+        color: #e5890a;
+        cursor: pointer;
+      }
+    }
+    .size {
+      margin-bottom: 0;
+      font-size: 14px;
+    }
+  }
+}
+.carouselBackground {
+  height: 900px;
+  width: 100%;
+  background-image: url("/images/artwork-background.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.carouselContainer {
+  height: 900px;
+  width: auto;
+  background: #f1f1f3;
+  background-image: url("/images/artwork-container-background.png");
+  background-size: cover;
+  background-position: center;
+}
+
+//TODO : This one is on test//
+
 //? ============== Tablet Landscape Mode ============= ?//
 @media screen and (max-width: 1024px) {
   .list {

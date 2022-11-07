@@ -8,6 +8,7 @@ import s from "./index.module.scss";
 
 function ThemesContentsArticleInformation(props) {
   const { title, tag, postDate, description, gallery } = props;
+
   return (
     <>
       <Col span={24}>

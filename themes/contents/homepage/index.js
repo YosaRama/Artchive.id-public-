@@ -1,7 +1,7 @@
 // Libs
 import propTypes from "prop-types";
 import { useRouter } from "next/router";
-import { Col, Row } from "antd";
+import { Col, Row, Carousel, Image } from "antd";
 import { AnimatePresence, motion } from "framer-motion";
 
 // Components
@@ -25,6 +25,17 @@ import {
 function ThemesContentsHomepage(props) {
   const { artworkData, artistData } = props;
   const router = useRouter();
+  const carouselProperties = {
+    className: s.carousel,
+    infinite: true,
+    slidesToShow: 1,
+    speed: 500,
+    centerMode: true,
+    arrows: true,
+    adaptiveHeight: true,
+    autoplay: true,
+    pauseOnFocus: true,
+  };
   return (
     <>
       {/* //? ============== Banner Section ============= ?// */}

@@ -41,12 +41,16 @@ export const aboutTeamsCard = [
     name: "Yosa Rama Dinata",
     position: "Project Manager",
     description: "Specialist Project Management & Technology Implementating.",
+    linkedn: "https://www.linkedin.com/in/yosa-rama-dinata-7780b9171",
+    email: "",
   },
   {
     imageTeam: "/images/team-2.jpg",
     name: "Dion Pramana",
     position: "Web Developer",
     description: "Do Program and manage all the things about development on artchive.id.",
+    linkedn: "https://www.linkedin.com/in/i-gede-dion-pramana-utama-59b10421b/",
+    email: "dionpr84@gmail.com",
   },
   {
     imageTeam: "/images/team-3.jpg",

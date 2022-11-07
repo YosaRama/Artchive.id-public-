@@ -20,7 +20,7 @@ function ThemesContentsArticleSidebar(props) {
       </Col>
       <Col span={24}>
         <h1 className={s.sideTitle}>Posted Date</h1>
-        <p>{postDate && moment(postDate).format("DD MMMM YYYY")}</p>
+        <p>{postDate && moment(postDate).format("MMMM DD, YYYY")}</p>
       </Col>
       <Col span={24}>
         <ThemesShareSocial

@@ -147,6 +147,7 @@ function ThemesContentsAbout(prop) {
                     name={item.name}
                     position={item.position}
                     description={item.description}
+                    linkedn={item.linkedn}
                   />
                 </Col>
               );

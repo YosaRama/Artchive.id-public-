@@ -36,7 +36,7 @@ function ThemesArticleListCard(props) {
           </Col>
           <Col className={s.contentSubContainer}>
             <p>By {author}</p>
-            <p>Posted on {postDate && moment(postDate).format("DD MMMM YYYY")}</p>
+            <p>Posted on {postDate && moment(postDate).format("MMMM DD, YYYY")}</p>
           </Col>
           <Col className={s.contentDescriptionContainer}>
             <p>{shortDescription}</p>

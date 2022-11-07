@@ -3,12 +3,14 @@ import propType from "prop-types";
 import { Col, Card, Row, Image } from "antd";
 import React from "react";
 import { LinkedinOutlined, MailOutlined } from "@ant-design/icons";
+import Router from "next/router";
 
 //Styles
 import s from "./index.module.scss";
 
 function ThemesAboutTeamCard(props) {
-  const { imageTeam, name, position, description } = props;
+  const { imageTeam, name, position, description, linkedn, email } = props;
+  const { router } = Router;
   return (
     <>
       <Card className={s.card}>
@@ -31,7 +33,7 @@ function ThemesAboutTeamCard(props) {
         </Col>
         <Col span={24}>
           <Row gutter={[50, 10]} className={s.socialMediaContainer}>
-            <LinkedinOutlined className={s.socialIcon} />
+            <LinkedinOutlined className={s.socialIcon} onClick={() => router.push(`${linkedn}`)} />
             <MailOutlined className={s.socialIcon} />
           </Row>
         </Col>
