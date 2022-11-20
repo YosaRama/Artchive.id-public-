@@ -1,12 +1,13 @@
 // Libs
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { Avatar, Col, Layout, Row, Badge } from "antd";
 import Image from "next/image";
 const { Header } = Layout;
 import ThemesNotificationModal from "./notification-header";
 import { motion } from "framer-motion";
+import { HideDuring, HideOn, Hide } from "react-hide-on-scroll";
 
 // Components
 import ThemesContainerMain from "themes/components/container/main";
@@ -59,54 +60,61 @@ function ThemesHeader() {
 
   return (
     <>
-      <Header className={s.container}>
-        <ThemesContainerMain>
-          <Row style={{ height: "100%" }} justify="space-between">
-            <motion.div variants={fadeTopToBottom} initial="hidden" animate="visible">
-              <Col className={s.logo} onClick={() => router.push("/")}>
-                {" "}
-                <Image
-                  src="/images/logo-without-text.png"
-                  alt=""
-                  layout="fill"
-                  objectFit="contain"
-                  okButtonProps={{
-                    visible: false,
-                  }}
-                  cancelButtonProps={{
-                    visible: false,
-                  }}
-                />
-              </Col>
-            </motion.div>
-            <motion.div
-              variants={fadeTopToBottom}
-              initial="hidden"
-              animate="visible"
-              className={s.menu}
-            >
-              {session && (
-                <>
-                  {width >= 500 && (
-                    <Row>
-                      <Col
-                        style={{
-                          marginRight: "16px",
-                          width: "30px",
-                          color: "black",
-                          display: "flex",
-                          alignItems: "center",
-                        }}
-                      >
-                        <Badge
-                          count={cartItem?.length}
-                          size="small"
-                          style={{ backgroundColor: "#e5890a" }}
-                        >
-                          <ThemesHeaderCart onChange={(e) => setIconVisible()} />
-                        </Badge>
-                      </Col>
-                      {/* <Col
+      <HideOn inverse={false} atHeight height={150}>
+        <motion.div variants={fadeTopToBottom} initial="hidden" animate="visible">
+          <Header className={s.container}>
+            <ThemesContainerMain>
+              <Row style={{ height: "100%" }} justify="space-between">
+                {/* <motion.div variants={fadeTopToBottom} initial="hidden" animate="visible"> */}
+                <Col className={s.logo} onClick={() => router.push("/")}>
+                  {" "}
+                  <Image
+                    src="/images/logo-without-text.png"
+                    alt=""
+                    layout="fill"
+                    objectFit="contain"
+                    okButtonProps={{
+                      visible: false,
+                    }}
+                    cancelButtonProps={{
+                      visible: false,
+                    }}
+                  />
+                </Col>
+                {/* </motion.div> */}
+                {/* <motion.div
+                  variants={fadeTopToBottom}
+                  initial="hidden"
+                  animate="visible"
+                  className={s.menu}
+                > */}
+                <Row gutter={[30, 30]} style={{ display: "flex", alignItems: "center" }}>
+                  {session && (
+                    <>
+                      {width >= 500 && (
+                        <Row>
+                          <Col
+                            style={{
+                              marginRight: "50px",
+                              width: "30px",
+                              color: "black",
+                              display: "flex",
+                              alignItems: "center",
+                            }}
+                          >
+                            <Badge
+                              count={cartItem?.length}
+                              size="medium"
+                              style={{
+                                backgroundColor: "#e5890a",
+                                left: "40px",
+                                top: "8px",
+                              }}
+                            >
+                              <ThemesHeaderCart onChange={(e) => setIconVisible()} />
+                            </Badge>
+                          </Col>
+                          {/* <Col
                         style={{
                           marginRight: "16px",
                           width: "30px",
@@ -123,29 +131,29 @@ function ThemesHeader() {
                           <ThemesNotificationModal onChange={(e) => setIconVisible()} />
                         </Badge>
                       </Col> */}
-                    </Row>
-                  )}
+                        </Row>
+                      )}
 
-                  {width < 500 && (
-                    <Row style={{ display: "flex" }}>
-                      <Col style={{ marginRight: "20px" }}>
-                        <Badge
-                          count={cartItem?.length}
-                          size="small"
-                          style={{ backgroundColor: "#e5890a" }}
-                        >
-                          <CartIcon
-                            style={{
-                              fontSize: "25px",
-                              width: "25px",
-                              paddingRight: "0px",
-                              paddingLeft: "0px",
-                            }}
-                            onClick={() => router.push("/cart")}
-                          />
-                        </Badge>
-                      </Col>
-                      {/* <Col style={{ marginRight: "20px" }}>
+                      {width < 500 && (
+                        <Row style={{ display: "flex" }}>
+                          <Col style={{ marginRight: "20px" }}>
+                            <Badge
+                              count={cartItem?.length}
+                              size="small"
+                              style={{ backgroundColor: "#e5890a" }}
+                            >
+                              <CartIcon
+                                style={{
+                                  fontSize: "25px",
+                                  width: "25px",
+                                  paddingRight: "0px",
+                                  paddingLeft: "0px",
+                                }}
+                                onClick={() => router.push("/cart")}
+                              />
+                            </Badge>
+                          </Col>
+                          {/* <Col style={{ marginRight: "20px" }}>
                         <Badge
                           count={notificationList?.length}
                           size="small"
@@ -162,54 +170,57 @@ function ThemesHeader() {
                           />
                         </Badge>
                       </Col> */}
-                    </Row>
-                  )}
-                  {width > 500 && (
-                    <div className={s.nameContainer} onClick={() => router.push("/profile")}>
-                      <div className={s.userName}>{session.user.full_name}</div>
-                      <p className={s.userRole}>{session.user.role}</p>
-                    </div>
-                  )}
+                        </Row>
+                      )}
+                      {width > 500 && (
+                        <div className={s.nameContainer} onClick={() => router.push("/profile")}>
+                          <div className={s.userName}>{session.user.full_name}</div>
+                          <p className={s.userRole}>{session.user.role}</p>
+                        </div>
+                      )}
 
-                  <div
-                    style={{ marginRight: "15px" }}
-                    onClick={() => router.push("/profile")}
-                    className={`${s.mobileHidden}`}
-                  >
-                    <Avatar
-                      src={
-                        userData?.profile
-                          ? `${process.env.NEXT_PUBLIC_S3_URL}/${userData?.profile?.url}`
-                          : "/images/profile-default.png"
-                      }
-                      className={s.avatar}
-                    />
-                  </div>
-                </>
-              )}
-              {!session && (
-                <>
-                  <ThemesButton
-                    style={{ marginRight: "15px" }}
-                    type="outlined"
-                    onClick={() => router.push("/signin")}
-                  >
-                    LOGIN
-                  </ThemesButton>
-                  <ThemesButton
-                    style={{ marginRight: "15px" }}
-                    onClick={() => router.push("/register")}
-                    type={`default ${s.mobileHidden}`}
-                  >
-                    REGISTER
-                  </ThemesButton>
-                </>
-              )}
-              <MenuOutlined className={`${s.hamburger}`} onClick={() => setOpenMenu(true)} />
-            </motion.div>
-          </Row>
-        </ThemesContainerMain>
-      </Header>
+                      <div
+                        style={{ marginRight: "15px" }}
+                        onClick={() => router.push("/profile")}
+                        className={`${s.mobileHidden}`}
+                      >
+                        <Avatar
+                          src={
+                            userData?.profile
+                              ? `${process.env.NEXT_PUBLIC_S3_URL}/${userData?.profile?.url}`
+                              : "/images/profile-default.png"
+                          }
+                          className={s.avatar}
+                        />
+                      </div>
+                    </>
+                  )}
+                  {!session && (
+                    <>
+                      <ThemesButton
+                        style={{ marginRight: "15px" }}
+                        type="outlined"
+                        onClick={() => router.push("/signin")}
+                      >
+                        LOGIN
+                      </ThemesButton>
+                      <ThemesButton
+                        style={{ marginRight: "15px" }}
+                        onClick={() => router.push("/register")}
+                        type={`default ${s.mobileHidden}`}
+                      >
+                        REGISTER
+                      </ThemesButton>
+                    </>
+                  )}
+                  <MenuOutlined className={`${s.hamburger}`} onClick={() => setOpenMenu(true)} />
+                </Row>
+                {/* </motion.div> */}
+              </Row>
+            </ThemesContainerMain>
+          </Header>
+        </motion.div>
+      </HideOn>
 
       <ThemesNavbarDrawer visible={openMenu} onClose={() => setOpenMenu(false)} />
     </>

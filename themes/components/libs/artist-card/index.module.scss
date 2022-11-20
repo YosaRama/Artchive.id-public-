@@ -4,13 +4,15 @@
   padding-left: 0 !important;
   padding-right: 0 !important;
   width: 100%;
-  height: 302px;
+  height: 350px;
+  // height: 450px;
   position: relative;
   background-color: #ffffff;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   transition: all 0.3s ease;
   .image {
     height: 60%;
+    // height: 70%;
     width: 100%;
     img {
       transition: all 0.3s ease;
@@ -21,6 +23,9 @@
     width: 70px;
     height: 70px;
     top: 55%;
+    // width: 80px;
+    // height: 80px;
+    // top: 65%;
     left: 50%;
     transform: translate(-50%, -50%);
     img {

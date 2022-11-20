@@ -120,6 +120,9 @@ function ThemesHeaderCart() {
         arrowPointAtCenter
       >
         <CartIcon className={s.cartIcon} />
+        {/* <Col className={s.cartIcon}>
+          <p>CART</p>
+        </Col> */}
       </Popover>
     </>
   );

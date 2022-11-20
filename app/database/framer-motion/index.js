@@ -21,7 +21,7 @@ export const fadeTopToBottom = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { ease: "easeInOut", delay: 0.3, duration: 0.4, when: "beforeChildren" },
+    transition: { ease: "easeInOut", delay: 0, duration: 0.4, when: "beforeChildren" },
   },
 };
 

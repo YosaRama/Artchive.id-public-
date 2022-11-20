@@ -44,4 +44,17 @@
 .cartIcon {
   width: 25px;
   cursor: pointer;
+  p {
+    color: rgb(0, 0, 0) !important;
+    margin: 0px 10px;
+    font-size: 14px;
+    transition: all 300ms ease;
+    // cursor: pointer;
+    &:hover {
+      transition: all 300ms ease;
+      color: #e5890a !important;
+      // font-weight: 700;
+      text-decoration: underline;
+    }
+  }
 }

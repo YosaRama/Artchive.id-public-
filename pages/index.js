@@ -1,11 +1,13 @@
 // Contents
 import ThemesContentsHomepage from "themes/contents/homepage";
+import ThemesContentsHomepageV2 from "themes/contents/homepage-v2";
 
 function PageHomepage(props) {
   const { artistData, artworkData } = props;
   return (
     <>
-      <ThemesContentsHomepage artistData={artistData} artworkData={artworkData} />
+      {/* <ThemesContentsHomepage artistData={artistData} artworkData={artworkData} /> */}
+      <ThemesContentsHomepageV2 artistData={artistData} artworkData={artworkData} />
     </>
   );
 }
@@ -19,7 +21,7 @@ export async function getStaticProps(ctx) {
   // * ====================================== * //
 
   //? ============== Artwork Data ============= ?//
-  const artwork = await GET_ARTWORK({ limit: 4, client: "true" });
+  const artwork = await GET_ARTWORK({ limit: 6, client: "true" });
   const artworkData = artwork.map((item) => {
     return {
       id: item.id,

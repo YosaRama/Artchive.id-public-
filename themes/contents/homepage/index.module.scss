@@ -1,7 +1,7 @@
 .searchBox {
   height: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
 }
 
 .sectionContainer {
@@ -18,6 +18,16 @@
 
 .pageTitle {
   margin-bottom: 45px;
+  h1 {
+    margin-bottom: 10px !important;
+  }
+}
+
+.pageTitle {
+  // margin-bottom: 45px;
+  h1 {
+    margin-bottom: 10px !important;
+  }
 }
 
 .carousel {
@@ -26,63 +36,289 @@
 }
 
 //TODO : This one is on test//
-.container {
-  // padding-right: 0 !important;
-  // padding-left: 0 !important;
-  // margin-top: 100px;
-  .image {
-    width: auto;
-    height: 300px;
 
-    // border: 3px solid #140c01;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    img {
-      padding: 3px !important;
-      transition: all 0.3s ease;
-      object-fit: contain;
+.slider {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding-bottom: 20px;
+  transition: 300ms all ease;
+
+  /* width */
+  &::-webkit-scrollbar {
+    height: 10px !important;
+  }
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    width: 5px !important;
+  }
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: #c5c7c9 !important;
+    border-radius: 20px;
+    transition: 300ms all ease;
+  }
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: #a0a1a3 !important;
+    transition: 300ms all ease;
+  }
+}
+
+.exhibitionBackground {
+  position: absolute;
+  // margin-top: 120px;
+  // height: 900px !important;
+  filter: brightness(0.5);
+}
+.exhibitionContainer {
+  // height: 900px;
+
+  padding: 60px 50px 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  .description {
+    width: 500px;
+    z-index: 1;
+    color: white;
+    margin: 0px;
+    p {
+      font-size: 16px;
+      line-height: 33px;
+      width: 90%;
     }
-    &:hover {
-      cursor: pointer;
-      img {
-        padding: 0 !important;
-        transform: scale(0.95);
+    h1 {
+      font-size: 48px;
+      line-height: 65px;
+      color: white;
+    }
+  }
+  .imageContainer {
+    left: 12%;
+    bottom: 30%;
+    height: 550px;
+    margin: 0;
+    .image {
+      object-fit: cover;
+      transition: all 300ms ease;
+      &:hover {
+        scale: 1.05;
+        transition: all 300ms ease;
       }
     }
   }
-  .content {
-    margin-top: 15px;
+  .moreExhibitionContainer {
+    // display: flex;
+    margin: auto;
+    color: white;
+    margin: 0;
+    height: auto;
+    .list {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.role {
+  padding: 0px 30px;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 40px 0px;
+  .description {
     text-align: center;
-    .title {
-      margin-bottom: 0;
+    .card {
+      // background-image: url("/images/artwork-1.jpg");
+      box-shadow: 0px 10px 25px -10px rgba(0, 0, 0, 0.3);
+      .roleLogo {
+        width: 80px;
+        height: 80px;
+        border: 5px solid;
+        border-radius: 100%;
+        color: #e5890a;
+        margin: auto;
+      }
+      h1 {
+        font-size: 24px;
+        font-weight: 600;
+        margin: 20px 0px 0px;
+        color: #e5890a;
+      }
+      h4 {
+        margin: 0px 0px 10px;
+        color: #e5890a;
+      }
+      p {
+        margin-bottom: 30px;
+      }
+    }
+  }
+}
+
+.whatWeDoDivider {
+  // background: black;
+  margin: 120px 0px 60px;
+  // width: auto;
+}
+.whatWeDo {
+  padding: 0px 30px;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 40px 0px;
+  .description {
+    text-align: center;
+    .artistImage {
+      width: 80px;
+      height: 80px;
+      border: 5px solid;
+      border-radius: 100%;
+      color: #e5890a;
+      margin: auto;
+    }
+    h1 {
+      font-size: 24px;
+      margin-top: 20px;
+    }
+  }
+}
+
+.articleContainer {
+  background: linear-gradient(90deg, rgba(20, 12, 1, 1) 60%, black 100%);
+  margin-top: 80px;
+}
+.container {
+  padding: 160px 100px;
+  .description {
+    position: absolute;
+    left: 60px;
+    top: 290px;
+    width: 500px;
+    z-index: 1;
+    color: white;
+    margin: 0px;
+    p {
+      font-size: 16px;
+      line-height: 33px;
+      width: 50%;
+    }
+    h1 {
+      font-size: 48px;
+      line-height: 65px;
+      color: white;
+    }
+  }
+  .imageContainer {
+    left: 12%;
+    bottom: 30%;
+    height: 550px;
+    margin: 0;
+    .image {
+      object-fit: cover;
+      transition: all 300ms ease;
+      &:hover {
+        scale: 1.05;
+        transition: all 300ms ease;
+      }
+    }
+  }
+  .moreArticleContainer {
+    color: white;
+    margin: 0;
+    height: auto;
+    left: 16%;
+  }
+}
+
+.reviewContainer {
+  padding: 120px 0px;
+  // background-image: url("/images/review-background.png");
+  background: #f8f5f0;
+  .review {
+    // padding: 120px 0px 120px;
+    h1 {
+      font-size: 48px;
+      line-height: 65px;
+      text-align: center;
+    }
+  }
+}
+
+.carouselUserPreview {
+  text-align: center;
+  height: 300px;
+}
+
+.joinImage {
+  height: 450px;
+  background-image: url("/images/homepage-join-today.png");
+  // background: ;
+
+  padding-top: 150px;
+  .joinContainer {
+    width: 50%;
+
+    margin: auto;
+    text-align: center;
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 30px;
+      color: white;
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.footer {
+  // height: 400px;
+  background: #140c01;
+  display: "flex";
+  align-items: "center";
+  color: white;
+  .footerContainer {
+    height: auto;
+    padding: 80px 50px;
+    .s {
+      display: flex;
+      justify-content: space-evenly;
+      .logoSocial {
+        font-size: 20px;
+      }
+    }
+    .imageContainer {
+      margin-bottom: 30px;
+      padding: 0px !important;
+      .image {
+        width: 200px;
+        object-fit: contain;
+      }
+    }
+    h1 {
+      color: white;
       font-size: 18px;
-      transition: all 0.3s ease;
+      font-weight: 700;
+      margin-bottom: 30px;
+    }
+    p {
+      cursor: pointer;
       &:hover {
         color: #e5890a;
-        cursor: pointer;
+        transition: 300ms all ease;
       }
     }
-    .size {
-      margin-bottom: 0;
-      font-size: 14px;
+  }
+  .terms {
+    &:hover {
+      color: #e5890a;
+      transition: 300ms all ease;
     }
   }
-}
-.carouselBackground {
-  height: 900px;
-  width: 100%;
-  background-image: url("/images/artwork-background.png");
-  background-size: cover;
-  background-position: center;
-}
-
-.carouselContainer {
-  height: 900px;
-  width: auto;
-  background: #f1f1f3;
-  background-image: url("/images/artwork-container-background.png");
-  background-size: cover;
-  background-position: center;
+  .divider {
+    background: white;
+    margin: 50px 0px 20px;
+  }
 }
 
 //TODO : This one is on test//

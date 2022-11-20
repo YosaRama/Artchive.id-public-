@@ -9,6 +9,7 @@ import ThemesFooter from "./footer";
 import ThemesContainerProfile from "themes/components/container/profile";
 import ThemesMobileNavbar from "../libs/mobile-navbar";
 import ThemesProfileMobileNavbar from "../libs/profile-mobile-navbar";
+import ThemesHeaderAutoShow from "./header-v2";
 
 // Icon
 import { WhatsappIcon } from "public/icons/whatsapp-icon";
@@ -24,7 +25,8 @@ function ThemesLayout(props) {
     <>
       <Layout>
         <Affix className={s.header}>
-          <ThemesHeader />
+          {/* <ThemesHeader /> */}
+          <ThemesHeaderAutoShow />
         </Affix>
         <Content className={s.content} id="frontpage">
           {router.pathname.startsWith("/profile") ? (

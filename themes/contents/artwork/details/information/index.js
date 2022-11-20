@@ -72,14 +72,15 @@ function ThemesContentsArtworkDetailsInformation(props) {
     <>
       <Row gutter={[64, 0]}>
         <Col lg={{ span: 12 }} xs={{ span: 24 }}>
-          <Col span={24} style={{ paddingLeft: 0, paddingRight: 0, marginBottom: 10 }}>
-            {/* {artworkData.status != "SOLD" && ( */}
-            <Image
-              src={`${process.env.NEXT_PUBLIC_S3_URL}/${artworkData?.media_cover?.url}`}
-              alt=""
-            />
-            {/* )} */}
-            {/* {artworkData.status == "SOLD" && (
+          <Image.PreviewGroup>
+            <Col span={24} style={{ paddingLeft: 0, paddingRight: 0, marginBottom: 10 }}>
+              {/* {artworkData.status != "SOLD" && ( */}
+              <Image
+                src={`${process.env.NEXT_PUBLIC_S3_URL}/${artworkData?.media_cover?.url}`}
+                alt=""
+              />
+              {/* )} */}
+              {/* {artworkData.status == "SOLD" && (
               <Badge.Ribbon text="SOLD" color="#e5890a">
                 <Image
                   src={`${process.env.NEXT_PUBLIC_S3_URL}/${artworkData?.media_cover?.url}`}
@@ -88,23 +89,24 @@ function ThemesContentsArtworkDetailsInformation(props) {
                 />
               </Badge.Ribbon>
             )} */}
-          </Col>
-          <Row gutter={[16, 0]} className={s.detailsImageSection}>
-            {artworkData?.media_gallery?.map((item) => {
-              return (
-                <Col
-                  xl={{ span: 6 }}
-                  lg={{ span: 7 }}
-                  md={{ span: 6 }}
-                  xs={{ span: 11 }}
-                  className={s.detailsImageContainer + " artworkDetails-details-image"}
-                  key={item.id}
-                >
-                  <Image src={`${process.env.NEXT_PUBLIC_S3_URL}/${item.url}`} alt="" />
-                </Col>
-              );
-            })}
-          </Row>
+            </Col>
+            <Row gutter={[16, 0]} className={s.detailsImageSection}>
+              {artworkData?.media_gallery?.map((item) => {
+                return (
+                  <Col
+                    xl={{ span: 6 }}
+                    lg={{ span: 7 }}
+                    md={{ span: 6 }}
+                    xs={{ span: 11 }}
+                    className={s.detailsImageContainer + " artworkDetails-details-image"}
+                    key={item.id}
+                  >
+                    <Image src={`${process.env.NEXT_PUBLIC_S3_URL}/${item.url}`} alt="" />
+                  </Col>
+                );
+              })}
+            </Row>
+          </Image.PreviewGroup>
         </Col>
         <Col lg={{ span: 12 }} xs={{ span: 24 }}>
           <Card className={s.detailsCard}>
