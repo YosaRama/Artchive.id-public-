@@ -205,7 +205,7 @@
 .offer {
   margin-top: 120px;
   padding: 120px 0px 80px;
-  background: white;
+  background: rgb(255, 251, 245);
 }
 .offerContainer {
   padding: 0px 30px;
@@ -247,9 +247,7 @@
 //? ============== Article ============= ?//
 
 .articleContainer {
-  // background: linear-gradient(90deg, rgba(20, 12, 1, 1) 60%, black 100%);
   background: white;
-  margin: 120px 0px;
   padding: 120px 0px;
   .pageTitle {
     margin: 0px 0px 60px;
@@ -275,18 +273,14 @@
 
 //? ============== Testimonials ============= ?//
 
-.reviewBackground {
-  position: absolute;
-  // margin-top: 120px;
-  // height: 900px !important;
-  filter: brightness(0.3);
-  height: 700px !important;
-  object-fit: cover;
-}
 .reviewContainer {
-  margin: 120px 0px 60px;
-  // background-image: url("/images/review-background.png");
-  // background: #f8f5f0;
+  background: white;
+  .reviewBackground {
+    position: absolute;
+    filter: brightness(0.3);
+    height: 720px !important;
+    object-fit: cover;
+  }
   .container {
     height: 700px;
     display: flex;
@@ -334,57 +328,6 @@
       color: white;
       margin-bottom: 20px;
     }
-  }
-}
-
-.footer {
-  // height: 400px;
-  // background: #140c01;
-  background: #222;
-  display: "flex";
-  align-items: "center";
-  color: white;
-  .footerContainer {
-    height: auto;
-    padding: 80px 50px;
-    .s {
-      display: flex;
-      justify-content: space-evenly;
-      .logoSocial {
-        font-size: 20px;
-      }
-    }
-    .imageContainer {
-      margin-bottom: 30px;
-      padding: 0px !important;
-      .image {
-        width: 200px;
-        object-fit: contain;
-      }
-    }
-    h1 {
-      color: white;
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 30px;
-    }
-    p {
-      cursor: pointer;
-      &:hover {
-        color: #e5890a;
-        transition: 300ms all ease;
-      }
-    }
-  }
-  .terms {
-    &:hover {
-      color: #e5890a;
-      transition: 300ms all ease;
-    }
-  }
-  .divider {
-    background: white;
-    margin: 50px 0px 20px;
   }
 }
 

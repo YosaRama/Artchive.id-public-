@@ -5,7 +5,8 @@ const { Content } = Layout;
 
 // Components
 import ThemesHeader from "./header";
-import ThemesFooter from "./footer";
+import ThemesFooter from "./footer/v1";
+import ThemesFooterV2 from "./footer/v2";
 import ThemesContainerProfile from "themes/components/container/profile";
 import ThemesMobileNavbar from "../libs/mobile-navbar";
 import ThemesProfileMobileNavbar from "../libs/profile-mobile-navbar";
@@ -35,7 +36,8 @@ function ThemesLayout(props) {
             <>{children}</>
           )}
         </Content>
-        <ThemesFooter />
+        {/* <ThemesFooter /> */}
+        <ThemesFooterV2 />
 
         {/* MAIN MOBILE NAVBAR */}
         {!router.pathname.startsWith("/profile") && (

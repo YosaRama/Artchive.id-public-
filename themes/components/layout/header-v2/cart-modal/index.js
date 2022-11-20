@@ -3,6 +3,7 @@ import { Popover, Button, Col, Row, Empty, Divider } from "antd";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 // Components
 import ThemesCartModalItemDesc from "themes/components/libs/cart-modal/cart-modal-item-desc";
@@ -113,16 +114,15 @@ function ThemesHeaderCart() {
   return (
     <>
       <Popover
-        zIndex={2}
+        zIndex={10}
         placement="bottomRight"
         content={ModalItemCart}
         trigger="hover"
         arrowPointAtCenter
       >
-        {/* <CartIcon className={s.cartIcon} /> */}
-        <Col className={s.cartIcon}>
-          <p>CART</p>
-        </Col>
+        {/* <Link href="/cart"> */}
+        <a>CART</a>
+        {/* </Link> */}
       </Popover>
     </>
   );

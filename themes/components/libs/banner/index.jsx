@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 // Hooks
 import { useUser } from "app/hooks/user";
@@ -17,7 +18,7 @@ import s from "./index.module.scss";
 import { fading } from "app/database/framer-motion";
 import { isWhiteSpaceLike } from "typescript";
 import ThemesContainerMain from "themes/components/container/main";
-import ThemesHeaderCart from "themes/components/layout/header/cart-modal";
+import ThemesHeaderCart from "themes/components/layout/header-v2/cart-modal";
 import ThemesButton from "../button";
 import ThemesNavbarDrawer from "../navbar-drawer";
 
@@ -29,6 +30,10 @@ function ThemesBanner(props) {
   const router = useRouter();
   const { children, imgSrc, className } = props;
   const { width } = useWindowSize();
+
+  //? ============== User Hook ============= ?//
+  const [iconVisible, setIconVisible] = useState(false);
+  // * ====================================== * //
 
   //? ============== Open Menu Drawer ============= ?//
   const [openMenu, setOpenMenu] = useState(false);
@@ -46,13 +51,17 @@ function ThemesBanner(props) {
   //? ============== Cart Hooks ============= ?//
   const { data: cartItem } = useCarts({ queryString: `id=${userId}` }); //TODO : Change ID with current user ID//
   // * ====================================== * //
+
+  const bannerClass =
+    router.pathname == "/" ? s.containerHomepage + " " + className : s.container + " " + className;
   return (
     <motion.div
       variants={fading}
       initial="hidden"
       animate="visible"
       span={24}
-      className={s.container + " " + className}
+      // className={s.container + " " + className}
+      className={bannerClass}
     >
       <Col span={24} className={s.image}>
         <Image src={imgSrc} alt="" layout="fill" objectFit="cover" preview={false} />
@@ -81,21 +90,31 @@ function ThemesBanner(props) {
                 {width > 1024 && (
                   <Row gutter={[30, 30]}>
                     <Col className={s.iconHeader}>
-                      <p>ARTWORK</p>
+                      <Link href="/artwork">
+                        <a>ARTWORK</a>
+                      </Link>
                     </Col>
                     <Col className={s.iconHeader}>
-                      <p>ARTIST</p>
+                      <Link href="/artist">
+                        <a>ARTIST</a>
+                      </Link>
                     </Col>
                     <Col className={s.iconHeader}>
-                      <p>EXHIBITION</p>
+                      <Link href="/exhibition">
+                        <a>EXHIBITION</a>
+                      </Link>
                     </Col>
                     <Col className={s.iconHeader}>
-                      <p>ARTICLE</p>
+                      <Link href="/articles">
+                        <a>ARTICLES</a>
+                      </Link>
                     </Col>
                     {session && (
                       <>
                         <Col className={s.iconHeader}>
-                          <p>STUDIO</p>
+                          <Link href="/profile/studio/create">
+                            <a>STUDIO</a>
+                          </Link>
                         </Col>
 
                         <Col onChange={(e) => setIconVisible()} className={s.iconHeader}>
@@ -104,9 +123,7 @@ function ThemesBanner(props) {
                             size="small"
                             style={{ backgroundColor: "#e5890a" }}
                           >
-                            {/* <Col onChange={(e) => setIconVisible()} className={s.iconHeader}> */}
-                            <p>CART</p>
-                            {/* </Col> */}
+                            <ThemesHeaderCart />
                           </Badge>
                         </Col>
                         <Col className={s.iconHeader}>
@@ -161,10 +178,14 @@ function ThemesBanner(props) {
                     {session && (
                       <>
                         <Col className={s.iconHeader}>
-                          <p>ARTWORK</p>
+                          <Link href="/artwork">
+                            <a>ARTWORK</a>
+                          </Link>
                         </Col>
                         <Col className={s.iconHeader}>
-                          <p>ARTIST</p>
+                          <Link href="/artist">
+                            <a>ARTIST</a>
+                          </Link>
                         </Col>
                         <Col onChange={(e) => setIconVisible()} className={s.iconHeader}>
                           <Badge
@@ -172,7 +193,9 @@ function ThemesBanner(props) {
                             size="small"
                             style={{ backgroundColor: "#e5890a" }}
                           >
-                            <p>CART</p>
+                            <Link href="/cart">
+                              <a>CART</a>
+                            </Link>
                           </Badge>
                         </Col>
                         <Col className={s.iconHeader}>

@@ -2,7 +2,7 @@
 import propTypes from "prop-types";
 import { useRouter } from "next/router";
 import { Col, Row, Carousel, Image, Divider, Card } from "antd";
-import { AnimatePresence, motion } from "framer-motion";
+import { useViewportScroll, motion, useTransform, useMotionValue } from "framer-motion";
 import {
   InstagramOutlined,
   FacebookOutlined,
@@ -17,7 +17,6 @@ import {
 import ThemesContainerMain from "themes/components/container/main";
 import ThemesArtistCard from "themes/components/libs/artist-card";
 import ThemesArtworkWithFrame from "themes/components/libs/artwork-with-frame";
-import ThemesDividerWithButton from "themes/components/libs/divider-with-button";
 import ThemesBanner from "themes/components/libs/banner";
 import ThemesHomepageSearchBox from "themes/components/libs/homepage-search-box";
 import ThemesHeadline from "themes/components/libs/headline";
@@ -42,7 +41,6 @@ import {
   fadingExit,
 } from "app/database/framer-motion";
 import ThemesButton from "themes/components/libs/button";
-import ThemesArticleCard from "themes/components/libs/article-card";
 
 function ThemesContentsHomepageV2(props) {
   //? ============== Handle Get Viewport ============= ?//
@@ -69,6 +67,7 @@ function ThemesContentsHomepageV2(props) {
     autoplay: true,
     pauseOnFocus: true,
   };
+
   return (
     <>
       {/* //? ============== Banner Section ============= ?// */}
@@ -77,7 +76,7 @@ function ThemesContentsHomepageV2(props) {
         <motion.div
           variants={fadeTopToBottomShowcase}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
           className={s.searchBox}
         >
           <ThemesHomepageSearchBox />
@@ -99,7 +98,7 @@ function ThemesContentsHomepageV2(props) {
           >
             <Col span={8}>
               <h1 style={{ fontSize: 48, lineHeight: "65px" }}>
-                The best <span style={{ color: "#E5890A" }}>Artworks</span> you ever see!
+                The best <span style={{ color: "#e5890a" }}>Artworks</span> you ever see!
               </h1>
               <p style={{ fontSize: 18, lineHeight: "30px" }}>
                 We help artist to show their artworks and also help collectors to find the best fit
@@ -229,52 +228,6 @@ function ThemesContentsHomepageV2(props) {
             subtitle="Artchive.id platform divided into several roles"
             className={s.pageTitle}
           />
-
-          {/* <Row gutter={(20, 20)} className={s.role}>
-            <Col span={7} className={s.description}>
-              <Card className={s.card}>
-                <Col className={s.roleLogo} />
-                <Col>
-                  <h1>SELL ARTWORKS</h1>
-                  <h4>as a Artist</h4>
-                  <p>
-                    a person who creates art (such as painting, sculpture, music, or writing) using
-                    conscious skill and creative imagination. the great artists of the Renaissance.
-                    an artist specializing in watercolors. : a person skilled in any of the arts.
-                  </p>
-                </Col>
-              </Card>
-            </Col>
-            <Col span={7} className={s.description}>
-              <Card className={s.card}>
-                <Col className={s.roleLogo} />
-                <Col>
-                  <h1>BUY ARTWORKS</h1>
-                  <h4>as a Collector</h4>
-                  <p>
-                    Art collectors are a special type of person, and they are near and dear to the
-                    hearts of most artists. There are many casual art collectors out there but there
-                    are also those who collect work all the time.
-                  </p>
-                </Col>
-              </Card>
-            </Col>
-            <Col span={7} className={s.description}>
-              <Card className={s.card}>
-                <Col className={s.roleLogo} />
-                <Col>
-                  <h1>DO EXHIBTION</h1>
-                  <h4>as a Gallery</h4>
-                  <p>
-                    An art gallery is an exhibition space to display and sell artworks. As a result,
-                    the art gallery is a commercial enterprise working with a portfolio of artists.
-                    The gallery acts as the dealer representing, supporting, and distributing the
-                    artworks by the artists in question.
-                  </p>
-                </Col>
-              </Card>
-            </Col>
-          </Row> */}
           <Col span={24}>
             <Row>
               <Col span={12} className={s.imageContainer}>
@@ -419,7 +372,6 @@ function ThemesContentsHomepageV2(props) {
           </Col>
         </ThemesContainerMain>
       </Col>
-
       {/* // * ====================================== * // */}
 
       {/* //? ============== Article Section ============= ?// */}
@@ -487,125 +439,6 @@ function ThemesContentsHomepageV2(props) {
         </ThemesContainerMain>
       </Col>
 
-      {/* // * ====================================== * // */}
-
-      {/* //? ============== Footer ============= ?// */}
-      <Col className={s.footer}>
-        <ThemesContainerMain>
-          <Col className={s.footerContainer}>
-            <Row gutter={(20, 60)} className={s.s}>
-              <Col span={6}>
-                <Col className={s.imageContainer}>
-                  {" "}
-                  <Image
-                    preview={false}
-                    src="/images/logo-text-white.png"
-                    alt="artchive"
-                    className={s.image}
-                  />
-                </Col>
-                <p style={{ fontSize: "18px" }}>
-                  {" "}
-                  Our mission is to give artist, collector, and gallery a place to communicate
-                </p>
-              </Col>
-              <Col span={5}>
-                <h1>Browse</h1>
-                <p>
-                  <RightOutlined /> Artworks
-                </p>
-                <p>
-                  {" "}
-                  <RightOutlined /> Artists
-                </p>
-                <p>
-                  {" "}
-                  <RightOutlined /> Exhibitions
-                </p>
-                <p>
-                  {" "}
-                  <RightOutlined /> Articles
-                </p>
-              </Col>
-              <Col span={5}>
-                <h1>Take Action</h1>
-                <p>
-                  {" "}
-                  <RightOutlined /> Support Us
-                </p>
-                <p>
-                  {" "}
-                  <RightOutlined /> Engage With Us
-                </p>
-                <p>
-                  {" "}
-                  <RightOutlined /> Contact Us
-                </p>
-              </Col>
-              <Col span={5}>
-                <h1>Contact Us</h1>
-                <Row gutter={(5, 10)}>
-                  <Col span={2}>
-                    <EnvironmentOutlined />
-                  </Col>
-                  <Col span={21}>
-                    {" "}
-                    <p>Jalan Gadung, Denpasar, Bali, Indonesia</p>
-                  </Col>
-                </Row>
-                <Row gutter={(5, 10)}>
-                  <Col span={2}>
-                    <MailOutlined />
-                  </Col>
-                  <Col span={21}>
-                    {" "}
-                    <p>artchive@gmail.com</p>{" "}
-                  </Col>
-                </Row>{" "}
-                <Row gutter={(5, 10)}>
-                  <Col span={2}>
-                    <EnvironmentOutlined />
-                  </Col>
-                  <Col span={21}>
-                    {" "}
-                    <p>Jalan Gadung, Denpasar, Bali, Indonesia</p>
-                  </Col>
-                </Row>
-                <p>
-                  <PhoneOutlined /> +62 858-5839-6893
-                </p>
-                <Row gutter={(20, 10)} className={s.logoSocial}>
-                  <Col className={s.terms}>
-                    <InstagramOutlined />
-                  </Col>
-                  <Col className={s.terms}>
-                    {" "}
-                    <FacebookOutlined />
-                  </Col>
-                </Row>
-              </Col>
-            </Row>
-            <Divider className={s.divider} />
-            <Row
-              span={24}
-              style={{ marginTop: "20px", display: "flex", justifyContent: "space-between" }}
-            >
-              <Col span={8}>@ 2022 Artchive.id</Col>
-              <Col>
-                <Row gutter={(30, 30)}>
-                  <Col className={s.terms}>
-                    {" "}
-                    <p>Privacy & Policy</p>
-                  </Col>
-                  <Col className={s.terms}>
-                    <p>Terms & Conditions</p>
-                  </Col>
-                </Row>
-              </Col>
-            </Row>
-          </Col>
-        </ThemesContainerMain>
-      </Col>
       {/* // * ====================================== * // */}
     </>
   );

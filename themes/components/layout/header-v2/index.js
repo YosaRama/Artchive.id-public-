@@ -34,7 +34,7 @@ import { notificationList } from "app/database/dummy/notification";
 
 function ThemesHeader() {
   const router = useRouter();
-  console.log(router);
+
   // * ====================================== * //
   //? ============== User Hook ============= ?//
   const [iconVisible, setIconVisible] = useState(false);
@@ -117,9 +117,7 @@ function ThemesHeader() {
                             size="small"
                             style={{ backgroundColor: "#e5890a" }}
                           >
-                            <Link href="/cart">
-                              <a>CART</a>
-                            </Link>
+                            <ThemesHeaderCart />
                           </Badge>
                         </Col>
                         <Col className={s.iconHeader}>
