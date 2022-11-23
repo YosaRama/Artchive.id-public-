@@ -21,11 +21,27 @@ import s from "./index.module.scss";
 function ThemesFooterV2() {
   const router = useRouter();
   //? ============== Footer Menu ============= ?//
-  const footerMenu = [
-    { title: "About Us", link: "/about" },
+  const footerMenu1 = [
+    { title: "Artwork", link: "/about" },
     { title: "Artist", link: "/artist" },
-    { title: "Artwork", link: "/artwork" },
-    { title: "Contact Us", link: "/contact-us" },
+    { title: "Exhibitions", link: "/exhibition" },
+    { title: "Articles", link: "/articles" },
+  ];
+
+  const footerMenu2 = [
+    { title: "Support Us", link: "/about" },
+    { title: "Engage With Us", link: "/artist" },
+    { title: "Contact Us", link: "/exhibition" },
+  ];
+
+  const footerMenu3 = [
+    {
+      title: "Jalan Gadung, Denpasar, Bali, Indonesia.",
+      link: "/",
+      icon: <EnvironmentOutlined />,
+    },
+    { title: "artchive@gmail.com", link: "/", icon: <MailOutlined /> },
+    { title: "+62 858-5839-6893", link: "/", icon: <PhoneOutlined /> },
   ];
   // * ====================================== * //
 
@@ -33,8 +49,14 @@ function ThemesFooterV2() {
     <Footer className={s.footer}>
       <ThemesContainerMain sectionclass={s.section}>
         <Col className={s.footerContainer}>
-          <Row gutter={(10, 50)} className={s.s}>
-            <Col span={7}>
+          <Row gutter={(50, 50)} className={s.s}>
+            <Col
+              xl={{ span: 7 }}
+              lg={{ span: 7 }}
+              md={{ span: 24 }}
+              xs={{ span: 24 }}
+              className={s.logoContainer}
+            >
               <Col span={24} className={s.imageContainer} onClick={() => router.push("/")}>
                 <Image alt="" src="/images/logo-text-white.png" layout="fill" />
               </Col>
@@ -42,53 +64,65 @@ function ThemesFooterV2() {
                 Our mission is to give artist, collector, and gallery a place to communicate
               </p>
             </Col>
-            <Col span={4} className={s.descContainer}>
+            <Col
+              xl={{ span: 5 }}
+              lg={{ span: 4 }}
+              md={{ span: 7 }}
+              xs={{ span: 12 }}
+              className={s.descContainer}
+            >
               <h1>Browse</h1>
-
-              <a>Artworks</a>
-              <a>Artists</a>
-              <a>Exhibitions</a>
-              <a>Articles</a>
+              {footerMenu1.map((item, index) => (
+                <Link href={item.link} key={index}>
+                  <a>{item.title}</a>
+                </Link>
+              ))}
             </Col>
-            <Col span={4} className={s.descContainer}>
+            <Col
+              xl={{ span: 5 }}
+              lg={{ span: 4 }}
+              md={{ span: 7 }}
+              xs={{ span: 12 }}
+              className={s.descContainer}
+            >
               <h1>Take Action</h1>
-              <a>Support Us</a>
-              <a>Engage With Us</a>
-              <a>Contact Us</a>
+              {footerMenu2.map((item, index) => (
+                <Link href={item.link} key={index}>
+                  <a>{item.title}</a>
+                </Link>
+              ))}
             </Col>
-            <Col span={6} className={s.descContainer}>
+            <Col
+              xl={{ span: 7 }}
+              lg={{ span: 9 }}
+              md={{ span: 10 }}
+              xs={{ span: 24 }}
+              className={s.descContainer}
+            >
               <h1>Contact Us</h1>
-              <Row gutter={(5, 10)} style={{ marginBottom: 5 }}>
-                <Col span={2} className={s.icon}>
-                  <EnvironmentOutlined />
-                </Col>
-                <Col span={21}>
-                  {" "}
-                  <a>Jalan Gadung, Denpasar, Bali, Indonesia</a>
-                </Col>
-              </Row>
-              <Row gutter={(5, 10)} style={{ marginBottom: 5 }}>
-                <Col span={2} className={s.icon}>
-                  <MailOutlined />
-                </Col>
-                <Col span={21}>
-                  <a>artchive@gmail.com</a>
-                </Col>
-              </Row>
-              <Row gutter={(5, 10)} style={{ marginBottom: 5 }}>
-                <Col span={2} className={s.icon}>
-                  <PhoneOutlined />
-                </Col>
-                <Col span={21}>
-                  <a>+62 858-5839-6893</a>
-                </Col>
-              </Row>
-              <Row gutter={(20, 10)} className={s.logoSocial}>
+              {footerMenu3.map((item, index) => (
+                <Row gutter={(5, 10)} style={{ marginBottom: 5 }} key={index}>
+                  <Col span={2} className={s.icon}>
+                    {item.icon}
+                  </Col>
+                  <Col span={21}>
+                    <Link href={item.link}>
+                      <a>{item.title}</a>
+                    </Link>
+                  </Col>
+                </Row>
+              ))}
+
+              <Row gutter={(10, 10)} className={s.logoSocial}>
                 <Col className={s.logo}>
-                  <InstagramOutlined />
+                  <Link href="https://www.instagram.com/__artchive.id/" passHref>
+                    <InstagramOutlined />
+                  </Link>
                 </Col>
                 <Col className={s.logo}>
-                  <FacebookOutlined />
+                  <Link href="https://www.facebook.com/artchive.id/" passHref>
+                    <FacebookOutlined />
+                  </Link>
                 </Col>
               </Row>
             </Col>
@@ -101,10 +135,14 @@ function ThemesFooterV2() {
             <Col>
               <Row gutter={(30, 30)}>
                 <Col className={s.terms}>
-                  <a>Privacy & Policy</a>
+                  <Link href="/privacy-policies">
+                    <a>Privacy & Policy</a>
+                  </Link>
                 </Col>
                 <Col className={s.terms}>
-                  <a>Terms & Conditions</a>
+                  <Link href="/terms">
+                    <a>Terms & Conditions</a>
+                  </Link>
                 </Col>
               </Row>
             </Col>

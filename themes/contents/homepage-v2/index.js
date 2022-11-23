@@ -45,6 +45,8 @@ import ThemesButton from "themes/components/libs/button";
 function ThemesContentsHomepageV2(props) {
   //? ============== Handle Get Viewport ============= ?//
   const viewport = useWindowSize();
+  const { width } = useWindowSize();
+
   // * ====================================== * //
 
   //? ============== Articles Hooks ============= ?//
@@ -57,7 +59,6 @@ function ThemesContentsHomepageV2(props) {
   const carouselUserPreview = {
     className: s.carouselUserPreview,
     infinite: true,
-
     speed: 500,
     centerMode: true,
     arrows: true,
@@ -68,10 +69,30 @@ function ThemesContentsHomepageV2(props) {
     pauseOnFocus: true,
   };
 
+  const offerList = [
+    {
+      icon: <BookOutlined />,
+      offer: "Artist Management",
+      description:
+        "We let you manage your own profile and show the world your artworks. Hey, Collector could buy artwork from you!",
+    },
+    {
+      icon: <BookOutlined />,
+      offer: "Collector Management",
+      description:
+        "We let you collect artworks from our artist, trade your collection with othercollectors, and you can show it on your profile!",
+    },
+    {
+      icon: <BookOutlined />,
+      offer: "Gallery Management",
+      description:
+        "Gallery is a wonderful place to exhibit paintings. We have got you a landing pagethat matches your gallery themes!",
+    },
+  ];
+
   return (
     <>
       {/* //? ============== Banner Section ============= ?// */}
-      {/* <ThemesBanner imgSrc="/images/banner-homepage.jpg"> */}
       <ThemesBanner imgSrc="/images/banner-homepage-1.jpg">
         <motion.div
           variants={fadeTopToBottomShowcase}
@@ -86,37 +107,42 @@ function ThemesContentsHomepageV2(props) {
       {/* // * ====================================== * // */}
 
       {/* //? ============== Artwork Section ============= ?// */}
-      <Col style={{ padding: "120px 0px", background: "white" }}>
+      <Col className={s.artworkContainer}>
         <ThemesContainerMain>
-          <Row
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "flex-start",
-            }}
-            gutter={[40, 0]}
-          >
-            <Col span={8}>
-              <h1 style={{ fontSize: 48, lineHeight: "65px" }}>
+          <Row className={s.container} gutter={[40, 0]}>
+            <Col
+              xl={{ span: 8 }}
+              lg={{ span: 8 }}
+              md={{ span: 8 }}
+              xs={{ span: 24 }}
+              className={s.description}
+            >
+              <h1>
                 The best <span style={{ color: "#e5890a" }}>Artworks</span> you ever see!
               </h1>
-              <p style={{ fontSize: 18, lineHeight: "30px" }}>
+              <p>
                 We help artist to show their artworks and also help collectors to find the best fit
                 artwork they need! Find out more about our artist latest artwork and pocket it!
               </p>
-              <ThemesButton type={" default"} style={{ marginTop: "22px" }}>
-                DISCOVER MORE
-              </ThemesButton>
+              <Col className={s.btn}>
+                <ThemesButton
+                  type={" default"}
+                  style={{ marginTop: "22px", color: "white" }}
+                  onClick={() => router.push("/artwork")}
+                >
+                  DISCOVER MORE
+                </ThemesButton>
+              </Col>
             </Col>
-            <Col span={16}>
+            <Col xl={{ span: 16 }} lg={{ span: 16 }} md={{ span: 16 }} xs={{ span: 24 }}>
               <Row gutter={(20, 20)} className={s.slider} ref={scrollRef}>
                 {artworkData.map((item, index) => (
                   <Col
-                    // xl={{ span: 6 }}
-                    // lg={{ span: 7 }}
-                    // md={{ span: 11 }}
-                    // xs={{ span: 19 }}
-                    span={10}
+                    xl={{ span: 10 }}
+                    lg={{ span: 11 }}
+                    md={{ span: 15 }}
+                    xs={{ span: 20 }}
+                    // span={10}
                     key={index}
                     className={s.sliderItem}
                   >
@@ -135,21 +161,19 @@ function ThemesContentsHomepageV2(props) {
           </Row>
         </ThemesContainerMain>
       </Col>
-      <ThemesContainerMain>
-        {/* //? ============== Artist Sections ============= ?// */}
-        <Col style={{ marginTop: "120px" }}>
-          <Row
-            style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}
-          >
-            <Col span={15}>
+      <Col className={s.artistContainer}>
+        <ThemesContainerMain>
+          {/* //? ============== Artist Sections ============= ?// */}
+
+          <Row className={s.container}>
+            <Col xl={{ span: 10 }} lg={{ span: 11 }} md={{ span: 15 }} xs={{ span: 20 }}>
               <Row gutter={(20, 20)} className={s.slider} ref={scrollRef}>
                 {artistData.map((item, index) => (
                   <Col
-                    // xl={{ span: 6 }}
-                    span={10}
-                    // lg={{ span: 7 }}
-                    // md={{ span: 11 }}
-                    // xs={{ span: 21 }}
+                    xl={{ span: 10 }}
+                    lg={{ span: 11 }}
+                    md={{ span: 15 }}
+                    xs={{ span: 21 }}
                     key={index}
                     className={s.sliderIten}
                   >
@@ -165,24 +189,35 @@ function ThemesContentsHomepageV2(props) {
                 ))}
               </Row>
             </Col>
-            <Col span={8} className={s.ctaRow}>
-              <h1 style={{ fontSize: 48, lineHeight: "65px" }}>
+            <Col
+              xl={{ span: 8 }}
+              lg={{ span: 8 }}
+              md={{ span: 8 }}
+              xs={{ span: 24 }}
+              className={s.description}
+            >
+              <h1>
                 Our New <span style={{ color: "#E5890A" }}>Artists</span> with Stunning Talent!
               </h1>
-              <p style={{ fontSize: 18, lineHeight: "32px" }}>
+              <p>
                 The artist is not a different kind of person, but every person is a different kind
                 of artist.{" "}
               </p>
-              <ThemesButton type={"default"} style={{ marginTop: "15px" }}>
-                DISCOVER MORE
-              </ThemesButton>
+              <Col className={s.btn}>
+                <ThemesButton
+                  type={"default"}
+                  style={{ marginTop: "15px" }}
+                  onClick={() => router.push("/artist")}
+                >
+                  DISCOVER MORE
+                </ThemesButton>
+              </Col>
             </Col>
           </Row>
-        </Col>
-      </ThemesContainerMain>
-
+        </ThemesContainerMain>
+      </Col>
       {/* //? ============== Exhibition List ============= ?// */}
-      <Col style={{ marginTop: "120px" }}>
+      <Col className={s.exhibition}>
         <Image
           src="/images/homepage-banner-list-1.jpg"
           alt="exhibition"
@@ -197,24 +232,36 @@ function ThemesContentsHomepageV2(props) {
                 <h1>DRAWING EXHIBITION</h1>
                 <p>
                   First drawing exhibition in Indonesia by Forum Drawing Exhibition on Ubud, Bali
-                  Collaborate with Jepun Artfriends 15th May - 29th May
+                  Collaborate with Jepun Artfriends
                 </p>
+                <p>15th May - 29th May</p>
                 <Row gutter={[20, 20]}>
                   <Col>
-                    <ThemesButton>GO TO EXHIBITION</ThemesButton>
+                    <Col className={s.btn}>
+                      <ThemesButton onClick={() => router.push("/exhibition")}>
+                        {/* //todo: make this push to exhibition details */}
+                        GO TO EXHIBITION
+                      </ThemesButton>
+                    </Col>
                   </Col>
                   <Col>
-                    <ThemesButton type={" outlined"}>SEE ALL EXHIBITION</ThemesButton>
+                    <Col className={s.btn}>
+                      <ThemesButton type={" outlined"} onClick={() => router.push("/exhibition")}>
+                        {width > 500 ? "SEE ALL EXHIBITION" : "SEE ALL"}
+                      </ThemesButton>
+                    </Col>
                   </Col>
                 </Row>
               </Col>
-              <Col span={8} className={s.moreExhibitionContainer}>
-                <Col className={s.list}>
-                  <ThemesHomepageExhibitionSection />
-                  <ThemesHomepageExhibitionSection />
-                  <ThemesHomepageExhibitionSection />
+              {width > 768 && (
+                <Col span={8} className={s.moreExhibitionContainer}>
+                  <Col className={s.list}>
+                    <ThemesHomepageExhibitionSection />
+                    <ThemesHomepageExhibitionSection />
+                    <ThemesHomepageExhibitionSection />
+                  </Col>
                 </Col>
-              </Col>
+              )}
             </Row>
           </ThemesContainerMain>
         </Col>
@@ -230,7 +277,13 @@ function ThemesContentsHomepageV2(props) {
           />
           <Col span={24}>
             <Row>
-              <Col span={12} className={s.imageContainer}>
+              <Col
+                xl={{ span: 12 }}
+                lg={{ span: 12 }}
+                md={{ span: 12 }}
+                xs={{ span: 24 }}
+                className={s.imageContainer}
+              >
                 <Image
                   src="/images/homepage-role-artist.jpg"
                   alt=""
@@ -238,9 +291,14 @@ function ThemesContentsHomepageV2(props) {
                   className={s.image}
                 />
               </Col>
-              <Col span={12} className={s.descriptionContainer}>
+              <Col
+                xl={{ span: 12 }}
+                lg={{ span: 12 }}
+                md={{ span: 12 }}
+                xs={{ span: 24 }}
+                className={s.descriptionContainer}
+              >
                 <Col span={24} className={s.description}>
-                  {" "}
                   <h1>ARTIST</h1>
                   <Col className={s.divider} />
                   <h4>Show Artwork | Sell Artwork | Manage Profile</h4>
@@ -252,31 +310,91 @@ function ThemesContentsHomepageV2(props) {
                 </Col>
               </Col>
             </Row>
-            <Row>
-              <Col span={12} className={s.descriptionContainer}>
-                <Col span={24} className={s.description}>
-                  {" "}
-                  <h1>ART COLLECTOR</h1>
-                  <Col className={s.divider} />
-                  <h4>Buy Artwork | Show Collection | Trade Collection</h4>
-                  <p>
-                    a person who creates art (such as painting, sculpture, music, or writing) using
-                    conscious skill and creative imagination. the great artists of the Renaissance.
-                    an artist specializing in watercolors. : a person skilled in any of the arts.
-                  </p>
+
+            {width > 500 && (
+              <Row>
+                <Col
+                  xl={{ span: 12 }}
+                  lg={{ span: 12 }}
+                  md={{ span: 12 }}
+                  xs={{ span: 24 }}
+                  className={s.descriptionContainer}
+                >
+                  <Col span={24} className={s.description}>
+                    <h1>ART COLLECTOR</h1>
+                    <Col className={s.divider} />
+                    <h4>Buy Artwork | Show Collection | Trade Collection</h4>
+                    <p>
+                      a person who creates art (such as painting, sculpture, music, or writing)
+                      using conscious skill and creative imagination. the great artists of the
+                      Renaissance. an artist specializing in watercolors. : a person skilled in any
+                      of the arts.
+                    </p>
+                  </Col>
                 </Col>
-              </Col>
-              <Col span={12} className={s.imageContainer}>
-                <Image
-                  src="/images/homepage-role-collector.jpg"
-                  alt=""
-                  preview={false}
-                  className={s.image}
-                />
-              </Col>
-            </Row>
+                <Col
+                  xl={{ span: 12 }}
+                  lg={{ span: 12 }}
+                  md={{ span: 12 }}
+                  xs={{ span: 24 }}
+                  className={s.imageContainer}
+                >
+                  <Image
+                    src="/images/homepage-role-collector.jpg"
+                    alt=""
+                    preview={false}
+                    className={s.image}
+                  />
+                </Col>
+              </Row>
+            )}
+
+            {width <= 500 && (
+              <Row>
+                <Col
+                  xl={{ span: 12 }}
+                  lg={{ span: 12 }}
+                  md={{ span: 12 }}
+                  xs={{ span: 24 }}
+                  className={s.imageContainer}
+                >
+                  <Image
+                    src="/images/homepage-role-collector.jpg"
+                    alt=""
+                    preview={false}
+                    className={s.image}
+                  />
+                </Col>
+                <Col
+                  xl={{ span: 12 }}
+                  lg={{ span: 12 }}
+                  md={{ span: 12 }}
+                  xs={{ span: 24 }}
+                  className={s.descriptionContainer}
+                >
+                  <Col span={24} className={s.description}>
+                    <h1>ART COLLECTOR</h1>
+                    <Col className={s.divider} />
+                    <h4>Buy Artwork | Show Collection | Trade Collection</h4>
+                    <p>
+                      a person who creates art (such as painting, sculpture, music, or writing)
+                      using conscious skill and creative imagination. the great artists of the
+                      Renaissance. an artist specializing in watercolors. : a person skilled in any
+                      of the arts.
+                    </p>
+                  </Col>
+                </Col>
+              </Row>
+            )}
+
             <Row>
-              <Col span={12} className={s.imageContainer}>
+              <Col
+                xl={{ span: 12 }}
+                lg={{ span: 12 }}
+                md={{ span: 12 }}
+                xs={{ span: 24 }}
+                className={s.imageContainer}
+              >
                 <Image
                   src="/images/homepage-role-gallery.jpg"
                   alt=""
@@ -284,7 +402,13 @@ function ThemesContentsHomepageV2(props) {
                   className={s.image}
                 />
               </Col>
-              <Col span={12} className={s.descriptionContainer}>
+              <Col
+                xl={{ span: 12 }}
+                lg={{ span: 12 }}
+                md={{ span: 12 }}
+                xs={{ span: 24 }}
+                className={s.descriptionContainer}
+              >
                 <Col span={24} className={s.description}>
                   {" "}
                   <h1>GALLERY</h1>
@@ -310,57 +434,39 @@ function ThemesContentsHomepageV2(props) {
             subtitle="Various offer to upgrade you popularity"
             className={s.pageTitle}
           />
-          <Row gutter={(20, 20)} className={s.offerContainer}>
-            <Col span={7} className={s.description}>
-              <Col className={s.artistImage}>
-                <Col className={s.icon}>
-                  <BookOutlined />
+          <Row gutter={(40, 20)} className={s.offerContainer}>
+            {offerList.map((item, index) => (
+              <Col
+                xl={{ span: 7 }}
+                lg={{ span: 7 }}
+                md={{ span: 7 }}
+                xs={{ span: 22 }}
+                className={s.description}
+                key={index}
+              >
+                <Col className={s.artistImage}>
+                  <Col className={s.icon}>{item.icon}</Col>
+                </Col>
+                <Col>
+                  <h1>{item.offer}</h1>
+                  <p>{item.description}</p>
                 </Col>
               </Col>
-              <Col>
-                <h1>Artist Management</h1>
-                <p>
-                  We let you manage your own profile and show the world your artworks. Hey,
-                  Collector could buy artwork from you!
-                </p>
-              </Col>
-            </Col>
-            <Col span={7} className={s.description}>
-              <Col className={s.artistImage}>
-                <Col className={s.icon}>
-                  <BookOutlined />
-                </Col>
-              </Col>{" "}
-              <Col>
-                <h1>Collector Management</h1>
-                <p>
-                  We let you collect artworks from our artist, trade your collection with other
-                  collectors, and you can show it on your profile!
-                </p>
-              </Col>
-            </Col>
-            <Col span={7} className={s.description}>
-              <Col className={s.artistImage}>
-                <Col className={s.icon}>
-                  <BookOutlined />
-                </Col>
-              </Col>{" "}
-              <Col>
-                <h1>Gallery Management</h1>
-                <p>
-                  Gallery is a wonderful place to exhibit paintings. We have got you a landing page
-                  that matches your gallery themes!
-                </p>
-              </Col>
-            </Col>
+            ))}
           </Row>
           <Col className={s.offerContainer}>
-            <Col span={7} className={s.description}>
+            <Col
+              xl={{ span: 7 }}
+              lg={{ span: 7 }}
+              md={{ span: 7 }}
+              xs={{ span: 22 }}
+              className={s.description}
+            >
               <Col className={s.artistImage}>
                 <Col className={s.icon}>
                   <BookOutlined />
                 </Col>
-              </Col>{" "}
+              </Col>
               <Col>
                 <h1>Archive Artworks</h1>
                 <p>

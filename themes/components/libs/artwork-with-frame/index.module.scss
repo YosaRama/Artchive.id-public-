@@ -40,18 +40,54 @@
   }
 }
 
-//? ============== Tablet Portrait Mode ============= ?//
+//? ============== Tablet Landscape Mode ============= ?//
+@media screen and (max-width: 1024px) {
+  .container {
+    .image {
+      height: 300px;
+    }
+    .content {
+      margin-top: 15px;
+      text-align: center;
+      .title {
+        margin-bottom: 0;
+        font-size: 18px;
+        transition: all 0.3s ease;
+        &:hover {
+          color: #e5890a;
+          cursor: pointer;
+        }
+      }
+      .size {
+        margin-bottom: 0;
+        font-size: 14px;
+      }
+    }
+  }
+}
+// * ====================================== * //
+
+//? ============== Tablet Potrait Mode ============= ?//
 @media screen and (max-width: 768px) {
   .container {
     .image {
-      height: 320px;
+      height: 300px;
     }
     .content {
+      margin-top: 15px;
+      text-align: center;
       .title {
-        font-size: 24px;
+        margin-bottom: 0;
+        font-size: 18px;
+        transition: all 0.3s ease;
+        &:hover {
+          color: #e5890a;
+          cursor: pointer;
+        }
       }
       .size {
-        font-size: 16px;
+        margin-bottom: 0;
+        font-size: 14px;
       }
     }
   }

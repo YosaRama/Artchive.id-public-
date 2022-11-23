@@ -59,12 +59,11 @@ function ThemesHeader() {
 
   const { width } = useWindowSize();
   const header = (
-    <motion.div variants={fadeTopToBottom} initial="hidden" animate="visible">
+    <motion.div variants={fadeTopToBottom} initial="hidden" animate="visible" exit="exit">
       <Header className={s.container}>
         <ThemesContainerMain>
           <Row className={s.header}>
             <Col className={s.logo} onClick={() => router.push("/")}>
-              {" "}
               <Image
                 src="/images/logo-without-text.png"
                 alt=""
@@ -79,173 +78,226 @@ function ThemesHeader() {
               />
             </Col>
 
-            <Col>
-              <>
-                {width > 1024 && (
-                  <Row gutter={[30, 30]} style={{ display: "flex", alignItems: "center" }}>
-                    <Col className={s.iconHeader}>
-                      <Link href="/artwork">
-                        <a>ARTWORK</a>
-                      </Link>
-                    </Col>
-                    <Col className={s.iconHeader}>
-                      <Link href="/artist">
-                        <a>ARTIST</a>
-                      </Link>
-                    </Col>
-                    <Col className={s.iconHeader}>
-                      <Link href="/exhibition">
-                        <a>EXHIBITION</a>
-                      </Link>
-                    </Col>
-                    <Col className={s.iconHeader}>
-                      <Link href="/articles">
-                        <a>ARTICLES</a>
-                      </Link>
-                    </Col>
-                    {session && (
-                      <>
-                        <Col className={s.iconHeader}>
-                          <Link href="/profile/studio/create">
-                            <a>STUDIO</a>
-                          </Link>
-                        </Col>
+            <Col className={s.headerContainer}>
+              <ThemesContainerMain>
+                <Row className={s.header}>
+                  <Col className={s.logo} onClick={() => router.push("/")}>
+                    <Image
+                      src="/images/logo-without-text.png"
+                      alt=""
+                      layout="fill"
+                      objectFit="contain"
+                      okButtonProps={{
+                        visible: false,
+                      }}
+                      cancelButtonProps={{
+                        visible: false,
+                      }}
+                    />
+                  </Col>
 
-                        <Col onChange={(e) => setIconVisible()} className={s.iconHeader}>
-                          <Badge
-                            count={cartItem?.length}
-                            size="small"
-                            style={{ backgroundColor: "#e5890a" }}
-                          >
-                            <ThemesHeaderCart />
-                          </Badge>
-                        </Col>
-                        <Col className={s.iconHeader}>
-                          <div className={s.nameContainer} onClick={() => router.push("/profile")}>
-                            <div className={s.userName}>{session.user.full_name}</div>
-                            <p className={s.userRole}>{session.user.role}</p>
-                          </div>
-                        </Col>
-                        <div
-                          style={{ marginRight: "15px" }}
-                          onClick={() => router.push("/profile")}
-                          className={`${s.mobileHidden}`}
-                        >
-                          <Avatar
-                            src={
-                              userData?.profile
-                                ? `${process.env.NEXT_PUBLIC_S3_URL}/${userData?.profile?.url}`
-                                : "/images/profile-default.png"
-                            }
-                            className={s.avatar}
-                          />
-                        </div>
-                      </>
-                    )}
-                    {!session && (
-                      <>
-                        <Col>
-                          <ThemesButton
-                            style={{ display: "flex", justifyContent: "center" }}
-                            type="outlined"
-                            onClick={() => router.push("/signin")}
-                          >
-                            LOGIN
-                          </ThemesButton>
-                        </Col>
-                        <Col>
-                          <ThemesButton
-                            style={{ display: "flex", justifyContent: "center" }}
-                            onClick={() => router.push("/register")}
-                            type={`default ${s.mobileHidden}`}
-                          >
-                            REGISTER
-                          </ThemesButton>
-                        </Col>
-                      </>
-                    )}
-                  </Row>
-                )}
-
-                {width <= 1024 && (
-                  <Row gutter={[15, 15]}>
-                    {session && (
-                      <>
-                        <Col className={s.iconHeader}>
-                          <Link href="/artwork">
-                            <a>ARTWORK</a>
-                          </Link>
-                        </Col>
-                        <Col className={s.iconHeader}>
-                          <Link href="/artist">
-                            <a>ARTIST</a>
-                          </Link>
-                        </Col>
-                        <Col onChange={(e) => setIconVisible()} className={s.iconHeader}>
-                          <Badge
-                            count={cartItem?.length}
-                            size="small"
-                            style={{ backgroundColor: "#e5890a" }}
-                          >
-                            <Link href="/cart">
-                              <a>CART</a>
+                  <Col>
+                    <>
+                      {width > 1024 && (
+                        <Row gutter={[30, 30]}>
+                          <Col className={s.iconHeader}>
+                            <Link href="/artwork">
+                              <a>ARTWORK</a>
                             </Link>
-                          </Badge>
-                        </Col>
-                        <Col className={s.iconHeader}>
-                          <div className={s.nameContainer} onClick={() => router.push("/profile")}>
-                            <div className={s.userName}>{session.user.full_name}</div>
-                            <p className={s.userRole}>{session.user.role}</p>
-                          </div>
-                        </Col>
-                        <div
-                          style={{ marginRight: "15px" }}
-                          onClick={() => router.push("/profile")}
-                          className={`${s.mobileHidden}`}
-                        >
-                          <Avatar
-                            src={
-                              userData?.profile
-                                ? `${process.env.NEXT_PUBLIC_S3_URL}/${userData?.profile?.url}`
-                                : "/images/profile-default.png"
-                            }
-                            className={s.avatar}
-                          />
-                        </div>
-                      </>
-                    )}
-                    {!session && (
-                      <>
-                        <Col>
-                          <ThemesButton
-                            style={{ display: "flex", justifyContent: "center" }}
-                            type="outlined"
-                            onClick={() => router.push("/signin")}
-                          >
-                            LOGIN
-                          </ThemesButton>
-                        </Col>
-                        <Col>
-                          <ThemesButton
-                            style={{ display: "flex", justifyContent: "center" }}
-                            onClick={() => router.push("/register")}
-                            type={`default ${s.mobileHidden}`}
-                          >
-                            REGISTER
-                          </ThemesButton>
-                        </Col>
-                      </>
-                    )}
-                    <Col className={s.iconHeader}>
-                      <MenuOutlined
-                        style={{ cursor: "pointer" }}
-                        className={`${s.hamburger}`}
-                        onClick={() => setOpenMenu(true)}
-                      />
-                    </Col>
-                  </Row>
-                )}
-              </>
+                          </Col>
+                          <Col className={s.iconHeader}>
+                            <Link href="/artist">
+                              <a>ARTIST</a>
+                            </Link>
+                          </Col>
+                          <Col className={s.iconHeader}>
+                            <Link href="/exhibition">
+                              <a>EXHIBITION</a>
+                            </Link>
+                          </Col>
+                          <Col className={s.iconHeader}>
+                            <Link href="/articles">
+                              <a>ARTICLES</a>
+                            </Link>
+                          </Col>
+                          {session && (
+                            <>
+                              <Col className={s.iconHeader}>
+                                <Link href="/profile/studio/create">
+                                  <a>STUDIO</a>
+                                </Link>
+                              </Col>
+
+                              <Col onChange={(e) => setIconVisible()} className={s.iconHeader}>
+                                <Badge
+                                  count={cartItem?.length}
+                                  size="small"
+                                  style={{ backgroundColor: "#e5890a" }}
+                                >
+                                  <ThemesHeaderCart />
+                                </Badge>
+                              </Col>
+                              <Col className={s.iconHeader}>
+                                <div
+                                  className={s.nameContainer}
+                                  onClick={() => router.push("/profile")}
+                                >
+                                  <div className={s.userName}>{session.user.full_name}</div>
+                                  <p className={s.userRole}>{session.user.role}</p>
+                                </div>
+                              </Col>
+                              <div
+                                style={{ marginRight: "15px" }}
+                                onClick={() => router.push("/profile")}
+                                className={`${s.mobileHidden}`}
+                              >
+                                <Avatar
+                                  src={
+                                    userData?.profile
+                                      ? `${process.env.NEXT_PUBLIC_S3_URL}/${userData?.profile?.url}`
+                                      : "/images/profile-default.png"
+                                  }
+                                  className={s.avatar}
+                                />
+                              </div>
+                            </>
+                          )}
+                          {!session && (
+                            <>
+                              <Col>
+                                <ThemesButton
+                                  style={{ display: "flex", justifyContent: "center" }}
+                                  type="outlined"
+                                  onClick={() => router.push("/signin")}
+                                >
+                                  LOGIN
+                                </ThemesButton>
+                              </Col>
+                              <Col>
+                                <ThemesButton
+                                  style={{ display: "flex", justifyContent: "center" }}
+                                  onClick={() => router.push("/register")}
+                                  type={`default ${s.mobileHidden}`}
+                                >
+                                  REGISTER
+                                </ThemesButton>
+                              </Col>
+                            </>
+                          )}
+                        </Row>
+                      )}
+
+                      {width <= 1024 && width > 500 && (
+                        <Row gutter={[15, 15]}>
+                          {session && (
+                            <>
+                              <Col className={s.iconHeader}>
+                                <Link href="/artwork">
+                                  <a>ARTWORK</a>
+                                </Link>
+                              </Col>
+                              <Col className={s.iconHeader}>
+                                <Link href="/artist">
+                                  <a>ARTIST</a>
+                                </Link>
+                              </Col>
+                              <Col onChange={(e) => setIconVisible()} className={s.iconHeader}>
+                                <Badge
+                                  count={cartItem?.length}
+                                  size="small"
+                                  style={{ backgroundColor: "#e5890a" }}
+                                >
+                                  <Link href="/cart">
+                                    <a>CART</a>
+                                  </Link>
+                                </Badge>
+                              </Col>
+                            </>
+                          )}
+                          {!session && (
+                            <>
+                              <Col>
+                                <ThemesButton
+                                  style={{ display: "flex", justifyContent: "center" }}
+                                  type="outlined"
+                                  onClick={() => router.push("/signin")}
+                                >
+                                  LOGIN
+                                </ThemesButton>
+                              </Col>
+                              <Col>
+                                <ThemesButton
+                                  style={{ display: "flex", justifyContent: "center" }}
+                                  onClick={() => router.push("/register")}
+                                  type={`default ${s.mobileHidden}`}
+                                >
+                                  REGISTER
+                                </ThemesButton>
+                              </Col>
+                            </>
+                          )}
+                          <Col className={s.iconHeader}>
+                            <MenuOutlined
+                              style={{ cursor: "pointer" }}
+                              className={`${s.hamburger}`}
+                              onClick={() => setOpenMenu(true)}
+                            />
+                          </Col>
+                        </Row>
+                      )}
+
+                      {width <= 500 && (
+                        <Row gutter={[15, 15]}>
+                          {session && (
+                            <>
+                              <Col onChange={(e) => setIconVisible()} className={s.iconHeader}>
+                                <Badge
+                                  count={cartItem?.length}
+                                  size="small"
+                                  style={{ backgroundColor: "#e5890a" }}
+                                >
+                                  <Link href="/cart">
+                                    <a>CART</a>
+                                  </Link>
+                                </Badge>
+                              </Col>
+                            </>
+                          )}
+                          {!session && (
+                            <>
+                              <Col>
+                                <ThemesButton
+                                  style={{ display: "flex", justifyContent: "center" }}
+                                  type="outlined"
+                                  onClick={() => router.push("/signin")}
+                                >
+                                  LOGIN
+                                </ThemesButton>
+                              </Col>
+                              <Col>
+                                <ThemesButton
+                                  style={{ display: "flex", justifyContent: "center" }}
+                                  onClick={() => router.push("/register")}
+                                  type={`default ${s.mobileHidden}`}
+                                >
+                                  REGISTER
+                                </ThemesButton>
+                              </Col>
+                            </>
+                          )}
+                          <Col className={s.iconHeader}>
+                            <MenuOutlined
+                              style={{ cursor: "pointer" }}
+                              className={`${s.hamburger}`}
+                              onClick={() => setOpenMenu(true)}
+                            />
+                          </Col>
+                        </Row>
+                      )}
+                    </>
+                  </Col>
+                </Row>
+              </ThemesContainerMain>
             </Col>
           </Row>
         </ThemesContainerMain>

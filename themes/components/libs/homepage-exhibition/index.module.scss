@@ -50,3 +50,15 @@
     margin: 0px;
   }
 }
+
+//? ============== Tablet Landscape ============= ?//
+@media screen and (max-width: 1024px) {
+  .select {
+    h1 {
+      font-size: 18px !important;
+    }
+    p {
+      font-size: 16px !important;
+    }
+  }
+}

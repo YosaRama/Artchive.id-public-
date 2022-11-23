@@ -173,7 +173,7 @@ function ThemesBanner(props) {
                   </Row>
                 )}
 
-                {width <= 1024 && (
+                {width <= 1024 && width > 500 && (
                   <Row gutter={[15, 15]}>
                     {session && (
                       <>
@@ -198,26 +198,55 @@ function ThemesBanner(props) {
                             </Link>
                           </Badge>
                         </Col>
-                        <Col className={s.iconHeader}>
-                          <div className={s.nameContainer} onClick={() => router.push("/profile")}>
-                            <div className={s.userName}>{session.user.full_name}</div>
-                            <p className={s.userRole}>{session.user.role}</p>
-                          </div>
+                      </>
+                    )}
+                    {!session && (
+                      <>
+                        <Col>
+                          <ThemesButton
+                            style={{ display: "flex", justifyContent: "center" }}
+                            type="outlined"
+                            onClick={() => router.push("/signin")}
+                          >
+                            LOGIN
+                          </ThemesButton>
                         </Col>
-                        <div
-                          style={{ marginRight: "15px" }}
-                          onClick={() => router.push("/profile")}
-                          className={`${s.mobileHidden}`}
-                        >
-                          <Avatar
-                            src={
-                              userData?.profile
-                                ? `${process.env.NEXT_PUBLIC_S3_URL}/${userData?.profile?.url}`
-                                : "/images/profile-default.png"
-                            }
-                            className={s.avatar}
-                          />
-                        </div>
+                        <Col>
+                          <ThemesButton
+                            style={{ display: "flex", justifyContent: "center" }}
+                            onClick={() => router.push("/register")}
+                            type={`default ${s.mobileHidden}`}
+                          >
+                            REGISTER
+                          </ThemesButton>
+                        </Col>
+                      </>
+                    )}
+                    <Col className={s.iconHeader}>
+                      <MenuOutlined
+                        style={{ cursor: "pointer" }}
+                        className={`${s.hamburger}`}
+                        onClick={() => setOpenMenu(true)}
+                      />
+                    </Col>
+                  </Row>
+                )}
+
+                {width <= 500 && (
+                  <Row gutter={[15, 15]}>
+                    {session && (
+                      <>
+                        <Col onChange={(e) => setIconVisible()} className={s.iconHeader}>
+                          <Badge
+                            count={cartItem?.length}
+                            size="small"
+                            style={{ backgroundColor: "#e5890a" }}
+                          >
+                            <Link href="/cart">
+                              <a>CART</a>
+                            </Link>
+                          </Badge>
+                        </Col>
                       </>
                     )}
                     {!session && (

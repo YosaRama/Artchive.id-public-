@@ -134,7 +134,7 @@
       }
     }
     .logoSocial {
-      width: 25%;
+      width: 20%;
       display: flex;
       justify-content: space-between;
       .logo {
@@ -180,56 +180,343 @@
   margin: 50px 0px 40px;
 }
 
-//? ============== Mobile Mode ============= ?//
-@media screen and (max-width: 500px) {
-  .topContainer {
-    padding: 40px 0;
-    .logo {
-      margin: 0;
-      margin-right: auto;
-      max-width: 50%;
-      flex: 0 0 50%;
-    }
-    .linkContainer {
-      height: 100%;
-      .linkGroup {
-        justify-content: flex-start;
+//? ============== Tablet Landsccape Mode ============= ?//
+@media screen and (max-width: 1024px) {
+  .footer {
+    .footerContainer {
+      padding: 80px 30px 40px;
+      .s {
+        display: flex;
+        justify-content: space-evenly;
+        .logoSocial {
+          font-size: 20px;
+        }
       }
-      .link {
-        margin-left: 0;
+      .imageContainer {
         width: 100%;
-        margin-bottom: 10px;
+        height: 56px;
+        margin: 0 auto 20px;
+        cursor: pointer;
+        img {
+          object-fit: contain;
+        }
       }
+      .descContainer {
+        height: 250px;
+        display: flex;
+        flex-direction: column;
+      }
+      p {
+        font-size: 16px;
+        color: white;
+      }
+      h1 {
+        color: white;
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 30px;
+      }
+      a {
+        margin: 5px 0px;
+        color: white;
+        cursor: pointer;
+        &:hover {
+          color: #e5890a;
+          transition: 300ms all ease;
+        }
+      }
+      .logoSocial {
+        width: 20%;
+        display: flex;
+        justify-content: space-between;
+        .logo {
+          cursor: pointer;
+          color: white;
+          transition: 300ms all ease;
+          font-size: 16px;
+          &:hover {
+            color: #e5890a;
+            transition: 300ms all ease;
+          }
+        }
+      }
+    }
+    a {
+      color: white;
+    }
+    .icon {
+      color: white;
+      width: 20px;
+      font-size: 16px;
+      margin-right: 10px;
     }
   }
   .bottomContainer {
-    .social {
-      flex: 0 0 100%;
-      max-width: 100%;
-      order: 1;
-      margin-bottom: 10px;
-    }
-    .copyright {
-      flex: 0 0 100%;
-      max-width: 100%;
-      text-align: left;
-      order: 3;
-      margin-bottom: 10px;
-    }
-    .additionalLinkContainer {
-      flex: 0 0 100%;
-      max-width: 100%;
-      order: 2;
-      text-align: left;
-      margin-bottom: 10px;
-    }
-    .additionalLink {
-      justify-content: flex-start;
-      p {
-        margin-left: 0;
-        margin-right: 15px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    .terms {
+      &:hover {
+        color: #e5890a;
+        transition: 300ms all ease;
       }
     }
+    p,
+    a {
+      color: white;
+      font-size: 16px;
+    }
   }
+}
+// * ====================================== * //
+
+//? ============== Tablet Potrait ============= ?//
+@media screen and (max-width: 768px) {
+  .footer {
+    .footerContainer {
+      padding: 80px 10px 40px;
+      .s {
+        display: flex;
+        justify-content: space-evenly;
+        .logoContainer {
+          margin-bottom: 30px;
+          padding: 0px 120px !important;
+          p {
+            text-align: center;
+          }
+        }
+        .logoSocial {
+          font-size: 20px;
+        }
+      }
+      .imageContainer {
+        width: 100%;
+        height: 56px;
+        margin: 0 auto 20px;
+        cursor: pointer;
+        img {
+          object-fit: contain;
+        }
+      }
+      .descContainer {
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+      }
+      p {
+        font-size: 16px;
+        color: white;
+      }
+      h1 {
+        color: white;
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 30px;
+      }
+      a {
+        margin: 5px 0px;
+        color: white;
+        cursor: pointer;
+        &:hover {
+          color: #e5890a;
+          transition: 300ms all ease;
+        }
+      }
+      .logoSocial {
+        width: 25%;
+        display: flex;
+        justify-content: space-between;
+        .logo {
+          cursor: pointer;
+          color: white;
+          transition: 300ms all ease;
+          font-size: 16px;
+          &:hover {
+            color: #e5890a;
+            transition: 300ms all ease;
+          }
+        }
+      }
+    }
+    a {
+      color: white;
+    }
+    .icon {
+      color: white;
+      width: 20px;
+      font-size: 16px;
+      margin-right: 10px;
+    }
+  }
+  .bottomContainer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    .terms {
+      &:hover {
+        color: #e5890a;
+        transition: 300ms all ease;
+      }
+    }
+    p,
+    a {
+      color: white;
+      font-size: 16px;
+    }
+  }
+  .divider {
+    background: white;
+    margin: 50px 0px 40px;
+  }
+}
+
+//? ============== Mobile Mode ============= ?//
+@media screen and (max-width: 500px) {
+  .footer {
+    .footerContainer {
+      padding: 80px 0px 40px;
+      .s {
+        display: flex;
+        justify-content: space-between;
+        .logoContainer {
+          margin-bottom: 30px;
+          padding: 0px 20px !important;
+          p {
+            text-align: center;
+          }
+        }
+        .logoSocial {
+          font-size: 20px;
+        }
+      }
+      .imageContainer {
+        width: 100%;
+        height: 45px;
+        margin: 0 auto 20px;
+        cursor: pointer;
+        img {
+          object-fit: contain;
+        }
+      }
+      .descContainer {
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+      }
+      p {
+        font-size: 16px;
+        color: white;
+      }
+      h1 {
+        color: white;
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 30px;
+      }
+      a {
+        margin: 5px 0px;
+        color: white;
+        cursor: pointer;
+        &:hover {
+          color: #e5890a;
+          transition: 300ms all ease;
+        }
+      }
+      .logoSocial {
+        width: 25%;
+        display: flex;
+        justify-content: space-between;
+        .logo {
+          cursor: pointer;
+          color: white;
+          transition: 300ms all ease;
+          font-size: 16px;
+          &:hover {
+            color: #e5890a;
+            transition: 300ms all ease;
+          }
+        }
+      }
+    }
+    a {
+      color: white;
+    }
+    .icon {
+      color: white;
+      width: 20px;
+      font-size: 16px;
+      margin-right: 10px;
+    }
+  }
+  .bottomContainer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    .terms {
+      &:hover {
+        color: #e5890a;
+        transition: 300ms all ease;
+      }
+    }
+    p,
+    a {
+      color: white;
+      font-size: 16px;
+    }
+  }
+  .divider {
+    background: white;
+    margin: 50px 0px 40px;
+  }
+
+  // .topContainer {
+  //   padding: 40px 0;
+  //   .logo {
+  //     margin: 0;
+  //     margin-right: auto;
+  //     max-width: 50%;
+  //     flex: 0 0 50%;
+  //   }
+  //   .linkContainer {
+  //     height: 100%;
+  //     .linkGroup {
+  //       justify-content: flex-start;
+  //     }
+  //     .link {
+  //       margin-left: 0;
+  //       width: 100%;
+  //       margin-bottom: 10px;
+  //     }
+  //   }
+  // }
+  // .bottomContainer {
+  //   .social {
+  //     flex: 0 0 100%;
+  //     max-width: 100%;
+  //     order: 1;
+  //     margin-bottom: 10px;
+  //   }
+  //   .copyright {
+  //     flex: 0 0 100%;
+  //     max-width: 100%;
+  //     text-align: left;
+  //     order: 3;
+  //     margin-bottom: 10px;
+  //   }
+  //   .additionalLinkContainer {
+  //     flex: 0 0 100%;
+  //     max-width: 100%;
+  //     order: 2;
+  //     text-align: left;
+  //     margin-bottom: 10px;
+  //   }
+  //   .additionalLink {
+  //     justify-content: flex-start;
+  //     p {
+  //       margin-left: 0;
+  //       margin-right: 15px;
+  //     }
+  //   }
+  // }
 }
 // * ====================================== * //

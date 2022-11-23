@@ -41,9 +41,15 @@ function ThemesHomepageReviewSection() {
       </Col> */}
 
       {/* //? ============== v2 ============= ?// */}
-      <Col span={14} className={s.container}>
-        <Row gutter={[20, 20]} className={s.imageContainer}>
-          <Col span={6}>
+      <Col
+        xl={{ span: 14 }}
+        lg={{ span: 18 }}
+        md={{ span: 22 }}
+        xs={{ span: 24 }}
+        className={s.container}
+      >
+        <Row gutter={[0, 0]} className={s.imageContainer}>
+          <Col xl={{ span: 6 }} lg={{ span: 8 }} md={{ span: 9 }} xs={{ span: 6 }}>
             {" "}
             <Image
               src="/images/artwork-1.jpg"
@@ -53,7 +59,13 @@ function ThemesHomepageReviewSection() {
             />
           </Col>
 
-          <Col span={18} className={s.identity}>
+          <Col
+            xl={{ span: 17 }}
+            lg={{ span: 16 }}
+            md={{ span: 15 }}
+            xs={{ span: 24 }}
+            className={s.identity}
+          >
             <Row className={s.rating}>
               <StarFilled />
               <StarFilled />

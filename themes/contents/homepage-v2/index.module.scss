@@ -1,9 +1,8 @@
 .searchBox {
-  height: 80%;
+  height: 90vh;
   display: flex;
   align-items: flex-end;
-  // position: relative;
-  margin-bottom: 100px;
+  padding-bottom: 5vh;
 }
 
 .sectionContainer {
@@ -18,13 +17,6 @@
   }
 }
 
-// .pageTitle {
-//   margin-bottom: 45px;
-//   h1 {
-//     margin-bottom: 10px !important;
-//   }
-// }
-
 .pageTitle {
   h1 {
     margin-bottom: 10px !important;
@@ -34,6 +26,34 @@
 .carousel {
   width: auto;
   margin: 0px auto;
+}
+
+.btn {
+  padding: 0px !important;
+}
+
+//? ============== Artwork And Artist============= ?//
+.artworkContainer,
+.artistContainer {
+  padding: 120px 0px;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    .description {
+      h1 {
+        font-size: 48px;
+      }
+      p {
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+.artworkContainer {
+  background: white;
 }
 
 //? ============== Slider ============= ?//
@@ -73,11 +93,11 @@
 }
 
 //? ============== Exhibition ============= ?//
-
+.exhibition {
+  margin-top: 0px;
+}
 .exhibitionBackground {
   position: absolute;
-  // margin-top: 120px;
-  // height: 900px !important;
   filter: brightness(0.5);
   height: 100vh !important;
   object-fit: cover;
@@ -131,41 +151,7 @@
   .pageTitle {
     margin: 120px 0px 60px;
   }
-  // .role {
-  //   padding: 0px 30px;
-  //   display: flex;
-  //   justify-content: space-evenly;
-  //   margin: 40px 0px 120px;
-  //   .description {
-  //     text-align: center;
-  //     .card {
-  //       // background-image: url("/images/artwork-1.jpg");
-  //       // box-shadow: 0px 10px 25px -10px rgba(0, 0, 0, 0.3);
-  //       .roleLogo {
-  //         width: 80px;
-  //         height: 80px;
-  //         border: 5px solid;
-  //         border-radius: 100%;
-  //         color: #e5890a;
-  //         margin: auto;
-  //       }
-  //       h1 {
-  //         font-size: 24px;
-  //         font-weight: 600;
-  //         margin: 20px 0px 0px;
-  //         color: #e5890a;
-  //       }
-  //       h4 {
-  //         margin: 0px 0px 10px;
-  //         color: #e5890a;
-  //         font-weight: 400 !important;
-  //       }
-  //       p {
-  //         margin-bottom: 5px;
-  //       }
-  //     }
-  //   }
-  // }
+
   .imageContainer {
     height: 500px !important;
     .image {
@@ -211,7 +197,7 @@
   padding: 0px 30px;
   display: flex;
   justify-content: space-evenly;
-  margin: 40px 0px;
+  margin-top: 60px;
   .description {
     text-align: center;
     .artistImage {
@@ -257,7 +243,6 @@
   }
 
   .articleListCard {
-    // margin-bottom: 20px;
     padding-left: 50px;
     img {
       height: 300px;
@@ -294,7 +279,6 @@
     margin: 0px 0px 60px;
   }
   .review {
-    // padding: 120px 0px 120px;
     h1 {
       font-size: 48px;
       line-height: 65px;
@@ -308,39 +292,444 @@
   height: 300px;
 }
 
-//? ============== Join Us ============= ?//
-
-.joinImage {
-  height: 450px;
-  background-image: url("/images/homepage-join-today.png");
-  // background: ;
-
-  padding-top: 150px;
-  .joinContainer {
-    width: 50%;
-
-    margin: auto;
-    text-align: center;
-    h1 {
-      font-size: 32px;
-      font-weight: 700;
-      line-height: 30px;
-      color: white;
-      margin-bottom: 20px;
-    }
-  }
-}
-
-//TODO : This one is on test//
-
 //? ============== Tablet Landscape Mode ============= ?//
 @media screen and (max-width: 1024px) {
-  .list {
-    flex-wrap: nowrap;
-    overflow: auto;
-    &::-webkit-scrollbar {
-      display: none;
+  .searchBox {
+    height: 80vh;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 5vh;
+  }
+  //? ============== Artist ============= ?//
+  .artworkContainer,
+  .artistContainer {
+    padding: 100px 0px;
+    // background: white;
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      .description {
+        h1 {
+          font-size: 34px;
+          line-height: 50px;
+        }
+        p {
+          font-size: 16px;
+          // line-height: 30px;
+        }
+      }
+    }
+  }
+  //? ============== Exhibition ============= ?//
+  .exhibition {
+    margin-top: 0px;
+  }
+  .exhibitionBackground {
+    position: absolute;
+    filter: brightness(0.5);
+    height: 80vh !important;
+    object-fit: cover;
+  }
+  .exhibitionContainer {
+    height: 80vh;
+    padding: 60px 50px 120px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    .description {
+      width: 500px;
+      z-index: 1;
+      color: white;
+      margin: 0px;
+      p {
+        font-size: 16px;
+        line-height: 20px;
+        width: 90%;
+      }
+      h1 {
+        font-size: 34px;
+        line-height: 65px;
+        color: white;
+      }
+    }
+    .imageContainer {
+      left: 12%;
+      bottom: 30%;
+      height: 550px;
+      margin: 0;
+      .image {
+        object-fit: cover;
+        transition: all 300ms ease;
+        &:hover {
+          scale: 1.05;
+          transition: all 300ms ease;
+        }
+      }
+    }
+    .moreExhibitionContainer {
+      margin: auto;
+      color: white;
+      margin: 0;
+      height: auto;
+    }
+  }
+
+  //? ============== Role ============= ?//
+  .roleContainer {
+    .pageTitle {
+      margin: 80px 0px 60px;
+    }
+  }
+
+  //? ============== Offer ============= ?//
+  .offer {
+    margin-top: 80px;
+    padding: 80px 0px 80px;
+    background: rgb(255, 251, 245);
+  }
+  .offerContainer {
+    padding: 0px 0px;
+    // display: flex;
+    // justify-content: space-evenly;
+    margin-top: 40px;
+    .description {
+      text-align: center;
+      .artistImage {
+        width: 80px;
+        height: 80px;
+        border: 5px solid;
+        border-radius: 100%;
+        color: #100f0f;
+        margin: auto;
+        padding: auto;
+        font-size: 40px;
+        transition: all 300ms ease;
+        &:hover {
+          border: none;
+          font-size: 70px;
+          color: #e5890a;
+          transition: all 300ms ease;
+        }
+        .icon {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+        }
+      }
+      h1 {
+        font-size: 24px;
+        margin-top: 20px;
+      }
+    }
+  }
+
+  //? ============== Article ============= ?//
+
+  .articleContainer {
+    padding: 80px 0px;
+  }
+
+  //? ============== Testimonials ============= ?//
+
+  .reviewContainer {
+    background: white;
+    .reviewBackground {
+      height: 580px !important;
+    }
+    .container {
+      height: 560px;
+      display: flex;
+      align-items: center;
+      color: white !important;
+      h1 {
+        color: white;
+      }
+    }
+    .pageTitle {
+      margin: 0px 0px 60px;
+    }
+    .review {
+      h1 {
+        font-size: 48px;
+        line-height: 65px;
+        text-align: center;
+      }
+    }
+  }
+
+  .carouselUserPreview {
+    text-align: center;
+    height: 300px;
+  }
+}
+// * ====================================== * //
+
+//? ============== Tablet Potrait Mode ============= ?//
+@media screen and (max-width: 768px) {
+  .searchBox {
+    height: 45vh;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 5vh;
+  }
+
+  .btn {
+    span {
+      font-size: 16px !important;
+    }
+  }
+
+  //? ============== Artist ============= ?//
+  .artworkContainer,
+  .artistContainer {
+    padding: 80px 0px;
+    // background: white;
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      .description {
+        h1 {
+          font-size: 34px;
+          line-height: 50px;
+        }
+        p {
+          font-size: 16px;
+          // line-height: 30px;
+        }
+      }
+    }
+  }
+
+  //? ============== Exhibition ============= ?//
+
+  .exhibitionBackground {
+    position: absolute;
+    filter: brightness(0.5);
+    height: 60vh !important;
+    object-fit: cover;
+  }
+  .exhibitionContainer {
+    height: 60vh;
+    padding: 80px 50px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    .description {
+      width: 500px;
+      z-index: 1;
+      color: white;
+      margin: 0px;
+      p {
+        font-size: 16px;
+        line-height: 20px;
+        width: 90%;
+      }
+      h1 {
+        font-size: 34px;
+        line-height: 65px;
+        color: white;
+      }
+    }
+    .imageContainer {
+      left: 12%;
+      bottom: 30%;
+      height: 550px;
+      margin: 0;
+      .image {
+        object-fit: cover;
+        transition: all 300ms ease;
+        &:hover {
+          scale: 1.05;
+          transition: all 300ms ease;
+        }
+      }
+    }
+    .moreExhibitionContainer {
+      margin: auto;
+      color: white;
+      margin: 0;
+      height: auto;
+    }
+  }
+
+  //? ============== Role ============= ?//
+  .roleContainer {
+    .pageTitle {
+      margin: 80px 0px 60px;
+    }
+    .imageContainer {
+      height: 350px !important;
+      .image {
+        height: 350px;
+        object-fit: cover;
+      }
+    }
+    .descriptionContainer {
+      height: 350px;
+      background: rgb(255, 251, 245);
+      .description {
+        display: relative;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 50px 50px;
+        margin: auto;
+        .divider {
+          height: 2px;
+          width: 10%;
+          background: #e5890a;
+          margin: 0px 0px 10px;
+        }
+        h1 {
+          font-size: 18px;
+          margin: 0px !important;
+        }
+        h4 {
+          font-size: 14px;
+          // color: rgb(150, 149, 149) !important;
+          font-weight: 200 !important;
+        }
+      }
     }
   }
 }
 // * ====================================== * //
+
+//? ============== Mobile Mode ============= ?//
+@media screen and (max-width: 500px) {
+  .searchBox {
+    height: 55vh;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 5vh;
+  }
+
+  //? ============== Exhibition ============= ?//
+
+  .exhibitionBackground {
+    position: absolute;
+    filter: brightness(0.5);
+    height: 70vh !important;
+    object-fit: cover;
+  }
+  .exhibitionContainer {
+    height: 70vh;
+    padding: 40px 0px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    .description {
+      width: 500px;
+      z-index: 1;
+      color: white;
+      margin: 0px;
+      p {
+        font-size: 16px;
+        line-height: 20px;
+        width: 90%;
+      }
+      h1 {
+        font-size: 34px;
+        line-height: 65px;
+        color: white;
+      }
+    }
+    .imageContainer {
+      left: 12%;
+      bottom: 30%;
+      height: 550px;
+      margin: 0;
+      .image {
+        object-fit: cover;
+        transition: all 300ms ease;
+        &:hover {
+          scale: 1.05;
+          transition: all 300ms ease;
+        }
+      }
+    }
+    .moreExhibitionContainer {
+      margin: auto;
+      color: white;
+      margin: 0;
+      height: auto;
+    }
+  }
+  //? ============== Offer ============= ?//
+  .offer {
+    margin-top: 80px;
+    padding: 60px 0px 40px;
+    background: rgb(255, 251, 245);
+    .pageTitle {
+      margin-bottom: 60px;
+    }
+  }
+  .offerContainer {
+    margin-top: 0px;
+    .description {
+      margin-bottom: 40px;
+    }
+  }
+
+  //? ============== Article ============= ?//
+
+  .articleContainer {
+    background: white;
+    padding: 60px 0px;
+    .pageTitle {
+      margin: 0px 0px 60px;
+    }
+    .articleListContainer {
+      margin-left: -50px;
+    }
+
+    .articleListCard {
+      padding-left: 50px;
+      img {
+        height: 300px;
+        object-fit: cover;
+      }
+      &:nth-child(2n) {
+        img {
+          height: 500px;
+        }
+      }
+    }
+  }
+
+  //? ============== Testimonials ============= ?//
+
+  .reviewContainer {
+    background: white;
+    .reviewBackground {
+      height: 720px !important;
+    }
+    .container {
+      height: 700px;
+      display: flex;
+      align-items: flex-start;
+      padding-top: 90px;
+      color: white !important;
+      h1 {
+        color: white;
+      }
+    }
+    .pageTitle {
+      margin: 0px 0px 30px;
+    }
+    .review {
+      h1 {
+        font-size: 48px;
+        line-height: 65px;
+        text-align: center;
+      }
+    }
+  }
+
+  .carouselUserPreview {
+    text-align: center;
+    height: 500px;
+  }
+}

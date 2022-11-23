@@ -42,6 +42,8 @@
   .imageContainer {
     width: 100%;
     margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
     .image {
       border-radius: 100%;
       // border: 3px solid white;
@@ -69,6 +71,89 @@
       color: white;
       p {
         margin-top: 10px;
+      }
+    }
+  }
+}
+
+//? ============== Potrait Tablet View ============= ?//
+@media screen and (max-width: 768px) {
+  //? ============== v2 ============= ?//
+  .container {
+    .imageContainer {
+      margin-top: 30px;
+      align-items: center;
+      .image {
+        width: 180px;
+        height: 180px !important;
+        margin: 0 auto 1px;
+      }
+    }
+    .identity {
+      text-align: left;
+      color: white;
+      // color: black;
+      h2 {
+        margin: 0px;
+        color: white;
+      }
+
+      .rating {
+        color: #e5890a;
+        margin-top: 5px;
+      }
+      .review {
+        text-align: left;
+        color: white;
+        p {
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+}
+
+//? ============== Potrait Tablet View ============= ?//
+@media screen and (max-width: 500px) {
+  .container {
+    margin: 0px;
+
+    .imageContainer {
+      width: auto;
+      margin-top: 0px;
+      display: flex;
+      justify-content: center;
+      .image {
+        border-radius: 100%;
+        // border: 3px solid white;
+        box-shadow: 10px 21px 35px -9px rgba(0, 0, 0, 0.75);
+        width: 120px;
+        transform: translateX(-10%);
+        height: 120px !important;
+        margin: 40px 0px;
+      }
+    }
+    .identity {
+      text-align: center;
+      color: white;
+      // color: black;
+      h2 {
+        margin: 0px;
+        color: white;
+      }
+
+      .rating {
+        color: #e5890a;
+        margin-top: 5px;
+        display: flex;
+        justify-content: center;
+      }
+      .review {
+        text-align: center;
+        color: white;
+        p {
+          margin-top: 10px;
+        }
       }
     }
   }

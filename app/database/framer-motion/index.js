@@ -23,6 +23,7 @@ export const fadeTopToBottom = {
     y: 0,
     transition: { ease: "easeInOut", delay: 0, duration: 0.4, when: "beforeChildren" },
   },
+  exit: { opacity: 0, y: -10 },
 };
 
 export const fadingBottomToTop = {

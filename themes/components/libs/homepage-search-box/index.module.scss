@@ -1,11 +1,6 @@
 .box {
-  // width: 100%;
   width: 50%;
-  // background-color: rgba(255, 255, 255, 0.67);
-  // background-color: rgba(48, 28, 6, 0.67);
-
   border-radius: 10px;
-  // padding: 50px;
   padding: 20px 30px;
   position: relative;
   bottom: 10vh;
@@ -17,7 +12,6 @@
   h1 {
     font-size: 48px;
     color: white;
-    // line-height: 70px;
   }
 }
 
@@ -50,7 +44,20 @@
 //? ============== Tablet Landscape Mode ============= ?//
 @media screen and (max-width: 1024px) {
   .box {
-    width: 40%;
+    width: 45%;
+    border-radius: 10px;
+    padding: 20px 30px;
+    position: relative;
+    bottom: 5vh;
+
+    p {
+      font-size: 16px;
+      color: white;
+    }
+    h1 {
+      font-size: 32px;
+      color: white;
+    }
   }
 }
 // * ====================================== * //
@@ -58,7 +65,20 @@
 //? ============== Tablet Portrait Mode ============= ?//
 @media screen and (max-width: 768px) {
   .box {
-    width: 50%;
+    width: 60%;
+    border-radius: 10px;
+    padding: 20px 30px;
+    position: relative;
+    bottom: 0vh;
+
+    p {
+      font-size: 16px;
+      color: white;
+    }
+    h1 {
+      font-size: 32px;
+      color: white;
+    }
   }
 }
 // * ====================================== * //
@@ -67,11 +87,23 @@
 @media screen and (max-width: 500px) {
   .box {
     width: 100%;
-  }
-  .title {
-    h1 {
-      font-size: 22px;
+    border-radius: 10px;
+    padding: 20px 30px;
+    position: relative;
+    bottom: 0vh;
+
+    p {
+      font-size: 16px;
+      color: white;
     }
+    h1 {
+      font-size: 32px;
+      color: white;
+    }
+  }
+
+  .searchBoxSection {
+    width: 100%;
   }
 }
 // * ====================================== * //
