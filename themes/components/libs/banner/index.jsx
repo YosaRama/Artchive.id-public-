@@ -37,9 +37,7 @@ function ThemesBanner(props) {
         <Image src={imgSrc} alt="" layout="fill" objectFit="cover" preview={false} />
       </Col>
       <Col className={s.headerContainer}>
-        <ThemesContainerMain>
-          <ThemesHeaderItem isTransparent={true} logo="/images/logo-text-white.png" />
-        </ThemesContainerMain>
+        <ThemesHeaderItem isTransparent={true} logo="/images/logo-text-white.png" />
       </Col>
       <ThemesNavbarDrawer visible={openMenu} onClose={() => setOpenMenu(false)} />
 
