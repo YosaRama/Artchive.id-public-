@@ -3,12 +3,10 @@ import propTypes from "prop-types";
 import Image from "next/image";
 import { Col } from "antd";
 import { motion } from "framer-motion";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import { fading } from "app/database/framer-motion";
 
 // Components
-import ThemesContainerMain from "themes/components/container/main";
 import ThemesNavbarDrawer from "../navbar-drawer";
 
 // Styles
@@ -18,7 +16,6 @@ import s from "./index.module.scss";
 import ThemesHeaderItem from "themes/components/layout/header-v2/header-item";
 
 function ThemesBanner(props) {
-  const router = useRouter();
   const { children, imgSrc, className } = props;
 
   //? ============== Open Menu Drawer ============= ?//
