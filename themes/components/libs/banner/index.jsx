@@ -25,6 +25,7 @@ import s from "./index.module.scss";
 
 // Icons
 import { MenuOutlined } from "@ant-design/icons";
+import ThemesHeaderItem from "themes/components/layout/header-v2/header-item";
 
 function ThemesBanner(props) {
   const router = useRouter();
@@ -67,7 +68,8 @@ function ThemesBanner(props) {
       </Col>
       <Col className={s.headerContainer}>
         <ThemesContainerMain>
-          <Row className={s.header}>
+          <ThemesHeaderItem isTransparent={true} logo="/images/logo-text-white.png" />
+          {/* <Row className={s.header}>
             <Col className={s.logo} onClick={() => router.push("/")}>
               <Image
                 src="/images/logo-text-white.png"
@@ -280,7 +282,7 @@ function ThemesBanner(props) {
                 )}
               </>
             </Col>
-          </Row>
+          </Row> */}
         </ThemesContainerMain>
       </Col>
       <ThemesNavbarDrawer visible={openMenu} onClose={() => setOpenMenu(false)} />

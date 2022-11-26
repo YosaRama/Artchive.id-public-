@@ -2,6 +2,9 @@
   background: #f8f5f0 !important;
   padding: 0 !important;
   height: 64px !important;
+  &.transparent {
+    background: transparent !important;
+  }
 }
 
 .logo {
@@ -25,6 +28,13 @@
     align-items: center;
     color: black !important;
     width: 100%;
+    &.transparent {
+      .iconHeader {
+        a {
+          color: #fff !important;
+        }
+      }
+    }
 
     .logo {
       width: 120px;
