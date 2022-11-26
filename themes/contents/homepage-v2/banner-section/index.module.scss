@@ -1,6 +1,41 @@
-.searchBox {
-  height: 90vh;
+.bannerContainer {
   display: flex;
   align-items: flex-end;
-  padding-bottom: 5vh;
+  height: 100vh;
+  :global(.banner-image) {
+    height: 100vh;
+  }
+  :global(.banner-content-container) {
+    top: 0;
+    justify-content: flex-start;
+    width: 100%;
+  }
+}
+
+.searchBox {
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  width: 50%;
+}
+
+@media screen and (max-width: 1024px) {
+  .bannerContainer {
+    height: 80vh;
+    :global(.banner-image) {
+      height: 80vh;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .bannerContainer {
+    height: 60vh;
+    :global(.banner-image) {
+      height: 60vh;
+    }
+  }
+  .searchBox {
+    width: 80%;
+  }
 }

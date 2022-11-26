@@ -85,38 +85,13 @@
     }
   }
 }
-.containerHomepage {
-  // height: 450px;
-  height: 100vh;
-  position: relative;
-
-  .image {
-    position: absolute;
-    // height: 450px;
-    height: 100vh;
-    width: 100%;
-    filter: brightness(0.5);
-  }
-  .contentContainer {
-    position: relative;
-    top: 20%;
-    z-index: 2;
-    max-width: 1280px !important;
-    margin: 0 auto;
-    height: 50% !important;
-    //todo
-  }
-}
 
 .container {
   height: 550px;
-  // height: 100vh;
   position: relative;
-
   .image {
     position: absolute;
     height: 550px;
-    // height: 100vh;
     width: 100%;
     filter: brightness(0.5);
   }
@@ -124,14 +99,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    // position: relative;
     top: 100px;
-    // transform: translateY(-40%);
     z-index: 2;
     max-width: 1280px !important;
     margin: 0 auto;
     height: 80%;
-    //todo
   }
 }
 

@@ -1,10 +1,8 @@
 .box {
-  width: 50%;
+  width: 100%;
   border-radius: 10px;
-  padding: 20px 30px;
+  padding: 20px 0px;
   position: relative;
-  bottom: 10vh;
-
   p {
     font-size: 18px;
     color: white;
@@ -28,8 +26,6 @@
 .title {
   font-size: 28px;
   line-height: 1.25;
-
-  // margin-bottom: 20vh;
 }
 
 .text {
@@ -44,12 +40,9 @@
 //? ============== Tablet Landscape Mode ============= ?//
 @media screen and (max-width: 1024px) {
   .box {
-    width: 45%;
     border-radius: 10px;
     padding: 20px 30px;
     position: relative;
-    bottom: 5vh;
-
     p {
       font-size: 16px;
       color: white;
@@ -65,12 +58,9 @@
 //? ============== Tablet Portrait Mode ============= ?//
 @media screen and (max-width: 768px) {
   .box {
-    width: 60%;
     border-radius: 10px;
     padding: 20px 30px;
     position: relative;
-    bottom: 0vh;
-
     p {
       font-size: 16px;
       color: white;
@@ -86,12 +76,9 @@
 //? ============== Mobile Mode ============= ?//
 @media screen and (max-width: 500px) {
   .box {
-    width: 100%;
     border-radius: 10px;
     padding: 20px 30px;
     position: relative;
-    bottom: 0vh;
-
     p {
       font-size: 16px;
       color: white;

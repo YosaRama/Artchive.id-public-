@@ -44,6 +44,7 @@ function ThemesHeaderItem(props) {
                     onClick={() => router.push("/")}
                     xl={{ span: 2 }}
                     lg={{ span: 3 }}
+                    md={{ span: 4 }}
                     xs={{ span: 8 }}
                   >
                     <Image
@@ -60,7 +61,7 @@ function ThemesHeaderItem(props) {
                     />
                   </Col>
 
-                  <Col xl={{ span: 22 }} lg={{ span: 21 }} xs={{ span: 16 }}>
+                  <Col xl={{ span: 22 }} lg={{ span: 21 }} md={{ span: 20 }} xs={{ span: 16 }}>
                     <>
                       <Row
                         gutter={[30, 30]}

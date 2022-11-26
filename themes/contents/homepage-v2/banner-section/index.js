@@ -8,11 +8,12 @@ import ThemesHomepageSearchBox from "themes/components/libs/homepage-search-box"
 
 // Styles
 import s from "./index.module.scss";
+import ThemesContainerMain from "themes/components/container/main";
 
 function ThemesContentsHomepageV2BannerSection() {
   return (
     <>
-      <ThemesBanner imgSrc="/images/banner-homepage-1.jpg">
+      <ThemesBanner imgSrc="/images/banner-homepage-1.jpg" className={s.bannerContainer}>
         <motion.div
           variants={fadeTopToBottom}
           initial="hidden"

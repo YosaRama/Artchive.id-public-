@@ -1,27 +1,17 @@
 // Libs
-import Image from "next/image";
 import propTypes from "prop-types";
-import { useRouter } from "next/router";
-import { Col, Row, Carousel } from "antd";
-import { motion } from "framer-motion";
-import { fadeTopToBottomShowcase } from "app/database/framer-motion";
 
 // Components
-import ThemesContainerMain from "themes/components/container/main";
-import ThemesArtistCard from "themes/components/libs/artist-card";
-import ThemesArtworkWithFrame from "themes/components/libs/artwork-with-frame";
-import ThemesBanner from "themes/components/libs/banner";
-import ThemesHomepageSearchBox from "themes/components/libs/homepage-search-box";
 import ThemesHeadline from "themes/components/libs/headline";
-import ThemesHomepageExhibitionSection from "themes/components/libs/homepage-exhibition";
-import ThemesHomepageReviewSection from "themes/components/libs/homepage-review-section";
-import ThemesContainerMasonry from "themes/components/container/masonry";
-import ThemesArticleListCard from "themes/components/libs/article-list-card";
-import ThemesButton from "themes/components/libs/button";
 
-// Helper
-import { useWindowSize } from "app/helpers/useWindowSize";
-import { useHorizontalScroll } from "app/helpers/horizontalScroll";
+// Contents
+import ThemesContentsHomepageV2BannerSection from "./banner-section";
+import ThemesContentsHomepageV2ArtworkArtistSection from "./artwork-artist-section";
+import ThemesContentsHomepageV2ExhibitionListSection from "./exhibition-list-section";
+import ThemesContentsHomepageV2OurRolesSection from "./our-roles-section";
+import ThemesContentsHomepageV2WhatOfferSection from "./what-offer-section";
+import ThemesContentsHomepageV2ArticleListSection from "./article-list-section";
+import ThemesContentsHomepageV2TestimonialSection from "./testimonial-section";
 
 // Data Hook
 import { useArticlesLoad } from "app/hooks/articles";
@@ -31,41 +21,13 @@ import s from "./index.module.scss";
 
 // Icons
 import { BookOutlined } from "@ant-design/icons";
-import ThemesContentsHomepageV2BannerSection from "./banner-section";
-import ThemesContentsHomepageV2ArtworkArtistSection from "./artwork-artist-section";
-import ThemesContentsHomepageV2ExhibitionListSection from "./exhibition-list-section";
-import ThemesContentsHomepageV2OurRolesSection from "./our-roles-section";
-import ThemesContentsHomepageV2WhatOfferSection from "./what-offer-section";
-import ThemesContentsHomepageV2ArticleListSection from "./article-list-section";
-import ThemesContentsHomepageV2TestimonialSection from "./testimonial-section";
 
 function ThemesContentsHomepageV2(props) {
   const { artworkData, artistData } = props;
 
-  //? ============== Handle Get Viewport ============= ?//
-  const viewport = useWindowSize();
-  const { width } = useWindowSize();
-
-  // * ====================================== * //
-
   //? ============== Articles Hooks ============= ?//
   const { data: articleListData, total: articleListDataTotal } = useArticlesLoad({ limit: 3 });
   // * ====================================== * //
-
-  const router = useRouter();
-  const scrollRef = useHorizontalScroll();
-  const carouselUserPreview = {
-    className: s.carouselUserPreview,
-    infinite: true,
-    speed: 500,
-    centerMode: true,
-    arrows: true,
-    adaptiveHeight: true,
-    centerPadding: "0px",
-    draggable: true,
-    autoplay: true,
-    pauseOnFocus: true,
-  };
 
   const offerList = [
     {
