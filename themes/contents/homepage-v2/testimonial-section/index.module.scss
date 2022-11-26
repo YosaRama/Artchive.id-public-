@@ -1,0 +1,33 @@
+.reviewContainer {
+  background: white;
+  .reviewBackground {
+    position: absolute;
+    filter: brightness(0.3);
+    height: 720px !important;
+    object-fit: cover;
+  }
+  .container {
+    height: 700px;
+    display: flex;
+    align-items: center;
+    color: white !important;
+    h1 {
+      color: white;
+    }
+  }
+  .pageTitle {
+    margin: 0px 0px 60px;
+  }
+  .review {
+    h1 {
+      font-size: 48px;
+      line-height: 65px;
+      text-align: center;
+    }
+  }
+}
+
+.carouselUserPreview {
+  text-align: center;
+  height: 300px;
+}

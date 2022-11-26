@@ -35,8 +35,6 @@
 //? ============== Artwork And Artist============= ?//
 .artworkContainer,
 .artistContainer {
-  padding: 120px 0px;
-
   .container {
     display: flex;
     justify-content: space-between;
@@ -304,7 +302,6 @@
   .artworkContainer,
   .artistContainer {
     padding: 100px 0px;
-    // background: white;
     .container {
       display: flex;
       justify-content: space-between;
@@ -316,7 +313,6 @@
         }
         p {
           font-size: 16px;
-          // line-height: 30px;
         }
       }
     }

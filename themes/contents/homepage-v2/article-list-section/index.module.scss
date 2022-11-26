@@ -1,0 +1,23 @@
+.articleContainer {
+  background: white;
+  padding: 120px 0px;
+  .pageTitle {
+    margin: 0px 0px 60px;
+  }
+  .articleListContainer {
+    margin-left: -50px;
+  }
+
+  .articleListCard {
+    padding-left: 50px;
+    img {
+      height: 300px;
+      object-fit: cover;
+    }
+    &:nth-child(2n) {
+      img {
+        height: 500px;
+      }
+    }
+  }
+}

@@ -1,0 +1,58 @@
+.exhibition {
+  margin-top: 0px;
+}
+.exhibitionBackground {
+  position: absolute;
+  filter: brightness(0.5);
+  height: 100vh !important;
+  object-fit: cover;
+}
+.exhibitionContainer {
+  height: 100vh;
+  padding: 60px 50px 120px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  .description {
+    width: 500px;
+    z-index: 1;
+    color: white;
+    margin: 0px;
+    p {
+      font-size: 16px;
+      line-height: 33px;
+      width: 90%;
+    }
+    h1 {
+      font-size: 48px;
+      line-height: 65px;
+      color: white;
+    }
+  }
+  .imageContainer {
+    left: 12%;
+    bottom: 30%;
+    height: 550px;
+    margin: 0;
+    .image {
+      object-fit: cover;
+      transition: all 300ms ease;
+      &:hover {
+        scale: 1.05;
+        transition: all 300ms ease;
+      }
+    }
+  }
+  .moreExhibitionContainer {
+    margin: auto;
+    color: white;
+    margin: 0;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .moreExhibitionContainer {
+    display: none;
+  }
+}

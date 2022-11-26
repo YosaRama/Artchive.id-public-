@@ -1,12 +1,19 @@
 // Libs
 import propTypes from "prop-types";
 import Image from "next/image";
+import Link from "next/link";
 import { Col, Row, Badge, Avatar } from "antd";
 import { motion } from "framer-motion";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
-import Link from "next/link";
+import { useState } from "react";
+import { fading } from "app/database/framer-motion";
+
+// Components
+import ThemesContainerMain from "themes/components/container/main";
+import ThemesHeaderCart from "themes/components/layout/header-v2/cart-modal";
+import ThemesButton from "../button";
+import ThemesNavbarDrawer from "../navbar-drawer";
 
 // Hooks
 import { useUser } from "app/hooks/user";
@@ -15,16 +22,9 @@ import { useCarts } from "app/hooks/cart";
 
 // Styles
 import s from "./index.module.scss";
-import { fading } from "app/database/framer-motion";
-import { isWhiteSpaceLike } from "typescript";
-import ThemesContainerMain from "themes/components/container/main";
-import ThemesHeaderCart from "themes/components/layout/header-v2/cart-modal";
-import ThemesButton from "../button";
-import ThemesNavbarDrawer from "../navbar-drawer";
 
 // Icons
-import { MenuOutlined, BellFilled } from "@ant-design/icons";
-import { CartIcon } from "public/icons/cart-icon";
+import { MenuOutlined } from "@ant-design/icons";
 
 function ThemesBanner(props) {
   const router = useRouter();
@@ -60,7 +60,6 @@ function ThemesBanner(props) {
       initial="hidden"
       animate="visible"
       span={24}
-      // className={s.container + " " + className}
       className={bannerClass}
     >
       <Col span={24} className={s.image}>
@@ -70,7 +69,6 @@ function ThemesBanner(props) {
         <ThemesContainerMain>
           <Row className={s.header}>
             <Col className={s.logo} onClick={() => router.push("/")}>
-              {" "}
               <Image
                 src="/images/logo-text-white.png"
                 alt=""
