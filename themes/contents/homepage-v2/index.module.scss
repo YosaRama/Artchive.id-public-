@@ -33,22 +33,6 @@
 }
 
 //? ============== Artwork And Artist============= ?//
-.artworkContainer,
-.artistContainer {
-  .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    .description {
-      h1 {
-        font-size: 48px;
-      }
-      p {
-        font-size: 18px;
-      }
-    }
-  }
-}
 
 .artworkContainer {
   background: white;
@@ -299,24 +283,7 @@
     padding-bottom: 5vh;
   }
   //? ============== Artist ============= ?//
-  .artworkContainer,
-  .artistContainer {
-    padding: 100px 0px;
-    .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      .description {
-        h1 {
-          font-size: 34px;
-          line-height: 50px;
-        }
-        p {
-          font-size: 16px;
-        }
-      }
-    }
-  }
+
   //? ============== Exhibition ============= ?//
   .exhibition {
     margin-top: 0px;

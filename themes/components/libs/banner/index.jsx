@@ -36,8 +36,6 @@ function ThemesBanner(props) {
       <Col className={s.headerContainer}>
         <ThemesHeaderItem isTransparent={true} logo="/images/logo-text-white.png" />
       </Col>
-      <ThemesNavbarDrawer visible={openMenu} onClose={() => setOpenMenu(false)} />
-
       <Col className={`${s.contentContainer} banner-content-container`}>{children}</Col>
     </motion.div>
   );

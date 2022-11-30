@@ -4,14 +4,21 @@ import Image from "next/image";
 import propTypes from "prop-types";
 import { Avatar, Badge, Col, Layout, Row } from "antd";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import { useState } from "react";
 
 // Components
 import ThemesContainerMain from "themes/components/container/main";
 import ThemesHeaderCart from "../cart-modal";
 import ThemesButton from "themes/components/libs/button";
+import ThemesNavbarDrawer from "themes/components/libs/navbar-drawer";
 
 // Helpers
 import { useWindowSize } from "app/helpers/useWindowSize";
+
+// Hooks
+import { useCarts } from "app/hooks/cart";
+import { useUser } from "app/hooks/user";
 
 // Styles
 import s from "./index.module.scss";
@@ -20,12 +27,31 @@ import s from "./index.module.scss";
 import { MenuOutlined } from "@ant-design/icons";
 
 function ThemesHeaderItem(props) {
+  const router = useRouter();
   const { logo = "/images/logo-without-text.png", isTransparent = false } = props;
   const { Header } = Layout;
   const { width } = useWindowSize();
 
+  // * ====================================== * //
+  //? ============== User Hook ============= ?//
+  const [iconVisible, setIconVisible] = useState(false);
+  // * ====================================== * //
+
+  //? ============== Open Menu Drawer ============= ?//
+  const [openMenu, setOpenMenu] = useState(false);
+  // * ====================================== * //
+
   //? ============== Handle User ============= ?//
   const { data: session, status: sessionStatus } = useSession();
+  const userId = session?.user.id;
+  // * ====================================== * //
+
+  //? ============== User Hook ============= ?//
+  const { data: userData } = useUser({ singleId: session?.user?.id || null });
+  // * ====================================== * //
+
+  //? ============== Cart Hooks ============= ?//
+  const { data: cartItem } = useCarts({ queryString: `id=${userId}` }); //TODO : Change ID with current user ID//
   // * ====================================== * //
 
   return (
@@ -121,34 +147,52 @@ function ThemesHeaderItem(props) {
                                     <ThemesHeaderCart />
                                   </Badge>
                                 </Col>
-                                <Col className={s.iconHeader}>
-                                  <div
-                                    className={s.nameContainer}
-                                    onClick={() => router.push("/profile")}
-                                  >
-                                    <div className={s.userName}>{session.user.full_name}</div>
-                                    <p className={s.userRole}>{session.user.role}</p>
-                                  </div>
-                                </Col>
-                                <div
-                                  style={{ marginRight: "15px" }}
-                                  onClick={() => router.push("/profile")}
-                                  className={`${s.mobileHidden}`}
-                                >
-                                  <Avatar
-                                    src={
-                                      userData?.profile
-                                        ? `${process.env.NEXT_PUBLIC_S3_URL}/${userData?.profile?.url}`
-                                        : "/images/profile-default.png"
-                                    }
-                                    className={s.avatar}
-                                  />
-                                </div>
+                                {width > 1024 ? (
+                                  <Col className={s.iconHeader}>
+                                    <Col>
+                                      <div
+                                        className={s.nameContainer}
+                                        onClick={() => router.push("/profile")}
+                                      >
+                                        <div className={s.userName}>{session.user.full_name}</div>
+                                        <p className={s.userRole}>{session.user.role}</p>
+                                      </div>
+                                    </Col>
+                                    <div
+                                      style={{ marginRight: "15px" }}
+                                      onClick={() => router.push("/profile")}
+                                      className={`${s.mobileHidden}`}
+                                    >
+                                      <Avatar
+                                        src={
+                                          userData?.profile
+                                            ? `${process.env.NEXT_PUBLIC_S3_URL}/${userData?.profile?.url}`
+                                            : "/images/profile-default.png"
+                                        }
+                                        className={s.avatar}
+                                      />
+                                    </div>
+                                  </Col>
+                                ) : (
+                                  ""
+                                )}
                               </>
                             ) : (
-                              ""
+                              <>
+                                <Col onChange={(e) => setIconVisible()} className={s.iconHeader}>
+                                  <Badge
+                                    count={cartItem?.length}
+                                    size="small"
+                                    style={{ backgroundColor: "#e5890a" }}
+                                  >
+                                    <Link href="/cart">
+                                      <a>CART</a>
+                                    </Link>
+                                  </Badge>
+                                </Col>
+                              </>
                             )}
-                            {width <= 500 ? (
+                            {/* {width <= 500 ? (
                               <>
                                 <Col onChange={(e) => setIconVisible()} className={s.iconHeader}>
                                   <Badge
@@ -164,7 +208,7 @@ function ThemesHeaderItem(props) {
                               </>
                             ) : (
                               ""
-                            )}
+                            )} */}
                           </>
                         )}
                         {!session && (
@@ -216,6 +260,7 @@ function ThemesHeaderItem(props) {
             </Col>
           </Row>
         </ThemesContainerMain>
+        <ThemesNavbarDrawer visible={openMenu} onClose={() => setOpenMenu(false)} />
       </Header>
     </>
   );
