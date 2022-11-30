@@ -11,6 +11,10 @@
     font-size: 48px;
     color: white;
   }
+  h3 {
+    font-size: 28px;
+    color: white;
+  }
 }
 
 .search {
@@ -85,7 +89,9 @@
       color: white;
     }
   }
-
+  .text {
+    width: 100%;
+  }
   .searchBoxSection {
     width: 100%;
   }

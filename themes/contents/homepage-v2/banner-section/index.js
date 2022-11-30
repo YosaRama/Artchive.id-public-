@@ -8,7 +8,6 @@ import ThemesHomepageSearchBox from "themes/components/libs/homepage-search-box"
 
 // Styles
 import s from "./index.module.scss";
-import ThemesContainerMain from "themes/components/container/main";
 
 function ThemesContentsHomepageV2BannerSection() {
   return (

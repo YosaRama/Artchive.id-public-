@@ -22,14 +22,15 @@
 
 @media screen and (max-width: 1024px) {
   .bannerContainer {
-    height: 80vh;
+    height: 95vh;
     :global(.banner-image) {
-      height: 80vh;
+      height: 95vh;
     }
   }
 
   .searchBox {
-    padding-bottom: 0vh;
+    padding-bottom: 5vh;
+    width: 60%;
   }
 }
 
@@ -42,10 +43,11 @@
   }
   .searchBox {
     width: 80%;
+    padding-bottom: 0vh;
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 500px) {
   .searchBox {
     width: 100%;
   }

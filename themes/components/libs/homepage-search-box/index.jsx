@@ -1,5 +1,9 @@
 // Libs
 import { Col } from "antd";
+import { useSession } from "next-auth/react";
+
+// Helper
+import { useWindowSize } from "app/helpers/useWindowSize";
 
 //Components
 import ThemeArtistSearchBox from "../artist-search-box";
@@ -8,13 +12,77 @@ import ThemeArtistSearchBox from "../artist-search-box";
 import s from "./index.module.scss";
 
 function ThemesHomepageSearchBox() {
+  //? ============== Handle User ============= ?//
+  const { data: session, status: sessionStatus } = useSession();
+  const userName = session?.user.full_name;
+  // * ====================================== * //
+
+  const width = useWindowSize();
+
   return (
     <Col className={s.box}>
-      <Col className={s.title}>
-        <h1>
-          Enjoy Fascinating Art in This <span style={{ color: "#e5a03f" }}>Art Platform</span>{" "}
-        </h1>
-      </Col>
+      {!session ? (
+        <Col className={s.title}>
+          <h1>
+            Enjoy Fascinating Art in This <span style={{ color: "#e5a03f" }}>Art Platform</span>{" "}
+          </h1>
+        </Col>
+      ) : (
+        ""
+      )}
+      {session.user.role == "ARTIST" ? (
+        <Col className={s.title}>
+          {width > 500 && (
+            <h3>
+              Welcome <span style={{ color: "#e5a03f" }}>{userName}</span>,
+            </h3>
+          )}
+
+          <h1>
+            Show Your Art in This <span style={{ color: "#e5a03f" }}>Art Platform</span>!
+          </h1>
+        </Col>
+      ) : session.user.role == "COLLECTOR" ? (
+        <Col className={s.title}>
+          {width > 500 && (
+            <h3>
+              Welcome <span style={{ color: "#e5a03f" }}>{userName}</span>,
+            </h3>
+          )}
+
+          <h1>
+            Find Your Art Needs in This <span style={{ color: "#e5a03f" }}>Art Platform</span>!
+          </h1>
+        </Col>
+      ) : session.user.role == "GALLERY" ? (
+        <Col className={s.title}>
+          {width > 500 && (
+            <h3>
+              Welcome <span style={{ color: "#e5a03f" }}>{userName}</span>,
+            </h3>
+          )}
+
+          <h1>
+            Build Your Online Gallery in This <span style={{ color: "#e5a03f" }}>Art Platform</span>
+            !
+          </h1>
+        </Col>
+      ) : session.user.role == "ADMIN" ? (
+        <Col className={s.title}>
+          {width > 500 && (
+            <h3>
+              Welcome <span style={{ color: "#e5a03f" }}>{userName}</span>,
+            </h3>
+          )}
+
+          <h1>
+            Manage This <span style={{ color: "#e5a03f" }}>Art Platform</span>!
+          </h1>
+        </Col>
+      ) : (
+        ""
+      )}
+
       <Col className={s.text}>
         <p>
           Art is the imposing of a pattern on experience, and our aesthetic enjoyment is recognition

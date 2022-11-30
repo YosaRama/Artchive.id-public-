@@ -231,6 +231,8 @@
 //? ============== Mobile Mode ============= ?//
 @media screen and (max-width: 500px) {
   .headerContainer {
+    height: 50px !important;
+
     .header {
       padding: 0px 0px;
     }
