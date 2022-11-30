@@ -14,10 +14,11 @@ import s from "./index.module.scss";
 function ThemesHomepageSearchBox() {
   //? ============== Handle User ============= ?//
   const { data: session, status: sessionStatus } = useSession();
+  const userRole = session?.user.role;
   const userName = session?.user.full_name;
   // * ====================================== * //
 
-  const width = useWindowSize();
+  const { width } = useWindowSize();
 
   return (
     <Col className={s.box}>
@@ -30,7 +31,7 @@ function ThemesHomepageSearchBox() {
       ) : (
         ""
       )}
-      {session.user.role == "ARTIST" ? (
+      {userRole == "ARTIST" ? (
         <Col className={s.title}>
           {width > 500 && (
             <h3>
@@ -42,7 +43,7 @@ function ThemesHomepageSearchBox() {
             Show Your Art in This <span style={{ color: "#e5a03f" }}>Art Platform</span>!
           </h1>
         </Col>
-      ) : session.user.role == "COLLECTOR" ? (
+      ) : userRole == "COLLECTOR" ? (
         <Col className={s.title}>
           {width > 500 && (
             <h3>
@@ -54,7 +55,7 @@ function ThemesHomepageSearchBox() {
             Find Your Art Needs in This <span style={{ color: "#e5a03f" }}>Art Platform</span>!
           </h1>
         </Col>
-      ) : session.user.role == "GALLERY" ? (
+      ) : userRole == "GALLERY" ? (
         <Col className={s.title}>
           {width > 500 && (
             <h3>
@@ -67,7 +68,7 @@ function ThemesHomepageSearchBox() {
             !
           </h1>
         </Col>
-      ) : session.user.role == "ADMIN" ? (
+      ) : userRole == "ADMIN" ? (
         <Col className={s.title}>
           {width > 500 && (
             <h3>

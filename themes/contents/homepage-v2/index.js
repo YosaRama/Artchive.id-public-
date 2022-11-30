@@ -16,6 +16,9 @@ import ThemesContentsHomepageV2TestimonialSection from "./testimonial-section";
 // Data Hook
 import { useArticlesLoad } from "app/hooks/articles";
 
+// Helpers
+import { useWindowSize } from "app/helpers/useWindowSize";
+
 // Styles
 import s from "./index.module.scss";
 
@@ -24,7 +27,7 @@ import { BookOutlined } from "@ant-design/icons";
 
 function ThemesContentsHomepageV2(props) {
   const { artworkData, artistData } = props;
-
+  const { width } = useWindowSize();
   //? ============== Articles Hooks ============= ?//
   const { data: articleListData, total: articleListDataTotal } = useArticlesLoad({ limit: 3 });
   // * ====================================== * //
@@ -60,30 +63,61 @@ function ThemesContentsHomepageV2(props) {
 
       {/* //? ============== Artwork Section ============= ?// */}
       <section className={s.artworkContainer}>
-        <ThemesContentsHomepageV2ArtworkArtistSection
-          listData={artworkData}
-          title={`<h1>The best <span>Artworks</span> you ever see!</h1>`}
-          description={
-            "We help artist to show their artworks and also help collectors to find the best fit artwork they need! Find out more about our artist latest artwork and pocket it!"
-          }
-          buttonText="DISCOVER MORE"
-          listDataType="artwork"
-        />
+        {width > 500 ? (
+          <ThemesContentsHomepageV2ArtworkArtistSection
+            listData={artworkData}
+            title={`<h1>The best <span>Artworks</span> you ever see!</h1>`}
+            description={
+              "We help artist to show their artworks and also help collectors to find the best fit artwork they need! Find out more about our artist latest artwork and pocket it!"
+            }
+            buttonText="DISCOVER MORE"
+            listDataType="artwork"
+            textPosition="left"
+            textPositionOnMobile="top"
+            page="/artwork"
+          />
+        ) : (
+          <ThemesContentsHomepageV2ArtworkArtistSection
+            listData={artworkData}
+            title={`<h1><span>Artworks</span></h1>`}
+            description={"The best artworks you need!"}
+            buttonText="DISCOVER MORE"
+            listDataType="artwork"
+            textPositionOnMobile="top"
+            page="/artwork"
+          />
+        )}
       </section>
       {/* // * ====================================== * // */}
 
       {/* //? ============== Artist Sections ============= ?// */}
-      <section>
-        <ThemesContentsHomepageV2ArtworkArtistSection
-          listData={artistData}
-          title={`<h1>Our New <span>Artists</span> with Stunning Talent!</h1>`}
-          description={
-            "The artist is not a different kind of person, but every person is a different kind of artist."
-          }
-          buttonText="DISCOVER MORE"
-          listDataType="artist"
-          textPosition="right"
-        />
+      <section className={s.artistContainer}>
+        {width > 500 ? (
+          <ThemesContentsHomepageV2ArtworkArtistSection
+            listData={artistData}
+            title={`<h1>Our New <span>Artists</span> with Stunning Talent!</h1>`}
+            description={
+              "The artist is not a different kind of person, but every person is a different kind of artist."
+            }
+            buttonText="DISCOVER MORE"
+            listDataType="artist"
+            textPosition="right"
+            textPositionOnMobile="top"
+            page="/artist"
+          />
+        ) : (
+          <ThemesContentsHomepageV2ArtworkArtistSection
+            listData={artistData}
+            title={`<h1>Our New <span>Artists</span>!</h1>`}
+            description={
+              "The artist is not a different kind of person, but every person is a different kind of artist."
+            }
+            buttonText="DISCOVER MORE"
+            listDataType="artist"
+            textPositionOnMobile="top"
+            page="/artist"
+          />
+        )}
       </section>
       {/* // * ====================================== * // */}
 

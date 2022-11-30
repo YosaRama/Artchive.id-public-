@@ -1,21 +1,29 @@
-.section {
-  padding: 120px 0px;
+.container {
+  display: flex;
+  justify-content: space-between;
 
-  .container {
+  .description {
+    height: 350px;
+    flex-direction: column;
     display: flex;
+    width: 100%;
     justify-content: space-between;
-    align-items: flex-start;
-    .description {
-      h1 {
-        font-size: 48px;
-        span {
-          color: #e5890a;
-        }
-      }
-      p {
-        font-size: 18px;
+    h1 {
+      font-size: 48px;
+      line-height: 55px;
+
+      span {
+        color: #e5890a;
       }
     }
+    p {
+      font-size: 18px;
+    }
+  }
+  .btn {
+    padding: 0px !important;
+    margin-top: 20px;
+    color: white;
   }
 }
 
@@ -26,6 +34,7 @@
   overflow-x: auto;
   padding-bottom: 20px;
   transition: 300ms all ease;
+  margin: 0px !important;
 
   /* width */
   &::-webkit-scrollbar {
@@ -49,6 +58,93 @@
   }
 }
 
-.btn {
-  padding: 0px !important;
+//? ============== Tablet Landscape View ============= ?//
+@media screen and (max-width: 1024px) {
+  .container {
+    .description {
+      height: 250px;
+
+      h1 {
+        font-size: 32px;
+        line-height: 40px;
+      }
+      p {
+        font-size: 16px;
+      }
+    }
+    .btn {
+      padding: 0px !important;
+    }
+  }
+}
+
+//? ============== Tablet Potrait View ============= ?//
+@media screen and (max-width: 768px) {
+  .container {
+    .description {
+      height: auto;
+      margin-bottom: 20px;
+
+      flex-direction: row;
+      h1 {
+        font-size: 32px;
+        line-height: 40px;
+        margin: 0px 0px 10px;
+      }
+      p {
+        font-size: 16px;
+      }
+    }
+    .btn {
+      padding: 0px !important;
+      margin-top: 0px !important;
+      text-align: right;
+      span {
+        font-size: 16px !important;
+      }
+    }
+  }
+
+  .slider {
+    &::-webkit-scrollbar-thumb {
+      background: #f4a94100;
+    }
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: #f4a94100 !important;
+    }
+  }
+}
+
+//? ============== Mobile Potrait View ============= ?//
+@media screen and (max-width: 500px) {
+  .container {
+    .description {
+      height: auto;
+      margin-bottom: 20px;
+      text-align: center;
+
+      h1 {
+        font-size: 32px;
+        line-height: 40px;
+        margin: 0px;
+      }
+      p {
+        font-size: 16px;
+      }
+    }
+    .btn {
+      padding: 0px !important;
+    }
+  }
+
+  .slider {
+    &::-webkit-scrollbar-thumb {
+      background: #f4a94100;
+    }
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: #f4a94100 !important;
+    }
+  }
 }
