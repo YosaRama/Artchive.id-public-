@@ -3,11 +3,11 @@
   .reviewBackground {
     position: absolute;
     filter: brightness(0.3);
-    height: 720px !important;
+    // height: 100vh !important;
     object-fit: cover;
   }
   .container {
-    height: 700px;
+    height: calc(100vh + 20px);
     display: flex;
     align-items: center;
     color: white !important;
@@ -16,7 +16,7 @@
     }
   }
   .pageTitle {
-    margin: 0px 0px 60px;
+    margin: 0px 0px 80px;
   }
   .review {
     h1 {
@@ -30,4 +30,70 @@
 .carouselUserPreview {
   text-align: center;
   height: 300px;
+}
+
+//? ============== Tablet Landscape View ============= ?//
+@media screen and (max-width: 1024px) {
+  .reviewContainer {
+    .container {
+      height: calc(80vh + 30px);
+    }
+    .pageTitle {
+      margin: 0px 0px 80px;
+    }
+    .review {
+      h1 {
+        font-size: 48px;
+        line-height: 65px;
+        text-align: center;
+      }
+    }
+  }
+}
+
+//? ============== Tablet Potrait View ============= ?//
+@media screen and (max-width: 768px) {
+  .reviewContainer {
+    .container {
+      height: calc(65vh + 20px);
+    }
+    .pageTitle {
+      margin: 0px 0px 40px;
+    }
+    .review {
+      h1 {
+        font-size: 48px;
+        line-height: 65px;
+        text-align: center;
+      }
+    }
+  }
+}
+
+//? ============== Mobile View ============= ?//
+@media screen and (max-width: 500px) {
+  .reviewContainer {
+    .reviewBackground {
+      height: 800px !important;
+    }
+    .container {
+      height: 750px;
+      align-items: flex-start;
+      padding-top: 25%;
+    }
+    .pageTitle {
+      margin: 0px 20px 20px;
+    }
+    .review {
+      h1 {
+        font-size: 32px;
+        line-height: 65px;
+        text-align: center;
+      }
+    }
+  }
+  .carouselUserPreview {
+    text-align: center;
+    height: 520px;
+  }
 }
