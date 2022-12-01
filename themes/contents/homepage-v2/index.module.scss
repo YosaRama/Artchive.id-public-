@@ -14,86 +14,12 @@
 //? ============== Role ============= ?//
 .roleContainer {
   .pageTitle {
-    margin: 120px 0px 60px;
+    margin-bottom: 80px;
   }
-
-  .imageContainer {
-    height: 500px !important;
-    .image {
-      height: 500px;
-      object-fit: cover;
-    }
-  }
-  .descriptionContainer {
-    height: 500px;
-    background: rgb(255, 251, 245);
-    .description {
-      display: relative;
-      top: 50%;
-      transform: translateY(-50%);
-      padding: 100px 100px;
-      margin: auto;
-      .divider {
-        height: 2px;
-        width: 10%;
-        background: #e5890a;
-        margin: 0px 0px 10px;
-      }
-      h1 {
-        font-size: 24px;
-        margin: 0px !important;
-      }
-      h4 {
-        font-size: 16px;
-        // color: rgb(150, 149, 149) !important;
-        font-weight: 200 !important;
-      }
-    }
-  }
+  margin: 120px 0px;
 }
 
 //? ============== Offer ============= ?//
-.offer {
-  margin-top: 120px;
-  padding: 120px 0px 80px;
-  background: rgb(255, 251, 245);
-}
-.offerContainer {
-  padding: 0px 30px;
-  display: flex;
-  justify-content: space-evenly;
-  margin-top: 60px;
-  .description {
-    text-align: center;
-    .artistImage {
-      width: 80px;
-      height: 80px;
-      border: 5px solid;
-      border-radius: 100%;
-      color: #100f0f;
-      margin: auto;
-      padding: auto;
-      font-size: 40px;
-      transition: all 300ms ease;
-      &:hover {
-        border: none;
-        font-size: 70px;
-        color: #e5890a;
-        transition: all 300ms ease;
-      }
-      .icon {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-      }
-    }
-    h1 {
-      font-size: 24px;
-      margin-top: 20px;
-    }
-  }
-}
 
 //? ============== Article ============= ?//
 
@@ -164,109 +90,6 @@
   .artistContainer {
     padding: 100px 0px;
   }
-  //? ============== Exhibition ============= ?//
-  .exhibition {
-    margin-top: 0px;
-  }
-  .exhibitionBackground {
-    position: absolute;
-    filter: brightness(0.5);
-    height: 80vh !important;
-    object-fit: cover;
-  }
-  .exhibitionContainer {
-    height: 80vh;
-    padding: 60px 50px 120px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    .description {
-      width: 500px;
-      z-index: 1;
-      color: white;
-      margin: 0px;
-      p {
-        font-size: 16px;
-        line-height: 20px;
-        width: 90%;
-      }
-      h1 {
-        font-size: 34px;
-        line-height: 65px;
-        color: white;
-      }
-    }
-    .imageContainer {
-      left: 12%;
-      bottom: 30%;
-      height: 550px;
-      margin: 0;
-      .image {
-        object-fit: cover;
-        transition: all 300ms ease;
-        &:hover {
-          scale: 1.05;
-          transition: all 300ms ease;
-        }
-      }
-    }
-    .moreExhibitionContainer {
-      margin: auto;
-      color: white;
-      margin: 0;
-      height: auto;
-    }
-  }
-
-  //? ============== Role ============= ?//
-  .roleContainer {
-    .pageTitle {
-      margin: 80px 0px 60px;
-    }
-  }
-
-  //? ============== Offer ============= ?//
-  .offer {
-    margin-top: 80px;
-    padding: 80px 0px 80px;
-    background: rgb(255, 251, 245);
-  }
-  .offerContainer {
-    padding: 0px 0px;
-    // display: flex;
-    // justify-content: space-evenly;
-    margin-top: 40px;
-    .description {
-      text-align: center;
-      .artistImage {
-        width: 80px;
-        height: 80px;
-        border: 5px solid;
-        border-radius: 100%;
-        color: #100f0f;
-        margin: auto;
-        padding: auto;
-        font-size: 40px;
-        transition: all 300ms ease;
-        &:hover {
-          border: none;
-          font-size: 70px;
-          color: #e5890a;
-          transition: all 300ms ease;
-        }
-        .icon {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 100%;
-        }
-      }
-      h1 {
-        font-size: 24px;
-        margin-top: 20px;
-      }
-    }
-  }
 
   //? ============== Article ============= ?//
 
@@ -318,94 +141,12 @@
   }
   //? ============== Exhibition ============= ?//
 
-  .exhibitionBackground {
-    position: absolute;
-    filter: brightness(0.5);
-    height: 60vh !important;
-    object-fit: cover;
-  }
-  .exhibitionContainer {
-    height: 60vh;
-    padding: 80px 50px 80px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    .description {
-      width: 500px;
-      z-index: 1;
-      color: white;
-      margin: 0px;
-      p {
-        font-size: 16px;
-        line-height: 20px;
-        width: 90%;
-      }
-      h1 {
-        font-size: 34px;
-        line-height: 65px;
-        color: white;
-      }
-    }
-    .imageContainer {
-      left: 12%;
-      bottom: 30%;
-      height: 550px;
-      margin: 0;
-      .image {
-        object-fit: cover;
-        transition: all 300ms ease;
-        &:hover {
-          scale: 1.05;
-          transition: all 300ms ease;
-        }
-      }
-    }
-    .moreExhibitionContainer {
-      margin: auto;
-      color: white;
-      margin: 0;
-      height: auto;
-    }
-  }
-
   //? ============== Role ============= ?//
   .roleContainer {
     .pageTitle {
-      margin: 80px 0px 60px;
+      margin-bottom: 80px;
     }
-    .imageContainer {
-      height: 350px !important;
-      .image {
-        height: 350px;
-        object-fit: cover;
-      }
-    }
-    .descriptionContainer {
-      height: 350px;
-      background: rgb(255, 251, 245);
-      .description {
-        display: relative;
-        top: 50%;
-        transform: translateY(-50%);
-        padding: 50px 50px;
-        margin: auto;
-        .divider {
-          height: 2px;
-          width: 10%;
-          background: #e5890a;
-          margin: 0px 0px 10px;
-        }
-        h1 {
-          font-size: 18px;
-          margin: 0px !important;
-        }
-        h4 {
-          font-size: 14px;
-          // color: rgb(150, 149, 149) !important;
-          font-weight: 200 !important;
-        }
-      }
-    }
+    margin: 80px 0px;
   }
 }
 // * ====================================== * //
@@ -415,73 +156,6 @@
   .artworkContainer,
   .artistContainer {
     padding: 60px 0px;
-  }
-
-  //? ============== Exhibition ============= ?//
-
-  .exhibitionBackground {
-    position: absolute;
-    filter: brightness(0.5);
-    height: 70vh !important;
-    object-fit: cover;
-  }
-  .exhibitionContainer {
-    height: 70vh;
-    padding: 40px 0px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    .description {
-      width: 500px;
-      z-index: 1;
-      color: white;
-      margin: 0px;
-      p {
-        font-size: 16px;
-        line-height: 20px;
-        width: 90%;
-      }
-      h1 {
-        font-size: 34px;
-        line-height: 65px;
-        color: white;
-      }
-    }
-    .imageContainer {
-      left: 12%;
-      bottom: 30%;
-      height: 550px;
-      margin: 0;
-      .image {
-        object-fit: cover;
-        transition: all 300ms ease;
-        &:hover {
-          scale: 1.05;
-          transition: all 300ms ease;
-        }
-      }
-    }
-    .moreExhibitionContainer {
-      margin: auto;
-      color: white;
-      margin: 0;
-      height: auto;
-    }
-  }
-  //? ============== Offer ============= ?//
-  .offer {
-    margin-top: 80px;
-    padding: 60px 0px 40px;
-    background: rgb(255, 251, 245);
-    .pageTitle {
-      margin-bottom: 60px;
-    }
-  }
-  .offerContainer {
-    margin-top: 0px;
-    .description {
-      margin-bottom: 40px;
-    }
   }
 
   //? ============== Article ============= ?//

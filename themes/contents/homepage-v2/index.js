@@ -51,6 +51,12 @@ function ThemesContentsHomepageV2(props) {
       description:
         "Gallery is a wonderful place to exhibit paintings. We have got you a landing pagethat matches your gallery themes!",
     },
+    {
+      icon: <BookOutlined />,
+      offer: "Archive Artworks",
+      description:
+        "We gonna archive all of your artworks so the existence of your artwork would neverwent missing!",
+    },
   ];
 
   return (

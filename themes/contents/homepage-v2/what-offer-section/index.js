@@ -25,7 +25,13 @@ function ThemesContentsHomepageV2WhatOfferSection(props) {
         <ThemesContainerMain>
           <Row gutter={(40, 20)} className={s.offerContainer}>
             {dataList.map((item, index) => (
-              <Col md={{ span: 7 }} xs={{ span: 22 }} className={s.description} key={index}>
+              <Col
+                lg={{ span: 7 }}
+                md={{ span: 11 }}
+                xs={{ span: 24 }}
+                className={s.description}
+                key={index}
+              >
                 <Col className={s.artistImage}>
                   <Col className={s.icon}>{item.icon}</Col>
                 </Col>
@@ -36,22 +42,7 @@ function ThemesContentsHomepageV2WhatOfferSection(props) {
               </Col>
             ))}
           </Row>
-          <Col className={s.offerContainer}>
-            <Col md={{ span: 7 }} xs={{ span: 22 }} className={s.description}>
-              <Col className={s.artistImage}>
-                <Col className={s.icon}>
-                  <BookOutlined />
-                </Col>
-              </Col>
-              <Col>
-                <h1>Archive Artworks</h1>
-                <p>
-                  We gonna archive all of your artworks so the existence of your artwork would never
-                  went missing!
-                </p>
-              </Col>
-            </Col>
-          </Col>
+          <Col className={s.offerContainer}></Col>
         </ThemesContainerMain>
       </Col>
     </>
