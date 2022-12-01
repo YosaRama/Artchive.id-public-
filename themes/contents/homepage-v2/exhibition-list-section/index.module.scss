@@ -44,15 +44,91 @@
     }
   }
   .moreExhibitionContainer {
-    margin: auto;
     color: white;
-    margin: 0;
     height: auto;
   }
 }
 
+//? ============== Tablet Landscape View ============= ?//
+@media screen and (max-width: 1024px) {
+  .exhibitionContainer {
+    height: 90vh;
+    padding: 10vh 20px;
+
+    .description {
+      width: 60%;
+
+      p {
+        font-size: 14px;
+        line-height: 30px;
+        width: 80%;
+      }
+      h1 {
+        font-size: 32px;
+        line-height: 60px;
+      }
+    }
+  }
+}
+
+//? ============== Tablet Potrait View ============= ?//
+@media screen and (max-width: 768px) {
+  .exhibitionContainer {
+    height: 70vh;
+    padding: 5vh 20px;
+
+    .description {
+      width: 60%;
+
+      p {
+        font-size: 16px;
+        line-height: 25px;
+      }
+      h1 {
+        font-size: 48px;
+        line-height: 60px;
+      }
+    }
+
+    .btn {
+      span {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+//? ============== Mobile View ============= ?//
 @media screen and (max-width: 500px) {
   .moreExhibitionContainer {
     display: none;
+  }
+
+  .exhibitionContainer {
+    height: 70vh;
+    padding: 5vh 0px;
+
+    .description {
+      width: 60%;
+
+      p {
+        font-size: 14px;
+        line-height: 25px;
+        width: 100%;
+      }
+      h1 {
+        font-size: 32px;
+        line-height: 60px;
+      }
+    }
+
+    .btn {
+      text-align: center;
+      span {
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+      }
+    }
   }
 }
