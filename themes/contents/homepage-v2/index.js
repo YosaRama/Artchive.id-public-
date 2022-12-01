@@ -135,23 +135,24 @@ function ThemesContentsHomepageV2(props) {
           className={s.pageTitle}
         />
         <ThemesContentsHomepageV2OurRolesSection
-          title="ART COLLECTOR"
-          subtitle="Buy Artwork | Show Collection | Trade Collection"
-          description="a person who creates art (such as painting, sculpture, music, or writing) using
-                    conscious skill and creative imagination. the great artists of the Renaissance.
-                    an artist specializing in watercolors. : a person skilled in any of the arts."
-          image="/images/homepage-role-artist.jpg"
-        />
-        <ThemesContentsHomepageV2OurRolesSection
           title="ARTIST"
           subtitle="Show Artwork | Sell Artwork | Manage Profile"
           description="a person who creates art (such as painting, sculpture, music, or writing)
                       using conscious skill and creative imagination. the great artists of the
                       Renaissance. an artist specializing in watercolors. : a person skilled in any
                       of the arts."
+          image="/images/homepage-role-artist.jpg"
+        />
+        <ThemesContentsHomepageV2OurRolesSection
+          title="ART COLLECTOR"
+          subtitle="Buy Artwork | Show Collection | Trade Collection"
+          description="a person who creates art (such as painting, sculpture, music, or writing) using
+                    conscious skill and creative imagination. the great artists of the Renaissance.
+                    an artist specializing in watercolors. : a person skilled in any of the arts."
           image="/images/homepage-role-collector.jpg"
           textPosition="left"
         />
+
         <ThemesContentsHomepageV2OurRolesSection
           title="GALLERY"
           subtitle="Buy Artwork | Show Collection | Trade Collection"

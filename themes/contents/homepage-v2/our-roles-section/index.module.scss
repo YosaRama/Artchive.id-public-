@@ -1,17 +1,13 @@
 .roleContainer {
-  .pageTitle {
-    margin: 120px 0px 60px;
-  }
-
   .imageContainer {
-    height: 500px !important;
+    height: 600px !important;
     .image {
-      height: 500px;
+      height: 600px;
       object-fit: cover;
     }
   }
   .descriptionContainer {
-    height: 500px;
+    height: 600px;
     background: rgb(255, 251, 245);
     .description {
       display: relative;
@@ -26,13 +22,91 @@
         margin: 0px 0px 10px;
       }
       h1 {
-        font-size: 24px;
+        font-size: 32px;
         margin: 0px !important;
       }
       h4 {
-        font-size: 16px;
+        font-size: 24px;
         // color: rgb(150, 149, 149) !important;
         font-weight: 200 !important;
+      }
+    }
+  }
+}
+
+//? ============== Tablet Landscape View ============= ?//
+@media screen and (max-width: 1024px) {
+  .roleContainer {
+    .imageContainer {
+      height: 450px !important;
+      .image {
+        height: 450px;
+      }
+    }
+    .descriptionContainer {
+      height: 450px;
+      .description {
+        padding: 60px 70px;
+
+        .divider {
+          width: 20%;
+
+          margin: 0px 0px 10px;
+        }
+        h1 {
+          font-size: 24px;
+        }
+        h4 {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}
+
+//? ============== Tablet Potrait View ============= ?//
+@media screen and (max-width: 768px) {
+  .roleContainer {
+    .imageContainer {
+      height: 350px !important;
+      .image {
+        height: 350px;
+      }
+    }
+    .descriptionContainer {
+      height: 350px;
+      .description {
+        padding: 40px;
+      }
+    }
+  }
+}
+
+//? ============== Mobile View ============= ?//
+@media screen and (max-width: 500px) {
+  .roleContainer {
+    .imageContainer {
+      height: 350px !important;
+      .image {
+        height: 350px;
+      }
+    }
+    .descriptionContainer {
+      height: 350px;
+      .description {
+        padding: 40px;
+
+        .divider {
+          width: 20%;
+
+          margin: 0px 0px 10px;
+        }
+        h1 {
+          font-size: 24px;
+        }
+        h4 {
+          font-size: 18px;
+        }
       }
     }
   }
