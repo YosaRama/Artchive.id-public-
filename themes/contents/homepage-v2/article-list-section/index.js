@@ -39,16 +39,17 @@ function ThemesContentsHomepageV2ArticleListSection(props) {
             {dataList &&
               dataList?.map((item, index) => {
                 return (
-                  <ThemesArticleListCard
-                    className={s.articleListContent}
-                    key={index}
-                    title={item.title}
-                    shortDescription={item.short_description}
-                    author={item.author}
-                    postDate={item.updated_at}
-                    thumbnailSrc={`${process.env.NEXT_PUBLIC_S3_URL}/${item.thumbnail.url}`}
-                    url={`/articles/${item.slug}`}
-                  />
+                  <Col style={{ marginTop: "40px" }} key={index}>
+                    <ThemesArticleListCard
+                      className={s.articleListContent}
+                      title={item.title}
+                      shortDescription={item.short_description}
+                      author={item.author}
+                      postDate={item.updated_at}
+                      thumbnailSrc={`${process.env.NEXT_PUBLIC_S3_URL}/${item.thumbnail.url}`}
+                      url={`/articles/${item.slug}`}
+                    />
+                  </Col>
                 );
               })}
           </ThemesContainerMasonry>
