@@ -12,7 +12,7 @@ function ThemesDividerWithButton(props) {
   const { children, onClick } = props;
   return (
     <Divider style={{ margin: 0 }} className={s.divider}>
-      <ThemesButton type="outlined" onClick={onClick}>
+      <ThemesButton type="primary" onClick={onClick}>
         {children}
       </ThemesButton>
     </Divider>

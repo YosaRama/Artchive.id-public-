@@ -22,6 +22,7 @@ function ThemesContentsHomepageV2ArtworkArtistSection(props) {
     title,
     description,
     buttonText,
+    buttonTextMobile,
     textPosition = "left",
     textPositionOnMobile = "bottom",
     listDataType,
@@ -51,13 +52,13 @@ function ThemesContentsHomepageV2ArtworkArtistSection(props) {
                 style={{ padding: "0px" }}
                 xl={{ span: 24 }}
                 lg={{ span: 24 }}
-                md={{ span: 16 }}
+                md={{ span: 19 }}
                 xs={{ span: 24 }}
               >
                 <div dangerouslySetInnerHTML={{ __html: title }} />
                 <p>{description}</p>
               </Col>
-              {width > 500 ? (
+              {width > 768 ? (
                 <Col
                   className={s.btn}
                   xl={{ span: 24 }}
@@ -119,10 +120,10 @@ function ThemesContentsHomepageV2ArtworkArtistSection(props) {
               </Row>
             </Col>
           </Row>
-          {width <= 500 ? (
+          {width <= 768 ? (
             <Col style={{ margin: "30px 0px 20px" }}>
-              <ThemesDividerWithButton onClick={() => router.push(`${pageDivider}`)}>
-                DISCOVER MORE
+              <ThemesDividerWithButton onClick={() => router.push(`${page}`)}>
+                {buttonTextMobile}
               </ThemesDividerWithButton>
             </Col>
           ) : (
@@ -139,6 +140,7 @@ ThemesContentsHomepageV2ArtworkArtistSection.propTypes = {
   title: propTypes.string,
   description: propTypes.string,
   buttonText: propTypes.string,
+  buttonTextMobile: propTypes.string,
   textPosition: propTypes.oneOf(["left", "right"]),
   textPositionOnMobile: propTypes.oneOf(["top", "bottom"]),
   listDataType: propTypes.oneOf(["artwork", "artist"]),

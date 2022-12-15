@@ -35,13 +35,13 @@ function ThemesFooterV2() {
   ];
 
   const footerMenu3 = [
-    {
-      title: "Jalan Gadung, Denpasar, Bali, Indonesia.",
-      link: "/",
-      icon: <EnvironmentOutlined />,
-    },
-    { title: "artchive@gmail.com", link: "/", icon: <MailOutlined /> },
-    { title: "+62 858-5839-6893", link: "/", icon: <PhoneOutlined /> },
+    // {
+    //   title: "Jalan Gadung, Denpasar, Bali, Indonesia.",
+    //   link: "/",
+    //   icon: <EnvironmentOutlined />,
+    // },
+    { title: "info@artchive.id", link: "/", icon: <MailOutlined /> },
+    { title: "+62 821-4566-3008", link: "/", icon: <PhoneOutlined /> },
   ];
   // * ====================================== * //
 
@@ -51,8 +51,8 @@ function ThemesFooterV2() {
         <Col className={s.footerContainer}>
           <Row gutter={(50, 50)} className={s.s}>
             <Col
-              xl={{ span: 7 }}
-              lg={{ span: 7 }}
+              xl={{ span: 8 }}
+              lg={{ span: 8 }}
               md={{ span: 24 }}
               xs={{ span: 24 }}
               className={s.logoContainer}
@@ -60,14 +60,14 @@ function ThemesFooterV2() {
               <Col span={24} className={s.imageContainer} onClick={() => router.push("/")}>
                 <Image alt="" src="/images/logo-text-white.png" layout="fill" />
               </Col>
-              <p style={{ fontSize: "18px" }}>
-                Our mission is to give artist, collector, and gallery a place to communicate
+              <p style={{ fontSize: "16px" }}>
+                Our mission is to give artist, collector, and gallery a place to communicate!
               </p>
             </Col>
             <Col
               xl={{ span: 5 }}
-              lg={{ span: 4 }}
-              md={{ span: 7 }}
+              lg={{ span: 5 }}
+              md={{ span: 8 }}
               xs={{ span: 12 }}
               className={s.descContainer}
             >
@@ -80,8 +80,8 @@ function ThemesFooterV2() {
             </Col>
             <Col
               xl={{ span: 5 }}
-              lg={{ span: 4 }}
-              md={{ span: 7 }}
+              lg={{ span: 5 }}
+              md={{ span: 8 }}
               xs={{ span: 12 }}
               className={s.descContainer}
             >
@@ -93,19 +93,19 @@ function ThemesFooterV2() {
               ))}
             </Col>
             <Col
-              xl={{ span: 7 }}
-              lg={{ span: 9 }}
-              md={{ span: 10 }}
+              xl={{ span: 6 }}
+              lg={{ span: 6 }}
+              md={{ span: 8 }}
               xs={{ span: 24 }}
               className={s.descContainer}
             >
               <h1>Contact Us</h1>
               {footerMenu3.map((item, index) => (
-                <Row gutter={(5, 10)} style={{ marginBottom: 5 }} key={index}>
+                <Row gutter={(5, 10)} style={{ marginBottom: 5, width: "auto" }} key={index}>
                   <Col span={2} className={s.icon}>
                     {item.icon}
                   </Col>
-                  <Col span={21}>
+                  <Col>
                     <Link href={item.link}>
                       <a>{item.title}</a>
                     </Link>
@@ -128,18 +128,18 @@ function ThemesFooterV2() {
             </Col>
           </Row>
           <Divider className={s.divider} />
-          <Row span={24} className={s.bottomContainer}>
-            <Col span={8}>
+          <Row gutter={[0, 30]} span={24} className={s.bottomContainer}>
+            <Col md={{ span: 12, order: 1 }} xs={{ span: 24, order: 2 }}>
               <p>@ 2022 Artchive.id</p>
             </Col>
-            <Col>
-              <Row gutter={(30, 30)}>
-                <Col className={s.terms}>
+            <Col md={{ span: 12, order: 2 }} xs={{ span: 24, order: 1 }}>
+              <Row gutter={(10, 10)}>
+                <Col xs={{ span: 12 }} className={s.terms}>
                   <Link href="/privacy-policies">
                     <a>Privacy & Policy</a>
                   </Link>
                 </Col>
-                <Col className={s.terms}>
+                <Col xs={{ span: 12 }} className={s.terms}>
                   <Link href="/terms">
                     <a>Terms & Conditions</a>
                   </Link>

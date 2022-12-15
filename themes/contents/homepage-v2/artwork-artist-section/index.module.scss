@@ -3,7 +3,7 @@
   justify-content: space-between;
 
   .description {
-    height: 350px;
+    height: 300px;
     flex-direction: column;
     display: flex;
     width: 100%;
@@ -84,7 +84,8 @@
     .description {
       height: auto;
       margin-bottom: 20px;
-
+      justify-content: center;
+      text-align: center;
       flex-direction: row;
       h1 {
         font-size: 32px;

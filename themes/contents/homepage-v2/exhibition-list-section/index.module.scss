@@ -20,7 +20,7 @@
     margin: 0px;
     p {
       font-size: 16px;
-      line-height: 33px;
+      line-height: 30px;
       width: 90%;
     }
     h1 {
@@ -46,6 +46,7 @@
   .moreExhibitionContainer {
     color: white;
     height: auto;
+    padding: 0px;
   }
 }
 
@@ -74,7 +75,7 @@
 //? ============== Tablet Potrait View ============= ?//
 @media screen and (max-width: 768px) {
   .exhibitionContainer {
-    height: 70vh;
+    height: 75vh;
     padding: 5vh 20px;
 
     .description {
@@ -105,7 +106,7 @@
   }
 
   .exhibitionContainer {
-    height: 70vh;
+    height: 90vh;
     padding: 5vh 0px;
 
     .description {
