@@ -76,6 +76,13 @@ export const aboutTeamsCard = [
     position: "Bussiness",
     description: "Do some market research & business development",
   },
+  {
+    imageTeam: "/images/team-8.jpg",
+    name: "Gladys Pelensa",
+    position: "Content Designer",
+    description:
+      "Create a creative design for social media content and website content for digital marketing.",
+  },
 ];
 
 export const logoPartner = [{ logoPartner: "/images/logo-jepun.png" }];

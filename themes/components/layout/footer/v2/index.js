@@ -22,16 +22,16 @@ function ThemesFooterV2() {
   const router = useRouter();
   //? ============== Footer Menu ============= ?//
   const footerMenu1 = [
-    { title: "Artwork", link: "/about" },
+    { title: "Artwork", link: "/artwork" },
     { title: "Artist", link: "/artist" },
     { title: "Exhibitions", link: "/exhibition" },
     { title: "Articles", link: "/articles" },
   ];
 
   const footerMenu2 = [
-    { title: "Support Us", link: "/about" },
-    { title: "Engage With Us", link: "/artist" },
-    { title: "Contact Us", link: "/exhibition" },
+    { title: "About Us", link: "/about" },
+    { title: "Engage With Us", link: `https://wa.me/${process.env.NEXT_PUBLIC_PHONE_NUMBER}` },
+    { title: "Contact Us", link: `https://wa.me/${process.env.NEXT_PUBLIC_PHONE_NUMBER}` },
   ];
 
   const footerMenu3 = [
@@ -132,7 +132,12 @@ function ThemesFooterV2() {
             <Col md={{ span: 12, order: 1 }} xs={{ span: 24, order: 2 }}>
               <p>@ 2022 Artchive.id</p>
             </Col>
-            <Col md={{ span: 12, order: 2 }} xs={{ span: 24, order: 1 }}>
+            <Col
+              xl={{ span: 8 }}
+              lg={{ span: 8 }}
+              md={{ span: 12, order: 2 }}
+              xs={{ span: 24, order: 1 }}
+            >
               <Row gutter={(10, 10)}>
                 <Col xs={{ span: 12 }} className={s.terms}>
                   <Link href="/privacy-policies">
