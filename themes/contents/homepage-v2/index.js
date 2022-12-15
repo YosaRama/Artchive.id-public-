@@ -1,5 +1,6 @@
 // Libs
 import propTypes from "prop-types";
+import { useState } from "react";
 
 // Components
 import ThemesHeadline from "themes/components/libs/headline";
@@ -23,7 +24,6 @@ import { useWindowSize } from "app/helpers/useWindowSize";
 import s from "./index.module.scss";
 
 // Icons
-import { BookOutlined } from "@ant-design/icons";
 import { ArtistManagementIcon } from "public/icons/artist-management-icon";
 import { GalleryManagementIcon } from "public/icons/gallery-management-icon";
 import { ArchiveManagementIcon } from "public/icons/archive-management-icon";
@@ -32,10 +32,14 @@ import { CollectorManagementIcon } from "public/icons/collector-management-icon"
 function ThemesContentsHomepageV2(props) {
   const { artworkData, artistData } = props;
   const { width } = useWindowSize();
+
+  const isNotReadyToShow = true; //TODO : Remove when everything is ready to show//
+
   //? ============== Articles Hooks ============= ?//
-  const { data: articleListData, total: articleListDataTotal } = useArticlesLoad({ limit: 3 });
+  const { data: articleListData, total: articleListDataTotal } = useArticlesLoad({ limit: 3 }); //TODO : Change to get static props//
   // * ====================================== * //
 
+  //TODO : Move to homepage dummy data//
   const offerList = [
     {
       icon: <ArtistManagementIcon />,
@@ -96,31 +100,34 @@ function ThemesContentsHomepageV2(props) {
       {/* // * ====================================== * // */}
 
       {/* //? ============== New Artwork Section ============= ?// */}
-      <section>
-        <ThemesContentsHomepageV2ArtworkArtistSection
-          listData={artworkData}
-          title={
-            width > 500
-              ? `<h1>The latest <span>Artworks</span> from our artists!</h1>`
-              : `<h1>Latest<span> Artworks</span></h1>`
-          }
-          description={
-            width > 500
-              ? "We help artist to show their artworks and also help collectors to find the best artwork they need! Find out more about our artist latest artwork and pocket it!"
-              : "We help artist to show their artworks and also help collectors to find the best artwork they need!"
-          }
-          buttonText="SEE MORE"
-          buttonTextMobile="SEE MORE"
-          listDataType="artwork"
-          textPosition="right"
-          textPositionOnMobile="top"
-          page="/artwork"
-        />
-      </section>
+      {isNotReadyToShow ? (
+        ""
+      ) : (
+        <section>
+          <ThemesContentsHomepageV2ArtworkArtistSection
+            listData={artworkData}
+            title={
+              width > 500
+                ? `<h1>The latest <span>Artworks</span> from our artists!</h1>`
+                : `<h1>Latest<span> Artworks</span></h1>`
+            }
+            description={
+              width > 500
+                ? "We help artist to show their artworks and also help collectors to find the best artwork they need! Find out more about our artist latest artwork and pocket it!"
+                : "We help artist to show their artworks and also help collectors to find the best artwork they need!"
+            }
+            buttonText="SEE MORE"
+            buttonTextMobile="SEE MORE"
+            listDataType="artwork"
+            textPosition="right"
+            textPositionOnMobile="top"
+            page="/artwork"
+          />
+        </section>
+      )}
       {/* // * ====================================== * // */}
 
       {/* //? ============== Artist Sections ============= ?// */}
-
       <section className={s.artistContainer}>
         {/* //TODO : Change Text Position To Right if New Artwork Section System not yet ready// */}
         <ThemesContentsHomepageV2ArtworkArtistSection
@@ -136,7 +143,7 @@ function ThemesContentsHomepageV2(props) {
           buttonText="DISCOVER MORE"
           buttonTextMobile="SEE MORE"
           listDataType="artist"
-          textPosition="left"
+          textPosition={"right"}
           textPositionOnMobile="top"
           page="/artist"
         />
@@ -144,12 +151,14 @@ function ThemesContentsHomepageV2(props) {
       {/* // * ====================================== * // */}
 
       {/* //? ============== Exhibition List ============= ?// */}
+      {/* //TODO : Get data from get static props instead of hooks // */}
       <section>
         <ThemesContentsHomepageV2ExhibitionListSection />
       </section>
       {/* // * ====================================== * // */}
 
       {/* //? ============== Our Roles ============= ?// */}
+      {/* //TODO : Move to homepage dummy data and do looping// */}
       <section className={s.roleContainer}>
         <ThemesHeadline
           title="Your Roles"
@@ -169,7 +178,6 @@ function ThemesContentsHomepageV2(props) {
           image="/images/homepage-role-collector.jpg"
           textPosition="left"
         />
-
         <ThemesContentsHomepageV2OurRolesSection
           title="GALLERY"
           subtitle="Show Gallery Artwork | Do Artwork Transaction"
@@ -191,9 +199,13 @@ function ThemesContentsHomepageV2(props) {
       {/* // * ====================================== * // */}
 
       {/* //? ============== Testimonials Section ============= ?// */}
-      <section>
-        <ThemesContentsHomepageV2TestimonialSection />
-      </section>
+      {isNotReadyToShow ? (
+        ""
+      ) : (
+        <section>
+          <ThemesContentsHomepageV2TestimonialSection />
+        </section>
+      )}
       {/* // * ====================================== * // */}
     </>
   );

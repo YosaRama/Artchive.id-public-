@@ -6,7 +6,7 @@
 
 .artworkContainer,
 .artistContainer {
-  padding: 150px 0px;
+  margin: 150px 0px;
 }
 
 //? ============== Role ============= ?//
@@ -85,7 +85,7 @@
   //? ============== Artist ============= ?//
   .artworkContainer,
   .artistContainer {
-    padding: 100px 0px;
+    margin: 100px 0px;
   }
 
   //? ============== Article ============= ?//
@@ -134,7 +134,7 @@
   //? ============== Artist ============= ?//
   .artworkContainer,
   .artistContainer {
-    padding: 80px 0px;
+    margin: 80px 0px;
   }
   //? ============== Exhibition ============= ?//
 
@@ -152,7 +152,7 @@
 @media screen and (max-width: 500px) {
   .artworkContainer,
   .artistContainer {
-    padding: 60px 0px;
+    margin: 60px 0px;
   }
 
   //? ============== Article ============= ?//
