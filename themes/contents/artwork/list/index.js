@@ -18,7 +18,7 @@ import ThemesNoData from "themes/components/libs/no-data";
 // Data Hook
 import { useArtworksLoad } from "app/hooks/artwork";
 import { useUsers } from "app/hooks/user";
-import { useGenres } from "app/hooks/genre";
+import { useGenre, useGenres } from "app/hooks/genre";
 
 // Helpers
 import { useWindowSize } from "app/helpers/useWindowSize";
@@ -95,6 +95,8 @@ function ThemesContentsArtworkList() {
 
   //? ============== Genre Hook ============= ?//
   const { data: genreData } = useGenres({ queryString: "limit=all" });
+  const { data: genreSingleData } = useGenre({ singleId: genreId });
+  const genreTitle = genreSingleData?.title;
   // * ====================================== * //
 
   //? ============== Handle Load More ============= ?//
@@ -119,7 +121,9 @@ function ThemesContentsArtworkList() {
         >
           <div className={"page-bannerTitle"}>
             <Col className={s.bannerTitle}>
+              <h3 style={{ color: "white" }}>{!!artistName ? "Artwork by" : ""}</h3>
               <h1>{!!artistName ? artistName : "Artwork List"}</h1>
+              <h2 style={{ color: "white" }}>{!!genreId ? genreTitle : ""}</h2>
             </Col>
           </div>
         </ThemesBanner>
@@ -341,7 +345,19 @@ function ThemesContentsArtworkList() {
                   </Spin>
                 )}
 
-                {artworkData?.length == 0 && <ThemesNoData />}
+                {artworkData?.length == 0 && (
+                  <ThemesNoData
+                    description={
+                      <>
+                        {artistName && !genreId ? `No artwork from ${artistName}` : ""}
+                        {genreId && !artistName ? `No ${genreTitle} genre artworks` : ""}
+                        {genreId && artistName
+                          ? `No ${genreTitle} genre artworks from ${artistName}`
+                          : ""}
+                      </>
+                    }
+                  ></ThemesNoData>
+                )}
 
                 {!end && (
                   <Col span={24} style={{ textAlign: "center" }}>

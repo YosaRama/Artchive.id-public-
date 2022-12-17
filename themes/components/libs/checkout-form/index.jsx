@@ -21,7 +21,7 @@ function ThemesCheckoutForm(props) {
           name="email"
           rules={[{ required: true, message: "Please input your email!", type: "email" }]}
         >
-          <Input placeholder="Input your email" />
+          <Input placeholder="e.g. info@artchive.id" />
         </Form.Item>
 
         <Form.Item
@@ -29,7 +29,7 @@ function ThemesCheckoutForm(props) {
           name="fullname"
           rules={[{ required: true, message: "Please input your full name!" }]}
         >
-          <Input placeholder="Input your full name" />
+          <Input placeholder="e.g. John Doe" />
         </Form.Item>
 
         <Form.Item
@@ -37,7 +37,7 @@ function ThemesCheckoutForm(props) {
           name="phoneNumber"
           rules={[{ required: true, message: "Please input your phone number!" }]}
         >
-          <Input placeholder="Input your phone number" />
+          <Input placeholder="e.g. +6282145663008" />
         </Form.Item>
 
         <Form.Item
@@ -45,7 +45,7 @@ function ThemesCheckoutForm(props) {
           name="recipientName"
           rules={[{ required: true, message: "Please input your recipent name!" }]}
         >
-          <Input placeholder="Input your recipent name" />
+          <Input placeholder="e.g. Olivia Emma, or John Doe if you buy for yourself" />
         </Form.Item>
 
         <Form.Item
@@ -53,7 +53,7 @@ function ThemesCheckoutForm(props) {
           name="address"
           rules={[{ required: true, message: "Please input your address!" }]}
         >
-          <Input placeholder="Input your first address" />
+          <Input placeholder="e.g. Gajahmada Street No. 20" />
         </Form.Item>
 
         <Form.Item
@@ -61,15 +61,7 @@ function ThemesCheckoutForm(props) {
           name="city"
           rules={[{ required: true, message: "Please input your city!" }]}
         >
-          <Input placeholder="Input your city" />
-        </Form.Item>
-
-        <Form.Item
-          label="Zip Code"
-          name="zipCode"
-          rules={[{ required: true, message: "Please input your zip code!" }]}
-        >
-          <Input placeholder="Input your zip code" />
+          <Input placeholder="e.g. Tabanan" />
         </Form.Item>
 
         <Form.Item
@@ -77,7 +69,15 @@ function ThemesCheckoutForm(props) {
           name="country"
           rules={[{ required: true, message: "Please input your country!" }]}
         >
-          <Input placeholder="Input your country" />
+          <Input placeholder="e.g. Bali" />
+        </Form.Item>
+
+        <Form.Item
+          label="Zip Code"
+          name="zipCode"
+          rules={[{ required: true, message: "Please input your zip code!" }]}
+        >
+          <Input placeholder="e.g. 80255" />
         </Form.Item>
 
         <Form.Item label="Notes (Optional)" name="notes" rules={[{ required: false }]}>
