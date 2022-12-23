@@ -402,6 +402,7 @@ export const UPDATE_ARTWORK = ({
   markupPrice,
   status,
   approve,
+  curatorial_pick,
 }) => {
   return prisma.artwork.update({
     // Handle query condition
@@ -436,11 +437,7 @@ export const UPDATE_ARTWORK = ({
             })
           : [],
       },
-      // genre: {
-      //? For single Genre
-      //   set: [],
-      //   connect: { id: genre_id },
-      // },
+      curatorial_pick: curatorial_pick,
     },
     //====================
 

@@ -51,34 +51,35 @@ model User {
 }
 
 model Artwork {
-  id             Int                     @id @default(autoincrement())
-  sku            String                  @unique
-  artist         User                    @relation(fields: [artist_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  artist_id      Int
-  title          String
-  slug           String                  @unique
-  year           String
-  material       String?
-  description    String                  @db.Text
-  type           Type
-  media_cover    Media                   @relation("cover", fields: [media_cover_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  media_cover_id Int
-  height         Int
-  width          Int
-  price          String
-  markup_price   String                  @default("0")
-  status         ArtStatus
-  approve        Boolean
-  genre          Genre[]
-  media_gallery  Media[]
-  cart           Cart[]
-  order          Order[]
-  certificate    Certificate[]
-  exhibitions    ArtworksOnExhibitions[]
-  PaymentHistory PaymentHistory[]
-  isDeleted      Boolean                 @default(false)
-  createdAt      DateTime                @default(now())
-  updatedAt      DateTime?               @updatedAt
+  id              Int                     @id @default(autoincrement())
+  sku             String                  @unique
+  artist          User                    @relation(fields: [artist_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  artist_id       Int
+  title           String
+  slug            String                  @unique
+  year            String
+  material        String?
+  description     String                  @db.Text
+  type            Type
+  media_cover     Media                   @relation("cover", fields: [media_cover_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  media_cover_id  Int
+  height          Int
+  width           Int
+  price           String
+  markup_price    String                  @default("0")
+  status          ArtStatus
+  approve         Boolean
+  genre           Genre[]
+  media_gallery   Media[]
+  cart            Cart[]
+  order           Order[]
+  certificate     Certificate[]
+  exhibitions     ArtworksOnExhibitions[]
+  PaymentHistory  PaymentHistory[]
+  isDeleted       Boolean                 @default(false)
+  createdAt       DateTime                @default(now())
+  updatedAt       DateTime?               @updatedAt
+  curatorial_pick Boolean                 @default(false)
 
   @@map("artwork")
 }

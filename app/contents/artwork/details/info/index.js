@@ -79,6 +79,7 @@ function AppContentsArtworkDetailsInfo() {
         markupPrice: `${markupPrice || artworkInitialValues?.markup_price}`,
         status: value.status,
         approve: value.approve,
+        curatorial_pick: value.curatorial_pick,
       };
       onEdit(submission);
     });
@@ -226,9 +227,18 @@ function AppContentsArtworkDetailsInfo() {
                 markupPrice={markupPrice || artworkInitialValues.markup_price}
                 setMarkupPrice={setMarkupPrice}
               />
-              <Form.Item name="approve" label="Approved" valuePropName="checked">
-                <Switch onChange={handleApproved} />
-              </Form.Item>
+              <Row gutter={64} style={{ marginTop: 20 }}>
+                <Col>
+                  <Form.Item name="approve" label="Approved" valuePropName="checked">
+                    <Switch onChange={handleApproved} />
+                  </Form.Item>
+                </Col>
+                <Col>
+                  <Form.Item name="curatorial_pick" label="Curatorial Pick" valuePropName="checked">
+                    <Switch />
+                  </Form.Item>
+                </Col>
+              </Row>
             </Col>
             <Col span={24} style={{ textAlign: "right", margin: "30px auto" }}>
               <Button

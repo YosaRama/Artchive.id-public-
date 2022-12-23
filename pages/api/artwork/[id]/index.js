@@ -53,6 +53,7 @@ apiHandler.put(async (req, res) => {
     markupPrice,
     status,
     approve,
+    curatorial_pick,
   } = req.body;
   const titleParse = stringCapitalize(title);
 
@@ -73,6 +74,7 @@ apiHandler.put(async (req, res) => {
       markupPrice,
       status,
       approve,
+      curatorial_pick,
     });
     if (result) {
       res.status(200).json({
