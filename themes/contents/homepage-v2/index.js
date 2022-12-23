@@ -76,31 +76,33 @@ function ThemesContentsHomepageV2(props) {
       {/* // * ====================================== * // */}
 
       {/* //? ============== Curators Artwork Section ============= ?// */}
-      <section className={s.artworkContainer}>
-        <ThemesContentsHomepageV2ArtworkArtistSection
-          listData={curatorialPickData}
-          title={
-            width > 500
-              ? `<h1>The best <span>Artworks</span> you ever see!</h1>`
-              : `<h1>Exclusive <span>Artworks</span></h1>`
-          }
-          description={
-            width > 500
-              ? "Artworks recommendations for you exclusively selected from our Curators! Find out more about the best artowork only on Artchive.id"
-              : "Artworks recommendations for you exclusively selected from our Curators!"
-          }
-          buttonText="SEE MORE"
-          buttonTextMobile="SEE MORE"
-          listDataType="artwork"
-          textPosition="left"
-          textPositionOnMobile="top"
-          page="/artwork"
-        />
-      </section>
+      {curatorialPickData.length !== 0 ? (
+        <section className={s.curatorPickContainer}>
+          <ThemesContentsHomepageV2ArtworkArtistSection
+            listData={curatorialPickData}
+            title={
+              width > 500
+                ? `<h1>The best <span>Artworks</span> you ever see!</h1>`
+                : `<h1>Exclusive <span>Artworks</span></h1>`
+            }
+            description={
+              width > 500
+                ? "Artworks recommendations for you exclusively selected from our Curators! Find out more about the best artowork only on Artchive.id"
+                : "Artworks recommendations for you exclusively selected from our Curators!"
+            }
+            buttonText="SEE MORE"
+            buttonTextMobile="SEE MORE"
+            listDataType="artwork"
+            textPosition="left"
+            textPositionOnMobile="top"
+            page="/artwork"
+          />
+        </section>
+      ) : null}
       {/* // * ====================================== * // */}
 
       {/* //? ============== New Artwork Section ============= ?// */}
-      <section>
+      <section className={s.artworkContainer}>
         <ThemesContentsHomepageV2ArtworkArtistSection
           listData={artworkData}
           title={
@@ -116,7 +118,7 @@ function ThemesContentsHomepageV2(props) {
           buttonText="SEE MORE"
           buttonTextMobile="SEE MORE"
           listDataType="artwork"
-          textPosition="right"
+          textPosition={"right"}
           textPositionOnMobile="top"
           page="/artwork"
         />
@@ -139,7 +141,7 @@ function ThemesContentsHomepageV2(props) {
           buttonText="DISCOVER MORE"
           buttonTextMobile="SEE MORE"
           listDataType="artist"
-          textPosition={"right"}
+          textPosition={curatorialPickData ? "left" : "right"}
           textPositionOnMobile="top"
           page="/artist"
         />
