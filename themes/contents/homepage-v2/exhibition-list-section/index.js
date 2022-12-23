@@ -1,4 +1,5 @@
 // Libs
+import propTypes from "prop-types";
 import Image from "next/image";
 import { Col, Row } from "antd";
 import moment from "moment";
@@ -27,9 +28,9 @@ import { useWindowSize } from "app/helpers/useWindowSize";
 import s from "./index.module.scss";
 
 function ThemesContentsHomepageV2ExhibitionListSection(props) {
+  const { dataExhibition } = props;
   const router = useRouter();
   const { width } = useWindowSize();
-  const { data: dataExhibition } = useExhibitionLoad({ limit: "3", queryString: "" });
 
   //? ============== Exhibition Show Handler ============= ?//
   const [copy, setCopy] = useState();
@@ -143,5 +144,9 @@ function ThemesContentsHomepageV2ExhibitionListSection(props) {
     </>
   );
 }
+
+ThemesContentsHomepageV2ExhibitionListSection.propTypes = {
+  dataExhibition: propTypes.array,
+};
 
 export default ThemesContentsHomepageV2ExhibitionListSection;

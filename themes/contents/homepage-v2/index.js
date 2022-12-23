@@ -14,58 +14,20 @@ import ThemesContentsHomepageV2WhatOfferSection from "./what-offer-section";
 import ThemesContentsHomepageV2ArticleListSection from "./article-list-section";
 import ThemesContentsHomepageV2TestimonialSection from "./testimonial-section";
 
-// Data Hook
-import { useArticlesLoad } from "app/hooks/articles";
-
 // Helpers
 import { useWindowSize } from "app/helpers/useWindowSize";
 
 // Styles
 import s from "./index.module.scss";
 
-// Icons
-import { ArtistManagementIcon } from "public/icons/artist-management-icon";
-import { GalleryManagementIcon } from "public/icons/gallery-management-icon";
-import { ArchiveManagementIcon } from "public/icons/archive-management-icon";
-import { CollectorManagementIcon } from "public/icons/collector-management-icon";
+// Dummy
+import { roleSection, offerList } from "app/database/dummy/homepage-v2";
 
 function ThemesContentsHomepageV2(props) {
-  const { artworkData, artistData, curatorialPickData } = props;
+  const { artworkData, artistData, curatorialPickData, articleData, exhibitionData } = props;
   const { width } = useWindowSize();
 
   const isNotReadyToShow = true; //TODO : Remove when everything is ready to show//
-
-  //? ============== Articles Hooks ============= ?//
-  const { data: articleListData, total: articleListDataTotal } = useArticlesLoad({ limit: 3 }); //TODO : Change to get static props//
-  // * ====================================== * //
-
-  //TODO : Move to homepage dummy data//
-  const offerList = [
-    {
-      icon: <ArtistManagementIcon />,
-      offer: "Artist Management",
-      description:
-        "We let you manage your own profile and show the world your artworks. Hey, Collector could buy artwork from you!",
-    },
-    {
-      icon: <CollectorManagementIcon />,
-      offer: "Collector Management",
-      description:
-        "We let you collect artworks from our artist, trade your collection with othercollectors, and you can show it on your profile!",
-    },
-    {
-      icon: <GalleryManagementIcon />,
-      offer: "Gallery Management",
-      description:
-        "Gallery is a wonderful place to exhibit paintings. We have got you a landing pagethat matches your gallery themes!",
-    },
-    {
-      icon: <ArchiveManagementIcon />,
-      offer: "Archive Artworks",
-      description:
-        "We gonna archive all of your artworks so the existence of your artwork would neverwent missing!",
-    },
-  ];
 
   return (
     <>
@@ -127,7 +89,6 @@ function ThemesContentsHomepageV2(props) {
 
       {/* //? ============== Artist Sections ============= ?// */}
       <section className={s.artistContainer}>
-        {/* //TODO : Change Text Position To Right if New Artwork Section System not yet ready// */}
         <ThemesContentsHomepageV2ArtworkArtistSection
           listData={artistData}
           title={
@@ -149,39 +110,30 @@ function ThemesContentsHomepageV2(props) {
       {/* // * ====================================== * // */}
 
       {/* //? ============== Exhibition List ============= ?// */}
-      {/* //TODO : Get data from get static props instead of hooks // */}
       <section>
-        <ThemesContentsHomepageV2ExhibitionListSection />
+        <ThemesContentsHomepageV2ExhibitionListSection dataExhibition={exhibitionData} />
       </section>
       {/* // * ====================================== * // */}
 
       {/* //? ============== Our Roles ============= ?// */}
-      {/* //TODO : Move to homepage dummy data and do looping// */}
       <section className={s.roleContainer}>
         <ThemesHeadline
           title="Your Roles"
           subtitle="Artchive.id platform divided into several roles"
           className={s.pageTitle}
         />
-        <ThemesContentsHomepageV2OurRolesSection
-          title="ARTIST"
-          subtitle="Show Artwork | Sell Artwork | Manage Profile"
-          description="An artist is a person engaged in an activity related to creating art, practicing the arts, or demonstrating an art. The common usage in both everyday speech and academic discourse refers to a practitioner in the visual arts only."
-          image="/images/homepage-role-artist.jpg"
-        />
-        <ThemesContentsHomepageV2OurRolesSection
-          title="ART COLLECTOR"
-          subtitle="Buy Artwork | Show Collection | Trade Collection"
-          description="Art connoiseur. Art dealer. Art enthusiast. Art lover. “A famous art collector is walking through the city when he notices a mangy cat lapping milk from a saucer in the doorway of a store, and he does a double take”."
-          image="/images/homepage-role-collector.jpg"
-          textPosition="left"
-        />
-        <ThemesContentsHomepageV2OurRolesSection
-          title="GALLERY"
-          subtitle="Show Gallery Artwork | Do Artwork Transaction"
-          description="An art gallery is an exhibition space to display and sell artworks. As a result, the art gallery is a commercial enterprise working with a portfolio of artists."
-          image="/images/homepage-role-gallery.jpg"
-        />
+        {roleSection.map((item, index) => {
+          return (
+            <ThemesContentsHomepageV2OurRolesSection
+              key={index}
+              title={item.title}
+              subtitle={item.subtitle}
+              description={item.description}
+              image={item.image}
+              textPosition={item.textPosition}
+            />
+          );
+        })}
       </section>
 
       {/* //? ============== What We Offer Section ============= ?// */}
@@ -192,7 +144,7 @@ function ThemesContentsHomepageV2(props) {
 
       {/* //? ============== Article Section ============= ?// */}
       <section>
-        <ThemesContentsHomepageV2ArticleListSection dataList={articleListData} />
+        <ThemesContentsHomepageV2ArticleListSection dataList={articleData} />
       </section>
       {/* // * ====================================== * // */}
 
@@ -213,6 +165,8 @@ ThemesContentsHomepageV2.propTypes = {
   artworkData: propTypes.array,
   artistData: propTypes.array,
   curatorialPickData: propTypes.array,
+  articleData: propTypes.array,
+  exhibitionData: propTypes.array,
 };
 
 export default ThemesContentsHomepageV2;

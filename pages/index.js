@@ -1,16 +1,16 @@
 // Contents
-import ThemesContentsHomepage from "themes/contents/homepage";
 import ThemesContentsHomepageV2 from "themes/contents/homepage-v2";
 
 function PageHomepage(props) {
-  const { artistData, artworkData, curatorialPickData } = props;
+  const { artistData, artworkData, curatorialPickData, articleData, exhibitionData } = props;
   return (
     <>
-      {/* <ThemesContentsHomepage artistData={artistData} artworkData={artworkData} /> */}
       <ThemesContentsHomepageV2
         artistData={artistData}
         artworkData={artworkData}
         curatorialPickData={curatorialPickData}
+        articleData={articleData}
+        exhibitionData={exhibitionData}
       />
     </>
   );
@@ -22,6 +22,8 @@ export async function getStaticProps(ctx) {
   //? ============== Queries ============= ?//
   const { GET_ARTWORK } = require("app/database/query/artwork");
   const { GET_USER } = require("app/database/query/user");
+  const { GET_ARTICLES } = require("app/database/query/articles");
+  const { GET_EXHIBITION } = require("app/database/query/exhibition");
   // * ====================================== * //
 
   //? ============== Artwork Data ============= ?//
@@ -72,11 +74,23 @@ export async function getStaticProps(ctx) {
   });
   // * ====================================== * //
 
+  //? ============== Article Data ============= ?//
+  const article = await GET_ARTICLES({ limit: 3 });
+  const articleData = JSON.parse(JSON.stringify(article));
+  // * ====================================== * //
+
+  //? ============== Exhibition Data ============= ?//
+  const exhibition = await GET_EXHIBITION({ limit: 3 });
+  const exhibitionData = JSON.parse(JSON.stringify(exhibition));
+  // * ====================================== * //
+
   return {
     props: {
       artistData: artistData,
       artworkData: artworkData,
       curatorialPickData: curatorialPickData,
+      articleData: articleData,
+      exhibitionData: exhibitionData,
     },
     revalidate: 10,
   };
