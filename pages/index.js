@@ -3,11 +3,15 @@ import ThemesContentsHomepage from "themes/contents/homepage";
 import ThemesContentsHomepageV2 from "themes/contents/homepage-v2";
 
 function PageHomepage(props) {
-  const { artistData, artworkData } = props;
+  const { artistData, artworkData, curatorialPickData } = props;
   return (
     <>
       {/* <ThemesContentsHomepage artistData={artistData} artworkData={artworkData} /> */}
-      <ThemesContentsHomepageV2 artistData={artistData} artworkData={artworkData} />
+      <ThemesContentsHomepageV2
+        artistData={artistData}
+        artworkData={artworkData}
+        curatorialPickData={curatorialPickData}
+      />
     </>
   );
 }
@@ -32,6 +36,24 @@ export async function getStaticProps(ctx) {
         ? `${process.env.NEXT_PUBLIC_S3_URL}/${item?.media_cover?.url}`
         : null,
       status: item.status,
+      isCuratorPick: item.curatorial_pick == 1 ? true : null,
+    };
+  });
+  // * ====================================== * //
+
+  //? ============== Curatorial Pick Data ============= ?//
+  const curatorialPick = await GET_ARTWORK({ limit: 6, client: "true", isCuratorialPick: "true" });
+  const curatorialPickData = curatorialPick.map((item) => {
+    return {
+      id: item.id,
+      slug: item.slug,
+      title: item.title,
+      size: `${item.width} x ${item.height}`,
+      imgUrl: item?.media_cover
+        ? `${process.env.NEXT_PUBLIC_S3_URL}/${item?.media_cover?.url}`
+        : null,
+      status: item.status,
+      isCuratorPick: item.curatorial_pick == 1 ? true : null,
     };
   });
   // * ====================================== * //
@@ -54,6 +76,7 @@ export async function getStaticProps(ctx) {
     props: {
       artistData: artistData,
       artworkData: artworkData,
+      curatorialPickData: curatorialPickData,
     },
     revalidate: 10,
   };

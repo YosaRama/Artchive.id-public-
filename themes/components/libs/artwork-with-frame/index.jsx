@@ -1,15 +1,17 @@
 // Libs
 import { useRouter } from "next/router";
 import propTypes from "prop-types";
-// import Image from "next/image";
 import { Badge, Col, Image } from "antd";
 
 // Styles
 import s from "./index.module.scss";
 
+// Assets
+import { VerifyIcon } from "public/icons/verify-icon";
+
 function ThemesArtworkWithFrame(props) {
   const router = useRouter();
-  const { imgSrc, artworkTitle, artworkSize, artworkSlug, artworkStatus } = props;
+  const { imgSrc, artworkTitle, artworkSize, artworkSlug, artworkStatus, isCuratorPick } = props;
   return (
     <Badge.Ribbon
       text={artworkStatus == "SOLD" ? "SOLD" : "Waiting Approval"}
@@ -37,6 +39,11 @@ function ThemesArtworkWithFrame(props) {
           {artworkTitle && (
             <h1 className={s.title} onClick={() => router.push(`${artworkSlug}`)}>
               {artworkTitle}
+              {isCuratorPick ? (
+                <span className={s.curatorBadge}>
+                  <VerifyIcon />
+                </span>
+              ) : null}
             </h1>
           )}
           {artworkSize && <p className={s.size}>{artworkSize} cm</p>}
@@ -52,6 +59,7 @@ ThemesArtworkWithFrame.propTypes = {
   artworkTitle: propTypes.string,
   artworkSize: propTypes.string,
   artworkStatus: propTypes.oneOf(["PUBLISH", "SOLD", "DRAFT", "EDIT"]),
+  isCuratorPick: propTypes.bool,
 };
 
 export default ThemesArtworkWithFrame;

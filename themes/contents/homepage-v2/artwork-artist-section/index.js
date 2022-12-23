@@ -81,7 +81,7 @@ function ThemesContentsHomepageV2ArtworkArtistSection(props) {
               style={{ padding: "0px 10px" }}
             >
               <Row gutter={(20, 20)} className={s.slider}>
-                {listData.map((item, index) => (
+                {listData?.map((item, index) => (
                   <Col
                     xl={{ span: 10 }}
                     lg={{ span: 11 }}
@@ -99,6 +99,7 @@ function ThemesContentsHomepageV2ArtworkArtistSection(props) {
                           imgSrc={item.imgUrl}
                           artworkStatus={item.status}
                           style={{ margin: "0px 10px", width: 300, height: 300 }}
+                          isCuratorPick={item.isCuratorPick}
                         />
                       </>
                     ) : listDataType === "artist" ? (

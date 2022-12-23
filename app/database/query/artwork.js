@@ -25,6 +25,7 @@ export const GET_ARTWORK = ({
   genreId,
   artistName,
   isExhibition,
+  isCuratorialPick = false,
 }) => {
   // Handle Pagination
   const skip = limit != "all" ? (+page - 1) * +limit : undefined;
@@ -80,6 +81,7 @@ export const GET_ARTWORK = ({
           full_name: artistName ? { contains: artistName } : {},
         },
         status: isExhibition == "true" ? "EXHIBITION" : {},
+        curatorial_pick: isCuratorialPick == "true" ? true : {},
       },
       NOT: [
         { slug: excludeSlug ? excludeSlug : {} },
@@ -104,6 +106,7 @@ export const GET_TOTAL_ARTWORK = ({
   genreId,
   artistName,
   isExhibition,
+  isCuratorialPick,
 }) => {
   // Handle Multiple Genre
   const genreList = genreId && genreId.split(",");
@@ -131,6 +134,7 @@ export const GET_TOTAL_ARTWORK = ({
           full_name: artistName ? { contains: artistName } : {},
         },
         status: isExhibition == "true" ? "EXHIBITION" : {},
+        curatorial_pick: isCuratorialPick == "true" ? true : false,
       },
       NOT: [
         { slug: excludeSlug ? excludeSlug : {} },

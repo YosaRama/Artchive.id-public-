@@ -30,7 +30,7 @@ import { ArchiveManagementIcon } from "public/icons/archive-management-icon";
 import { CollectorManagementIcon } from "public/icons/collector-management-icon";
 
 function ThemesContentsHomepageV2(props) {
-  const { artworkData, artistData } = props;
+  const { artworkData, artistData, curatorialPickData } = props;
   const { width } = useWindowSize();
 
   const isNotReadyToShow = true; //TODO : Remove when everything is ready to show//
@@ -78,7 +78,7 @@ function ThemesContentsHomepageV2(props) {
       {/* //? ============== Curators Artwork Section ============= ?// */}
       <section className={s.artworkContainer}>
         <ThemesContentsHomepageV2ArtworkArtistSection
-          listData={artworkData}
+          listData={curatorialPickData}
           title={
             width > 500
               ? `<h1>The best <span>Artworks</span> you ever see!</h1>`
@@ -100,31 +100,27 @@ function ThemesContentsHomepageV2(props) {
       {/* // * ====================================== * // */}
 
       {/* //? ============== New Artwork Section ============= ?// */}
-      {isNotReadyToShow ? (
-        ""
-      ) : (
-        <section>
-          <ThemesContentsHomepageV2ArtworkArtistSection
-            listData={artworkData}
-            title={
-              width > 500
-                ? `<h1>The latest <span>Artworks</span> from our artists!</h1>`
-                : `<h1>Latest<span> Artworks</span></h1>`
-            }
-            description={
-              width > 500
-                ? "We help artist to show their artworks and also help collectors to find the best artwork they need! Find out more about our artist latest artwork and pocket it!"
-                : "We help artist to show their artworks and also help collectors to find the best artwork they need!"
-            }
-            buttonText="SEE MORE"
-            buttonTextMobile="SEE MORE"
-            listDataType="artwork"
-            textPosition="right"
-            textPositionOnMobile="top"
-            page="/artwork"
-          />
-        </section>
-      )}
+      <section>
+        <ThemesContentsHomepageV2ArtworkArtistSection
+          listData={artworkData}
+          title={
+            width > 500
+              ? `<h1>The latest <span>Artworks</span> from our artists!</h1>`
+              : `<h1>Latest<span> Artworks</span></h1>`
+          }
+          description={
+            width > 500
+              ? "We help artist to show their artworks and also help collectors to find the best artwork they need! Find out more about our artist latest artwork and pocket it!"
+              : "We help artist to show their artworks and also help collectors to find the best artwork they need!"
+          }
+          buttonText="SEE MORE"
+          buttonTextMobile="SEE MORE"
+          listDataType="artwork"
+          textPosition="right"
+          textPositionOnMobile="top"
+          page="/artwork"
+        />
+      </section>
       {/* // * ====================================== * // */}
 
       {/* //? ============== Artist Sections ============= ?// */}
@@ -214,6 +210,7 @@ function ThemesContentsHomepageV2(props) {
 ThemesContentsHomepageV2.propTypes = {
   artworkData: propTypes.array,
   artistData: propTypes.array,
+  curatorialPickData: propTypes.array,
 };
 
 export default ThemesContentsHomepageV2;
