@@ -1,17 +1,8 @@
 // Libs
 import propTypes from "prop-types";
 import { useRouter } from "next/router";
-import { Col, Row, Carousel, Image, Divider, Card } from "antd";
-import { AnimatePresence, motion } from "framer-motion";
-import {
-  InstagramOutlined,
-  FacebookOutlined,
-  RightOutlined,
-  MailOutlined,
-  PhoneOutlined,
-  EnvironmentOutlined,
-  BookOutlined,
-} from "@ant-design/icons";
+import { Col, Row } from "antd";
+import { motion } from "framer-motion";
 
 // Components
 import ThemesContainerMain from "themes/components/container/main";
@@ -22,21 +13,9 @@ import ThemesBanner from "themes/components/libs/banner";
 import ThemesHomepageSearchBox from "themes/components/libs/homepage-search-box";
 import ThemesHeadline from "themes/components/libs/headline";
 
-// Helper
-import { useWindowSize } from "app/helpers/useWindowSize";
-import { useHorizontalScroll } from "app/helpers/horizontalScroll";
-
-// Data Hook
-import { useArticlesLoad } from "app/hooks/articles";
-
 // Styles
 import s from "./index.module.scss";
-import {
-  fadeTopToBottom,
-  fadeTopToBottomShowcase,
-  fading,
-  fadingExit,
-} from "app/database/framer-motion";
+import { fading } from "app/database/framer-motion";
 
 function ThemesContentsHomepage(props) {
   const { artworkData, artistData } = props;
@@ -45,7 +24,6 @@ function ThemesContentsHomepage(props) {
   return (
     <>
       {/* //? ============== Banner Section ============= ?// */}
-      {/* <ThemesBanner imgSrc="/images/banner-homepage.jpg"> */}
       <ThemesBanner imgSrc="/images/banner-homepage-1.jpg">
         <motion.div
           variants={fadeTopToBottomShowcase}

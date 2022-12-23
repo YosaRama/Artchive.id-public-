@@ -1,16 +1,8 @@
 // Libs
-import { Col, Menu, Spin, Dropdown, Empty, Row, Carousel } from "antd";
+import { Col, Menu, Spin, Empty } from "antd";
 import { useState } from "react";
 import propTypes from "prop-types";
-import {
-  DownOutlined,
-  ClockCircleOutlined,
-  SyncOutlined,
-  CompassOutlined,
-  CheckCircleOutlined,
-} from "@ant-design/icons";
 import { motion } from "framer-motion";
-import { useRouter } from "next/router";
 
 // Components
 import ThemesButton from "themes/components/libs/button";
@@ -32,7 +24,6 @@ import { fadeTopToBottom, fadingLeftToRight } from "app/database/framer-motion";
 function ThemesContentsProfileTransaction(props) {
   const { userId } = props;
   const { width } = useWindowSize();
-  const { router } = useRouter();
 
   //? ============== Handle Filter ============= ?//
   const [currentStatus, setCurrentStatus] = useState("");

@@ -2,7 +2,6 @@
 import { Col, Popover, Row, Divider } from "antd";
 import { EllipsisOutlined, DeleteFilled, CheckOutlined } from "@ant-design/icons";
 import propTypes from "prop-types";
-import Link from "next";
 
 // Styles
 import s from "./index.module.scss";
