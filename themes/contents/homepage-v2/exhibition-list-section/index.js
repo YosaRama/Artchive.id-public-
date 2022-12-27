@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Col, Row } from "antd";
 import moment from "moment";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
   leftToRightExhibition,
@@ -33,24 +33,23 @@ function ThemesContentsHomepageV2ExhibitionListSection(props) {
   const { width } = useWindowSize();
 
   //? ============== Exhibition Show Handler ============= ?//
-  const [copy, setCopy] = useState();
-  const showHandler = (e, index) => {
-    setCopy(index);
+  const [selectedExhibition, setSelectedExhibition] = useState();
+  const handleSelectExhibition = (id) => {
+    console.log(id);
+    setSelectedExhibition(dataExhibition.find((item) => item.id === id));
   };
-  const dataShow = dataExhibition?.at(copy);
+  useEffect(() => {
+    setSelectedExhibition(dataExhibition[0]);
+  }, [dataExhibition]);
+
   // * ====================================== * //
 
   return (
     <>
-      <motion.div
-        key={copy}
-        variants={leftToRightExhibition}
-        initial="hidden"
-        whileInView="visible"
-      >
+      <motion.div variants={leftToRightExhibition} initial="hidden" whileInView="visible">
         <Col className={s.exhibition}>
           <Image
-            src={`${process.env.NEXT_PUBLIC_S3_URL}/${dataShow?.thumbnail?.url}`}
+            src={`${process.env.NEXT_PUBLIC_S3_URL}/${selectedExhibition?.thumbnail?.url}`}
             alt="exhibition"
             className={s.exhibitionBackground}
             layout="fill"
@@ -66,22 +65,21 @@ function ThemesContentsHomepageV2ExhibitionListSection(props) {
                   className={s.description}
                 >
                   <motion.div
-                    key={copy}
                     variants={textDelayLeftToRight}
                     initial="hidden"
                     whileInView="visible"
                   >
                     {width <= 768 ? <p style={{ fontWeight: 700 }}>LATEST EXHIBITIONS</p> : ""}
-                    <h1>{dataShow?.title}</h1>
-                    <p>{dataShow?.short_description}</p>
+                    <h1>{selectedExhibition?.title}</h1>
+                    <p>{selectedExhibition?.short_description}</p>
                     <p style={{ fontWeight: 700 }}>
-                      {moment(dataShow?.start_date)?.format("MMMM DD, YYYY")} -
-                      {moment(dataShow?.end_date)?.format("MMMM DD, YYYY")}
+                      {moment(selectedExhibition?.start_date)?.format("MMMM DD, YYYY")} -
+                      {moment(selectedExhibition?.end_date)?.format("MMMM DD, YYYY")}
                     </p>
                     <Row gutter={[15, 20]}>
                       <Col className={s.btn}>
                         <ThemesButton
-                          onClick={() => router.push(`/exhibition/${dataShow.slug}`)}
+                          onClick={() => router.push(`/exhibition/${selectedExhibition.slug}`)}
                           span={24}
                         >
                           {/* //todo: make this push to exhibition details */}
@@ -123,8 +121,7 @@ function ThemesContentsHomepageV2ExhibitionListSection(props) {
                               key={index}
                               title={item.title}
                               organizedBy={item.organized_by}
-                              // slug={`/exhibition/${item.slug}`}
-                              onClick={(e) => showHandler(e, index)}
+                              onClick={() => handleSelectExhibition(item.id)}
                             />
                           ))}
                         </>
