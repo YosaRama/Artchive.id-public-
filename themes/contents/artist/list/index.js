@@ -95,7 +95,7 @@ function ThemesContentsArtistList(props) {
       </section>
 
       {/* //? ============== Mobile Search Section ============= ?// */}
-      {width < 500 && (
+      {width <= 768 && (
         <Col className={s.mobileSearchContainer} tabindex="1" span={24}>
           <Col span={24} className={`${handleCollapse}`}>
             <h1 style={{ textAlign: "center", fontSize: "24px" }}>SEARCH</h1>

@@ -131,7 +131,7 @@ function ThemesContentsArtworkList() {
       {/* // * ====================================== * // */}
 
       {/* //? ============== Mobile Search Section ============= ?// */}
-      {width < 500 && (
+      {width <= 1024 && (
         <Col className={s.mobileSearchContainer} tabindex="1" span={24}>
           <Col span={24} className={`${handleCollapse}`}>
             <h1 style={{ textAlign: "center", fontSize: "24px" }}>SEARCH</h1>
@@ -214,7 +214,11 @@ function ThemesContentsArtworkList() {
       <section className="">
         <ThemesContainerMain containerClass="">
           <section style={{ margin: "50px 0" }} className="">
-            <Row justify="space-between" className="boundary">
+            <Row
+              style={{ width: "100%", margin: "auto" }}
+              // justify="space-between"
+              className="boundary"
+            >
               {/* //? ============== Desktop Search Section ============= ?// */}
               <Col span={6} className={`${s.mobileHidden} `} style={{ height: "auto" }}>
                 <div className="affixContainer">
@@ -356,7 +360,7 @@ function ThemesContentsArtworkList() {
                           : ""}
                       </>
                     }
-                  ></ThemesNoData>
+                  />
                 )}
 
                 {!end && (
