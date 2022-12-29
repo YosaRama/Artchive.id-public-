@@ -38,13 +38,14 @@ function ThemesContentsHomepageV2(props) {
       {/* // * ====================================== * // */}
 
       {/* //? ============== Curators Artwork Section ============= ?// */}
-      {curatorialPickData.length !== 0 ? (
+      {/* //TODO : Instead !== 0 use >= 3 because if only 1 curators pick visible in homepage, the design will be bad// */}
+      {curatorialPickData.length >= 3 ? (
         <section className={s.curatorPickContainer}>
           <ThemesContentsHomepageV2ArtworkArtistSection
             listData={curatorialPickData}
             title={
               width > 500
-                ? `<h1>The best <span>Artworks</span> you ever see!</h1>`
+                ? `<h1>The best <span>Artworks</span> picked by our Curators!</h1>`
                 : `<h1>Exclusive <span>Artworks</span></h1>`
             }
             description={
@@ -52,7 +53,7 @@ function ThemesContentsHomepageV2(props) {
                 ? "Artworks recommendations for you exclusively selected from our Curators! Find out more about the best artowork only on Artchive.id"
                 : "Artworks recommendations for you exclusively selected from our Curators!"
             }
-            buttonText="SEE MORE"
+            buttonText="CURATORS PICK ARTWORK"
             buttonTextMobile="SEE MORE"
             listDataType="artwork"
             textPosition="left"
@@ -77,10 +78,10 @@ function ThemesContentsHomepageV2(props) {
               ? "We help artist to show their artworks and also help collectors to find the best artwork they need! Find out more about our artist latest artwork and pocket it!"
               : "We help artist to show their artworks and also help collectors to find the best artwork they need!"
           }
-          buttonText="SEE MORE"
+          buttonText="SEE MORE ARTWORK"
           buttonTextMobile="SEE MORE"
           listDataType="artwork"
-          textPosition={"right"}
+          textPosition={curatorialPickData.length >= 3 ? "right" : "left"}
           textPositionOnMobile="top"
           page="/artwork"
         />
@@ -99,10 +100,10 @@ function ThemesContentsHomepageV2(props) {
           description={
             "The artist is not a different kind of person, but every person is a different kind of artist."
           }
-          buttonText="DISCOVER MORE"
+          buttonText="DISCOVER MORE ARTIST"
           buttonTextMobile="SEE MORE"
           listDataType="artist"
-          textPosition={curatorialPickData ? "left" : "right"}
+          textPosition={curatorialPickData.length >= 3 ? "left" : "right"}
           textPositionOnMobile="top"
           page="/artist"
         />
@@ -136,15 +137,15 @@ function ThemesContentsHomepageV2(props) {
         })}
       </section>
 
-      {/* //? ============== What We Offer Section ============= ?// */}
-      <section className={s.offerSection}>
-        <ThemesContentsHomepageV2WhatOfferSection dataList={offerList} />
-      </section>
-      {/* // * ====================================== * // */}
-
       {/* //? ============== Article Section ============= ?// */}
       <section>
         <ThemesContentsHomepageV2ArticleListSection dataList={articleData} />
+      </section>
+      {/* // * ====================================== * // */}
+
+      {/* //? ============== What We Offer Section ============= ?// */}
+      <section>
+        <ThemesContentsHomepageV2WhatOfferSection dataList={offerList} />
       </section>
       {/* // * ====================================== * // */}
 

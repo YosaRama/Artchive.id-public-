@@ -11,6 +11,7 @@ import s from "./index.module.scss";
 
 // Icons
 import { BookOutlined } from "@ant-design/icons";
+import ThemesButton from "themes/components/libs/button";
 
 function ThemesContentsHomepageV2WhatOfferSection(props) {
   const { dataList } = props;
@@ -23,11 +24,11 @@ function ThemesContentsHomepageV2WhatOfferSection(props) {
           className={s.pageTitle}
         />
         <ThemesContainerMain>
-          <Row gutter={(40, 20)} className={s.offerContainer}>
+          <Row gutter={(20, 20)} className={s.offerContainer}>
             {dataList.map((item, index) => (
               <Col
-                lg={{ span: 7 }}
-                md={{ span: 11 }}
+                lg={{ span: 8 }}
+                md={{ span: 12 }}
                 xs={{ span: 24 }}
                 className={s.description}
                 key={index}
@@ -41,8 +42,10 @@ function ThemesContentsHomepageV2WhatOfferSection(props) {
                 </Col>
               </Col>
             ))}
+            <Col className={s.button}>
+              <ThemesButton>CONTACT US</ThemesButton>
+            </Col>
           </Row>
-          <Col className={s.offerContainer}></Col>
         </ThemesContainerMain>
       </Col>
     </>

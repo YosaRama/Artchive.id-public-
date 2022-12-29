@@ -49,7 +49,7 @@ function ThemesFooterV2() {
     <Footer className={s.footer}>
       <ThemesContainerMain sectionclass={s.section}>
         <Col className={s.footerContainer}>
-          <Row gutter={(50, 50)} className={s.s}>
+          <Row gutter={(0, 50)} className={s.s}>
             <Col
               xl={{ span: 8 }}
               lg={{ span: 8 }}
@@ -64,6 +64,7 @@ function ThemesFooterV2() {
                 Our mission is to give artist, collector, and gallery a place to communicate!
               </p>
             </Col>
+
             <Col
               xl={{ span: 5 }}
               lg={{ span: 5 }}
@@ -72,6 +73,7 @@ function ThemesFooterV2() {
               className={s.descContainer}
             >
               <h1>Browse</h1>
+              <Col className={s.divider} />
               {footerMenu1.map((item, index) => (
                 <Link href={item.link} key={index}>
                   <a>{item.title}</a>
@@ -86,12 +88,14 @@ function ThemesFooterV2() {
               className={s.descContainer}
             >
               <h1>Take Action</h1>
+              <Col className={s.divider} />
               {footerMenu2.map((item, index) => (
                 <Link href={item.link} key={index}>
                   <a>{item.title}</a>
                 </Link>
               ))}
             </Col>
+
             <Col
               xl={{ span: 6 }}
               lg={{ span: 6 }}
@@ -100,6 +104,7 @@ function ThemesFooterV2() {
               className={s.descContainer}
             >
               <h1>Contact Us</h1>
+              <Col className={s.divider} />
               {footerMenu3.map((item, index) => (
                 <Row gutter={(5, 10)} style={{ marginBottom: 5, width: "auto" }} key={index}>
                   <Col span={2} className={s.icon}>

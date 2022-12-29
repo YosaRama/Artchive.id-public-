@@ -31,7 +31,7 @@ function ThemesBanner(props) {
       className={`${s.container} ${className}`}
     >
       <Col span={24} className={`${s.image} banner-image`}>
-        <Image src={imgSrc} alt="" layout="fill" objectFit="cover" preview={false} />
+        <Image src={imgSrc} alt="" layout="fill" objectFit="cover" />
       </Col>
       <Col className={s.headerContainer}>
         <ThemesHeaderItem isTransparent={true} logo="/images/logo-text-white.png" />

@@ -45,10 +45,10 @@ export const offerList = [
     description:
       "Gallery is a wonderful place to exhibit paintings. We have got you a landing pagethat matches your gallery themes!",
   },
-  {
-    icon: <ArchiveManagementIcon />,
-    offer: "Archive Artworks",
-    description:
-      "We gonna archive all of your artworks so the existence of your artwork would neverwent missing!",
-  },
+  // {
+  //   icon: <ArchiveManagementIcon />,
+  //   offer: "Archive Artworks",
+  //   description:
+  //     "We gonna archive all of your artworks so the existence of your artwork would neverwent missing!",
+  // },
 ];
