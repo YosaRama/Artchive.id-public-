@@ -52,3 +52,30 @@ export const offerList = [
   //     "We gonna archive all of your artworks so the existence of your artwork would neverwent missing!",
   // },
 ];
+
+export const faqList = [
+  {
+    header: <h1>What Artist can do in Artchive.id?</h1>,
+    key: "1",
+    description:
+      "We let you manage your own profile and show the world your artworks. Hey, Collector could buy artwork from you!",
+  },
+  {
+    header: <h1>What Collector can do in Artchive.id?</h1>,
+    key: "2",
+    description:
+      "We let you manage your own profile and show the world your artworks. Hey, Collector could buy artwork from you!",
+  },
+  {
+    header: <h1>What Gallery can do in Artchive.id?</h1>,
+    key: "3",
+    description:
+      "We let you manage your own profile and show the world your artworks. Hey, Collector could buy artwork from you!",
+  },
+  {
+    header: <h1>Does artist could buy artwork in Artchive,id?</h1>,
+    key: "4",
+    description:
+      "We let you manage your own profile and show the world your artworks. Hey, Collector could buy artwork from you!",
+  },
+];

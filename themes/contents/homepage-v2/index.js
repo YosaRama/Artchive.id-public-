@@ -1,6 +1,5 @@
 // Libs
 import propTypes from "prop-types";
-import { useState } from "react";
 
 // Components
 import ThemesHeadline from "themes/components/libs/headline";
@@ -13,6 +12,7 @@ import ThemesContentsHomepageV2OurRolesSection from "./our-roles-section";
 import ThemesContentsHomepageV2WhatOfferSection from "./what-offer-section";
 import ThemesContentsHomepageV2ArticleListSection from "./article-list-section";
 import ThemesContentsHomepageV2TestimonialSection from "./testimonial-section";
+import ThemesContentsHomepageV2FaqSection from "./faq-section";
 
 // Helpers
 import { useWindowSize } from "app/helpers/useWindowSize";
@@ -21,7 +21,7 @@ import { useWindowSize } from "app/helpers/useWindowSize";
 import s from "./index.module.scss";
 
 // Dummy
-import { roleSection, offerList } from "app/database/dummy/homepage-v2";
+import { roleSection, offerList, faqList } from "app/database/dummy/homepage-v2";
 
 function ThemesContentsHomepageV2(props) {
   const { artworkData, artistData, curatorialPickData, articleData, exhibitionData } = props;
@@ -146,6 +146,17 @@ function ThemesContentsHomepageV2(props) {
       {/* //? ============== What We Offer Section ============= ?// */}
       <section>
         <ThemesContentsHomepageV2WhatOfferSection dataList={offerList} />
+      </section>
+      {/* // * ====================================== * // */}
+
+      {/* //? ============== Frequently Asked Question Section ============= ?// */}
+      <section className={s.faq}>
+        <ThemesHeadline
+          title="Frequently Asked Question"
+          subtitle="Let's find out your curiousity"
+          className={s.pageTitle}
+        />
+        <ThemesContentsHomepageV2FaqSection />
       </section>
       {/* // * ====================================== * // */}
 
