@@ -11,7 +11,7 @@
     "dev": "next dev",
     "ngrok": "ngrok http 3000",
     "build": "prisma generate && prisma migrate deploy && next build",
-    "postbuild": "next-sitemap && next-swagger-doc-cli next-swagger-doc.json",
+    "postbuild": "next-sitemap && yarn swagger",
     "start": "next start",
     "lint": "next lint",
     "cypress": "cypress open",

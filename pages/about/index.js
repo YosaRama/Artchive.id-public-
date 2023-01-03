@@ -10,3 +10,11 @@ function PageAbout() {
 }
 
 export default PageAbout;
+
+export const getStaticProps = async (ctx) => {
+  return {
+    props: {
+      data: null,
+    },
+  };
+};
