@@ -28,7 +28,7 @@ function ThemesContentsProfileTransaction(props) {
   //? ============== Handle Filter ============= ?//
   const [currentStatus, setCurrentStatus] = useState("");
   const handleOrderStatus = (value) => {
-    const parseKey = value.key.toUpperCase();
+    const parseKey = value.toUpperCase();
     setCurrentStatus(parseKey);
   };
   // * ====================================== * //
@@ -54,34 +54,45 @@ function ThemesContentsProfileTransaction(props) {
 
   //? ============== Handle Menu ============= ?//
   const menuItems = [
-    { label: <div style={{ fontWeight: 700 }}>All Order</div>, key: "" },
-    { label: <div style={{ fontWeight: 700 }}>Proceed</div>, key: "proceed" },
-    { label: <div style={{ fontWeight: 700 }}>Delivered</div>, key: "shipping" },
-    { label: <div style={{ fontWeight: 700 }}>Success</div>, key: "success" },
+    {
+      label: <p>All Order</p>,
+      key: "",
+    },
+    {
+      label: <p>Proceed</p>,
+      key: "proceed",
+    },
+    {
+      label: <p>Delivered</p>,
+      key: "shipping",
+    },
+    {
+      label: <p>Success</p>,
+      key: "success",
+    },
   ];
   // * ====================================== * //
 
   return (
     <>
       <Col className={s.container}>
-        {width > 500 && (
-          <Menu
-            mode="horizontal"
-            defaultSelectedKeys={[""]}
-            className={s.menuContainer}
-            items={menuItems.map((item) => {
-              return { label: <div className={s.menuItem}>{item.label}</div>, key: item.key };
-            })}
-            onSelect={handleOrderStatus}
-          />
-        )}
-        {width < 500 && (
-          <ThemesCarouselMenu
-            menuList={menuItems}
-            handleSetMenu={handleOrderStatus}
-            currentMenu={currentStatus}
-          />
-        )}
+        <div className={s.menuContainer}>
+          {menuItems.map((item, index) => {
+            return (
+              <div
+                className={`${s.menuItem} ${
+                  item.key.toUpperCase() === currentStatus ? "active" : ""
+                }`}
+                key={index}
+                onClick={() => {
+                  handleOrderStatus(item.key);
+                }}
+              >
+                {item.label}
+              </div>
+            );
+          })}
+        </div>
 
         {orderData?.length == 0 && (
           <motion.div
