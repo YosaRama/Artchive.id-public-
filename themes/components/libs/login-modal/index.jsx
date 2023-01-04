@@ -18,7 +18,7 @@ import { useEffect } from "react";
 import Link from "next/link";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
-import { CloseCircleOutlined } from "@ant-design/icons";
+import { CloseCircleOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
 
 // Components
 import ThemesModal from "../modal-container";
@@ -200,7 +200,17 @@ function ThemesLoginModal(props) {
                 >
                   <section className={s.formSection}>
                     <Col span={24}>
+                      <Col style={{ textAlign: "left", padding: "0px" }}>
+                        <p>
+                          <ExclamationCircleOutlined /> Hello Artchive.id users! Now you can sign
+                          into your account with just your{" "}
+                          <span style={{ color: "#e5890a" }}>phone number or Whatsapp number</span>.
+                        </p>
+                      </Col>
                       <Form layout="vertical" form={form}>
+                        <Form.Item name="phone number" label="Phone Number">
+                          <Input addonBefore="+62" placeholder="Phone Number or Whatsapp Number" />
+                        </Form.Item>
                         <Form.Item name="email" label="Email">
                           <Input placeholder="Email Address" />
                         </Form.Item>
@@ -276,7 +286,7 @@ function ThemesLoginModal(props) {
                 lg={{ span: 12 }}
                 md={{ span: 12 }}
                 xs={{ span: 0 }}
-                style={{ marginTop: "24px", height: "550px", paddingLeft: "0px" }}
+                style={{ marginTop: "24px", height: "650px", paddingLeft: "0px" }}
               >
                 <Image alt="" src="/images/signin-background.jpg" preview={false} />
               </Col>
@@ -290,7 +300,7 @@ function ThemesLoginModal(props) {
                 lg={{ span: 12 }}
                 md={{ span: 12 }}
                 xs={{ span: 0 }}
-                style={{ marginTop: "24px", height: "550px", paddingRight: "0px" }}
+                style={{ marginTop: "24px", height: "650px", paddingRight: "0px" }}
               >
                 <Image alt="" src="/images/register-background.jpg" preview={false} />
               </Col>
@@ -308,58 +318,20 @@ function ThemesLoginModal(props) {
                 }}
               >
                 <Col style={{ width: "100%", padding: "0px" }}>
-                  <Col style={{ display: "flex", justifyContent: "center" }}>
-                    <Row gutter={[10, 0]} className={s.socialButtonSection}>
-                      <Col span={12}>
-                        <Button className={s.socialButton} onClick={handleGoogleLogin}>
-                          <Row align="middle">
-                            <span className={s.socialButtonIcon}>
-                              <Image
-                                src="/images/google-icon.png"
-                                alt=""
-                                layout="fill"
-                                objectFit="contain"
-                                preview={false}
-                              />
-                            </span>
-                            <p>Google</p>
-                          </Row>
-                        </Button>
-                      </Col>
-                      <Col span={12}>
-                        <Button className={s.socialButton} onClick={handleFacebookLogin}>
-                          <Row align="middle">
-                            <span className={s.socialButtonIcon}>
-                              <Image
-                                src="/images/facebook-icon.png"
-                                alt=""
-                                layout="fill"
-                                objectFit="contain"
-                                preview={false}
-                              />
-                            </span>
-                            <p>Facebook</p>
-                          </Row>
-                        </Button>
-                      </Col>
-                    </Row>
-                  </Col>
-
-                  <Divider plain>or Register by Filling Form</Divider>
                   <section className={s.formSection}>
                     <Col span={24}>
+                      <Col style={{ textAlign: "left", padding: "0px" }}>
+                        <p>
+                          <ExclamationCircleOutlined /> Hello Artchive.id users! Now you can
+                          register your account with just your{" "}
+                          <span style={{ color: "#e5890a" }}>phone number or Whatsapp number</span>.
+                        </p>
+                      </Col>
                       <Form layout="vertical" form={form}>
-                        <Form.Item
-                          name="email"
-                          rules={[
-                            { required: true, type: "email", message: "Please input your email!" },
-                          ]}
-                        >
-                          <Input style={{ height: "50px" }} placeholder="Email Address" />
+                        <Form.Item name="phone number" label="Phone Number">
+                          <Input addonBefore="+62" placeholder="Phone Number or Whatsapp Number" />
                         </Form.Item>
-                        <Form.Item name="password" rules={[passwordFormRules]}>
-                          <Input.Password style={{ height: "50px" }} placeholder="Password" />
-                        </Form.Item>
+
                         <Form.Item
                           name="fullName"
                           rules={[
@@ -444,6 +416,44 @@ function ThemesLoginModal(props) {
                     >
                       SIGN UP
                     </ThemesButton>
+                  </Col>
+
+                  <Divider plain>or Register with</Divider>
+                  <Col style={{ display: "flex", justifyContent: "center" }}>
+                    <Row gutter={[10, 0]} className={s.socialButtonSection}>
+                      <Col span={12}>
+                        <Button className={s.socialButton} onClick={handleGoogleLogin}>
+                          <Row align="middle">
+                            <span className={s.socialButtonIcon}>
+                              <Image
+                                src="/images/google-icon.png"
+                                alt=""
+                                layout="fill"
+                                objectFit="contain"
+                                preview={false}
+                              />
+                            </span>
+                            <p>Google</p>
+                          </Row>
+                        </Button>
+                      </Col>
+                      <Col span={12}>
+                        <Button className={s.socialButton} onClick={handleFacebookLogin}>
+                          <Row align="middle">
+                            <span className={s.socialButtonIcon}>
+                              <Image
+                                src="/images/facebook-icon.png"
+                                alt=""
+                                layout="fill"
+                                objectFit="contain"
+                                preview={false}
+                              />
+                            </span>
+                            <p>Facebook</p>
+                          </Row>
+                        </Button>
+                      </Col>
+                    </Row>
                   </Col>
                 </Col>
               </Col>

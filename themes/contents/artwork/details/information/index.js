@@ -79,16 +79,16 @@ function ThemesContentsArtworkDetailsInformation(props) {
                 src={`${process.env.NEXT_PUBLIC_S3_URL}/${artworkData?.media_cover?.url}`}
                 alt=""
               />
-              {/* )} */}
-              {/* {artworkData.status == "SOLD" && (
-              <Badge.Ribbon text="SOLD" color="#e5890a">
-                <Image
-                  src={`${process.env.NEXT_PUBLIC_S3_URL}/${artworkData?.media_cover?.url}`}
-                  alt=""
-                  className={s.artworkSold}
-                />
-              </Badge.Ribbon>
-            )} */}
+
+              {artworkData.status == "SOLD" && (
+                <Badge.Ribbon text="SOLD" color="#e5890a">
+                  <Image
+                    src={`${process.env.NEXT_PUBLIC_S3_URL}/${artworkData?.media_cover?.url}`}
+                    alt=""
+                    className={s.artworkSold}
+                  />
+                </Badge.Ribbon>
+              )}
             </Col>
             <Row gutter={[16, 0]} className={s.detailsImageSection}>
               {artworkData?.media_gallery?.map((item) => {

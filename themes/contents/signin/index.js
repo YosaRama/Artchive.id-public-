@@ -4,7 +4,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
-import { Button, Checkbox, Col, Form, Input, Row } from "antd";
+import { Button, Checkbox, Col, Form, Input, Row, Divider } from "antd";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
 
 // Components
 import ThemesContainerMain from "themes/components/container/main";
@@ -46,6 +47,7 @@ function ThemesContentsSignIn() {
       setLoading(true);
       const login = await signIn("credentials", {
         redirect: false,
+        // phone_number: value.phone_number,
         email: value.email,
         password: value.password,
       });
@@ -54,6 +56,7 @@ function ThemesContentsSignIn() {
         setLoading(false);
       } else if (login.error == "INACTIVE") {
         const sendMail = await onSendMail({
+          // phone_number: value.phone_number,
           email: value.email,
           fullName: value.email,
         });
@@ -114,9 +117,22 @@ function ThemesContentsSignIn() {
             </Col>
           </section>
 
+          <Divider style={{ color: "grey", margin: "0px" }}>OR</Divider>
+
           <section className={s.formSection}>
+            <Col style={{ textAlign: "left" }}>
+              <p>
+                <ExclamationCircleOutlined /> Hello Artchive.id users! Now you can sign into your
+                account with just your{" "}
+                <span style={{ color: "#e5890a" }}>phone number or Whatsapp number</span>. Try to
+                fill your phone number or Whatsapp number and click sign ini button.
+              </p>
+            </Col>
             <Col span={24}>
               <Form layout="vertical" form={form}>
+                <Form.Item name="phone number" label="Phone Number">
+                  <Input addonBefore="+62" placeholder="Phone Number or Whatsapp Number" />
+                </Form.Item>
                 <Form.Item name="email" label="Email">
                   <Input placeholder="Email Address" />
                 </Form.Item>
