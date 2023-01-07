@@ -8,18 +8,28 @@ import { prisma } from "../connection";
 //? ============== GET QUERY ============= ?//
 
 // Get Data (Filter by Role, Email, FullName)
-export const GET_GENRE = ({ page = 1, limit = 15 }) => {
+export const GET_GENRE = ({ page = 1, limit = 15, artworkId }) => {
   // Handle Pagination
   const skip = limit != "all" ? (+page - 1) * +limit : undefined;
+
   return prisma.genre.findMany({
     skip: skip ? +skip : undefined, // Disable by undefined
     take: limit != "all" ? +limit : undefined, // Disable by undefined
     // ===========================
+    include: {
+      artwork: {
+        include: {
+          media_cover: {
+            select: { id: true, url: true },
+          },
+        },
+      },
+    },
 
-    // Handle order
     orderBy: {
       id: "desc",
     },
+
     // ==========================
   });
 };

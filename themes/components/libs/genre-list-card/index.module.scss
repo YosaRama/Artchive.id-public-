@@ -1,0 +1,62 @@
+.genre {
+  height: auto;
+  margin: 40px 0px;
+  .container {
+    height: auto;
+    width: 100%;
+    margin-bottom: 20px;
+
+    .active {
+      color: #e5890a !important;
+      background: #f5ebe1;
+      transition: 150ms all ease;
+      font-size: 700 !important;
+    }
+    .activeSelected {
+      width: 5px;
+      height: 40px;
+      background: #e5890a;
+      border-radius: 5px;
+    }
+    .description {
+      display: flex;
+      // justify-content: center
+      align-items: center;
+      height: 40px;
+      cursor: pointer;
+      margin: auto;
+      transition: 150ms all ease;
+      &:hover {
+        color: #ffffff !important;
+        background: #e5890a;
+        transition: 150ms all ease;
+      }
+      p {
+        text-overflow: ellipsis;
+        margin: 10px 10px;
+      }
+    }
+  }
+}
+.genreList {
+  padding: 0px 0px 40px 0px;
+  box-shadow: 10px 0px 30px -20px rgba(0, 0, 0, 0.75);
+}
+.fullGenre {
+  padding: 0px 40px 40px;
+  min-height: 300px;
+}
+
+.divider {
+  background: grey !important;
+  height: 100% !important;
+}
+
+// .imageContainer {
+//   width: 250px;
+//   height: 300px;
+//   .image {
+//     height: 200px;
+//     width: 160px;
+//   }
+// }

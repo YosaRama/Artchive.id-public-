@@ -85,12 +85,13 @@ model Artwork {
 }
 
 model Genre {
-  id        Int       @id @default(autoincrement())
-  title     String    @unique
-  artwork   Artwork[]
-  createdAt DateTime  @default(now())
-  updatedAt DateTime? @updatedAt
-
+  id              Int       @id @default(autoincrement())
+  title           String    @unique
+  artwork         Artwork[]
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime? @updatedAt
+  description     String    @db.Text
+    
   @@map("genre")
 }
 
