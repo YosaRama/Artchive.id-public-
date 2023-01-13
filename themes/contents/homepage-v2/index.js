@@ -39,7 +39,7 @@ function ThemesContentsHomepageV2(props) {
 
       {/* //? ============== Curators Artwork Section ============= ?// */}
       {/* //TODO : Instead !== 0 use >= 3 because if only 1 curators pick visible in homepage, the design will be bad// */}
-      {curatorialPickData.length >= 3 ? (
+      {curatorialPickData?.length >= 3 ? (
         <section className={s.curatorPickContainer}>
           <ThemesContentsHomepageV2ArtworkArtistSection
             listData={curatorialPickData}
@@ -111,9 +111,14 @@ function ThemesContentsHomepageV2(props) {
       {/* // * ====================================== * // */}
 
       {/* //? ============== Exhibition List ============= ?// */}
-      <section>
-        <ThemesContentsHomepageV2ExhibitionListSection dataExhibition={exhibitionData} />
-      </section>
+      {exhibitionData?.length !== 0 ? (
+        <section>
+          <ThemesContentsHomepageV2ExhibitionListSection dataExhibition={exhibitionData} />
+        </section>
+      ) : (
+        ""
+      )}
+
       {/* // * ====================================== * // */}
 
       {/* //? ============== Our Roles ============= ?// */}
@@ -138,9 +143,14 @@ function ThemesContentsHomepageV2(props) {
       </section>
 
       {/* //? ============== Article Section ============= ?// */}
-      <section>
-        <ThemesContentsHomepageV2ArticleListSection dataList={articleData} />
-      </section>
+      {articleData.length !== 0 ? (
+        <section>
+          <ThemesContentsHomepageV2ArticleListSection dataList={articleData} />
+        </section>
+      ) : (
+        ""
+      )}
+
       {/* // * ====================================== * // */}
 
       {/* //? ============== What We Offer Section ============= ?// */}
@@ -151,11 +161,6 @@ function ThemesContentsHomepageV2(props) {
 
       {/* //? ============== Frequently Asked Question Section ============= ?// */}
       <section className={s.faq}>
-        <ThemesHeadline
-          title="Frequently Asked Question"
-          subtitle="Let's find out your curiousity"
-          className={s.pageTitle}
-        />
         <ThemesContentsHomepageV2FaqSection />
       </section>
       {/* // * ====================================== * // */}

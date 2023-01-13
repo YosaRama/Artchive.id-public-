@@ -1,14 +1,17 @@
 .roleContainer {
   .imageContainer {
-    height: 600px !important;
+    height: 500px !important;
     .image {
-      height: 600px;
+      height: 500px;
       object-fit: cover;
     }
   }
   .descriptionContainer {
-    height: 600px;
+    height: 500px;
     background: #fbf4ec;
+    // background: #2f1d03;
+    // background-color: #e5890a;
+
     .description {
       display: relative;
       top: 50%;
