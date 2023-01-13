@@ -44,9 +44,9 @@ function ThemesContentsHomepageV2(props) {
           <ThemesContentsHomepageV2ArtworkArtistSection
             listData={curatorialPickData}
             title={
-              width > 500
+              width > 768
                 ? `<h1>The best <span>Artworks</span> picked by our Curators!</h1>`
-                : `<h1>Exclusive <span>Artworks</span></h1>`
+                : `<h1>Curators Pick <span>Artworks</span></h1>`
             }
             description={
               width > 500

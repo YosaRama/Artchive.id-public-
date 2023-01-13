@@ -107,7 +107,7 @@ export const list3 = [
     key: "2",
     desc: (
       <p>
-        In homapage, click &quot;Studio&quot; button on header section or click &quot;Plus
+        In Homepage, click &quot;Studio&quot; button on header section or click &quot;Plus
         Sign&quot; in your profile account page or on navigation bar when using mobile devices.
       </p>
     ),
@@ -170,10 +170,10 @@ export const faqList = [
         {list1.map((item, index) => {
           return (
             <>
-              <Col xl={{ span: 1 }} lg={{ span: 2 }} md={{ span: 2 }} xs={{ span: 2 }}>
+              <Col xl={{ span: 1 }} lg={{ span: 1 }} md={{ span: 2 }} xs={{ span: 2 }}>
                 {item.key}.
               </Col>
-              <Col xl={{ span: 23 }} lg={{ span: 22 }} md={{ span: 20 }} xs={{ span: 20 }}>
+              <Col xl={{ span: 23 }} lg={{ span: 23 }} md={{ span: 22 }} xs={{ span: 22 }}>
                 {item.desc}
               </Col>
             </>
@@ -215,10 +215,10 @@ export const faqList = [
         {list3.map((item, index) => {
           return (
             <>
-              <Col xl={{ span: 1 }} lg={{ span: 2 }} md={{ span: 2 }} xs={{ span: 2 }}>
+              <Col xl={{ span: 1 }} lg={{ span: 1 }} md={{ span: 2 }} xs={{ span: 2 }}>
                 {item.key}.
               </Col>
-              <Col xl={{ span: 23 }} lg={{ span: 22 }} md={{ span: 20 }} xs={{ span: 20 }}>
+              <Col xl={{ span: 23 }} lg={{ span: 23 }} md={{ span: 22 }} xs={{ span: 22 }}>
                 {item.desc}
               </Col>
             </>
