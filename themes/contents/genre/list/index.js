@@ -12,10 +12,24 @@ import s from "./index.module.scss";
 function ThemesContentsGenreList() {
   return (
     <>
-      <ThemesBanner imgSrc="/images/banner-homepage.jpg" />
+      {/* //? ============== Banner Section ============= ?// */}
+      {/* <ThemesBanner imgSrc="/images/banner-homepage.jpg" /> */}
+      <section>
+        <ThemesBanner imgSrc="/images/banner-homepage.jpg" className={"page-bannerContainer"}>
+          <div className={"page-bannerTitle"}>
+            <Col className={s.bannerTitle}>
+              <h1 style={{ color: "white" }}>Artwork Genres</h1>
+            </Col>
+          </div>
+        </ThemesBanner>
+      </section>
+
+      {/* // * ====================================== * // */}
+
+      {/* //? ============== Genre Section ============= ?// */}
       <Col className={s.genreList}>
         <ThemesContainerMain>
-          <Col>
+          <Col className={s.container}>
             <h1 style={{ fontSize: "32px" }}>What is genre?</h1>
             <p>
               Genre painting (or petit genre), a form of genre art, depicts aspects of everyday life
@@ -33,10 +47,12 @@ function ThemesContentsGenreList() {
           </Col>
           <Col>
             <h1 style={{ fontSize: "32px" }}>Get to know Genres in Artchive.id</h1>
+
             <ThemesGenreListCard />
           </Col>
         </ThemesContainerMain>
       </Col>
+      {/* // * ====================================== * // */}
     </>
   );
 }

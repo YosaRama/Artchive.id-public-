@@ -1,6 +1,6 @@
 .genre {
   height: auto;
-  margin: 40px 0px;
+  margin: 0px 0px;
   .container {
     height: auto;
     width: 100%;
@@ -8,7 +8,7 @@
 
     .active {
       color: #e5890a !important;
-      background: #f5ebe1;
+      background: #ffffff;
       transition: 150ms all ease;
       font-size: 700 !important;
     }
@@ -21,6 +21,7 @@
     .description {
       display: flex;
       // justify-content: center
+      color: #898989;
       align-items: center;
       height: 40px;
       cursor: pointer;
@@ -40,23 +41,53 @@
 }
 .genreList {
   padding: 0px 0px 40px 0px;
-  box-shadow: 10px 0px 30px -20px rgba(0, 0, 0, 0.75);
+  margin-top: 20px;
 }
 .fullGenre {
-  padding: 0px 40px 40px;
-  min-height: 300px;
+  padding: 40px;
+  min-height: 100px !important;
+  // height: 200px !important;
+  border-radius: 10px;
+  box-shadow: 10px 0px 30px -20px rgba(0, 0, 0, 0.75);
+  background: white;
+  h2 {
+    margin: 0px;
+  }
 }
 
 .divider {
-  background: grey !important;
-  height: 100% !important;
+  height: 5px;
+  background: #e5890a;
+  margin: 0px 0px 10px;
+  width: 80px;
+  border-radius: 10px;
 }
 
-// .imageContainer {
-//   width: 250px;
-//   height: 300px;
-//   .image {
-//     height: 200px;
-//     width: 160px;
-//   }
-// }
+.imageContainer {
+  margin: 0px 20px;
+  left: -20px;
+}
+
+.select {
+  width: 25%;
+}
+
+//? ============== Tablet Potrait View ============= ?//
+@media screen and (max-width: 768px) {
+  .fullGenre {
+    padding: 30px;
+  }
+}
+
+//? ============== Mobile View ============= ?//
+@media screen and (max-width: 500px) {
+  .fullGenre {
+    padding: 20px;
+  }
+  .imageContainer {
+    margin: auto;
+  }
+  .select {
+    width: 100%;
+  }
+}
