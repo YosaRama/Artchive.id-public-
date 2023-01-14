@@ -19,13 +19,12 @@ function AppFormArtworkPrice(props) {
   // * ====================================== * //
 
   //? ============== Handle Create Markup Price ============= ?//
-  const handleCreateMarkupPrice = (value) => {
-    const parseValue = value.target.value.replace(/\D/g, "").replace(/Rp\s?|(,*)/g, "");
+  const handleCreateMarkupPrice = (e) => {
+    const valueParse = e.target.value;
+    const parseValue = valueParse.replace(/\D/g, "").replace(/Rp\s?|(,*)/g, "");
     setInputPrice(priceFormatter(`${parseValue}`, ","));
-    // setMarkupPrice(Math.round(parseValue * 1.4));
-    const finalPrice = markupPriceGenerator(parseValue);
-    // setMarkupPrice(Math.round(value * 1.4));
-    console.log(finalPrice);
+    setMarkupPrice(Math.round(+parseValue * 1.4));
+    // const finalPrice = markupPriceGenerator(parseValue); //TODO: Used when ready for markup price generator
   };
   // * ====================================== * //
 
