@@ -6,6 +6,8 @@ import { Avatar, Badge, Col, Layout, Row } from "antd";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { PlusCircleFilled } from "@ant-design/icons";
+import { CartIcon } from "public/icons/cart-icon";
 
 // Components
 import ThemesContainerMain from "themes/components/container/main";
@@ -107,22 +109,6 @@ function ThemesHeaderItem(props) {
                                 <a>ARTIST</a>
                               </Link>
                             </Col>
-                            {width > 1024 ? (
-                              <>
-                                <Col className={s.iconHeader}>
-                                  <Link href="/exhibition">
-                                    <a>EXHIBITION</a>
-                                  </Link>
-                                </Col>
-                                <Col className={s.iconHeader}>
-                                  <Link href="/articles">
-                                    <a>ARTICLES</a>
-                                  </Link>
-                                </Col>
-                              </>
-                            ) : (
-                              ""
-                            )}
                           </>
                         ) : (
                           ""
@@ -241,17 +227,14 @@ function ThemesHeaderItem(props) {
                             </Col>
                           </>
                         )}
-                        {width <= 1024 ? (
-                          <Col className={s.iconHeader}>
-                            <MenuOutlined
-                              style={{ cursor: "pointer" }}
-                              className={`${s.hamburger}`}
-                              onClick={() => setOpenMenu(true)}
-                            />
-                          </Col>
-                        ) : (
-                          ""
-                        )}
+
+                        <Col className={s.iconHeader}>
+                          <MenuOutlined
+                            style={{ cursor: "pointer" }}
+                            className={`${s.hamburger}`}
+                            onClick={() => setOpenMenu(true)}
+                          />
+                        </Col>
                       </Row>
                     </>
                   </Col>

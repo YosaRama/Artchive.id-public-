@@ -50,7 +50,7 @@ function ThemesContentsHomepageV2(props) {
             }
             description={
               width > 500
-                ? "Artworks recommendations for you exclusively selected from our Curators! Find out more about the best artowork only on Artchive.id"
+                ? "Artworks recommendations for you exclusively selected from our Curators! Find out more about the best artwork only on Artchive.id"
                 : "Artworks recommendations for you exclusively selected from our Curators!"
             }
             buttonText="CURATORS PICK ARTWORK"
