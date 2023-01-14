@@ -30,6 +30,11 @@
       // width: fit-content;
       margin: 0 auto;
       text-align: center;
+      h1 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
       &:hover {
         color: #e5890a;
         cursor: pointer;

@@ -9,6 +9,9 @@ import { Badge, Card, Col, Divider } from "antd";
 import priceFormatter from "app/helpers/priceFormatter";
 import { stringCapitalize } from "app/helpers/capitalize";
 
+// Components
+import ThemesVerifiedIcon from "../verified-icon";
+
 // Styles
 import s from "./index.module.scss";
 
@@ -25,6 +28,7 @@ function ThemesArtworkCard(props) {
     artworkHeight,
     artworkPrice,
     artworkStatus,
+    isCuratorPick,
   } = props;
   const router = useRouter();
   return (
@@ -52,7 +56,9 @@ function ThemesArtworkCard(props) {
             />
           </Col>
           <Col className={s.artworkDetails}>
-            <h1 className={s.title}>{artworkTitle}</h1>
+            <h1 className={s.title}>
+              {artworkTitle} {isCuratorPick ? <ThemesVerifiedIcon /> : null}
+            </h1>
 
             <Col style={{ width: "80%", margin: "0px auto" }}>
               <Divider className={s.divider} />
@@ -86,6 +92,7 @@ ThemesArtworkCard.propTypes = {
   artworkHeight: propTypes.number.isRequired,
   artworkPrice: propTypes.string.isRequired,
   artworkStatus: propTypes.string,
+  isCuratorPick: propTypes.bool,
 };
 
 export default ThemesArtworkCard;

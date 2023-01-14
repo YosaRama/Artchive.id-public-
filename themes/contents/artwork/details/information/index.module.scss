@@ -48,6 +48,12 @@
   margin-bottom: 20px;
   h1 {
     font-size: 32px;
+    display: flex;
+    align-items: center;
+  }
+  svg {
+    width: 24px;
+    height: 24px;
   }
 }
 

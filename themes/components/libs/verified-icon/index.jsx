@@ -1,5 +1,5 @@
 // Libs
-import { Tooltip } from "antd";
+import { Tooltip, Col } from "antd";
 
 // Assets
 import { VerifyIcon } from "public/icons/verify-icon";
@@ -11,9 +11,7 @@ function ThemesVerifiedIcon() {
   return (
     <>
       <Tooltip title="Verified Artwork" color={"#e5890a"}>
-        <span className={s.curatorBadge}>
-          <VerifyIcon />
-        </span>
+        <VerifyIcon className={s.curatorBadge} />
       </Tooltip>
     </>
   );

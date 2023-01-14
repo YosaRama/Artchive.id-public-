@@ -336,6 +336,7 @@ function ThemesContentsArtworkList() {
                               artworkPrice={item?.markup_price}
                               artworkMedia={item?.material}
                               artworkStatus={item?.status}
+                              isCuratorPick={item?.curatorial_pick}
                               imgSrc={
                                 item?.media_cover
                                   ? `${process.env.NEXT_PUBLIC_S3_URL}/${item?.media_cover?.url}`

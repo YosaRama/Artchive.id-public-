@@ -10,6 +10,7 @@ import { CartIcon } from "public/icons/cart-icon";
 import ThemesShareSocial from "themes/components/libs/share-social";
 import ThemesButton from "themes/components/libs/button";
 import ThemesLoginModal from "themes/components/libs/login-modal";
+import ThemesVerifiedIcon from "themes/components/libs/verified-icon";
 
 // Helper
 import { stringCapitalize } from "app/helpers/capitalize";
@@ -67,25 +68,24 @@ function ThemesContentsArtworkDetailsInformation(props) {
   //? ============== Handle Cart Button Type ============= ?//
   const cartButtonType = statusArtwork ? "outlined " + s.cartBtnDisable : "default " + s.cartBtn;
   // * ====================================== * //
-
+  console.log(artworkData);
   return (
     <>
       <Row gutter={[64, 0]}>
         <Col lg={{ span: 12 }} xs={{ span: 24 }}>
           <Image.PreviewGroup>
             <Col span={24} style={{ paddingLeft: 0, paddingRight: 0, marginBottom: 10 }}>
-              {/* {artworkData.status != "SOLD" && ( */}
-              <Image
-                src={`${process.env.NEXT_PUBLIC_S3_URL}/${artworkData?.media_cover?.url}`}
-                alt=""
-              />
-
-              {artworkData.status == "SOLD" && (
+              {artworkData?.status !== "SOLD" ? (
+                <Image
+                  src={`${process.env.NEXT_PUBLIC_S3_URL}/${artworkData?.media_cover?.url}`}
+                  alt=""
+                />
+              ) : (
                 <Badge.Ribbon text="SOLD" color="#e5890a">
                   <Image
                     src={`${process.env.NEXT_PUBLIC_S3_URL}/${artworkData?.media_cover?.url}`}
                     alt=""
-                    className={s.artworkSold}
+                    // className={s.artworkSold}
                   />
                 </Badge.Ribbon>
               )}
@@ -111,7 +111,10 @@ function ThemesContentsArtworkDetailsInformation(props) {
         <Col lg={{ span: 12 }} xs={{ span: 24 }}>
           <Card className={s.detailsCard}>
             <Col className={s.artworkDetailsTitle}>
-              <h1>{artworkData?.title}</h1>
+              <h1>
+                {artworkData?.title}
+                {artworkData?.curatorial_pick === true ? <ThemesVerifiedIcon /> : null}
+              </h1>
             </Col>
             <Col className={s.artworkDetailsText}>
               <p>
@@ -124,7 +127,7 @@ function ThemesContentsArtworkDetailsInformation(props) {
                   >
                     {artworkData?.artist?.full_name}
                   </a>
-                  ,{" "}
+                  ,
                 </strong>
                 {artworkData?.artist?.city}
               </p>
