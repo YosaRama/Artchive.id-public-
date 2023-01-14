@@ -43,7 +43,9 @@ function ThemesContentsHomepageV2WhatOfferSection(props) {
               </Col>
             ))}
             <Col className={s.button}>
-              <ThemesButton>CONTACT US</ThemesButton>
+              <ThemesButton href={`https://wa.me/${process.env.NEXT_PUBLIC_PHONE_NUMBER}`}>
+                CONTACT US
+              </ThemesButton>
             </Col>
           </Row>
         </ThemesContainerMain>
