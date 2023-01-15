@@ -68,7 +68,7 @@ function ThemesContentsArtworkDetailsInformation(props) {
   //? ============== Handle Cart Button Type ============= ?//
   const cartButtonType = statusArtwork ? "outlined " + s.cartBtnDisable : "default " + s.cartBtn;
   // * ====================================== * //
-  console.log(artworkData);
+
   return (
     <>
       <Row gutter={[64, 0]}>

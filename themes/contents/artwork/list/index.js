@@ -216,7 +216,7 @@ function ThemesContentsArtworkList() {
           <section style={{ margin: "50px 0" }} className="">
             <Row
               style={{ width: "100%", margin: "auto" }}
-              // justify="space-between"
+              justify="space-between"
               className="boundary"
             >
               {/* //? ============== Desktop Search Section ============= ?// */}
