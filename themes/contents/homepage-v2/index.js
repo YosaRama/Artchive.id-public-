@@ -46,7 +46,7 @@ function ThemesContentsHomepageV2(props) {
             title={
               width > 768
                 ? `<h1>The best <span>Artworks</span> picked by our Curators!</h1>`
-                : `<h1>Curators Pick <span>Artworks</span></h1>`
+                : `<h1><span>Curator's Pick</span></h1>`
             }
             description={
               width > 500
@@ -94,11 +94,13 @@ function ThemesContentsHomepageV2(props) {
           listData={artistData}
           title={
             width > 500
-              ? `<h1>Our New <span>Artists</span> with Stunning Talent!</h1>`
-              : `<h1>Our New <span>Artists</span>!</h1>`
+              ? `<h1>New <span>Artists</span> with Stunning Talent!</h1>`
+              : `<h1>New <span>Artists</span>!</h1>`
           }
           description={
-            "The artist is not a different kind of person, but every person is a different kind of artist."
+            width > 500
+              ? "The artist is not a different kind of person, but every person is a different kind of artist. Discover more new artist with outstanding talent!"
+              : "Discover more new artist with outstanding talent!"
           }
           buttonText="DISCOVER MORE ARTIST"
           buttonTextMobile="SEE MORE"

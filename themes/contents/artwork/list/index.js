@@ -60,6 +60,7 @@ function ThemesContentsArtworkList() {
         artistName: values?.artist_name ? values?.artist_name : "",
         genre: values.genre ? values.genre : "",
         artworkTitle: values.artwork_title,
+        // curatorialPick: values.curatorial_pick,
       };
       router.push(`/artwork?artistName=${submission.artistName}&genreId=${submission.genre}`);
       setSearchVisible(!searchVisible);
@@ -169,6 +170,17 @@ function ThemesContentsArtworkList() {
                   })}
                 </Select>
               </Form.Item>
+              {/* <Form.Item name="curatorial-pick">
+                <Select showSearch placeholder="Curatorial Pick" allowClear>
+                  {artworkData?.map((item, index) => {
+                    return (
+                      <Option value={item.full_name} key={index}>
+                        {item.full_name}
+                      </Option>
+                    );
+                  })}
+                </Select>
+              </Form.Item> */}
               <Divider style={{ margin: "8px 0px" }} />
               <Col span={24} className={s.priceTitle}>
                 <p>Price</p>
