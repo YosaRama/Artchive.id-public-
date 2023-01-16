@@ -1,0 +1,87 @@
+.container {
+  width: 100%;
+  text-align: center;
+  margin: 80px 0px;
+  min-height: 100vh;
+  .containerLogo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+    .otpLogo {
+      width: 150px;
+      height: auto;
+      img {
+        width: 150px;
+        height: auto;
+      }
+    }
+  }
+  .otp {
+    // text-align: center;
+    margin: 40px auto;
+    width: 350px;
+    height: 80px;
+    background: #e5890a;
+  }
+
+  .btn {
+    width: 350px;
+    margin-bottom: 10px;
+  }
+  .resend {
+    cursor: pointer;
+    transition: 300ms all ease;
+
+    &:hover {
+      color: #e5890a;
+      transition: 300ms all ease;
+      text-decoration: underline;
+    }
+    &:visited {
+      color: #e5890a;
+      text-decoration: underline;
+    }
+  }
+}
+
+//? ============== Tablet Landscape View ============= ?//
+@media screen and (max-width: 1024px) {
+  .container {
+    margin: 40px 0px;
+    min-height: 80vh;
+  }
+}
+
+//? ============== Tablet Potrait View ============= ?//
+@media screen and (max-width: 768px) {
+  .container {
+    min-height: 50vh;
+  }
+}
+
+//? ============== Tablet Potrait View ============= ?//
+@media screen and (max-width: 500px) {
+  .container {
+    margin: 30px 0px;
+    min-height: 50vh;
+    .containerLogo {
+      margin-bottom: 20px;
+      .otpLogo {
+        width: 100px;
+
+        img {
+          width: 100px;
+        }
+      }
+    }
+    .otp {
+      // text-align: center;
+      margin: 30px auto;
+      width: 100%;
+    }
+
+    .btn {
+      width: 100%;
+    }
+  }
+}
