@@ -19,6 +19,37 @@
   padding-bottom: 5vh;
 }
 
+.showCase {
+  position: absolute;
+  height: 90vh;
+  width: 45vw;
+  top: 10vh;
+
+  left: 40vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .imageContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+    padding-bottom: 30vh;
+    width: 50vw;
+    .border {
+      height: 100%;
+      // width: 50%;
+      border: 1vh ridge rgba(161, 135, 87, 0.9);
+      display: inline-block;
+      filter: contrast(90%) grayscale(40%);
+      box-shadow: -10px 13px 21px 0px rgba(0, 0, 0, 0.75);
+      img {
+        object-fit: contain;
+      }
+    }
+  }
+}
+
 .artCarousel {
   // background: white;
   // max-width: 400px;
@@ -54,6 +85,12 @@
     padding-bottom: 5vh;
     width: 60%;
   }
+
+  .showCase {
+    height: 80vh;
+    top: 15vh;
+    left: 40vw;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -67,10 +104,69 @@
     width: 80%;
     padding-bottom: 0vh;
   }
+
+  .showCase {
+    height: 40vh;
+    width: 50vw;
+    top: 20vh;
+    left: 40vw;
+
+    .imageContainer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 55vh;
+      padding-bottom: 30vh;
+      width: 50vw;
+      .border {
+        height: 100%;
+        // width: 50%;
+        border: 0.5vh ridge rgba(161, 135, 87, 0.9);
+        display: inline-block;
+        filter: contrast(90%) grayscale(40%);
+        box-shadow: -10px 13px 21px 0px rgba(0, 0, 0, 0.75);
+        img {
+          object-fit: contain;
+        }
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 500px) {
+  .bannerContainer {
+    height: 65vh;
+    :global(.banner-image) {
+      height: 65vh;
+    }
+  }
   .searchBox {
     width: 100%;
+  }
+  .showCase {
+    height: 60vh;
+    width: 70vw;
+    top: 10vh;
+    left: 22vw;
+
+    .imageContainer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 57vh;
+      padding-bottom: 30vh;
+      width: 70vw;
+      .border {
+        height: 100%;
+        // width: 50%;
+        border: 0.5vh ridge rgba(161, 135, 87, 0.9);
+        display: inline-block;
+        filter: contrast(90%) grayscale(40%);
+        box-shadow: -10px 13px 21px 0px rgba(0, 0, 0, 0.75);
+        img {
+          object-fit: contain;
+        }
+      }
+    }
   }
 }
