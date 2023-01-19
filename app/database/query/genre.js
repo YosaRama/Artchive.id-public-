@@ -11,6 +11,7 @@ import { prisma } from "../connection";
 export const GET_GENRE = ({ page = 1, limit = 15 }) => {
   // Handle Pagination
   const skip = limit != "all" ? (+page - 1) * +limit : undefined;
+
   return prisma.genre.findMany({
     skip: skip ? +skip : undefined, // Disable by undefined
     take: limit != "all" ? +limit : undefined, // Disable by undefined
@@ -20,6 +21,7 @@ export const GET_GENRE = ({ page = 1, limit = 15 }) => {
     orderBy: {
       id: "desc",
     },
+
     // ==========================
   });
 };

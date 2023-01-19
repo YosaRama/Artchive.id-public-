@@ -1,0 +1,91 @@
+.genre {
+  height: auto;
+  margin: 0px 0px;
+  .container {
+    height: auto;
+    width: 100%;
+    margin-bottom: 20px;
+
+    .active {
+      color: #e5890a !important;
+      background: #ffffff;
+      transition: 150ms all ease;
+      font-size: 700 !important;
+    }
+    .activeSelected {
+      width: 5px;
+      height: 40px;
+      background: #e5890a;
+      border-radius: 5px;
+    }
+    .description {
+      display: flex;
+      color: #898989;
+      align-items: center;
+      height: 40px;
+      cursor: pointer;
+      margin: auto;
+      transition: 150ms all ease;
+      &:hover {
+        color: #ffffff !important;
+        background: #e5890a;
+        transition: 150ms all ease;
+      }
+      p {
+        text-overflow: ellipsis;
+        margin: 10px 10px;
+      }
+    }
+  }
+}
+.genreList {
+  padding: 0px 0px 40px 0px;
+  margin-top: 20px;
+}
+.fullGenre {
+  padding: 40px;
+  min-height: 100px !important;
+  border-radius: 10px;
+  box-shadow: 10px 0px 30px -20px rgba(0, 0, 0, 0.75);
+  background: white;
+  h2 {
+    margin: 0px;
+  }
+}
+
+.divider {
+  height: 5px;
+  background: #e5890a;
+  margin: 0px 0px 10px;
+  width: 80px;
+  border-radius: 10px;
+}
+
+.imageContainer {
+  margin: 0px 20px;
+  left: -20px;
+}
+
+.select {
+  width: 25%;
+}
+
+//? ============== Tablet Potrait View ============= ?//
+@media screen and (max-width: 768px) {
+  .fullGenre {
+    padding: 30px;
+  }
+}
+
+//? ============== Mobile View ============= ?//
+@media screen and (max-width: 500px) {
+  .fullGenre {
+    padding: 20px;
+  }
+  .imageContainer {
+    margin: auto;
+  }
+  .select {
+    width: 100%;
+  }
+}

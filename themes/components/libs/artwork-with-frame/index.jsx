@@ -6,8 +6,8 @@ import { Badge, Col, Image } from "antd";
 // Styles
 import s from "./index.module.scss";
 
-// Assets
-import { VerifyIcon } from "public/icons/verify-icon";
+// Components
+import ThemesVerifiedIcon from "../verified-icon";
 
 function ThemesArtworkWithFrame(props) {
   const router = useRouter();
@@ -39,11 +39,7 @@ function ThemesArtworkWithFrame(props) {
           {artworkTitle && (
             <h1 className={s.title} onClick={() => router.push(`${artworkSlug}`)}>
               {artworkTitle}
-              {isCuratorPick ? (
-                <span className={s.curatorBadge}>
-                  <VerifyIcon />
-                </span>
-              ) : null}
+              {isCuratorPick ? <ThemesVerifiedIcon /> : null}
             </h1>
           )}
           {artworkSize && <p className={s.size}>{artworkSize} cm</p>}

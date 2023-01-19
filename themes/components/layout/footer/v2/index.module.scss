@@ -1,88 +1,6 @@
-// .footer {
-//   padding: 0 !important;
-// }
-
 .section {
-  background: #140c01;
-  // background: red;
+  background: #0a0a0a;
 }
-
-// .topContainer {
-//   padding: 70px 0;
-//   .logo {
-//     width: 100%;
-//     height: 56px;
-//     margin: 0 auto;
-//     cursor: pointer;
-//     img {
-//       object-fit: contain;
-//     }
-//   }
-//   .linkContainer {
-//     margin-top: 24px;
-//     height: 25px;
-//     .link {
-//       margin: 0px 30px;
-//       h3 {
-//         margin: 0;
-//         font-size: 16px;
-//         color: #ffffff;
-//         font-family: "Aileron";
-//         font-weight: bold;
-//         transition: all 0.3s ease;
-//         &:hover {
-//           color: #e5890a;
-//         }
-//       }
-//     }
-//   }
-// }
-
-// .divider {
-//   margin: 0;
-//   background: #ffffff;
-//   width: 100%;
-//   height: 2px;
-// }
-
-// .bottomContainer {
-//   padding: 20px 0;
-//   .socialLink {
-//     a {
-//       margin-right: 16px;
-//       font-family: "Aileron";
-//       font-weight: normal;
-//       p {
-//         margin: 0;
-//       }
-//     }
-//   }
-
-//   .copyright {
-//     color: #ffffff;
-//     text-align: center;
-//     p {
-//       margin: 0;
-//       font-family: "Aileron";
-//       font-weight: normal;
-//     }
-//   }
-
-//   .additionalLink {
-//     justify-content: flex-end;
-//     p {
-//       color: #ffffff;
-//       margin: 0;
-//       margin-left: 24px;
-//       font-family: "Aileron";
-//       font-weight: normal;
-//       transition: all 0.3s ease;
-//       &:hover {
-//         color: #e5890a;
-//       }
-//     }
-//   }
-// }
 
 .footer {
   padding: 0 !important;
@@ -113,6 +31,12 @@
       height: 250px;
       display: flex;
       flex-direction: column;
+      .divider {
+        height: 2px;
+        width: 10%;
+        background: #e5890a;
+        margin: 0px 0px 20px;
+      }
     }
     p {
       font-size: 16px;
@@ -122,7 +46,6 @@
       color: white;
       font-size: 18px;
       font-weight: 700;
-      margin-bottom: 30px;
     }
     a {
       margin: 5px 0px;
@@ -215,7 +138,6 @@
         color: white;
         font-size: 18px;
         font-weight: 700;
-        margin-bottom: 30px;
       }
       a {
         margin: 5px 0px;
@@ -309,7 +231,6 @@
         color: white;
         font-size: 18px;
         font-weight: 700;
-        margin-bottom: 30px;
       }
       a {
         margin: 5px 0px;
@@ -394,9 +315,10 @@
         }
       }
       .descContainer {
-        height: 200px;
+        height: auto;
         display: flex;
         flex-direction: column;
+        margin-bottom: 30px;
       }
       p {
         font-size: 16px;
@@ -406,7 +328,6 @@
         color: white;
         font-size: 18px;
         font-weight: 700;
-        margin-bottom: 30px;
       }
       a {
         margin: 5px 0px;
@@ -463,55 +384,5 @@
     background: white;
     margin: 50px 0px 40px;
   }
-
-  // .topContainer {
-  //   padding: 40px 0;
-  //   .logo {
-  //     margin: 0;
-  //     margin-right: auto;
-  //     max-width: 50%;
-  //     flex: 0 0 50%;
-  //   }
-  //   .linkContainer {
-  //     height: 100%;
-  //     .linkGroup {
-  //       justify-content: flex-start;
-  //     }
-  //     .link {
-  //       margin-left: 0;
-  //       width: 100%;
-  //       margin-bottom: 10px;
-  //     }
-  //   }
-  // }
-  // .bottomContainer {
-  //   .social {
-  //     flex: 0 0 100%;
-  //     max-width: 100%;
-  //     order: 1;
-  //     margin-bottom: 10px;
-  //   }
-  //   .copyright {
-  //     flex: 0 0 100%;
-  //     max-width: 100%;
-  //     text-align: left;
-  //     order: 3;
-  //     margin-bottom: 10px;
-  //   }
-  //   .additionalLinkContainer {
-  //     flex: 0 0 100%;
-  //     max-width: 100%;
-  //     order: 2;
-  //     text-align: left;
-  //     margin-bottom: 10px;
-  //   }
-  //   .additionalLink {
-  //     justify-content: flex-start;
-  //     p {
-  //       margin-left: 0;
-  //       margin-right: 15px;
-  //     }
-  //   }
-  // }
 }
 // * ====================================== * //

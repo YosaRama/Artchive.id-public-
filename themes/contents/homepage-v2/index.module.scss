@@ -1,50 +1,32 @@
 //? ============== Artwork And Artist============= ?//
 
-.curatorPickContainer,
-.artistContainer {
-  margin: 150px 0px;
+.curatorPickContainer {
+  margin: 120px 0px 80px;
 }
 
 .artworkContainer {
-  padding: 150px 0;
-  background-color: #fbf4ec;
+  padding: 80px 0;
+}
+.artistContainer {
+  padding: 80px 0px 120px;
 }
 
 //? ============== Role ============= ?//
 .roleContainer {
-  background: #fbf4ec;
+  background-color: #e5e5e5;
+
+  padding: 80px 0px;
+
   .pageTitle {
     margin-bottom: 80px;
   }
-  padding: 120px 0px;
 }
 
-//? ============== Article ============= ?//
-
-.articleContainer {
-  background: white;
-  padding: 120px 0px;
-  .pageTitle {
-    margin: 0px 0px 60px;
-  }
-  .articleListContainer {
-    margin-left: -50px;
-  }
-
-  .articleListCard {
-    padding-left: 50px;
-    img {
-      height: 300px;
-      object-fit: cover;
-    }
-    &:nth-child(2n) {
-      img {
-        height: 500px;
-      }
-    }
-  }
+//? ============== Faq ============= ?//
+.faq {
+  padding: 80px 0px;
+  background-color: #ffffff;
 }
-
 //? ============== Testimonials ============= ?//
 
 .reviewContainer {
@@ -83,22 +65,6 @@
 
 //? ============== Tablet Landscape Mode ============= ?//
 @media screen and (max-width: 1024px) {
-  //? ============== Artist ============= ?//
-  .curatorPickContainer,
-  .artistContainer {
-    margin: 100px 0px;
-  }
-
-  .artworkContainer {
-    padding: 100px 0;
-  }
-
-  //? ============== Article ============= ?//
-
-  .articleContainer {
-    padding: 80px 0px;
-  }
-
   //? ============== Testimonials ============= ?//
 
   .reviewContainer {
@@ -137,38 +103,39 @@
 //? ============== Tablet Potrait Mode ============= ?//
 @media screen and (max-width: 768px) {
   //? ============== Artist ============= ?//
-  .curatorPickContainer,
-  .artistContainer {
-    margin: 80px 0px;
+  .curatorPickContainer {
+    margin: 80px 0px 40px;
   }
+
   .artworkContainer {
-    padding: 80px 0;
+    padding: 40px 0;
+  }
+  .artistContainer {
+    padding: 40px 0px 80px;
   }
   //? ============== Exhibition ============= ?//
 
   //? ============== Role ============= ?//
   .roleContainer {
     .pageTitle {
-      margin-bottom: 80px;
+      margin-bottom: 60px;
     }
-    padding: 80px 0px;
+    padding: 40px 0px;
+  }
+
+  //? ============== Faq ============= ?//
+  .faq {
+    padding: 40px 0px;
   }
 }
 // * ====================================== * //
 
 //? ============== Mobile Mode ============= ?//
 @media screen and (max-width: 500px) {
-  .curatorPickContainer,
-  .artistContainer {
-    margin: 60px 0px;
-  }
-
-  .artworkContainer {
-    padding: 60px 0;
-  }
-
   //? ============== Article ============= ?//
-
+  .curatorPickContainer {
+    margin: 40px 0px 40px;
+  }
   .articleContainer {
     background: white;
     padding: 60px 0px;

@@ -1,14 +1,15 @@
 .roleContainer {
   .imageContainer {
-    height: 600px !important;
+    height: 500px !important;
     .image {
-      height: 600px;
+      height: 500px;
       object-fit: cover;
     }
   }
   .descriptionContainer {
-    height: 600px;
-    background: rgb(255, 251, 245);
+    height: 500px;
+    background: #ffffff;
+
     .description {
       display: relative;
       top: 50%;
@@ -27,7 +28,6 @@
       }
       h4 {
         font-size: 24px;
-        // color: rgb(150, 149, 149) !important;
         font-weight: 200 !important;
       }
     }

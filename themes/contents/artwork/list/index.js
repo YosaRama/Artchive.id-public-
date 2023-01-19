@@ -1,7 +1,7 @@
 // Libs
 import { useRouter } from "next/router";
 import Sticky from "react-sticky-el";
-import { Card, Col, Empty, Form, Input, Row, Select, Slider, Spin, Divider } from "antd";
+import { Card, Col, Form, Input, Row, Select, Slider, Spin, Divider } from "antd";
 import { useState } from "react";
 const { Option } = Select;
 import { DownOutlined } from "@ant-design/icons";
@@ -22,7 +22,6 @@ import { useGenre, useGenres } from "app/hooks/genre";
 
 // Helpers
 import { useWindowSize } from "app/helpers/useWindowSize";
-import priceFormatter from "app/helpers/priceFormatter";
 
 // Styles
 import s from "./index.module.scss";
@@ -60,6 +59,7 @@ function ThemesContentsArtworkList() {
         artistName: values?.artist_name ? values?.artist_name : "",
         genre: values.genre ? values.genre : "",
         artworkTitle: values.artwork_title,
+        // curatorialPick: values.curatorial_pick,
       };
       router.push(`/artwork?artistName=${submission.artistName}&genreId=${submission.genre}`);
       setSearchVisible(!searchVisible);
@@ -131,7 +131,7 @@ function ThemesContentsArtworkList() {
       {/* // * ====================================== * // */}
 
       {/* //? ============== Mobile Search Section ============= ?// */}
-      {width < 500 && (
+      {width <= 1024 && (
         <Col className={s.mobileSearchContainer} tabindex="1" span={24}>
           <Col span={24} className={`${handleCollapse}`}>
             <h1 style={{ textAlign: "center", fontSize: "24px" }}>SEARCH</h1>
@@ -169,6 +169,7 @@ function ThemesContentsArtworkList() {
                   })}
                 </Select>
               </Form.Item>
+
               <Divider style={{ margin: "8px 0px" }} />
               <Col span={24} className={s.priceTitle}>
                 <p>Price</p>
@@ -214,7 +215,11 @@ function ThemesContentsArtworkList() {
       <section className="">
         <ThemesContainerMain containerClass="">
           <section style={{ margin: "50px 0" }} className="">
-            <Row justify="space-between" className="boundary">
+            <Row
+              style={{ width: "100%", margin: "auto" }}
+              justify="space-between"
+              className="boundary"
+            >
               {/* //? ============== Desktop Search Section ============= ?// */}
               <Col span={6} className={`${s.mobileHidden} `} style={{ height: "auto" }}>
                 <div className="affixContainer">
@@ -332,6 +337,7 @@ function ThemesContentsArtworkList() {
                               artworkPrice={item?.markup_price}
                               artworkMedia={item?.material}
                               artworkStatus={item?.status}
+                              isCuratorPick={item?.curatorial_pick}
                               imgSrc={
                                 item?.media_cover
                                   ? `${process.env.NEXT_PUBLIC_S3_URL}/${item?.media_cover?.url}`
@@ -356,7 +362,7 @@ function ThemesContentsArtworkList() {
                           : ""}
                       </>
                     }
-                  ></ThemesNoData>
+                  />
                 )}
 
                 {!end && (

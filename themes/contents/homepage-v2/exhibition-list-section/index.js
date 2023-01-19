@@ -35,7 +35,6 @@ function ThemesContentsHomepageV2ExhibitionListSection(props) {
   //? ============== Exhibition Show Handler ============= ?//
   const [selectedExhibition, setSelectedExhibition] = useState();
   const handleSelectExhibition = (id) => {
-    console.log(id);
     setSelectedExhibition(dataExhibition.find((item) => item.id === id));
   };
   useEffect(() => {
@@ -69,7 +68,7 @@ function ThemesContentsHomepageV2ExhibitionListSection(props) {
                     initial="hidden"
                     whileInView="visible"
                   >
-                    {width <= 768 ? <p style={{ fontWeight: 700 }}>LATEST EXHIBITIONS</p> : ""}
+                    {width >= 768 ? <p style={{ fontWeight: 700 }}>LATEST EXHIBITIONS</p> : ""}
                     <h1>{selectedExhibition?.title}</h1>
                     <p>{selectedExhibition?.short_description}</p>
                     <p style={{ fontWeight: 700 }}>
