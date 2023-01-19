@@ -14,7 +14,7 @@ import nextConnect from "next-connect";
 const apiHandler = nextConnect();
 const messageHead = "artwork";
 
-// GET HANDLER
+//#region Get Handler
 apiHandler.get(async (req, res) => {
   const {
     page,
@@ -70,8 +70,9 @@ apiHandler.get(async (req, res) => {
     });
   }
 });
+//#endregion
 
-// POST HANDLER
+//#region Post Handler
 apiHandler.post(async (req, res) => {
   const {
     sku,
@@ -136,5 +137,6 @@ apiHandler.post(async (req, res) => {
     });
   }
 });
+//#endregion
 
 export default apiHandler;

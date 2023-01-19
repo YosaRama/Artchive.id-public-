@@ -16,16 +16,16 @@ function AppFormPrice(props) {
           {
             required: true,
             message: "Please input price for this artwork!",
+            validator: (_, value) => {
+              if (new RegExp(/^[0-9,.]+$/).test(value)) {
+                return Promise.resolve;
+              }
+
+              return Promise.reject(new Error("Please input correct price!"));
+            },
           },
         ]}
       >
-        {/* <InputNumber
-          style={{ width: "100%" }}
-          placeholder="Input artwork price"
-          formatter={(value) => priceFormatter(`Rp ${value}`, ",")}
-          parser={(value) => value.replace(/Rp\s?|(,*)/g, "")}
-          onChange={onChange}
-        /> */}
         <Input
           style={{ width: "100%" }}
           placeholder="Input artwork price"
