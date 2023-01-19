@@ -33,7 +33,6 @@
         justify-content: center;
         align-items: center;
         height: 100%;
-        // color: black;
         &:hover {
           border: none;
           font-size: 90px;
@@ -59,7 +58,6 @@
 //? ============== Tablet Potrait View ============= ?//
 @media screen and (max-width: 768px) {
   .offer {
-    // margin-top: 120px;
     padding: 40px 0px 60px;
   }
 }

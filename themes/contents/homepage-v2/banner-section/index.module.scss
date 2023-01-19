@@ -38,7 +38,6 @@
     width: 50vw;
     .border {
       height: 100%;
-      // width: 50%;
       border: 1vh ridge rgba(161, 135, 87, 0.9);
       display: inline-block;
       filter: contrast(90%) grayscale(40%);
@@ -51,16 +50,12 @@
 }
 
 .artCarousel {
-  // background: white;
-  // max-width: 400px;
-  // max-height: 400px;
   position: relative;
   top: -150px;
   left: 30px;
   z-index: -1;
 
   .art {
-    // object-position: 50% 50%;
     object-fit: scale-down;
     max-width: 400px;
     max-height: 400px;
@@ -120,7 +115,6 @@
       width: 50vw;
       .border {
         height: 100%;
-        // width: 50%;
         border: 0.5vh ridge rgba(161, 135, 87, 0.9);
         display: inline-block;
         filter: contrast(90%) grayscale(40%);
@@ -158,7 +152,6 @@
       width: 70vw;
       .border {
         height: 100%;
-        // width: 50%;
         border: 0.5vh ridge rgba(161, 135, 87, 0.9);
         display: inline-block;
         filter: contrast(90%) grayscale(40%);

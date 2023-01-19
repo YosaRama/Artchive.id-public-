@@ -120,15 +120,6 @@ function ThemesContentsRegister() {
                 </p>
               </Col>
               <Form layout="vertical" form={form}>
-                {/* <Form.Item
-                  name="email"
-                  rules={[{ required: true, type: "email", message: "Please input your email!" }]}
-                >
-                  <Input placeholder="Email Address" />
-                </Form.Item>
-                <Form.Item name="password" rules={[passwordFormRules]}>
-                  <Input.Password placeholder="Password" />
-                </Form.Item> */}
                 <Form.Item name="phone number" label="Phone Number">
                   <Input addonBefore="+62" placeholder="Phone Number or Whatsapp Number" />
                 </Form.Item>
@@ -182,12 +173,6 @@ function ThemesContentsRegister() {
                     </Radio.Group>
                   </Form.Item>
                 </Col>
-
-                {/* <Row justify="space-between">
-                  <Col>
-                    <Checkbox>I Accept The Terms & Condition & Privacy Policy</Checkbox>
-                  </Col>
-                </Row> */}
               </Form>
             </Col>
           </section>

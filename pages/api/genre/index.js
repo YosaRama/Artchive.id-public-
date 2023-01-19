@@ -5,7 +5,7 @@ import { GET_GENRE, CREATE_GENRE, GET_TOTAL_GENRE } from "app/database/query/gen
 import nextConnect from "next-connect";
 
 const apiHandler = nextConnect();
-const messageHead = "genre";
+const messageHead = "Genre";
 
 // GET HANDLER
 apiHandler.get(async (req, res) => {

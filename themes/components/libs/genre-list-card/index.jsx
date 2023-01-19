@@ -13,12 +13,7 @@ function ThemesGenreListCard() {
   const { data: dataGenre } = useGenres({ queryString: "" });
   //? ============== Genre Show Handler ============= ?//
   const [selectedGenre, setSelectedGenre] = useState();
-  // const handleSelectGenre = (value) => {
-  //   setSelectedGenre(dataGenre[value]);
-  // };
-  // useEffect(() => {
-  //   setSelectedGenre(dataGenre && dataGenre[0]);
-  // }, [dataGenre]);
+
   const handleSelectGenre = (id) => {
     setSelectedGenre(dataGenre?.find((item) => item.id === id));
   };
@@ -26,31 +21,15 @@ function ThemesGenreListCard() {
     setSelectedGenre(dataGenre && dataGenre[0]);
   }, [dataGenre]);
   // * ====================================== * //
-  // const [cities, setCities] = useState(cityData[provinceData[0]]);
-  // const [secondCity, setSecondCity] = useState(cityData[provinceData[0]][0]);
-  // const handleProvinceChange = (value) => {
-  //   setCities(cityData[value]);
-  //   setSecondCity(cityData[value][0]);
-  // };
+
   return (
     <>
       <Col span={24} className={s.genre}>
         <Row className={s.container}>
-          {/* <Col
-            xl={{ span: 4 }}
-            lg={{ span: 4 }}
-            md={{ span: 6 }}
-            xs={{ span: 24 }}
-            className={s.genreList}
-          >
-           
-          </Col> */}
-
           {/* //Todo: find better divider style */}
 
           <Col span={24} className={s.fullGenre}>
             <Select
-              // defaultValue="Select Genre"
               placeholder="Select Genre"
               className={s.select}
               onChange={handleSelectGenre}

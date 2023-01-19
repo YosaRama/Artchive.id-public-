@@ -47,7 +47,7 @@ function ThemesContentsSignIn() {
       setLoading(true);
       const login = await signIn("credentials", {
         redirect: false,
-        // phone_number: value.phone_number,
+        // phone_number: value.phone_number, //TODO: form activation
         email: value.email,
         password: value.password,
       });
@@ -56,7 +56,7 @@ function ThemesContentsSignIn() {
         setLoading(false);
       } else if (login.error == "INACTIVE") {
         const sendMail = await onSendMail({
-          // phone_number: value.phone_number,
+          // phone_number: value.phone_number, //TODO: active this function
           email: value.email,
           fullName: value.email,
         });

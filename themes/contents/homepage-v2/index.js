@@ -38,7 +38,6 @@ function ThemesContentsHomepageV2(props) {
       {/* // * ====================================== * // */}
 
       {/* //? ============== Curators Artwork Section ============= ?// */}
-      {/* //TODO : Instead !== 0 use >= 3 because if only 1 curators pick visible in homepage, the design will be bad// */}
       {curatorialPickData?.length >= 3 ? (
         <section className={s.curatorPickContainer}>
           <ThemesContentsHomepageV2ArtworkArtistSection

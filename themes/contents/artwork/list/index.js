@@ -1,7 +1,7 @@
 // Libs
 import { useRouter } from "next/router";
 import Sticky from "react-sticky-el";
-import { Card, Col, Empty, Form, Input, Row, Select, Slider, Spin, Divider } from "antd";
+import { Card, Col, Form, Input, Row, Select, Slider, Spin, Divider } from "antd";
 import { useState } from "react";
 const { Option } = Select;
 import { DownOutlined } from "@ant-design/icons";
@@ -22,7 +22,6 @@ import { useGenre, useGenres } from "app/hooks/genre";
 
 // Helpers
 import { useWindowSize } from "app/helpers/useWindowSize";
-import priceFormatter from "app/helpers/priceFormatter";
 
 // Styles
 import s from "./index.module.scss";
@@ -170,17 +169,7 @@ function ThemesContentsArtworkList() {
                   })}
                 </Select>
               </Form.Item>
-              {/* <Form.Item name="curatorial-pick">
-                <Select showSearch placeholder="Curatorial Pick" allowClear>
-                  {artworkData?.map((item, index) => {
-                    return (
-                      <Option value={item.full_name} key={index}>
-                        {item.full_name}
-                      </Option>
-                    );
-                  })}
-                </Select>
-              </Form.Item> */}
+
               <Divider style={{ margin: "8px 0px" }} />
               <Col span={24} className={s.priceTitle}>
                 <p>Price</p>

@@ -17,8 +17,6 @@ import { useWindowSize } from "app/helpers/useWindowSize";
 
 // Styles
 import s from "./index.module.scss";
-import user from "prisma/seeds/user";
-import { setSourceMapRange } from "typescript";
 
 function ThemesContentsHomepageV2ArtworkArtistSection(props) {
   const {

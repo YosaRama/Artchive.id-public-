@@ -1,5 +1,5 @@
 // Libs
-import { Col, Image } from "antd";
+// import { Col, Image } from "antd";
 import { motion } from "framer-motion";
 import { fadeTopToBottom } from "app/database/framer-motion";
 
@@ -8,14 +8,14 @@ import ThemesBanner from "themes/components/libs/banner";
 import ThemesHomepageSearchBox from "themes/components/libs/homepage-search-box";
 
 // Hooks
-import { useArtwork } from "app/hooks/artwork";
+// import { useArtwork } from "app/hooks/artwork";
 
 // Styles
 import s from "./index.module.scss";
 
 function ThemesContentsHomepageV2BannerSection() {
-  const { data: artworkData } = useArtwork({ singleId: "5" }); //todo: Getpromoted artwork
-  console.log(artworkData);
+  // const { data: artworkData } = useArtwork({ singleId: "5" }); //todo: Getpromoted artwork
+  // console.log(artworkData);
   return (
     <>
       <ThemesBanner imgSrc="/images/banner-homepage-1.jpg" className={s.bannerContainer}>
@@ -28,7 +28,7 @@ function ThemesContentsHomepageV2BannerSection() {
           <ThemesHomepageSearchBox />
         </motion.div>
       </ThemesBanner>
-      <motion.div
+      {/* <motion.div
         variants={fadeTopToBottom}
         initial="hidden"
         animate="visible"
@@ -45,7 +45,7 @@ function ThemesContentsHomepageV2BannerSection() {
             />
           </Col>
         </Col>
-      </motion.div>
+      </motion.div> */}
     </>
   );
 }
