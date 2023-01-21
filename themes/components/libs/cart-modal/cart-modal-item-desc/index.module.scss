@@ -1,3 +1,5 @@
+@use "/themes/styles/base/colors";
+
 .itemContainer {
   margin-bottom: 10px;
   height: 80px;
@@ -54,7 +56,7 @@
   margin: 0px;
   transition: all 300ms ease;
   &:hover {
-    color: #e5890a;
+    color: colors.$fulvous;
     transition: all 300ms ease;
   }
 }

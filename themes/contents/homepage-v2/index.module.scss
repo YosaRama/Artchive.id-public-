@@ -1,3 +1,5 @@
+@use "/themes/styles/base/colors";
+
 //? ============== Artwork And Artist============= ?//
 
 .curatorPickContainer {
@@ -30,7 +32,7 @@
 //? ============== Testimonials ============= ?//
 
 .reviewContainer {
-  background: white;
+  background: colors.$white;
   .reviewBackground {
     position: absolute;
     filter: brightness(0.3);
@@ -41,9 +43,9 @@
     height: 700px;
     display: flex;
     align-items: center;
-    color: white !important;
+    color: colors.$white !important;
     h1 {
-      color: white;
+      color: colors.$white;
     }
   }
   .pageTitle {
@@ -68,7 +70,7 @@
   //? ============== Testimonials ============= ?//
 
   .reviewContainer {
-    background: white;
+    background: colors.$white;
     .reviewBackground {
       height: 580px !important;
     }
@@ -76,9 +78,9 @@
       height: 560px;
       display: flex;
       align-items: center;
-      color: white !important;
+      color: colors.$white !important;
       h1 {
-        color: white;
+        color: colors.$white;
       }
     }
     .pageTitle {
@@ -137,7 +139,7 @@
     margin: 40px 0px 40px;
   }
   .articleContainer {
-    background: white;
+    background: colors.$white;
     padding: 60px 0px;
     .pageTitle {
       margin: 0px 0px 60px;
@@ -163,7 +165,7 @@
   //? ============== Testimonials ============= ?//
 
   .reviewContainer {
-    background: white;
+    background: colors.$white;
     .reviewBackground {
       height: 720px !important;
     }
@@ -172,9 +174,9 @@
       display: flex;
       align-items: flex-start;
       padding-top: 90px;
-      color: white !important;
+      color: colors.$white !important;
       h1 {
-        color: white;
+        color: colors.$white;
       }
     }
     .pageTitle {

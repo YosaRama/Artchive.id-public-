@@ -1,5 +1,7 @@
+@use "/themes/styles/base/colors";
+
 .reviewContainer {
-  background: white;
+  background: colors.$white;
   .reviewBackground {
     position: absolute;
     filter: brightness(0.3);
@@ -10,9 +12,9 @@
     height: calc(100vh + 20px);
     display: flex;
     align-items: center;
-    color: white !important;
+    color: colors.$white !important;
     h1 {
-      color: white;
+      color: colors.$white;
     }
   }
   .pageTitle {

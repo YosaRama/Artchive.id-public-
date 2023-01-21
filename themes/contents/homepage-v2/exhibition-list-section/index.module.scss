@@ -1,3 +1,5 @@
+@use "/themes/styles/base/colors";
+
 .exhibition {
   margin-top: 0px;
 }
@@ -16,7 +18,7 @@
   .description {
     width: 500px;
     z-index: 1;
-    color: white;
+    color: colors.$white;
     margin: 0px;
     p {
       font-size: 16px;
@@ -26,7 +28,7 @@
     h1 {
       font-size: 48px;
       line-height: 65px;
-      color: white;
+      color: colors.$white;
     }
   }
   .imageContainer {
@@ -44,7 +46,7 @@
     }
   }
   .moreExhibitionContainer {
-    color: white;
+    color: colors.$white;
     height: auto;
     padding: 0px;
   }

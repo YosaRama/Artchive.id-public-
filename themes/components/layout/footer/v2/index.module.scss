@@ -1,3 +1,5 @@
+@use "/themes/styles/base/colors";
+
 .section {
   background: #0a0a0a;
 }
@@ -34,25 +36,25 @@
       .divider {
         height: 2px;
         width: 10%;
-        background: #e5890a;
+        background: colors.$fulvous;
         margin: 0px 0px 20px;
       }
     }
     p {
       font-size: 16px;
-      color: white;
+      color: colors.$white;
     }
     h1 {
-      color: white;
+      color: colors.$white;
       font-size: 18px;
       font-weight: 700;
     }
     a {
       margin: 5px 0px;
-      color: white;
+      color: colors.$white;
       cursor: pointer;
       &:hover {
-        color: #e5890a;
+        color: colors.$fulvous;
         transition: 300ms all ease;
       }
     }
@@ -62,21 +64,21 @@
       justify-content: flex-start;
       .logo {
         cursor: pointer;
-        color: white;
+        color: colors.$white;
         transition: 300ms all ease;
         font-size: 16px;
         &:hover {
-          color: #e5890a;
+          color: colors.$fulvous;
           transition: 300ms all ease;
         }
       }
     }
   }
   a {
-    color: white;
+    color: colors.$white;
   }
   .icon {
-    color: white;
+    color: colors.$white;
     width: 20px;
     font-size: 16px;
     margin-right: 10px;
@@ -89,18 +91,18 @@
   .terms {
     text-align: right;
     &:hover {
-      color: #e5890a;
+      color: colors.$fulvous;
       transition: 300ms all ease;
     }
   }
   p,
   a {
-    color: white;
+    color: colors.$white;
     font-size: 16px;
   }
 }
 .divider {
-  background: white;
+  background: colors.$white;
   margin: 50px 0px 40px;
 }
 
@@ -132,40 +134,40 @@
       }
       p {
         font-size: 16px;
-        color: white;
+        color: colors.$white;
       }
       h1 {
-        color: white;
+        color: colors.$white;
         font-size: 18px;
         font-weight: 700;
       }
       a {
         margin: 5px 0px;
-        color: white;
+        color: colors.$white;
         cursor: pointer;
         &:hover {
-          color: #e5890a;
+          color: colors.$fulvous;
           transition: 300ms all ease;
         }
       }
       .logoSocial {
         .logo {
           cursor: pointer;
-          color: white;
+          color: colors.$white;
           transition: 300ms all ease;
           font-size: 16px;
           &:hover {
-            color: #e5890a;
+            color: colors.$fulvous;
             transition: 300ms all ease;
           }
         }
       }
     }
     a {
-      color: white;
+      color: colors.$white;
     }
     .icon {
-      color: white;
+      color: colors.$white;
       width: 20px;
       font-size: 16px;
       margin-right: 10px;
@@ -177,13 +179,13 @@
     justify-content: space-between;
     .terms {
       &:hover {
-        color: #e5890a;
+        color: colors.$fulvous;
         transition: 300ms all ease;
       }
     }
     p,
     a {
-      color: white;
+      color: colors.$white;
       font-size: 16px;
     }
   }
@@ -225,40 +227,40 @@
       }
       p {
         font-size: 16px;
-        color: white;
+        color: colors.$white;
       }
       h1 {
-        color: white;
+        color: colors.$white;
         font-size: 18px;
         font-weight: 700;
       }
       a {
         margin: 5px 0px;
-        color: white;
+        color: colors.$white;
         cursor: pointer;
         &:hover {
-          color: #e5890a;
+          color: colors.$fulvous;
           transition: 300ms all ease;
         }
       }
       .logoSocial {
         .logo {
           cursor: pointer;
-          color: white;
+          color: colors.$white;
           transition: 300ms all ease;
           font-size: 16px;
           &:hover {
-            color: #e5890a;
+            color: colors.$fulvous;
             transition: 300ms all ease;
           }
         }
       }
     }
     a {
-      color: white;
+      color: colors.$white;
     }
     .icon {
-      color: white;
+      color: colors.$white;
       width: 20px;
       font-size: 16px;
       margin-right: 10px;
@@ -270,18 +272,18 @@
     justify-content: space-between;
     .terms {
       &:hover {
-        color: #e5890a;
+        color: colors.$fulvous;
         transition: 300ms all ease;
       }
     }
     p,
     a {
-      color: white;
+      color: colors.$white;
       font-size: 16px;
     }
   }
   .divider {
-    background: white;
+    background: colors.$white;
     margin: 50px 0px 40px;
   }
 }
@@ -322,40 +324,40 @@
       }
       p {
         font-size: 16px;
-        color: white;
+        color: colors.$white;
       }
       h1 {
-        color: white;
+        color: colors.$white;
         font-size: 18px;
         font-weight: 700;
       }
       a {
         margin: 5px 0px;
-        color: white;
+        color: colors.$white;
         cursor: pointer;
         &:hover {
-          color: #e5890a;
+          color: colors.$fulvous;
           transition: 300ms all ease;
         }
       }
       .logoSocial {
         .logo {
           cursor: pointer;
-          color: white;
+          color: colors.$white;
           transition: 300ms all ease;
           font-size: 16px;
           &:hover {
-            color: #e5890a;
+            color: colors.$fulvous;
             transition: 300ms all ease;
           }
         }
       }
     }
     a {
-      color: white;
+      color: colors.$white;
     }
     .icon {
-      color: white;
+      color: colors.$white;
       width: 20px;
       font-size: 16px;
       margin-right: 10px;
@@ -370,18 +372,18 @@
       text-align: center;
 
       &:hover {
-        color: #e5890a;
+        color: colors.$fulvous;
         transition: 300ms all ease;
       }
     }
     p,
     a {
-      color: white;
+      color: colors.$white;
       font-size: 16px;
     }
   }
   .divider {
-    background: white;
+    background: colors.$white;
     margin: 50px 0px 40px;
   }
 }

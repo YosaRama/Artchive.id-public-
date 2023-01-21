@@ -1,3 +1,5 @@
+@use "/themes/styles/base/colors";
+
 .detailsImageContainer {
   height: 150px;
   position: relative;
@@ -76,15 +78,15 @@
   &:hover {
     svg {
       path {
-        fill: #e5890a;
+        fill: colors.$fulvous;
       }
-      fill: #e5890a;
+      fill: colors.$fulvous;
     }
   }
 }
 
 .artistName {
-  color: #140c01;
+  color: colors.$smoky-black;
 }
 
 //? ============== Tablet Landscape Mode ============= ?//

@@ -1,3 +1,5 @@
+@use "/themes/styles/base/colors";
+
 .title {
   margin: 50px 0 30px;
 }
@@ -6,7 +8,7 @@
   width: 50%;
   min-width: 50%;
   margin: 0px auto 40px;
-  border-top: 1px solid #e5890a;
+  border-top: 1px solid colors.$fulvous;
 }
 
 .contentContainer {

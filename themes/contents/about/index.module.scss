@@ -1,3 +1,5 @@
+@use "/themes/styles/base/colors";
+
 //? ============== Banner Section ============= ?//
 .bannerTitle {
   text-align: center;
@@ -16,7 +18,7 @@
   padding-top: 50px;
   padding-bottom: 1px;
   align-content: center;
-  background-color: white;
+  background-color: colors.$white;
 }
 
 // * ====================================== * //
@@ -42,14 +44,14 @@
 //? ============== Our Team Section ============= ?//
 
 .titleSection1 {
-  color: #e5890a;
+  color: colors.$fulvous;
 }
 
 .aboutUsTeamContainer {
   padding-top: 50px;
   padding-bottom: 50px;
   align-content: center;
-  background-color: white;
+  background-color: colors.$white;
 }
 
 .card {
@@ -64,7 +66,7 @@
 .carousel {
   :global(.slick-arrow) {
     border-radius: 10%;
-    background-color: #e5890a !important;
+    background-color: colors.$fulvous !important;
     opacity: 1;
     width: 40px;
     height: 50px;
@@ -76,7 +78,7 @@
     }
     &::before {
       font-size: 24px;
-      color: white;
+      color: colors.$white;
       display: block;
       margin-bottom: 5px;
     }
@@ -102,7 +104,7 @@
   }
   :global(.slick-dots li.slick-active) {
     position: relative;
-    background: #e5890a;
+    background: colors.$fulvous;
     content-visibility: hidden;
   }
 }
@@ -144,7 +146,7 @@
     padding-top: 50px;
     padding-bottom: 50px;
     align-content: center;
-    background-color: white;
+    background-color: colors.$white;
   }
 
   .card {
@@ -191,7 +193,7 @@
     padding-top: 50px;
     padding-bottom: 50px;
     align-content: center;
-    background-color: white;
+    background-color: colors.$white;
   }
 
   .card {
@@ -230,7 +232,7 @@
     padding-top: 50px;
     padding-bottom: 50px;
     align-content: center;
-    background-color: white;
+    background-color: colors.$white;
   }
 
   .card {

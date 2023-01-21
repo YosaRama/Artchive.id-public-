@@ -1,3 +1,5 @@
+@use "/themes/styles/base/colors";
+
 .imageContainer {
   display: flex;
   justify-content: center;
@@ -5,7 +7,7 @@
 }
 
 .imageCircle {
-  background-color: #e5890a;
+  background-color: colors.$fulvous;
   border-radius: 100%;
   width: 194px;
   height: 194px;
@@ -30,7 +32,7 @@
 }
 
 .title {
-  color: #e5890a;
+  color: colors.$fulvous;
   font-size: 24px;
   font-weight: 400;
   font-family: "DM_serif_display", Arial, serif;

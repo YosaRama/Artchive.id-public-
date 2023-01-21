@@ -1,3 +1,5 @@
+@use "/themes/styles/base/colors";
+
 .searchTitle {
   text-align: center;
   margin: 0 0 20px;
@@ -12,7 +14,7 @@
   position: sticky;
   top: 62px;
   z-index: 1;
-  background: white;
+  background: colors.$white;
 }
 
 .priceTitle {
@@ -20,7 +22,7 @@
   p {
     margin-bottom: 10px;
     font-size: 14px;
-    color: #140c0155;
+    color: colors.$smoky-black;
   }
 }
 
@@ -44,13 +46,13 @@
 }
 
 .searchCollapse {
-  background: #e5890a;
+  background: colors.$fulvous;
   text-align: center;
   padding: 8px 0px;
   cursor: pointer;
   font-weight: 700;
   font-size: 16px;
-  color: white;
+  color: colors.$white;
   box-shadow: 0px 10px 25px -10px rgba(0, 0, 0, 0.5);
   .searchArrowIconActive {
     font-size: 16px;
@@ -69,7 +71,7 @@
   transform: scaleY(0);
   height: 0px;
   padding: 0px 0px;
-  background: white;
+  background: colors.$white;
   opacity: 0;
   transition: all 600ms ease;
 }
@@ -77,7 +79,7 @@
   transform: scaleY(1);
   height: 475px;
   padding: 30px 30px;
-  background: white;
+  background: colors.$white;
   opacity: 1;
   transition: all 600ms ease;
 }

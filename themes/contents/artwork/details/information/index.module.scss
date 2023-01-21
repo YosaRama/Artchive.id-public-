@@ -1,3 +1,5 @@
+@use "/themes/styles/base/colors";
+
 .artworkSold {
   filter: grayscale(1);
   transition: all 300ms ease;
@@ -86,30 +88,30 @@
   margin: 5px 0 10px 0;
   width: 260px;
   height: 40px !important;
-  background: #e5890a !important;
-  color: white;
+  background: colors.$fulvous !important;
+  color: colors.$white;
 
   span {
     display: flex;
     align-items: center;
     svg {
       path {
-        fill: white;
+        fill: colors.$white;
         transition: all 0.1s ease;
       }
       width: 25px;
       height: auto;
-      fill: white;
+      fill: colors.$white;
       transition: all 0.1s ease;
     }
   }
   &:hover {
-    background: white !important;
+    background: colors.$white !important;
     svg {
       path {
-        fill: #e5890a;
+        fill: colors.$fulvous;
       }
-      fill: #e5890a;
+      fill: colors.$fulvous;
     }
   }
 }
@@ -174,11 +176,11 @@
 }
 
 .artistName {
-  color: #140c01;
+  color: colors.$smoky-black;
 }
 
 .genreBorder {
-  background: #e0e0e0;
+  background: colors.$gainsboro;
   color: black;
   border-radius: 15px;
   margin-right: 16px;
@@ -188,8 +190,8 @@
   cursor: pointer;
   transition: all 300ms ease;
   &:hover {
-    background: #e5890a;
-    color: white;
+    background: colors.$fulvous;
+    color: colors.$white;
     transition: all 300ms ease;
   }
 }

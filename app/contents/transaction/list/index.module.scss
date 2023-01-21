@@ -1,5 +1,7 @@
+@use "/themes/styles/base/colors";
+
 .statusPending {
-  background: #e0e0e0;
+  background: colors.$gainsboro;
   padding: 5px 6px;
   border-radius: 10px;
   color: black;
@@ -12,10 +14,10 @@
 }
 
 .statusProceed {
-  background: #e5890a;
+  background: colors.$fulvous;
   padding: 5px 6px;
   border-radius: 10px;
-  color: white;
+  color: colors.$white;
   font-size: 12px;
   margin: auto 0px;
   width: 75px;
@@ -26,7 +28,7 @@
   background: rgb(80, 136, 179);
   padding: 5px 6px;
   border-radius: 10px;
-  color: white;
+  color: colors.$white;
   font-size: 12px;
   margin: auto 0px;
   width: 75px;
@@ -37,7 +39,7 @@
   background: red;
   padding: 5px 6px;
   border-radius: 10px;
-  color: white;
+  color: colors.$white;
   font-size: 12px;
   margin: auto 0px;
   width: 75px;
@@ -48,7 +50,7 @@
   background: #21df34;
   padding: 5px 6px;
   border-radius: 10px;
-  color: white;
+  color: colors.$white;
   font-size: 12px;
   margin: auto 0px;
   width: 75px;

@@ -1,3 +1,5 @@
+@use "/themes/styles/base/colors";
+
 .section {
   height: 60vh;
   display: flex;
@@ -5,7 +7,7 @@
 }
 
 .resendLoading {
-  color: #e5890a;
+  color: colors.$fulvous;
   font-size: 10px;
   margin-top: 10px;
 }

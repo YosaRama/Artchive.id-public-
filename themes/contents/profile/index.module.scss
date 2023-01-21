@@ -1,8 +1,10 @@
+@use "/themes/styles/base/colors";
+
 .divider {
   width: 50%;
   min-width: 50%;
   margin: 0px auto 40px;
-  border-top: 1px solid #e5890a;
+  border-top: 1px solid colors.$fulvous;
   &.insideForm {
     margin: 0;
     margin-bottom: 30px;

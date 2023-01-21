@@ -1,3 +1,5 @@
+@use "/themes/styles/base/colors";
+
 .card {
   display: flex;
   margin: 24px 12px;
@@ -49,7 +51,7 @@
   font-weight: 700;
   font-size: 24px;
   font-family: Aileron;
-  color: #e5890a;
+  color: colors.$fulvous;
 }
 
 .description {
@@ -81,11 +83,11 @@
   font-size: 22px;
   cursor: pointer;
   transition: all 0.3s ease;
-  color: #140c01;
+  color: colors.$smoky-black;
   &:hover {
     svg {
       path {
-        color: #e5890a;
+        color: colors.$fulvous;
       }
     }
   }

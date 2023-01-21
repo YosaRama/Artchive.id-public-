@@ -1,3 +1,5 @@
+@use "/themes/styles/base/colors";
+
 .collapse {
   // background-color: #f5ebe1;
   width: 100%;
@@ -14,7 +16,7 @@
     font-weight: 700;
     margin-bottom: 0px;
     span {
-      color: #e5890a;
+      color: colors.$fulvous;
     }
   }
 }

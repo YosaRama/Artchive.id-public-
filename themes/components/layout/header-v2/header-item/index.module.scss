@@ -1,3 +1,5 @@
+@use "/themes/styles/base/colors";
+
 .container {
   background: #f8f5f0 !important;
   padding: 0 !important;
@@ -66,7 +68,7 @@
         cursor: pointer;
         &:hover {
           width: auto;
-          color: #e5890a;
+          color: colors.$fulvous;
           transition: all 300ms ease;
         }
       }
@@ -89,7 +91,7 @@
         width: auto;
         height: 10px;
         line-height: 10px;
-        color: #e5890a;
+        color: colors.$fulvous;
         font-size: 10px;
       }
 
@@ -102,7 +104,7 @@
         cursor: pointer;
         &:hover {
           transition: all 300ms ease;
-          color: #e5890a !important;
+          color: colors.$fulvous !important;
           text-decoration: underline;
         }
       }
@@ -115,7 +117,7 @@
 }
 
 .dot1 {
-  background-color: #e5890a;
+  background-color: colors.$fulvous;
   border-radius: 100%;
   width: 15px;
   height: 15px;
@@ -131,7 +133,7 @@
 }
 
 .dot2 {
-  background-color: #e5890a;
+  background-color: colors.$fulvous;
   border-radius: 100%;
   width: 15px;
   height: 15px;
@@ -180,7 +182,7 @@
       cursor: pointer;
       &:hover {
         width: auto;
-        color: #e5890a;
+        color: colors.$fulvous;
         transition: all 300ms ease;
       }
     }
@@ -204,7 +206,7 @@
       width: auto;
       height: 10px;
       line-height: 10px;
-      color: #e5890a;
+      color: colors.$fulvous;
       font-size: 10px;
     }
 
@@ -217,7 +219,7 @@
       cursor: pointer;
       &:hover {
         transition: all 300ms ease;
-        color: #e5890a !important;
+        color: colors.$fulvous !important;
         text-decoration: underline;
       }
     }

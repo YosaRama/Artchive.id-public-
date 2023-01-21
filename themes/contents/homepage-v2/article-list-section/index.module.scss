@@ -1,5 +1,7 @@
+@use "/themes/styles/base/colors";
+
 .articleContainer {
-  background: white;
+  background: colors.$white;
   padding: 80px 0px;
   .pageTitle {
     margin: 0px 0px 40px;

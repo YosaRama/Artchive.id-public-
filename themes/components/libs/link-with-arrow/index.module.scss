@@ -1,3 +1,5 @@
+@use "/themes/styles/base/colors";
+
 .textContainer {
-  color: #e5890a;
+  color: colors.$fulvous;
 }
