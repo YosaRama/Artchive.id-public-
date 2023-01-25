@@ -120,19 +120,19 @@ function ThemesContentsSignIn() {
           <Divider style={{ color: "grey", margin: "0px" }}>OR</Divider>
 
           <section className={s.formSection}>
-            <Col style={{ textAlign: "left" }}>
+            {/* <Col style={{ textAlign: "left" }}>
               <p>
                 <ExclamationCircleOutlined /> Hello Artchive.id users! Now you can sign into your
                 account with just your{" "}
                 <span style={{ color: "#e5890a" }}>phone number or Whatsapp number</span>. Try to
                 fill your phone number or Whatsapp number and click sign ini button.
               </p>
-            </Col>
+            </Col> */}
             <Col span={24}>
               <Form layout="vertical" form={form}>
-                <Form.Item name="phone number" label="Phone Number">
+                {/* <Form.Item name="phone number" label="Phone Number">
                   <Input addonBefore="+62" placeholder="Phone Number or Whatsapp Number" />
-                </Form.Item>
+                </Form.Item> */}
                 <Form.Item name="email" label="Email">
                   <Input placeholder="Email Address" />
                 </Form.Item>

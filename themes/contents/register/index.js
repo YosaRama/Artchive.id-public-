@@ -1,6 +1,6 @@
 // Libs
 import Image from "next/image";
-import { Button, Col, Form, Input, Radio, Row, Tooltip } from "antd";
+import { Button, Col, Form, Input, Radio, Row, Tooltip, Checkbox } from "antd";
 import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
@@ -112,17 +112,26 @@ function ThemesContentsRegister() {
 
           <section className={s.formSection}>
             <Col span={24}>
-              <Col style={{ textAlign: "left", padding: "0px" }}>
+              {/* <Col style={{ textAlign: "left", padding: "0px" }}>
                 <p>
                   <ExclamationCircleOutlined /> Hello Artchive.id users! Now you can register your
                   account with just your{" "}
                   <span style={{ color: "#e5890a" }}>phone number or Whatsapp number</span>.
                 </p>
-              </Col>
+              </Col> */}
               <Form layout="vertical" form={form}>
-                <Form.Item name="phone number" label="Phone Number">
-                  <Input addonBefore="+62" placeholder="Phone Number or Whatsapp Number" />
+                <Form.Item
+                  name="email"
+                  rules={[{ required: true, type: "email", message: "Please input your email!" }]}
+                >
+                  <Input placeholder="Email Address" />
                 </Form.Item>
+                <Form.Item name="password" rules={[passwordFormRules]}>
+                  <Input.Password placeholder="Password" />
+                </Form.Item>
+                {/* <Form.Item name="phone number" label="Phone Number">
+                  <Input addonBefore="+62" placeholder="Phone Number or Whatsapp Number" />
+                </Form.Item> */}
                 <Form.Item
                   name="fullName"
                   rules={[
@@ -173,6 +182,12 @@ function ThemesContentsRegister() {
                     </Radio.Group>
                   </Form.Item>
                 </Col>
+
+                <Row justify="space-between">
+                  <Col>
+                    <Checkbox>I Accept The Terms & Condition & Privacy Policy</Checkbox>
+                  </Col>
+                </Row>
               </Form>
             </Col>
           </section>
