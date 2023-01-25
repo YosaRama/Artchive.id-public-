@@ -211,7 +211,9 @@ function ThemesContentsCart(props) {
 
             <Col className={s.couponBtnContainer}>
               <Input className={s.couponInput} placeholder="Enter your coupon" />
-              <ThemesButton type={"outlined " + s.couponBtn}>SUBMIT</ThemesButton>
+              <ThemesButton disabled={true} type={"outlined " + s.couponBtn}>
+                SUBMIT
+              </ThemesButton>
             </Col>
           </Col>
         )}

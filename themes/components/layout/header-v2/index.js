@@ -27,6 +27,7 @@ function ThemesHeader() {
       router.pathname !== "/artist" &&
       router.pathname !== "/exhibition" &&
       router.pathname !== "/articles" &&
+      router.pathname !== "/genre" &&
       router.pathname !== "/about" ? (
         <>
           <motion.div variants={fadeTopToBottom} initial="hidden" animate="visible" exit="exit">

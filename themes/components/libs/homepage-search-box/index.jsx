@@ -25,7 +25,7 @@ function ThemesHomepageSearchBox() {
       {!session ? (
         <Col className={s.title}>
           <h1>
-            Enjoy Fascinating Art in This <span style={{ color: "#e5a03f" }}>Art Platform</span>{" "}
+            Your Trusted Online <span style={{ color: "#e5a03f" }}>Art Platform</span> Gallery
           </h1>
         </Col>
       ) : (
@@ -40,7 +40,7 @@ function ThemesHomepageSearchBox() {
           )}
 
           <h1>
-            Show Your Art in This <span style={{ color: "#e5a03f" }}>Art Platform</span>!
+            Show Your Art In This <span style={{ color: "#e5a03f" }}>Art Platform</span>!
           </h1>
         </Col>
       ) : userRole == "COLLECTOR" ? (
@@ -52,7 +52,8 @@ function ThemesHomepageSearchBox() {
           )}
 
           <h1>
-            Find Your Art Needs in This <span style={{ color: "#e5a03f" }}>Art Platform</span>!
+            Build Your Dream Art Collection In This{" "}
+            <span style={{ color: "#e5a03f" }}>Art Platform</span>!
           </h1>
         </Col>
       ) : userRole == "GALLERY" ? (

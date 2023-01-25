@@ -26,6 +26,7 @@ function ThemesFooterV2() {
     { title: "Artist", link: "/artist" },
     { title: "Exhibitions", link: "/exhibition" },
     { title: "Articles", link: "/articles" },
+    { title: "Genre", link: "/genre" },
   ];
 
   const footerMenu2 = [
@@ -42,6 +43,18 @@ function ThemesFooterV2() {
     // },
     { title: "info@artchive.id", link: "/", icon: <MailOutlined /> },
     { title: "+62 821-4566-3008", link: "/", icon: <PhoneOutlined /> },
+    {
+      title: "__artchive.id",
+
+      icon: <InstagramOutlined />,
+      link: "https://www.instagram.com/__artchive.id/",
+    },
+    {
+      title: "Artchive.id",
+
+      icon: <FacebookOutlined />,
+      link: "https://www.facebook.com/artchive.id/",
+    },
   ];
   // * ====================================== * //
 
@@ -111,31 +124,18 @@ function ThemesFooterV2() {
                     {item.icon}
                   </Col>
                   <Col>
-                    <Link href={item.link}>
+                    <Link href={item.link} passHref>
                       <a>{item.title}</a>
                     </Link>
                   </Col>
                 </Row>
               ))}
-
-              <Row gutter={(10, 10)} className={s.logoSocial}>
-                <Col className={s.logo}>
-                  <Link href="https://www.instagram.com/__artchive.id/" passHref>
-                    <InstagramOutlined />
-                  </Link>
-                </Col>
-                <Col className={s.logo}>
-                  <Link href="https://www.facebook.com/artchive.id/" passHref>
-                    <FacebookOutlined />
-                  </Link>
-                </Col>
-              </Row>
             </Col>
           </Row>
           <Divider className={s.divider} />
           <Row gutter={[0, 30]} span={24} className={s.bottomContainer}>
             <Col md={{ span: 12, order: 1 }} xs={{ span: 24, order: 2 }}>
-              <p>@ 2022 Artchive.id</p>
+              <p>@ {new Date().getFullYear()} Artchive.id</p>
             </Col>
             <Col
               xl={{ span: 8 }}

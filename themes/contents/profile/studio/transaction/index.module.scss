@@ -73,6 +73,32 @@
   width: 100%;
 }
 
+.menuItem {
+  font-weight: 700;
+  margin: 0;
+  width: 200px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+  &:global(.active) {
+    p {
+      background: #e5890a;
+      color: #fff;
+    }
+  }
+  p {
+    color: #000;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    background-color: transparent;
+    margin-bottom: 0;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+}
+
 .empty {
   width: 100%;
   background: white;
@@ -81,13 +107,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.menuItem {
-  width: 200px;
-  text-align: center;
-  height: 60px;
-  margin-top: 10px !important;
 }
 
 .menuRow {
@@ -134,10 +153,9 @@
 //? ============== Tablet Potrait(max-width: 768px) ============= ?//
 @media screen and (max-width: 768px) {
   .menuItem {
-    width: 120px;
+    width: 100%;
     text-align: center;
     height: 60px;
-    margin-top: 10px !important;
   }
 }
 
@@ -148,35 +166,27 @@
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
   }
-  .menuContainer {
-    padding: 0px !important;
-    margin: 40px 0px 24px;
-    border-radius: 15px;
-    // height: 5px;
-  }
 
   .menuContainer {
-    display: flex;
-
     align-items: center;
     font-size: 16px;
     font-weight: 700;
     background: white;
     margin: 40px 0px 24px;
     width: 100%;
-    flex: 1;
     display: flex;
     overflow: auto;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
   }
 
   .menuItem {
     text-align: center;
     background: white;
-    width: 80px;
-
     p {
-      position: relative;
-      top: 30%;
+      white-space: nowrap;
+      margin: 0px 10px;
+      padding: 5px 10px;
     }
   }
 

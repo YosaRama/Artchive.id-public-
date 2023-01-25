@@ -1,5 +1,5 @@
 // Libs
-import { Collapse, Col } from "antd";
+import { Collapse, Col, Space, Row } from "antd";
 import propTypes from "prop-types";
 
 // Components
@@ -18,21 +18,34 @@ function ThemesContentsHomepageV2FaqSection() {
   return (
     <Col>
       <ThemesContainerMain>
-        <Col span={16} className={s.container}>
-          <Collapse
-            bordered={false}
-            expandIconPosition="end"
-            defaultActiveKey={["1"]}
-            className={s.collapse}
-          >
+        <ThemesHeadline
+          title="Frequently Asked Question (FAQ)"
+          subtitle="Let's find out your curiousity"
+          className={s.pageTitle}
+        />
+        <Col
+          xl={{ span: 16 }}
+          lg={{ span: 16 }}
+          md={{ span: 16 }}
+          xs={{ span: 24 }}
+          className={s.container}
+        >
+          <Space direction="vertical" className={s.collapse}>
             {faqList.map((item, index) => {
               return (
-                <Panel header={item.header} key={item.key}>
-                  <p>{item.description}</p>
-                </Panel>
+                <Collapse
+                  expandIconPosition="end"
+                  // defaultActiveKey={["1"]}
+                  className={s.collapse}
+                  key={index}
+                >
+                  <Panel header={item.header} key={item.key}>
+                    <Row>{item.description}</Row>
+                  </Panel>
+                </Collapse>
               );
             })}
-          </Collapse>
+          </Space>
         </Col>
       </ThemesContainerMain>
     </Col>

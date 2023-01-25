@@ -6,28 +6,26 @@
 
 .artworkContainer {
   padding: 80px 0;
-  background-color: #fbf4ec;
-  // background-color: black;
 }
 .artistContainer {
   padding: 80px 0px 120px;
-  background-color: #f5ebe1;
 }
 
 //? ============== Role ============= ?//
 .roleContainer {
-  // background: #fbf4ec;
-  background-color: #f5ebe1;
+  background-color: #e5e5e5;
+
+  padding: 80px 0px;
+
   .pageTitle {
     margin-bottom: 80px;
   }
-  padding: 120px 0px 80px;
 }
 
-//? ============== Testimonials ============= ?//
+//? ============== Faq ============= ?//
 .faq {
   padding: 80px 0px;
-  background-color: #f5ebe1;
+  background-color: #ffffff;
 }
 //? ============== Testimonials ============= ?//
 
@@ -106,20 +104,28 @@
 @media screen and (max-width: 768px) {
   //? ============== Artist ============= ?//
   .curatorPickContainer {
-    margin: 80px 0px 80px;
+    margin: 80px 0px 40px;
   }
 
+  .artworkContainer {
+    padding: 40px 0;
+  }
   .artistContainer {
-    padding: 80px 0px 80px;
+    padding: 40px 0px 80px;
   }
   //? ============== Exhibition ============= ?//
 
   //? ============== Role ============= ?//
   .roleContainer {
     .pageTitle {
-      margin-bottom: 80px;
+      margin-bottom: 60px;
     }
-    padding: 80px 0px;
+    padding: 40px 0px;
+  }
+
+  //? ============== Faq ============= ?//
+  .faq {
+    padding: 40px 0px;
   }
 }
 // * ====================================== * //
@@ -127,7 +133,9 @@
 //? ============== Mobile Mode ============= ?//
 @media screen and (max-width: 500px) {
   //? ============== Article ============= ?//
-
+  .curatorPickContainer {
+    margin: 40px 0px 40px;
+  }
   .articleContainer {
     background: white;
     padding: 60px 0px;

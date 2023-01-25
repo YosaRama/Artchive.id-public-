@@ -38,19 +38,18 @@ function ThemesContentsHomepageV2(props) {
       {/* // * ====================================== * // */}
 
       {/* //? ============== Curators Artwork Section ============= ?// */}
-      {/* //TODO : Instead !== 0 use >= 3 because if only 1 curators pick visible in homepage, the design will be bad// */}
-      {curatorialPickData.length >= 3 ? (
+      {curatorialPickData?.length >= 3 ? (
         <section className={s.curatorPickContainer}>
           <ThemesContentsHomepageV2ArtworkArtistSection
             listData={curatorialPickData}
             title={
-              width > 500
+              width > 768
                 ? `<h1>The best <span>Artworks</span> picked by our Curators!</h1>`
-                : `<h1>Exclusive <span>Artworks</span></h1>`
+                : `<h1><span>Curator's Pick</span></h1>`
             }
             description={
               width > 500
-                ? "Artworks recommendations for you exclusively selected from our Curators! Find out more about the best artowork only on Artchive.id"
+                ? "Artworks recommendations for you exclusively selected from our Curators! Find out more about the best artwork only on Artchive.id"
                 : "Artworks recommendations for you exclusively selected from our Curators!"
             }
             buttonText="CURATORS PICK ARTWORK"
@@ -94,11 +93,13 @@ function ThemesContentsHomepageV2(props) {
           listData={artistData}
           title={
             width > 500
-              ? `<h1>Our New <span>Artists</span> with Stunning Talent!</h1>`
-              : `<h1>Our New <span>Artists</span>!</h1>`
+              ? `<h1>New <span>Artists</span> with Stunning Talent!</h1>`
+              : `<h1>New <span>Artists</span>!</h1>`
           }
           description={
-            "The artist is not a different kind of person, but every person is a different kind of artist."
+            width > 500
+              ? "The artist is not a different kind of person, but every person is a different kind of artist. Discover more new artist with outstanding talent!"
+              : "Discover more new artist with outstanding talent!"
           }
           buttonText="DISCOVER MORE ARTIST"
           buttonTextMobile="SEE MORE"
@@ -111,9 +112,14 @@ function ThemesContentsHomepageV2(props) {
       {/* // * ====================================== * // */}
 
       {/* //? ============== Exhibition List ============= ?// */}
-      <section>
-        <ThemesContentsHomepageV2ExhibitionListSection dataExhibition={exhibitionData} />
-      </section>
+      {exhibitionData?.length !== 0 ? (
+        <section>
+          <ThemesContentsHomepageV2ExhibitionListSection dataExhibition={exhibitionData} />
+        </section>
+      ) : (
+        ""
+      )}
+
       {/* // * ====================================== * // */}
 
       {/* //? ============== Our Roles ============= ?// */}
@@ -138,9 +144,14 @@ function ThemesContentsHomepageV2(props) {
       </section>
 
       {/* //? ============== Article Section ============= ?// */}
-      <section>
-        <ThemesContentsHomepageV2ArticleListSection dataList={articleData} />
-      </section>
+      {articleData.length !== 0 ? (
+        <section>
+          <ThemesContentsHomepageV2ArticleListSection dataList={articleData} />
+        </section>
+      ) : (
+        ""
+      )}
+
       {/* // * ====================================== * // */}
 
       {/* //? ============== What We Offer Section ============= ?// */}
@@ -151,11 +162,6 @@ function ThemesContentsHomepageV2(props) {
 
       {/* //? ============== Frequently Asked Question Section ============= ?// */}
       <section className={s.faq}>
-        <ThemesHeadline
-          title="Frequently Asked Question"
-          subtitle="Let's find out your curiousity"
-          className={s.pageTitle}
-        />
         <ThemesContentsHomepageV2FaqSection />
       </section>
       {/* // * ====================================== * // */}

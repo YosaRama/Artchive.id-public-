@@ -14,20 +14,16 @@ import { CREATE_MAIN_MEDIA } from "app/database/query/media";
 
 const apiHandler = nextConnect();
 
-//? ============== AWS CONFIGURATION ============= ?//
-
+//#region AWS CONFIGURATION
 aws.config.update({
   accessKeyId: process.env.S3_ACCESS_KEY_ID,
   secretAccessKey: process.env.S3_SECRET_KEY_ID,
 });
 const bucketName = process.env.S3_BUCKET_NAME;
 const s3 = new aws.S3();
+//#endregion
 
-// * ====================================== * //
-
-//? ============== STORAGE CONFIGURATION ============= ?//
-
-// S3 Sharp Storage
+//#region STORAGE CONFIGURATION
 const sharpStorage = multerS3Sharp({
   s3,
   Bucket: bucketName,
@@ -52,9 +48,9 @@ const sharpStorage = multerS3Sharp({
 const sharpUpload = multer({
   storage: sharpStorage,
 });
-// ===================
+//#endregion
 
-// S3 Storage without sharping
+//#region S3 Storage without sharping
 const storage = multerS3({
   s3: s3,
   bucket: bucketName,
@@ -75,33 +71,21 @@ const storage = multerS3({
 const s3Upload = multer({
   storage: storage,
 });
-// ===================
+//#endregion
 
-//? ============== Handle upload ============= ?//
+//#region Handle upload
 const upload = process.env.IS_STAGING == "true" ? s3Upload : sharpUpload;
-// * ====================================== * //
+//#endregion
 
-// Without Storage
-// const upload = multer();
-// ===================
-
-// * ====================================== * //
-
-//? ============== UPLOAD API ============= ?//
-
-// Upload with multer s3 sharp
+//#region UPLOAD API
 apiHandler.post(upload.single("uploadFile"), async (req, res) => {
-  //? ============== Handle Session ============= ?//
   const session = await getSession({ req });
-  // * ====================================== * //
 
-  //? ============== Handle File ============= ?//
   const file = req.file;
   const filename = file.originalname;
   const mimetype = file.mimetype;
   const mainUrl = file.original ? file.original?.Key : file.key;
   const mediumUrl = file.medium?.Key;
-  // * ====================================== * //
 
   try {
     const mainResult = await CREATE_MAIN_MEDIA({
@@ -120,56 +104,14 @@ apiHandler.post(upload.single("uploadFile"), async (req, res) => {
       .json({ success: false, file: file, message: "Failed upload file", error: error.message });
   }
 });
-// ========================
+//#endregion
 
-// Upload with multer s3
-// apiHandler.post(s3Upload.single("uploadFile"), async (req, res) => {
-//   const file = req.file;
-//   const filename = file.originalname;
-//   const mimetype = file.mimetype;
-//   const url = file.location.replace(`${process.env.NEXT_PUBLIC_S3_URL}/`, "");
-//   try {
-//     const result = await CREATE_MAIN_MEDIA({ filename: filename, mimetype: mimetype, url: url });
-//     if (result) {
-//       res.status(200).json({ success: true, file: file, data: result });
-//     } else {
-//       res.status(200).json({ success: false, file: file, data: result });
-//     }
-//   } catch (error) {
-//     res.status(200).json({ success: false, file: file, message: "Failed upload file" });
-//   }
-// });
-// ========================
-
-// Upload with AWS-SDK
-// apiHandler.post(upload.single("uploadFile"), async (req, res) => {
-//   s3.upload(
-//     {
-//       Bucket: process.env.S3_BUCKET_NAME,
-//       ACL: "public-read",
-//       ContentType: req.file.mimetype,
-//       Body: req.file.buffer,
-//       Key: "image-test.jpg",
-//     },
-//     function (err, data) {
-//       if (!err) {
-//         res.status(200).json({ data });
-//       }
-//     }
-//   );
-// });
-// ==========================
-
-// * ====================================== * //
-
-//? ============== API CONFIGURATION ============= ?//
-
+//#region API CONFIGURATION
 export const config = {
   api: {
     bodyParser: false, // Disallow body parsing, consume as stream
   },
 };
-
-// * ====================================== * //
+//#endregion
 
 export default apiHandler;

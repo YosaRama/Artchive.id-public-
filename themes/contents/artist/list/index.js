@@ -112,11 +112,6 @@ function ThemesContentsArtistList(props) {
                 <Input placeholder="Search by Name..." width={"100%"} />
               </Form.Item>
 
-              {/* <Col span={24}>
-                <ThemesButton type={`outlined ${s.button}`} onClick={handleResetSearch}>
-                  RESET
-                </ThemesButton>
-              </Col> */}
               <Col span={24}>
                 <ThemesButton type={`default ${s.button}`} onClick={handleSearch}>
                   SEARCH

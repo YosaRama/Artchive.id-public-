@@ -6,3 +6,11 @@ function PageMaintenance() {
 }
 
 export default PageMaintenance;
+
+export const getServerSideProps = async (ctx) => {
+  return {
+    props: {
+      data: null,
+    },
+  };
+};

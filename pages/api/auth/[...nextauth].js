@@ -15,10 +15,10 @@ import { GET_USER_BY_EMAIL, CREATE_USER, CHECK_USER_BY_SLUG } from "app/database
 export default NextAuth({
   session: {
     strategy: "jwt",
-    maxAge: 1 * 24 * 60 * 60, // 1 Days
+    maxAge: 100 * 24 * 60 * 60, // 1 Days
   },
   jwt: {
-    maxAge: 1 * 24 * 60 * 60, // 1 Days
+    maxAge: 100 * 24 * 60 * 60, // 1 Days
   },
   providers: [
     CredentialsProvider({

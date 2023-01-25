@@ -11,3 +11,11 @@ function PageContactUs() {
 }
 
 export default PageContactUs;
+
+export const getStaticProps = async (ctx) => {
+  return {
+    props: {
+      data: null,
+    },
+  };
+};
