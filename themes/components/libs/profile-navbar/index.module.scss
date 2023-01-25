@@ -1,3 +1,5 @@
+@use "/themes/styles/base/colors";
+
 .container {
   background-color: #fff;
   height: calc(100vh - 64px);
@@ -55,14 +57,14 @@
   &:hover {
     svg {
       path {
-        fill: #e5890a;
+        fill: colors.$fulvous;
       }
     }
   }
   &.active {
     svg {
       path {
-        fill: #e5890a;
+        fill: colors.$fulvous;
       }
     }
   }

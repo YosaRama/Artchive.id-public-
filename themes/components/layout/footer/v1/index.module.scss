@@ -1,9 +1,11 @@
+@use "/themes/styles/base/colors";
+
 .footer {
   padding: 0 !important;
 }
 
 .section {
-  background: #140c01;
+  background: colors.$smoky-black;
 }
 
 .topContainer {
@@ -30,7 +32,7 @@
         font-weight: bold;
         transition: all 0.3s ease;
         &:hover {
-          color: #e5890a;
+          color: colors.$fulvous;
         }
       }
     }
@@ -77,7 +79,7 @@
       font-weight: normal;
       transition: all 0.3s ease;
       &:hover {
-        color: #e5890a;
+        color: colors.$fulvous;
       }
     }
   }

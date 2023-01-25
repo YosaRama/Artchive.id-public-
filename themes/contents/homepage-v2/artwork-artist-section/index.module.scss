@@ -1,3 +1,5 @@
+@use "/themes/styles/base/colors";
+
 .container {
   display: flex;
   justify-content: space-between;
@@ -13,7 +15,7 @@
       line-height: 55px;
 
       span {
-        color: #e5890a;
+        color: colors.$fulvous;
       }
     }
     p {
@@ -33,7 +35,7 @@
   .btn {
     padding: 0px !important;
     margin-top: 20px;
-    color: white;
+    color: colors.$white;
   }
 }
 
@@ -66,7 +68,7 @@
   }
   /* Handle on hover */
   &::-webkit-scrollbar-thumb:hover {
-    background: #e5890a !important;
+    background: colors.$fulvous !important;
     transition: 300ms all ease;
   }
 }

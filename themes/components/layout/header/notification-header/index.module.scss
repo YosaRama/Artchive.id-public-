@@ -1,3 +1,5 @@
+@use "/themes/styles/base/colors";
+
 .deleteNotif,
 .readNotif {
   color: black;
@@ -7,7 +9,7 @@
   cursor: pointer;
   &:hover {
     transition: all 300ms ease;
-    color: #e5890a;
+    color: colors.$fulvous;
   }
 }
 
@@ -18,7 +20,7 @@
 .card {
   padding: 12px;
 
-  background: white;
+  background: colors.$white;
   border-radius: 10px;
   width: 380px;
   height: auto;
@@ -38,7 +40,7 @@
   color: #c4c4c4;
   transition: all 300ms ease;
   &:active {
-    color: #e5890a;
+    color: colors.$fulvous;
     transition: all 300ms ease;
   }
   &:hover {
@@ -57,7 +59,7 @@
   justify-content: center;
   &:hover {
     transition: all 300ms ease;
-    color: #e5890a;
+    color: colors.$fulvous;
     transform: rotateZ(180deg);
   }
 }

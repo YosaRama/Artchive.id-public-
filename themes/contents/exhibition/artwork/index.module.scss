@@ -1,3 +1,5 @@
+@use "/themes/styles/base/colors";
+
 .section {
   margin: 30px 0;
 }
@@ -22,7 +24,7 @@
 .artistAvatar {
   width: 200px;
   height: 200px;
-  border: 5px solid #e5890a;
+  border: 5px solid colors.$fulvous;
   margin: 10px 0;
 }
 
@@ -50,7 +52,7 @@
 }
 
 .artistDivider {
-  background-color: #e5890a;
+  background-color: colors.$fulvous;
   height: 5px;
 }
 

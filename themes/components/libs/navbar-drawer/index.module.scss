@@ -1,3 +1,5 @@
+@use "/themes/styles/base/colors";
+
 .container {
   height: 100%;
   position: relative;
@@ -34,15 +36,15 @@
 }
 
 .divider {
-  color: #e5890a !important;
-  border-top: 3px solid #e5890a !important;
+  color: colors.$fulvous !important;
+  border-top: 3px solid colors.$fulvous !important;
 }
 
 .footerSection {
   position: relative;
   bottom: 0;
   left: 0;
-  background-color: #e0e0e0;
+  background-color: colors.$gainsboro;
   width: 100%;
   height: 100%;
   display: flex;
@@ -66,15 +68,15 @@
 }
 
 .phone {
-  color: #140c01;
+  color: colors.$smoky-black;
 }
 
 .socialIcon {
-  color: #140c01 !important;
+  color: colors.$smoky-black !important;
   margin-top: 5px;
   font-size: 18px;
   margin-right: 5px;
   &:hover {
-    color: #e5890a !important;
+    color: colors.$fulvous !important;
   }
 }

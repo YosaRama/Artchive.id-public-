@@ -1,3 +1,5 @@
+@use "/themes/styles/base/colors";
+
 .headline {
   margin: 40px 0px 40px;
 }
@@ -9,7 +11,7 @@
 
 .checkoutItemContainer {
   padding: 24px;
-  background: white;
+  background: colors.$white;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
@@ -26,7 +28,7 @@
   height: auto;
   h2 {
     font-size: 24px !important;
-    color: white;
+    color: colors.$white;
     margin: 0px;
     font-weight: 700;
   }
@@ -51,7 +53,7 @@
 }
 
 .logoPaymentContainer {
-  background: white;
+  background: colors.$white;
   padding: 12px;
   margin-bottom: 24px;
   display: flex;

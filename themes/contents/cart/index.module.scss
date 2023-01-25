@@ -1,3 +1,5 @@
+@use "/themes/styles/base/colors";
+
 .title {
   font-size: 24px;
   margin: 0px;
@@ -16,12 +18,12 @@
 
 .cartContainerMain {
   padding: 40px 40px 10px 40px;
-  background: white;
+  background: colors.$white;
   margin-bottom: 24px;
 }
 
 .shippingSection {
-  background: white;
+  background: colors.$white;
   padding: 20px 40px;
   margin-bottom: 24px;
   height: auto;
@@ -49,7 +51,7 @@
 
 .couponItem {
   width: 100%;
-  background: white;
+  background: colors.$white;
   display: flex;
   height: 90px;
   padding: 40px;
@@ -87,18 +89,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #140c01;
+  background: colors.$smoky-black;
   margin-bottom: 40px;
   padding: 40px;
   h1 {
-    color: white !important;
+    color: colors.$white !important;
     font-size: 32px;
-    color: #e5890a !important;
+    color: colors.$fulvous !important;
     margin: 0px;
     font-family: "Aileron" !important;
   }
   h3 {
-    color: white !important;
+    color: colors.$white !important;
     font-size: 18px;
     margin: 0px;
   }
@@ -141,14 +143,14 @@
 .emptyContainer {
   margin: 24px 0px;
   padding: 50px 0px;
-  background: white;
+  background: colors.$white;
   display: flex;
   justify-content: center;
   .emptyCartLogo {
     height: 200px;
     width: 200px;
     margin: 0px auto 20px;
-    background: #e5890a80;
+    background: colors.$fulvous80;
     border-radius: 100%;
   }
   .emptyImage {
@@ -224,7 +226,7 @@
 @media screen and (max-width: 500px) {
   .cartContainerMain {
     padding: 20px 20px 0px 20px;
-    background: white;
+    background: colors.$white;
     margin-bottom: 24px;
   }
 

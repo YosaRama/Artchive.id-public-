@@ -1,3 +1,5 @@
+@use "/themes/styles/base/colors";
+
 .modalItemContainer {
   max-height: 400px;
   overflow-y: hidden;
@@ -15,7 +17,7 @@
     background-color: transparent;
   }
   &::-webkit-scrollbar-thumb {
-    background-image: linear-gradient(180deg, #e5890a 0%, #ffa82e 99%);
+    background-image: linear-gradient(180deg, colors.$fulvous 0%, #ffa82e 99%);
     border-radius: 100px;
   }
 }
@@ -48,14 +50,14 @@
   width: auto;
   cursor: pointer;
   a {
-    color: white !important;
+    color: colors.$white !important;
     width: auto;
     font-size: 16px;
     transition: all 300ms ease;
     padding: 0px !important;
     &:hover {
       transition: all 300ms ease;
-      color: #e5890a !important;
+      color: colors.$fulvous !important;
       // font-weight: 700;
       text-decoration: underline;
     }

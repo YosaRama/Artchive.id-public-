@@ -1,3 +1,5 @@
+@use "/themes/styles/base/colors";
+
 .artistDetailsSection {
   margin: 50px 0;
 }
@@ -79,12 +81,12 @@
   font-size: 24px;
   cursor: pointer;
   transition: all 0.3s ease;
-  color: #140c01;
+  color: colors.$smoky-black;
   &:hover {
-    color: #e5890a;
+    color: colors.$fulvous;
     svg {
       path {
-        fill: #e5890a;
+        fill: colors.$fulvous;
       }
     }
   }

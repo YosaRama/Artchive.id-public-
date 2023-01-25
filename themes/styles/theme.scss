@@ -1,5 +1,11 @@
-//? ===================== Custom Font ========================== ?//
+@use "./responsive-max-1365";
+@use "./responsive-max-1024";
+@use "./responsive-max-768";
+@use "./responsive-max-500";
 
+@use "./base/colors";
+
+//? ===================== Custom Font ========================== ?//
 @font-face {
   font-family: "DM_serif_display";
   src: local("DM_Serif_Display"),
@@ -26,13 +32,6 @@
 
 //* ============================================================ *//
 
-//? ===================== Custom Color ========================== ?//
-
-$fulvous: #e5890a;
-$smoky-black: #140c01;
-$gainsboro: #e0e0e0;
-$white: #ffffff;
-
 //* ============================================================ *//
 
 //? ============== General Styling ============= ?//
@@ -50,22 +49,22 @@ $white: #ffffff;
 // Page Button
 .page-button {
   &.default {
-    background: $fulvous;
-    color: $white;
-    border: 2px solid $fulvous;
+    background: colors.$fulvous;
+    color: colors.$white;
+    border: 2px solid colors.$fulvous;
 
     &:hover {
       background: transparent;
       border: 2px solid #e5a03f;
-      color: $fulvous;
+      color: colors.$fulvous;
     }
   }
   &.outlined {
-    border: 1px solid $smoky-black;
-    color: $smoky-black;
+    border: 1px solid colors.$smoky-black;
+    color: colors.$smoky-black;
     &:hover {
-      background: $smoky-black;
-      color: $white;
+      background: colors.$smoky-black;
+      color: colors.$white;
     }
   }
 }
@@ -229,14 +228,14 @@ $white: #ffffff;
     .managepage-content-icon {
       width: 150px;
       height: 150px;
-      background-color: #140c01;
+      background-color: colors.$smoky-black;
       border-radius: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
       margin-bottom: 30px;
       span {
-        fill: #e0e0e0;
+        fill: colors.$gainsboro;
         width: 60%;
         height: 60%;
       }
@@ -252,11 +251,7 @@ $white: #ffffff;
 #about {
   background-color: red;
 }
-// ====================================
 
-// Artist Details Page
-.artistDetails-card {
-}
 // ====================================
 
 // * ====================================== * //
@@ -311,19 +306,3 @@ $white: #ffffff;
     color: #ffffff;
   }
 }
-// =================================
-
-.xx {
-  color: black;
-}
-
-// * ====================================== * //
-
-//? =================== Responsive =========================== ?//
-
-@import "responsive-max-1365";
-@import "responsive-max-1024";
-@import "responsive-max-768";
-@import "responsive-max-500";
-
-// * ====================================== * //

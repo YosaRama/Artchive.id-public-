@@ -1,3 +1,5 @@
+@use "/themes/styles/base/colors";
+
 .subTotalContainer {
   display: flex;
   justify-content: flex-end;
@@ -21,7 +23,7 @@
       height: 100%;
       margin: auto 0px;
       text-align: right;
-      color: #e5890a;
+      color: colors.$fulvous;
       font-size: 18px;
       font-weight: 400;
       font-family: "Aileron" !important;
@@ -64,7 +66,7 @@
   height: 100%;
   margin: auto 0px;
   text-align: right;
-  color: #e5890a;
+  color: colors.$fulvous;
   font-size: 18px;
   font-weight: 700;
   font-family: "Aileron" !important;

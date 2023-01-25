@@ -1,9 +1,11 @@
+@use "/themes/styles/base/colors";
+
 .carousel {
   width: auto;
   margin: 0px auto;
   :global(.slick-arrow) {
     border-radius: 10%;
-    background-color: #e5890a !important;
+    background-color: colors.$fulvous !important;
     opacity: 1;
     width: 40px;
     height: 50px;
@@ -15,7 +17,7 @@
     }
     &::before {
       font-size: 24px;
-      color: white;
+      color: colors.$white;
       display: block;
       margin-bottom: 5px;
     }
@@ -41,14 +43,14 @@
   }
   :global(.slick-dots li.slick-active) {
     position: relative;
-    background: #e5890a;
+    background: colors.$fulvous;
     content-visibility: hidden;
   }
 }
 
 .menuItem {
   text-align: center;
-  background: white;
+  background: colors.$white;
   height: 50px;
   margin: 20px 0px 0px;
   position: relative;
@@ -62,7 +64,7 @@
     content: "";
     width: 0;
     height: 2px;
-    background: #e5890a;
+    background: colors.$fulvous;
     transition: all 0.3s ease;
     position: absolute;
     bottom: 0;
@@ -70,7 +72,7 @@
   }
   &.active {
     p {
-      color: #e5890a;
+      color: colors.$fulvous;
       position: relative;
     }
     &::after {

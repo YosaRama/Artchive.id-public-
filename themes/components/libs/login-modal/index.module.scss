@@ -1,3 +1,5 @@
+@use "/themes/styles/base/colors";
+
 // .imageContainerLogin {
 //   top: -82px;
 //   left: 12px;
@@ -94,7 +96,7 @@
   font-size: 12px;
   margin: 3px 3px 20px 3px;
   &:hover {
-    color: #e5890a;
+    color: colors.$fulvous;
     transition: all 300ms ease;
   }
 }
