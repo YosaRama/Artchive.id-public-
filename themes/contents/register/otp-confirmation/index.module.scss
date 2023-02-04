@@ -4,25 +4,24 @@
   width: 100%;
   text-align: center;
   margin: 80px 0px;
-  height: auto;
+  height: 100%;
+  flex-direction: column;
   .containerLogo {
     display: flex;
     justify-content: center;
     margin-bottom: 40px;
-    .otpLogo {
-      width: 150px;
+
+    img {
+      width: 120px;
       height: auto;
-      img {
-        width: 150px;
-        height: auto;
-      }
     }
   }
   .otp {
+    background: colors.$white;
     margin: 40px auto;
     padding: 10px;
     width: 470px;
-    height: auto;
+    height: 100%;
     border: 1px solid colors.$fulvous;
     border-radius: 15px;
     display: flex;
@@ -31,9 +30,17 @@
     span {
       font-size: 42px;
     }
-    .placeholder {
-      font-size: 42px !important;
-      background-color: transparent;
+
+    .input {
+      width: 60px;
+      margin-right: 8px;
+      height: 100% !important;
+      font-size: 42px;
+      font-family: "DM Serif Display";
+      font-weight: 700;
+      h1 {
+        margin: 0px;
+      }
     }
   }
 
@@ -44,7 +51,7 @@
   .resend {
     cursor: pointer;
     transition: 300ms all ease;
-
+    color: colors.$fulvous;
     &:hover {
       color: colors.$fulvous;
       transition: 300ms all ease;
@@ -75,29 +82,31 @@
 @media screen and (max-width: 500px) {
   .container {
     margin: 40px 0px;
-
     .containerLogo {
       margin-bottom: 20px;
-      .otpLogo {
-        width: 90px;
-
-        img {
-          width: 90px;
-        }
+      img {
+        width: 120px;
       }
     }
 
     .otp {
-      margin: 30px auto;
+      margin: 20px auto;
       padding: 10px;
       width: 100%;
 
       span {
         font-size: 28px;
       }
-      .placeholder {
+      .input {
         font-size: 28px !important;
         background-color: transparent;
+        width: 40px;
+        margin-right: 4px;
+        height: 100% !important;
+
+        h1 {
+          margin: 0px;
+        }
       }
     }
 
