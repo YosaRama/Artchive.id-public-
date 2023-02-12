@@ -11,7 +11,7 @@ import ThemesHeadline from "themes/components/libs/headline";
 import s from "./index.module.scss";
 
 function ThemesContentOtpConfirmation() {
-  const [otp, setOtp] = useState(["", "", "", ""]);
+  const [otp, setOtp] = useState(["", "", "", "", "", ""]);
 
   const handleChange = (e, index) => {
     const newOtp = [...otp];
@@ -51,27 +51,47 @@ function ThemesContentOtpConfirmation() {
             <Form>
               <Form.Item>
                 <Input.Group>
-                  <Col className={s.otp}>
-                    <Col span={7} style={{ fontSize: "42px" }} className={s.input}>
+                  <Row justify={"center"} className={s.otp}>
+                    <Col span={4} style={{ fontSize: "42px" }} className={s.input}>
                       <h1>ART -</h1>
                     </Col>
-                    <Col span={16} style={{ display: "flex" }}>
+                    <Col span={18} style={{ display: "flex" }}>
                       {otp.map((item, index) => {
-                        return (
-                          <Col span={6} key={index}>
-                            <Input
-                              id={`input-${index}`}
-                              type="text"
-                              value={item}
-                              onChange={(e) => handleChange(e, index)}
-                              maxLength={1}
-                              className={s.input}
-                            />
-                          </Col>
-                        );
+                        if (index === 3) {
+                          return (
+                            <>
+                              <Col span={2} style={{ fontSize: "42px" }} className={s.input}>
+                                <h1>-</h1>
+                              </Col>
+                              <Col span={3} key={index}>
+                                <Input
+                                  id={`input-${index}`}
+                                  type="text"
+                                  value={item}
+                                  onChange={(e) => handleChange(e, index)}
+                                  maxLength={1}
+                                  className={s.input}
+                                />
+                              </Col>
+                            </>
+                          );
+                        } else {
+                          return (
+                            <Col span={3} key={index}>
+                              <Input
+                                id={`input-${index}`}
+                                type="text"
+                                value={item}
+                                onChange={(e) => handleChange(e, index)}
+                                maxLength={1}
+                                className={s.input}
+                              />
+                            </Col>
+                          );
+                        }
                       })}
                     </Col>
-                  </Col>
+                  </Row>
                 </Input.Group>
               </Form.Item>
             </Form>

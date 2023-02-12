@@ -1,6 +1,6 @@
 // Components
 import Title from "antd/lib/skeleton/Title";
-import ThemesContentOtpConfirmation from "themes/contents/register/otp-confirmation";
+import ThemesContentOtpConfirmation from "themes/contents/otp-confirmation";
 
 function PageRegisterOtpConfirmation(props) {
   return (

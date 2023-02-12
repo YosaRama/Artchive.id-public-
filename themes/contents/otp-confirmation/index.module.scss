@@ -20,13 +20,10 @@
     background: colors.$white;
     margin: 40px auto;
     padding: 10px;
-    width: 470px;
+    width: auto;
     height: 100%;
     border: 1px solid colors.$fulvous;
     border-radius: 15px;
-    display: flex;
-    justify-content: space-evenly;
-    flex-direction: row;
     span {
       font-size: 42px;
     }
