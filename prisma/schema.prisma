@@ -17,6 +17,7 @@ model User {
   full_name          String
   slug               String                 @unique
   password           String?
+  phone_number       String?                @unique
   profile            Media?                 @relation("profile", fields: [profile_img_id], references: [id])
   profile_img_id     Int?                   @unique
   signature          Media?                 @relation("signature", fields: [signature_id], references: [id])
@@ -298,6 +299,7 @@ enum CertificateType {
 
 enum AuthProvider {
   CREDENTIALS
+  PHONE_NUMBER
   GOOGLE
   FACEBOOK
 }
