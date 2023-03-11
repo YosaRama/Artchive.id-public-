@@ -1,4 +1,5 @@
 import NextAuth from "next-auth";
+import moment from "moment";
 
 // Provider
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -56,22 +57,21 @@ export default NextAuth({
         }
 
         if (loginMethod === "phone") {
-          const userPhone = {
-            phone: credentials.phoneNumber,
-          };
-          const userFound = await GET_USER_BY_PHONE_NUMBER({ phoneNumber: userPhone.phone });
-          sendOtpMessage({
-            phoneNumber: credentials.phoneNumber,
-            fullName: userFound.full_name,
-            otpCode: generateOtp(),
+          const userFound = await GET_USER_BY_PHONE_NUMBER({
+            phoneNumber: credentials.phone,
           });
-          if (!userFound) {
-            throw new Error("User account doesn't exist. Enter a different account!");
+          const currentTime = moment();
+          const tokenExpired = userFound.otp_expired_date;
+          const isValid =
+            currentTime.isBefore(moment(tokenExpired)) && credentials.otp === userFound.otp_code;
+
+          if (isValid) {
+            return { message: "Successfully Login", user: userFound };
           }
-          if (!userFound.status) {
-            throw Error("INACTIVE");
+
+          if (!isValid) {
+            throw new Error("Your OTP is not valid, Please resend and try it again!");
           }
-          return { message: "Successfully Login", user: userFound };
         }
       },
     }),

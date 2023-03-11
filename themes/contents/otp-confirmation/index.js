@@ -1,5 +1,8 @@
 // Libs
 import { Col, Row, Image, Input, Form } from "antd";
+import { ErrorNotification } from "app/components/utils/notification";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 //Components
@@ -12,9 +15,10 @@ import s from "./index.module.scss";
 
 function ThemesContentOtpConfirmation() {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
+  const router = useRouter();
 
+  //#region Handle change input
   const handleChange = (e, index) => {
-    console.log("change", e);
     const newOtp = [...otp];
     newOtp[index] = e.target.value;
     setOtp(newOtp);
@@ -24,7 +28,9 @@ function ThemesContentOtpConfirmation() {
       nextInput?.focus();
     }
   };
+  //#endregion
 
+  //#region Handle key down
   const handleKeyDown = (e, index) => {
     if (e.key === "Backspace" && otp[index] === "") {
       const prevInput = document.getElementById(`input-${index - 1}`);
@@ -37,6 +43,25 @@ function ThemesContentOtpConfirmation() {
       setOtp(newOtp);
     }
   };
+  //#endregion
+
+  //#region Handle verification
+  const handleVerification = async () => {
+    const otpParse = otp.join("");
+    const otpCode = `ART-${otpParse.slice(0, 3)}-${otpParse.slice(3)}`;
+    const login = await signIn("credentials", {
+      redirect: false,
+      phone: router.query.phone,
+      otp: otpCode,
+      type: "phone",
+    });
+    if (!login.error) {
+      router.push("/profile");
+    } else {
+      ErrorNotification({ message: "Login Failed!", description: login.error });
+    }
+  };
+  //#endregion
 
   return (
     <Col>
@@ -114,7 +139,9 @@ function ThemesContentOtpConfirmation() {
               </Form.Item>
             </Form>
 
-            <ThemesButton type={"primary " + s.btn}>VERIFY</ThemesButton>
+            <ThemesButton type={"primary " + s.btn} onClick={handleVerification}>
+              VERIFY
+            </ThemesButton>
             <p>
               Not receiving any OTP notification? <span className={s.resend}>Resend again</span>.
             </p>
