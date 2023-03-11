@@ -5,7 +5,6 @@ import ThemesContentOtpConfirmation from "themes/contents/otp-confirmation";
 function PageRegisterOtpConfirmation(props) {
   return (
     <>
-      <Title>Artchive.id OTP Confirmation</Title>
       <ThemesContentOtpConfirmation />
     </>
   );
