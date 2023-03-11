@@ -10,7 +10,14 @@ import { verifyPassword } from "app/helpers/auth";
 import { slugParse } from "app/helpers/slugParse";
 
 // Query
-import { GET_USER_BY_EMAIL, CREATE_USER, CHECK_USER_BY_SLUG } from "app/database/query/user";
+import {
+  GET_USER_BY_EMAIL,
+  CREATE_USER,
+  CHECK_USER_BY_SLUG,
+  GET_USER_BY_PHONE_NUMBER,
+} from "app/database/query/user";
+import { sendOtpMessage } from "app/utils/whatsapp";
+import { generateOtp } from "app/utils/otp-generator";
 
 export default NextAuth({
   session: {
@@ -23,33 +30,49 @@ export default NextAuth({
   providers: [
     CredentialsProvider({
       async authorize(credentials, req) {
-        const userCredentials = {
-          email: credentials.email,
-          password: credentials.password,
-        };
-
-        //? Check email or username
-        const userFound = await GET_USER_BY_EMAIL({ email: userCredentials?.email });
-
-        //? Condition where user not found
-        if (!userFound) {
-          throw new Error("User account doesn't exist. Enter a different account!");
+        const loginMethod = credentials?.type;
+        if (loginMethod === "mail") {
+          const userCredentials = {
+            email: credentials.email,
+            password: credentials.password,
+          };
+          //? Check email or username
+          const userFound = await GET_USER_BY_EMAIL({ email: userCredentials?.email });
+          //? Condition where user not found
+          if (!userFound) {
+            throw new Error("User account doesn't exist. Enter a different account!");
+          }
+          //? Check user password
+          const isValid = await verifyPassword(userCredentials.password, userFound.password);
+          //? Password not Valid
+          if (!isValid) {
+            throw new Error("Incorrect username and password!");
+          }
+          //? Check user status
+          if (!userFound.status) {
+            throw Error("INACTIVE");
+          }
+          return { message: "Successfully Login", user: userFound };
         }
 
-        //? Check user password
-        const isValid = await verifyPassword(userCredentials.password, userFound.password);
-
-        //? Password not Valid
-        if (!isValid) {
-          throw new Error("Incorrect username and password!");
+        if (loginMethod === "phone") {
+          const userPhone = {
+            phone: credentials.phoneNumber,
+          };
+          const userFound = await GET_USER_BY_PHONE_NUMBER({ phoneNumber: userPhone.phone });
+          sendOtpMessage({
+            phoneNumber: credentials.phoneNumber,
+            fullName: userFound.full_name,
+            otpCode: generateOtp(),
+          });
+          if (!userFound) {
+            throw new Error("User account doesn't exist. Enter a different account!");
+          }
+          if (!userFound.status) {
+            throw Error("INACTIVE");
+          }
+          return { message: "Successfully Login", user: userFound };
         }
-
-        //? Check user status
-        if (!userFound.status) {
-          throw Error("INACTIVE");
-        }
-
-        return { message: "Successfully Login", user: userFound };
       },
     }),
     GoogleProvider({

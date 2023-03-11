@@ -2,7 +2,7 @@
 import moment from "moment";
 import { prisma } from "../connection";
 
-//? ============== OPTION QUERY ============= ?//
+//#region OPTION QUERY
 export const CHECK_USER_BY_SLUG = ({ slug }) => {
   return prisma.user.findUnique({
     where: {
@@ -10,13 +10,19 @@ export const CHECK_USER_BY_SLUG = ({ slug }) => {
     },
   });
 };
+//#endregion
 
-// * ====================================== * //
-
-//? ============== GET QUERY ============= ?//
-
+//#region GET QUERY
 // Get User (Filter by Role, Email, FullName)
-export const GET_USER = ({ page = 1, limit = 15, role, email, fullName, client = false }) => {
+export const GET_USER = ({
+  page = 1,
+  limit = 15,
+  role,
+  email,
+  fullName,
+  client = false,
+  phoneNumber,
+}) => {
   const skip = limit != "all" ? (+page - 1) * +limit : undefined;
   return prisma.user.findMany({
     skip: skip ? +skip : undefined,
@@ -32,6 +38,7 @@ export const GET_USER = ({ page = 1, limit = 15, role, email, fullName, client =
         role: role ? role : {},
         email: email ? { contains: email } : {},
         full_name: fullName ? { contains: fullName } : {},
+        phone_number: phoneNumber ? phoneNumber : {},
       },
       NOT: [
         { status: client == "true" ? false : {} },
@@ -55,16 +62,16 @@ export const GET_USER = ({ page = 1, limit = 15, role, email, fullName, client =
     },
   });
 };
-// ==================================
 
 // Get total all user
-export const GET_TOTAL_USER = ({ role, email, fullName, client }) => {
+export const GET_TOTAL_USER = ({ role, email, fullName, client, phoneNumber }) => {
   return prisma.user.count({
     where: {
       AND: {
         role: role ? role : {},
         email: email ? { contains: email } : {},
         full_name: fullName ? { contains: fullName } : {},
+        phone_number: phoneNumber ? phoneNumber : {},
       },
       NOT: [
         { status: client == "true" ? false : {} },
@@ -75,7 +82,6 @@ export const GET_TOTAL_USER = ({ role, email, fullName, client }) => {
     },
   });
 };
-// ==================================
 
 // Get User by Specific ID
 export const GET_USER_BY_ID = ({ id }) => {
@@ -94,7 +100,6 @@ export const GET_USER_BY_ID = ({ id }) => {
     },
   });
 };
-// ==================================
 
 // Get User by Specific Email
 export const GET_USER_BY_EMAIL = ({ email }) => {
@@ -105,7 +110,6 @@ export const GET_USER_BY_EMAIL = ({ email }) => {
     },
   });
 };
-// ==================================
 
 // Get User by slug
 export const GET_USER_BY_SLUG = ({ slug }) => {
@@ -138,22 +142,8 @@ export const GET_USER_BY_SLUG = ({ slug }) => {
       status: true,
       slug: true,
     },
-    // include: {
-    //   profile: {
-    //     select: {
-    //       createdAt: false,
-    //       updatedAt: false,
-    //     },
-    //   },
-    //   artwork: {
-    //     include: {
-    //       media_cover: true,
-    //     },
-    //   },
-    // },
   });
 };
-// ==================================
 
 // Get all artist slug
 export const GET_ALL_ARTIST_SLUG = () => {
@@ -167,12 +157,16 @@ export const GET_ALL_ARTIST_SLUG = () => {
     },
   });
 };
-// ==================================
 
-// * ====================================== * //
+// Get user by phone number
+export const GET_USER_BY_PHONE_NUMBER = ({ phoneNumber }) => {
+  return prisma.user.findUnique({
+    where: { phone_number: phoneNumber },
+  });
+};
+//#endregion
 
-//? ============== CREATE QUERY ============= ?//
-
+//#region CREATE QUERY
 // Create new user
 export const CREATE_USER = ({ email, password, fullName, role, slug, provider }) => {
   return prisma.user.create({
@@ -187,12 +181,9 @@ export const CREATE_USER = ({ email, password, fullName, role, slug, provider })
     },
   });
 };
-// ==================================
+//#endregion
 
-// * ====================================== * //
-
-//? ============== UPDATE QUERY ============= ?//
-
+//#region UPDATE QUERY
 // Update user with specific ID details without password
 export const UPDATE_USER = ({
   id,
@@ -219,7 +210,6 @@ export const UPDATE_USER = ({
     where: { id: +id },
   });
 };
-// ==================================
 
 // Update user with specific ID password only
 export const UPDATE_USER_PASSWORD = ({ password, id }) => {
@@ -228,7 +218,6 @@ export const UPDATE_USER_PASSWORD = ({ password, id }) => {
     data: { password: password },
   });
 };
-// ==================================
 
 // Update user profile
 export const UPDATE_USER_PROFILE_IMAGE = ({ profileId, id }) => {
@@ -243,7 +232,6 @@ export const UPDATE_USER_PROFILE_IMAGE = ({ profileId, id }) => {
     },
   });
 };
-// ==================================
 
 // Update user banner
 export const UPDATE_USER_PROFILE_BANNER = ({ bannerId, id }) => {
@@ -258,7 +246,6 @@ export const UPDATE_USER_PROFILE_BANNER = ({ bannerId, id }) => {
     },
   });
 };
-// ==================================
 
 // Update user banner
 export const UPDATE_USER_STATUS = ({ status, id }) => {
@@ -269,7 +256,6 @@ export const UPDATE_USER_STATUS = ({ status, id }) => {
     },
   });
 };
-// ==================================
 
 // Update user banner
 export const UPDATE_USER_ROLE = ({ role, id }) => {
@@ -280,16 +266,22 @@ export const UPDATE_USER_ROLE = ({ role, id }) => {
     },
   });
 };
-// ==================================
 
-// * ====================================== * //
+// Update user OTP
+export const UPDATE_USER_OTP = ({ id, otp }) => {
+  return prisma.user.update({
+    where: { id: +id },
+    data: {
+      otp_code: otp,
+      otp_expired_date: moment().add(10, "minutes").toISOString(),
+    },
+  });
+};
+//#endregion
 
-//? ============== DELETE QUERY ============= ?//
-
+//#region DELETE QUERY
 // Delete user with specific ID
 export const DELETE_USER = ({ id }) => {
   return prisma.user.delete({ where: { id: +id } });
 };
-// ==================================
-
-// * ====================================== * //
+//#endregion

@@ -21,10 +21,13 @@ import { hashPassword } from "app/helpers/auth";
 
 // Styles
 import s from "./index.module.scss";
+import { useUsers } from "app/hooks/user";
 
 function ThemesContentsSignIn() {
   const router = useRouter();
   const [form] = Form.useForm();
+  const { onSendOTP } = useUsers({ queryString: "" });
+  const [phoneCode, setPhoneCode] = useState("62");
 
   //? ============== Handle Google Login ============= ?//
   const handleGoogleLogin = () => {
@@ -38,7 +41,7 @@ function ThemesContentsSignIn() {
   };
   // * ====================================== * //
 
-  //? ============== Handle Credentials Login ============= ?//
+  //#region Handle Credentials Login
   const [loading, setLoading] = useState(false);
   const { onSendMail } = useMailer({ pathName: "/register/confirmation" });
 
@@ -49,6 +52,7 @@ function ThemesContentsSignIn() {
         redirect: false,
         email: value.email,
         password: value.password,
+        type: "mail",
       });
       if (!login.error) {
         router.push("/profile");
@@ -77,10 +81,21 @@ function ThemesContentsSignIn() {
       }
     });
   };
-  // * ====================================== * //
+  //#endregion
 
   //#region Handle login by phone
-  const handleLoginByPhone = () => {};
+  const handleLoginByPhone = () => {
+    form.validateFields().then(async (value) => {
+      setLoading(true);
+      const sendOtp = await onSendOTP({ phone: `${phoneCode}${value.phone_number}` });
+      if (sendOtp) {
+        setLoading(false);
+        router.push(`/otp-confirmation?phone=${phoneCode}${value.phone_number}`);
+      } else {
+        setLoading(false);
+      }
+    });
+  };
   //#endregion
 
   //#region Handle select login method
@@ -173,8 +188,11 @@ function ThemesContentsSignIn() {
                 </Col>
                 <Col span={24}>
                   <Form layout="vertical" form={form}>
-                    <Form.Item name="phone number" label="Phone Number">
-                      <Input addonBefore="+62" placeholder="Phone Number or Whatsapp Number" />
+                    <Form.Item name="phone_number" label="Phone Number">
+                      <Input
+                        addonBefore={`+${phoneCode}`}
+                        placeholder="Phone Number or Whatsapp Number"
+                      />
                     </Form.Item>
                     <Row justify="space-between">
                       <Col>

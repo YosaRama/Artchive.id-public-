@@ -131,12 +131,34 @@ export const useUsers = ({ queryString = "" }) => {
   );
   // ==========================
 
+  //#region send OTP data
+  const onSendOTP = useCallback(async (data) => {
+    try {
+      setLoading(true);
+      const { data: res } = await api.post(`${pathName}/otp`, data);
+      if (res.success) {
+        return res.success;
+      } else {
+        ErrorNotification({
+          message: "User not found!",
+          description: `Please try to sign-in with other phone number or email`,
+        });
+      }
+    } catch (error) {
+      ErrorNotification({
+        message: "Error",
+        description: `Something went wrong while sending OTP`,
+      });
+    }
+  }, []);
+
   return {
     data: results,
     total,
     loading: (!error && !data) || isValidating || loading,
     onAdd,
     onDelete,
+    onSendOTP,
   };
 };
 

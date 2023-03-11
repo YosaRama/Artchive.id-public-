@@ -14,9 +14,9 @@ export async function sendOtpMessage({ phoneNumber, fullName, otpCode }) {
         to: phoneNumber,
         type: "template",
         template: {
-          name: "otpmessage",
+          name: "otp_message",
           language: {
-            code: "id",
+            code: "en_us",
           },
           components: [
             {
@@ -26,6 +26,17 @@ export async function sendOtpMessage({ phoneNumber, fullName, otpCode }) {
                   type: "text",
                   text: fullName,
                 },
+                {
+                  type: "text",
+                  text: otpCode,
+                },
+              ],
+            },
+            {
+              type: "button",
+              index: 0,
+              sub_type: "url",
+              parameters: [
                 {
                   type: "text",
                   text: otpCode,
