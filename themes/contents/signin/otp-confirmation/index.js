@@ -13,7 +13,7 @@ import ThemesHeadline from "themes/components/libs/headline";
 // Styles
 import s from "./index.module.scss";
 
-function ThemesContentOtpConfirmation() {
+export default function ThemesContentLoginOtpConfirmation() {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const router = useRouter();
 
@@ -151,5 +151,3 @@ function ThemesContentOtpConfirmation() {
     </Col>
   );
 }
-
-export default ThemesContentOtpConfirmation;

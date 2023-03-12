@@ -17,8 +17,6 @@ import {
   CHECK_USER_BY_SLUG,
   GET_USER_BY_PHONE_NUMBER,
 } from "app/database/query/user";
-import { sendOtpMessage } from "app/utils/whatsapp";
-import { generateOtp } from "app/utils/otp-generator";
 
 export default NextAuth({
   session: {

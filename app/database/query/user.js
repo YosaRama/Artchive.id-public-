@@ -168,7 +168,18 @@ export const GET_USER_BY_PHONE_NUMBER = ({ phoneNumber }) => {
 
 //#region CREATE QUERY
 // Create new user
-export const CREATE_USER = ({ email, password, fullName, role, slug, provider }) => {
+export const CREATE_USER = ({
+  email,
+  password,
+  fullName,
+  role,
+  slug,
+  provider,
+  phoneNumber,
+  status = false,
+  otpCode,
+  otpExpired,
+}) => {
   return prisma.user.create({
     data: {
       email: email,
@@ -176,12 +187,14 @@ export const CREATE_USER = ({ email, password, fullName, role, slug, provider })
       password: password,
       full_name: fullName,
       role: role,
-      status: false,
+      status: status,
       provider: provider,
+      phone_number: phoneNumber,
+      otp_code: otpCode,
+      otp_expired_date: otpExpired,
     },
   });
 };
-//#endregion
 
 //#region UPDATE QUERY
 // Update user with specific ID details without password

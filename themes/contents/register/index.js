@@ -22,18 +22,24 @@ import { useMailer } from "app/hooks/mailer";
 
 // Styles
 import s from "./index.module.scss";
+import { useState } from "react";
 
 function ThemesContentsRegister() {
   const router = useRouter();
 
-  //? ============== Handle Register ============= ?//
-  const { onAdd, loading: addLoading } = useUsers({ queryString: "" });
+  //#region Handle change phone code
+  const [phoneCode, setPhoneCode] = useState("62");
+  //#endregion
+
+  //#region Handle registration
+  const { onAdd, loading: addLoading, onRegisterValidation } = useUsers({ queryString: "" });
   const { onSendMail, loading: sendMailLoading } = useMailer({
     pathName: "/register/confirmation",
   });
   const [form] = Form.useForm();
 
-  const handleRegister = () => {
+  // Register by email
+  const handleRegisterByEmail = () => {
     form.validateFields().then(async (value) => {
       const submission = {
         email: value.email,
@@ -60,7 +66,25 @@ function ThemesContentsRegister() {
       }
     });
   };
-  // * ====================================== * //
+
+  // Register by phone
+  const handleRegisterByPhone = () => {
+    form.validateFields().then(async (value) => {
+      const submission = {
+        phone: `${phoneCode}${value.phone}`,
+        fullName: stringCapitalize(value.fullName),
+        role: value.role,
+      };
+
+      const result = await onRegisterValidation(submission);
+
+      if (result) {
+        localStorage.setItem("registration_data", JSON.stringify(submission));
+        router.push(`/register/otp-confirmation?phone=${phoneCode}${value.phone}`);
+      }
+    });
+  };
+  //#endregion
 
   //? ============== Handle Google Login ============= ?//
   const handleGoogleLogin = () => {
@@ -120,8 +144,11 @@ function ThemesContentsRegister() {
                 </p>
               </Col>
               <Form layout="vertical" form={form}>
-                <Form.Item name="phone number" label="Phone Number">
-                  <Input addonBefore="+62" placeholder="Phone Number or Whatsapp Number" />
+                <Form.Item name="phone" label="Phone Number">
+                  <Input
+                    addonBefore={`+${phoneCode}`}
+                    placeholder="Phone Number or Whatsapp Number"
+                  />
                 </Form.Item>
                 <Form.Item
                   name="fullName"
@@ -186,7 +213,7 @@ function ThemesContentsRegister() {
           <Col span={24}>
             <ThemesButton
               type={"default " + s.button}
-              onClick={handleRegister}
+              onClick={handleRegisterByPhone}
               loading={addLoading || sendMailLoading}
             >
               SIGN UP

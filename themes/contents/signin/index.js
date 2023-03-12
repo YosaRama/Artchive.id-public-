@@ -90,7 +90,7 @@ function ThemesContentsSignIn() {
       const sendOtp = await onSendOTP({ phone: `${phoneCode}${value.phone_number}` });
       if (sendOtp) {
         setLoading(false);
-        router.push(`/otp-confirmation?phone=${phoneCode}${value.phone_number}`);
+        router.push(`/signin/otp-confirmation?phone=${phoneCode}${value.phone_number}`);
       } else {
         setLoading(false);
       }

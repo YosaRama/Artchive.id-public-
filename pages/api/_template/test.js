@@ -14,7 +14,6 @@ apiHandler.get(async (req, res) => {
       fullName: "Yosa Rama",
       otpCode: "ART-123-432",
     });
-    console.log(result);
     res.status(200).json({ success: true, message: "Successfully get data", data: result });
   } catch (error) {
     res.status(200).json({ success: false, message: "Something Wrong!", error: error.message });
