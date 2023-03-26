@@ -1,4 +1,5 @@
 @use "/themes/styles/base/colors";
+@use "/themes/styles/base/font-size";
 
 .container {
   background: #ffffff !important;
@@ -33,7 +34,7 @@
   height: 15px;
   line-height: 15px;
   font-weight: 700;
-  font-size: 14px;
+  font-size: font-size.$paragraph;
   white-space: nowrap;
   overflow: hidden;
 }
@@ -52,7 +53,7 @@
   display: flex;
   align-items: center;
   .hamburger {
-    font-size: 24px;
+    font-size: font-size.$heading-3;
   }
 }
 

@@ -1,7 +1,8 @@
 @use "/themes/styles/base/colors";
+@use "/themes/styles/base/font-size";
 
 .title {
-  font-size: 24px;
+  font-size: font-size.$heading-3;
   margin: 0px;
 }
 
@@ -60,7 +61,7 @@
 
 .couponDesc {
   // width: none;
-  font-size: 16px;
+  font-size: font-size.$paragraph;
   margin: 0px;
   display: flex;
   align-items: center;
@@ -94,21 +95,21 @@
   padding: 40px;
   h1 {
     color: colors.$white !important;
-    font-size: 32px;
+    font-size: font-size.$heading-2;
     color: colors.$fulvous !important;
     margin: 0px;
     font-family: "Aileron" !important;
   }
   h3 {
     color: colors.$white !important;
-    font-size: 18px;
+    font-size: font-size.$heading-4;
     margin: 0px;
   }
 }
 
 .checkoutDesc {
   width: none;
-  font-size: 16px;
+  font-size: font-size.$paragraph;
   margin: 0px;
   h1 {
     font-weight: 700;
@@ -160,11 +161,11 @@
     margin: auto;
   }
   h1 {
-    font-size: 32px;
+    font-size: font-size.$heading-2;
     margin-bottom: 0px;
   }
   p {
-    font-size: 16px;
+    font-size: font-size.$paragraph;
     margin-bottom: 35px;
   }
 }
@@ -183,7 +184,7 @@
 }
 @media screen and (max-width: 768px) {
   .title {
-    font-size: 24px;
+    font-size: font-size.$heading-3;
   }
 
   .couponBtnContainer {
@@ -203,13 +204,13 @@
     height: 120px;
 
     h1 {
-      font-size: 24px;
+      font-size: font-size.$heading-3;
     }
   }
 
   .checkoutDesc {
     width: none;
-    font-size: 16px;
+    font-size: font-size.$paragraph;
     margin: 0px;
   }
 
@@ -238,10 +239,10 @@
     }
 
     h1 {
-      font-size: 24px;
+      font-size: font-size.$heading-3;
     }
     p {
-      font-size: 14px;
+      font-size: font-size.$paragraph;
     }
   }
 
@@ -301,18 +302,18 @@
     flex-direction: column;
     padding: 20px;
     h1 {
-      font-size: 32px;
+      font-size: font-size.$heading-2;
       margin: 0px;
     }
     h3 {
-      font-size: 18px;
+      font-size: font-size.$heading-4;
       margin: 0px;
     }
   }
 
   .checkoutDesc {
     width: 100%;
-    font-size: 16px;
+    font-size: font-size.$paragraph;
     margin-bottom: 20px;
   }
 

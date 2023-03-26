@@ -1,3 +1,5 @@
+@use "/themes/styles/base/font-size";
+
 // Section
 .section {
   padding: 30px 80px !important;
@@ -56,7 +58,7 @@
     padding: 30px 20px !important;
   }
   .title {
-    font-size: 32px;
+    font-size: font-size.$heading-2;
   }
   .formSection {
     margin: 30px 0;

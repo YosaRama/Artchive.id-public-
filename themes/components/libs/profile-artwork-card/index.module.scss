@@ -1,3 +1,5 @@
+@use "/themes/styles/base/font-size";
+
 .card {
   cursor: pointer;
   transition: all 0.3s ease;
@@ -32,7 +34,7 @@
   text-align: center;
   h1 {
     margin-bottom: 0;
-    font-size: 22px;
+    font-size: font-size.$heading-3;
   }
   p {
     margin-bottom: 0;

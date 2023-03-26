@@ -1,4 +1,5 @@
 @use "/themes/styles/base/colors";
+@use "/themes/styles/base/font-size";
 
 .container {
   padding-right: 0 !important;
@@ -26,7 +27,7 @@
     text-align: center;
     .title {
       margin-bottom: 0;
-      font-size: 18px;
+      font-size: font-size.$heading-4;
       transition: all 0.3s ease;
       margin: 0 auto;
       text-align: center;
@@ -42,7 +43,7 @@
     }
     .size {
       margin-bottom: 0;
-      font-size: 14px;
+      font-size: font-size.$paragraph;
     }
     .curatorBadge {
       margin-left: 5px;
@@ -66,7 +67,7 @@
       text-align: center;
       .title {
         margin-bottom: 0;
-        font-size: 18px;
+        font-size: font-size.$heading-4;
         transition: all 0.3s ease;
         &:hover {
           color: colors.$fulvous;
@@ -75,7 +76,7 @@
       }
       .size {
         margin-bottom: 0;
-        font-size: 14px;
+        font-size: font-size.$paragraph;
       }
     }
   }
@@ -93,7 +94,7 @@
       text-align: center;
       .title {
         margin-bottom: 0;
-        font-size: 18px;
+        font-size: font-size.$heading-4;
         transition: all 0.3s ease;
         &:hover {
           color: colors.$fulvous;
@@ -102,7 +103,7 @@
       }
       .size {
         margin-bottom: 0;
-        font-size: 14px;
+        font-size: font-size.$paragraph;
       }
     }
   }
@@ -117,10 +118,10 @@
     }
     .content {
       .title {
-        font-size: 20px;
+        font-size: font-size.$heading-4;
       }
       .size {
-        font-size: 14px;
+        font-size: font-size.$paragraph;
       }
     }
   }

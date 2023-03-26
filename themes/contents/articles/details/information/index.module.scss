@@ -1,4 +1,5 @@
 @use "/themes/styles/base/colors";
+@use "/themes/styles/base/font-size";
 
 .title {
   font-size: 36px;
@@ -11,13 +12,13 @@
     margin-right: 20px;
     font-weight: 700;
     color: colors.$fulvous;
-    font-size: 18px;
+    font-size: font-size.$heading-4;
   }
 }
 
 .postDate {
   color: colors.$fulvous;
-  font-size: 16px;
+  font-size: font-size.$paragraph;
 }
 
 .bannerImgContainer {
@@ -31,7 +32,7 @@
 
 .content {
   p {
-    font-size: 16px;
+    font-size: font-size.$paragraph;
   }
   h1 {
     font-size: 28px;

@@ -1,4 +1,5 @@
 @use "/themes/styles/base/colors";
+@use "/themes/styles/base/font-size";
 
 .footer {
   padding: 0 !important;
@@ -26,7 +27,7 @@
       margin: 0px 30px;
       h3 {
         margin: 0;
-        font-size: 16px;
+        font-size: font-size.$paragraph;
         color: #ffffff;
         font-family: "Aileron";
         font-weight: bold;

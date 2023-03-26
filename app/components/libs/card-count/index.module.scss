@@ -1,4 +1,5 @@
 @use "/themes/styles/base/colors";
+@use "/themes/styles/base/font-size";
 
 .image {
   display: flex;
@@ -28,7 +29,7 @@
 
 .title {
   width: 100%;
-  font-size: 16px;
+  font-size: font-size.$paragraph;
   font-weight: 200;
   margin: 0;
   color: #a0a0a0;
@@ -37,7 +38,7 @@
 
 .count {
   width: 100%;
-  font-size: 24px;
+  font-size: font-size.$heading-3;
   color: colors.$smoky-black;
   font-weight: 800;
   margin: 0;

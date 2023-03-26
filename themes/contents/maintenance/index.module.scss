@@ -1,3 +1,5 @@
+@use "/themes/styles/base/font-size";
+
 .section {
   margin: 0;
   height: 100%;
@@ -23,12 +25,12 @@
 
 .text {
   h1 {
-    font-size: 24px;
+    font-size: font-size.$heading-3;
     margin: 0;
   }
   p {
     font-family: "Aileron";
     font-weight: 200;
-    font-size: 14px;
+    font-size: font-size.$paragraph;
   }
 }
