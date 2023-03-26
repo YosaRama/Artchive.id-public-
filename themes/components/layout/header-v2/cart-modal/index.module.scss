@@ -1,4 +1,5 @@
 @use "/themes/styles/base/colors";
+@use "/themes/styles/base/font-size";
 
 .modalItemContainer {
   max-height: 400px;
@@ -33,7 +34,7 @@
 
 .priceTotal {
   // margin-top: 30px;
-  font-size: 18px;
+  font-size: font-size.$heading-4;
   display: flex;
 
   font-weight: 400;
@@ -52,7 +53,7 @@
   a {
     color: colors.$white !important;
     width: auto;
-    font-size: 16px;
+    font-size: font-size.$paragraph;
     transition: all 300ms ease;
     padding: 0px !important;
     &:hover {

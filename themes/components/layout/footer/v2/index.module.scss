@@ -1,4 +1,5 @@
 @use "/themes/styles/base/colors";
+@use "/themes/styles/base/font-size";
 
 .section {
   background: #0a0a0a;
@@ -17,7 +18,7 @@
       display: flex;
       justify-content: space-evenly;
       .logoSocial {
-        font-size: 20px;
+        font-size: font-size.$heading-4;
       }
     }
     .imageContainer {
@@ -41,12 +42,12 @@
       }
     }
     p {
-      font-size: 16px;
+      font-size: font-size.$paragraph;
       color: colors.$white;
     }
     h1 {
       color: colors.$white;
-      font-size: 18px;
+      font-size: font-size.$heading-4;
       font-weight: 700;
     }
     a {
@@ -66,7 +67,7 @@
         cursor: pointer;
         color: colors.$white;
         transition: 300ms all ease;
-        font-size: 16px;
+        font-size: font-size.$paragraph;
         &:hover {
           color: colors.$fulvous;
           transition: 300ms all ease;
@@ -80,7 +81,7 @@
   .icon {
     color: colors.$white;
     width: 20px;
-    font-size: 16px;
+    font-size: font-size.$paragraph;
     margin-right: 10px;
   }
 }
@@ -98,7 +99,7 @@
   p,
   a {
     color: colors.$white;
-    font-size: 16px;
+    font-size: font-size.$paragraph;
   }
 }
 .divider {
@@ -115,7 +116,7 @@
         display: flex;
         justify-content: space-evenly;
         .logoSocial {
-          font-size: 20px;
+          font-size: font-size.$heading-4;
         }
       }
       .imageContainer {
@@ -133,12 +134,12 @@
         flex-direction: column;
       }
       p {
-        font-size: 16px;
+        font-size: font-size.$paragraph;
         color: colors.$white;
       }
       h1 {
         color: colors.$white;
-        font-size: 18px;
+        font-size: font-size.$heading-4;
         font-weight: 700;
       }
       a {
@@ -155,7 +156,7 @@
           cursor: pointer;
           color: colors.$white;
           transition: 300ms all ease;
-          font-size: 16px;
+          font-size: font-size.$paragraph;
           &:hover {
             color: colors.$fulvous;
             transition: 300ms all ease;
@@ -169,7 +170,7 @@
     .icon {
       color: colors.$white;
       width: 20px;
-      font-size: 16px;
+      font-size: font-size.$paragraph;
       margin-right: 10px;
     }
   }
@@ -186,7 +187,7 @@
     p,
     a {
       color: colors.$white;
-      font-size: 16px;
+      font-size: font-size.$paragraph;
     }
   }
 }
@@ -208,7 +209,7 @@
           }
         }
         .logoSocial {
-          font-size: 20px;
+          font-size: font-size.$heading-4;
         }
       }
       .imageContainer {
@@ -226,12 +227,12 @@
         flex-direction: column;
       }
       p {
-        font-size: 16px;
+        font-size: font-size.$paragraph;
         color: colors.$white;
       }
       h1 {
         color: colors.$white;
-        font-size: 18px;
+        font-size: font-size.$heading-4;
         font-weight: 700;
       }
       a {
@@ -248,7 +249,7 @@
           cursor: pointer;
           color: colors.$white;
           transition: 300ms all ease;
-          font-size: 16px;
+          font-size: font-size.$paragraph;
           &:hover {
             color: colors.$fulvous;
             transition: 300ms all ease;
@@ -262,7 +263,7 @@
     .icon {
       color: colors.$white;
       width: 20px;
-      font-size: 16px;
+      font-size: font-size.$paragraph;
       margin-right: 10px;
     }
   }
@@ -279,7 +280,7 @@
     p,
     a {
       color: colors.$white;
-      font-size: 16px;
+      font-size: font-size.$paragraph;
     }
   }
   .divider {
@@ -304,7 +305,7 @@
           }
         }
         .logoSocial {
-          font-size: 20px;
+          font-size: font-size.$heading-4;
         }
       }
       .imageContainer {
@@ -323,12 +324,12 @@
         margin-bottom: 30px;
       }
       p {
-        font-size: 16px;
+        font-size: font-size.$paragraph;
         color: colors.$white;
       }
       h1 {
         color: colors.$white;
-        font-size: 18px;
+        font-size: font-size.$heading-4;
         font-weight: 700;
       }
       a {
@@ -345,7 +346,7 @@
           cursor: pointer;
           color: colors.$white;
           transition: 300ms all ease;
-          font-size: 16px;
+          font-size: font-size.$paragraph;
           &:hover {
             color: colors.$fulvous;
             transition: 300ms all ease;
@@ -359,7 +360,7 @@
     .icon {
       color: colors.$white;
       width: 20px;
-      font-size: 16px;
+      font-size: font-size.$paragraph;
       margin-right: 10px;
     }
   }
@@ -379,7 +380,7 @@
     p,
     a {
       color: colors.$white;
-      font-size: 16px;
+      font-size: font-size.$paragraph;
     }
   }
   .divider {

@@ -1,3 +1,5 @@
+@use "/themes/styles/base/font-size";
+
 .card {
   width: 100%;
   position: relative;
@@ -29,11 +31,11 @@
     margin-bottom: 0;
   }
   p {
-    font-size: 16px;
+    font-size: font-size.$paragraph;
   }
 
   .title {
-    font-size: 24px;
+    font-size: font-size.$heading-3;
     text-transform: capitalize;
   }
   .artist {

@@ -1,4 +1,5 @@
 @use "/themes/styles/base/colors";
+@use "/themes/styles/base/font-size";
 
 .transactionItemContainer {
   width: 100%;
@@ -33,14 +34,14 @@
 
   h2 {
     font-weight: 400;
-    font-size: 24px;
+    font-size: font-size.$heading-3;
     &:hover {
       color: colors.$fulvous;
       transition: all 300ms ease;
     }
   }
   p {
-    font-size: 16px;
+    font-size: font-size.$paragraph;
     margin: 0px;
   }
 }
@@ -56,7 +57,7 @@
   margin: auto 0px;
   text-align: right;
   color: colors.$fulvous;
-  font-size: 18px;
+  font-size: font-size.$heading-4;
   font-weight: 400;
   font-family: "Aileron" !important;
   display: flex;
@@ -115,7 +116,7 @@
 
     h2 {
       font-weight: 400;
-      font-size: 16px;
+      font-size: font-size.$paragraph;
       line-height: 22px;
       &:hover {
         color: colors.$fulvous;
@@ -140,7 +141,7 @@
     margin-left: 105px;
     text-align: right;
     color: colors.$fulvous;
-    font-size: 16px;
+    font-size: font-size.$paragraph;
     font-weight: 400;
     font-family: "Aileron" !important;
     display: flex;

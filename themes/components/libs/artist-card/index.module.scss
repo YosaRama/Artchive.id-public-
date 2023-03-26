@@ -1,3 +1,5 @@
+@use "/themes/styles/base/font-size";
+
 .card {
   top: 0;
   padding: 0 !important;
@@ -39,7 +41,7 @@
     text-align: center;
     .artistName {
       margin-bottom: 0;
-      font-size: 18px;
+      font-size: font-size.$heading-4;
       transition: all 0.3s ease;
     }
     .artistCity {

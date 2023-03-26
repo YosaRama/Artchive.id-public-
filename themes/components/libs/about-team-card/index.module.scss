@@ -1,4 +1,5 @@
 @use "/themes/styles/base/colors";
+@use "/themes/styles/base/font-size";
 
 .card {
   display: flex;
@@ -42,14 +43,14 @@
   margin: 20px auto 0px;
   font-family: "DM Serif Display";
   font-weight: 400;
-  font-size: 32px;
+  font-size: font-size.$heading-2;
   line-height: 1;
 }
 
 .position {
   margin: 6px auto 24px;
   font-weight: 700;
-  font-size: 24px;
+  font-size: font-size.$heading-3;
   font-family: Aileron;
   color: colors.$fulvous;
 }
@@ -58,7 +59,7 @@
   margin: 20px 24px;
   font-family: Aileron;
   font-weight: 400;
-  font-size: 16px;
+  font-size: font-size.$paragraph;
   line-height: 19px;
   height: 100px;
   position: relative;
@@ -80,7 +81,7 @@
 
 .socialIcon {
   margin: 0px 5px;
-  font-size: 22px;
+  font-size: font-size.$heading-3;
   cursor: pointer;
   transition: all 0.3s ease;
   color: colors.$smoky-black;
@@ -113,12 +114,12 @@
   }
 
   .name {
-    font-size: 24px;
+    font-size: font-size.$heading-3;
   }
 
   .position {
     margin: 5px auto;
-    font-size: 18px;
+    font-size: font-size.$heading-4;
   }
 
   .description {

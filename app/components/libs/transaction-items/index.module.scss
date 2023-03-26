@@ -1,4 +1,5 @@
 @use "/themes/styles/base/colors";
+@use "/themes/styles/base/font-size";
 
 .transactionItemContainer {
   width: 100%;
@@ -32,7 +33,7 @@
 
   h2 {
     font-weight: 700;
-    font-size: 24px;
+    font-size: font-size.$heading-3;
     font-family: "DM Serif Display";
     &:hover {
       color: colors.$fulvous;
@@ -40,7 +41,7 @@
     }
   }
   p {
-    font-size: 16px;
+    font-size: font-size.$paragraph;
     margin: 0px;
   }
 }
@@ -56,7 +57,7 @@
   margin: auto 0px;
   text-align: right;
   color: colors.$fulvous;
-  font-size: 24px;
+  font-size: font-size.$heading-3;
   font-weight: 400;
   font-family: "Aileron" !important;
   display: flex;
@@ -94,7 +95,7 @@
   }
 
   .priceContainer {
-    font-size: 18px;
+    font-size: font-size.$heading-4;
     font-weight: 700;
     width: 135px;
   }

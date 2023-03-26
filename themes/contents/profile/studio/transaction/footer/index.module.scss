@@ -1,4 +1,5 @@
 @use "/themes/styles/base/colors";
+@use "/themes/styles/base/font-size";
 
 .subTotalContainer {
   display: flex;
@@ -12,7 +13,7 @@
     .textSubtotal {
       font-family: "Aileron" !important;
       font-weight: 700;
-      font-size: 18px;
+      font-size: font-size.$heading-4;
       width: auto;
       margin-right: 20px;
       text-align: right;
@@ -24,7 +25,7 @@
       margin: auto 0px;
       text-align: right;
       color: colors.$fulvous;
-      font-size: 18px;
+      font-size: font-size.$heading-4;
       font-weight: 400;
       font-family: "Aileron" !important;
       display: flex;
@@ -55,7 +56,7 @@
 .textTotal {
   font-family: "Aileron" !important;
   font-weight: 700;
-  font-size: 18px;
+  font-size: font-size.$heading-4;
   width: 120px;
   margin-right: 20px;
   text-align: right;
@@ -67,7 +68,7 @@
   margin: auto 0px;
   text-align: right;
   color: colors.$fulvous;
-  font-size: 18px;
+  font-size: font-size.$heading-4;
   font-weight: 700;
   font-family: "Aileron" !important;
   display: flex;
@@ -97,14 +98,14 @@
     justify-content: flex-start;
     .subTotalPrice {
       .textSubtotal {
-        font-size: 16px;
+        font-size: font-size.$paragraph;
         margin-right: 15px;
         width: 90px;
       }
       .subtotal {
         min-width: none;
         width: auto;
-        font-size: 16px;
+        font-size: font-size.$paragraph;
         justify-content: flex-start;
       }
     }
@@ -118,13 +119,13 @@
 
   .textTotal {
     width: 90px;
-    font-size: 16px;
+    font-size: font-size.$paragraph;
     margin-right: 15px;
   }
 
   .total {
     width: auto;
-    font-size: 16px;
+    font-size: font-size.$paragraph;
     font-family: "Aileron" !important;
   }
 

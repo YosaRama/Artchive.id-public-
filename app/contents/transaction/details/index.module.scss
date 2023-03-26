@@ -1,7 +1,8 @@
 @use "/themes/styles/base/colors";
+@use "/themes/styles/base/font-size";
 
 .textTitle {
-  font-size: 18px;
+  font-size: font-size.$heading-4;
 }
 
 .itemContainer {
@@ -23,7 +24,7 @@
     .textSubtotal {
       font-family: "DM Serif Display" !important;
       font-weight: 700;
-      font-size: 24px;
+      font-size: font-size.$heading-3;
       width: auto;
       margin-right: 20px;
       text-align: right;
@@ -35,7 +36,7 @@
       margin: auto 0px;
       text-align: right;
       color: colors.$fulvous;
-      font-size: 24px;
+      font-size: font-size.$heading-3;
       font-weight: 400;
       font-family: "Aileron" !important;
       display: flex;
@@ -44,7 +45,7 @@
     .textTotal {
       font-family: "DM Serif Display" !important;
       font-weight: 700;
-      font-size: 24px;
+      font-size: font-size.$heading-3;
       width: auto;
       margin-right: 20px;
       text-align: right;
@@ -56,7 +57,7 @@
       margin: auto 0px;
       text-align: right;
       color: colors.$fulvous;
-      font-size: 24px;
+      font-size: font-size.$heading-3;
       font-weight: 700;
       font-family: "Aileron" !important;
       display: flex;

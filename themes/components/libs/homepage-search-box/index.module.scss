@@ -1,4 +1,5 @@
 @use "/themes/styles/base/colors";
+@use "/themes/styles/base/font-size";
 
 .box {
   width: 100%;
@@ -6,11 +7,11 @@
   padding: 20px 0px;
   position: relative;
   p {
-    font-size: 18px;
+    font-size: font-size.$heading-4;
     color: colors.$white;
   }
   h1 {
-    font-size: 48px;
+    font-size: font-size.$heading-1;
     color: colors.$white;
   }
   h3 {
@@ -36,7 +37,7 @@
 
 .text {
   width: 80%;
-  font-size: 14px;
+  font-size: font-size.$paragraph;
 }
 
 .searchBoxSection {
@@ -49,11 +50,11 @@
     border-radius: 10px;
     position: relative;
     p {
-      font-size: 16px;
+      font-size: font-size.$paragraph;
       color: colors.$white;
     }
     h1 {
-      font-size: 32px;
+      font-size: font-size.$heading-2;
       color: colors.$white;
     }
   }
@@ -66,11 +67,11 @@
     border-radius: 10px;
     position: relative;
     p {
-      font-size: 16px;
+      font-size: font-size.$paragraph;
       color: colors.$white;
     }
     h1 {
-      font-size: 32px;
+      font-size: font-size.$heading-2;
       color: colors.$white;
     }
   }
@@ -83,11 +84,11 @@
     border-radius: 10px;
     position: relative;
     p {
-      font-size: 14px;
+      font-size: font-size.$paragraph;
       color: colors.$white;
     }
     h1 {
-      font-size: 24px;
+      font-size: font-size.$heading-3;
       color: colors.$white;
     }
   }

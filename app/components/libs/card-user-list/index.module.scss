@@ -1,4 +1,5 @@
 @use "/themes/styles/base/colors";
+@use "/themes/styles/base/font-size";
 
 .card {
   margin-bottom: 10px;
@@ -26,11 +27,11 @@
 .menu {
   display: flex;
   justify-content: flex-end;
-  font-size: 24px;
+  font-size: font-size.$heading-3;
 }
 
 .icon {
-  font-size: 16px;
+  font-size: font-size.$paragraph;
   cursor: pointer;
   transition: all 0.3s ease;
   &:hover {
