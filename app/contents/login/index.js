@@ -33,6 +33,7 @@ function AppContentsLogin() {
         redirect: false,
         email: value.email,
         password: value.password,
+        type: "mail",
       });
       if (!login.error) {
         router.push("/dashboard");
