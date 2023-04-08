@@ -1,5 +1,6 @@
 @use "/themes/styles/base/colors";
 @use "/themes/styles/base/font-size";
+@use "/themes/styles/base/font-weight";
 
 .container {
   background: #f8f5f0 !important;
@@ -80,7 +81,7 @@
         width: auto;
         height: 15px;
         line-height: 15px;
-        font-weight: 700;
+        font-weight: font-weight.$bold;
         font-size: font-size.$paragraph;
         white-space: nowrap;
         overflow: hidden;
@@ -97,7 +98,7 @@
       }
 
       a {
-        font-weight: 700;
+        font-weight: font-weight.$bold;
         color: black !important;
         margin: 0px 10px;
         font-size: font-size.$paragraph;
@@ -130,7 +131,7 @@
   justify-content: center;
   align-items: center;
   font-size: 8px;
-  font-weight: 800;
+  font-weight: font-weight.$bold;
 }
 
 .dot2 {
@@ -146,7 +147,7 @@
   justify-content: center;
   align-items: center;
   font-size: 8px;
-  font-weight: 800;
+  font-weight: font-weight.$bold;
 }
 
 .avatar {
@@ -194,7 +195,7 @@
       width: auto;
       height: 15px;
       line-height: 15px;
-      font-weight: 700;
+      font-weight: font-weight.$bold;
       font-size: font-size.$paragraph;
       white-space: nowrap;
       overflow: hidden;
@@ -212,7 +213,7 @@
     }
 
     a {
-      font-weight: 700;
+      font-weight: font-weight.$bold;
       color: rgb(0, 0, 0) !important;
       margin: 0px 10px;
       font-size: font-size.$paragraph;

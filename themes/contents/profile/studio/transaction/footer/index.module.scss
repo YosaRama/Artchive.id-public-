@@ -1,5 +1,6 @@
 @use "/themes/styles/base/colors";
 @use "/themes/styles/base/font-size";
+@use "/themes/styles/base/font-weight";
 
 .subTotalContainer {
   display: flex;
@@ -12,7 +13,7 @@
     justify-content: flex-end;
     .textSubtotal {
       font-family: "Aileron" !important;
-      font-weight: 700;
+      font-weight: font-weight.$bold;
       font-size: font-size.$heading-4;
       width: auto;
       margin-right: 20px;
@@ -26,7 +27,7 @@
       text-align: right;
       color: colors.$fulvous;
       font-size: font-size.$heading-4;
-      font-weight: 400;
+      font-weight: font-weight.$regular;
       font-family: "Aileron" !important;
       display: flex;
       justify-content: space-between;
@@ -55,7 +56,7 @@
 
 .textTotal {
   font-family: "Aileron" !important;
-  font-weight: 700;
+  font-weight: font-weight.$bold;
   font-size: font-size.$heading-4;
   width: 120px;
   margin-right: 20px;
@@ -69,7 +70,7 @@
   text-align: right;
   color: colors.$fulvous;
   font-size: font-size.$heading-4;
-  font-weight: 700;
+  font-weight: font-weight.$bold;
   font-family: "Aileron" !important;
   display: flex;
   justify-content: space-between;

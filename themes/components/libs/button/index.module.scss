@@ -1,9 +1,10 @@
 @use "/themes/styles/base/font-size";
+@use "/themes/styles/base/font-weight";
 
 .button {
   font-size: font-size.$paragraph !important;
   font-family: "Aileron" !important;
-  font-weight: bold !important;
+  font-weight: font-weight.$bold !important;
   height: auto !important;
   padding: 5px 20px !important;
   &:disabled {
