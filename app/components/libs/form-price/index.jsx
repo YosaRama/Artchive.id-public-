@@ -18,7 +18,7 @@ function AppFormPrice(props) {
             message: "Please input price for this artwork!",
             validator: (_, value) => {
               if (new RegExp(/^[0-9,.]+$/).test(value)) {
-                return Promise.resolve;
+                return Promise.resolve();
               }
 
               return Promise.reject(new Error("Please input correct price!"));
