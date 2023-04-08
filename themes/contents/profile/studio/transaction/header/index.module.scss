@@ -1,5 +1,6 @@
 @use "/themes/styles/base/colors";
 @use "/themes/styles/base/font-size";
+@use "/themes/styles/base/font-weight";
 
 .headerContainer {
   display: flex;
@@ -93,7 +94,7 @@
   line-height: 22px;
 
   h2 {
-    font-weight: 400;
+    font-weight: font-weight.$regular;
     font-size: font-size.$heading-3;
     &:hover {
       color: colors.$fulvous;
@@ -117,7 +118,7 @@
   text-align: right;
   color: colors.$fulvous;
   font-size: font-size.$heading-3;
-  font-weight: 700;
+  font-weight: font-weight.$bold;
   font-family: "Aileron" !important;
   display: flex;
   justify-content: space-between;

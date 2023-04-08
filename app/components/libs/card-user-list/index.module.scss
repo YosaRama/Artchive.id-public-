@@ -1,5 +1,6 @@
 @use "/themes/styles/base/colors";
 @use "/themes/styles/base/font-size";
+@use "/themes/styles/base/font-weight";
 
 .card {
   margin-bottom: 10px;
@@ -19,7 +20,7 @@
   }
   .email {
     margin: 0;
-    font-weight: 200;
+    font-weight: font-weight.$regular;
     font-size: 10px;
   }
 }

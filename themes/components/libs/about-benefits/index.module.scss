@@ -1,5 +1,6 @@
 @use "/themes/styles/base/colors";
 @use "/themes/styles/base/font-size";
+@use "/themes/styles/base/font-weight";
 
 .imageContainer {
   display: flex;
@@ -35,7 +36,7 @@
 .title {
   color: colors.$fulvous;
   font-size: font-size.$heading-3;
-  font-weight: 400;
+  font-weight: font-weight.$regular;
   font-family: "DM_serif_display", Arial, serif;
   margin-top: 20px;
   line-height: 33px;
@@ -44,7 +45,7 @@
 .description {
   color: black;
   font-size: font-size.$paragraph;
-  font-weight: normal;
+  font-weight: font-weight.$regular;
   width: 70%;
   margin: 0 auto;
   line-height: 24px;

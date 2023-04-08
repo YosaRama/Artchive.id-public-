@@ -1,5 +1,6 @@
 @use "/themes/styles/base/colors";
 @use "/themes/styles/base/font-size";
+@use "/themes/styles/base/font-weight";
 
 .title {
   font-size: font-size.$heading-3;
@@ -112,7 +113,7 @@
   font-size: font-size.$paragraph;
   margin: 0px;
   h1 {
-    font-weight: 700;
+    font-weight: font-weight.$bold;
   }
 }
 

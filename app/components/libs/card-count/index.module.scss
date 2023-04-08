@@ -1,5 +1,6 @@
 @use "/themes/styles/base/colors";
 @use "/themes/styles/base/font-size";
+@use "/themes/styles/base/font-weight";
 
 .image {
   display: flex;
@@ -30,7 +31,7 @@
 .title {
   width: 100%;
   font-size: font-size.$paragraph;
-  font-weight: 200;
+  font-weight: font-weight.$regular;
   margin: 0;
   color: #a0a0a0;
   transition: all 0.3s ease;
@@ -40,7 +41,7 @@
   width: 100%;
   font-size: font-size.$heading-3;
   color: colors.$smoky-black;
-  font-weight: 800;
+  font-weight: font-weight.$bold;
   margin: 0;
   transition: all 0.3s ease;
 }

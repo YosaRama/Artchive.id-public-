@@ -1,5 +1,6 @@
 @use "/themes/styles/base/colors";
 @use "/themes/styles/base/font-size";
+@use "/themes/styles/base/font-weight";
 
 .deleteNotif,
 .readNotif {
@@ -41,14 +42,14 @@
   .title {
     font-family: "Aileron" !important;
     font-size: font-size.$paragraph;
-    font-weight: 700 !important;
+    font-weight: font-weight.$bold !important;
     margin-bottom: 12px;
   }
 
   .days {
     color: colors.$fulvous;
     font-size: font-size.$paragraph;
-    font-weight: 700;
+    font-weight: font-weight.$bold;
     margin: 0px;
   }
 }

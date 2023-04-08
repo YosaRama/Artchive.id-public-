@@ -1,4 +1,5 @@
 @use "/themes/styles/base/font-size";
+@use "/themes/styles/base/font-weight";
 
 .section {
   margin: 0;
@@ -30,7 +31,7 @@
   }
   p {
     font-family: "Aileron";
-    font-weight: 200;
+    font-weight: font-weight.$regular;
     font-size: font-size.$paragraph;
   }
 }
