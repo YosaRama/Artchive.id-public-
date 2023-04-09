@@ -2,7 +2,7 @@
 @use "/themes/styles/base/font-size";
 
 .container {
-  background: #f8f5f0 !important;
+  background: colors.$white !important;
   padding: 0 !important;
   height: 64px !important;
   &.transparent {
@@ -33,7 +33,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: black !important;
+    color: colors.$smoky-black !important;
     width: 100%;
     &.transparent {
       .iconHeader {
@@ -98,7 +98,7 @@
 
       a {
         font-weight: 700;
-        color: black !important;
+        color: colors.$smoky-black !important;
         margin: 0px 10px;
         font-size: font-size.$paragraph;
         transition: all 300ms ease;
@@ -198,7 +198,7 @@
       font-size: font-size.$paragraph;
       white-space: nowrap;
       overflow: hidden;
-      color: black;
+      color: colors.$smoky-black;
     }
 
     .userRole {
