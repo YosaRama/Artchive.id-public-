@@ -31,7 +31,7 @@ const s3 = new aws.S3();
 const storage = multerS3({
   s3: s3,
   bucket: bucketName,
-  acl: "public-read",
+  // acl: "public-read",
   contentType: multerS3.AUTO_CONTENT_TYPE,
   key: (req, file, cb) => {
     const { userId, artworkId } = req.body;
