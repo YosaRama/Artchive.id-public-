@@ -6,8 +6,9 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
 }
 
 // MODEL
@@ -17,11 +18,11 @@ model User {
   full_name          String
   slug               String                 @unique
   password           String?
-  profile            Media?                 @relation("profile", fields: [profile_img_id], references: [id])
+  profile            Media?                 @relation("profile", fields: [profile_img_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   profile_img_id     Int?                   @unique
-  signature          Media?                 @relation("signature", fields: [signature_id], references: [id])
+  signature          Media?                 @relation("signature", fields: [signature_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   signature_id       Int?                   @unique
-  banner             Media?                 @relation("banner", fields: [banner_id], references: [id])
+  banner             Media?                 @relation("banner", fields: [banner_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   banner_id          Int?                   @unique
   instagram_url      String?
   facebook_url       String?
@@ -81,6 +82,8 @@ model Artwork {
   updatedAt       DateTime?               @updatedAt
   curatorial_pick Boolean                 @default(false)
 
+  @@index([artist_id])
+  @@index([media_cover_id])
   @@map("artwork")
 }
 
@@ -117,6 +120,7 @@ model Media {
   exhibition_media_gallery Exhibition[] @relation("exhibition_media_gallery")
   article_gallery          Article[]
 
+  @@index([upload_by])
   @@map("media")
 }
 
@@ -130,6 +134,8 @@ model Cart {
   updated_at DateTime? @updatedAt
   status     Boolean   @default(false)
 
+  @@index([user_id])
+  @@index([artwork_id])
   @@map("cart")
 }
 
@@ -144,6 +150,8 @@ model Certificate {
   type      CertificateType
   cretedAt  DateTime        @default(now())
 
+  @@index([userId])
+  @@index([artworkId])
   @@map("certificate")
 }
 
@@ -165,6 +173,9 @@ model Article {
   updated_id        Int?
   updated_at        DateTime?     @updatedAt
 
+  @@index([thumbnail_id])
+  @@index([created_id])
+  @@index([updated_id])
   @@map("article")
 }
 
@@ -195,6 +206,8 @@ model Exhibition {
   updated_by_rel    User?                   @relation("exhibition_updated_by", fields: [updated_by], references: [id], onDelete: Cascade, onUpdate: Cascade)
   updated_by        Int?
 
+  @@index([created_by])
+  @@index([updated_by])
   @@map("exhibition")
 }
 
@@ -206,6 +219,7 @@ model ArtistsOnExhibitions {
 
   @@id([exhibition_id, user_id])
   @@unique([exhibition_id, user_id])
+  @@index([user_id])
   @@map("artists_on_exhibitions")
 }
 
@@ -218,6 +232,7 @@ model ArtworksOnExhibitions {
 
   @@id([artwork_id, exhibition_id])
   @@unique([exhibition_id, artwork_id])
+  @@index([artwork_id])
   @@map("artworks_on_exhibitions")
 }
 
@@ -238,6 +253,8 @@ model PaymentHistory {
   currency           String
   merchant_id        String
 
+  @@index([user_id])
+  @@index([artwork_id])
   @@map("payment_history")
 }
 
@@ -260,6 +277,7 @@ model Order {
   notes                  String?
   transaction_id         String?
 
+  @@index([user_id])
   @@map("order")
 }
 
