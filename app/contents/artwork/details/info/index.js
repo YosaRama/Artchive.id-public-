@@ -81,6 +81,7 @@ function AppContentsArtworkDetailsInfo() {
         approve: value.approve,
         curatorial_pick: value.curatorial_pick,
       };
+
       onEdit(submission);
     });
   };
@@ -159,7 +160,6 @@ function AppContentsArtworkDetailsInfo() {
                 label="Year"
                 rules={[{ required: true, message: "Please input year of artwork!" }]}
               >
-                {/* <Input placeholder="Input artwork year" /> */}
                 <DatePicker picker="year" style={{ width: "100%" }} />
               </Form.Item>
               <AppFormArtworkMaterial />

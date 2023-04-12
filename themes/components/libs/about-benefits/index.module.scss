@@ -1,4 +1,5 @@
 @use "/themes/styles/base/colors";
+@use "/themes/styles/base/font-size";
 
 .imageContainer {
   display: flex;
@@ -33,7 +34,7 @@
 
 .title {
   color: colors.$fulvous;
-  font-size: 24px;
+  font-size: font-size.$heading-3;
   font-weight: 400;
   font-family: "DM_serif_display", Arial, serif;
   margin-top: 20px;
@@ -42,7 +43,7 @@
 
 .description {
   color: black;
-  font-size: 16px;
+  font-size: font-size.$paragraph;
   font-weight: normal;
   width: 70%;
   margin: 0 auto;
@@ -61,7 +62,7 @@
   }
 
   .description {
-    font-size: 16px;
+    font-size: font-size.$paragraph;
     width: 80%;
     margin: 15px auto 0px;
     line-height: 19px;
@@ -82,7 +83,7 @@
   }
 
   .description {
-    font-size: 16px;
+    font-size: font-size.$paragraph;
     width: 70%;
     margin: 15px auto 0px;
     line-height: 19px;
@@ -103,7 +104,7 @@
   }
 
   .description {
-    font-size: 16px;
+    font-size: font-size.$paragraph;
     width: 100%;
     margin: 15px auto 0px;
     line-height: 19px;

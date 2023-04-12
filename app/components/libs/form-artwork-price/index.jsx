@@ -33,7 +33,7 @@ function AppFormArtworkPrice(props) {
       <AppFormPrice onChange={handleCreateMarkupPrice} initialValue={inputPrice} />
       <AppCardFinalPrice markupPrice={markupPrice} />
       <Form.Item name={"markupPrice"} hidden>
-        <Input value={markupPrice} />
+        <Input value={`${markupPrice}`} />
       </Form.Item>
     </>
   );

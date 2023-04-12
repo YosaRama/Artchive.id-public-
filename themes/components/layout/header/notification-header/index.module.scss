@@ -1,9 +1,10 @@
 @use "/themes/styles/base/colors";
+@use "/themes/styles/base/font-size";
 
 .deleteNotif,
 .readNotif {
   color: black;
-  font-size: 16px;
+  font-size: font-size.$paragraph;
   margin-top: 12px;
   transition: all 300ms ease;
   cursor: pointer;
@@ -27,7 +28,7 @@
 }
 
 .title {
-  font-size: 18px;
+  font-size: font-size.$heading-4;
   font-family: "DM Serif Display";
   font-weight: 700;
   margin: 0px !important;
@@ -36,7 +37,7 @@
 
 .all,
 .unread {
-  font-size: 16px;
+  font-size: font-size.$paragraph;
   color: #c4c4c4;
   transition: all 300ms ease;
   &:active {
@@ -51,7 +52,7 @@
 }
 
 .setting {
-  font-size: 20px;
+  font-size: font-size.$heading-4;
   cursor: poiner;
   transition: all 300ms ease;
   display: flex;

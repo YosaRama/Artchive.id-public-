@@ -1,13 +1,15 @@
+@use "/themes/styles/base/font-size";
+
 .title {
   font-family: "DM_serif_display";
   font-weight: 400;
-  font-size: 32px;
+  font-size: font-size.$heading-2;
   line-height: 33px;
 }
 .description {
   margin: 10px auto 50px;
   font-weight: 400;
-  font-size: 16px;
+  font-size: font-size.$paragraph;
   line-height: 25px;
 }
 

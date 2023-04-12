@@ -82,12 +82,6 @@ apiHandler.put(async (req, res) => {
         message: `Successfully update ${messageHead} - ${id}`,
         data: result,
       });
-    } else {
-      res.status(200).json({
-        success: false,
-        message: `Failed update ${messageHead} - ${id}`,
-        data: result,
-      });
     }
   } catch (error) {
     res.status(200).json({
