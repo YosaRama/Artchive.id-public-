@@ -1,2 +1,0 @@
--- AlterTable
-ALTER TABLE `artwork` ADD COLUMN `markup_price` VARCHAR(191) NOT NULL DEFAULT '1000000';
