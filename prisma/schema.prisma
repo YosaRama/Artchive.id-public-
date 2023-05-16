@@ -29,9 +29,12 @@ model User {
   city               String?
   billing_address    String?
   address            String?
+  phone_number       String?
   biography          String?                @db.Text
   birth_date         DateTime?              @db.Date
   role               Role?
+  otp_code           String?
+  otp_expired_date   DateTime?
   provider           AuthProvider
   artwork            Artwork[]
   cart               Cart[]
