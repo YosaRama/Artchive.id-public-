@@ -53,7 +53,7 @@ function AppCardUserList(props) {
           <Col span={4}>
             <AppRoleTag role={role} />
           </Col>
-          <Col span={6}>{moment({ date }).format("DD MMMM YYYY")}</Col>
+          <Col span={6}>{moment(date).format("DD MMMM YYYY")}</Col>
           <Col span={3}>
             <Badge
               text={status ? "Active" : "Inactive"}

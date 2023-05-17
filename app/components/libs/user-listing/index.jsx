@@ -64,7 +64,7 @@ function UserListing(props) {
               key={item.id}
               email={item.email}
               id={item.id}
-              date={item.created_at}
+              date={item.createdAt}
               image={item.profile && `${process.env.NEXT_PUBLIC_S3_URL}/${item.profile.url}`}
               name={item.full_name}
               role={item.role}
