@@ -1,0 +1,45 @@
+@use "/themes/styles/base/colors";
+@use "/themes/styles/base/font-size";
+
+.container {
+  margin: 25px 0px;
+  padding: 30px 55px;
+  background-color: colors.$white;
+  display: flex;
+  justify-content: space-between;
+  .img {
+    width: 300px;
+    height: 300px;
+    img {
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+    }
+  }
+  .description {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 300px;
+    h2 {
+      font-size: 24px;
+    }
+    .shortDescription {
+      height: 200px;
+      overflow: hidden;
+      text-overflow: ellipsis !important;
+    }
+    .more {
+      justify-self: end;
+      text-decoration: underline;
+      font-weight: 700;
+      //   line-height: 2;
+      cursor: pointer;
+      color: colors.$smoky-black;
+      &:hover {
+        transition: all 300ms ease;
+        color: colors.$fulvous;
+      }
+    }
+  }
+}

@@ -1,0 +1,41 @@
+@use "/themes/styles/base/colors";
+@use "/themes/styles/base/font-size";
+
+.bannerItem {
+  h1 {
+    font-size: 42px;
+  }
+
+  h1,
+  h3 {
+    color: colors.$white;
+  }
+  color: colors.$white;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-content: space-between;
+  flex-direction: column;
+  padding-bottom: 50px;
+  .description {
+    flex-direction: column;
+    display: flex;
+    justify-content: end;
+    align-items: flex-start;
+  }
+}
+
+.btn {
+  cursor: pointer;
+  :hover {
+    color: colors.$fulvous;
+    transition: all 300ms ease;
+  }
+}
+
+.btnActive {
+  h3 {
+    color: colors.$fulvous !important;
+    text-decoration: underline;
+  }
+}

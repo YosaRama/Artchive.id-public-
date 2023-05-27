@@ -1,0 +1,233 @@
+@use "/themes/styles/base/colors";
+@use "/themes/styles/base/font-size";
+
+//? ============== GRID VIEW ============= ?//
+.cartContainerGrid {
+  width: 100%;
+  background: rgb(255, 255, 255);
+  border: 2px solid rgba(217, 217, 217, 1);
+  padding: 40px !important;
+  display: flex;
+  align-content: space-between;
+  height: 700px;
+  h2 {
+    font-size: font-size.$heading-3;
+    margin: 0px;
+  }
+  h4 {
+    font-size: font-size.$heading-4;
+    color: colors.$fulvous;
+    margin: 0px;
+  }
+  p {
+    font-size: font-size.$paragraph;
+    margin: 0px;
+  }
+  .title {
+    margin: 0px;
+  }
+  .imgSrcContainer {
+    padding: 0px !important;
+    height: 340px;
+    margin-bottom: 20px;
+    .imgSrc {
+      object-fit: cover;
+    }
+    .tag {
+      z-index: 1;
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      height: 35px;
+      background-color: colors.$fulvous;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      p {
+        font-weight: 700;
+        font-size: font-size.$paragraph;
+        // color: colors.$white;
+      }
+    }
+  }
+  .descContainer {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
+//? ============== DEFAULT VIEW ============= ?//
+
+.cartContainer {
+  width: 100%;
+  background: rgb(255, 255, 255);
+  display: flex;
+  flex-wrap: wrap;
+  padding: 35px 50px !important;
+  justify-content: space-between;
+  height: 375px;
+  border: 2px solid rgba(217, 217, 217, 1);
+  h2 {
+    font-size: font-size.$heading-2;
+    margin: 0px;
+  }
+  p {
+    font-size: font-size.$paragraph;
+    margin: 0px;
+  }
+  .descContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  .cartLotsContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .imgSrcContainer {
+    width: 100%;
+    height: 300px;
+    .tag {
+      z-index: 1;
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      height: 35px;
+      background-color: colors.$fulvous;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      p {
+        font-weight: 700;
+        font-size: font-size.$paragraph;
+        // color: colors.$white;
+      }
+    }
+  }
+  .imgSrc {
+    object-fit: cover;
+    cursor: pointer;
+    transition: all 200ms ease;
+    &:hover {
+      transition: all 200ms ease;
+      scale: 1.01;
+    }
+  }
+  .title {
+    cursor: pointer;
+  }
+  .priceContainer {
+    width: 25%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    h2,
+    h3 {
+      margin: 0px;
+    }
+    .price {
+      h3 {
+        font-size: font-size.$heading-3;
+        font-family: "Aileron" !important;
+        color: colors.$fulvous;
+        margin: 0px !important;
+      }
+    }
+
+    .btn {
+      width: 100%;
+    }
+  }
+  .divider {
+    height: 100%;
+    background-color: rgba(217, 217, 217, 1);
+  }
+}
+
+//? ============== Tablet Landscape Mode ============= ?//
+@media screen and (max-width: 1024px) {
+  .imgSrcContainer {
+    width: 150px;
+    height: 150px;
+  }
+
+  .descContainer {
+    width: 40%;
+  }
+
+  .priceContainer {
+    width: 35%;
+  }
+}
+
+//? ============== Tablet Potrait Mode ============= ?//
+@media screen and (max-width: 768px) {
+  .imgSrcContainer {
+    width: 140px;
+    height: 140px;
+  }
+
+  .descContainer {
+    width: 35%;
+  }
+
+  .priceContainer {
+    width: 35%;
+  }
+}
+
+//? ============== Mobile Mode ============= ?//
+@media screen and (max-width: 500px) {
+  .cartItemContainer {
+    width: 100%;
+    // margin-bottom: 40px;
+    display: flex;
+
+    justify-content: space-between;
+    // height: auto;
+    margin-bottom: 24px;
+  }
+
+  .imgSrcContainer {
+    width: 100px;
+    height: 100px;
+  }
+
+  .descContainer {
+    width: 55%;
+    h2 {
+      font-size: font-size.$heading-4;
+    }
+    p {
+      font-size: font-size.$paragraph;
+    }
+  }
+
+  .priceContainer {
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    h2 {
+      margin: 0px;
+    }
+  }
+
+  .price {
+    width: 75%;
+  }
+
+  .orderServices {
+    margin-top: 12px;
+  }
+}

@@ -1,0 +1,48 @@
+@use "/themes/styles/base/colors";
+@use "/themes/styles/base/font-size";
+
+.bannerContainer {
+  height: 40vh;
+  :global(.banner-image) {
+    height: 40vh;
+  }
+}
+
+.bannerItem {
+  h1 {
+    font-size: 42px;
+  }
+
+  h1,
+  h3 {
+    color: colors.$white;
+  }
+  color: colors.$white;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-content: space-between;
+  flex-direction: column;
+  padding-bottom: 50px;
+  .description {
+    flex-direction: column;
+    display: flex;
+    justify-content: end;
+    align-items: flex-start;
+  }
+}
+
+.detailsContainer {
+  background-color: colors.$white;
+  padding: 50px 0px;
+  h1 {
+    font-size: 32px;
+  }
+}
+
+.curator {
+  margin-top: 50px;
+  h1 {
+    font-size: 32px;
+  }
+}
