@@ -14,6 +14,7 @@ CREATE TABLE `user` (
     `city` VARCHAR(191) NULL,
     `billing_address` VARCHAR(191) NULL,
     `address` VARCHAR(191) NULL,
+    `phone_number` VARCHAR(191) NULL,
     `biography` TEXT NULL,
     `birth_date` DATE NULL,
     `role` ENUM('ARTIST', 'GALLERY', 'ADMIN', 'COLLECTOR') NULL,

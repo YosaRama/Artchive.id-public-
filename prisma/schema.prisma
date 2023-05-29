@@ -318,8 +318,8 @@ enum CertificateType {
 }
 
 enum AuthProvider {
-  CREDENTIALS
   PHONE_NUMBER
+  CREDENTIALS
   GOOGLE
   FACEBOOK
 }
