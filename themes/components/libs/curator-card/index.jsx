@@ -1,15 +1,24 @@
 // Libs
 import propTypes from "prop-types";
 import { Col, Row, Image } from "antd";
+import { useState } from "react";
 
 // Styles
 import s from "./index.module.scss";
 
 function ThemesCuratorCard(props) {
   const { imgUrl, curatorName, description } = props;
+
+  const [expanded, setExpanded] = useState(false);
+
+  const handleExpand = () => {
+    setExpanded(!expanded);
+  };
+
+  const descriptionClass = `${s.shortDescription} ${expanded ? s.expanded : ""}`;
   return (
     <>
-      <Row className={s.container}>
+      <Row className={s.container} justify="space-between">
         <Col span={6} className={s.img}>
           <Image src={imgUrl} alt="" preview={false} />
         </Col>
@@ -17,11 +26,11 @@ function ThemesCuratorCard(props) {
           <Col>
             <h2>{curatorName}</h2>
           </Col>
-          <Col className={s.shortDescription}>
+          <Col className={descriptionClass} onClick={handleExpand}>
             <p>{description}</p>
           </Col>
-          <Col className={s.more}>
-            <p>Read more</p>
+          <Col className={s.more} onClick={handleExpand}>
+            {expanded ? <p>Read less</p> : <p>Read more</p>}
           </Col>
         </Col>
       </Row>

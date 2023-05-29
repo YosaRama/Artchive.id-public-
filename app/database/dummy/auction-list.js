@@ -31,7 +31,8 @@ export const auctionList = [
         id: 1,
         name: "Curator Name 1",
         background:
-          "Lorem ipsum dolor sit amet consectetur. Volutpat condimentum vitae etiam magnis. Nisihendrerit euismod neque morbi duis vitae ullamcorper. Quam laoreet orci adipiscingjusto ultrices interdum tristique mi. Odio ac dignissim odio id in massa eget idmorbi. Ridiculus a vitae dignissim massa cras imperdiet massa. At id quis tempuspretium tincidunt dapibus. Sed turpis pellentesque nisl lacus a libero aliquet suscipit. Viverra arcu tempor adipiscing arcu nunc. Hendrerit consectetur interdumcursus ut nibh ac nisl aliquam. Et convallis feugiat dui tellus elementum lacus. Nunc velit mollis nulla sollicitudin et augue velit nisl massa. Accumsan sed egestas enim in dictum turpis nunc. Penatibus tincidunt ultrices mauris erat. Erat mus integer nibhadipiscing ac adipiscing eget mauris dui.",
+          "Lorem ipsum dolor sit amet consectetur. Volutpat condimentum vitae etiam magnis. Nisihendrerit euismod neque morbi duis vitae ullamcorper. Quam laoreet orci adipiscingjusto ultrices interdum tristique mi. Odio ac dignissim odio id in massa eget idmorbi. Ridiculus a vitae dignissim massa cras imperdiet massa. At id quis tempuspretium tincidunt dapibus. Sed turpis pellentesque nisl lacus a libero aliquet suscipit. Viverra arcu tempor adipiscing arcu nunc. Hendrerit consectetur interdumcursus ut nibh ac nisl aliquam. Et convallis feugiat dui tellus elementum lacus. Nunc velit mollis nulla sollicitudin et augue velit nisl massa. Accumsan sed egestas enim in dictum turpis nunc. Penatibus tincidunt ultrices mauris erat. Erat mus integer nibhadipiscing ac adipiscing eget mauris dui.Lorem ipsum dolor sit amet consectetur. Volutpat condimentum vitae etiam magnis. Nisihendrerit euismod neque morbi duis vitae ullamcorper. Quam laoreet orci adipiscingjusto ultrices interdum tristique mi. Odio ac dignissim odio id in massa eget idmorbi. Ridiculus a vitae dignissim massa cras imperdiet massa. At id quis tempuspretium tincidunt dapibus. Sed turpis pellentesque nisl lacus a libero aliquet suscipit. Viverra arcu tempor adipiscing arcu nunc. Hendrerit consectetur interdumcursus ut nibh ac nisl aliquam. Et convallis feugiat dui tellus elementum lacus. Nunc velit mollis nulla sollicitudin et augue velit nisl massa. Accumsan sed egestas enim in dictum turpis nunc. Penatibus tincidunt ultrices mauris erat. Erat mus integer nibhadipiscing ac adipiscing eget mauris dui.",
+
         img_url: "/images/profile-1.jpg",
         position: "Curator",
       },
@@ -39,7 +40,7 @@ export const auctionList = [
         id: 2,
         name: "Curator Name ",
         background:
-          "Lorem ipsum dolor sit amet consectetur. Volutpat condimentum vitae etiam magnis. Nisihendrerit euismod neque morbi duis vitae ullamcorper. Quam laoreet orci adipiscingjusto ultrices interdum tristique mi. Odio ac dignissim odio id in massa eget idmorbi. Ridiculus a vitae dignissim massa cras imperdiet massa. At id quis tempuspretium tincidunt dapibus. Sed turpis pellentesque nisl lacus a libero aliquet suscipit. Viverra arcu tempor adipiscing arcu nunc. Hendrerit consectetur interdumcursus ut nibh ac nisl aliquam. Et convallis feugiat dui tellus elementum lacus. Nunc velit mollis nulla sollicitudin et augue velit nisl massa. Accumsan sed egestas enim in dictum turpis nunc. Penatibus tincidunt ultrices mauris erat. Erat mus integer nibhadipiscing ac adipiscing eget mauris dui.",
+          "Lorem ipsum dolor sit amet consectetur. Volutpat condimentum vitae etiam magnis. Nisihendrerit euismod neque morbi duis vitae ullamcorper. Quam laoreet orci adipiscingjusto ultrices interdum tristique mi. Odio ac dignissim odio id in massa eget idmorbi. Ridiculus a vitae dignissim massa cras imperdiet massa. At id quis tempuspretium tincidunt dapibus. Sed turpis pellentesque nisl lacus a libero aliquet suscipit. Viverra arcu tempor adipiscing arcu nunc. Hendrerit consectetur interdumcursus ut nibh ac nisl aliquam. Et convallis feugiat dui tellus elementum lacus. Nunc velit mollis nulla sollicitudin et augue velit nisl massa. Accumsan sed egestas enim in dictum turpis nunc. Penatibus tincidunt ultrices mauris erat. Erat mus integer nibhadipiscing ac adipiscing eget mauris dui.Lorem ipsum dolor sit amet consectetur. Volutpat condimentum vitae etiam magnis. Nisihendrerit euismod neque morbi duis vitae ullamcorper. Quam laoreet orci adipiscingjusto ultrices interdum tristique mi. Odio ac dignissim odio id in massa eget idmorbi. Ridiculus a vitae dignissim massa cras imperdiet massa. At id quis tempuspretium tincidunt dapibus. Sed turpis pellentesque nisl lacus a libero aliquet suscipit. Viverra arcu tempor adipiscing arcu nunc. Hendrerit consectetur interdumcursus ut nibh ac nisl aliquam. Et convallis feugiat dui tellus elementum lacus. Nunc velit mollis nulla sollicitudin et augue velit nisl massa. Accumsan sed egestas enim in dictum turpis nunc. Penatibus tincidunt ultrices mauris erat. Erat mus integer nibhadipiscing ac adipiscing eget mauris dui.",
         img_url: "/images/profile-2.jpg",
         position: "Curator",
       },
@@ -47,7 +48,7 @@ export const auctionList = [
         id: 3,
         name: "Curator Name 3",
         background:
-          "Lorem ipsum dolor sit amet consectetur. Volutpat condimentum vitae etiam magnis. Nisihendrerit euismod neque morbi duis vitae ullamcorper. Quam laoreet orci adipiscingjusto ultrices interdum tristique mi. Odio ac dignissim odio id in massa eget idmorbi. Ridiculus a vitae dignissim massa cras imperdiet massa. At id quis tempuspretium tincidunt dapibus. Sed turpis pellentesque nisl lacus a libero aliquet suscipit. Viverra arcu tempor adipiscing arcu nunc. Hendrerit consectetur interdumcursus ut nibh ac nisl aliquam. Et convallis feugiat dui tellus elementum lacus. Nunc velit mollis nulla sollicitudin et augue velit nisl massa. Accumsan sed egestas enim in dictum turpis nunc. Penatibus tincidunt ultrices mauris erat. Erat mus integer nibhadipiscing ac adipiscing eget mauris dui.",
+          "Lorem ipsum dolor sit amet consectetur. Volutpat condimentum vitae etiam magnis. Nisihendrerit euismod neque morbi duis vitae ullamcorper. Quam laoreet orci adipiscingjusto ultrices interdum tristique mi. Odio ac dignissim odio id in massa eget idmorbi. Ridiculus a vitae dignissim massa cras imperdiet massa. At id quis tempuspretium tincidunt dapibus. Sed turpis pellentesque nisl lacus a libero aliquet suscipit. Viverra arcu tempor adipiscing arcu nunc. Hendrerit consectetur interdumcursus ut nibh ac nisl aliquam. Et convallis feugiat dui tellus elementum lacus. Nunc velit mollis nulla sollicitudin et augue velit nisl massa. Accumsan sed egestas enim in dictum turpis nunc. Penatibus tincidunt ultrices mauris erat. Erat mus integer nibhadipiscing ac adipiscing eget mauris dui.Lorem ipsum dolor sit amet consectetur. Volutpat condimentum vitae etiam magnis. Nisihendrerit euismod neque morbi duis vitae ullamcorper. Quam laoreet orci adipiscingjusto ultrices interdum tristique mi. Odio ac dignissim odio id in massa eget idmorbi. Ridiculus a vitae dignissim massa cras imperdiet massa. At id quis tempuspretium tincidunt dapibus. Sed turpis pellentesque nisl lacus a libero aliquet suscipit. Viverra arcu tempor adipiscing arcu nunc. Hendrerit consectetur interdumcursus ut nibh ac nisl aliquam. Et convallis feugiat dui tellus elementum lacus. Nunc velit mollis nulla sollicitudin et augue velit nisl massa. Accumsan sed egestas enim in dictum turpis nunc. Penatibus tincidunt ultrices mauris erat. Erat mus integer nibhadipiscing ac adipiscing eget mauris dui.",
         img_url: "/images/profile-3.jpg",
         position: "Curator",
       },
@@ -55,7 +56,7 @@ export const auctionList = [
         id: 4,
         name: "Curator Name 4",
         background:
-          "Lorem ipsum dolor sit amet consectetur. Volutpat condimentum vitae etiam magnis. Nisihendrerit euismod neque morbi duis vitae ullamcorper. Quam laoreet orci adipiscingjusto ultrices interdum tristique mi. Odio ac dignissim odio id in massa eget idmorbi. Ridiculus a vitae dignissim massa cras imperdiet massa. At id quis tempuspretium tincidunt dapibus. Sed turpis pellentesque nisl lacus a libero aliquet suscipit. Viverra arcu tempor adipiscing arcu nunc. Hendrerit consectetur interdumcursus ut nibh ac nisl aliquam. Et convallis feugiat dui tellus elementum lacus. Nunc velit mollis nulla sollicitudin et augue velit nisl massa. Accumsan sed egestas enim in dictum turpis nunc. Penatibus tincidunt ultrices mauris erat. Erat mus integer nibhadipiscing ac adipiscing eget mauris dui.",
+          "Lorem ipsum dolor sit amet consectetur. Volutpat condimentum vitae etiam magnis. Nisihendrerit euismod neque morbi duis vitae ullamcorper. Quam laoreet orci adipiscingjusto ultrices interdum tristique mi. Odio ac dignissim odio id in massa eget idmorbi. Ridiculus a vitae dignissim massa cras imperdiet massa. At id quis tempuspretium tincidunt dapibus. Sed turpis pellentesque nisl lacus a libero aliquet suscipit. Viverra arcu tempor adipiscing arcu nunc. Hendrerit consectetur interdumcursus ut nibh ac nisl aliquam. Et convallis feugiat dui tellus elementum lacus. Nunc velit mollis nulla sollicitudin et augue velit nisl massa. Accumsan sed egestas enim in dictum turpis nunc. Penatibus tincidunt ultrices mauris erat. Erat mus integer nibhadipiscing ac adipiscing eget mauris dui.Lorem ipsum dolor sit amet consectetur. Volutpat condimentum vitae etiam magnis. Nisihendrerit euismod neque morbi duis vitae ullamcorper. Quam laoreet orci adipiscingjusto ultrices interdum tristique mi. Odio ac dignissim odio id in massa eget idmorbi. Ridiculus a vitae dignissim massa cras imperdiet massa. At id quis tempuspretium tincidunt dapibus. Sed turpis pellentesque nisl lacus a libero aliquet suscipit. Viverra arcu tempor adipiscing arcu nunc. Hendrerit consectetur interdumcursus ut nibh ac nisl aliquam. Et convallis feugiat dui tellus elementum lacus. Nunc velit mollis nulla sollicitudin et augue velit nisl massa. Accumsan sed egestas enim in dictum turpis nunc. Penatibus tincidunt ultrices mauris erat. Erat mus integer nibhadipiscing ac adipiscing eget mauris dui.",
         img_url: "/images/profile-4.jpg",
         position: "Curator",
       },
@@ -66,17 +67,37 @@ export const auctionList = [
         imgUrl: "/images/artwork-1.jpg",
         title: "Artwork Auction 1",
         slug: "artwork-auction-1",
-        artist: "Artist Name",
+        artist: "Van Gogh",
         condition: "Good",
-        description: "Artwork auction 1 description",
+        description:
+          "Lorem ipsum dolor sit amet consectetur. Massa lectus ut quis ultricies volutpat in. Eget amet ultrices et aliquam. ",
         media: "Acrylic on Canvas",
-        estimation: " 6.000.000",
-        current: " 5.000.000",
+        starting_bid: "5000000",
+        estimation: " 10000000",
+        current: " 5000000",
         start_date: "2022-04-29T16:26:08.667Z",
         end_date: "2022-04-29T16:26:08.667Z",
         imgHeight: "200",
         imgWidth: "200",
         status: "READY",
+        media_gallery: [
+          {
+            id: 1,
+            url: "/images/artwork-1.jpg",
+          },
+          {
+            id: 2,
+            url: "/images/artwork-2.jpg",
+          },
+          {
+            id: 3,
+            url: "/images/artwork-3.jpg",
+          },
+          {
+            id: 4,
+            url: "/images/artwork-4.jpg",
+          },
+        ],
       },
       {
         id: 2,
@@ -87,14 +108,34 @@ export const auctionList = [
         media: "Acrylic on Canvas",
 
         condition: "Good",
-        description: "Artwork auction 1 description",
-        estimation: " 6.000.000",
-        current: " 5.000.000",
+        description:
+          "Lorem ipsum dolor sit amet consectetur. Massa lectus ut quis ultricies volutpat in. Eget amet ultrices et aliquam. ",
+        estimation: " 10000000",
+        current: " 5000000",
         start_date: "2022-04-29T16:26:08.667Z",
         end_date: "2022-04-29T16:26:08.667Z",
         imgHeight: "200",
         imgWidth: "200",
         status: "ENDED",
+        starting_bid: "5000000",
+        media_galery: [
+          {
+            id: 1,
+            url: "/images/artwork-1.jpg",
+          },
+          {
+            id: 2,
+            url: "/images/artwork-2.jpg",
+          },
+          {
+            id: 3,
+            url: "/images/artwork-3.jpg",
+          },
+          {
+            id: 4,
+            url: "/images/artwork-4.jpg",
+          },
+        ],
       },
 
       {
@@ -104,15 +145,35 @@ export const auctionList = [
         slug: "artwork-auction-3",
         artist: "",
         condition: "Good",
-        description: "Artwork auction 1 description",
+        description:
+          "Lorem ipsum dolor sit amet consectetur. Massa lectus ut quis ultricies volutpat in. Eget amet ultrices et aliquam. ",
         media: "Acrylic on Canvas",
-        estimation: " 6.000.000",
-        current: " 5.000.000",
+        estimation: " 10000000",
+        current: " 5000000",
         start_date: "2022-04-29T16:26:08.667Z",
         end_date: "2022-04-29T16:26:08.667Z",
         imgHeight: "200",
         imgWidth: "200",
         status: "READY",
+        starting_bid: "5000000",
+        media_galery: [
+          {
+            id: 1,
+            url: "/images/artwork-1.jpg",
+          },
+          {
+            id: 2,
+            url: "/images/artwork-2.jpg",
+          },
+          {
+            id: 3,
+            url: "/images/artwork-3.jpg",
+          },
+          {
+            id: 4,
+            url: "/images/artwork-4.jpg",
+          },
+        ],
       },
 
       {
@@ -122,15 +183,35 @@ export const auctionList = [
         slug: "artwork-auction-4",
         artist: "",
         condition: "Good",
-        description: "Artwork auction 1 description",
+        description:
+          "Lorem ipsum dolor sit amet consectetur. Massa lectus ut quis ultricies volutpat in. Eget amet ultrices et aliquam. ",
         media: "Acrylic on Canvas",
-        estimation: " 6.000.000",
-        current: " 5.000.000",
+        estimation: " 10000000",
+        current: " 5000000",
         start_date: "2022-04-29T16:26:08.667Z",
         end_date: "2022-04-29T16:26:08.667Z",
         imgHeight: "200",
         imgWidth: "200",
         status: "READY",
+        starting_bid: "5000000",
+        media_galery: [
+          {
+            id: 1,
+            url: "/images/artwork-1.jpg",
+          },
+          {
+            id: 2,
+            url: "/images/artwork-2.jpg",
+          },
+          {
+            id: 3,
+            url: "/images/artwork-3.jpg",
+          },
+          {
+            id: 4,
+            url: "/images/artwork-4.jpg",
+          },
+        ],
       },
 
       {
@@ -140,15 +221,17 @@ export const auctionList = [
         slug: "artwork-auction-5",
         artist: "",
         condition: "Good",
-        description: "Artwork auction 1 description",
+        description:
+          "Lorem ipsum dolor sit amet consectetur. Massa lectus ut quis ultricies volutpat in. Eget amet ultrices et aliquam. ",
         media: "Acrylic on Canvas",
-        estimation: " 6.000.000",
-        current: " 5.000.000",
+        estimation: " 10000000",
+        current: " 5000000",
         start_date: "2022-04-29T16:26:08.667Z",
         end_date: "2022-04-29T16:26:08.667Z",
         imgHeight: "200",
         imgWidth: "200",
         status: "READY",
+        starting_bid: "5000000",
       },
     ],
   },
@@ -194,7 +277,7 @@ export const auctionList = [
         id: 2,
         name: "Curator Name ",
         background:
-          "Lorem ipsum dolor sit amet consectetur. Volutpat condimentum vitae etiam magnis. Nisihendrerit euismod neque morbi duis vitae ullamcorper. Quam laoreet orci adipiscingjusto ultrices interdum tristique mi. Odio ac dignissim odio id in massa eget idmorbi. Ridiculus a vitae dignissim massa cras imperdiet massa. At id quis tempuspretium tincidunt dapibus. Sed turpis pellentesque nisl lacus a libero aliquet suscipit. Viverra arcu tempor adipiscing arcu nunc. Hendrerit consectetur interdumcursus ut nibh ac nisl aliquam. Et convallis feugiat dui tellus elementum lacus. Nunc velit mollis nulla sollicitudin et augue velit nisl massa. Accumsan sed egestas enim in dictum turpis nunc. Penatibus tincidunt ultrices mauris erat. Erat mus integer nibhadipiscing ac adipiscing eget mauris dui.",
+          "Lorem ipsum dolor sit amet consectetur. Volutpat condimentum vitae etiam magnis. Nisihendrerit euismod neque morbi duis vitae ullamcorper. Quam laoreet orci adipiscingjusto ultrices interdum tristique mi. Odio ac dignissim odio id in massa eget idmorbi. Ridiculus a vitae dignissim massa cras imperdiet massa. At id quis tempuspretium tincidunt dapibus. Sed turpis pellentesque nisl lacus a libero aliquet suscipit. Viverra arcu tempor adipiscing arcu nunc. Hendrerit consectetur interdumcursus ut nibh ac nisl aliquam. Et convallis feugiat dui tellus elementum lacus. Nunc velit mollis nulla sollicitudin et augue velit nisl massa. Accumsan sed egestas enim in dictum turpis nunc. Penatibus tincidunt ultrices mauris erat. Erat mus integer nibhadipiscing ac adipiscing eget mauris dui.Lorem ipsum dolor sit amet consectetur. Volutpat condimentum vitae etiam magnis. Nisihendrerit euismod neque morbi duis vitae ullamcorper. Quam laoreet orci adipiscingjusto ultrices interdum tristique mi. Odio ac dignissim odio id in massa eget idmorbi. Ridiculus a vitae dignissim massa cras imperdiet massa. At id quis tempuspretium tincidunt dapibus. Sed turpis pellentesque nisl lacus a libero aliquet suscipit. Viverra arcu tempor adipiscing arcu nunc. Hendrerit consectetur interdumcursus ut nibh ac nisl aliquam. Et convallis feugiat dui tellus elementum lacus. Nunc velit mollis nulla sollicitudin et augue velit nisl massa. Accumsan sed egestas enim in dictum turpis nunc. Penatibus tincidunt ultrices mauris erat. Erat mus integer nibhadipiscing ac adipiscing eget mauris dui.",
         img_url: "/images/profile-1.jpg",
         position: "Curator",
       },
@@ -202,7 +285,7 @@ export const auctionList = [
         id: 3,
         name: "Curator Name 3",
         background:
-          "Lorem ipsum dolor sit amet consectetur. Volutpat condimentum vitae etiam magnis. Nisihendrerit euismod neque morbi duis vitae ullamcorper. Quam laoreet orci adipiscingjusto ultrices interdum tristique mi. Odio ac dignissim odio id in massa eget idmorbi. Ridiculus a vitae dignissim massa cras imperdiet massa. At id quis tempuspretium tincidunt dapibus. Sed turpis pellentesque nisl lacus a libero aliquet suscipit. Viverra arcu tempor adipiscing arcu nunc. Hendrerit consectetur interdumcursus ut nibh ac nisl aliquam. Et convallis feugiat dui tellus elementum lacus. Nunc velit mollis nulla sollicitudin et augue velit nisl massa. Accumsan sed egestas enim in dictum turpis nunc. Penatibus tincidunt ultrices mauris erat. Erat mus integer nibhadipiscing ac adipiscing eget mauris dui.",
+          "Lorem ipsum dolor sit amet consectetur. Volutpat condimentum vitae etiam magnis. Nisihendrerit euismod neque morbi duis vitae ullamcorper. Quam laoreet orci adipiscingjusto ultrices interdum tristique mi. Odio ac dignissim odio id in massa eget idmorbi. Ridiculus a vitae dignissim massa cras imperdiet massa. At id quis tempuspretium tincidunt dapibus. Sed turpis pellentesque nisl lacus a libero aliquet suscipit. Viverra arcu tempor adipiscing arcu nunc. Hendrerit consectetur interdumcursus ut nibh ac nisl aliquam. Et convallis feugiat dui tellus elementum lacus. Nunc velit mollis nulla sollicitudin et augue velit nisl massa. Accumsan sed egestas enim in dictum turpis nunc. Penatibus tincidunt ultrices mauris erat. Erat mus integer nibhadipiscing ac adipiscing eget mauris dui.Lorem ipsum dolor sit amet consectetur. Volutpat condimentum vitae etiam magnis. Nisihendrerit euismod neque morbi duis vitae ullamcorper. Quam laoreet orci adipiscingjusto ultrices interdum tristique mi. Odio ac dignissim odio id in massa eget idmorbi. Ridiculus a vitae dignissim massa cras imperdiet massa. At id quis tempuspretium tincidunt dapibus. Sed turpis pellentesque nisl lacus a libero aliquet suscipit. Viverra arcu tempor adipiscing arcu nunc. Hendrerit consectetur interdumcursus ut nibh ac nisl aliquam. Et convallis feugiat dui tellus elementum lacus. Nunc velit mollis nulla sollicitudin et augue velit nisl massa. Accumsan sed egestas enim in dictum turpis nunc. Penatibus tincidunt ultrices mauris erat. Erat mus integer nibhadipiscing ac adipiscing eget mauris dui.",
         img_url: "/images/profile-1.jpg",
         position: "Curator",
       },
@@ -221,17 +304,37 @@ export const auctionList = [
         imgUrl: "/images/artwork-1.jpg",
         title: "Artwork Auction 1",
         slug: "artwork-auction-1",
-        artist: "Artist Name",
+        artist: "Van Gogh",
         condition: "Good",
-        description: "Artwork auction 1 description",
+        description:
+          "Lorem ipsum dolor sit amet consectetur. Massa lectus ut quis ultricies volutpat in. Eget amet ultrices et aliquam. ",
         media: "Acrylic on Canvas",
-        estimation: " 6.000.000",
-        current: " 5.000.000",
+        estimation: " 10000000",
+        current: " 5000000",
         start_date: "2022-04-29T16:26:08.667Z",
         end_date: "2022-04-29T16:26:08.667Z",
         imgHeight: "200",
         imgWidth: "200",
         status: "READY",
+        starting_bid: "5000000",
+        media_galery: [
+          {
+            id: 1,
+            url: "/images/artwork-1.jpg",
+          },
+          {
+            id: 2,
+            url: "/images/artwork-2.jpg",
+          },
+          {
+            id: 3,
+            url: "/images/artwork-3.jpg",
+          },
+          {
+            id: 4,
+            url: "/images/artwork-4.jpg",
+          },
+        ],
       },
       {
         id: 2,
@@ -242,14 +345,34 @@ export const auctionList = [
         media: "Acrylic on Canvas",
 
         condition: "Good",
-        description: "Artwork auction 1 description",
-        estimation: " 6.000.000",
-        current: " 5.000.000",
+        description:
+          "Lorem ipsum dolor sit amet consectetur. Massa lectus ut quis ultricies volutpat in. Eget amet ultrices et aliquam. ",
+        estimation: " 10000000",
+        current: " 5000000",
         start_date: "2022-04-29T16:26:08.667Z",
         end_date: "2022-04-29T16:26:08.667Z",
         imgHeight: "200",
         imgWidth: "200",
         status: "ENDED",
+        starting_bid: "5000000",
+        media_galery: [
+          {
+            id: 1,
+            url: "/images/artwork-1.jpg",
+          },
+          {
+            id: 2,
+            url: "/images/artwork-2.jpg",
+          },
+          {
+            id: 3,
+            url: "/images/artwork-3.jpg",
+          },
+          {
+            id: 4,
+            url: "/images/artwork-4.jpg",
+          },
+        ],
       },
 
       {
@@ -259,15 +382,53 @@ export const auctionList = [
         slug: "artwork-auction-3",
         artist: "",
         condition: "Good",
-        description: "Artwork auction 1 description",
+        description:
+          "Lorem ipsum dolor sit amet consectetur. Massa lectus ut quis ultricies volutpat in. Eget amet ultrices et aliquam. ",
         media: "Acrylic on Canvas",
-        estimation: " 6.000.000",
-        current: " 5.000.000",
+        estimation: " 10000000",
+        current: " 5000000",
         start_date: "2022-04-29T16:26:08.667Z",
         end_date: "2022-04-29T16:26:08.667Z",
         imgHeight: "200",
         imgWidth: "200",
         status: "READY",
+        starting_bid: "5000000",
+        media_galery: [
+          {
+            id: 1,
+            url: "/images/artwork-1.jpg",
+          },
+          {
+            id: 2,
+            url: "/images/artwork-2.jpg",
+          },
+          {
+            id: 3,
+            url: "/images/artwork-3.jpg",
+          },
+          {
+            id: 4,
+            url: "/images/artwork-4.jpg",
+          },
+        ],
+        media_galery: [
+          {
+            id: 1,
+            url: "/images/artwork-1.jpg",
+          },
+          {
+            id: 2,
+            url: "/images/artwork-2.jpg",
+          },
+          {
+            id: 3,
+            url: "/images/artwork-3.jpg",
+          },
+          {
+            id: 4,
+            url: "/images/artwork-4.jpg",
+          },
+        ],
       },
 
       {
@@ -277,15 +438,53 @@ export const auctionList = [
         slug: "artwork-auction-4",
         artist: "",
         condition: "Good",
-        description: "Artwork auction 1 description",
+        description:
+          "Lorem ipsum dolor sit amet consectetur. Massa lectus ut quis ultricies volutpat in. Eget amet ultrices et aliquam. ",
         media: "Acrylic on Canvas",
-        estimation: " 6.000.000",
-        current: " 5.000.000",
+        estimation: " 10000000",
+        current: " 5000000",
         start_date: "2022-04-29T16:26:08.667Z",
         end_date: "2022-04-29T16:26:08.667Z",
         imgHeight: "200",
         imgWidth: "200",
         status: "READY",
+        starting_bid: "5000000",
+        media_galery: [
+          {
+            id: 1,
+            url: "/images/artwork-1.jpg",
+          },
+          {
+            id: 2,
+            url: "/images/artwork-2.jpg",
+          },
+          {
+            id: 3,
+            url: "/images/artwork-3.jpg",
+          },
+          {
+            id: 4,
+            url: "/images/artwork-4.jpg",
+          },
+        ],
+        media_galery: [
+          {
+            id: 1,
+            url: "/images/artwork-1.jpg",
+          },
+          {
+            id: 2,
+            url: "/images/artwork-2.jpg",
+          },
+          {
+            id: 3,
+            url: "/images/artwork-3.jpg",
+          },
+          {
+            id: 4,
+            url: "/images/artwork-4.jpg",
+          },
+        ],
       },
 
       {
@@ -295,15 +494,53 @@ export const auctionList = [
         slug: "artwork-auction-5",
         artist: "",
         condition: "Good",
-        description: "Artwork auction 1 description",
+        description:
+          "Lorem ipsum dolor sit amet consectetur. Massa lectus ut quis ultricies volutpat in. Eget amet ultrices et aliquam. ",
         media: "Acrylic on Canvas",
-        estimation: " 6.000.000",
-        current: " 5.000.000",
+        estimation: " 10000000",
+        current: " 5000000",
         start_date: "2022-04-29T16:26:08.667Z",
         end_date: "2022-04-29T16:26:08.667Z",
         imgHeight: "200",
         imgWidth: "200",
         status: "READY",
+        starting_bid: "5000000",
+        media_galery: [
+          {
+            id: 1,
+            url: "/images/artwork-1.jpg",
+          },
+          {
+            id: 2,
+            url: "/images/artwork-2.jpg",
+          },
+          {
+            id: 3,
+            url: "/images/artwork-3.jpg",
+          },
+          {
+            id: 4,
+            url: "/images/artwork-4.jpg",
+          },
+        ],
+        media_galery: [
+          {
+            id: 1,
+            url: "/images/artwork-1.jpg",
+          },
+          {
+            id: 2,
+            url: "/images/artwork-2.jpg",
+          },
+          {
+            id: 3,
+            url: "/images/artwork-3.jpg",
+          },
+          {
+            id: 4,
+            url: "/images/artwork-4.jpg",
+          },
+        ],
       },
     ],
   },
@@ -375,17 +612,37 @@ export const auctionList = [
         imgUrl: "/images/artwork-1.jpg",
         title: "Artwork Auction 1",
         slug: "artwork-auction-1",
-        artist: "Artist Name",
+        artist: "Van Gogh",
         condition: "Good",
-        description: "Artwork auction 1 description",
+        description:
+          "Lorem ipsum dolor sit amet consectetur. Massa lectus ut quis ultricies volutpat in. Eget amet ultrices et aliquam. ",
         media: "Acrylic on Canvas",
-        estimation: " 6.000.000",
-        current: " 5.000.000",
+        estimation: " 10000000",
+        current: " 5000000",
         start_date: "2022-04-29T16:26:08.667Z",
         end_date: "2022-04-29T16:26:08.667Z",
         imgHeight: "200",
         imgWidth: "200",
         status: "READY",
+        starting_bid: "5000000",
+        media_galery: [
+          {
+            id: 1,
+            url: "/images/artwork-1.jpg",
+          },
+          {
+            id: 2,
+            url: "/images/artwork-2.jpg",
+          },
+          {
+            id: 3,
+            url: "/images/artwork-3.jpg",
+          },
+          {
+            id: 4,
+            url: "/images/artwork-4.jpg",
+          },
+        ],
       },
       {
         id: 2,
@@ -396,14 +653,34 @@ export const auctionList = [
         media: "Acrylic on Canvas",
 
         condition: "Good",
-        description: "Artwork auction 1 description",
-        estimation: " 6.000.000",
-        current: " 5.000.000",
+        description:
+          "Lorem ipsum dolor sit amet consectetur. Massa lectus ut quis ultricies volutpat in. Eget amet ultrices et aliquam. ",
+        estimation: " 10000000",
+        current: " 5000000",
         start_date: "2022-04-29T16:26:08.667Z",
         end_date: "2022-04-29T16:26:08.667Z",
         imgHeight: "200",
         imgWidth: "200",
         status: "ENDED",
+        starting_bid: "5000000",
+        media_galery: [
+          {
+            id: 1,
+            url: "/images/artwork-1.jpg",
+          },
+          {
+            id: 2,
+            url: "/images/artwork-2.jpg",
+          },
+          {
+            id: 3,
+            url: "/images/artwork-3.jpg",
+          },
+          {
+            id: 4,
+            url: "/images/artwork-4.jpg",
+          },
+        ],
       },
 
       {
@@ -413,15 +690,35 @@ export const auctionList = [
         slug: "artwork-auction-3",
         artist: "",
         condition: "Good",
-        description: "Artwork auction 1 description",
+        description:
+          "Lorem ipsum dolor sit amet consectetur. Massa lectus ut quis ultricies volutpat in. Eget amet ultrices et aliquam. ",
         media: "Acrylic on Canvas",
-        estimation: " 6.000.000",
-        current: " 5.000.000",
+        estimation: " 10000000",
+        current: " 5000000",
         start_date: "2022-04-29T16:26:08.667Z",
         end_date: "2022-04-29T16:26:08.667Z",
         imgHeight: "200",
         imgWidth: "200",
         status: "READY",
+        starting_bid: "5000000",
+        media_galery: [
+          {
+            id: 1,
+            url: "/images/artwork-1.jpg",
+          },
+          {
+            id: 2,
+            url: "/images/artwork-2.jpg",
+          },
+          {
+            id: 3,
+            url: "/images/artwork-3.jpg",
+          },
+          {
+            id: 4,
+            url: "/images/artwork-4.jpg",
+          },
+        ],
       },
 
       {
@@ -431,15 +728,35 @@ export const auctionList = [
         slug: "artwork-auction-4",
         artist: "",
         condition: "Good",
-        description: "Artwork auction 1 description",
+        description:
+          "Lorem ipsum dolor sit amet consectetur. Massa lectus ut quis ultricies volutpat in. Eget amet ultrices et aliquam. ",
         media: "Acrylic on Canvas",
-        estimation: " 6.000.000",
-        current: " 5.000.000",
+        estimation: " 10000000",
+        current: " 5000000",
         start_date: "2022-04-29T16:26:08.667Z",
         end_date: "2022-04-29T16:26:08.667Z",
         imgHeight: "200",
         imgWidth: "200",
         status: "READY",
+        starting_bid: "5000000",
+        media_galery: [
+          {
+            id: 1,
+            url: "/images/artwork-1.jpg",
+          },
+          {
+            id: 2,
+            url: "/images/artwork-2.jpg",
+          },
+          {
+            id: 3,
+            url: "/images/artwork-3.jpg",
+          },
+          {
+            id: 4,
+            url: "/images/artwork-4.jpg",
+          },
+        ],
       },
 
       {
@@ -449,15 +766,35 @@ export const auctionList = [
         slug: "artwork-auction-5",
         artist: "",
         condition: "Good",
-        description: "Artwork auction 1 description",
+        description:
+          "Lorem ipsum dolor sit amet consectetur. Massa lectus ut quis ultricies volutpat in. Eget amet ultrices et aliquam. ",
         media: "Acrylic on Canvas",
-        estimation: " 6.000.000",
-        current: " 5.000.000",
+        estimation: " 10000000",
+        current: " 5000000",
         start_date: "2022-04-29T16:26:08.667Z",
         end_date: "2022-04-29T16:26:08.667Z",
         imgHeight: "200",
         imgWidth: "200",
         status: "READY",
+        starting_bid: "5000000",
+        media_galery: [
+          {
+            id: 1,
+            url: "/images/artwork-1.jpg",
+          },
+          {
+            id: 2,
+            url: "/images/artwork-2.jpg",
+          },
+          {
+            id: 3,
+            url: "/images/artwork-3.jpg",
+          },
+          {
+            id: 4,
+            url: "/images/artwork-4.jpg",
+          },
+        ],
       },
     ],
   },

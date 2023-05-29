@@ -1,7 +1,6 @@
 // Libs
-import { useRouter } from "next/router";
-import { Col, Button, Image, Row, Card, Form, Input, Select, Slider, Spin, Divider } from "antd";
-import { useEffect, useRef, useState } from "react";
+import { Col, Button, Image, Row, Carousel } from "antd";
+import { useRef } from "react";
 import propTypes from "prop-types";
 
 import ReactPlayer from "react-player";
@@ -25,41 +24,18 @@ function ThemesContentsAuctionDetailsOverview(props) {
   const { width } = useWindowSize();
   // const auctionData = auctionList[0];
   const { auctionData } = props;
-  console.log(auctionData);
+
   //? ============== Handle Scroll ============= ?//
-  const ref = useRef(0);
-  const [scrollX, setscrollX] = useState(0); // For detecting start scroll postion
-  const [scrollEnd, setscrollEnd] = useState(false); // For detecting end of scrolling
 
-  const scroll = (scrollOffset) => {
-    ref.current.scrollLeft += scrollOffset;
+  const carouselRef = useRef(null);
 
-    if (Math.floor(ref.current.scrollWidth - ref.current.scrollLeft) <= ref.current.offsetWidth) {
-      setscrollEnd(true);
-    } else {
-      setscrollEnd(false);
-    }
+  const handleNext = () => {
+    carouselRef.current.next();
   };
 
-  const scrollCheck = () => {
-    setscrollX(ref.current.scrollLeft);
-    if (Math.floor(ref.current.scrollWidth - ref.current.scrollLeft) <= ref.current.offsetWidth) {
-      setscrollEnd(true);
-    } else {
-      setscrollEnd(false);
-    }
+  const handlePrev = () => {
+    carouselRef.current.prev();
   };
-
-  useEffect(() => {
-    if (ref.current && ref?.current?.scrollWidth === ref.current.offsetWidth) {
-      setscrollEnd(true);
-    } else {
-      setscrollEnd(false);
-    }
-    return () => {};
-  }, [ref?.current?.scrollWidth, ref?.current?.offsetWidth]);
-
-  // * ====================================== * //
 
   return (
     <>
@@ -103,64 +79,81 @@ function ThemesContentsAuctionDetailsOverview(props) {
       <Col className={s.bgdefault}>
         <ThemesContainerMain>
           <ThemesHeadline title="Auction Highlight" className={s.headline} />
-          <Col className={s.imageContainer}>
-            {width > 1024 && (
-              <Col span={1} className={s.btnArrow}>
-                {scrollX !== 0 && (
+
+          <Col span={24}>
+            <Row>
+              {width > 1024 && (
+                <Col span={1} className={s.btnArrow}>
                   <Button
                     type="primary"
                     shape="circle"
                     icon={<LeftOutlined />}
-                    onClick={() => scroll(-320)}
+                    onClick={handlePrev}
                   />
-                )}
+                </Col>
+              )}
+              <Col span={22}>
+                <Carousel
+                  ref={carouselRef}
+                  autoplay={auctionData.overview.auction_img.length <= 3 ? false : true}
+                  dots={false}
+                  slidesToShow={3}
+                  slidesToScroll={3}
+                  draggable={true}
+                  responsive={[
+                    {
+                      breakpoint: 1024,
+                      settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 3,
+                      },
+                    },
+                    {
+                      breakpoint: 768,
+                      settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2,
+                      },
+                    },
+                    {
+                      breakpoint: 500,
+                      settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                      },
+                    },
+                  ]}
+                >
+                  {auctionData.overview.auction_img.map((item, index) => {
+                    return (
+                      <>
+                        <Col
+                          xl={{ span: 8 }}
+                          lg={{ span: 8 }}
+                          md={{ span: 8 }}
+                          xs={{ span: 8 }}
+                          key={index}
+                          span={8}
+                          className={s.sliderItem}
+                        >
+                          <Image preview={false} src={item.img_url} alt="" />
+                        </Col>
+                      </>
+                    );
+                  })}
+                </Carousel>
               </Col>
-            )}
-
-            <Col
-              xl={{ span: 22 }}
-              lg={{ span: 24 }}
-              md={{ span: 24 }}
-              xs={{ span: 24 }}
-              style={{ padding: "0px" }}
-            >
-              <Row
-                gutter={[{ xl: 20, lg: 20, md: 20, xs: 10 }]}
-                className={s.slider}
-                ref={ref}
-                onScroll={scrollCheck}
-              >
-                {auctionData.overview.auction_img.map((item, index) => {
-                  return (
-                    <>
-                      <Col
-                        xl={{ span: 8 }}
-                        lg={{ span: 8 }}
-                        md={{ span: 8 }}
-                        xs={{ span: 8 }}
-                        key={index}
-                        span={8}
-                        className={s.sliderItem}
-                      >
-                        <Image preview={false} src={item.img_url} alt="" />
-                      </Col>
-                    </>
-                  );
-                })}
-              </Row>
-            </Col>
-            {width > 1024 && (
-              <Col span={1} className={s.btnArrow}>
-                {!scrollEnd && (
+              {width > 1024 && (
+                <Col span={1} className={s.btnArrow}>
                   <Button
                     type="primary"
                     shape="circle"
                     icon={<RightOutlined />}
-                    onClick={() => scroll(320)}
+                    onClick={handleNext}
                   />
-                )}
-              </Col>
-            )}
+                </Col>
+              )}
+            </Row>
           </Col>
         </ThemesContainerMain>
       </Col>

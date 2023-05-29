@@ -1,0 +1,7 @@
+@use "/themes/styles/base/font-size";
+@use "/themes/styles/base/colors";
+
+.bgWhite {
+  background: colors.$white;
+  padding: 50px 0px;
+}

@@ -1,7 +1,7 @@
 // Libs
 import propTypes from "prop-types";
 import moment from "moment";
-import { Col, Spin, Row, Badge, Image, Divider } from "antd";
+import { Col, Row, Image, Divider } from "antd";
 import { useRouter } from "next/router";
 
 // Styles
@@ -23,17 +23,17 @@ function ThemesAuctionLotsList(props) {
     imgHeight,
     media,
     lotOpenDate,
-    lotOpenTime,
+
     lotCloseDate,
-    lotCloseTime,
+
     estimation,
     current,
     slug,
     grid,
     status,
+    artworkUrl,
   } = props;
   const router = useRouter();
-  const { width } = useWindowSize();
 
   return (
     <>
@@ -87,7 +87,7 @@ function ThemesAuctionLotsList(props) {
           <Col span={24}>
             <ThemesButton
               type={`primary + ${s.btn}`}
-              // onClick={router.push(`/auction/[slug]/lots/${slug}`)}
+              onClick={() => router.push(`/${artworkUrl}`)}
               disabled={status === "ENDED" ? true : false}
             >
               PLACE BID
@@ -114,17 +114,14 @@ function ThemesAuctionLotsList(props) {
                 alt=""
                 //   src={`${process.env.NEXT_PUBLIC_S3_URL}/${imgUrl}`}
                 src={imgUrl}
-                // onClick={() => router.push(`/artwork/${artworkUrl}`)}
+                onClick={() => router.push(`/${artworkUrl}`)}
               />
             </Col>
 
             <Col span={9} className={s.descContainer}>
               <p>LOT{lot}</p>
               <Col>
-                <h2
-                  className={s.title}
-                  // onClick={() => router.push(`/artwork/${artworkUrl}`)}
-                >
+                <h2 className={s.title} onClick={() => router.push(`/${artworkUrl}`)}>
                   {title}
                 </h2>
                 {artistName ? (
@@ -168,7 +165,7 @@ function ThemesAuctionLotsList(props) {
 
               <ThemesButton
                 type={`primary + ${s.btn}`}
-                // onClick={router.push(`/auction/[slug]/lots/${slug}`)}
+                onClick={() => router.push(`/${artworkUrl}`)}
                 disabled={status === "ENDED" ? true : false}
               >
                 PLACE BID
@@ -199,6 +196,7 @@ ThemesAuctionLotsList.propTypes = {
   imgUrl: propTypes.string,
   grid: propTypes.bool,
   status: propTypes.string,
+  artworkUrl: propTypes.string,
 };
 
 export default ThemesAuctionLotsList;

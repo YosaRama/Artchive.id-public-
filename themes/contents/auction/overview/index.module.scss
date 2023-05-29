@@ -16,11 +16,6 @@
   padding: 40px 0px;
 }
 
-.imageContainer {
-  // padding: 40px 0px !important;
-  display: flex;
-  justify-content: space-between;
-}
 .btnArrow {
   display: flex;
   justify-content: center;
@@ -32,41 +27,17 @@
   color: colors.$white;
 }
 
-.slider {
+.sliderItem {
   height: 400px;
   width: 100%;
   display: flex;
-  flex-wrap: nowrap;
-  overflow-x: scroll;
-  scroll-behavior: smooth;
-  padding: 0px 0px 20px 0px;
-  transition: 300ms all ease;
-  margin: 0px !important;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 0px !important;
   img {
+    height: 380px !important;
+    width: 380px !important;
     object-fit: cover;
-  }
-
-  /* width */
-  &::-webkit-scrollbar {
-    height: 5px !important;
-    width: auto;
-    background: transparent; /* make scrollbar transparent */
-    -webkit-appearance: none;
-  }
-  /* Track */
-  &::-webkit-scrollbar-track {
-    width: 5px !important;
-  }
-  /* Handle */
-  &::-webkit-scrollbar-thumb {
-    background: #f4a941;
-    border-radius: 20px;
-    transition: 300ms all ease;
-  }
-  /* Handle on hover */
-  &::-webkit-scrollbar-thumb:hover {
-    background: colors.$fulvous !important;
-    transition: 300ms all ease;
   }
 }
 

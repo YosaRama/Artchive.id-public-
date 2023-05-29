@@ -1,9 +1,6 @@
 // Libs
-import { useRouter } from "next/router";
 import { Col, Row, Input, Select, Divider } from "antd";
-import { useExhibitionLoad } from "app/hooks/exhibition";
-const { Option } = Select;
-import { motion } from "framer-motion";
+
 import { AppstoreOutlined, SlidersOutlined, UnorderedListOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import propTypes from "prop-types";
@@ -17,16 +14,8 @@ import ThemesBannerAuctionItem from "themes/components/libs/banner-auction";
 import ThemesModalAuctionRegister from "themes/components/libs/modal-auction-register";
 import ThemesModalAuctionLogin from "themes/components/libs/modal-auction-login";
 
-// Data Hook
-// Dummy
-import { auctionList } from "app/database/dummy/auction-list";
-
-// Helpers
-import { useWindowSize } from "app/helpers/useWindowSize";
-
 // Styles
 import s from "./index.module.scss";
-import ThemesModal from "themes/components/libs/modal-container";
 
 function ThemesContentsAuctionDetailsLots(props) {
   const { auctionData } = props;
@@ -136,7 +125,6 @@ function ThemesContentsAuctionDetailsLots(props) {
                     title={item.title}
                     lot={item.id}
                     artistName={item.artist}
-                    slug={item.slug}
                     media={item.media}
                     estimation={item.estimation}
                     current={item.current}
@@ -145,6 +133,7 @@ function ThemesContentsAuctionDetailsLots(props) {
                     imgUrl={item.imgUrl}
                     grid={view}
                     status={item.status}
+                    artworkUrl={`/auction/${auctionData.slug}/artwork/${item.slug}`}
                   />
                 </Col>
               );
