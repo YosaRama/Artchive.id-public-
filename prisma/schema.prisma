@@ -30,7 +30,6 @@ model User {
   city               String?
   billing_address    String?
   address            String?
-  phone_number       String?
   biography          String?                @db.Text
   birth_date         DateTime?              @db.Date
   role               Role?
@@ -45,8 +44,6 @@ model User {
   status             Boolean
   createdAt          DateTime               @default(now())
   updatedAt          DateTime?              @updatedAt
-  otp_code           String?
-  otp_expired_date   DateTime?
   created_article    Article[]              @relation("article_created_by")
   updated_article    Article[]              @relation("article_updated_by")
   created_exhibition Exhibition[]           @relation("exhibition_created_by")
