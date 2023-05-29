@@ -1,5 +1,6 @@
 @use "/themes/styles/base/colors";
 @use "/themes/styles/base/font-size";
+@use "/themes/styles/base/font-weight";
 
 .container {
   background: #ffffff !important;
@@ -33,7 +34,7 @@
   width: auto;
   height: 15px;
   line-height: 15px;
-  font-weight: 700;
+  font-weight: font-weight.$bold;
   font-size: font-size.$paragraph;
   white-space: nowrap;
   overflow: hidden;
@@ -70,7 +71,7 @@
   justify-content: center;
   align-items: center;
   font-size: 8px;
-  font-weight: 800;
+  font-weight: font-weight.$bold;
 }
 
 .dot2 {
@@ -86,7 +87,7 @@
   justify-content: center;
   align-items: center;
   font-size: 8px;
-  font-weight: 800;
+  font-weight: font-weight.$bold;
 }
 
 .avatar {

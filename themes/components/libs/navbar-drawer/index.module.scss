@@ -1,5 +1,6 @@
 @use "/themes/styles/base/colors";
 @use "/themes/styles/base/font-size";
+@use "/themes/styles/base/font-weight";
 
 .container {
   height: 100%;
@@ -24,7 +25,7 @@
 .menuItemBold {
   text-align: right;
   font-size: font-size.$paragraph;
-  font-weight: 800;
+  font-weight: font-weight.$bold;
   height: 32px !important;
   font-family: "Aileron";
 }
@@ -32,7 +33,7 @@
 .menuItem {
   text-align: right;
   font-size: font-size.$paragraph;
-  font-weight: 200;
+  font-weight: font-weight.$regular;
   height: 32px !important;
 }
 
@@ -64,7 +65,7 @@
 
 .footerTitle {
   margin-bottom: 20px !important;
-  font-weight: 800;
+  font-weight: font-weight.$bold;
   font-family: "Aileron";
 }
 

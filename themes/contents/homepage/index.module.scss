@@ -1,5 +1,6 @@
 @use "/themes/styles/base/colors";
 @use "/themes/styles/base/font-size";
+@use "/themes/styles/base/font-weight";
 
 .searchBox {
   height: 100%;
@@ -145,7 +146,7 @@
       }
       h1 {
         font-size: font-size.$heading-3;
-        font-weight: 600;
+        font-weight: font-weight.$bold;
         margin: 20px 0px 0px;
         color: colors.$fulvous;
       }
@@ -266,7 +267,7 @@
     text-align: center;
     h1 {
       font-size: font-size.$heading-2;
-      font-weight: 700;
+      font-weight: font-weight.$bold;
       line-height: 30px;
       color: colors.$white;
       margin-bottom: 20px;
@@ -301,7 +302,7 @@
     h1 {
       color: colors.$white;
       font-size: font-size.$heading-4;
-      font-weight: 700;
+      font-weight: font-weight.$bold;
       margin-bottom: 30px;
     }
     p {

@@ -1,5 +1,6 @@
 @use "/themes/styles/base/colors";
 @use "/themes/styles/base/font-size";
+@use "/themes/styles/base/font-weight";
 
 .modalItemContainer {
   max-height: 400px;
@@ -36,8 +37,7 @@
   // margin-top: 30px;
   font-size: font-size.$heading-4;
   display: flex;
-
-  font-weight: 400;
+  font-weight: font-weight.$regular;
 }
 
 .warningSold {
@@ -59,7 +59,7 @@
     &:hover {
       transition: all 300ms ease;
       color: colors.$fulvous !important;
-      // font-weight: 700;
+      // font-weight: font-weight.$bold;
       text-decoration: underline;
     }
   }

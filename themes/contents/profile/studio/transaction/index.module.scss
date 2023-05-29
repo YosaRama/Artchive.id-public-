@@ -1,5 +1,6 @@
 @use "/themes/styles/base/colors";
 @use "/themes/styles/base/font-size";
+@use "/themes/styles/base/font-weight";
 
 .mobileSearchContainer {
   position: -webkit-sticky;
@@ -13,7 +14,7 @@
   text-align: center;
   padding: 8px 0px;
   cursor: pointer;
-  font-weight: 700;
+  font-weight: font-weight.$bold;
   font-size: font-size.$paragraph;
   color: colors.$white;
   box-shadow: 0px 10px 25px -10px rgba(0, 0, 0, 0.5);
@@ -70,14 +71,14 @@
   flex: 0 0 25% !important;
   justify-content: center;
   font-size: font-size.$paragraph;
-  font-weight: 700;
+  font-weight: font-weight.$bold;
   background: colors.$white;
   margin: 40px 0px 24px;
   width: 100%;
 }
 
 .menuItem {
-  font-weight: 700;
+  font-weight: font-weight.$bold;
   margin: 0;
   width: 200px;
   text-align: center;
@@ -133,7 +134,7 @@
 
 .menuBarButton {
   font-size: font-size.$paragraph;
-  font-weight: 700;
+  font-weight: font-weight.$bold;
   transition: all 300ms ease;
   cursor: pointer;
   width: 22%;
@@ -173,7 +174,7 @@
   .menuContainer {
     align-items: center;
     font-size: font-size.$paragraph;
-    font-weight: 700;
+    font-weight: font-weight.$bold;
     background: colors.$white;
     margin: 40px 0px 24px;
     width: 100%;

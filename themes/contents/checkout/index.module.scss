@@ -1,5 +1,6 @@
 @use "/themes/styles/base/colors";
 @use "/themes/styles/base/font-size";
+@use "/themes/styles/base/font-weight";
 
 .headline {
   margin: 40px 0px 40px;
@@ -31,7 +32,7 @@
     font-size: font-size.$heading-3 !important;
     color: colors.$white;
     margin: 0px;
-    font-weight: 700;
+    font-weight: font-weight.$bold;
   }
 }
 
