@@ -37,15 +37,10 @@ function AppUploadGalleries(props) {
   return (
     <>
       <Col span={24}>
-        <Row gutter={[16, 0]}>
+        <Row gutter={[16, 32]}>
           {initialGallery?.map((item) => {
             return (
-              <Col
-                className={s.image}
-                span={24 / limit}
-                style={{ textAlign: "center" }}
-                key={item.id}
-              >
+              <Col className={s.image} span={6} style={{ textAlign: "center" }} key={item.id}>
                 <Image src={`${process.env.NEXT_PUBLIC_S3_URL}/${item.url}`} alt="" />
                 <Button
                   onClick={() =>
@@ -54,6 +49,7 @@ function AppUploadGalleries(props) {
                       onDelete: () => handleDelete(item.id),
                     })
                   }
+                  className={s.btn}
                 >
                   Delete
                 </Button>
@@ -62,7 +58,7 @@ function AppUploadGalleries(props) {
           })}
 
           {initialGallery?.length < limit && (
-            <Col span={24 / limit}>
+            <Col span={6}>
               <AppUploadBox className={s.uploadBox} onUpload={handleUpload} loading={loading} />
             </Col>
           )}

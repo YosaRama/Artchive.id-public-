@@ -3,7 +3,6 @@ import { Col, Row } from "antd";
 import { useRouter } from "next/router";
 import propTypes from "prop-types";
 import moment from "moment";
-import { useEffect, useState } from "react";
 
 // Style
 import s from "./index.module.scss";
@@ -44,13 +43,6 @@ function ThemesBannerAuctionItem(props) {
       </Col>
       <Col span={12} className={s.description}>
         <h1>{title}</h1>
-        {/* {todayDate?.isBefore(startDate) ? (
-          <p>{daysRemaining} Days Until Lots Begin</p>
-        ) : todayDate?.isBefore(endDate) && todayDate.isAfter(startDate) ? (
-          <p>{hoursRemaining} Days Until Lots Closing</p>
-        ) : (
-          <p>This auction already ended</p>
-        )} */}
 
         <p>
           The auction started on {moment(startDate).format("DD MMMM YYYY")} |{" "}
