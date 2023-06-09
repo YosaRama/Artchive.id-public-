@@ -13,16 +13,9 @@
   color: colors.$white;
   height: 100%;
   width: 100%;
+  padding-bottom: 50px;
   display: flex;
   align-content: space-between;
-  flex-direction: column;
-  padding-bottom: 50px;
-  .description {
-    flex-direction: column;
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-start;
-  }
 }
 
 .btn {
@@ -39,3 +32,19 @@
     text-decoration: underline;
   }
 }
+
+//? ============== Tablet Landscape View ============= ?//
+@media screen and (max-width: 1024px) {
+  .bannerItem {
+    padding-bottom: 20px;
+  }
+}
+// * ====================================== * //
+
+//? ============== Mobile View ============= ?//
+@media screen and (max-width: 500px) {
+  .bannerItem {
+    padding-bottom: 0px;
+  }
+}
+// * ====================================== * //

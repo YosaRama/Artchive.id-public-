@@ -18,7 +18,10 @@ function ThemesContentsAuctionDetails(props) {
 
   return (
     <>
-      <ThemesBanner imgSrc={auctionData.thumbnail} className={s.bannerContainer}>
+      <ThemesBanner
+        imgSrc={`${process.env.NEXT_PUBLIC_S3_URL}/${auctionData.thumbnail.url}`}
+        className={s.bannerContainer}
+      >
         <ThemesBannerAuctionItem
           title={auctionData.title}
           startDate={auctionData.start_date}
@@ -31,7 +34,7 @@ function ThemesContentsAuctionDetails(props) {
         <ThemesContainerMain>
           {/* //? ============== Overview ============= ?// */}
           <Col style={{ margin: "0px 0px 40px" }}>{auctionData.details}</Col>
-          <Divider style={{ margin: "0px 0px 40px" }} />
+          <Divider className={s.divider} />
           <Col style={{ margin: "0px 0px 40px" }}>
             <h1>Visi</h1>
             <p>{auctionData.visi}</p>

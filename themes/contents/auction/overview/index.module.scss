@@ -2,9 +2,9 @@
 @use "/themes/styles/base/font-size";
 
 .bannerContainer {
-  height: 40vh;
+  height: 420px;
   :global(.banner-image) {
-    height: 40vh;
+    height: 420px;
   }
 }
 
@@ -14,6 +14,21 @@
 }
 .bgdefault {
   padding: 40px 0px;
+}
+
+.description {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0px;
+}
+
+.video {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.videoDesc {
+  height: auto;
 }
 
 .btnArrow {
@@ -26,18 +41,22 @@
   margin-top: 20px;
   color: colors.$white;
 }
+.carousel {
+  text-align: center;
+}
 
 .sliderItem {
   height: 400px;
   width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 16px 0px !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 0px 8px;
   img {
-    height: 380px !important;
-    width: 380px !important;
+    height: 360px !important;
+    width: 100% !important;
     object-fit: cover;
+    margin: auto !important;
   }
 }
 
@@ -60,3 +79,119 @@
     }
   }
 }
+
+//? ============== Table Landscpae View ============= ?//
+@media screen and (max-width: 1024px) {
+  .bgwhite {
+    background: colors.$white;
+    padding: 30px 0px;
+  }
+  .sliderItem {
+    height: 300px;
+
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+
+    img {
+      height: 300px !important;
+      object-fit: cover;
+      text-align: center;
+    }
+  }
+
+  .curatorContainer {
+    .imageCurator {
+      .img {
+        height: 250px !important;
+        img {
+          height: 250px !important;
+        }
+      }
+    }
+  }
+}
+// * ====================================== * //
+
+//? ============== Table Potrait View ============= ?//
+@media screen and (max-width: 768px) {
+  .bgwhite {
+    background: colors.$white;
+    padding: 30px 0px;
+  }
+  .sliderItem {
+    height: 325px;
+
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+
+    img {
+      height: 325px !important;
+      object-fit: cover;
+      text-align: center;
+    }
+  }
+  .curatorContainer {
+    .imageCurator {
+      margin-bottom: 0px;
+      .img {
+        height: 200px !important;
+        img {
+          height: 200px !important;
+        }
+      }
+    }
+    .curatorDesc {
+      h2 {
+        font-size: font-size.$heading-4;
+      }
+    }
+  }
+}
+// * ====================================== * //
+
+//? ============== Mobile View ============= ?//
+@media screen and (max-width: 500px) {
+  .bgwhite {
+    background: colors.$white;
+    padding: 30px 0px;
+  }
+  .sliderItem {
+    height: 300px;
+
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+
+    img {
+      height: 300px !important;
+      object-fit: cover;
+      text-align: center;
+    }
+  }
+
+  .curatorContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    box-shadow: 0px 2px 8px 0px rgba(99, 99, 99, 0.3);
+    padding: 20px !important;
+    .imageCurator {
+      .img {
+        height: 120px !important;
+        img {
+          height: 120px !important;
+        }
+      }
+    }
+    .curatorDesc {
+      text-align: left;
+      margin: auto 0px;
+      h2 {
+        font-size: font-size.$heading-3;
+      }
+    }
+  }
+}
+// * ====================================== * //

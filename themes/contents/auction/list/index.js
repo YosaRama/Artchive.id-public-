@@ -180,7 +180,7 @@ function ThemesContentsAuctionList(props) {
                       return (
                         <Col sm={{ span: 8 }} xs={{ span: 24 }} className={s.cardList} key={index}>
                           <ThemesAuctionCard
-                            thumbnail={item?.thumbnail}
+                            thumbnail={item?.thumbnail.url}
                             title={item?.title}
                             status={item?.status}
                             startDate={item.start_date}

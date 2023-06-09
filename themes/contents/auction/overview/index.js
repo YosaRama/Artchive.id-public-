@@ -1,5 +1,5 @@
 // Libs
-import { Col, Button, Image, Row, Carousel } from "antd";
+import { Col, Button, Row, Carousel, Image } from "antd";
 import { useRef } from "react";
 import propTypes from "prop-types";
 
@@ -39,9 +39,13 @@ function ThemesContentsAuctionDetailsOverview(props) {
 
   return (
     <>
-      <ThemesBanner imgSrc={auctionData.thumbnail} className={s.bannerContainer}>
+      <ThemesBanner
+        imgSrc={`${process.env.NEXT_PUBLIC_S3_URL}/${auctionData.thumbnail.url}`}
+        className={s.bannerContainer}
+      >
         <ThemesBannerAuctionItem
           title={auctionData.title}
+          endDate={auctionData.end_date}
           startDate={auctionData.start_date}
           placeName={auctionData.place_name}
           slug={auctionData.slug}
@@ -50,24 +54,23 @@ function ThemesContentsAuctionDetailsOverview(props) {
 
       <ThemesContainerMain>
         {/* //? ============== Overview ============= ?// */}
-        <Col style={{ display: "flex", justifyContent: "center", margin: "40px 0px" }}>
-          <Col span={10}>{auctionData.overview.description}</Col>
+        <Col className={s.description}>
+          <Col span={20}>{auctionData.overview.description}</Col>
         </Col>
       </ThemesContainerMain>
 
       {/* //? ============== Video Player ============= ?// */}
       <Col className={s.bgwhite}>
         <ThemesContainerMain>
-          <Row gutter={[40, 40]} justifyContent="space-between">
-            <Col span={12} style={{ height: "400px", display: "flex", alignItems: "center" }}>
+          <Row gutter={[40, 20]} justifyContent="space-between">
+            <Col span={width >= 500 ? 12 : 24} className={s.video}>
               <ReactPlayer
+                height={width > 1024 ? 400 : width < 500 ? 250 : 350}
                 url={auctionData.overview.video_url}
-                width={600}
-                height={380}
                 controls={true}
               />
             </Col>
-            <Col span={12}>
+            <Col span={width >= 500 ? 12 : 24} className={s.videoDesc}>
               <h1 style={{ fontSize: 32 }}>{auctionData.overview.title}</h1>
               {auctionData.overview.description}
             </Col>
@@ -82,7 +85,7 @@ function ThemesContentsAuctionDetailsOverview(props) {
 
           <Col span={24}>
             <Row>
-              {width > 1024 && (
+              {width > 1024 ? (
                 <Col span={1} className={s.btnArrow}>
                   <Button
                     type="primary"
@@ -91,28 +94,31 @@ function ThemesContentsAuctionDetailsOverview(props) {
                     onClick={handlePrev}
                   />
                 </Col>
+              ) : (
+                ""
               )}
-              <Col span={22}>
+              <Col span={width > 1024 ? 22 : 24} className={s.carousel}>
                 <Carousel
                   ref={carouselRef}
                   autoplay={auctionData.overview.auction_img.length <= 3 ? false : true}
                   dots={false}
                   slidesToShow={3}
-                  slidesToScroll={3}
+                  slidesToScroll={1}
                   draggable={true}
                   responsive={[
                     {
                       breakpoint: 1024,
                       settings: {
                         slidesToShow: 3,
-                        slidesToScroll: 3,
+                        slidesToScroll: 1,
                       },
                     },
                     {
                       breakpoint: 768,
                       settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 2,
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        centerMode: true,
                       },
                     },
                     {
@@ -127,23 +133,15 @@ function ThemesContentsAuctionDetailsOverview(props) {
                   {auctionData.overview.auction_img.map((item, index) => {
                     return (
                       <>
-                        <Col
-                          xl={{ span: 8 }}
-                          lg={{ span: 8 }}
-                          md={{ span: 8 }}
-                          xs={{ span: 8 }}
-                          key={index}
-                          span={8}
-                          className={s.sliderItem}
-                        >
-                          <Image preview={false} src={item.img_url} alt="" />
+                        <Col key={index} className={s.sliderItem}>
+                          <img src={`${process.env.NEXT_PUBLIC_S3_URL}/${item.url}`} alt="" />
                         </Col>
                       </>
                     );
                   })}
                 </Carousel>
               </Col>
-              {width > 1024 && (
+              {width > 1024 ? (
                 <Col span={1} className={s.btnArrow}>
                   <Button
                     type="primary"
@@ -152,6 +150,8 @@ function ThemesContentsAuctionDetailsOverview(props) {
                     onClick={handleNext}
                   />
                 </Col>
+              ) : (
+                ""
               )}
             </Row>
           </Col>
@@ -161,16 +161,18 @@ function ThemesContentsAuctionDetailsOverview(props) {
       <Col className={s.bgwhite}>
         <ThemesContainerMain>
           <ThemesHeadline title="Curators" className={s.headline} />
-          <Row gutter={[20, 20]}>
+          <Row gutter={width > 1024 ? [20, 20] : [10, 10]}>
             {auctionData.curator.map((item, index) => {
               return (
                 <>
-                  <Col span={6} className={s.curatorContainer}>
-                    <Col className={s.imageCurator}>
+                  <Col span={width > 500 ? 6 : 24} className={s.curatorContainer}>
+                    <Col span={width > 500 ? 24 : 9} className={s.imageCurator}>
                       <Image src={item.img_url} alt="" className={s.img} preview={false} />
                     </Col>
-                    <h2>{item.name}</h2>
-                    <p>{item.position}</p>
+                    <Col span={width > 500 ? 24 : 14} className={s.curatorDesc}>
+                      <h2>{item.name}</h2>
+                      <p>{item.position}</p>
+                    </Col>
                   </Col>
                 </>
               );

@@ -2,18 +2,28 @@
 import { Col, Row } from "antd";
 import { useRouter } from "next/router";
 import propTypes from "prop-types";
-import moment from "moment";
+// import moment from "moment";
+import moment from "moment-timezone";
 
 // Style
 import s from "./index.module.scss";
 
 function ThemesBannerAuctionItem(props) {
-  const { title, todayDate, startDate, endDate, slug, placeName } = props;
+  const { title, startDate, endDate, slug, placeName } = props;
   const router = useRouter();
+  const timeZone = moment.tz.guess();
 
+  //? ============== Countdown Timer ============= ?//
+  const targetMoment = moment.tz(endDate, timeZone);
+  const currentMoment = moment.tz(timeZone);
+  const duration = moment.duration(targetMoment.diff(currentMoment));
+  const remainingDays = Math.floor(duration.asDays());
+  const remainingHours = duration.hours();
+  // * ====================================== * //
+  console.log(remainingDays);
   return (
-    <Col span={24} className={s.bannerItem}>
-      <Col span={12}>
+    <Row className={s.bannerItem}>
+      <Col span={24}>
         <Row gutter={[32, 32]}>
           <Col
             onClick={() => {
@@ -41,15 +51,21 @@ function ThemesBannerAuctionItem(props) {
           </Col>
         </Row>
       </Col>
-      <Col span={12} className={s.description}>
+      <Col span={24} className={s.description}>
         <h1>{title}</h1>
+        {currentMoment < targetMoment ? (
+          <p>
+            {remainingDays} day{remainingDays > 1 ? "s" : ""} before the lot closed
+          </p>
+        ) : (
+          ""
+        )}
 
         <p>
-          The auction started on {moment(startDate).format("DD MMMM YYYY")} |{" "}
-          {moment(startDate).format("mm:hh")} WITA | {placeName}
+          {moment.tz(startDate, timeZone).format("DD MMMM YYYY | HH:mm")} WITA | {placeName}
         </p>
       </Col>
-    </Col>
+    </Row>
   );
 }
 

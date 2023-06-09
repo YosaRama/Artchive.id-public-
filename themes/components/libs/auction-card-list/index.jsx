@@ -24,10 +24,9 @@ function ThemesAuctionCard(props) {
       <Link key={slug} href={`/auction/${slug}/lots`}>
         <Col span={24} className={s.container}>
           <img
-            // src={
-            //   thumbnail ? `${process.env.NEXT_PUBLIC_S3_URL}/${thumbnail}` : "/images/artwork-1.jpg"
-            // }
-            src={thumbnail}
+            src={
+              thumbnail ? `${process.env.NEXT_PUBLIC_S3_URL}/${thumbnail}` : "/images/artwork-1.jpg"
+            }
             className={s.thumbnail}
             alt=""
           />

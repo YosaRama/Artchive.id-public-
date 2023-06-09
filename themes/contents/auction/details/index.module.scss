@@ -2,9 +2,9 @@
 @use "/themes/styles/base/font-size";
 
 .bannerContainer {
-  height: 40vh;
+  height: 420px;
   :global(.banner-image) {
-    height: 40vh;
+    height: 420px;
   }
 }
 
@@ -40,9 +40,21 @@
   }
 }
 
+.divider {
+  margin: 0px 0px 40px;
+}
+
 .curator {
   margin-top: 50px;
   h1 {
     font-size: 32px;
   }
 }
+
+//? ============== Mobile View ============= ?//
+@media screen and (max-width: 500px) {
+  .divider {
+    margin: 0px 0px 20px;
+  }
+}
+// * ====================================== * //

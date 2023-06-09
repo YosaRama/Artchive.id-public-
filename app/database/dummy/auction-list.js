@@ -156,7 +156,7 @@ export const auctionList = [
         estimation: " 10000000",
         status: "SOLD",
 
-        start_time: "2023-12-29T16:26:08.667Z",
+        start_time: "2023-12-27T16:26:08.667Z",
         end_time: "2023-12-29T16:26:08.667Z",
         height: "200",
         width: "200",
@@ -869,7 +869,7 @@ export const auctionList = [
         id: 2,
         name: "Curator Name ",
         background:
-          "Lorem ipsum dolor sit amet consectetur. Volutpat condimentum vitae etiam magnis. Nisihendrerit euismod neque morbi duis vitae ullamcorper. Quam laoreet orci adipiscingjusto ultrices interdum tristique mi. Odio ac dignissim odio id in massa eget idmorbi. Ridiculus a vitae dignissim massa cras imperdiet massa. At id quis tempuspretium tincidunt dapibus. Sed turpis pellentesque nisl lacus a libero aliquet suscipit. Viverra arcu tempor adipiscing arcu nunc. Hendrerit consectetur interdumcursus ut nibh ac nisl aliquam. Et convallis feugiat dui tellus elementum lacus. Nunc velit mollis nulla sollicitudin et augue velit nisl massa. Accumsan sed egestas enim in dictum turpis nunc. Penatibus tincidunt ultrices mauris erat. Erat mus integer nibhadipiscing ac adipiscing eget mauris dui.Lorem ipsum dolor sit amet consectetur. Volutpat condimentum vitae etiam magnis. Nisihendrerit euismod neque morbi duis vitae ullamcorper. Quam laoreet orci adipiscingjusto ultrices interdum tristique mi. Odio ac dignissim odio id in massa eget idmorbi. Ridiculus a vitae dignissim massa cras imperdiet massa. At id quis tempuspretium tincidunt dapibus. Sed turpis pellentesque nisl lacus a libero aliquet suscipit. Viverra arcu tempor adipiscing arcu nunc. Hendrerit consectetur interdumcursus ut nibh ac nisl aliquam. Et convallis feugiat dui tellus elementum lacus. Nunc velit mollis nulla sollicitudin et augue velit nisl massa. Accumsan sed egestas enim in dictum turpis nunc. Penatibus tincidunt ultrices mauris erat. Erat mus integer nibhadipiscing ac adipiscing eget mauris dui.",
+          "Lorem ipsum dolor sit amet consectetur. Volutpat condimentum vitae etiam magnis.",
         img_url: "/images/profile-2.jpg",
         position: "Curator",
       },

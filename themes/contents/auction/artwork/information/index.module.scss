@@ -28,78 +28,92 @@
     font-size: font-size.$paragraph;
     margin: 0px;
   }
+  span {
+    font-weight: bold;
+    color: colors.$fulvous;
+  }
   .divider {
     background: GAINSBORO;
     margin: 20px 0px !important;
   }
   .artistProfileContainer {
-    img {
-      border-radius: 100%;
-      height: 140px !important;
-      width: 140px !important;
-      object-fit: cover;
-    }
-  }
-}
-
-.lotDetails {
-  padding: 40px 35px;
-  background: WHITESMOKE;
-  h1 {
-    font-size: font-size.$heading-1;
-  }
-  p {
-    font-size: font-size.$paragraph;
-    margin: 15px 0px;
-    span {
-      font-weight: bold;
-      color: colors.$fulvous;
-    }
-  }
-  .priceBidder {
-    width: 100%;
-    background: colors.$white;
-    margin-bottom: 15px;
-    h1 {
-      font-size: font-size.$heading-1;
-      line-height: 60px;
-      margin: 0px !important;
-    }
-    .buttonContainer {
-      width: 54px !important;
-      height: 54px !important;
-      .btn {
-        width: 54px !important;
-        height: 54px !important;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        span,
-        svg {
-          font-weight: 700 !important;
-          font-size: 24px;
-          line-height: 0px !important;
-        }
+    .image {
+      img {
+        border-radius: 100%;
+        height: 140px !important;
+        width: 140px !important;
+        object-fit: cover;
       }
     }
   }
-  .btn {
-    width: 100%;
-  }
 }
 
-.bidContainer {
-  margin: 40px 0px;
-  h2 {
-    font-size: font-size.$heading-2;
+.lotContainer {
+  position: -webkit-sticky;
+  position: sticky !important;
+  top: 50px;
+  .lotDetails {
+    padding: 40px 35px;
+    background: WHITESMOKE;
+    h2 {
+      font-size: font-size.$heading-2;
+    }
+    p {
+      font-size: font-size.$paragraph;
+      margin: 15px 0px;
+    }
+    .reminder {
+      height: 30px;
+      span {
+        font-weight: bold;
+        color: colors.$fulvous;
+      }
+    }
+    .priceBidder {
+      width: 100%;
+      background: colors.$white;
+      margin-bottom: 15px;
+      h1 {
+        font-size: font-size.$heading-1;
+        line-height: 60px;
+        margin: 0px !important;
+      }
+      .buttonContainer {
+        width: 54px !important;
+        height: 54px !important;
+        .btn {
+          width: 54px !important;
+          height: 54px !important;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          span,
+          svg {
+            font-weight: 700 !important;
+            font-size: 24px;
+            line-height: 0px !important;
+          }
+        }
+      }
+    }
+    .btn {
+      width: 100%;
+    }
   }
-  p {
-    font-size: font-size.$paragraph;
-    margin: 0px;
-  }
-  .divider {
-    background: GAINSBORO;
-    margin: 20px 0px !important;
+
+  .bidContainer {
+    margin: 40px 0px 0px;
+    h2 {
+      font-size: font-size.$heading-2;
+    }
+    p {
+      font-size: font-size.$paragraph;
+      margin: 0px;
+    }
+    .divider {
+      background: GAINSBORO;
+      margin: 20px 0px !important;
+    }
   }
 }
 
@@ -120,6 +134,13 @@
     .artwork {
       padding: 25px !important;
       border: 2px solid #d9d9d9;
+      cursor: pointer;
+      transition: all 300ms ease;
+      &:hover {
+        border: 2px solid colors.$fulvous;
+        transition: all 300ms ease;
+      }
+
       .imageContainer {
         width: 100%;
         height: 256px !important;
@@ -134,3 +155,126 @@
     }
   }
 }
+
+//? ============== Tablet Landscape View ============= ?//
+@media screen and (max-width: 1024px) {
+  .detailsImageContainer {
+    height: 100px;
+  }
+
+  .detailsContainer {
+    h2 {
+      font-size: font-size.$heading-3 !important;
+    }
+    .artistProfileContainer {
+      .image {
+        img {
+          border-radius: 100%;
+          height: 100px !important;
+          width: 100px !important;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+
+  .lotContainer {
+    .lotDetails {
+      h1 {
+        font-size: font-size.$heading-2;
+      }
+    }
+
+    .bidContainer {
+      h2 {
+        font-size: font-size.$heading-3;
+      }
+    }
+  }
+
+  .highlightContainer {
+    .artworkContainer {
+      padding: 0px 8px !important;
+
+      .artwork {
+        padding: 20px !important;
+
+        .imageContainer {
+          height: 200px !important;
+
+          img {
+            height: 200px !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+// * ====================================== * //
+
+//? ============== Tablet Potrait View ============= ?//
+@media screen and (max-width: 768px) {
+  .detailsImageContainer {
+    height: 80px;
+  }
+
+  .detailsContainer {
+    .artistProfileContainer {
+      img {
+        border-radius: 100%;
+        height: 100px !important;
+        width: 100px !important;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .highlightContainer {
+    .artworkContainer {
+      padding: 0px 8px !important;
+
+      .artwork {
+        padding: 20px !important;
+
+        .imageContainer {
+          height: 200px !important;
+
+          img {
+            height: 200px !important;
+          }
+        }
+      }
+    }
+  }
+}
+// * ====================================== * //
+
+//? ============== Mobile View ============= ?//
+@media screen and (max-width: 500px) {
+  .highlightContainer {
+    .artworkContainer {
+      padding: 0px !important;
+
+      .artwork {
+        padding: 20px !important;
+
+        .imageContainer {
+          height: 320px !important;
+
+          img {
+            height: 320px !important;
+          }
+        }
+      }
+    }
+  }
+
+  .sliderContainer {
+    overflow-x: auto;
+    .slider {
+      white-space: nowrap;
+    }
+  }
+}
+// * ====================================== * //
