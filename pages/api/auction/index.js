@@ -9,7 +9,7 @@ apiHandler.get(async (req, res) => {
     const result = await auctioo.get("/events");
     const data = await result.data;
 
-    res.json({ success: true, message: "Successfully retrieve events", result: data });
+    res.json({ success: true, message: "Successfully retrieve events", data: data });
   } catch (error) {
     res.status(200).json({ success: false, message: error.message });
   }

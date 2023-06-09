@@ -13,6 +13,7 @@ import AuctionColumn from "./utils";
 
 // Dummy
 import { auctionList } from "app/database/dummy/auction-list";
+import { useAuctions } from "app/hooks/auction";
 
 function AppContentsAuctionList() {
   const router = useRouter();
@@ -33,6 +34,12 @@ function AppContentsAuctionList() {
   //? ============== Handle Column ============= ?//
   const columns = AuctionColumn({ onDelete: handleDelete });
   // * ====================================== * //
+
+  //#region Auction Hooks
+  const { data: auctionDataList, loading: auctionListLoading } = useAuctions({ queryString: "" });
+  console.log("auctionDataList", auctionDataList);
+
+  //#endregion
 
   return (
     <>

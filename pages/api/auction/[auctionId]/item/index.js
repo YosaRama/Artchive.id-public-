@@ -11,9 +11,7 @@ apiHandler.get(async (req, res) => {
     const result = await auctioo.get(`/event/${auctionId}/items`);
     const data = await result.data;
 
-    res
-      .status(200)
-      .json({ success: true, message: "Successfully retrieve item list", result: data });
+    res.status(200).json({ success: true, message: "Successfully retrieve item list", data: data });
   } catch (error) {
     res.status(200).json({ success: false, message: error.message });
   }

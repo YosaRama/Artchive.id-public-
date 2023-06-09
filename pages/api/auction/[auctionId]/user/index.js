@@ -12,7 +12,7 @@ apiHandler.get(async (req, res) => {
 
     res
       .status(200)
-      .json({ success: true, message: "Successfully retrieve users list", result: data });
+      .json({ success: true, message: "Successfully retrieve users list", data: data });
   } catch (error) {
     res.status(200).json({ success: false, message: error.message });
   }
