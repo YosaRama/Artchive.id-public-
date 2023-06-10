@@ -38,7 +38,7 @@ function AppContentsAuctionDetailsLotsDetails(props) {
 
   return (
     <>
-      <ThemesButton onClick={() => onState(onState)} className={s.back}>
+      <ThemesButton onClick={() => onState("list")} className={s.back}>
         BACK TO LIST
       </ThemesButton>
       <Divider />
@@ -83,7 +83,7 @@ function AppContentsAuctionDetailsLotsDetails(props) {
         )}
         {!item?.logs && <Empty />}
 
-        <AppFormLotAuction visible={addModal} onClose={handleModal} />
+        <AppFormLotAuction visible={addModal} onClose={handleModal} isEdit={true} />
       </Col>
     </>
   );

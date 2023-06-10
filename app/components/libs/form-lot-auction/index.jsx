@@ -10,44 +10,18 @@ import AppSelectExhibitionArtwork from "../select-exhibition-artwork";
 
 function AppFormLotAuction(props) {
   const { onSubmit, isEdit, initialData, visible, onClose } = props;
-  //? ============== Handle Session ============= ?//
   const { data: session } = useSession();
-  // * ====================================== * //
 
-  const formRef = useRef(null);
-
-  const handleModalClose = () => {
-    // Reset the form fields
-    formRef.current.resetFields();
-    // Call the onClose function to close the modal
-    onClose();
-  };
-
-  //? ============== Handle Initial Data ============= ?//
-  //? Data Parse
+  //#region Handle Initial Data
   const initialValues = {
     ...initialData,
     auction_date: [moment(initialData?.start_date), moment(initialData?.end_date)],
-    auction_time: [
-      moment(`2022-02-02${initialData?.start_time}`),
-      moment(`2022-02-02${initialData?.end_time}`),
-    ],
   };
+  //#endregion
 
-  useEffect(() => {
-    if (isEdit) {
-      setUploadImage({ id: initialData?.thumbnail?.id, url: initialData?.thumbnail?.url });
-      setDescriptionValue(initialData?.description);
-    }
-  }, []);
-  // * ====================================== * //
-
-  //? ============== Handle Add Artist ============= ?//
   const [artworkSelect, setArtworkSelect] = useState("");
-  const [startPriceForm] = Form.useForm();
-  const [estimationPriceForm] = Form.useForm();
 
-  //? ============== Handle Submission ============= ?//
+  //#region Handle submission
   const [form] = Form.useForm();
   const handleSubmit = () => {
     form.validateFields().then(async (value) => {
@@ -67,7 +41,14 @@ function AppFormLotAuction(props) {
       priceForm.resetFields();
     });
   };
-  // * ====================================== * //
+  //#endregion
+
+  //#region Handle modal close
+  const handleModalClose = () => {
+    form.resetFields();
+    onClose();
+  };
+  //#endregion
 
   return (
     <>
@@ -79,15 +60,14 @@ function AppFormLotAuction(props) {
         width={1000}
         title="Add Lot Item"
       >
-        <Form
-          ref={formRef}
-          layout="vertical"
-          form={form}
-          initialValues={isEdit ? initialValues : {}}
-        >
-          <Form.Item name={"artwork"} label="Add Item">
-            <AppSelectExhibitionArtwork setResult={setArtworkSelect} />
-          </Form.Item>
+        <Form layout="vertical" form={form} initialValues={isEdit ? initialValues : {}}>
+          {!isEdit ? (
+            <Form.Item name={"artwork"} label="Add Item">
+              <AppSelectExhibitionArtwork setResult={setArtworkSelect} />
+            </Form.Item>
+          ) : (
+            ""
+          )}
           <Form.Item
             name="initial_price"
             label="Set Starting Bid"

@@ -10,9 +10,9 @@ function AppContentsAuctionDetailsLots(props) {
   const { lotsData } = props;
 
   //? ============== Handle state ============= ?//
-  const [state, setState] = useState(true);
-  const handleState = () => {
-    setState(!state);
+  const [stage, setStage] = useState("list");
+  const handleState = (selectedStage) => {
+    setStage(selectedStage);
   };
   // * ====================================== * //
 
@@ -24,18 +24,24 @@ function AppContentsAuctionDetailsLots(props) {
 
   return (
     <>
-      {state ? (
+      {stage === "list" ? (
         <AppContentsAuctionDetailsLotsList
           lotsData={lotsData}
           onItemClick={handleLotItemClick}
           onState={handleState}
         />
       ) : (
+        ""
+      )}
+
+      {stage === "details" ? (
         <AppContentsAuctionDetailsLotsDetails
           activeLotId={activeLotId}
           lotDetails={lotsData}
           onState={handleState}
         />
+      ) : (
+        ""
       )}
     </>
   );

@@ -52,7 +52,7 @@ function AppContentsAuctionDetailsLotsList(props) {
                 <AppCardAuctionArtwork
                   onClick={() => {
                     onItemClick(item.id);
-                    onState(onState);
+                    onState("details");
                   }}
                   image={
                     item?.media_cover
