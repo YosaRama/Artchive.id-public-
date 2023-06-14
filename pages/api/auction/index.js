@@ -7,8 +7,12 @@ const apiHandler = nextConnect();
 apiHandler.get(async (req, res) => {
   try {
     const result = await auctioo.get("/events");
-    const data = await result.data;
 
+    if (!result.data.success) {
+      throw new Error(result.data.message);
+    }
+
+    const data = await result.data;
     res.json({ success: true, message: "Successfully retrieve events", data: data });
   } catch (error) {
     res.status(200).json({ success: false, message: error.message });
@@ -16,7 +20,8 @@ apiHandler.get(async (req, res) => {
 });
 
 apiHandler.post(async (req, res) => {
-  const { name, organizer, start_date, end_date, description } = req.body;
+  const { name, organizer, start_date, end_date, description, thumbnail, vision, mission } =
+    req.body;
 
   try {
     const dataPayload = {
@@ -25,8 +30,17 @@ apiHandler.post(async (req, res) => {
       start_date: start_date,
       end_date: end_date,
       description: description,
+      thumbnail: thumbnail,
+      vision: vision,
+      mission: mission,
     };
-    await auctioo.post("/events", dataPayload);
+
+    const result = await auctioo.post("/events", dataPayload);
+
+    if (!result.data.success) {
+      throw new Error(result.data.message);
+    }
+
     res.status(200).json({ success: true, message: "Successfully create auction events" });
   } catch (error) {
     res.status(200).json({ success: false, message: error.message });

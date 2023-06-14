@@ -8,8 +8,12 @@ apiHandler.get(async (req, res) => {
   const { auctionId } = req.query;
   try {
     const result = await auctioo.get(`/events/${auctionId}`);
-    const data = await result.data;
 
+    if (!result.data.success) {
+      throw new Error(result.data.message);
+    }
+
+    const data = await result.data;
     res.status(200).json({ success: true, message: "Successfully auction details", data: data });
   } catch (error) {
     res.status(200).json({ success: false, message: error.message });
@@ -28,7 +32,12 @@ apiHandler.put(async (req, res) => {
       end_date: end_date,
       description: description,
     };
-    await auctioo.put(`/events/${auctionId}`, dataPayload);
+    const result = await auctioo.put(`/events/${auctionId}`, dataPayload);
+
+    if (!result.data.success) {
+      throw new Error(result.data.message);
+    }
+
     res.status(200).json({ success: true, message: "Successfully update auction details" });
   } catch (error) {
     res.status(200).json({ success: false, message: error.message });
@@ -38,7 +47,12 @@ apiHandler.put(async (req, res) => {
 apiHandler.delete(async (req, res) => {
   const { auctionId } = req.query;
   try {
-    await auctioo.delete(`/events/${auctionId}`);
+    const result = await auctioo.delete(`/events/${auctionId}`);
+
+    if (!result.data.success) {
+      throw new Error(result.data.message);
+    }
+
     res.status(200).json({ success: true, message: "Successfully delete auction" });
   } catch (error) {
     res.status(200).json({ success: false, message: error.message });

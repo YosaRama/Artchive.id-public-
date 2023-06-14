@@ -7,7 +7,7 @@ import { useCallback, useState } from "react";
 import { SuccessNotification, ErrorNotification } from "app/components/utils/notification";
 
 const pathName = "/auction"; // End point
-const msgHead = "Auction Event"; // Just For message
+const msgHead = "auction event"; // Just For message
 
 //? ============== GENERAL HOOK (ALL DATA) ============= ?//
 
@@ -16,15 +16,15 @@ export const useAuctions = ({ queryString = "" }) => {
   const [loading, setLoading] = useState(false);
 
   const { data = [], error, isValidating, mutate } = useSWR(pathKeys);
-  const results = data?.data;
+  const results = data?.data?.result;
   const total = data?.total;
 
   // Add Hook Function
   const onAdd = useCallback(
-    async (data) => {
+    async (payload) => {
       try {
         setLoading(true);
-        const { data: res } = await api.post(pathName, data);
+        const { data: res } = await api.post(pathName, payload);
         if (res.success) {
           mutate();
           SuccessNotification({
@@ -58,7 +58,7 @@ export const useAuctions = ({ queryString = "" }) => {
     async (singleId) => {
       try {
         setLoading(true);
-        const { data: res } = await api.delete(pathName + `/${singleId}`, data);
+        const { data: res } = await api.delete(pathName + `/${singleId}`);
         if (res.success) {
           mutate();
           SuccessNotification({
@@ -85,7 +85,7 @@ export const useAuctions = ({ queryString = "" }) => {
         setLoading(false);
       }
     },
-    [data, mutate]
+    [mutate]
   );
   // ==========================
 

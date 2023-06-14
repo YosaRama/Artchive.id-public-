@@ -6,14 +6,12 @@ import { useRouter } from "next/router";
 import AppContainerBox from "app/components/container/box";
 import AppContainerCard from "app/components/container/card";
 import AppFormAuctionDetails from "app/components/libs/form-auction-details";
-import { useExhibitions } from "app/hooks/exhibition";
+import { useAuctions } from "app/hooks/auction";
 
 function AppContentsAuctionCreate() {
   const router = useRouter();
 
-  //? ============== Auction Hooks ============= ?//
-  const { onAdd } = useExhibitions({ queryString: `` });
-  // * ====================================== * //
+  const { onAdd } = useAuctions({ queryString: "" });
 
   return (
     <>

@@ -17,29 +17,22 @@ import { useAuctions } from "app/hooks/auction";
 
 function AppContentsAuctionList() {
   const router = useRouter();
-  //? ============== Handle Pagination ============= ?//
-  const pageSize = 10;
-  const [page, setPage] = useState();
-  const handlePagination = (pagination, sort, filter) => {
-    setPage(pagination.current);
-  };
-  // * ====================================== * //
-
-  //? ============== Handle Delete ============= ?//
-  const handleDelete = (id) => {
-    deleteConfirmModal({ title: "genre", onDelete: () => onDelete(id) });
-  };
-  // * ====================================== * //
-
-  //? ============== Handle Column ============= ?//
-  const columns = AuctionColumn({ onDelete: handleDelete });
-  // * ====================================== * //
 
   //#region Auction Hooks
-  const { data: auctionDataList, loading: auctionListLoading } = useAuctions({ queryString: "" });
-  console.log("auctionDataList", auctionDataList);
-
+  const {
+    data: auctionDataList,
+    loading: auctionListLoading,
+    onDelete: auctionDelete,
+  } = useAuctions({ queryString: "" });
   //#endregion
+
+  //#region Handle delete
+  const handleDelete = (id) => {
+    deleteConfirmModal({ title: "Auction events", onDelete: () => auctionDelete(id) });
+  };
+  //#endregion
+
+  const columns = AuctionColumn({ onDelete: handleDelete });
 
   return (
     <>
@@ -52,10 +45,8 @@ function AppContentsAuctionList() {
             <Table
               columns={columns}
               rowKey={() => uuid()}
-              dataSource={auctionList}
-              // loading={loading}
-              // pagination={{ pageSize: pageSize, total: total }}
-              onChange={handlePagination}
+              dataSource={auctionDataList}
+              loading={auctionListLoading}
             />
           )}
           {!auctionList && <Empty />}

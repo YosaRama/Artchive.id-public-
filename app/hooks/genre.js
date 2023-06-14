@@ -66,7 +66,7 @@ export const useGenres = ({ queryString = "" }) => {
     async (singleId) => {
       try {
         setLoading(true);
-        const { data: res } = await api.delete(pathName + `/${singleId}`, data);
+        const { data: res } = await api.delete(pathName + `/${singleId}`);
         if (res.success) {
           mutate();
           SuccessNotification({
@@ -93,7 +93,7 @@ export const useGenres = ({ queryString = "" }) => {
         setLoading(false);
       }
     },
-    [data, mutate]
+    [mutate]
   );
   // ==========================
 

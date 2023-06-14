@@ -35,7 +35,7 @@ function AuctionColumn({ onDelete }) {
           <>
             <Col>
               <Image
-                src={`${process.env.NEXT_PUBLIC_S3_URL}/${r.thumbnail.url}`}
+                src={`${r.thumbnail}`}
                 style={{ width: "100%", height: "150px", objectFit: "cover" }}
               />
             </Col>
@@ -45,8 +45,8 @@ function AuctionColumn({ onDelete }) {
     },
     {
       title: "Auction Name",
-      dataIndex: "title",
-      key: "title",
+      dataIndex: "name",
+      key: "name",
       render: (t, r) => <p>{t}</p>,
     },
     {
@@ -60,19 +60,6 @@ function AuctionColumn({ onDelete }) {
       dataIndex: "end_date",
       key: "end_date",
       render: (t, r) => <p>{moment(t).format("DD MMMM YYYY")}</p>,
-    },
-    {
-      title: "Final Bid",
-      dataIndex: "current",
-      key: "current",
-      render: (t, r) => {
-        const sum = priceFormatter(
-          `${r.lots.reduce((accumulator, lot) => accumulator + parseInt(lot.initial_price), 0)}`,
-          ","
-        );
-
-        return <p>IDR {sum}</p>;
-      },
     },
     {
       title: "Action",
