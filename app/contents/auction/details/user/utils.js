@@ -15,7 +15,6 @@ function AuctionUserColumn({ onDelete, handleEdit }) {
       title: "Name",
       dataIndex: "name",
       key: "name",
-
       render: (t, r) => <p>{t}</p>,
     },
     {

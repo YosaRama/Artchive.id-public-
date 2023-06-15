@@ -16,7 +16,7 @@ import AppContentsAuctionDetailsGallery from "./gallery";
 import AppContentsAuctionDetailsUser from "./user";
 
 function AppContentsAuctionDetails(props) {
-  const { auctionData } = props;
+  const auctionData = {};
   const router = useRouter();
 
   //? ============== Handle Menu ============= ?//

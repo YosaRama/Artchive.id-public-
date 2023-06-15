@@ -9,67 +9,96 @@ import AppAddButton from "app/components/libs/add-button";
 import AuctionUserColumn from "./utils";
 import deleteConfirmModal from "app/components/utils/delete-modal-confirm";
 import AppFormAuctionUser from "app/components/libs/form-auction-user";
+import { useRouter } from "next/router";
+import { useAuctionUser, useAuctionUsers } from "app/hooks/auction/user";
 
 function AppContentsAuctionDetailsUser(props) {
   const { userData, onEdit, onDeleteUser } = props;
-
-  //? ============== Handle Delete ============= ?//
-  const handleDelete = (id) => {
-    deleteConfirmModal({ title: "user", onDelete: () => onDelete(id) });
-  };
-  // * ====================================== * //
-
+  const router = useRouter();
+  const { id } = router.query;
   const [modalVisible, setModalVisible] = useState(false);
-  const [data, setData] = useState(null);
+  const [modalEditVisible, setModalEditVisible] = useState(false);
 
+  //#region User Auction Hook
+  const {
+    data: userList,
+    loading: userListLoading,
+    onAdd: addUser,
+    onEdit: editUser,
+    onDelete: deleteUser,
+  } = useAuctionUsers({
+    queryString: "",
+    auctionId: id,
+  });
+  //#endregion
+
+  //#region Handle create user auction
   const handleAddUser = () => {
     setModalVisible(true);
   };
-
-  const handleEdit = (id) => {
-    setModalVisible(true);
-    setData(userData[id]); //TODO : Confused on how to show the initial data for one user//
+  const handleFormSubmit = (values) => {
+    addUser(values);
   };
+  //#endregion
 
+  //#region Handle edit user auction
+  const [selectedId, setSelectedId] = useState(null);
+  const handleEdit = (id) => {
+    setModalEditVisible(true);
+    setSelectedId(id);
+  };
+  const handleEditSubmit = (values) => {
+    editUser({ payload: values, singleId: selectedId });
+  };
+  //#endregion
+
+  //#region Handle delete user auction
+  const handleDelete = (id) => {
+    deleteConfirmModal({ title: "user", onDelete: () => deleteUser(id) });
+  };
+  //#endregion
+
+  //#region Handle form modal
   const handleModalCancel = () => {
     setModalVisible(false);
   };
-
-  const handleFormSubmit = (values) => {
-    // Handle form submission
-    handleModalCancel();
+  const handleModalEditCancel = () => {
+    setModalEditVisible(false);
   };
+  //#endregion
 
-  //? ============== Handle Column ============= ?//
   const columns = AuctionUserColumn({
     onDelete: handleDelete,
     handleEdit,
   });
-  // * ====================================== * //
 
   return (
     <>
       <AppAddButton onCreate={handleAddUser}>Add User</AppAddButton>
-      {userData && (
+      {userList && (
         <>
           <Table
             columns={columns}
             rowKey={() => uuid()}
-            dataSource={userData}
-            // loading={loading}
-            // pagination={{ pageSize: pageSize, total: total }}
-            // onChange={handlePagination}
+            dataSource={userList}
+            loading={userListLoading}
           />
 
           <AppFormAuctionUser
-            initialData={data}
             onSubmit={handleFormSubmit}
             visible={modalVisible}
             onCancel={handleModalCancel}
           />
+
+          <AppFormAuctionUser
+            onSubmit={handleEditSubmit}
+            visible={modalEditVisible}
+            onCancel={handleModalEditCancel}
+            userId={selectedId}
+          />
         </>
       )}
-      {!userData && <Empty />}
+      {!userList && <Empty />}
     </>
   );
 }

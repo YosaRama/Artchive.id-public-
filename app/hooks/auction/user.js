@@ -53,70 +53,12 @@ export const useAuctionUsers = ({ queryString = "", auctionId = "" }) => {
   );
   // ==========================
 
-  // Delete Hook Function
-  const onDelete = useCallback(
-    async (singleId) => {
-      try {
-        setLoading(true);
-        const { data: res } = await api.delete(pathName + `/${singleId}`, data);
-        if (res.success) {
-          mutate();
-          SuccessNotification({
-            message: "Success",
-            description: `Delete ${msgHead} has been successfully.`,
-          });
-          return res.success;
-        } else {
-          ErrorNotification({
-            message: "Error",
-            description: `Something went wrong while deleting ${msgHead}`,
-          });
-
-          return res.success;
-        }
-      } catch (error) {
-        ErrorNotification({
-          message: "Error",
-          description: `Something went wrong while deleting ${msgHead}`,
-        });
-
-        return false;
-      } finally {
-        setLoading(false);
-      }
-    },
-    [data, mutate, pathName]
-  );
-  // ==========================
-
-  return {
-    data: results,
-    total,
-    loading: (!error && !data) || isValidating || loading,
-    onAdd,
-    onDelete,
-  };
-};
-
-// * ====================================== * //
-
-//? ============== SPECIFIC HOOK (SINGLE DATA) ============= ?//
-
-export const useAuctionUser = ({ singleId, auctionId }) => {
-  const pathName = `/auction/${auctionId}/user`;
-  const pathKeys = `${pathName}/${singleId}`;
-  const [loading, setLoading] = useState(false);
-
-  const { data = [], error, isValidating, mutate } = useSWR(pathKeys);
-  const results = data?.data;
-  const total = data?.data;
-
   // Edit Hook Function
   const onEdit = useCallback(
-    async (data) => {
+    async ({ payload, singleId }) => {
       try {
         setLoading(true);
-        const { data: res } = await api.put(pathKeys, data);
+        const { data: res } = await api.put(pathName + `/${singleId}`, payload);
         if (res.success) {
           mutate();
           SuccessNotification({
@@ -143,7 +85,43 @@ export const useAuctionUser = ({ singleId, auctionId }) => {
         setLoading(false);
       }
     },
-    [mutate, pathKeys]
+    [mutate, pathName]
+  );
+  // ==========================
+
+  // Delete Hook Function
+  const onDelete = useCallback(
+    async (singleId) => {
+      try {
+        setLoading(true);
+        const { data: res } = await api.delete(pathName + `/${singleId}`);
+        if (res.success) {
+          mutate();
+          SuccessNotification({
+            message: "Success",
+            description: `Delete ${msgHead} has been successfully.`,
+          });
+          return res.success;
+        } else {
+          ErrorNotification({
+            message: "Error",
+            description: `Something went wrong while deleting ${msgHead}`,
+          });
+
+          return res.success;
+        }
+      } catch (error) {
+        ErrorNotification({
+          message: "Error",
+          description: `Something went wrong while deleting ${msgHead}`,
+        });
+
+        return false;
+      } finally {
+        setLoading(false);
+      }
+    },
+    [mutate, pathName]
   );
   // ==========================
 
@@ -151,7 +129,29 @@ export const useAuctionUser = ({ singleId, auctionId }) => {
     data: results,
     total,
     loading: (!error && !data) || isValidating || loading,
+    onAdd,
+    onDelete,
     onEdit,
+  };
+};
+
+// * ====================================== * //
+
+//? ============== SPECIFIC HOOK (SINGLE DATA) ============= ?//
+
+export const useAuctionUser = ({ singleId, auctionId }) => {
+  const pathName = `/auction/${auctionId}/user`;
+  const pathKeys = `${pathName}/${singleId}`;
+  const [loading, setLoading] = useState(false);
+
+  const { data = [], error, isValidating, mutate } = useSWR(singleId ? pathKeys : null);
+  const results = data?.data;
+  const total = data?.data;
+
+  return {
+    data: results,
+    total,
+    loading: (!error && !data) || isValidating || loading,
   };
 };
 

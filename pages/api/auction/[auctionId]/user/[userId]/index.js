@@ -8,8 +8,12 @@ apiHandler.get(async (req, res) => {
   const { auctionId, userId } = req.query;
   try {
     const result = await auctioo.get(`/events/${auctionId}/users/${userId}`);
-    const data = await result.data;
 
+    if (!result.data.success) {
+      throw new Error(result.data.message);
+    }
+
+    const data = await result.data.result;
     res
       .status(200)
       .json({ success: true, message: "Successfully retrieve user details", data: data });
@@ -32,7 +36,12 @@ apiHandler.put(async (req, res) => {
       status: status,
       status_description: status_description,
     };
-    await auctioo.put(`/events/${auctionId}/users/${userId}`, dataPayload);
+
+    const result = await auctioo.put(`/events/${auctionId}/users/${userId}`, dataPayload);
+    if (!result.data.success) {
+      throw new Error(result.data.message);
+    }
+
     res.status(200).json({ success: true, message: "Successfully update user details" });
   } catch (error) {
     res.status(200).json({ success: false, message: error.message });
@@ -43,7 +52,10 @@ apiHandler.delete(async (req, res) => {
   const { auctionId, userId } = req.query;
 
   try {
-    await auctioo.delete(`/events/${auctionId}/users/${userId}`);
+    const result = await auctioo.delete(`/events/${auctionId}/users/${userId}`);
+    if (!result.data.success) {
+      throw new Error(result.data.message);
+    }
     res.status(200).json({ success: true, message: "Successfully delete user" });
   } catch (error) {
     res.status(200).json({ success: false, message: error.message });

@@ -1,37 +1,26 @@
 // Libs
 import { getSession } from "next-auth/react";
+import dashboardSession from "app/helpers/dashboardSession";
 
 // Contents
 import AppContentsAuctionDetails from "app/contents/auction/details";
 
-// Dummy
-import { auctionList } from "app/database/dummy/auction-list";
-
 function PageDashboardExhibitionDetails(props) {
-  const { auction } = props;
-
   return (
     <>
-      <AppContentsAuctionDetails auctionData={auction} />
+      <AppContentsAuctionDetails />
     </>
   );
 }
 
 export default PageDashboardExhibitionDetails;
 
-export async function getServerSideProps(context) {
-  const { id } = context.query;
-  const fetchedAuction = auctionList.find((item) => item.id === parseInt(id));
-
-  if (!fetchedAuction) {
-    return {
-      notFound: true,
-    };
-  }
+export const getServerSideProps = async (ctx) => {
+  const session = await getSession(ctx);
+  const res = dashboardSession({ session: session, data: session });
 
   return {
-    props: {
-      auction: fetchedAuction,
-    },
+    props: res.props,
+    redirect: res.redirect,
   };
-}
+};

@@ -8,8 +8,12 @@ apiHandler.get(async (req, res) => {
   const { auctionId } = req.query;
   try {
     const result = await auctioo.get(`/events/${auctionId}/users`);
-    const data = await result.data;
 
+    if (!result.data.success) {
+      throw new Error(result.data.message);
+    }
+
+    const data = await result.data.result;
     res
       .status(200)
       .json({ success: true, message: "Successfully retrieve users list", data: data });
@@ -32,7 +36,12 @@ apiHandler.post(async (req, res) => {
       status: status,
       status_description: status_description,
     };
-    await auctioo.post(`/events/${auctionId}/users`, dataPayload);
+    const result = await auctioo.post(`/events/${auctionId}/users`, dataPayload);
+
+    if (!result.data.success) {
+      throw new Error(result.data.message);
+    }
+
     res.status(200).json({ success: true, message: "Successfully add new user" });
   } catch (error) {
     res.status(200).json({ success: false, message: error.message });
