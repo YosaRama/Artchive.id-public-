@@ -12,6 +12,7 @@ import { fadeTopToBottom } from "app/database/framer-motion";
 
 // Dummy
 import ThemesHeaderItem from "./header-item";
+import ThemesAuctionHeaderItem from "./auction-header-item";
 
 function ThemesHeader() {
   const router = useRouter();
@@ -32,16 +33,21 @@ function ThemesHeader() {
       router.pathname !== "/auction/[slug]" &&
       router.pathname !== "/auction/[slug]/details" &&
       router.pathname !== "/auction/[slug]/lots" &&
+      router.pathname !== "/auction/[slug]/artwork/[artworkSlug]" &&
       router.pathname !== "/about" ? (
         <>
           <motion.div variants={fadeTopToBottom} initial="hidden" animate="visible" exit="exit">
-            <ThemesHeaderItem />
+            {router.pathname.startsWith("/auction/[slug]") ? (
+              <ThemesAuctionHeaderItem />
+            ) : (
+              <ThemesHeaderItem />
+            )}
           </motion.div>
         </>
       ) : (
         <HideOn inverse={true} atHeight height={150}>
           <motion.div variants={fadeTopToBottom} initial="hidden" animate="visible" exit="exit">
-            <ThemesHeaderItem />
+            {router.pathname.startsWith("/auction/[slug]") ? "" : <ThemesHeaderItem />}
           </motion.div>
         </HideOn>
       )}

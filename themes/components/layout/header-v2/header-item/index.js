@@ -178,23 +178,6 @@ function ThemesHeaderItem(props) {
                                 </Col>
                               </>
                             )}
-                            {/* {width <= 500 ? (
-                              <>
-                                <Col onChange={(e) => setIconVisible()} className={s.iconHeader}>
-                                  <Badge
-                                    count={cartItem?.length}
-                                    size="small"
-                                    style={{ backgroundColor: "#e5890a" }}
-                                  >
-                                    <Link href="/cart">
-                                      <a>CART</a>
-                                    </Link>
-                                  </Badge>
-                                </Col>
-                              </>
-                            ) : (
-                              ""
-                            )} */}
                           </>
                         )}
                         {!session && (

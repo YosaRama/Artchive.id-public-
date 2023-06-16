@@ -42,13 +42,13 @@ function ThemesContentsAuctionDetailsOverview(props) {
       <ThemesBanner
         imgSrc={`${process.env.NEXT_PUBLIC_S3_URL}/${auctionData.thumbnail.url}`}
         className={s.bannerContainer}
+        slug={auctionData.slug}
       >
         <ThemesBannerAuctionItem
           title={auctionData.title}
-          endDate={auctionData.end_date}
           startDate={auctionData.start_date}
+          endDate={auctionData.end_date}
           placeName={auctionData.place_name}
-          slug={auctionData.slug}
         />
       </ThemesBanner>
 

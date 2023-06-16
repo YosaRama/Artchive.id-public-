@@ -5,7 +5,9 @@
   h1 {
     font-size: 42px;
   }
-
+  p {
+    font-size: font-size.$paragraph;
+  }
   h1,
   h3 {
     color: colors.$white;
@@ -15,22 +17,7 @@
   width: 100%;
   padding-bottom: 50px;
   display: flex;
-  align-content: space-between;
-}
-
-.btn {
-  cursor: pointer;
-  :hover {
-    color: colors.$fulvous;
-    transition: all 300ms ease;
-  }
-}
-
-.btnActive {
-  h3 {
-    color: colors.$fulvous !important;
-    text-decoration: underline;
-  }
+  align-content: flex-end;
 }
 
 //? ============== Tablet Landscape View ============= ?//

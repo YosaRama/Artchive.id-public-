@@ -26,7 +26,6 @@ function ThemesLayout(props) {
     <>
       <Layout>
         <Affix className={s.header}>
-          {/* <ThemesHeader /> */}
           <ThemesHeaderAutoShow />
         </Affix>
         <Content className={s.content} id="frontpage">
@@ -40,7 +39,7 @@ function ThemesLayout(props) {
         <ThemesFooterV2 />
 
         {/* MAIN MOBILE NAVBAR */}
-        {!router.pathname.startsWith("/profile") && (
+        {!router.pathname.startsWith("/profile") && !router.pathname.startsWith("/auction") && (
           <Affix offsetBottom={0} className={s.mobileMenu}>
             <ThemesMobileNavbar />
           </Affix>

@@ -6,20 +6,26 @@ import { useRouter } from "next/router";
 // Compoenent
 import ThemesButton from "../../button";
 
+// Helper
+import { useWindowSize } from "app/helpers/useWindowSize";
+
 // Style
 import s from "./index.module.scss";
 
 function ThemesAuctionRegisterForm(props) {
   const { onClick } = props;
   const router = useRouter();
+  const { width } = useWindowSize();
 
   return (
     <Row className={s.modalContainer}>
-      <Col span={11} className={s.image}>
-        <Image src="/images/modal-register.png" alt="" preview={false} />
-      </Col>
+      {width > 768 && (
+        <Col span={11} className={s.image}>
+          <Image src="/images/modal-login.png" alt="" preview={false} />
+        </Col>
+      )}
       {/* //? ============== Register Form ============= ?// */}
-      <Col span={13} className={s.registerContainer}>
+      <Col span={width > 768 ? 13 : 24} className={s.registerContainer}>
         <Col className={s.register}>
           <Col className={s.title}>
             <h3>REGISTER</h3>
@@ -78,12 +84,7 @@ function ThemesAuctionRegisterForm(props) {
                 REGISTER
               </ThemesButton>
             </Form.Item>
-            <Form.Item>
-              <p>Already have auction account?</p>
-              <ThemesButton type={`primary + ${s.registerBtn} `} onClick={onClick}>
-                SIGN UP
-              </ThemesButton>
-            </Form.Item>
+
             <Form.Item>
               <p className={s.closeBtn} onClick={() => router.push("/auction")}>
                 No Thanks

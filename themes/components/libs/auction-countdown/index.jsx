@@ -7,6 +7,9 @@ import { useState, useEffect } from "react";
 import { Spin } from "antd";
 import { useRouter } from "next/router";
 
+// Helper
+import { useWindowSize } from "app/helpers/useWindowSize";
+
 // Style
 import s from "./index.module.scss";
 
@@ -14,6 +17,7 @@ function ThemesAuctionCountDown(props) {
   const { todayDate, startDate, endDate, onClick } = props;
   const [loading, setLoading] = useState(true);
   const router = useRouter();
+  const { width } = useWindowSize();
 
   //? ============== Countdown Auction Start ============= ?//
   const [countdown, setCountdown] = useState({
@@ -58,34 +62,33 @@ function ThemesAuctionCountDown(props) {
       <Col span={24} className={s.countDownContainer}>
         <Col className={s.container}>
           <Col span={24}>
-            {todayDate.isBefore(startDate) ? (
+            {width > 500 ? (
               <h3>Auction Will Start at {moment(startDate).format("DD MMMM YYYY")}</h3>
             ) : (
-              <h3>
-                Attention Bidders! The auction has already started
-                <br />
-                and will be ended at {` `}
-                {moment(endDate).format("DD MMMM YYYY")}
-              </h3>
+              <h2>{moment(startDate).format("DD MMMM YYYY")}</h2>
             )}
-
-            <p>Countdown</p>
           </Col>
 
-          <Row className={s.timer}>
-            {countdownData.map((item, index) => {
-              return (
-                <>
-                  <Col className={s.bgWhite}>
-                    <Col className={s.item}>
-                      <h1>{loading ? <Spin /> : <>{item.time}</>}</h1>
-                      <p>{item.title}</p>
-                    </Col>
-                  </Col>
-                </>
-              );
-            })}
-          </Row>
+          {width >= 500 && (
+            <>
+              <p>Countdown</p>
+              <Row className={s.timer}>
+                {countdownData.map((item, index) => {
+                  return (
+                    <>
+                      <Col className={s.bgWhite}>
+                        <Col className={s.item}>
+                          <h1>{loading ? <Spin /> : <>{item.time}</>}</h1>
+                          <p>{item.title}</p>
+                        </Col>
+                      </Col>
+                    </>
+                  );
+                })}
+              </Row>
+            </>
+          )}
+
           {todayDate.isBefore(startDate) ? (
             <Col span={24}>
               <p>{`Mark your calendars and don't miss the chance to bid on your dream items at our upcoming auction event`}</p>
@@ -102,7 +105,7 @@ function ThemesAuctionCountDown(props) {
               BACK TO HOMEPAGE
             </ThemesButton>
           ) : (
-            <ThemesButton type={`primary + ${s.btn}`} onClick={onClick}>
+            <ThemesButton type={`primary + ${s.btn}`} onClick={() => router.push("/auction")}>
               GO TO AUCTION PAGE
             </ThemesButton>
           )}

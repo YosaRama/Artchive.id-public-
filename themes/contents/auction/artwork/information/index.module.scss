@@ -48,75 +48,6 @@
   }
 }
 
-.lotContainer {
-  position: -webkit-sticky;
-  position: sticky !important;
-  top: 50px;
-  .lotDetails {
-    padding: 40px 35px;
-    background: WHITESMOKE;
-    h2 {
-      font-size: font-size.$heading-2;
-    }
-    p {
-      font-size: font-size.$paragraph;
-      margin: 15px 0px;
-    }
-    .reminder {
-      height: 30px;
-      span {
-        font-weight: bold;
-        color: colors.$fulvous;
-      }
-    }
-    .priceBidder {
-      width: 100%;
-      background: colors.$white;
-      margin-bottom: 15px;
-      h1 {
-        font-size: font-size.$heading-1;
-        line-height: 60px;
-        margin: 0px !important;
-      }
-      .buttonContainer {
-        width: 54px !important;
-        height: 54px !important;
-        .btn {
-          width: 54px !important;
-          height: 54px !important;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          span,
-          svg {
-            font-weight: 700 !important;
-            font-size: 24px;
-            line-height: 0px !important;
-          }
-        }
-      }
-    }
-    .btn {
-      width: 100%;
-    }
-  }
-
-  .bidContainer {
-    margin: 40px 0px 0px;
-    h2 {
-      font-size: font-size.$heading-2;
-    }
-    p {
-      font-size: font-size.$paragraph;
-      margin: 0px;
-    }
-    .divider {
-      background: GAINSBORO;
-      margin: 20px 0px !important;
-    }
-  }
-}
-
 .highlightContainer {
   .headline {
     margin: 40px 0px;
@@ -216,7 +147,7 @@
 //? ============== Tablet Potrait View ============= ?//
 @media screen and (max-width: 768px) {
   .detailsImageContainer {
-    height: 80px;
+    height: 160px;
   }
 
   .detailsContainer {
@@ -252,6 +183,9 @@
 
 //? ============== Mobile View ============= ?//
 @media screen and (max-width: 500px) {
+  .detailsImageContainer {
+    height: 80px;
+  }
   .highlightContainer {
     .artworkContainer {
       padding: 0px !important;

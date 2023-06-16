@@ -4,6 +4,7 @@
 .container {
   padding-right: 0 !important;
   padding-left: 0 !important;
+  width: auto;
   p {
     margin: 0;
   }
@@ -25,7 +26,7 @@
 }
 
 .description {
-  padding: 10px;
+  padding: 10px !important;
   h3 {
     font-size: font-size.$heading-3;
   }
@@ -44,3 +45,25 @@
 .date {
   color: colors.$fulvous;
 }
+
+//? ============== Table Potrait View ============= ?//
+@media screen and (max-width: 768px) {
+  .description {
+    height: 120px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+}
+// * ====================================== * //
+
+//? ============== Mobile View ============= ?//
+@media screen and (max-width: 508px) {
+  .thumbnail {
+    height: 300px;
+  }
+  .description {
+    padding: 15px !important;
+  }
+}
+// * ====================================== * //

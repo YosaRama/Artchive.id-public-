@@ -4,6 +4,9 @@ import moment from "moment-timezone";
 import { Col, Row, Image, Divider } from "antd";
 import { useRouter } from "next/router";
 
+// Helper
+import { useWindowSize } from "app/helpers/useWindowSize";
+
 // Styles
 import s from "./index.module.scss";
 
@@ -28,9 +31,13 @@ function ThemesAuctionLotsList(props) {
     grid,
     status,
     artworkUrl,
+    onClick,
+    haveAccount,
   } = props;
   const router = useRouter();
   const timeZone = moment.tz.guess();
+  const todayDate = moment.tz();
+  const width = useWindowSize();
 
   return (
     <>
@@ -38,8 +45,16 @@ function ThemesAuctionLotsList(props) {
         ///? ============== GRID VIEW ============= ?//
         <Row
           span={24}
-          className={s.cartContainerGrid}
-          onClick={() => router.push(`/${artworkUrl}`)}
+          className={`${s.cartContainerGrid} ${todayDate.isBefore(lotOpenDate) ? `` : s.cartHover}`}
+          onClick={
+            todayDate.isBefore(lotOpenDate)
+              ? null
+              : todayDate.isAfter(lotCloseDate)
+              ? () => router.push(`/${artworkUrl}`)
+              : haveAccount
+              ? () => router.push(`/${artworkUrl}`)
+              : onClick
+          }
         >
           <Col span={24}>
             <Col span={24} className={s.imgSrcContainer}>
@@ -71,26 +86,57 @@ function ThemesAuctionLotsList(props) {
                 )}
               </Col>
               <Col>
-                <p>Estimation : IDR {priceFormatter(estimation, ",")}</p>
+                {width > 500 && <p>Estimation : IDR {priceFormatter(estimation, ",")}</p>}
                 <h4>
                   {status === "READY" ? "Current Bid:" : status === "SOLD" ? "Final Bid:" : ""} IDR{" "}
                   {priceFormatter(initialPrice, ",")}
                 </h4>
               </Col>
-              <Divider style={{ margin: "5px 0px", backgroundColor: "black" }} />
+              {width > 500 && <Divider style={{ margin: "5px 0px", backgroundColor: "black" }} />}
               <Col>
-                <p>Open: {moment.tz(lotOpenDate, timeZone).format("DD MMMM YYYY | HH:mm")} WITA</p>
-                <p>Close: {moment.tz(lotOpenDate, timeZone).format("DD MMMM YYYY | HH:mm")} WITA</p>
+                {width > 500 ? (
+                  <>
+                    <p>
+                      Open: {moment.tz(lotOpenDate, timeZone).format("DD MMMM YYYY | HH:mm")} WITA
+                    </p>
+                    <p>
+                      Close: {moment.tz(lotCloseDate, timeZone).format("DD MMMM YYYY | HH:mm")} WITA
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <p>
+                      {moment.tz(lotOpenDate, timeZone).format("DD MMMM")} -{" "}
+                      {moment.tz(lotCloseDate, timeZone).format("DD MMMM YYYY")}
+                    </p>
+                  </>
+                )}
               </Col>
             </Col>
           </Col>
           <Col span={24}>
             <ThemesButton
               type={`primary + ${s.btn}`}
-              onClick={() => router.push(`/${artworkUrl}`)}
-              disabled={status === "SOLD" ? true : false}
+              onClick={
+                todayDate.isAfter(lotCloseDate)
+                  ? () => router.push(`/${artworkUrl}`)
+                  : haveAccount
+                  ? () => router.push(`/${artworkUrl}`)
+                  : onClick
+              }
+              disabled={todayDate.isBefore(lotOpenDate) ? true : false}
             >
-              PLACE BID
+              {todayDate.isBefore(lotOpenDate)
+                ? "START SOON"
+                : todayDate.isBetween(lotOpenDate, lotCloseDate)
+                ? !haveAccount && status == "SOLD"
+                  ? "ITEM SOLD"
+                  : haveAccount && status == "SOLD"
+                  ? "ITEM SOLD"
+                  : !haveAccount && status != "SOLD"
+                  ? "LOGIN TO BID"
+                  : "PLACE BID"
+                : "SEE DETAILS"}
             </ThemesButton>
           </Col>
         </Row>
@@ -98,7 +144,18 @@ function ThemesAuctionLotsList(props) {
         // * ====================================== * //
 
         //? ============== DEFAULT VIEW ============= ?//
-        <Col className={s.cartContainer} onClick={() => router.push(`/${artworkUrl}`)}>
+        <Col
+          className={`${s.cartContainer} ${todayDate.isBefore(lotOpenDate) ? `` : s.cartHover}`}
+          onClick={
+            todayDate.isBefore(lotOpenDate)
+              ? null
+              : todayDate.isAfter(lotCloseDate)
+              ? () => router.push(`/${artworkUrl}`)
+              : haveAccount
+              ? () => router.push(`/${artworkUrl}`)
+              : onClick
+          }
+        >
           <Row gutter={[0, 10]} className={s.cartLotsContainer}>
             <Col span={6} className={s.imgSrcContainer}>
               {status === "ENDED" ? (
@@ -113,16 +170,13 @@ function ThemesAuctionLotsList(props) {
                 className={s.imgSrc}
                 alt=""
                 src={`${process.env.NEXT_PUBLIC_S3_URL}/${imgUrl}`}
-                onClick={() => router.push(`/${artworkUrl}`)}
               />
             </Col>
 
             <Col span={9} className={s.descContainer}>
               <p>LOT{lot}</p>
               <Col>
-                <h2 className={s.title} onClick={() => router.push(`/${artworkUrl}`)}>
-                  {title}
-                </h2>
+                <h2 className={s.title}>{title}</h2>
                 {artistName ? (
                   <p className={s.artist} style={{ fontWeight: "600" }}>
                     {`by `}
@@ -143,7 +197,7 @@ function ThemesAuctionLotsList(props) {
                   Open : {moment.tz(lotOpenDate, timeZone).format("DD MMMM YYYY | HH:mm")} WITA
                 </h3>
                 <h3>
-                  Close : {moment.tz(lotOpenDate, timeZone).format("DD MMMM YYYY | HH:mm")} WITA
+                  Close : {moment.tz(lotCloseDate, timeZone).format("DD MMMM YYYY | HH:mm")} WITA
                 </h3>
               </Col>
             </Col>
@@ -164,10 +218,26 @@ function ThemesAuctionLotsList(props) {
 
               <ThemesButton
                 type={`primary + ${s.btn}`}
-                onClick={() => router.push(`/${artworkUrl}`)}
-                disabled={status === "SOLD" ? true : false}
+                onClick={
+                  todayDate.isAfter(lotCloseDate)
+                    ? () => router.push(`/${artworkUrl}`)
+                    : haveAccount
+                    ? () => router.push(`/${artworkUrl}`)
+                    : onClick
+                }
+                disabled={todayDate.isBefore(lotOpenDate) ? true : false}
               >
-                PLACE BID
+                {todayDate.isBefore(lotOpenDate)
+                  ? "START SOON"
+                  : todayDate.isBetween(lotOpenDate, lotCloseDate)
+                  ? !haveAccount && status == "SOLD"
+                    ? "ITEM SOLD"
+                    : haveAccount && status == "SOLD"
+                    ? "ITEM SOLD"
+                    : !haveAccount && status != "SOLD"
+                    ? "LOGIN TO BID"
+                    : "PLACE BID"
+                  : "SEE DETAILS"}
               </ThemesButton>
             </Col>
           </Row>
@@ -196,6 +266,8 @@ ThemesAuctionLotsList.propTypes = {
   grid: propTypes.bool,
   status: propTypes.string,
   artworkUrl: propTypes.string,
+  onClick: propTypes.string,
+  haveAccount: propTypes.bool,
 };
 
 export default ThemesAuctionLotsList;

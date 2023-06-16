@@ -1,6 +1,5 @@
 // Libs
 import { Col, Row, Input, Select, Divider } from "antd";
-
 import { AppstoreOutlined, SlidersOutlined, UnorderedListOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import propTypes from "prop-types";
@@ -11,7 +10,6 @@ import ThemesContainerMain from "themes/components/container/main";
 import ThemesBanner from "themes/components/libs/banner";
 import ThemesAuctionLotsList from "themes/components/libs/auction-lots-list";
 import ThemesBannerAuctionItem from "themes/components/libs/banner-auction";
-import ThemesModalAuctionRegister from "themes/components/libs/modal-auction-register";
 import ThemesModalAuctionLogin from "themes/components/libs/modal-auction-login";
 
 // Helper
@@ -22,10 +20,22 @@ import s from "./index.module.scss";
 
 function ThemesContentsAuctionDetailsLots(props) {
   const { auctionData } = props;
-
-  const { width } = useWindowSize();
-
   const todayDate = moment();
+  const { width } = useWindowSize();
+  const { Search } = Input;
+
+  ///? ============== MODAL LOGIN============= ?//
+  const [haveAccount, setHaveAccount] = useState(false);
+  const [login, setLogin] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const handleVisible = () => {
+    setVisible(!visible);
+  };
+  const [verified, setVerified] = useState(false);
+  const [register, setRegister] = useState(false);
+  // * ====================================== * //
+
+  //? ============== Handle Grid and Default View ============= ?//
   const [view, setView] = useState(false);
   const gridView = () => {
     setView(view);
@@ -33,47 +43,43 @@ function ThemesContentsAuctionDetailsLots(props) {
   const toggleState = () => {
     setView(!view);
   };
-  const [haveAccount, setHaveAccount] = useState(true);
-  const toggleAccount = () => {
-    setHaveAccount(!haveAccount);
-  };
-
-  const { Search } = Input;
+  // * ====================================== * //
 
   return (
     <>
       <ThemesBanner
         imgSrc={`${process.env.NEXT_PUBLIC_S3_URL}/${auctionData.thumbnail.url}`}
         className={s.bannerContainer}
+        slug={auctionData.slug}
       >
         <ThemesBannerAuctionItem
           title={auctionData.title}
           startDate={auctionData.start_date}
           endDate={auctionData.end_date}
           placeName={auctionData.place_name}
-          slug={auctionData.slug}
         />
       </ThemesBanner>
 
       {/* //? ============== Modal ============= ?// */}
-      {/* //TODO : If not login, show modal register, if login, show modal login// */}
-      {todayDate.isBefore(auctionData.end_date) ? (
-        <>
-          {haveAccount ? (
-            <ThemesModalAuctionLogin
-              startDate={auctionData.start_date}
-              endDate={auctionData.end_date}
-            />
-          ) : (
-            <ThemesModalAuctionRegister
-              startDate={auctionData.start_date}
-              endDate={auctionData.end_date}
-            />
-          )}
-        </>
-      ) : (
-        ""
-      )}
+
+      <ThemesModalAuctionLogin
+        startDate={auctionData.start_date}
+        endDate={auctionData.end_date}
+        visible={todayDate.isBefore(auctionData.start_date) ? true : visible}
+        onLogin={() => setLogin(!login)}
+        onVerified={() => setVerified(!verified)}
+        onRegister={() => setRegister(!register)}
+        onVisible={() => setVisible(!visible)}
+        onHaveAccount={() => {
+          setHaveAccount(!haveAccount);
+          setVerified(!verified);
+          setVisible(!visible);
+        }}
+        login={login}
+        verified={verified}
+        register={register}
+      />
+
       {/* // * ====================================== * // */}
 
       <Col className={s.bgWhite}>
@@ -195,12 +201,16 @@ function ThemesContentsAuctionDetailsLots(props) {
                     media={item.media}
                     estimation={item.estimation}
                     initialPrice={item.initial_price}
-                    lotOpenDate={item.start_date}
-                    lotCloseDate={item.end_date}
+                    lotOpenDate={item.start_time}
+                    lotCloseDate={item.end_time}
                     imgUrl={item.media_cover.url}
                     grid={width > 500 ? view : gridView}
                     status={item.status}
                     artworkUrl={`/auction/${auctionData.slug}/artwork/${item.slug}`}
+                    onClick={
+                      todayDate.isBetween(item.start_time, item.end_time) ? handleVisible : ""
+                    }
+                    haveAccount={haveAccount}
                   />
                 </Col>
               );

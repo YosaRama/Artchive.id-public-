@@ -1,10 +1,14 @@
 // Libs
-import { Col, Row, Image, Divider, Table, Carousel } from "antd";
+import { Col, Row, Image, Divider, Table, Carousel, Affix } from "antd";
 import ThemesButton from "themes/components/libs/button";
 import { useState } from "react";
 import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import propTypes, { string } from "prop-types";
 import moment from "moment-timezone";
+
+// Components
+import ThemesHeadline from "themes/components/libs/headline";
+import ThemesContentsAuctionBidDetails from "../bid";
 
 // Helper
 import priceFormatter from "app/helpers/priceFormatter";
@@ -13,7 +17,6 @@ import { useSession } from "next-auth/react";
 
 // Style
 import s from "./index.module.scss";
-import ThemesHeadline from "themes/components/libs/headline";
 
 function ThemesContentsAuctionArtworkDetails(props) {
   const {
@@ -36,6 +39,7 @@ function ThemesContentsAuctionArtworkDetails(props) {
     startingBid,
     step,
     logs,
+    status,
   } = props;
 
   const { width } = useWindowSize();
@@ -95,7 +99,30 @@ function ThemesContentsAuctionArtworkDetails(props) {
       title: "Date",
       dataIndex: "created_at",
       key: "created_at",
-      render: (text) => <p>{moment.tz(text, timeZone).format("DD-MM-YYYY | HH:mm:ss")} WITA</p>,
+      render: (text) => {
+        //? ============== Timer ============= ?//
+        const createdTime = moment.tz(text, timeZone); // Example created time
+        const currentTime = moment(); // Example current time
+
+        const duration = moment.duration(currentTime.diff(createdTime));
+        const timePassed = formatTimePassed(duration);
+
+        function formatTimePassed(duration) {
+          const seconds = duration.asSeconds();
+
+          if (seconds < 60) {
+            return `${Math.floor(seconds)} seconds ago`;
+          } else if (seconds < 3600) {
+            return `${Math.floor(seconds / 60)} minutes ago`;
+          } else if (seconds < 86400) {
+            return `${Math.floor(seconds / 3600)} hours ago`;
+          } else {
+            return `${Math.floor(seconds / 86400)} days ago`;
+          }
+        }
+        // * ====================================== * //
+        return <p>{timePassed}</p>;
+      },
     },
     {
       title: "Bid",
@@ -115,7 +142,7 @@ function ThemesContentsAuctionArtworkDetails(props) {
   return (
     <>
       <Row justify="space-between">
-        <Col span={width > 500 ? 12 : 24}>
+        <Col span={width > 768 ? 12 : 24}>
           {/* //? ============== Artwork Container ============= ?// */}
           <Image.PreviewGroup>
             <Col span={24} className={s.imageContainer}>
@@ -179,7 +206,7 @@ function ThemesContentsAuctionArtworkDetails(props) {
               <Row gutter={[16, 0]} className={s.artistProfileContainer}>
                 <Col span={width > 768 ? 6 : 24} className={s.image}>
                   <Row>
-                    <Col span={8}>
+                    <Col xl={{ span: 8 }} lg={{ span: 8 }} sm={{ span: 4 }} xs={{ span: 8 }}>
                       <Image src="/images/profile-3.jpg" alt="" preview={false} />
                     </Col>
                     {width <= 768 && (
@@ -205,83 +232,23 @@ function ThemesContentsAuctionArtworkDetails(props) {
           </Col>
           {/* // * ====================================== * // */}
         </Col>
-        {width > 500 && (
-          <Col span={11}>
-            <Col className={s.lotContainer}>
-              {/* //? ============== Lot Details ============= ?// */}
-              <Col span={24} className={s.lotDetails}>
-                <h2>
-                  {parseInt(latestBidPrice) === parseInt(estimationBid)
-                    ? "Final Price"
-                    : "Current price"}
-                  : IDR {latestBidPrice ? priceFormatter(`${latestBidPrice}`, ",") : 0}
-                </h2>
-
-                <p>Estimation: IDR {priceFormatter(`${estimation}`, ",")}</p>
-                <Col className={s.reminder}>
-                  <p style={{ textAlign: "center" }}>
-                    {parseInt(latestBidPrice) === parseInt(estimationBid) ? (
-                      <span>Reserve price has been met</span>
-                    ) : (
-                      ""
-                    )}
-                  </p>
-                </Col>
-                <Row className={s.priceBidder} justify="space-between">
-                  <Col className={s.buttonContainer}>
-                    <ThemesButton
-                      type={`${price === limit ? "disable" : "primary"} + ${s.btn}`}
-                      onClick={handleDecrement}
-                      disabled={price === limit}
-                    >
-                      <MinusOutlined />
-                    </ThemesButton>
-                  </Col>
-                  <Col style={{ margin: "0 10px" }}>
-                    <p style={{ fontWeight: "bold" }}>IDR {priceFormatter(`${price}`, ",")}</p>
-                  </Col>
-                  <Col className={s.buttonContainer}>
-                    <ThemesButton
-                      type={`${price === estimationBid ? "disable" : "primary"}  + ${s.btn}`}
-                      onClick={handleIncrement}
-                      disabled={price === estimationBid}
-                    >
-                      <PlusOutlined />
-                    </ThemesButton>
-                  </Col>
-                </Row>
-                <ThemesButton
-                  type={`primary + ${s.btn}`}
-                  onClick={handleBid}
-                  disabled={isCurrentPriceMatch}
-                >
-                  PLACE BID
-                </ThemesButton>
-
-                {/* //? ============== Bid History ============= ?// */}
-                <Col span={24} className={s.bidContainer}>
-                  <h2>Bid History</h2>
-                  <Divider className={s.divider} />
-                  <Table
-                    columns={columns}
-                    dataSource={logsHistory}
-                    pagination={{ pageSize: 5 }}
-                    size={width < 1024 ? "small" : ""}
-                  />
-                </Col>
-                {/* // * ====================================== * // */}
-              </Col>
-              {/* // * ====================================== * // */}
-            </Col>
-          </Col>
-        )}
+        <Col span={11}>
+          <ThemesContentsAuctionBidDetails
+            estimation={estimation}
+            startingBid={startingBid}
+            step={step}
+            sticky={false}
+            status={status}
+            bidHistory={logs}
+          />
+        </Col>
       </Row>
 
       {/* //? ============== Auction Highlight ============= ?// */}
       {/* //TODO : Not yet get auction artwork data// */}
       <Col className={s.highlightContainer}>
         <ThemesHeadline title="Auction Highlight" className={s.headline} />
-        {width > 500 ? (
+        {width > 768 ? (
           <Row gutter={[16, 16]} justify="space-between">
             <Col span={width > 500 ? 6 : 22} className={s.artworkContainer}>
               <Col className={s.artwork}>
@@ -330,8 +297,8 @@ function ThemesContentsAuctionArtworkDetails(props) {
           </Row>
         ) : (
           <Col>
-            <Carousel dots autoplay>
-              <Col span={width > 500 ? 6 : 22} className={s.artworkContainer}>
+            <Carousel dots autoplay slidesToShow={width > 500 ? 3 : 1}>
+              <Col span={23} className={s.artworkContainer}>
                 <Col className={s.artwork}>
                   <Col className={s.imageContainer}>
                     <Image src="/images/artwork-1.jpg" alt="" preview={false} />
@@ -342,7 +309,7 @@ function ThemesContentsAuctionArtworkDetails(props) {
                   <p style={{ marginBottom: "0px" }}>IDR 2.000.000 - IDR 5.000.000</p>
                 </Col>
               </Col>
-              <Col span={width > 500 ? 6 : 22} className={s.artworkContainer}>
+              <Col span={23} className={s.artworkContainer}>
                 <Col className={s.artwork}>
                   <Col className={s.imageContainer}>
                     <Image src="/images/artwork-1.jpg" alt="" preview={false} />
@@ -353,7 +320,7 @@ function ThemesContentsAuctionArtworkDetails(props) {
                   <p style={{ marginBottom: "0px" }}>IDR 2.000.000 - IDR 5.000.000</p>
                 </Col>
               </Col>
-              <Col span={width > 500 ? 6 : 22} className={s.artworkContainer}>
+              <Col span={23} className={s.artworkContainer}>
                 <Col className={s.artwork}>
                   <Col className={s.imageContainer}>
                     <Image src="/images/artwork-1.jpg" alt="" preview={false} />
@@ -364,7 +331,7 @@ function ThemesContentsAuctionArtworkDetails(props) {
                   <p style={{ marginBottom: "0px" }}>IDR 2.000.000 - IDR 5.000.000</p>
                 </Col>
               </Col>
-              <Col span={width > 500 ? 6 : 22} className={s.artworkContainer}>
+              <Col span={23} className={s.artworkContainer}>
                 <Col className={s.artwork}>
                   <Col className={s.imageContainer}>
                     <Image src="/images/artwork-1.jpg" alt="" preview={false} />
@@ -404,6 +371,7 @@ ThemesContentsAuctionArtworkDetails.propTypes = {
   startingBid: propTypes.string,
   step: propTypes.string,
   logs: propTypes.string,
+  status: propTypes.string,
 };
 
 export default ThemesContentsAuctionArtworkDetails;

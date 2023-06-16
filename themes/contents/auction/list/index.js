@@ -1,7 +1,6 @@
 // Libs
 import { useRouter } from "next/router";
 import { Col, Empty, Row, Card, Form, Input, Select, Slider, Spin, Divider } from "antd";
-import { useExhibitionLoad } from "app/hooks/exhibition";
 const { Option } = Select;
 import { motion } from "framer-motion";
 import { DownOutlined } from "@ant-design/icons";
@@ -137,48 +136,65 @@ function ThemesContentsAuctionList(props) {
               className="boundary"
             >
               {/* //? ============== Desktop Search Section ============= ?// */}
-              <Col span={6} className={`${s.mobileHidden} `} style={{ height: "auto" }}>
-                <div className="affixContainer">
-                  <Sticky
-                    boundaryElement=".boundary"
-                    hideOnBoundaryHit={false}
-                    stickyStyle={{ paddingTop: 80 }}
-                  >
-                    <Card>
-                      <Col span={24} className={s.searchTitle}>
-                        <h1>Search By</h1>
-                      </Col>
-                      <Col span={24}>
-                        <Form form={searchForm}>
-                          <Form.Item name="auction_name">
-                            <Select showSearch placeholder="Auction Name" onSearch={""} allowClear>
-                              <Option>TEST</Option>
-                              {/* //TODO : map auction name  list// */}
-                            </Select>
-                          </Form.Item>
-                          <Form.Item name="auction_status">
-                            <Input placeholder="Status" disabled />
-                          </Form.Item>
-                        </Form>
-                        <Col span={24}>
-                          <ThemesButton type={"default " + s.searchButton} onClick={handleSearch}>
-                            SEARCH
-                          </ThemesButton>
+              {width > 768 && (
+                <Col span={6} className={`${s.mobileHidden} `} style={{ height: "auto" }}>
+                  <div className="affixContainer">
+                    <Sticky
+                      boundaryElement=".boundary"
+                      hideOnBoundaryHit={false}
+                      stickyStyle={{ paddingTop: 80 }}
+                    >
+                      <Card>
+                        <Col span={24} className={s.searchTitle}>
+                          <h1>Search By</h1>
                         </Col>
-                      </Col>
-                    </Card>
-                  </Sticky>
-                </div>
-              </Col>
+                        <Col span={24}>
+                          <Form form={searchForm}>
+                            <Form.Item name="auction_name">
+                              <Select
+                                showSearch
+                                placeholder="Auction Name"
+                                onSearch={""}
+                                allowClear
+                              >
+                                <Option>TEST</Option>
+                                {/* //TODO : map auction name  list// */}
+                              </Select>
+                            </Form.Item>
+                            <Form.Item name="auction_status">
+                              <Input placeholder="Status" disabled />
+                            </Form.Item>
+                          </Form>
+                          <Col span={24}>
+                            <ThemesButton type={"default " + s.searchButton} onClick={handleSearch}>
+                              SEARCH
+                            </ThemesButton>
+                          </Col>
+                        </Col>
+                      </Card>
+                    </Sticky>
+                  </div>
+                </Col>
+              )}
+
               {/* // * ====================================== * // */}
 
               {/* //? ============== Auction List Section ============= ?// */}
-              <Col span={18} style={{ paddingLeft: "32px" }}>
+              <Col
+                span={width > 768 ? 18 : 24}
+                style={{ paddingLeft: width >= 1024 ? "32px" : "0px", width: "100%" }}
+              >
                 {auctionList ? (
-                  <Row gutter={[32, 32]}>
+                  <Row gutter={width > 768 ? [32, 32] : [16, 16]} justify="space-between">
                     {auctionList?.map((item, index) => {
                       return (
-                        <Col sm={{ span: 8 }} xs={{ span: 24 }} className={s.cardList} key={index}>
+                        <Col
+                          key={index}
+                          lg={{ span: 8 }}
+                          md={{ span: 8 }}
+                          sm={{ span: 8 }}
+                          xs={{ span: 24 }}
+                        >
                           <ThemesAuctionCard
                             thumbnail={item?.thumbnail.url}
                             title={item?.title}
@@ -193,9 +209,7 @@ function ThemesContentsAuctionList(props) {
                   </Row>
                 ) : (
                   <Col span={24}>
-                    <Spin>
-                      <Empty />
-                    </Spin>
+                    <Empty />
                   </Col>
                 )}
               </Col>

@@ -8,11 +8,15 @@ import { useUsers } from "app/hooks/user";
 // Compoenent
 import ThemesButton from "../../button";
 
+// Helper
+import { useWindowSize } from "app/helpers/useWindowSize";
+
 // Style
 import s from "./index.module.scss";
 
 function ThemesAuctionVerifyForm(props) {
   const { onClick } = props;
+  const { width } = useWindowSize();
 
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const [isThankYou, setIsThankYou] = useState(false);
@@ -84,11 +88,14 @@ function ThemesAuctionVerifyForm(props) {
   //#endregion
   return (
     <Row className={s.modalContainer}>
-      <Col span={11} className={s.image}>
-        <Image src="/images/modal-login.png" alt="" preview={false} />
-      </Col>
+      {width > 768 && (
+        <Col span={11} className={s.image}>
+          <Image src="/images/modal-login.png" alt="" preview={false} />
+        </Col>
+      )}
+
       {/* //? ============== login Form ============= ?// */}
-      <Col span={13} className={s.registerContainer}>
+      <Col span={width > 769 ? 13 : 24} className={s.registerContainer}>
         <Col className={s.register}>
           <Col className={s.title}>
             <h3>Verification Required</h3>
@@ -97,7 +104,7 @@ function ThemesAuctionVerifyForm(props) {
             <Form>
               <Form.Item>
                 <Col span={24} style={{ margin: "0 auto" }}>
-                  <Row gutter={[16, 0]} justify="space-between">
+                  <Row gutter={width >= 500 ? [16, 0] : 0} justify="space-between">
                     {otp.map((item, index) => {
                       return (
                         <>
@@ -110,6 +117,7 @@ function ThemesAuctionVerifyForm(props) {
                               onKeyDown={(e) => handleKeyDown(e, index)}
                               maxLength={1}
                               className={s.input}
+                              bordered={false}
                             />
                           </Col>
                         </>

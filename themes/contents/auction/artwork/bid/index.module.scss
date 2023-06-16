@@ -1,0 +1,362 @@
+@use "/themes/styles/base/font-size";
+@use "/themes/styles/base/colors";
+
+.lotContainer {
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  top: 50px !important;
+  .lotDetails {
+    padding: 40px 35px;
+    background: WHITESMOKE;
+    h2 {
+      font-size: font-size.$heading-2;
+    }
+    p {
+      font-size: font-size.$paragraph;
+      margin: 15px 0px;
+    }
+    .reminder {
+      height: 30px;
+      span {
+        font-weight: bold;
+        color: colors.$fulvous;
+      }
+    }
+    .priceBidder {
+      width: 100%;
+      background: colors.$white;
+      margin-bottom: 15px;
+      height: 54px;
+      border-radius: 10px;
+      h1 {
+        font-size: font-size.$heading-1;
+        line-height: 60px;
+        margin: 0px !important;
+      }
+      .buttonContainer {
+        width: 54px !important;
+        height: 54px !important;
+        .btn {
+          width: 54px !important;
+          height: 54px !important;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          span,
+          svg {
+            font-weight: 700 !important;
+            font-size: 24px;
+            line-height: 0px !important;
+          }
+        }
+      }
+    }
+    .btn {
+      width: 100%;
+    }
+  }
+
+  .bidContainer {
+    margin: 40px 0px 0px;
+    h2 {
+      font-size: font-size.$heading-2;
+    }
+    p {
+      font-size: font-size.$paragraph;
+      margin: 0px;
+    }
+    .divider {
+      background: GAINSBORO;
+      margin: 20px 0px !important;
+    }
+  }
+}
+
+//? ============== Tablet Potrait View ============= ?//
+@media screen and (max-width: 1024px) {
+  .lotContainer {
+    .lotDetails {
+      padding: 25px;
+      h2 {
+        font-size: font-size.$heading-3;
+      }
+      p {
+        font-size: font-size.$paragraph;
+        margin: 15px 0px;
+      }
+      .reminder {
+        height: 30px;
+        span {
+          font-weight: bold;
+          color: colors.$fulvous;
+        }
+      }
+      .priceBidder {
+        height: 50px;
+
+        h1 {
+          margin: 0px !important;
+        }
+        .buttonContainer {
+          width: 50px !important;
+          height: 50px !important;
+          .btn {
+            width: 50px !important;
+            height: 50px !important;
+
+            span,
+            svg {
+              font-weight: 700 !important;
+              font-size: 24px;
+              line-height: 0px !important;
+            }
+          }
+        }
+      }
+      .btn {
+        width: 100%;
+      }
+    }
+
+    .bidContainer {
+      margin: 40px 0px 0px;
+      h2 {
+        font-size: font-size.$heading-3;
+      }
+      p {
+        font-size: font-size.$paragraph;
+        margin: 0px;
+      }
+      .divider {
+        background: GAINSBORO;
+        margin: 20px 0px !important;
+      }
+    }
+  }
+}
+// * ====================================== * //
+
+//? ============== Tablet Potrait View ============= ?//
+@media screen and (max-width: 768px) {
+  .collapse {
+    height: 200px !important;
+  }
+  .openCollapse {
+    height: 620px !important;
+  }
+  .collapseButton {
+    width: 100%;
+    font-size: font-size.$heading-3;
+    text-align: center !important;
+    cursor: pointer;
+    transition: 300ms all ease;
+    &:hover {
+      color: colors.$fulvous;
+      transition: 300ms all ease;
+    }
+  }
+  .lotContainerSticky {
+    z-index: 16;
+    position: -webkit-sticky;
+    position: sticky;
+    bottom: 0;
+    width: 100% !important;
+    background: colors.$white;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+
+    .lotDetails {
+      padding: 0px 30px 20px;
+      h2 {
+        font-size: font-size.$heading-3;
+        text-align: center;
+        margin: 0px;
+      }
+      p {
+        font-size: font-size.$paragraph;
+        margin: 15px 0px;
+      }
+      .reminder {
+        height: 30px;
+        span {
+          font-weight: bold;
+          color: colors.$fulvous;
+        }
+        p {
+          margin: 0px;
+        }
+      }
+      .priceBidder {
+        width: 100%;
+        background: colors.$white;
+
+        margin-bottom: 15px;
+        height: 45px;
+        h1 {
+          font-size: font-size.$heading-1;
+          line-height: 60px;
+          margin: 0px !important;
+        }
+        p {
+          font-size: font-size.$paragraph;
+          line-height: 30px;
+          margin: 5px 0px;
+        }
+        .buttonContainer {
+          width: 45px !important;
+          height: 45px !important;
+          .btn {
+            width: 45px !important;
+            height: 45px !important;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            span,
+            svg {
+              font-weight: 700 !important;
+              font-size: 24px;
+              line-height: 0px !important;
+            }
+          }
+        }
+      }
+      .btn {
+        width: 100%;
+      }
+    }
+
+    .bidContainer {
+      margin: 40px 0px 0px;
+      h2 {
+        font-size: font-size.$heading-3;
+      }
+      p {
+        font-size: font-size.$paragraph;
+        margin: 0px;
+      }
+      .divider {
+        background: GAINSBORO;
+        margin: 20px 0px !important;
+      }
+    }
+  }
+}
+
+//? ============== Mobike View ============= ?//
+@media screen and (max-width: 500px) {
+  .collapse {
+    height: 190px !important;
+  }
+  .openCollapse {
+    height: 550px !important;
+  }
+  .collapseButton {
+    width: 100%;
+    font-size: font-size.$heading-3;
+    text-align: center !important;
+    cursor: pointer;
+    transition: 300ms all ease;
+    &:hover {
+      color: colors.$fulvous;
+      transition: 300ms all ease;
+    }
+  }
+  .lotContainerSticky {
+    bottom: 0;
+    width: 100% !important;
+    background: colors.$white;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+
+    .lotDetails {
+      padding: 0px 30px 20px;
+      h2 {
+        font-size: font-size.$heading-3;
+        text-align: center;
+        margin: 0px;
+      }
+      p {
+        font-size: font-size.$paragraph;
+        margin: 15px 0px;
+      }
+      .reminder {
+        height: 30px;
+        span {
+          font-weight: bold;
+          color: colors.$fulvous;
+        }
+        p {
+          margin: 0px;
+        }
+      }
+      .priceBidder {
+        width: 100%;
+        background: colors.$white;
+
+        margin-bottom: 15px;
+        height: 45px;
+        h1 {
+          font-size: font-size.$heading-1;
+          line-height: 60px;
+          margin: 0px !important;
+        }
+        p {
+          font-size: font-size.$paragraph;
+          line-height: 30px;
+          margin: 5px 0px;
+        }
+        .buttonContainer {
+          width: 45px !important;
+          height: 45px !important;
+          .btn {
+            width: 45px !important;
+            height: 45px !important;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            span,
+            svg {
+              font-weight: 700 !important;
+              font-size: 24px;
+              line-height: 0px !important;
+            }
+          }
+        }
+      }
+      .btn {
+        width: 100%;
+      }
+    }
+
+    .bidContainer {
+      margin: 20px 0px 0px;
+
+      h2 {
+        font-size: font-size.$heading-3 !important;
+        text-align: center;
+      }
+      h3 {
+        font-size: font-size.$heading-4 !important;
+        text-align: left;
+        margin: 0px !important;
+      }
+      p {
+        font-size: 12px;
+        margin: 0px;
+      }
+      .divider {
+        background: GAINSBORO;
+        margin: 10px 0px !important;
+      }
+      .scrollable {
+        height: 270px;
+        overflow-y: scroll !important;
+      }
+      .bidHistory {
+        margin: 5px 0px;
+        border: 1px solid rgba(217, 217, 217, 1);
+        padding: 15px;
+      }
+    }
+  }
+}
+// * ====================================== * //
+// * ====================================== * //

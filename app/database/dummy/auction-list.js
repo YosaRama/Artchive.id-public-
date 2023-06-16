@@ -96,7 +96,7 @@ export const auctionList = [
         estimation: " 10000000",
         status: "SOLD",
 
-        start_time: "2023-12-29T16:26:08.667Z",
+        start_time: "2023-12-28T16:26:08.667Z",
         end_time: "2023-12-29T16:26:08.667Z",
         height: "200",
         width: "200",
@@ -155,8 +155,7 @@ export const auctionList = [
         max_stepup: "1000000",
         estimation: " 10000000",
         status: "SOLD",
-
-        start_time: "2023-12-27T16:26:08.667Z",
+        start_time: "2023-12-28T16:26:08.667Z",
         end_time: "2023-12-29T16:26:08.667Z",
         height: "200",
         width: "200",
@@ -216,8 +215,7 @@ export const auctionList = [
         max_stepup: "1000000",
         estimation: " 10000000",
         status: "SOLD",
-
-        start_time: "2023-12-29T16:26:08.667Z",
+        start_time: "2023-12-28T16:26:08.667Z",
         end_time: "2023-12-29T16:26:08.667Z",
         height: "200",
         width: "200",
@@ -276,8 +274,7 @@ export const auctionList = [
         max_stepup: "1000000",
         estimation: " 10000000",
         status: "READY",
-
-        start_time: "2023-12-29T16:26:08.667Z",
+        start_time: "2023-12-28T16:26:08.667Z",
         end_time: "2023-12-29T16:26:08.667Z",
         height: "200",
         width: "200",
@@ -336,8 +333,7 @@ export const auctionList = [
         max_stepup: "1000000",
         estimation: " 10000000",
         status: "SOLD",
-
-        start_time: "2023-12-29T16:26:08.667Z",
+        start_time: "2023-12-28T16:26:08.667Z",
         end_time: "2023-12-29T16:26:08.667Z",
         height: "200",
         width: "200",
@@ -487,9 +483,9 @@ export const auctionList = [
       {
         id: 1,
         media_cover: {
-          url: "USER-2/ART-1/89943083-209f-4aa2-a607-56a8c95592aa-texture-1909992__480.jpg",
+          url: "USER-2/ART-3/0788c4f1-71fd-4ff3-b21d-6d153da92d22-jene-stephaniuk-4kHLQBBM6p4-unsplash.jpg",
         },
-        title: "Artwork Auction 1",
+        title: "Test Artwork Auction 1",
         slug: "artwork-auction-1",
         artist: "Van Gogh",
         artist_id: "1",
@@ -499,12 +495,11 @@ export const auctionList = [
         media: "Acrylic on Canvas",
         initial_price: "5000000",
         step: "500000",
-        max_stepup: "1000000",
-        estimation: " 10000000",
+        max_stepup: "1500000",
+        estimation: " 15000000",
         status: "SOLD",
-
-        start_time: "2023-04-29T16:26:08.667Z",
-        end_time: "2023-04-30T16:26:08.667Z",
+        start_time: "2023-05-29T16:26:08.667Z",
+        end_time: "2023-08-29T08:26:08.667Z",
         height: "200",
         width: "200",
         status: "READY",
@@ -512,17 +507,17 @@ export const auctionList = [
           {
             bid_price: "10000000",
             user_ref: "Dion Pramana/1",
-            created_at: "2023-04-30T16:26:08.667Z",
+            created_at: "2023-05-29T16:26:08.667Z",
           },
           {
             bid_price: "8000000",
             user_ref: "Yosa Rama/2",
-            created_at: "2023-04-29T19:26:08.667Z",
+            created_at: "2023-05-29T16:26:08.667Z",
           },
           {
             bid_price: "7000000",
             user_ref: "Dion Pramana/1",
-            created_at: "2023-04-29T16:26:08.667Z",
+            created_at: "2023-05-29T16:26:08.667Z",
           },
         ],
         media_gallery: [
@@ -562,29 +557,12 @@ export const auctionList = [
         max_stepup: "1000000",
         estimation: " 10000000",
         status: "READY",
-
-        start_time: "2023-12-29T16:26:08.667Z",
-        end_time: "2023-12-29T16:26:08.667Z",
+        start_time: "2023-07-29T16:26:08.667Z",
+        end_time: "2023-08-30T16:26:08.667Z",
         height: "200",
         width: "200",
 
-        logs: [
-          {
-            bid_price: "10000000",
-            user_ref: "Dion Pramana/1",
-            created_at: "2023-12-29T16:26:08.667Z",
-          },
-          {
-            bid_price: "8000000",
-            user_ref: "Yosa Rama/2",
-            created_at: "2023-12-29T14:26:08.667Z",
-          },
-          {
-            bid_price: "7000000",
-            user_ref: "Dion Pramana/1",
-            created_at: "2023-12-29T12:26:08.667Z",
-          },
-        ],
+        logs: [],
         media_gallery: [
           {
             id: 1,
@@ -623,26 +601,25 @@ export const auctionList = [
         max_stepup: "1000000",
         estimation: " 10000000",
         status: "SOLD",
-
-        start_time: "2023-12-29T16:26:08.667Z",
-        end_time: "2023-12-29T16:26:08.667Z",
+        start_time: "2023-05-29T16:26:08.667Z",
+        end_time: "2023-05-30T16:26:08.667Z",
         height: "200",
         width: "200",
         logs: [
           {
-            bid_price: "10000000",
+            bid_price: "7000000",
             user_ref: "Dion Pramana/1",
-            created_at: "2023-12-29T16:26:08.667Z",
+            created_at: "2023-05-29T17:26:08.667Z",
           },
           {
             bid_price: "8000000",
             user_ref: "Yosa Rama/2",
-            created_at: "2023-12-29T14:26:08.667Z",
+            created_at: "2023-05-29T18:26:08.667Z",
           },
           {
-            bid_price: "7000000",
+            bid_price: "10000000",
             user_ref: "Dion Pramana/1",
-            created_at: "2023-12-29T12:26:08.667Z",
+            created_at: "2023-05-29T19:26:08.667Z",
           },
         ],
         media_gallery: [
@@ -684,8 +661,8 @@ export const auctionList = [
         estimation: " 10000000",
         status: "SOLD",
 
-        start_time: "2023-12-29T16:26:08.667Z",
-        end_time: "2023-12-29T16:26:08.667Z",
+        start_time: "2023-07-29T16:26:08.667Z",
+        end_time: "2023-07-29T16:26:08.667Z",
         height: "200",
         width: "200",
         logs: [
@@ -744,8 +721,8 @@ export const auctionList = [
         estimation: " 10000000",
         status: "READY",
 
-        start_time: "2023-12-29T16:26:08.667Z",
-        end_time: "2023-12-29T16:26:08.667Z",
+        start_time: "2023-07-29T16:26:08.667Z",
+        end_time: "2023-07-29T16:26:08.667Z",
         height: "200",
         width: "200",
         logs: [
@@ -910,8 +887,8 @@ export const auctionList = [
         estimation: " 10000000",
         status: "SOLD",
 
-        start_time: "2023-12-29T16:26:08.667Z",
-        end_time: "2023-12-29T16:26:08.667Z",
+        start_time: "2022-12-29T16:26:08.667Z",
+        end_time: "2022-12-29T16:26:08.667Z",
         height: "200",
         width: "200",
         status: "READY",
@@ -919,17 +896,17 @@ export const auctionList = [
           {
             bid_price: "10000000",
             user_ref: "Dion Pramana/1",
-            created_at: "2023-12-29T16:26:08.667Z",
+            created_at: "2022-12-29T16:26:08.667Z",
           },
           {
             bid_price: "8000000",
             user_ref: "Yosa Rama/2",
-            created_at: "2023-12-29T14:26:08.667Z",
+            created_at: "2022-12-29T14:26:08.667Z",
           },
           {
             bid_price: "7000000",
             user_ref: "Dion Pramana/1",
-            created_at: "2023-12-29T12:26:08.667Z",
+            created_at: "2022-12-29T12:26:08.667Z",
           },
         ],
         media_gallery: [
@@ -970,8 +947,8 @@ export const auctionList = [
         estimation: " 10000000",
         status: "SOLD",
 
-        start_time: "2023-12-29T16:26:08.667Z",
-        end_time: "2023-12-29T16:26:08.667Z",
+        start_time: "2022-12-29T16:26:08.667Z",
+        end_time: "2022-12-29T16:26:08.667Z",
         height: "200",
         width: "200",
 
@@ -1031,8 +1008,8 @@ export const auctionList = [
         estimation: " 10000000",
         status: "READY",
 
-        start_time: "2023-12-29T16:26:08.667Z",
-        end_time: "2023-12-29T16:26:08.667Z",
+        start_time: "2022-12-29T16:26:08.667Z",
+        end_time: "2022-12-29T16:26:08.667Z",
         height: "200",
         width: "200",
         logs: [
@@ -1091,8 +1068,8 @@ export const auctionList = [
         estimation: " 10000000",
         status: "SOLD",
 
-        start_time: "2023-12-29T16:26:08.667Z",
-        end_time: "2023-12-29T16:26:08.667Z",
+        start_time: "2022-12-29T16:26:08.667Z",
+        end_time: "2022-12-29T16:26:08.667Z",
         height: "200",
         width: "200",
         logs: [

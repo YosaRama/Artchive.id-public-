@@ -6,19 +6,26 @@ import propTypes from "prop-types";
 // Compoenent
 import ThemesButton from "../../button";
 
+// Helper
+import { useWindowSize } from "app/helpers/useWindowSize";
+
 // Style
 import s from "./index.module.scss";
 
 function ThemesAuctionLoginForm(props) {
   const { onClick } = props;
   const router = useRouter();
+  const { width } = useWindowSize();
   return (
     <Row className={s.modalContainer}>
-      <Col span={11} className={s.image}>
-        <Image src="/images/modal-login.png" alt="" preview={false} />
-      </Col>
+      {width > 768 && (
+        <Col span={11} className={s.image}>
+          <Image src="/images/modal-login.png" alt="" preview={false} />
+        </Col>
+      )}
+
       {/* //? ============== login Form ============= ?// */}
-      <Col span={13} className={s.registerContainer}>
+      <Col span={width > 768 ? 13 : 24} className={s.registerContainer}>
         <Col className={s.register}>
           <Col className={s.title}>
             <h3>Confirm your Phone Number</h3>

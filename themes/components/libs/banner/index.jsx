@@ -5,18 +5,18 @@ import { Col } from "antd";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { fading } from "app/database/framer-motion";
-
-// Components
-import ThemesNavbarDrawer from "../navbar-drawer";
+import { useRouter } from "next/router";
 
 // Styles
 import s from "./index.module.scss";
 
 // Icons
 import ThemesHeaderItem from "themes/components/layout/header-v2/header-item";
+import ThemesAuctionHeaderItem from "themes/components/layout/header-v2/auction-header-item";
 
 function ThemesBanner(props) {
-  const { children, imgSrc, className } = props;
+  const { children, imgSrc, className, slug } = props;
+  const router = useRouter();
 
   //? ============== Open Menu Drawer ============= ?//
   const [openMenu, setOpenMenu] = useState(false);
@@ -34,7 +34,11 @@ function ThemesBanner(props) {
         <Image src={imgSrc} alt="" layout="fill" objectFit="cover" />
       </Col>
       <Col className={s.headerContainer}>
-        <ThemesHeaderItem isTransparent={true} logo="/images/logo-text-white.png" />
+        {router.pathname.startsWith("/auction/[slug]") ? (
+          <ThemesAuctionHeaderItem isTransparent={true} slug={slug} />
+        ) : (
+          <ThemesHeaderItem isTransparent={true} logo="/images/logo-text-white.png" />
+        )}
       </Col>
       <Col className={`${s.contentContainer} banner-content-container`}>{children}</Col>
     </motion.div>
@@ -45,6 +49,7 @@ ThemesBanner.propTypes = {
   children: propTypes.node,
   imgSrc: propTypes.string.isRequired,
   className: propTypes.string,
+  slug: propTypes.string,
 };
 
 export default ThemesBanner;
