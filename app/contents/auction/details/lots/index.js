@@ -1,14 +1,11 @@
 // Libs
-import propTypes from "prop-types";
 import { useState } from "react";
 
 // Components
 import AppContentsAuctionDetailsLotsDetails from "./details";
 import AppContentsAuctionDetailsLotsList from "./list";
 
-function AppContentsAuctionDetailsLots(props) {
-  const { lotsData } = props;
-
+function AppContentsAuctionDetailsLots() {
   //? ============== Handle state ============= ?//
   const [stage, setStage] = useState("list");
   const handleState = (selectedStage) => {
@@ -25,11 +22,7 @@ function AppContentsAuctionDetailsLots(props) {
   return (
     <>
       {stage === "list" ? (
-        <AppContentsAuctionDetailsLotsList
-          lotsData={lotsData}
-          onItemClick={handleLotItemClick}
-          onState={handleState}
-        />
+        <AppContentsAuctionDetailsLotsList onItemClick={handleLotItemClick} onState={handleState} />
       ) : (
         ""
       )}
@@ -37,7 +30,7 @@ function AppContentsAuctionDetailsLots(props) {
       {stage === "details" ? (
         <AppContentsAuctionDetailsLotsDetails
           activeLotId={activeLotId}
-          lotDetails={lotsData}
+          lotDetails={[]}
           onState={handleState}
         />
       ) : (
@@ -46,12 +39,5 @@ function AppContentsAuctionDetailsLots(props) {
     </>
   );
 }
-
-AppContentsAuctionDetailsLots.propTypes = {
-  onAddArtwork: propTypes.func,
-  lotsData: propTypes.any,
-  onDeleteArtwork: propTypes.func,
-  auctionTitle: propTypes.any,
-};
 
 export default AppContentsAuctionDetailsLots;

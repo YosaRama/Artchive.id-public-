@@ -5,3 +5,12 @@
 .customFormContainer {
   margin-bottom: 60px;
 }
+
+.artworkSelection {
+  :global(.ant-select-selector) {
+    height: 100% !important;
+  }
+  :global(.ant-select-selection-item) {
+    display: flex !important;
+  }
+}

@@ -10,22 +10,37 @@ import AppFormLotAuction from "app/components/libs/form-lot-auction";
 
 // Helper
 import priceFormatter from "app/helpers/priceFormatter";
+import { useAuctionItems } from "app/hooks/auction/item";
+import { useRouter } from "next/router";
 
 function AppContentsAuctionDetailsLotsList(props) {
-  const { onState, onItemClick, lotsData, onDeleteArtwork, auctionTitle } = props;
+  const { onState, onItemClick, auctionTitle } = props;
+  const router = useRouter();
 
-  //? ============== Handle Modal ============= ?//
+  //#region Handle auction item data
+  const { id: auctionId } = router.query;
+  const {
+    data: lotsData,
+    onAdd: addLots,
+    onDelete: deleteLots,
+  } = useAuctionItems({
+    auctionId: auctionId,
+    queryString: ``,
+  });
+  //#endregion
+
+  //#region Handle Modal
   const [addModal, setAddModal] = useState(false);
   const handleModal = () => {
     setAddModal(!addModal);
   };
-  // * ====================================== * //
+  //#endregion
 
-  //? ============== Handle Delete Artist ============= ?//
-  const handleDeleteArtist = (artworkId) => {
-    onDeleteArtwork(artworkId);
+  //#region  Handle Delete Artist
+  const handleDeleteLots = (artworkId) => {
+    deleteLots(artworkId);
   };
-  // * ====================================== * //
+  //#endregion
 
   return (
     <>
@@ -34,7 +49,7 @@ function AppContentsAuctionDetailsLotsList(props) {
           <p>
             Total item :{" "}
             <span style={{ fontWeight: "bold" }}>
-              {lotsData.length} item{lotsData.length > 1 ? "s" : ""}
+              {lotsData?.length} item{lotsData?.length > 1 ? "s" : ""}
             </span>
           </p>
         </Col>
@@ -51,30 +66,33 @@ function AppContentsAuctionDetailsLotsList(props) {
               <Col span={8} style={{ marginBottom: 10 }} key={index}>
                 <AppCardAuctionArtwork
                   onClick={() => {
-                    onItemClick(item.id);
+                    onItemClick(item?.auction_details?.id);
                     onState("details");
                   }}
                   image={
-                    item?.media_cover
-                      ? `${process.env.NEXT_PUBLIC_S3_URL}/${item?.media_cover?.url}`
+                    item?.artwork_details?.media_cover
+                      ? `${process.env.NEXT_PUBLIC_S3_URL}/${item?.artwork_details?.media_cover?.url}`
                       : "/images/default-images.png"
                   }
                   artistImage={
-                    item?.artist?.profile?.url &&
-                    `${process.env.NEXT_PUBLIC_S3_URL}/${item?.artist?.profile?.url}`
+                    item?.artwork_details?.artist?.profile?.url &&
+                    `${process.env.NEXT_PUBLIC_S3_URL}/${item?.artwork_details?.artist?.profile?.url}`
                   }
-                  artistName={item?.artist?.full_name}
-                  id={item?.id}
+                  artistName={item?.artwork_details?.artist?.full_name}
+                  id={item?.artwork_details?.id}
                   size={
                     <>
                       <p>
-                        {item?.width} x {item?.height} cm
+                        {item?.artwork_details?.width} x {item?.artwork_details?.height} cm
                       </p>
-                      <p>End price : IDR {priceFormatter(`${item?.initial_price}`, ",")} </p>
+                      <p>
+                        End price : IDR{" "}
+                        {priceFormatter(`${item?.auction_details?.initial_price}`, ",")}{" "}
+                      </p>
                     </>
                   }
-                  status={item?.status}
-                  title={item.title}
+                  status={item?.auction_details?.item_status}
+                  title={item?.artwork_details?.title}
                 />
                 <Col span={24} style={{ textAlign: "center" }}>
                   <Button
@@ -82,8 +100,8 @@ function AppContentsAuctionDetailsLotsList(props) {
                     style={{ marginTop: 10 }}
                     onClick={() =>
                       deleteConfirmModal({
-                        title: `artwork from ${auctionTitle}`,
-                        onDelete: () => handleDeleteArtist(item.id),
+                        title: `artwork from this events?`,
+                        onDelete: () => handleDeleteLots(item?.auction_details?.id),
                       })
                     }
                   >
@@ -97,7 +115,7 @@ function AppContentsAuctionDetailsLotsList(props) {
           <Empty />
         )}
       </Row>
-      <AppFormLotAuction visible={addModal} onClose={handleModal} />
+      <AppFormLotAuction visible={addModal} onClose={handleModal} onSubmit={addLots} />
     </>
   );
 }

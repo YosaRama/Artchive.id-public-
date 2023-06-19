@@ -2,15 +2,14 @@
 import propTypes from "prop-types";
 import moment from "moment";
 import { Col, DatePicker, Form, Input, Row, Modal, Switch } from "antd";
-import { useSession } from "next-auth/react";
-import { useEffect, useState, useRef } from "react";
+import { useState } from "react";
 
-// Components
-import AppSelectExhibitionArtwork from "../select-exhibition-artwork";
+// Styles
+import s from "./index.module.scss";
+import AppSelectArtwork from "../select-artwork";
 
 function AppFormLotAuction(props) {
   const { onSubmit, isEdit, initialData, visible, onClose } = props;
-  const { data: session } = useSession();
 
   //#region Handle Initial Data
   const initialValues = {
@@ -26,19 +25,19 @@ function AppFormLotAuction(props) {
   const handleSubmit = () => {
     form.validateFields().then(async (value) => {
       const submission = {
-        title: value.title,
-        initialPrice: value.initial_price,
-        estimation: value.estimation,
-        isShowing: value.is_showing,
-        startDate: moment(value.auction_date[0]).format(),
-        endDate: moment(value.auction_date[1]).format(),
-        artworkId: +artworkSelect,
-        createdBy: +session?.user?.id,
-        updatedBy: +session?.user?.id,
+        current_price: "",
+        final_price: "",
+        initial_price: value.initial_price,
+        is_showing: value.is_showing,
+        item_id: artworkSelect,
+        max_stepup: "",
+        step: "",
+        start_estimation: value.start_estimation,
+        end_estimation: value.end_estimation,
+        item_status: value.is_showing ? "READY" : "DRAFT",
       };
       onSubmit(submission);
-      handlePriceModal();
-      priceForm.resetFields();
+      handleModalClose();
     });
   };
   //#endregion
@@ -62,8 +61,8 @@ function AppFormLotAuction(props) {
       >
         <Form layout="vertical" form={form} initialValues={isEdit ? initialValues : {}}>
           {!isEdit ? (
-            <Form.Item name={"artwork"} label="Add Item">
-              <AppSelectExhibitionArtwork setResult={setArtworkSelect} />
+            <Form.Item name={"artwork"} label="Add Item" className={s.artworkSelection}>
+              <AppSelectArtwork setResult={setArtworkSelect} selectBy="sku" />
             </Form.Item>
           ) : (
             ""
@@ -88,8 +87,6 @@ function AppFormLotAuction(props) {
             <Input
               style={{ width: "100%" }}
               placeholder="Input artwork price"
-              // value={priceFormatter(`Rp ${initialValue}`, ",")}
-              // onChange={onChange}
               formatter={(value) => priceFormatter(`Rp ${value}`, ",")}
               parser={(value) => value.replace(/Rp\s?|(,*)/g, "")}
               addonBefore="Rp"
@@ -102,7 +99,6 @@ function AppFormLotAuction(props) {
                 label="Start Estimation"
                 rules={[
                   {
-                    required: true,
                     message: "Please input price for this artwork!",
                     validator: (_, value) => {
                       if (new RegExp(/^[0-9,.]+$/).test(value)) {
@@ -117,8 +113,6 @@ function AppFormLotAuction(props) {
                 <Input
                   style={{ width: "100%" }}
                   placeholder="Input artwork price"
-                  // value={priceFormatter(`Rp ${initialValue}`, ",")}
-                  // onChange={onChange}
                   formatter={(value) => priceFormatter(`Rp ${value}`, ",")}
                   parser={(value) => value.replace(/Rp\s?|(,*)/g, "")}
                   addonBefore="Rp"
@@ -132,7 +126,6 @@ function AppFormLotAuction(props) {
                 label="End Estimation"
                 rules={[
                   {
-                    required: true,
                     message: "Please input price for this artwork!",
                     validator: (_, value) => {
                       if (new RegExp(/^[0-9,.]+$/).test(value)) {
@@ -147,8 +140,6 @@ function AppFormLotAuction(props) {
                 <Input
                   style={{ width: "100%" }}
                   placeholder="Input artwork price"
-                  // value={priceFormatter(`Rp ${initialValue}`, ",")}
-                  // onChange={onChange}
                   formatter={(value) => priceFormatter(`Rp ${value}`, ",")}
                   parser={(value) => value.replace(/Rp\s?|(,*)/g, "")}
                   addonBefore="Rp"
@@ -156,9 +147,6 @@ function AppFormLotAuction(props) {
               </Form.Item>
             </Col>
           </Row>
-          <Form.Item name={"auction_date"} label="Auction Date">
-            <DatePicker.RangePicker />
-          </Form.Item>
           <Form.Item name={"is_showing"} label="Show this item?">
             <Switch />
           </Form.Item>
