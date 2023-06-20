@@ -14,7 +14,7 @@ import { useAuctionItems } from "app/hooks/auction/item";
 import { useRouter } from "next/router";
 
 function AppContentsAuctionDetailsLotsList(props) {
-  const { onState, onItemClick, auctionTitle } = props;
+  const { onState, onItemClick } = props;
   const router = useRouter();
 
   //#region Handle auction item data
@@ -121,10 +121,6 @@ function AppContentsAuctionDetailsLotsList(props) {
 }
 
 AppContentsAuctionDetailsLotsList.propTypes = {
-  onAddArtwork: propTypes.func,
-  lotsData: propTypes.any,
-  onDeleteArtwork: propTypes.func,
-  auctionTitle: propTypes.any,
   onItemClick: propTypes.any,
   onState: propTypes.any,
 };

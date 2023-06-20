@@ -1,5 +1,7 @@
 // Helper
+import { GET_ARTWORK_BY_SKU } from "app/database/query/artwork";
 import auctioo from "app/utils/auctioo";
+import moment from "moment-timezone";
 import nextConnect from "next-connect";
 
 const apiHandler = nextConnect();
@@ -8,11 +10,24 @@ apiHandler.get(async (req, res) => {
   const { auctionId, itemId } = req.query;
   try {
     const result = await auctioo.get(`/events/${auctionId}/items/${itemId}`);
-    const data = await result.data;
 
-    res
-      .status(200)
-      .json({ success: true, message: "Successfully retrieve item details", data: data });
+    if (!result.data.success) {
+      throw new Error(result.data.message);
+    }
+
+    const auctiooData = await result.data.result;
+    const artworkData = await GET_ARTWORK_BY_SKU({ sku: auctiooData?.item_id });
+
+    const data = {
+      auction_details: auctiooData,
+      artwork_details: artworkData,
+    };
+
+    res.status(200).json({
+      success: true,
+      message: "Successfully retrieve item details",
+      data: data,
+    });
   } catch (error) {
     res.status(200).json({ success: false, message: error.message });
   }
@@ -30,6 +45,9 @@ apiHandler.put(async (req, res) => {
     started_at,
     step,
     stopped_at,
+    start_estimation,
+    end_estimation,
+    item_status,
   } = req.body;
 
   try {
@@ -43,9 +61,16 @@ apiHandler.put(async (req, res) => {
       step: step,
       started_at: moment(started_at).toISOString(),
       stopped_at: moment(stopped_at).toISOString(),
+      start_estimation: start_estimation,
+      end_estimation: end_estimation,
+      item_status: item_status,
     };
 
-    await auctioo.put(`/events/${auctionId}/items/${itemId}`, dataPayload);
+    const result = await auctioo.put(`/events/${auctionId}/items/${itemId}`, dataPayload);
+
+    if (!result.data.success) {
+      throw new Error(result.data.message);
+    }
     res.status(200).json({ success: true, message: "Successfully update item details" });
   } catch (error) {
     res.status(200).json({ success: false, message: error.message });

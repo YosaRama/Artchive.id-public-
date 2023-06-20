@@ -6,18 +6,19 @@ import AppContentsAuctionDetailsLotsDetails from "./details";
 import AppContentsAuctionDetailsLotsList from "./list";
 
 function AppContentsAuctionDetailsLots() {
-  //? ============== Handle state ============= ?//
+  //#region Handle stage
   const [stage, setStage] = useState("list");
   const handleState = (selectedStage) => {
     setStage(selectedStage);
   };
-  // * ====================================== * //
+  //#endregion
 
+  //#region Active lots
   const [activeLotId, setActiveLotId] = useState(null);
-
   const handleLotItemClick = (lotId) => {
     setActiveLotId(lotId);
   };
+  //#endregion
 
   return (
     <>
@@ -28,11 +29,7 @@ function AppContentsAuctionDetailsLots() {
       )}
 
       {stage === "details" ? (
-        <AppContentsAuctionDetailsLotsDetails
-          activeLotId={activeLotId}
-          lotDetails={[]}
-          onState={handleState}
-        />
+        <AppContentsAuctionDetailsLotsDetails activeLotId={activeLotId} onState={handleState} />
       ) : (
         ""
       )}

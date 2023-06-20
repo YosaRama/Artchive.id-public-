@@ -9,14 +9,7 @@ import s from "./index.module.scss";
 import AppSelectArtwork from "../select-artwork";
 
 function AppFormLotAuction(props) {
-  const { onSubmit, isEdit, initialData, visible, onClose } = props;
-
-  //#region Handle Initial Data
-  const initialValues = {
-    ...initialData,
-    auction_date: [moment(initialData?.start_date), moment(initialData?.end_date)],
-  };
-  //#endregion
+  const { onSubmit, isEdit, singleSku, visible, onClose } = props;
 
   const [artworkSelect, setArtworkSelect] = useState("");
 
@@ -29,7 +22,7 @@ function AppFormLotAuction(props) {
         final_price: "",
         initial_price: value.initial_price,
         is_showing: value.is_showing,
-        item_id: artworkSelect,
+        item_id: !isEdit ? artworkSelect : singleSku,
         max_stepup: "",
         step: "",
         start_estimation: value.start_estimation,
@@ -59,7 +52,7 @@ function AppFormLotAuction(props) {
         width={1000}
         title="Add Lot Item"
       >
-        <Form layout="vertical" form={form} initialValues={isEdit ? initialValues : {}}>
+        <Form layout="vertical" form={form}>
           {!isEdit ? (
             <Form.Item name={"artwork"} label="Add Item" className={s.artworkSelection}>
               <AppSelectArtwork setResult={setArtworkSelect} selectBy="sku" />
@@ -159,9 +152,9 @@ function AppFormLotAuction(props) {
 AppFormLotAuction.propTypes = {
   onSubmit: propTypes.func,
   isEdit: propTypes.bool,
-  initialData: propTypes.any,
-  visible: propTypes.any,
-  onClose: propTypes.any,
+  singleSku: propTypes.any,
+  visible: propTypes.bool,
+  onClose: propTypes.func,
 };
 
 export default AppFormLotAuction;

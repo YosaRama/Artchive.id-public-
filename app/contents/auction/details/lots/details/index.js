@@ -15,26 +15,32 @@ import priceFormatter from "app/helpers/priceFormatter";
 
 // Style
 import s from "./index.module.scss";
+import { useAuctionItem } from "app/hooks/auction/item";
+import { useRouter } from "next/router";
 
 function AppContentsAuctionDetailsLotsDetails(props) {
-  const { onState, activeLotId, lotDetails } = props;
-  const item = lotDetails.find((lot) => lot.id === activeLotId);
+  const { onState, activeLotId } = props;
+  const router = useRouter();
+  const { id: auctionId } = router.query;
 
-  //? ============== Handle Column ============= ?//
-  const columns = AuctionLogsColumn({ onDelete: handleDelete });
-  // * ====================================== * //
+  //#region Auction item hooks
+  const { data: itemDetails, onEdit: itemUpdate } = useAuctionItem({
+    auctionId: auctionId,
+    singleId: activeLotId,
+  });
+  const itemLogs = [];
+  //#endregion
 
-  //? ============== Handle Delete ============= ?//
-  const handleDelete = (id) => {
-    deleteConfirmModal({ title: "user", onDelete: () => onDelete(id) });
-  };
-  // * ====================================== * //
-  //? ============== Handle Modal ============= ?//
+  //#region  Handle Column
+  const columns = AuctionLogsColumn({ onDelete: () => {} });
+  //#endregion
+
+  //#region Handle Modal
   const [addModal, setAddModal] = useState(false);
   const handleModal = () => {
     setAddModal(!addModal);
   };
-  // * ====================================== * //
+  //#endregion
 
   return (
     <>
@@ -50,18 +56,23 @@ function AppContentsAuctionDetailsLotsDetails(props) {
               width={200}
               height={200}
               style={{ objectFit: "cover", width: "200px", height: "200px" }}
-              src={`${process.env.NEXT_PUBLIC_S3_URL}/${item?.media_cover?.url}`}
+              src={`${process.env.NEXT_PUBLIC_S3_URL}/${itemDetails?.artwork_details?.media_cover?.url}`}
               alt=""
             />
           </Col>
           <Col span={16}>
-            <p style={{ fontWeight: "bold" }}>{item.title}</p>
-            <p>by {item.artist}</p>
-            <p>{item.description}</p>
-            <p>Start at : {moment(item.start_time).format("DD MMMM, YYYY | hh:mm A")}</p>
-            <p>End at : {moment(item.end_time).format("DD MMMM, YYYY | hh:mm A")}</p>
-
-            <p>Final Price : IDR {priceFormatter(`${item.initial_price}`, ",")}</p>
+            <p style={{ fontWeight: "bold" }}>{itemDetails?.artwork_details?.title}</p>
+            <p>by {itemDetails?.artwork_details?.artist?.full_name}</p>
+            <p>{itemDetails?.artwork_details?.description}</p>
+            <p>
+              Final Price : IDR{" "}
+              {priceFormatter(`${itemDetails?.auction_details?.initial_price}`, ",")}
+            </p>
+            <p>
+              Estimation : IDR{" "}
+              {priceFormatter(`${itemDetails?.auction_details?.start_estimation}`, ",")} - IDR{" "}
+              {priceFormatter(`${itemDetails?.auction_details?.end_estimation}`, ",")}
+            </p>
           </Col>
         </Row>
         <Col style={{ textAlign: "right" }}>
@@ -71,19 +82,18 @@ function AppContentsAuctionDetailsLotsDetails(props) {
         </Col>
         <Divider />
         <h3 style={{ textAlign: "center" }}>History logs</h3>
-        {item?.logs && (
-          <Table
-            columns={columns}
-            rowKey={() => uuid()}
-            dataSource={item?.logs}
-            // loading={loading}
-            // pagination={{ pageSize: pageSize, total: total }}
-            // onChange={handlePagination}
-          />
+        {itemLogs?.logs && (
+          <Table columns={columns} rowKey={() => uuid()} dataSource={itemLogs?.logs} />
         )}
-        {!item?.logs && <Empty />}
+        {!itemLogs?.logs && <Empty />}
 
-        <AppFormLotAuction visible={addModal} onClose={handleModal} isEdit={true} />
+        <AppFormLotAuction
+          visible={addModal}
+          onClose={handleModal}
+          isEdit={true}
+          onSubmit={itemUpdate}
+          singleSku={itemDetails?.auction_details?.item_id}
+        />
       </Col>
     </>
   );
@@ -91,8 +101,7 @@ function AppContentsAuctionDetailsLotsDetails(props) {
 
 AppContentsAuctionDetailsLotsDetails.propTypes = {
   activeLotId: propTypes.any,
-  lotDetails: propTypes.any,
-  onState: propTypes.any,
+  onState: propTypes.func,
 };
 
 export default AppContentsAuctionDetailsLotsDetails;
