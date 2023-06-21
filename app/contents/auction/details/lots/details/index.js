@@ -1,5 +1,5 @@
 // Libs
-import { Row, Col, Divider, Image, Table, Empty } from "antd";
+import { Row, Col, Divider, Image, Table, Empty, Button } from "antd";
 import propTypes from "prop-types";
 import { v4 as uuid } from "uuid";
 import moment from "moment";
@@ -17,6 +17,7 @@ import priceFormatter from "app/helpers/priceFormatter";
 import s from "./index.module.scss";
 import { useAuctionItem } from "app/hooks/auction/item";
 import { useRouter } from "next/router";
+import { useAuctionItemsLogs } from "app/hooks/auction/logs";
 
 function AppContentsAuctionDetailsLotsDetails(props) {
   const { onState, activeLotId } = props;
@@ -28,7 +29,12 @@ function AppContentsAuctionDetailsLotsDetails(props) {
     auctionId: auctionId,
     singleId: activeLotId,
   });
-  const itemLogs = [];
+  const { data: itemLogs, onRefresh } = useAuctionItemsLogs({
+    auctionId: auctionId,
+    itemId: activeLotId,
+    queryString: "",
+  });
+  console.log("itemLogs", itemLogs);
   //#endregion
 
   //#region  Handle Column
@@ -82,10 +88,15 @@ function AppContentsAuctionDetailsLotsDetails(props) {
         </Col>
         <Divider />
         <h3 style={{ textAlign: "center" }}>History logs</h3>
-        {itemLogs?.logs && (
-          <Table columns={columns} rowKey={() => uuid()} dataSource={itemLogs?.logs} />
+        {itemLogs && (
+          <>
+            <Button onClick={onRefresh} style={{ marginBottom: 20 }} type="primary">
+              Refresh
+            </Button>
+            <Table columns={columns} rowKey={() => uuid()} dataSource={itemLogs} />
+          </>
         )}
-        {!itemLogs?.logs && <Empty />}
+        {!itemLogs && <Empty />}
 
         <AppFormLotAuction
           visible={addModal}

@@ -10,10 +10,10 @@ function AuctionLogsColumn() {
   const column = [
     {
       title: "User",
-      dataIndex: "user_ref",
-      key: "user_ref",
+      dataIndex: "user_name",
+      key: "user_name",
 
-      render: (t, r) => <p>{t}</p>,
+      render: (t, r) => <p>{r?.user?.name}</p>,
     },
     {
       title: "Bid Price",
@@ -25,7 +25,7 @@ function AuctionLogsColumn() {
       title: "Bid Time",
       dataIndex: "created_at",
       key: "created_at",
-      render: (t, r) => <p>{moment(t).format("DD MMMM YYYY, hh:mm A")}</p>,
+      render: (t, r) => <p>{moment(t).format("DD MMMM YYYY, hh:mm:ss A")}</p>,
     },
   ];
 
