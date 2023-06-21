@@ -15,9 +15,7 @@ function AppContentsAuctionDetailsNavbar(props) {
   const menuList = [
     { id: 1, title: "General Information" },
     { id: 2, title: "Lots on Auction" },
-    { id: 3, title: "Curator on Auction" },
-    { id: 4, title: "Gallery on Auction" },
-    { id: 5, title: "Participant on Auction" },
+    { id: 3, title: "Participant on Auction" },
   ];
   // * ====================================== * //
 

@@ -3,7 +3,7 @@ import propTypes from "prop-types";
 import moment from "moment";
 import { Button, Col, DatePicker, Form, Input } from "antd";
 import { useSession } from "next-auth/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 // Components
@@ -29,12 +29,23 @@ function AppFormAuctionDetails(props) {
   //? Data Parse
   const initialValues = {
     ...initialData,
+    title: initialData?.name,
+    organized_by: initialData?.organizer,
     auction_date: [moment(initialData?.start_date), moment(initialData?.end_date)],
     auction_time: [
       moment(`2022-02-02${initialData?.start_time}`),
       moment(`2022-02-02${initialData?.end_time}`),
     ],
   };
+  useEffect(() => {
+    setDescriptionValue(initialData?.description);
+    setVisionValue(initialData?.vision);
+    setMissionValue(initialData?.mission);
+    setUploadImage({
+      id: 1,
+      url: initialData?.thumbnail.replace(`${process.env.NEXT_PUBLIC_S3_URL}/`, ""),
+    });
+  }, [initialData]);
   //#endregion
 
   //#region Handle submission

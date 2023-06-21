@@ -1,5 +1,4 @@
 // Libs
-import propTypes from "prop-types";
 import { v4 as uuid } from "uuid";
 import { useState } from "react";
 import { Table, Empty } from "antd";
@@ -10,10 +9,9 @@ import AuctionUserColumn from "./utils";
 import deleteConfirmModal from "app/components/utils/delete-modal-confirm";
 import AppFormAuctionUser from "app/components/libs/form-auction-user";
 import { useRouter } from "next/router";
-import { useAuctionUser, useAuctionUsers } from "app/hooks/auction/user";
+import { useAuctionUsers } from "app/hooks/auction/user";
 
-function AppContentsAuctionDetailsUser(props) {
-  const { userData, onEdit, onDeleteUser } = props;
+function AppContentsAuctionDetailsUser() {
   const router = useRouter();
   const { id } = router.query;
   const [modalVisible, setModalVisible] = useState(false);
@@ -102,11 +100,5 @@ function AppContentsAuctionDetailsUser(props) {
     </>
   );
 }
-
-AppContentsAuctionDetailsUser.propTypes = {
-  userData: propTypes.any,
-  onEdit: propTypes.func,
-  onDeleteUser: propTypes.func,
-};
 
 export default AppContentsAuctionDetailsUser;

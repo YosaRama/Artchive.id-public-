@@ -12,11 +12,9 @@ import AppContainerCard from "app/components/container/card";
 import AppContentsAuctionDetailsNavbar from "./navbar";
 import AppContentsAuctionDetailsGeneral from "./general";
 import AppContentsAuctionDetailsLots from "./lots";
-import AppContentsAuctionDetailsGallery from "./gallery";
 import AppContentsAuctionDetailsUser from "./user";
 
 function AppContentsAuctionDetails(props) {
-  const auctionData = {};
   const router = useRouter();
 
   //? ============== Handle Menu ============= ?//
@@ -44,33 +42,15 @@ function AppContentsAuctionDetails(props) {
                   : currentMenu == 2
                   ? "Lots on Auction"
                   : currentMenu == 3
-                  ? "Curator on Auction"
-                  : currentMenu == 4
-                  ? "Gallery on Auction"
-                  : currentMenu == 5
                   ? "Participant on Auction"
                   : ""
               }
             >
-              {currentMenu == 1 && <AppContentsAuctionDetailsGeneral auctionData={auctionData} />}
+              {currentMenu == 1 && <AppContentsAuctionDetailsGeneral />}
 
-              {currentMenu == 2 && (
-                <AppContentsAuctionDetailsLots
-                  lotsData={auctionData?.lots}
-                  auctionTitle={auctionData?.title}
-                  // onAddArtwork={onAddArtwork}
-                  // onDeleteArtwork={onDeleteArtwork}
-                />
-              )}
-              {currentMenu == 3 && ""}
-              {currentMenu == 4 && (
-                <AppContentsAuctionDetailsGallery
-                  galleryData={auctionData?.overview.auction_img}
-                  // onAddGallery={onAddGallery}
-                  // onDeleteGallery={onDeleteGallery}
-                />
-              )}
-              {currentMenu == 5 && <AppContentsAuctionDetailsUser userData={auctionData.users} />}
+              {currentMenu == 2 && <AppContentsAuctionDetailsLots />}
+
+              {currentMenu == 3 && <AppContentsAuctionDetailsUser />}
             </AppContainerCard>
           </Col>
         </Row>

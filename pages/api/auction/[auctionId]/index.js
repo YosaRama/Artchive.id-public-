@@ -22,7 +22,8 @@ apiHandler.get(async (req, res) => {
 
 apiHandler.put(async (req, res) => {
   const { auctionId } = req.query;
-  const { name, organizer, start_date, end_date, description } = req.body;
+  const { name, organizer, start_date, end_date, description, mission, vision, thumbnail } =
+    req.body;
 
   try {
     const dataPayload = {
@@ -31,6 +32,9 @@ apiHandler.put(async (req, res) => {
       start_date: start_date,
       end_date: end_date,
       description: description,
+      mission: mission,
+      vision: vision,
+      thumbnail: thumbnail,
     };
     const result = await auctioo.put(`/events/${auctionId}`, dataPayload);
 

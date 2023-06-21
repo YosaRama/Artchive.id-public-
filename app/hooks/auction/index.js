@@ -107,8 +107,7 @@ export const useAuction = ({ singleId }) => {
   const [loading, setLoading] = useState(false);
 
   const { data = [], error, isValidating, mutate } = useSWR(pathKeys);
-  const results = data?.data;
-  const total = data?.data;
+  const results = data?.data?.result;
 
   // Edit Hook Function
   const onEdit = useCallback(
@@ -148,7 +147,6 @@ export const useAuction = ({ singleId }) => {
 
   return {
     data: results,
-    total,
     loading: (!error && !data) || isValidating || loading,
     onEdit,
   };
