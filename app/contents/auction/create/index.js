@@ -16,7 +16,7 @@ function AppContentsAuctionCreate() {
   return (
     <>
       <AppContainerBox>
-        <PageHeader title="Create New Exhibitions" onBack={() => router.back()} />
+        <PageHeader title="Create New Auction" onBack={() => router.back()} />
         <AppContainerCard>
           <AppFormAuctionDetails onSubmit={onAdd} />
         </AppContainerCard>

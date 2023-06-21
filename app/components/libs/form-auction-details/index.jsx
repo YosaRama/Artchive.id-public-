@@ -38,14 +38,16 @@ function AppFormAuctionDetails(props) {
     ],
   };
   useEffect(() => {
-    setDescriptionValue(initialData?.description);
-    setVisionValue(initialData?.vision);
-    setMissionValue(initialData?.mission);
-    setUploadImage({
-      id: 1,
-      url: initialData?.thumbnail.replace(`${process.env.NEXT_PUBLIC_S3_URL}/`, ""),
-    });
-  }, [initialData]);
+    if (isEdit) {
+      setDescriptionValue(initialData?.description);
+      setVisionValue(initialData?.vision);
+      setMissionValue(initialData?.mission);
+      setUploadImage({
+        id: 1,
+        url: initialData?.thumbnail.replace(`${process.env.NEXT_PUBLIC_S3_URL}/`, ""),
+      });
+    }
+  }, [initialData, isEdit]);
   //#endregion
 
   //#region Handle submission
