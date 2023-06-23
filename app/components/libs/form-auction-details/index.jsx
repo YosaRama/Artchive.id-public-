@@ -3,7 +3,7 @@ import propTypes from "prop-types";
 import moment from "moment";
 import { Button, Col, DatePicker, Form, Input } from "antd";
 import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
 // Components
@@ -15,8 +15,8 @@ import s from "./index.module.scss";
 
 function AppFormAuctionDetails(props) {
   const { onSubmit, isEdit, initialData } = props;
-  const { data: session } = useSession();
   const router = useRouter();
+  const { data: session } = useSession();
 
   // #region State value
   const [visionValue, setVisionValue] = useState("");
@@ -32,10 +32,6 @@ function AppFormAuctionDetails(props) {
     title: initialData?.name,
     organized_by: initialData?.organizer,
     auction_date: [moment(initialData?.start_date), moment(initialData?.end_date)],
-    auction_time: [
-      moment(`2022-02-02${initialData?.start_time}`),
-      moment(`2022-02-02${initialData?.end_time}`),
-    ],
   };
   useEffect(() => {
     if (isEdit) {
@@ -68,6 +64,7 @@ function AppFormAuctionDetails(props) {
       router.back();
     });
   };
+
   //#endregion
 
   return (

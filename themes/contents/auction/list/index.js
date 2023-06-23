@@ -15,7 +15,8 @@ import ThemesAuctionCard from "themes/components/libs/auction-card-list";
 import ThemesButton from "themes/components/libs/button";
 
 // Data Hook
-import { auctionList } from "app/database/dummy/auction-list";
+// import { auctionList } from "app/database/dummy/auction-list";
+import { useAuctions, useAuction } from "app/hooks/auction";
 
 // Helpers
 import { useWindowSize } from "app/helpers/useWindowSize";
@@ -29,7 +30,7 @@ function ThemesContentsAuctionList(props) {
   const { width } = useWindowSize();
 
   //? ============== Auction Hook ============= ?//
-
+  const { data: auctionList, loading: auctionListLoading } = useAuctions({ queryString: "" });
   // * ====================================== * //
 
   //? ============== Handle Get Viewport ============= ?//
@@ -184,34 +185,36 @@ function ThemesContentsAuctionList(props) {
                 span={width > 768 ? 18 : 24}
                 style={{ paddingLeft: width >= 1024 ? "32px" : "0px", width: "100%" }}
               >
-                {auctionList ? (
-                  <Row gutter={width > 768 ? [32, 32] : [16, 16]} justify="space-between">
-                    {auctionList?.map((item, index) => {
-                      return (
-                        <Col
-                          key={index}
-                          lg={{ span: 8 }}
-                          md={{ span: 8 }}
-                          sm={{ span: 8 }}
-                          xs={{ span: 24 }}
-                        >
-                          <ThemesAuctionCard
-                            thumbnail={item?.thumbnail.url}
-                            title={item?.title}
-                            status={item?.status}
-                            startDate={item.start_date}
-                            endDate={item.end_date}
-                            slug={item.slug}
-                          />
-                        </Col>
-                      );
-                    })}
-                  </Row>
-                ) : (
-                  <Col span={24}>
-                    <Empty />
-                  </Col>
-                )}
+                <Spin spinning={auctionListLoading}>
+                  {auctionList ? (
+                    <Row gutter={width > 768 ? [32, 32] : [16, 16]} justify="flex-start">
+                      {auctionList?.map((item, index) => {
+                        return (
+                          <Col
+                            key={index}
+                            lg={{ span: 8 }}
+                            md={{ span: 8 }}
+                            sm={{ span: 8 }}
+                            xs={{ span: 24 }}
+                          >
+                            <ThemesAuctionCard
+                              thumbnail={item?.thumbnail}
+                              title={item?.name}
+                              status={item?.status}
+                              startDate={item.start_date}
+                              endDate={item.end_date}
+                              id={item.id}
+                            />
+                          </Col>
+                        );
+                      })}
+                    </Row>
+                  ) : (
+                    <Col span={24}>
+                      <Empty />
+                    </Col>
+                  )}
+                </Spin>
               </Col>
               {/* // * ====================================== * // */}
             </Row>

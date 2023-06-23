@@ -1,5 +1,7 @@
 // Libs
+import { Spin } from "antd";
 import { useState } from "react";
+import propTypes from "prop-types";
 
 // Components
 import AppContentsAuctionDetailsLotsDetails from "./details";

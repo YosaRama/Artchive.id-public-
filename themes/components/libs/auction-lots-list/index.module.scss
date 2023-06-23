@@ -16,34 +16,33 @@
   width: 100%;
   background: rgb(255, 255, 255);
   border: 2px solid rgba(217, 217, 217, 1);
-
   padding: 40px !important;
   display: flex;
   align-content: space-between;
-  height: 650px;
+  height: 100%;
+  h1,
+  h2,
+  h3,
+  h4,
+  p {
+    margin: 0px !important;
+  }
   h2 {
     font-size: font-size.$heading-3;
-    margin: 5px 0px;
   }
   h4 {
     font-size: font-size.$heading-4;
     color: colors.$fulvous;
-    margin: 5px 0px;
     font-weight: 700;
-    // line-height: 30px;
+    font-family: "DM Serif Display" !important;
   }
   p {
     font-size: font-size.$paragraph;
-    margin: 5px 0px;
-    // line-height: 30px;
   }
-  .title {
-    margin: 0px;
-  }
+
   .imgSrcContainer {
     padding: 0px !important;
     height: 340px;
-    margin-bottom: 20px;
     .imgSrc {
       object-fit: cover;
 
@@ -66,15 +65,19 @@
       p {
         font-weight: 700;
         font-size: font-size.$paragraph;
-        // color: colors.$white;
+        color: colors.$white;
       }
     }
   }
+
   .descContainer {
-    height: 150px;
+    height: 200px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    .title {
+      margin: 0px;
+    }
   }
 
   .btn {
@@ -91,7 +94,7 @@
   flex-wrap: wrap;
   padding: 35px 50px !important;
   justify-content: space-between;
-  height: 375px;
+  height: auto;
   border: 2px solid rgba(217, 217, 217, 1);
 
   h2 {
@@ -100,12 +103,7 @@
   }
   p {
     font-size: font-size.$paragraph;
-    margin: 0px;
-  }
-  .descContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    margin: 5px 0px;
   }
 
   .cartLotsContainer {
@@ -113,6 +111,7 @@
     display: flex;
     justify-content: space-between;
   }
+
   .imgSrcContainer {
     width: 100%;
     height: 300px;
@@ -129,7 +128,7 @@
       p {
         font-weight: 700;
         font-size: font-size.$paragraph;
-        // color: colors.$white;
+        color: colors.$white;
       }
     }
     .imgSrc {
@@ -140,6 +139,19 @@
         transition: all 200ms ease;
         scale: 1.01;
       }
+    }
+  }
+
+  .descContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .description {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      width: 100%;
+
+      white-space: nowrap;
     }
   }
 
@@ -154,13 +166,15 @@
     h3 {
       margin: 0px;
     }
-    .price {
-      h3 {
-        font-size: font-size.$heading-3;
-        font-family: "Aileron" !important;
-        color: colors.$fulvous;
-        margin: 0px !important;
-      }
+
+    h3 {
+      font-size: font-size.$heading-3;
+      // font-family: "Aileron" !important;
+      color: colors.$fulvous;
+      font-weight: 700 !important;
+    }
+    h4 {
+      font-size: font-size.$heading-4;
     }
 
     .btn {
@@ -179,18 +193,24 @@
   .cartContainerGrid {
     padding: 20px !important;
 
-    height: 530px;
-    h4 {
-      margin: 0px 0px 0px;
+    p {
+      margin: 5px 0px !important;
     }
-    .title {
-      margin: 0px 0px 5px;
+    h2 {
+      font-size: font-size.$heading-3;
     }
+
+    p {
+      font-size: 14px;
+    }
+
     .imgSrcContainer {
       height: 260px;
+      margin-bottom: 0px;
     }
+
     .descContainer {
-      height: 150px;
+      height: 180px;
     }
   }
 
@@ -198,19 +218,31 @@
 
   .cartContainer {
     padding: 30px !important;
-    height: 300px;
+
+    h2 {
+      font-size: font-size.$heading-3;
+      margin: 0px;
+    }
+    p {
+      font-size: font-size.$paragraph;
+      margin: 5px 0px;
+    }
 
     .imgSrcContainer {
-      height: 100%;
+      height: 100% !important;
     }
+
     .priceContainer {
-      .price {
-        h3 {
-          font-size: font-size.$heading-4;
-        }
+      h3 {
+        font-size: font-size.$heading-4;
       }
+      h4 {
+        font-size: font-size.$paragraph;
+      }
+
       .btn {
-        padding: 0px !important;
+        width: 100%;
+        padding: 5px !important;
         span {
           font-size: 16px;
         }
@@ -225,54 +257,24 @@
   .cartContainerGrid {
     padding: 20px !important;
 
-    height: 540px;
-    h4 {
-      margin: 0px 0px 0px;
+    p {
+      margin: 5px 0px !important;
     }
-    .title {
-      margin: 0px 0px 5px;
-    }
-    .imgSrcContainer {
-      height: 270px;
-    }
-    .descContainer {
-      height: 150px;
-    }
-  }
-
-  //? ============== DEFAULT VIEW ============= ?//
-
-  .cartContainer {
-    padding: 20px !important;
-    height: 225px;
     h2 {
       font-size: font-size.$heading-3;
-      margin: 0px;
     }
-    p,
-    h3 {
-      font-size: 14px;
-      margin: 0px;
-    }
-    .imgSrcContainer {
-      height: 100%;
-    }
-    .priceContainer {
-      h2,
-      h3 {
-        margin: 0px;
-      }
-      .price {
-        h3 {
-          font-size: font-size.$heading-4;
-        }
-      }
 
-      .btn {
-        span {
-          font-size: 16px;
-        }
-      }
+    p {
+      font-size: 14px;
+    }
+
+    .imgSrcContainer {
+      height: 300px;
+      margin-bottom: 0px;
+    }
+
+    .descContainer {
+      height: 180px;
     }
   }
 }
@@ -281,62 +283,26 @@
 @media screen and (max-width: 500px) {
   //? ============== GRID VIEW ============= ?//
   .cartContainerGrid {
-    .imgSrcContainer {
-      height: 300px !important;
-      .imgSrc {
-        height: 300px !important;
-      }
-    }
     padding: 20px !important;
 
-    height: 570px;
-    h4 {
-      margin: 0px 0px 10px;
+    p {
+      margin: 5px 0px !important;
     }
-    .title {
-      margin: 0px 0px 5px;
-    }
-    .imgSrcContainer {
-      height: 260px;
-    }
-    .descContainer {
-      height: 150px;
-    }
-  }
-
-  //? ============== DEFAULT VIEW ============= ?//
-
-  .cartContainer {
-    padding: 20px !important;
-    height: 225px;
     h2 {
       font-size: font-size.$heading-3;
-      margin: 0px;
     }
-    p,
-    h3 {
-      font-size: 14px;
-      margin: 0px;
-    }
-    .imgSrcContainer {
-      height: 100%;
-    }
-    .priceContainer {
-      h2,
-      h3 {
-        margin: 0px;
-      }
-      .price {
-        h3 {
-          font-size: font-size.$heading-4;
-        }
-      }
 
-      .btn {
-        span {
-          font-size: 16px;
-        }
-      }
+    p {
+      font-size: 14px;
+    }
+
+    .imgSrcContainer {
+      height: 320px;
+      margin-bottom: 0px;
+    }
+
+    .descContainer {
+      height: 200px !important;
     }
   }
 }

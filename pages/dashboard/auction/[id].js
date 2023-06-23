@@ -2,6 +2,8 @@
 import { getSession } from "next-auth/react";
 import dashboardSession from "app/helpers/dashboardSession";
 
+import { useAuction } from "app/hooks/auction";
+
 // Contents
 import AppContentsAuctionDetails from "app/contents/auction/details";
 

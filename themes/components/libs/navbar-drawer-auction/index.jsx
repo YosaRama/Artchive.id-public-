@@ -13,18 +13,17 @@ import s from "./index.module.scss";
 import { InstagramOutlined, FacebookOutlined } from "@ant-design/icons";
 
 function ThemesNavbarDrawerAuction(props) {
-  const { visible, onClose, slug } = props;
+  const { visible, onClose, id } = props;
 
   //? ============== Menu List ============= ?//
   const firstMenuList = [
     { link: `/auction`, label: "AUCTION LIST" },
-    { link: `/auction/${slug}/lots`, label: "LOTS" },
-    { link: `/auction/${slug}/details`, label: "AUCTION DETAILS" },
-    { link: `/auction/${slug}/`, label: "OVERVIEW" },
+    { link: `/auction/${id}/lots`, label: "LOTS" },
+    { link: `/auction/${id}/details`, label: "AUCTION DETAILS" },
+    { link: `/auction/${id}/`, label: "OVERVIEW" },
   ];
 
-  // * ====================================== * //
-
+  // * ====================================== *id
   return (
     <>
       <Drawer visible={visible} onClose={onClose} width={300} bodyStyle={{ padding: 0 }}>

@@ -8,6 +8,9 @@ import propTypes from "prop-types";
 import AppContainerBox from "app/components/container/box";
 import AppContainerCard from "app/components/container/card";
 
+// Dummy
+import { useAuction } from "app/hooks/auction";
+
 // Contents
 import AppContentsAuctionDetailsNavbar from "./navbar";
 import AppContentsAuctionDetailsGeneral from "./general";
@@ -58,9 +61,5 @@ function AppContentsAuctionDetails(props) {
     </>
   );
 }
-
-AppContentsAuctionDetails.propTypes = {
-  auctionData: propTypes.any.isRequired,
-};
 
 export default AppContentsAuctionDetails;

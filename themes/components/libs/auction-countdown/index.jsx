@@ -14,10 +14,12 @@ import { useWindowSize } from "app/helpers/useWindowSize";
 import s from "./index.module.scss";
 
 function ThemesAuctionCountDown(props) {
-  const { todayDate, startDate, endDate, onClick } = props;
+  const { startDate, endDate, onClick } = props;
   const [loading, setLoading] = useState(true);
   const router = useRouter();
   const { width } = useWindowSize();
+  const todayDate = moment();
+  const beforeEvent = todayDate.isBefore(startDate);
 
   //? ============== Countdown Auction Start ============= ?//
   const [countdown, setCountdown] = useState({
@@ -89,7 +91,7 @@ function ThemesAuctionCountDown(props) {
             </>
           )}
 
-          {todayDate.isBefore(startDate) ? (
+          {beforeEvent ? (
             <Col span={24}>
               <p>{`Mark your calendars and don't miss the chance to bid on your dream items at our upcoming auction event`}</p>
               <p>{`Please check your inbox to make sure you receive our email.`}</p>
@@ -100,13 +102,9 @@ function ThemesAuctionCountDown(props) {
             </Col>
           )}
 
-          {todayDate.isBefore(startDate) ? (
-            <ThemesButton type={`primary + ${s.btn}`} onClick={() => router.push("/")}>
-              BACK TO HOMEPAGE
-            </ThemesButton>
-          ) : (
+          {beforeEvent && (
             <ThemesButton type={`primary + ${s.btn}`} onClick={() => router.push("/auction")}>
-              GO TO AUCTION PAGE
+              BACK TO AUCTION LIST
             </ThemesButton>
           )}
         </Col>

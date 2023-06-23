@@ -2,6 +2,7 @@
 import { Col, Button, Row, Carousel, Image } from "antd";
 import { useRef } from "react";
 import propTypes from "prop-types";
+import { useRouter } from "next/router";
 
 import ReactPlayer from "react-player";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
@@ -13,6 +14,8 @@ import ThemesBannerAuctionItem from "themes/components/libs/banner-auction";
 import ThemesHeadline from "themes/components/libs/headline";
 
 // Data Hook
+import { useAuction } from "app/hooks/auction";
+import { auctionList } from "app/database/dummy/auction-list";
 
 // Helpers
 import { useWindowSize } from "app/helpers/useWindowSize";
@@ -22,17 +25,18 @@ import s from "./index.module.scss";
 
 function ThemesContentsAuctionDetailsOverview(props) {
   const { width } = useWindowSize();
-  // const auctionData = auctionList[0];
-  const { auctionData } = props;
+  const router = useRouter();
+
+  //? ============== Auction Details============= ?//
+  const { data: auctionDetails, loading } = useAuction({ singleId: router.query.id });
+  const auctionData = auctionDetails?.result;
+  // * ====================================== * //
 
   //? ============== Handle Scroll ============= ?//
-
   const carouselRef = useRef(null);
-
   const handleNext = () => {
     carouselRef.current.next();
   };
-
   const handlePrev = () => {
     carouselRef.current.prev();
   };
@@ -40,25 +44,26 @@ function ThemesContentsAuctionDetailsOverview(props) {
   return (
     <>
       <ThemesBanner
-        imgSrc={`${process.env.NEXT_PUBLIC_S3_URL}/${auctionData.thumbnail.url}`}
+        imgSrc={auctionData?.thumbnail}
         className={s.bannerContainer}
-        slug={auctionData.slug}
+        id={router.query.id}
       >
         <ThemesBannerAuctionItem
-          title={auctionData.title}
-          startDate={auctionData.start_date}
-          endDate={auctionData.end_date}
-          placeName={auctionData.place_name}
+          title={auctionData?.name}
+          startDate={auctionData?.start_date}
+          endDate={auctionData?.end_date}
+          placeName={auctionData?.place_name}
         />
       </ThemesBanner>
 
       <ThemesContainerMain>
         {/* //? ============== Overview ============= ?// */}
         <Col className={s.description}>
-          <Col span={20}>{auctionData.overview.description}</Col>
+          <Col span={20}>{auctionData?.description}</Col>
         </Col>
       </ThemesContainerMain>
 
+      {/* //TODO : Need more databasa: video url, video name, video description, curatorList: {curator name, position}// */}
       {/* //? ============== Video Player ============= ?// */}
       <Col className={s.bgwhite}>
         <ThemesContainerMain>
@@ -66,13 +71,13 @@ function ThemesContentsAuctionDetailsOverview(props) {
             <Col span={width >= 500 ? 12 : 24} className={s.video}>
               <ReactPlayer
                 height={width > 1024 ? 400 : width < 500 ? 250 : 350}
-                url={auctionData.overview.video_url}
+                url="https://youtu.be/kE_C8kmD9lY"
                 controls={true}
               />
             </Col>
             <Col span={width >= 500 ? 12 : 24} className={s.videoDesc}>
-              <h1 style={{ fontSize: 32 }}>{auctionData.overview.title}</h1>
-              {auctionData.overview.description}
+              <h1 style={{ fontSize: 32 }}>{auctionData?.name}</h1>
+              {auctionData?.description}
             </Col>
           </Row>
         </ThemesContainerMain>
@@ -100,7 +105,7 @@ function ThemesContentsAuctionDetailsOverview(props) {
               <Col span={width > 1024 ? 22 : 24} className={s.carousel}>
                 <Carousel
                   ref={carouselRef}
-                  autoplay={auctionData.overview.auction_img.length <= 3 ? false : true}
+                  autoplay={auctionList[0].overview.auction_img.length <= 3 ? false : true}
                   dots={false}
                   slidesToShow={3}
                   slidesToScroll={1}
@@ -130,7 +135,7 @@ function ThemesContentsAuctionDetailsOverview(props) {
                     },
                   ]}
                 >
-                  {auctionData.overview.auction_img.map((item, index) => {
+                  {auctionList[0].overview.auction_img.map((item, index) => {
                     return (
                       <>
                         <Col key={index} className={s.sliderItem}>
@@ -162,7 +167,7 @@ function ThemesContentsAuctionDetailsOverview(props) {
         <ThemesContainerMain>
           <ThemesHeadline title="Curators" className={s.headline} />
           <Row gutter={width > 1024 ? [20, 20] : [10, 10]}>
-            {auctionData.curator.map((item, index) => {
+            {auctionList[0].curator.map((item, index) => {
               return (
                 <>
                   <Col span={width > 500 ? 6 : 24} className={s.curatorContainer}>

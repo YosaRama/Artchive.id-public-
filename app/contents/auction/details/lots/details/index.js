@@ -4,20 +4,22 @@ import propTypes from "prop-types";
 import { v4 as uuid } from "uuid";
 import moment from "moment";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 // Components
 import ThemesButton from "themes/components/libs/button";
 import AuctionLogsColumn from "./utils";
 import AppFormLotAuction from "app/components/libs/form-lot-auction";
 
+// Hooks
+import { useAuctionItem } from "app/hooks/auction/item";
+import { useAuctionItemsLogs } from "app/hooks/auction/logs";
+
 // Helper
 import priceFormatter from "app/helpers/priceFormatter";
 
 // Style
 import s from "./index.module.scss";
-import { useAuctionItem } from "app/hooks/auction/item";
-import { useRouter } from "next/router";
-import { useAuctionItemsLogs } from "app/hooks/auction/logs";
 
 function AppContentsAuctionDetailsLotsDetails(props) {
   const { onState, activeLotId } = props;
@@ -34,9 +36,8 @@ function AppContentsAuctionDetailsLotsDetails(props) {
     itemId: activeLotId,
     queryString: "",
   });
-  console.log("itemLogs", itemLogs);
   //#endregion
-
+  console.log(itemDetails);
   //#region  Handle Column
   const columns = AuctionLogsColumn({ onDelete: () => {} });
   //#endregion
@@ -104,6 +105,7 @@ function AppContentsAuctionDetailsLotsDetails(props) {
           isEdit={true}
           onSubmit={itemUpdate}
           singleSku={itemDetails?.auction_details?.item_id}
+          initialData={itemDetails?.auction_details}
         />
       </Col>
     </>

@@ -1,10 +1,9 @@
 // Libs
 import propTypes from "prop-types";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import moment from "moment";
 import { useRouter } from "next/router";
 import { CloseOutlined } from "@ant-design/icons";
-import { Col, Switch } from "antd";
 
 // Component
 import ThemesAuctionLoginForm from "./login-form";
@@ -19,43 +18,57 @@ import { useWindowSize } from "app/helpers/useWindowSize";
 
 // Style
 import s from "./index.module.scss";
-import { toDataURL } from "qrcode";
+
+import { useAuction } from "app/hooks/auction";
 
 function ThemesModalAuctionLogin(props) {
-  const {
-    endDate,
-    startDate,
-    bid,
-    onLogin,
-    onVerified,
-    onRegister,
-    visible,
-    register,
-    login,
-    verified,
-    onVisible,
-    onHaveAccount,
-  } = props;
-  const todayDate = moment();
+  const { isPrivate, userRegistered, visible, handleModal } = props;
   const router = useRouter();
   const { width } = useWindowSize();
 
-  //? ============== CLOSE MODAL ============= ?//
-  const [loginState, setLoginState] = useState(false);
-  const handleLoginState = () => {
-    setLoginState(!loginState);
-  };
+  //? ============== Handle Auction and User Data ============= ?//
+  const { data: auctionData } = useAuction({ singleId: router?.query?.id });
+  // * ====================================== * //
 
-  const handleCloseModal = () => {
-    () => {
-      router.push("/auction");
-    };
+  //? ============== Timeline ============= ?//
+  const todayDate = moment();
+  const beforeEvent = todayDate.isBefore(auctionData?.start_date);
+  const inEvent = todayDate.isBetween(auctionData?.start_date, auctionData?.end_date);
+  const afterEvent = todayDate.isAfter(auctionData?.end_date);
+  // * ====================================== * //
+
+  ///? ============== Handle Modal ============ ?//
+  const [loginModal, setLoginModal] = useState("login");
+  const [isVisible, setIsVisible] = useState(true);
+
+  //? ============== Handle Login ============= ?//
+  const handleLogin = () => {
+    if (beforeEvent) {
+      if (userRegistered) setLoginModal("countdown");
+      else setLoginModal("register");
+    } else if (inEvent) {
+      if (userRegistered) setLoginModal("verify");
+      else setLoginModal("sorry");
+    } else "";
+  };
+  const handleRegister = () => {
+    if (beforeEvent) {
+      setLoginModal("countdown");
+    }
+  };
+  const handleVerify = () => {
+    if (beforeEvent) {
+      setLoginModal("countdown");
+    } else if (inEvent) {
+      setIsVisible(!isVisible);
+    }
   };
   // * ====================================== * //
 
   return (
     <>
       <ThemesModal
+        maskStyle={{ background: "rgba(0, 0, 0, 0.75)" }}
         centered
         footer={null}
         closable={true}
@@ -63,9 +76,6 @@ function ThemesModalAuctionLogin(props) {
           <p style={{ color: "white" }}>
             <CloseOutlined />
           </p>
-        }
-        onCancel={
-          !onVerified && todayDate.isBetween(startDate, endDate) ? handleCloseModal : onVisible
         }
         visible={visible}
         width={1000}
@@ -77,86 +87,23 @@ function ThemesModalAuctionLogin(props) {
           height: width > 500 ? "650px" : "550px",
         }}
       >
-        <Col style={{ position: "absolute", zIndex: 2 }}>
-          <Switch onChange={handleLoginState} />{" "}
-          <span>{loginState ? "Already Have Account Flow" : "Dont have account flow"}</span>
-        </Col>
-        {todayDate.isBefore(startDate) && (
-          <>
-            {loginState &&
-              (!login && !verified ? (
-                <ThemesAuctionLoginForm onClick={onLogin} />
-              ) : login && !verified ? (
-                <ThemesAuctionVerifyForm onClick={onVerified} />
-              ) : login && verified ? (
-                <ThemesAuctionCountDown
-                  startDate={startDate}
-                  onClick={visible}
-                  todayDate={todayDate}
-                />
-              ) : (
-                ""
-              ))}
-            {!loginState &&
-              (!register && !verified ? (
-                <ThemesAuctionLoginForm onClick={onRegister} />
-              ) : register && !verified ? (
-                <ThemesAuctionRegisterForm onClick={onVerified} />
-              ) : register && verified ? (
-                <ThemesAuctionCountDown
-                  startDate={startDate}
-                  onClick={visible}
-                  todayDate={todayDate}
-                />
-              ) : (
-                ""
-              ))}
-          </>
+        {loginModal === "login" && <ThemesAuctionLoginForm onClick={handleLogin} />}
+        {loginModal === "verify" && <ThemesAuctionVerifyForm onClick={handleVerify} />}
+        {loginModal === "register" && <ThemesAuctionRegisterForm onClick={handleRegister} />}
+        {loginModal === "countdown" && (
+          <ThemesAuctionCountDown startDate={auctionData.start_date} />
         )}
-
-        {todayDate.isBetween(startDate, endDate) && (
-          <>
-            {!loginState &&
-              (!login && !verified ? (
-                <ThemesAuctionLoginForm onClick={onLogin} />
-              ) : login && !verified ? (
-                <ThemesAuctionVerifyForm onClick={onHaveAccount} />
-              ) : login && verified ? (
-                <ThemesAuctionCountDown
-                  startDate={startDate}
-                  onClick={visible}
-                  todayDate={todayDate}
-                />
-              ) : (
-                ""
-              ))}
-            {loginState &&
-              (!register && !verified ? (
-                <ThemesAuctionLoginForm onClick={onRegister} />
-              ) : register && !verified ? (
-                <ThemesAuctionFailed />
-              ) : (
-                ""
-              ))}
-          </>
-        )}
+        {loginModal === "sorry" && <ThemesAuctionFailed />}
       </ThemesModal>
     </>
   );
 }
 
-ThemesAuctionCountDown.propTypes = {
-  endDate: propTypes.any,
-  startDate: propTypes.any,
+propTypes.ThemesModalAuctionLogin = {
+  isPrivate: propTypes.bool,
+  userRegistered: propTypes.bool,
   visible: propTypes.bool,
-  onLogin: propTypes.any,
-  onVerified: propTypes.any,
-  onRegister: propTypes.any,
-  onVisible: propTypes.any,
-  onHaveAccount: propTypes.any,
-  register: propTypes.any,
-  login: propTypes.any,
-  verified: propTypes.any,
+  handleModal: propTypes.string,
 };
 
 export default ThemesModalAuctionLogin;

@@ -4,15 +4,14 @@
 import propTypes from "prop-types";
 import moment from "moment";
 import { Col } from "antd";
-import { useRouter } from "next/router";
 import Link from "next/link";
 
 // Styles
 import s from "./index.module.scss";
 
 function ThemesAuctionCard(props) {
-  const { thumbnail, title, status, startDate, endDate, slug } = props;
-
+  const { thumbnail, title, status, startDate, endDate, id } = props;
+  const todayDate = moment();
   //? ============== Handle See Details ============= ?//
   // const handleSeeDetails = () => {
   //   router.push(`/auction/${slug}/lots`);
@@ -21,11 +20,14 @@ function ThemesAuctionCard(props) {
 
   return (
     <>
-      <Link key={slug} href={`/auction/${slug}/lots`}>
+      <Link key={id} href={`/auction/${id}/lots`}>
         <Col className={s.container}>
           <img
             src={
-              thumbnail ? `${process.env.NEXT_PUBLIC_S3_URL}/${thumbnail}` : "/images/artwork-1.jpg"
+              thumbnail
+                ? // `${process.env.NEXT_PUBLIC_S3_URL}/${thumbnail}`
+                  thumbnail
+                : "/images/artwork-1.jpg"
             }
             className={s.thumbnail}
             alt=""
@@ -33,7 +35,11 @@ function ThemesAuctionCard(props) {
           <Col className={s.description}>
             <h3 className={s.title}>{title}</h3>
             <div>
-              <p>{status}</p>
+              <p>
+                {todayDate.isBefore(startDate) && "COMING SOON"}
+                {todayDate.isBetween(startDate, endDate) && "LIVE NOW"}
+                {todayDate.isAfter(endDate) && "ENDED"}
+              </p>
               <p className={s.date}>
                 {moment(startDate).format("DD MMMM")} - {moment(endDate).format("DD MMMM YYYY")}
               </p>
@@ -51,7 +57,7 @@ ThemesAuctionCard.propTypes = {
   status: propTypes.string.isRequired,
   startDate: propTypes.string.isRequired,
   endDate: propTypes.string.isRequired,
-  slug: propTypes.string.isRequired,
+  id: propTypes.string.isRequired,
 };
 
 export default ThemesAuctionCard;

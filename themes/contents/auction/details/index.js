@@ -1,5 +1,5 @@
 // Libs
-
+import { useRouter } from "next/router";
 import { Col, Divider } from "antd";
 import propTypes from "prop-types";
 import moment from "moment";
@@ -10,38 +10,48 @@ import ThemesBanner from "themes/components/libs/banner";
 import ThemesBannerAuctionItem from "themes/components/libs/banner-auction";
 import ThemesCuratorCard from "themes/components/libs/curator-card";
 
+// Hooks
+import { useAuction } from "app/hooks/auction";
+
+// Dummy
+import { auctionList } from "app/database/dummy/auction-list";
+
 // Styles
 import s from "./index.module.scss";
 
 function ThemesContentsAuctionDetails(props) {
-  const { auctionData } = props;
+  const router = useRouter();
+  //? ============== Auction Details============= ?//
+  const { data: auctionDetails, loading } = useAuction({ singleId: router.query.id });
+  const auctionData = auctionDetails?.result;
+  // * ====================================== * //
 
   return (
     <>
       <ThemesBanner
-        imgSrc={`${process.env.NEXT_PUBLIC_S3_URL}/${auctionData.thumbnail.url}`}
+        imgSrc={auctionData?.thumbnail}
         className={s.bannerContainer}
-        slug={auctionData.slug}
+        id={router.query.id}
       >
         <ThemesBannerAuctionItem
-          title={auctionData.title}
-          startDate={auctionData.start_date}
-          endDate={auctionData.end_date}
-          placeName={auctionData.place_name}
+          title={auctionData?.name}
+          startDate={auctionData?.start_date}
+          endDate={auctionData?.end_date}
+          placeName={auctionData?.place_name}
         />
       </ThemesBanner>
       <Col className={s.detailsContainer}>
         <ThemesContainerMain>
           {/* //? ============== Overview ============= ?// */}
-          <Col style={{ margin: "0px 0px 40px" }}>{auctionData.details}</Col>
+          <Col style={{ margin: "0px 0px 40px" }}>{auctionData?.description}</Col>
           <Divider className={s.divider} />
           <Col style={{ margin: "0px 0px 40px" }}>
             <h1>Visi</h1>
-            <p>{auctionData.visi}</p>
+            <p>{auctionData?.vision}</p>
           </Col>
           <Col style={{ margin: "0px 0px 40px" }}>
             <h1>Misi</h1>
-            <p>{auctionData.misi}</p>
+            <p>{auctionData?.mission}</p>
           </Col>
           <Divider style={{ margin: "0px" }} />
         </ThemesContainerMain>
@@ -49,7 +59,7 @@ function ThemesContentsAuctionDetails(props) {
       <ThemesContainerMain>
         <Col className={s.curator}>
           <h1>Curatorial Statement</h1>
-          {auctionData.curator.map((item, index) => {
+          {auctionList[0].curator.map((item, index) => {
             return (
               <>
                 <ThemesCuratorCard

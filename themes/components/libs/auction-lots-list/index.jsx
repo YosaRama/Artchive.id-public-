@@ -5,269 +5,211 @@ import { Col, Row, Image, Divider } from "antd";
 import { useRouter } from "next/router";
 
 // Helper
-import { useWindowSize } from "app/helpers/useWindowSize";
+import priceFormatter from "app/helpers/priceFormatter";
+import stringCapitalize from "app/helpers/capitalize";
 
 // Styles
 import s from "./index.module.scss";
 
 // Icons
 import ThemesButton from "../button";
-import priceFormatter from "app/helpers/priceFormatter";
+import user from "prisma/seeds/user";
 
 function ThemesAuctionLotsList(props) {
   const {
-    lot,
-    imgUrl,
-    title,
-    artistName,
-    imgWidth,
-    imgHeight,
-    media,
-    lotOpenDate,
-    lotCloseDate,
-    estimation,
-    initialPrice,
-    slug,
+    artworkDetails,
+    auctionDetails,
     grid,
-    status,
-    artworkUrl,
-    onClick,
-    haveAccount,
+    userRegistered,
+    isPrivate,
+    handleVisible,
+    auctionData,
   } = props;
   const router = useRouter();
+
+  //? ============== Timeline ============= ?//
   const timeZone = moment.tz.guess();
   const todayDate = moment.tz();
-  const width = useWindowSize();
+  const beforeLotStarted = todayDate.isBefore(auctionDetails?.started_at);
+  const afterLotClosed = todayDate.isAfter(auctionDetails?.stopped_at);
+  const liveLot = todayDate.isBetween(auctionDetails?.started_at, auctionDetails?.stopped_at);
+  const afterEvent = todayDate.isAfter(auctionData?.end_date);
 
   return (
     <>
-      {grid ? (
-        ///? ============== GRID VIEW ============= ?//
-        <Row
-          span={24}
-          className={`${s.cartContainerGrid} ${todayDate.isBefore(lotOpenDate) ? `` : s.cartHover}`}
-          onClick={
-            todayDate.isBefore(lotOpenDate)
-              ? null
-              : todayDate.isAfter(lotCloseDate)
-              ? () => router.push(`/${artworkUrl}`)
-              : haveAccount
-              ? () => router.push(`/${artworkUrl}`)
-              : onClick
-          }
-        >
-          <Col span={24}>
-            <Col span={24} className={s.imgSrcContainer}>
-              {status === "ENDED" ? (
-                <Col className={s.tag}>
-                  <p>ENDED</p>
-                </Col>
-              ) : (
-                ""
-              )}
+      <Col
+        span={24}
+        className={`${grid ? s.cartContainerGrid : s.cartContainer} ${
+          beforeLotStarted ? `` : s.cartHover
+        }`}
+        onClick={
+          userRegistered || afterLotClosed
+            ? () => router.push(`/auction/${auctionDetails.id}/lots/${artworkDetails?.slug}`)
+            : handleVisible
+        }
+      >
+        <Row gutter={[0, 10]} className={s.cartLotsContainer}>
+          {/* //? ============== Image Container ============= ?// */}
+          <Col span={grid ? 24 : 6} className={s.imgSrcContainer}>
+            {afterLotClosed ? (
+              <Col className={s.tag}>
+                <p>ENDED</p>
+              </Col>
+            ) : (
+              ""
+            )}
+            {artworkDetails?.status === "SOLD" ? (
+              <Col className={s.tag}>
+                <p>SOLD</p>
+              </Col>
+            ) : (
+              ""
+            )}
 
-              <Image
-                preview={false}
-                className={s.imgSrc}
-                alt=""
-                src={`${process.env.NEXT_PUBLIC_S3_URL}/${imgUrl}`}
-              />
-            </Col>
-
-            <Col span={24} className={s.descContainer}>
-              <Col>
-                <h2 className={s.title}>{title}</h2>
-                {artistName ? (
-                  <p className={s.artist} style={{ fontWeight: "600" }}>
-                    by {artistName}
-                  </p>
-                ) : (
-                  ""
-                )}
-              </Col>
-              <Col>
-                {width > 500 && <p>Estimation : IDR {priceFormatter(estimation, ",")}</p>}
-                <h4>
-                  {status === "READY" ? "Current Bid:" : status === "SOLD" ? "Final Bid:" : ""} IDR{" "}
-                  {priceFormatter(initialPrice, ",")}
-                </h4>
-              </Col>
-              {width > 500 && <Divider style={{ margin: "5px 0px", backgroundColor: "black" }} />}
-              <Col>
-                {width > 500 ? (
-                  <>
-                    <p>
-                      Open: {moment.tz(lotOpenDate, timeZone).format("DD MMMM YYYY | HH:mm")} WITA
-                    </p>
-                    <p>
-                      Close: {moment.tz(lotCloseDate, timeZone).format("DD MMMM YYYY | HH:mm")} WITA
-                    </p>
-                  </>
-                ) : (
-                  <>
-                    <p>
-                      {moment.tz(lotOpenDate, timeZone).format("DD MMMM")} -{" "}
-                      {moment.tz(lotCloseDate, timeZone).format("DD MMMM YYYY")}
-                    </p>
-                  </>
-                )}
-              </Col>
-            </Col>
+            <Image
+              preview={false}
+              className={s.imgSrc}
+              alt=""
+              src={`${process.env.NEXT_PUBLIC_S3_URL}/${artworkDetails?.media_cover?.url}`}
+            />
           </Col>
-          <Col span={24}>
+          {/* // * ====================================== * // */}
+
+          {/* //? ============== Artwork Details Container ============= ?// */}
+
+          <Col span={grid ? 24 : 8} className={s.descContainer}>
+            {!grid && <p>LOT</p>}
+            <Col>
+              <h2 className={s.title}>{artworkDetails?.title}</h2>
+              {artworkDetails?.artist ? <p>by {artworkDetails?.artist?.full_name}</p> : ""}
+            </Col>
+            {!grid && (
+              <Col>
+                <p className={s.description}>{artworkDetails?.description}</p>
+                <p>{`${artworkDetails?.width} x ${artworkDetails?.height} cm`}</p>
+                <p>{stringCapitalize(artworkDetails?.material.replace(/_/g, " "))}</p>
+              </Col>
+            )}
+
+            {grid ? (
+              <Col>
+                <>
+                  <p>
+                    {moment.tz(auctionDetails?.started_at, timeZone).format("DD MMMM")} -{" "}
+                    {moment.tz(auctionDetails?.stopped_at, timeZone).format("DD MMMM YYYY")}
+                  </p>
+                </>
+              </Col>
+            ) : (
+              <Col>
+                <>
+                  <p>
+                    Open:{" "}
+                    {moment.tz(auctionDetails?.started_at, timeZone).format("DD MMMM YYYY | HH:mm")}{" "}
+                    WITA
+                  </p>
+                  <p>
+                    Close:{" "}
+                    {moment.tz(auctionDetails?.stopped_at, timeZone).format("DD MMMM YYYY | HH:mm")}{" "}
+                    WITA
+                  </p>
+                </>
+              </Col>
+            )}
+
+            {grid && (
+              <Col>
+                <p>
+                  Estimation : IDR{" "}
+                  {priceFormatter(
+                    `${auctionDetails?.start_estimation} - ${auctionDetails?.end_estimation} `,
+                    ","
+                  )}
+                </p>
+                <h4>
+                  {artworkDetails?.status === "PUBLISH" && "Current Bid: "}
+                  {artworkDetails?.status === "SOLD" && "Final Bid: "}
+                  IDR {priceFormatter(auctionDetails?.initial_price, ",")}
+                </h4>
+                {userRegistered && (
+                  <Col>
+                    <p style={{ fontWeight: "bold" }}>Your Bid: IDR -</p>
+                  </Col>
+                )}
+              </Col>
+            )}
+          </Col>
+          {/* // * ====================================== * // */}
+
+          {!grid && (
+            <Divider
+              type="vertical"
+              style={{ margin: "5px 0px", backgroundColor: "grey", height: "auto" }}
+            />
+          )}
+
+          {/* //? ============== Auction Details Container ============= ?// */}
+
+          <Col span={grid ? 24 : 8} className={s.priceContainer}>
+            {!grid && (
+              <>
+                <Col>
+                  <p>Estimation :</p>
+                  <p>
+                    IDR{" "}
+                    {priceFormatter(
+                      `${auctionDetails?.start_estimation} - ${auctionDetails?.end_estimation} `,
+                      ","
+                    )}
+                  </p>
+                </Col>
+                <Col>
+                  <h3>
+                    {artworkDetails?.status === "PUBLISH" && "Current Bid: "}
+                    {artworkDetails?.status === "SOLD" && "Final Bid: "}
+                    IDR {priceFormatter(auctionDetails?.initial_price, ",")}
+                  </h3>
+                </Col>
+
+                {userRegistered && (
+                  <Col>
+                    <h4 style={{ fontWeight: "bold" }}>Your Bid: IDR -</h4>
+                  </Col>
+                )}
+              </>
+            )}
             <ThemesButton
               type={`primary + ${s.btn}`}
-              onClick={
-                todayDate.isAfter(lotCloseDate)
-                  ? () => router.push(`/${artworkUrl}`)
-                  : haveAccount
-                  ? () => router.push(`/${artworkUrl}`)
-                  : onClick
-              }
-              disabled={todayDate.isBefore(lotOpenDate) ? true : false}
+              onClick={() => {
+                if (!userRegistered) {
+                  handleVisible();
+                } else {
+                  () => router.push(`/auction/${auctionDetails.id}/lots/${artworkDetails?.slug}`);
+                }
+              }}
+              disabled={beforeLotStarted ? true : false}
             >
-              {todayDate.isBefore(lotOpenDate)
-                ? "START SOON"
-                : todayDate.isBetween(lotOpenDate, lotCloseDate)
-                ? !haveAccount && status == "SOLD"
-                  ? "ITEM SOLD"
-                  : haveAccount && status == "SOLD"
-                  ? "ITEM SOLD"
-                  : !haveAccount && status != "SOLD"
-                  ? "LOGIN TO BID"
-                  : "PLACE BID"
-                : "SEE DETAILS"}
+              {userRegistered && "PLACE BID"}
+              {!userRegistered && "LOGIN TO BID"}
+              {beforeLotStarted && "START SOON"}
+              {artworkDetails?.status === "SOLD" && afterLotClosed && "SEE DETAILS"}
             </ThemesButton>
           </Col>
+          {/* // * ====================================== * // */}
         </Row>
-      ) : (
-        // * ====================================== * //
-
-        //? ============== DEFAULT VIEW ============= ?//
-        <Col
-          className={`${s.cartContainer} ${todayDate.isBefore(lotOpenDate) ? `` : s.cartHover}`}
-          onClick={
-            todayDate.isBefore(lotOpenDate)
-              ? null
-              : todayDate.isAfter(lotCloseDate)
-              ? () => router.push(`/${artworkUrl}`)
-              : haveAccount
-              ? () => router.push(`/${artworkUrl}`)
-              : onClick
-          }
-        >
-          <Row gutter={[0, 10]} className={s.cartLotsContainer}>
-            <Col span={6} className={s.imgSrcContainer}>
-              {status === "ENDED" ? (
-                <Col className={s.tag}>
-                  <p>ENDED</p>
-                </Col>
-              ) : (
-                ""
-              )}
-              <Image
-                preview={false}
-                className={s.imgSrc}
-                alt=""
-                src={`${process.env.NEXT_PUBLIC_S3_URL}/${imgUrl}`}
-              />
-            </Col>
-
-            <Col span={9} className={s.descContainer}>
-              <p>LOT{lot}</p>
-              <Col>
-                <h2 className={s.title}>{title}</h2>
-                {artistName ? (
-                  <p className={s.artist} style={{ fontWeight: "600" }}>
-                    {`by `}
-                    {artistName}
-                  </p>
-                ) : (
-                  ""
-                )}
-              </Col>
-
-              <Col>
-                <p className={s.size}>{`${imgWidth}x ${imgHeight} cm`}</p>
-                <p className={s.material}>{media}</p>
-              </Col>
-
-              <Col>
-                <h3>
-                  Open : {moment.tz(lotOpenDate, timeZone).format("DD MMMM YYYY | HH:mm")} WITA
-                </h3>
-                <h3>
-                  Close : {moment.tz(lotCloseDate, timeZone).format("DD MMMM YYYY | HH:mm")} WITA
-                </h3>
-              </Col>
-            </Col>
-            <Divider type="vertical" className={s.divider} />
-            <Col span={6} className={s.priceContainer}>
-              <Col>
-                <p style={{ lineHeight: " 25px" }}>Estimation</p>
-                <p style={{ lineHeight: " 25px" }}>IDR {priceFormatter(estimation, ",")}</p>
-              </Col>
-              <Col className={s.price}>
-                <h3 style={{ fontWeight: "700", lineHeight: "30px" }}>
-                  {status === "READY" ? "Current Bid:" : status === "SOLD" ? "Final Bid:" : ""}
-                </h3>
-                <h3 style={{ fontWeight: "700", lineHeight: "30px" }}>
-                  IDR {priceFormatter(initialPrice, ",")}
-                </h3>
-              </Col>
-
-              <ThemesButton
-                type={`primary + ${s.btn}`}
-                onClick={
-                  todayDate.isAfter(lotCloseDate)
-                    ? () => router.push(`/${artworkUrl}`)
-                    : haveAccount
-                    ? () => router.push(`/${artworkUrl}`)
-                    : onClick
-                }
-                disabled={todayDate.isBefore(lotOpenDate) ? true : false}
-              >
-                {todayDate.isBefore(lotOpenDate)
-                  ? "START SOON"
-                  : todayDate.isBetween(lotOpenDate, lotCloseDate)
-                  ? !haveAccount && status == "SOLD"
-                    ? "ITEM SOLD"
-                    : haveAccount && status == "SOLD"
-                    ? "ITEM SOLD"
-                    : !haveAccount && status != "SOLD"
-                    ? "LOGIN TO BID"
-                    : "PLACE BID"
-                  : "SEE DETAILS"}
-              </ThemesButton>
-            </Col>
-          </Row>
-        </Col>
-        // * ====================================== * //
-      )}
+      </Col>
     </>
   );
 }
 
 ThemesAuctionLotsList.propTypes = {
-  lot: propTypes.string,
-  title: propTypes.string,
-  artistName: propTypes.string,
-  imgWidth: propTypes.string,
-  imgHeight: propTypes.string,
-  media: propTypes.string,
-  lotOpenDate: propTypes.string,
-  lotOpenTime: propTypes.string,
-  lotCloseDate: propTypes.string,
-  lotCloseTime: propTypes.string,
-  estimation: propTypes.string,
-  initialPrice: propTypes.string,
-  slug: propTypes.string,
-  imgUrl: propTypes.string,
+  artworkDetails: propTypes.string.isRequired,
+  auctionDetails: propTypes.string.isRequired,
+  userRegistered: propTypes.bool,
   grid: propTypes.bool,
-  status: propTypes.string,
-  artworkUrl: propTypes.string,
-  onClick: propTypes.string,
-  haveAccount: propTypes.bool,
+  isPrivate: propTypes.bool,
+  auctionData: propTypes.string,
+  handleVisible: propTypes.func,
 };
 
 export default ThemesAuctionLotsList;

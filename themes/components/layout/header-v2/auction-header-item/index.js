@@ -20,7 +20,7 @@ import s from "./index.module.scss";
 import { MenuOutlined } from "@ant-design/icons";
 
 function ThemesAuctionHeaderItem(props) {
-  const { logo = "/images/logo-without-text.png", isTransparent = false, slug } = props;
+  const { logo = "/images/logo-without-text.png", isTransparent = false, id } = props;
   const { Header } = Layout;
   const router = useRouter();
   const { width } = useWindowSize();
@@ -49,25 +49,25 @@ function ThemesAuctionHeaderItem(props) {
                 <Row gutter={[32, 32]}>
                   <Col
                     onClick={() => {
-                      router.push(`/auction/${slug}`);
+                      router.push(`/auction/${id}`);
                     }}
-                    className={router.asPath === `/auction/${slug}` ? s.btnActive : s.btn}
+                    className={router.asPath === `/auction/${id}` ? s.btnActive : s.btn}
                   >
                     <h3>Overview</h3>
                   </Col>
                   <Col
                     onClick={() => {
-                      router.push(`/auction/${slug}/lots`);
+                      router.push(`/auction/${id}/lots`);
                     }}
-                    className={router.asPath === `/auction/${slug}/lots` ? s.btnActive : s.btn}
+                    className={router.asPath === `/auction/${id}/lots` ? s.btnActive : s.btn}
                   >
                     <h3>Lots</h3>
                   </Col>
                   <Col
                     onClick={() => {
-                      router.push(`/auction/${slug}/details`);
+                      router.push(`/auction/${id}/details`);
                     }}
-                    className={router.asPath === `/auction/${slug}/details` ? s.btnActive : s.btn}
+                    className={router.asPath === `/auction/${id}/details` ? s.btnActive : s.btn}
                   >
                     <h3>Auction Details</h3>
                   </Col>
@@ -84,11 +84,7 @@ function ThemesAuctionHeaderItem(props) {
             </Col>
           </Row>
         </ThemesContainerMain>
-        <ThemesNavbarDrawerAuction
-          visible={openMenu}
-          onClose={() => setOpenMenu(false)}
-          slug={slug}
-        />
+        <ThemesNavbarDrawerAuction visible={openMenu} onClose={() => setOpenMenu(false)} id={id} />
       </Header>
     </>
   );
@@ -97,7 +93,7 @@ function ThemesAuctionHeaderItem(props) {
 ThemesAuctionHeaderItem.propTypes = {
   logo: propTypes.string,
   isTransparent: propTypes.bool,
-  slug: propTypes.string,
+  id: propTypes.string,
 };
 
 export default ThemesAuctionHeaderItem;

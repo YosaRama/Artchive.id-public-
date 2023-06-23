@@ -15,7 +15,7 @@ import ThemesHeaderItem from "themes/components/layout/header-v2/header-item";
 import ThemesAuctionHeaderItem from "themes/components/layout/header-v2/auction-header-item";
 
 function ThemesBanner(props) {
-  const { children, imgSrc, className, slug } = props;
+  const { children, imgSrc, className, id } = props;
   const router = useRouter();
 
   //? ============== Open Menu Drawer ============= ?//
@@ -34,8 +34,8 @@ function ThemesBanner(props) {
         <Image src={imgSrc} alt="" layout="fill" objectFit="cover" />
       </Col>
       <Col className={s.headerContainer}>
-        {router.pathname.startsWith("/auction/[slug]") ? (
-          <ThemesAuctionHeaderItem isTransparent={true} slug={slug} />
+        {router.pathname.startsWith("/auction/[id]") ? (
+          <ThemesAuctionHeaderItem isTransparent={true} id={id} />
         ) : (
           <ThemesHeaderItem isTransparent={true} logo="/images/logo-text-white.png" />
         )}
@@ -49,7 +49,7 @@ ThemesBanner.propTypes = {
   children: propTypes.node,
   imgSrc: propTypes.string.isRequired,
   className: propTypes.string,
-  slug: propTypes.string,
+  id: propTypes.string,
 };
 
 export default ThemesBanner;
