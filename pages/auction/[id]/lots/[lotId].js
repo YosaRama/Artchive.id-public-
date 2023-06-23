@@ -1,10 +1,13 @@
 // Contents
+import ThemesContainerAuction from "themes/components/container/auction";
 import ThemesContentsAuctionArtwork from "themes/contents/auction/artwork";
 
 function PageArtworkOnAuctionDetails() {
   return (
     <>
-      <ThemesContentsAuctionArtwork />
+      <ThemesContainerAuction>
+        <ThemesContentsAuctionArtwork />
+      </ThemesContainerAuction>
     </>
   );
 }

@@ -1,4 +1,5 @@
 // Helper
+import { GET_AUCTION_DETAILS_USER_LIST } from "app/database/query/auction";
 import auctioo from "app/utils/auctioo";
 import nextConnect from "next-connect";
 
@@ -7,13 +8,8 @@ const apiHandler = nextConnect();
 apiHandler.get(async (req, res) => {
   const { auctionId } = req.query;
   try {
-    const result = await auctioo.get(`/events/${auctionId}/users`);
-
-    if (!result.data.success) {
-      throw new Error(result.data.message);
-    }
-
-    const data = await result.data.result;
+    const result = await GET_AUCTION_DETAILS_USER_LIST({ auctionId: auctionId });
+    const data = await result.result;
     res
       .status(200)
       .json({ success: true, message: "Successfully retrieve users list", data: data });

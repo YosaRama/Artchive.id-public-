@@ -3,7 +3,6 @@ import { Col, Row, Input, Select, Divider, Empty } from "antd";
 import { AppstoreOutlined, SlidersOutlined, UnorderedListOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import propTypes from "prop-types";
-import moment from "moment";
 import { useRouter } from "next/router";
 
 // Components
@@ -47,10 +46,12 @@ function ThemesContentsAuctionDetailsLots() {
   });
   // * ====================================== * //
 
-  //? ============== Check User, Auction Publicity, Modal State  ============= ?//
-  const [userRegistered, setUserRegistered] = useState(false);
+  //#region Handle Modal
   const [isVisible, setIsVisible] = useState(false);
-  // * ====================================== * //
+  const handleModal = () => {
+    setIsVisible(!isVisible);
+  };
+  //#endregion
 
   //? ============== Option Value ============= ?//
   const options = [
@@ -114,113 +115,115 @@ function ThemesContentsAuctionDetailsLots() {
 
       <Col className={s.bgWhite}>
         <ThemesContainerMain>
-          {/* //? ============== Search Auction ============= ?// */}
-
-          {width >= 500 ? (
+          {
+            // #region Search Auction
             <>
-              <Row gutter={[32, 32]} className={s.searchContainer}>
-                <Col onClick={toggleState} className={s.click}>
-                  <h4>{isGrid ? <AppstoreOutlined /> : <UnorderedListOutlined />}</h4>
-                </Col>
-                <Divider type="vertical" className={s.divider} />
-                <Row gutter={16} align="middle">
-                  <Col>
-                    <p>Filter</p>
-                  </Col>
-                  <Col>
-                    <h4>
-                      <SlidersOutlined />
-                    </h4>
-                  </Col>
-                </Row>
-                <Divider type="vertical" className={s.divider} />
-                <Col>
-                  <Select
-                    size="large"
-                    placeholder="Sort by"
-                    style={{ width: width > 768 ? 300 : 200 }}
-                    bordered={false}
-                    options={options}
-                    // value={selectedNumber}
-                    // onChange={handleNumberChange}
-                  />
-                </Col>
-                <Divider type="vertical" className={s.divider} />
-
-                <Col>
-                  <Search placeholder="Search Lot Item" size="large" />
-                </Col>
-              </Row>
-              <Divider className={s.dividerX} />
-            </>
-          ) : (
-            <>
-              <Col className={s.searchContainer}>
-                <Col span={24}>
-                  <Row gutter={[16, 16]}>
-                    <Col span={2}>
-                      <h4>
-                        <SlidersOutlined />
-                      </h4>
+              {width >= 500 ? (
+                <>
+                  <Row gutter={[32, 32]} className={s.searchContainer}>
+                    <Col onClick={toggleState} className={s.click}>
+                      <h4>{isGrid ? <AppstoreOutlined /> : <UnorderedListOutlined />}</h4>
                     </Col>
-                    <Col span={22}>
-                      <Search placeholder="Search Lot Item" />
+                    <Divider type="vertical" className={s.divider} />
+                    <Row gutter={16} align="middle">
+                      <Col>
+                        <p>Filter</p>
+                      </Col>
+                      <Col>
+                        <h4>
+                          <SlidersOutlined />
+                        </h4>
+                      </Col>
+                    </Row>
+                    <Divider type="vertical" className={s.divider} />
+                    <Col>
+                      <Select
+                        size="large"
+                        placeholder="Sort by"
+                        style={{ width: width > 768 ? 300 : 200 }}
+                        bordered={false}
+                        options={options}
+                        // value={selectedNumber}
+                        // onChange={handleNumberChange}
+                      />
+                    </Col>
+                    <Divider type="vertical" className={s.divider} />
+
+                    <Col>
+                      <Search placeholder="Search Lot Item" size="large" />
                     </Col>
                   </Row>
-                </Col>
-                <Divider className={s.divider} />
-                <Col span={24}>
-                  <Select
-                    className={s.select}
-                    defaultValue="Sort by"
-                    style={{ width: 240 }}
-                    options={options}
-                  />
-                </Col>
-                <Divider className={s.divider} />
-              </Col>
-            </>
-          )}
-          {/* // * ====================================== * // */}
-
-          {/* //? ============== Item Section ============= ?// */}
-          <Row gutter={[16, 16]} style={{ paddingBottom: "80px" }} justify="flex-start">
-            {auctionItems?.length > 0 ? (
-              auctionItems?.map((item, index) => {
-                return (
-                  <Col
-                    xl={isGrid ? { span: 8 } : { span: 24 }}
-                    lg={isGrid ? { span: 8 } : { span: 24 }}
-                    sm={isGrid ? { span: 12 } : { span: 24 }}
-                    xs={{ span: 24 }}
-                    key={index}
-                  >
-                    <ThemesAuctionLotsList
-                      grid={isGrid}
-                      artworkDetails={item.artwork_details}
-                      auctionDetails={item.auction_details}
-                      auctionData={auctionData}
-                      userRegistered={userRegistered}
-                      handleVisible={() => {
-                        setIsVisible(true);
-                      }}
-                    />
+                  <Divider className={s.dividerX} />
+                </>
+              ) : (
+                <>
+                  <Col className={s.searchContainer}>
+                    <Col span={24}>
+                      <Row gutter={[16, 16]}>
+                        <Col span={2}>
+                          <h4>
+                            <SlidersOutlined />
+                          </h4>
+                        </Col>
+                        <Col span={22}>
+                          <Search placeholder="Search Lot Item" />
+                        </Col>
+                      </Row>
+                    </Col>
+                    <Divider className={s.divider} />
+                    <Col span={24}>
+                      <Select
+                        className={s.select}
+                        defaultValue="Sort by"
+                        style={{ width: 240 }}
+                        options={options}
+                      />
+                    </Col>
+                    <Divider className={s.divider} />
                   </Col>
-                );
-              })
-            ) : (
-              <Col style={{ width: "100%", display: "flex", justifyContent: "center" }}>
-                <Empty />
-              </Col>
-            )}
-          </Row>
-          {/* // * ====================================== * // */}
+                </>
+              )}
+            </>
+            //#endregion
+          }
+          {
+            //#region Item Section
+            <Row gutter={[16, 16]} style={{ paddingBottom: "80px" }} justify="flex-start">
+              {auctionItems?.length > 0 ? (
+                auctionItems?.map((item, index) => {
+                  return (
+                    <Col
+                      xl={isGrid ? { span: 8 } : { span: 24 }}
+                      lg={isGrid ? { span: 8 } : { span: 24 }}
+                      sm={isGrid ? { span: 12 } : { span: 24 }}
+                      xs={{ span: 24 }}
+                      key={index}
+                    >
+                      <ThemesAuctionLotsList
+                        grid={isGrid}
+                        artworkDetails={item.artwork_details}
+                        auctionDetails={item.auction_details}
+                        auctionData={auctionData}
+                        handleVisible={handleModal}
+                      />
+                    </Col>
+                  );
+                })
+              ) : (
+                <Col style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+                  <Empty />
+                </Col>
+              )}
+            </Row>
+            //#endregion
+          }
         </ThemesContainerMain>
-        {/* //? ============== Modal ============= ?// */}
 
-        <ThemesModalAuctionLogin userRegistered={userRegistered} visible={isVisible} />
-
-        {/* // * ====================================== * // */}
+        {
+          //#region Modal
+          <ThemesModalAuctionLogin visible={isVisible} handleModal={handleModal} />
+          //#endregion
+        }
       </Col>
     </>
   );

@@ -14,12 +14,17 @@ import s from "./index.module.scss";
 // Icons
 import ThemesButton from "../button";
 import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
 
 function ThemesAuctionLotsList(props) {
   const { artworkDetails, auctionDetails, auctionData, grid, handleVisible } = props;
   const router = useRouter();
   const { id: auctionId } = router.query;
-  const session = true;
+
+  //#region Handle session
+  const { data: sessionData } = useSession();
+  const session = sessionData?.user?.auction_id === auctionId;
+  //#endregion
 
   const timeZone = moment.tz.guess();
   const todayDate = moment.tz();
@@ -223,7 +228,6 @@ function ThemesAuctionLotsList(props) {
 ThemesAuctionLotsList.propTypes = {
   artworkDetails: propTypes.string.isRequired,
   auctionDetails: propTypes.string.isRequired,
-  session: propTypes.bool,
   grid: propTypes.bool,
   auctionData: propTypes.string,
   handleVisible: propTypes.func,

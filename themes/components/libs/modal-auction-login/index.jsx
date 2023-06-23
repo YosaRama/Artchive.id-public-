@@ -22,35 +22,24 @@ import s from "./index.module.scss";
 import { useAuction } from "app/hooks/auction";
 
 function ThemesModalAuctionLogin(props) {
-  const { isPrivate, userRegistered, visible, handleModal } = props;
+  const { visible, handleModal } = props;
   const router = useRouter();
   const { width } = useWindowSize();
 
-  //? ============== Handle Auction and User Data ============= ?//
+  //#region Handle auction data
   const { data: auctionData } = useAuction({ singleId: router?.query?.id });
-  // * ====================================== * //
+  //#endregion
 
-  //? ============== Timeline ============= ?//
+  //#region Handle timeline
   const todayDate = moment();
   const beforeEvent = todayDate.isBefore(auctionData?.start_date);
   const inEvent = todayDate.isBetween(auctionData?.start_date, auctionData?.end_date);
-  const afterEvent = todayDate.isAfter(auctionData?.end_date);
-  // * ====================================== * //
+  const eventStatus = beforeEvent ? "BEFORE" : inEvent ? "LIVE" : "AFTER";
+  //#endregion
 
-  ///? ============== Handle Modal ============ ?//
+  //#region Handle Modal
   const [loginModal, setLoginModal] = useState("login");
-  const [isVisible, setIsVisible] = useState(true);
 
-  //? ============== Handle Login ============= ?//
-  const handleLogin = () => {
-    if (beforeEvent) {
-      if (userRegistered) setLoginModal("countdown");
-      else setLoginModal("register");
-    } else if (inEvent) {
-      if (userRegistered) setLoginModal("verify");
-      else setLoginModal("sorry");
-    } else "";
-  };
   const handleRegister = () => {
     if (beforeEvent) {
       setLoginModal("countdown");
@@ -59,11 +48,13 @@ function ThemesModalAuctionLogin(props) {
   const handleVerify = () => {
     if (beforeEvent) {
       setLoginModal("countdown");
-    } else if (inEvent) {
-      setIsVisible(!isVisible);
+    }
+
+    if (inEvent) {
+      handleModal();
     }
   };
-  // * ====================================== * //
+  //#endregion
 
   return (
     <>
@@ -87,7 +78,13 @@ function ThemesModalAuctionLogin(props) {
           height: width > 500 ? "650px" : "550px",
         }}
       >
-        {loginModal === "login" && <ThemesAuctionLoginForm onClick={handleLogin} />}
+        {loginModal === "login" && (
+          <ThemesAuctionLoginForm
+            handleModalStage={setLoginModal}
+            handleModalVisible={handleModal}
+            eventStatus={eventStatus}
+          />
+        )}
         {loginModal === "verify" && <ThemesAuctionVerifyForm onClick={handleVerify} />}
         {loginModal === "register" && <ThemesAuctionRegisterForm onClick={handleRegister} />}
         {loginModal === "countdown" && (
@@ -99,11 +96,9 @@ function ThemesModalAuctionLogin(props) {
   );
 }
 
-propTypes.ThemesModalAuctionLogin = {
-  isPrivate: propTypes.bool,
-  userRegistered: propTypes.bool,
+ThemesModalAuctionLogin.propTypes = {
   visible: propTypes.bool,
-  handleModal: propTypes.string,
+  handleModal: propTypes.func,
 };
 
 export default ThemesModalAuctionLogin;
