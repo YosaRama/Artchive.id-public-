@@ -10,3 +10,5 @@ function PageArtworkOnAuctionDetails() {
 }
 
 export default PageArtworkOnAuctionDetails;
+
+//TODO : Handle dynamic pages

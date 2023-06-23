@@ -20,3 +20,5 @@ function PageAuctionDetailsLots(props) {
 }
 
 export default PageAuctionDetailsLots;
+
+//TODO : Handle dynamic pages

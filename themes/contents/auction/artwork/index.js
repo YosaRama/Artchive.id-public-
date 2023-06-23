@@ -25,10 +25,13 @@ function ThemesContentsAuctionDetails() {
   //   auctionId: router.query.id,
   // });
   // const item = auctionItem;
-  const { data: auctionItems } = useAuctionItems({ queryString: "", auctionId: router.query.id });
-  const itemsDetails = auctionItems[0]?.artwork_details;
-  const bidDetails = auctionItems[0]?.auction_details;
-  console.log(bidDetails);
+  const { id: auctionId, lotId } = router.query;
+  const { data: lotDetails } = useAuctionItem({ singleId: lotId, auctionId: auctionId });
+
+  const itemsDetails = lotDetails?.artwork_details;
+  const bidDetails = lotDetails?.auction_details;
+  // console.log(bidDetails);
+
   return (
     <>
       <section className={s.bgWhite}>
@@ -75,6 +78,7 @@ function ThemesContentsAuctionDetails() {
       />
     </>
   );
+  // return <></>;
 }
 
 ThemesContentsAuctionDetails.propTypes = {
