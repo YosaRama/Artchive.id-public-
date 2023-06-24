@@ -38,7 +38,6 @@ function ThemesModalAuctionLogin(props) {
 
   // #region Handle Modal
   const [loginModal, setLoginModal] = useState("login");
-  const [isVisible, setIsVisible] = useState(true);
 
   const handleLogin = () => {
     if (beforeEvent) {
@@ -87,7 +86,13 @@ function ThemesModalAuctionLogin(props) {
           height: width > 500 ? "650px" : "550px",
         }}
       >
-        {loginModal === "login" && <ThemesAuctionLoginForm onClick={handleLogin} />}
+        {loginModal === "login" && (
+          <ThemesAuctionLoginForm
+            handleModalStage={setLoginModal}
+            handleModalVisible={handleModal}
+            eventStatus={eventStatus}
+          />
+        )}
         {loginModal === "verify" && <ThemesAuctionVerifyForm onClick={handleVerify} />}
         {loginModal === "register" && <ThemesAuctionRegisterForm onClick={handleRegister} />}
         {loginModal === "countdown" && (
@@ -99,9 +104,7 @@ function ThemesModalAuctionLogin(props) {
   );
 }
 
-propTypes.ThemesModalAuctionLogin = {
-  isPrivate: propTypes.bool,
-  userRegistered: propTypes.bool,
+ThemesModalAuctionLogin.propTypes = {
   visible: propTypes.bool,
 };
 

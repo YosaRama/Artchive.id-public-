@@ -12,13 +12,47 @@ import { useWindowSize } from "app/helpers/useWindowSize";
 
 // Style
 import s from "./index.module.scss";
+import { signIn } from "next-auth/react";
 
 function ThemesAuctionLoginForm(props) {
-  const { onClick } = props;
-  const { width } = useWindowSize();
-
+  const { handleModalVisible, handleModalStage, eventStatus } = props;
   const router = useRouter();
   const { id: auctionId } = router.query;
+  const { width } = useWindowSize();
+
+  const [form] = Form.useForm();
+  const handleSubmit = () => {
+    form
+      .validateFields()
+      .then(async (val) => {
+        const login = await signIn("credentials", {
+          redirect: false,
+          phone: val.phone,
+          type: "auction",
+          auctionId: auctionId,
+        });
+        if (!login.error) {
+          if (eventStatus === "LIVE") {
+            // handleModalStage("verify")
+            handleModalVisible();
+            window.location.reload();
+          }
+
+          if (eventStatus === "BEFORE") {
+            handleModalStage("countdown");
+          }
+        } else {
+          if (eventStatus === "LIVE") {
+            handleModalStage("sorry");
+          }
+
+          if (eventStatus === "BEFORE") {
+            handleModalStage("register");
+          }
+        }
+      })
+      .catch(() => {});
+  };
 
   return (
     <Row className={s.modalContainer}>
@@ -36,18 +70,17 @@ function ThemesAuctionLoginForm(props) {
               <h3>Confirm your Phone Number</h3>
             </Col>
             <Form
+              form={form}
               name="basic"
               layout="vertical"
               initialValues={{
                 remember: true,
               }}
-              // onFinish={onFinish}
-              // onFinishFailed={onFinishFailed}
               autoComplete="off"
             >
               <Form.Item
                 label="Phone Number"
-                name="phoneNumber"
+                name="phone"
                 rules={[
                   {
                     required: true,
@@ -59,29 +92,28 @@ function ThemesAuctionLoginForm(props) {
               </Form.Item>
 
               <Form.Item>
-                <ThemesButton type={`primary + ${s.registerBtn} `} onClick={onClick}>
+                <ThemesButton type={`primary + ${s.registerBtn} `} onClick={handleSubmit}>
                   LOGIN
                 </ThemesButton>
               </Form.Item>
             </Form>
-            <p
-              className={s.closeBtn}
-              onClick={() => {
-                router.push("/auction");
-              }}
-            >
+            <p className={s.closeBtn} onClick={() => router.push("/auction")}>
               No Thanks
             </p>
           </Col>
         </Col>
         // #endregion
       }
+
+      {/* // * ====================================== * // */}
     </Row>
   );
 }
 
-propTypes.ThemesAuctionLoginForm = {
-  onClick: propTypes.any,
+ThemesAuctionLoginForm.propTypes = {
+  handleModalVisible: propTypes.func,
+  handleModalStage: propTypes.func,
+  eventStatus: propTypes.oneOf(["BEFORE", "LIVE", "AFTER"]),
   closeModal: propTypes.any,
 };
 

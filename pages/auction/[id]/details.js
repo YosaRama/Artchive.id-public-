@@ -1,5 +1,5 @@
 // Libs
-import moment from "moment";
+import ThemesContainerAuction from "themes/components/container/auction";
 
 // Contents
 import ThemesContentsAuctionDetails from "themes/contents/auction/details";
@@ -7,7 +7,9 @@ import ThemesContentsAuctionDetails from "themes/contents/auction/details";
 function PageAuctionDetails() {
   return (
     <>
-      <ThemesContentsAuctionDetails />
+      <ThemesContainerAuction>
+        <ThemesContentsAuctionDetails />
+      </ThemesContainerAuction>
     </>
   );
 }

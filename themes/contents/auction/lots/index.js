@@ -2,6 +2,7 @@
 import { Col, Row, Input, Select, Divider, Empty } from "antd";
 import { AppstoreOutlined, SlidersOutlined, UnorderedListOutlined } from "@ant-design/icons";
 import { useState } from "react";
+import propTypes from "prop-types";
 import { useRouter } from "next/router";
 import moment from "moment";
 
