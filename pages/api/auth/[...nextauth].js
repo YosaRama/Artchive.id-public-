@@ -94,6 +94,7 @@ export default NextAuth({
                 ...userFound?.result?.[0],
                 role: "auction-participant",
                 auction_id: auctionId,
+                full_name: userFound?.result?.[0]?.name,
               },
             };
           }
