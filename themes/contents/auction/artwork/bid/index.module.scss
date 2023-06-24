@@ -244,7 +244,7 @@
 //? ============== Mobike View ============= ?//
 @media screen and (max-width: 500px) {
   .collapse {
-    height: 190px !important;
+    height: 210px !important;
   }
   .openCollapse {
     height: 550px !important;
@@ -360,3 +360,15 @@
 }
 // * ====================================== * //
 // * ====================================== * //
+
+.bidBoardIframeDesktop {
+  border: 0;
+  height: 474px;
+  width: 100%;
+}
+
+.bidBoardIframeMobile {
+  border: 0;
+  height: 486px;
+  width: 100%;
+}

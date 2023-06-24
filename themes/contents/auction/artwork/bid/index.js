@@ -16,9 +16,16 @@ import { useSession } from "next-auth/react";
 
 // Style
 import s from "./index.module.scss";
+import { useRouter } from "next/router";
+import { useAuctionItem } from "app/hooks/auction/item";
 
 function ThemesContentsAuctionBidDetails(props) {
   const { estimation, startingBid, step, sticky, status, bidHistory } = props;
+
+  const router = useRouter();
+  const { id: auctionId, lotId: artworkId } = router.query;
+  const { data: auctionItem } = useAuctionItem({ singleId: artworkId, auctionId: auctionId });
+  const initialPrice = auctionItem?.auction_details?.initial_price;
 
   const { width } = useWindowSize();
 
@@ -124,75 +131,21 @@ function ThemesContentsAuctionBidDetails(props) {
   };
   // * ====================================== * //
 
+  const iframeParams = `userId=${session?.data?.user?.id}&userName=${session?.data?.user?.full_name}&eventId=${auctionId}&itemId=${artworkId}&initialPrice=${initialPrice}&step=${step}`;
+
   return (
     <>
       {width > 768 && !sticky && (
         <Col span={24} className={s.lotContainer}>
           {/* //? ============== Lot Details ============= ?// */}
           <Col span={24} className={s.lotDetails}>
-            <h2>
-              {parseInt(latestBidPrice) === parseInt(estimationBid)
-                ? "Final Price"
-                : "Current price"}
-              : IDR {latestBidPrice ? priceFormatter(`${latestBidPrice}`, ",") : 0}
-            </h2>
-
-            <p>Estimation: IDR {priceFormatter(`${estimation}`, ",")}</p>
-            <Col className={s.reminder}>
-              <p style={{ textAlign: "center" }}>
-                {parseInt(latestBidPrice) === parseInt(estimationBid) ? (
-                  <span>Reserve price has been met</span>
-                ) : (
-                  ""
-                )}
-              </p>
-            </Col>
-            <Row className={s.priceBidder} justify="space-between">
-              <Col className={s.buttonContainer}>
-                <ThemesButton
-                  type={`${price === limit || status == "SOLD" ? "disable" : "primary"} + ${s.btn}`}
-                  onClick={handleDecrement}
-                  disabled={price === limit}
-                >
-                  <MinusOutlined />
-                </ThemesButton>
-              </Col>
-              <Col style={{ margin: "0 10px" }}>
-                <p style={{ fontWeight: "bold" }}>
-                  IDR {priceFormatter(status == "SOLD" ? `${latestBidPrice}` : `${price}`, ",")}
-                </p>
-              </Col>
-              <Col className={s.buttonContainer}>
-                <ThemesButton
-                  type={`${
-                    price === estimationBid || status == "SOLD" ? "disable" : "primary"
-                  }  + ${s.btn}`}
-                  onClick={handleIncrement}
-                  disabled={price === estimationBid}
-                >
-                  <PlusOutlined />
-                </ThemesButton>
-              </Col>
-            </Row>
-            <ThemesButton
-              type={`primary + ${s.btn}`}
-              onClick={handleBid}
-              disabled={isCurrentPriceMatch || status == "SOLD"}
-            >
-              PLACE BID
-            </ThemesButton>
-
-            {/* //? ============== Bid History ============= ?// */}
-            <Col span={24} className={s.bidContainer}>
-              <h2>Bid History</h2>
-              <Divider className={s.divider} />
-              <Table
-                columns={columns}
-                dataSource={logsHistory}
-                pagination={{ pageSize: 5 }}
-                size={width > 1024 ? "large" : width >= 500 ? "small" : "middle"}
-              />
-            </Col>
+            <iframe
+              title="Auction History"
+              width="500"
+              height="1000"
+              className={s.bidBoardIframeDesktop}
+              src={`https://auctioo-id.vercel.app/live-auction?mode=desktop&${iframeParams}`}
+            ></iframe>
             {/* // * ====================================== * // */}
           </Col>
           {/* // * ====================================== * // */}
@@ -207,95 +160,13 @@ function ThemesContentsAuctionBidDetails(props) {
             {!open ? <CaretUpOutlined /> : <CaretDownOutlined />}
           </Col>
           <Col span={24} className={s.lotDetails}>
-            <h2>
-              {parseInt(latestBidPrice) === parseInt(estimationBid)
-                ? "Final Price"
-                : "Current price"}
-              : IDR {latestBidPrice ? priceFormatter(`${latestBidPrice}`, ",") : 0}
-            </h2>
-
-            <Row className={s.priceBidder} justify="space-between">
-              <Col className={s.buttonContainer}>
-                <ThemesButton
-                  type={`${price === limit || status == "SOLD" ? "disable" : "primary"} + ${s.btn}`}
-                  onClick={handleDecrement}
-                  disabled={price === limit}
-                >
-                  <MinusOutlined />
-                </ThemesButton>
-              </Col>
-              <Col style={{ margin: "0 10px" }}>
-                <p style={{ fontWeight: "bold" }}>
-                  IDR {priceFormatter(status == "SOLD" ? `${latestBidPrice}` : `${price}`, ",")}
-                </p>
-              </Col>
-              <Col className={s.buttonContainer}>
-                <ThemesButton
-                  type={`${
-                    price === estimationBid || status == "SOLD" ? "disable" : "primary"
-                  }  + ${s.btn}`}
-                  onClick={handleIncrement}
-                  disabled={price === estimationBid}
-                >
-                  <PlusOutlined />
-                </ThemesButton>
-              </Col>
-            </Row>
-            <ThemesButton
-              type={`primary + ${s.btn}`}
-              onClick={handleBid}
-              disabled={isCurrentPriceMatch || status == "SOLD"}
-            >
-              PLACE BID
-            </ThemesButton>
-
-            {/* //? ============== Bid History ============= ?// */}
-            {open && (
-              <Col span={24} className={s.bidContainer}>
-                <h2>Bid History</h2>
-                <Divider className={s.divider} />
-                {width > 500 ? (
-                  <Table
-                    columns={columns}
-                    dataSource={logsHistory}
-                    pagination={{ pageSize: 5 }}
-                    size={width > 1024 ? "large" : width >= 500 ? "small" : "middle"}
-                  />
-                ) : (
-                  <Col className={s.scrollable}>
-                    {logsHistory.toReversed().map((item, index) => {
-                      const createdTime = moment.tz(item.created_at, timeZone); // Example created time
-                      const currentTime = moment(); // Example current time
-
-                      const duration = moment.duration(currentTime.diff(createdTime));
-                      const timePassed = formatTimePassed(duration);
-
-                      function formatTimePassed(duration) {
-                        const seconds = duration.asSeconds();
-
-                        if (seconds < 60) {
-                          return `${Math.floor(seconds)} sec ago`;
-                        } else if (seconds < 3600) {
-                          return `${Math.floor(seconds / 60)} min ago`;
-                        } else if (seconds < 86400) {
-                          return `${Math.floor(seconds / 3600)} hrs ago`;
-                        } else {
-                          return `${Math.floor(seconds / 86400)} days ago`;
-                        }
-                      }
-                      return (
-                        <Col key={index} className={s.bidHistory}>
-                          <h3>IDR {priceFormatter(item.bid_price, ",")}</h3>
-                          {/* //TODO : Make thid based on real data// */}
-                          <p>by {item.user_ref}</p>
-                          <p style={{ color: "GAINSBORO" }}>{timePassed}</p>
-                        </Col>
-                      );
-                    })}
-                  </Col>
-                )}
-              </Col>
-            )}
+            <iframe
+              title="Auction History"
+              width="500"
+              height="1000"
+              className={s.bidBoardIframeMobile}
+              src={`https://auctioo-id.vercel.app/live-auction?mode=mobile&${iframeParams}`}
+            ></iframe>
 
             {/* // * ====================================== * // */}
           </Col>
