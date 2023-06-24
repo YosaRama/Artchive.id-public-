@@ -230,7 +230,6 @@ ThemesAuctionLotsList.propTypes = {
   auctionDetails: propTypes.string.isRequired,
   grid: propTypes.bool,
   auctionData: propTypes.string,
-  session: propTypes.func,
   handleVisible: propTypes.func,
 };
 

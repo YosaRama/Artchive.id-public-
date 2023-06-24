@@ -55,6 +55,11 @@ function ThemesContentsAuctionDetailsLots() {
   // #region Check User and Visibility of Modal
   const [userRegistered, setUserRegistered] = useState(true);
   const [isVisible, setIsVisible] = useState(visibility);
+  const handleModal = () => {
+    setIsVisible(!isVisible);
+  };
+  //#endregion
+
   // #endregion
 
   // #region Option Value
@@ -222,7 +227,6 @@ function ThemesContentsAuctionDetailsLots() {
                         artworkDetails={item.artwork_details}
                         auctionDetails={item.auction_details}
                         auctionData={auctionData}
-                        session={userRegistered}
                         handleVisible={() => {
                           setIsVisible(true);
                         }}
@@ -241,7 +245,7 @@ function ThemesContentsAuctionDetailsLots() {
         </ThemesContainerMain>
         {
           // #region Modal Login Auction
-          <ThemesModalAuctionLogin userRegistered={userRegistered} visible={isVisible} />
+          <ThemesModalAuctionLogin visible={isVisible} handleModal={handleModal} />
           // #endregion
         }
 
