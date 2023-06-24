@@ -16,10 +16,9 @@ import ThemesButton from "../button";
 import { useEffect, useState } from "react";
 
 function ThemesAuctionLotsList(props) {
-  const { artworkDetails, auctionDetails, auctionData, grid, handleVisible } = props;
+  const { artworkDetails, auctionDetails, auctionData, grid, handleVisible, session } = props;
   const router = useRouter();
   const { id: auctionId } = router.query;
-  const session = true;
 
   const timeZone = moment.tz.guess();
   const todayDate = moment.tz();
@@ -47,7 +46,7 @@ function ThemesAuctionLotsList(props) {
     if (!session) {
       handleVisible();
     } else {
-      router.push(`/auction/${auctionId}/lots/${auctionDetails?.id}`);
+      if (!beforeLotStarted) router.push(`/auction/${auctionId}/lots/${auctionDetails?.id}`);
     }
   };
   //#endregion
@@ -226,6 +225,7 @@ ThemesAuctionLotsList.propTypes = {
   session: propTypes.bool,
   grid: propTypes.bool,
   auctionData: propTypes.string,
+  session: propTypes.func,
   handleVisible: propTypes.func,
 };
 

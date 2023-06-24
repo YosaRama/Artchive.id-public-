@@ -1,9 +1,9 @@
 // Libs
 import propTypes from "prop-types";
 import { useState, useEffect } from "react";
-import moment from "moment";
 import { useRouter } from "next/router";
 import { CloseOutlined } from "@ant-design/icons";
+import moment from "moment";
 
 // Component
 import ThemesAuctionLoginForm from "./login-form";
@@ -22,26 +22,24 @@ import s from "./index.module.scss";
 import { useAuction } from "app/hooks/auction";
 
 function ThemesModalAuctionLogin(props) {
-  const { isPrivate, userRegistered, visible, handleModal } = props;
+  const { userRegistered, visible } = props;
   const router = useRouter();
   const { width } = useWindowSize();
 
-  //? ============== Handle Auction and User Data ============= ?//
+  // #region Auction Data
   const { data: auctionData } = useAuction({ singleId: router?.query?.id });
-  // * ====================================== * //
+  // #endregion
 
-  //? ============== Timeline ============= ?//
+  // #region Timeline
   const todayDate = moment();
   const beforeEvent = todayDate.isBefore(auctionData?.start_date);
   const inEvent = todayDate.isBetween(auctionData?.start_date, auctionData?.end_date);
-  const afterEvent = todayDate.isAfter(auctionData?.end_date);
-  // * ====================================== * //
+  // #endregion
 
-  ///? ============== Handle Modal ============ ?//
+  // #region Handle Modal
   const [loginModal, setLoginModal] = useState("login");
   const [isVisible, setIsVisible] = useState(true);
 
-  //? ============== Handle Login ============= ?//
   const handleLogin = () => {
     if (beforeEvent) {
       if (userRegistered) setLoginModal("countdown");
@@ -60,11 +58,10 @@ function ThemesModalAuctionLogin(props) {
     if (beforeEvent) {
       setLoginModal("countdown");
     } else if (inEvent) {
-      setIsVisible(!isVisible);
+      handleVisible;
     }
   };
-  // * ====================================== * //
-
+  // #endregion
   return (
     <>
       <ThemesModal
@@ -77,6 +74,9 @@ function ThemesModalAuctionLogin(props) {
             <CloseOutlined />
           </p>
         }
+        onCancel={() => {
+          router.push("/auction");
+        }}
         visible={visible}
         width={1000}
         className={s.modal}
@@ -103,7 +103,6 @@ propTypes.ThemesModalAuctionLogin = {
   isPrivate: propTypes.bool,
   userRegistered: propTypes.bool,
   visible: propTypes.bool,
-  handleModal: propTypes.string,
 };
 
 export default ThemesModalAuctionLogin;

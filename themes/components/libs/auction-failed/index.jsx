@@ -1,30 +1,25 @@
 // Libs
-import { Col, Row, Image } from "antd";
+import { Col, Image } from "antd";
 import propTypes from "prop-types";
 import ThemesButton from "../button";
-import moment from "moment";
-import { useState, useEffect } from "react";
-import { Spin } from "antd";
 import { useRouter } from "next/router";
-
-// Helper
-import { useWindowSize } from "app/helpers/useWindowSize";
 
 // Style
 import s from "./index.module.scss";
 
 function ThemesAuctionFailed(props) {
-  const { todayDate, startDate, endDate, onClick } = props;
-  const [loading, setLoading] = useState(true);
+  const { onClick } = props;
   const router = useRouter();
-  const { width } = useWindowSize();
 
   return (
     <>
       <Col span={24} className={s.countDownContainer} onClick={onClick}>
         <Col className={s.container}>
-          <h2>{`Sorry you can't participate in this auction.`}</h2>
-          <p>You should register your phone number before the auction started.</p>
+          <h2>{`We apologize for any disappointment caused.`}</h2>
+          <p>
+            {`We regret to inform you that since you did not register prior to the auction's
+            commencement, you are currently ineligible to participate.`}
+          </p>
           <ThemesButton onClick={() => router.push("/auction")}>BACK TO AUCTION LIST</ThemesButton>
         </Col>
       </Col>
@@ -36,8 +31,6 @@ function ThemesAuctionFailed(props) {
 }
 
 propTypes.ThemesAuctionFailed = {
-  todayDate: propTypes.any,
-  startDate: propTypes.any,
   onClick: propTypes.any,
 };
 

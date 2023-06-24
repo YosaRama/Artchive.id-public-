@@ -20,20 +20,16 @@ import s from "./index.module.scss";
 import { MenuOutlined } from "@ant-design/icons";
 
 function ThemesAuctionHeaderItem(props) {
-  const { logo = "/images/logo-without-text.png", isTransparent = false, id } = props;
+  const { logo = "/images/logo-without-text.png", isTransparent = false } = props;
   const { Header } = Layout;
   const router = useRouter();
   const { width } = useWindowSize();
+  const { id } = router.query;
 
   // * ====================================== * //
 
   //? ============== Open Menu Drawer ============= ?//
   const [openMenu, setOpenMenu] = useState(false);
-  // * ====================================== * //
-
-  //? ============== Handle User ============= ?//
-  const { data: session, status: sessionStatus } = useSession();
-  const userId = session?.user.id;
   // * ====================================== * //
 
   return (
@@ -84,7 +80,7 @@ function ThemesAuctionHeaderItem(props) {
             </Col>
           </Row>
         </ThemesContainerMain>
-        <ThemesNavbarDrawerAuction visible={openMenu} onClose={() => setOpenMenu(false)} id={id} />
+        <ThemesNavbarDrawerAuction visible={openMenu} onClose={() => setOpenMenu(false)} />
       </Header>
     </>
   );
@@ -93,7 +89,6 @@ function ThemesAuctionHeaderItem(props) {
 ThemesAuctionHeaderItem.propTypes = {
   logo: propTypes.string,
   isTransparent: propTypes.bool,
-  id: propTypes.string,
 };
 
 export default ThemesAuctionHeaderItem;

@@ -1,56 +1,70 @@
 // Libs
-import { Col, Row, Image, Divider, Table, Carousel, Affix } from "antd";
-import ThemesButton from "themes/components/libs/button";
-import { useState } from "react";
-import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
-import propTypes, { string } from "prop-types";
+import { Col, Row, Image, Divider, Carousel } from "antd";
+import { useState, useEffect } from "react";
 import moment from "moment-timezone";
+import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 
 // Components
 import ThemesHeadline from "themes/components/libs/headline";
 import ThemesContentsAuctionBidDetails from "../bid";
 
+// Hooks
+import { useAuctionItem, useAuctionItems } from "app/hooks/auction/item";
+
 // Helper
 import priceFormatter from "app/helpers/priceFormatter";
 import { useWindowSize } from "app/helpers/useWindowSize";
-import { useSession } from "next-auth/react";
+import stringCapitalize from "app/helpers/capitalize";
 
 // Style
 import s from "./index.module.scss";
 
-function ThemesContentsAuctionArtworkDetails(props) {
-  const {
-    artworkImg,
-    mediaGallery,
-    title,
-    artistProfile,
-    artistName,
-    artistRole,
-    artistDesc,
-    imgWidth,
-    imgHeight,
-    media,
-    information,
-    description,
-    imgCondition,
-    conditionDesc,
-    lotEnd,
-    estimation,
-    startingBid,
-    step,
-    logs,
-    status,
-  } = props;
-
+function ThemesContentsAuctionArtworkDetails() {
+  const router = useRouter();
   const { width } = useWindowSize();
+  // #region timeline
+  const timeZone = moment.tz.guess();
+  // #endregion
+
+  // #region Data Parse
+  const { id: auctionId, lotId } = router.query;
+  const { data: lotDetails } = useAuctionItem({ singleId: lotId, auctionId: auctionId });
+  const artworkDetails = lotDetails?.artwork_details;
+  const auctionDetails = lotDetails?.auction_details;
+
+  const { data: lotHighlightData } = useAuctionItems({ auctionId: auctionId, queryString: "" });
+  const [randomData, setRandomData] = useState([]);
+
+  useEffect(() => {
+    getRandomData();
+  }, [auctionDetails]);
+
+  const getRandomData = () => {
+    // Filter out the shown data item from the data array
+    const filteredData = lotHighlightData.filter(
+      (item) => item?.auction_details.id !== auctionDetails?.id
+    );
+
+    // Shuffle the filtered data array
+    const shuffledData = [...filteredData].sort(() => 0.5 - Math.random());
+    // Select the first 4 elements from the shuffled array
+    const selectedData = shuffledData.slice(0, 4);
+    setRandomData(selectedData);
+  };
+  // #endregion
+
+  const handleHighlight = () => {
+    router.push(`/auction/${auctionId}/lots/${lotId}`);
+  };
 
   //? ============== Price Incremental ============= ?//
-  const estimationBid = parseInt(estimation);
-  const startBid = parseInt(startingBid);
+  const estimationBid = parseInt(auctionDetails?.end_estimation);
+  const startBid = parseInt(auctionDetails?.initial_price);
 
   const [price, setPrice] = useState(startBid);
   const [limit, setLimit] = useState(price);
-  const [priceStep, setPriceStep] = useState(step);
+  const [priceStep, setPriceStep] = useState(auctionDetails?.step);
   const handleDecrement = () => {
     if (price > startBid) {
       setPrice((prevPrice) => prevPrice - parseInt(priceStep));
@@ -61,10 +75,6 @@ function ThemesContentsAuctionArtworkDetails(props) {
       setPrice((prevPrice) => prevPrice + parseInt(priceStep));
     }
   };
-  // * ====================================== * //
-
-  //? ============== TimeZone ============= ?//
-  const timeZone = moment.tz.guess();
   // * ====================================== * //
 
   //? ============== Place Bid Handle ============= ?//
@@ -139,239 +149,192 @@ function ThemesContentsAuctionArtworkDetails(props) {
     },
   ];
 
+  const artistDescription =
+    "Through the absence of color, you delve into the realm of monochrome, allowing for a focus on contrast, texture, and form. Your artistic style embraces the power of simplicity, utilizing shades of black, white, and the countless nuances in between to create striking compositions. Whether you work with pencils, charcoal, ink, or explore digital mediums, your mastery of grayscale brings depth and a sense of mystery to your creations. Your artworks possess a timeless quality, evoking emotions and inviting viewers to interpret the imagery through their own lens. Within this black and white realm, you skillfully capture the interplay of light and shadow, emphasizing the details that might otherwise be overlooked. ";
+
   return (
     <>
       <Row justify="space-between">
         <Col span={width > 768 ? 12 : 24}>
-          {/* //? ============== Artwork Container ============= ?// */}
-          <Image.PreviewGroup>
-            <Col span={24} className={s.imageContainer}>
-              <Image src={`${process.env.NEXT_PUBLIC_S3_URL}/${artworkImg}`} alt="" />
-            </Col>
+          {
+            // #region Artwork Container
+            <Image.PreviewGroup>
+              <Col span={24} className={s.imageContainer}>
+                <Image
+                  src={`${process.env.NEXT_PUBLIC_S3_URL}/${artworkDetails?.media_cover?.url}`}
+                  alt=""
+                />
+              </Col>
 
-            <Row gutter={[16, 0]}>
-              {mediaGallery?.map((item, index) => {
+              <Row gutter={[16, 0]}>
+                {artworkDetails?.media_gallery?.map((item, index) => {
+                  return (
+                    <>
+                      <Col
+                        key={index}
+                        xl={{ span: 6 }}
+                        lg={{ span: 6 }}
+                        md={{ span: 6 }}
+                        xs={{ span: 6 }}
+                        className={s.detailsImageContainer + " artworkDetails-details-image"}
+                      >
+                        <Image src={`${process.env.NEXT_PUBLIC_S3_URL}/${item.url}`} alt="" />
+                      </Col>
+                    </>
+                  );
+                })}
+              </Row>
+            </Image.PreviewGroup>
+            // #endregion
+          }
+          {
+            // #region Artwork Details
+            <Col span={24} className={s.detailsContainer}>
+              <Col style={{ marginBottom: "40px" }}>
+                <h2>Details</h2>
+                <Divider className={s.divider} />
+                <p style={{ fontWeight: "bold" }}>{artworkDetails?.title}</p>
+                <br />
+                <p>by {artworkDetails?.artist?.full_name}</p>
+                <br />
+                <p>
+                  {artworkDetails?.width} x {artworkDetails?.height} cm
+                </p>
+                <p>{stringCapitalize(`${artworkDetails?.material}`.replace(/_/g, " "))}</p>
+                <p>Artist painted this in 1913</p>
+                {/* //TODO : Information of the artist// */}
+                <br />
+                <p style={{ fontWeight: "bold" }}>Description</p>
+                <br />
+                <p>{artworkDetails?.description} </p>
+                <br />
+                <p>
+                  Item Condition: <span>Good</span>
+                </p>
+                <br />
+                <p>
+                  Auction ends:{" "}
+                  <span style={{ fontWeight: "bold" }}>
+                    {moment.tz(artworkDetails?.stopped_at, timeZone).format("DD MMM YYYY, HH:mm")}{" "}
+                    WITA
+                  </span>
+                </p>
+              </Col>
+              {
+                // #region About Artist Section
+                <Col>
+                  <h2>About The Artist</h2>
+                  <Divider className={s.divider} />
+                  <Row gutter={[16, 0]} className={s.artistProfileContainer}>
+                    <Col span={width > 768 ? 6 : 24} className={s.image}>
+                      <Row>
+                        <Col xl={{ span: 8 }} lg={{ span: 8 }} sm={{ span: 4 }} xs={{ span: 8 }}>
+                          <Image src="/images/profile-3.jpg" alt="" preview={false} />
+                        </Col>
+                        {width <= 768 && (
+                          <Col style={{ margin: "auto 0px" }}>
+                            <h4 style={{ fontWeight: "bold" }}>
+                              {artworkDetails?.artist?.full_name}
+                            </h4>
+                            <p>Artist</p>
+                          </Col>
+                        )}
+                      </Row>
+                    </Col>
+                    <Col span={width > 768 ? 18 : 24}>
+                      {width > 768 && (
+                        <>
+                          <h4>{artworkDetails?.artist.full_name}</h4>
+                          <p>Artist</p>
+                        </>
+                      )}
+                      <br />
+                      <p>{artistDescription}</p>
+                    </Col>
+                  </Row>
+                </Col>
+                // #endregion
+              }
+            </Col>
+            // #endregion
+          }
+        </Col>
+        <Col span={11}>
+          <ThemesContentsAuctionBidDetails
+            estimation={auctionDetails?.end_estimation}
+            startingBid={auctionDetails?.initial_price}
+            step={auctionDetails?.step}
+            sticky={false}
+            // status={status}
+            // bidHistory={logs}
+          />
+        </Col>
+      </Row>
+
+      {randomData && (
+        <Col className={s.highlightContainer}>
+          <ThemesHeadline title="Auction Highlight" className={s.headline} />
+          {width > 768 ? (
+            <Row gutter={[16, 16]} justify="flex-start">
+              {randomData.map((item, index) => {
                 return (
                   <>
-                    <Col
-                      key={index}
-                      xl={{ span: 6 }}
-                      lg={{ span: 6 }}
-                      md={{ span: 6 }}
-                      xs={{ span: 6 }}
-                      className={s.detailsImageContainer + " artworkDetails-details-image"}
-                    >
-                      <Image src={`${process.env.NEXT_PUBLIC_S3_URL}/${item.url}`} alt="" />
+                    <Col span={6} className={s.artworkContainer} onClick={handleHighlight}>
+                      <Col className={s.artwork}>
+                        <Col className={s.imageContainer}>
+                          <Image
+                            src={`${process.env.NEXT_PUBLIC_S3_URL}/${item?.artwork_details?.media_cover?.url}`}
+                            alt=""
+                            preview={false}
+                          />
+                        </Col>
+                        <h3>{item?.artwork_details?.title}</h3>
+                        <p>Artist</p>
+                        <p style={{ fontWeight: "bold" }}>Estimation</p>
+                        <p style={{ marginBottom: "0px" }}>
+                          IDR {priceFormatter(item.auction_details?.start_estimation, ",")} - IDR{" "}
+                          {priceFormatter(item.auction_details?.end_estimation, ",")}
+                        </p>
+                      </Col>
                     </Col>
                   </>
                 );
               })}
             </Row>
-          </Image.PreviewGroup>
-          {/* // * ====================================== * // */}
-
-          {/* //? ============== Artwork Details ============= ?// */}
-          <Col span={24} className={s.detailsContainer}>
-            <Col style={{ marginBottom: "40px" }}>
-              <h2>Details</h2>
-              <Divider className={s.divider} />
-              <p style={{ fontWeight: "bold" }}>{title}</p>
-              <br />
-              <p>by {artistName}</p>
-              <br />
-              <p>
-                {imgWidth} x {imgHeight} cm
-              </p>
-              <p>{media}</p>
-              <p>{information}</p>
-              <br />
-              <p style={{ fontWeight: "bold" }}>Description</p>
-              <br />
-              <p>{description} </p>
-              <br />
-              <p>
-                Item Condition: <span>{imgCondition}</span>
-              </p>
-              <br />
-              <p>
-                Auction ends:{" "}
-                <span style={{ fontWeight: "bold" }}>
-                  {moment.tz(lotEnd, timeZone).format("DD MMM YYYY, HH:mm")} WITA
-                </span>
-              </p>
-            </Col>
+          ) : (
             <Col>
-              <h2>About The Artist</h2>
-              <Divider className={s.divider} />
-              <Row gutter={[16, 0]} className={s.artistProfileContainer}>
-                <Col span={width > 768 ? 6 : 24} className={s.image}>
-                  <Row>
-                    <Col xl={{ span: 8 }} lg={{ span: 8 }} sm={{ span: 4 }} xs={{ span: 8 }}>
-                      <Image src="/images/profile-3.jpg" alt="" preview={false} />
-                    </Col>
-                    {width <= 768 && (
-                      <Col style={{ margin: "auto 0px" }}>
-                        <h4>{artistName}</h4>
-                        <p>{artistRole}</p>
-                      </Col>
-                    )}
-                  </Row>
-                </Col>
-                <Col span={width > 768 ? 18 : 24}>
-                  {width > 768 && (
+              <Carousel dots autoplay slidesToShow={width <= 500 ? 1 : 3}>
+                {randomData.map((item, index) => {
+                  return (
                     <>
-                      <h4>{artistName}</h4>
-                      <p>{artistRole}</p>
+                      <Col span={24} className={s.artworkContainer} onClick={handleHighlight}>
+                        <Col className={s.artwork}>
+                          <Col className={s.imageContainer}>
+                            <Image
+                              src={`${process.env.NEXT_PUBLIC_S3_URL}/${item?.artwork_details?.media_cover?.url}`}
+                              alt=""
+                              preview={false}
+                            />
+                          </Col>
+                          <h3>{item?.artwork_details?.title}</h3>
+                          <p>Artist</p>
+                          <p style={{ fontWeight: "bold" }}>Estimation</p>
+                          <p style={{ marginBottom: "0px" }}>
+                            IDR {priceFormatter(item.auction_details?.start_estimation, ",")} - IDR{" "}
+                            {priceFormatter(item.auction_details?.end_estimation, ",")}
+                          </p>
+                        </Col>
+                      </Col>
                     </>
-                  )}
-                  <br />
-                  <p>{artistDesc}</p>
-                </Col>
-              </Row>
+                  );
+                })}
+              </Carousel>
             </Col>
-          </Col>
-          {/* // * ====================================== * // */}
+          )}
         </Col>
-        <Col span={11}>
-          <ThemesContentsAuctionBidDetails
-            estimation={estimation}
-            startingBid={startingBid}
-            step={step}
-            sticky={false}
-            status={status}
-            bidHistory={logs}
-          />
-        </Col>
-      </Row>
-
-      {/* //? ============== Auction Highlight ============= ?// */}
-      {/* //TODO : Not yet get auction artwork data// */}
-      <Col className={s.highlightContainer}>
-        <ThemesHeadline title="Auction Highlight" className={s.headline} />
-        {width > 768 ? (
-          <Row gutter={[16, 16]} justify="space-between">
-            <Col span={width > 500 ? 6 : 22} className={s.artworkContainer}>
-              <Col className={s.artwork}>
-                <Col className={s.imageContainer}>
-                  <Image src="/images/artwork-1.jpg" alt="" preview={false} />
-                </Col>
-                <h3>Mona Lisa</h3>
-                <p>Artist</p>
-                <p style={{ fontWeight: "bold" }}>Estimation</p>
-                <p style={{ marginBottom: "0px" }}>IDR 2.000.000 - IDR 5.000.000</p>
-              </Col>
-            </Col>
-            <Col span={width > 500 ? 6 : 22} className={s.artworkContainer}>
-              <Col className={s.artwork}>
-                <Col className={s.imageContainer}>
-                  <Image src="/images/artwork-1.jpg" alt="" preview={false} />
-                </Col>
-                <h3>Mona Lisa</h3>
-                <p>Artist</p>
-                <p style={{ fontWeight: "bold" }}>Estimation</p>
-                <p style={{ marginBottom: "0px" }}>IDR 2.000.000 - IDR 5.000.000</p>
-              </Col>
-            </Col>
-            <Col span={width > 500 ? 6 : 22} className={s.artworkContainer}>
-              <Col className={s.artwork}>
-                <Col className={s.imageContainer}>
-                  <Image src="/images/artwork-1.jpg" alt="" preview={false} />
-                </Col>
-                <h3>Mona Lisa</h3>
-                <p>Artist</p>
-                <p style={{ fontWeight: "bold" }}>Estimation</p>
-                <p style={{ marginBottom: "0px" }}>IDR 2.000.000 - IDR 5.000.000</p>
-              </Col>
-            </Col>
-            <Col span={width > 500 ? 6 : 22} className={s.artworkContainer}>
-              <Col className={s.artwork}>
-                <Col className={s.imageContainer}>
-                  <Image src="/images/artwork-1.jpg" alt="" preview={false} />
-                </Col>
-                <h3>Mona Lisa</h3>
-                <p>Artist</p>
-                <p style={{ fontWeight: "bold" }}>Estimation</p>
-                <p style={{ marginBottom: "0px" }}>IDR 2.000.000 - IDR 5.000.000</p>
-              </Col>
-            </Col>
-          </Row>
-        ) : (
-          <Col>
-            <Carousel dots autoplay slidesToShow={width > 500 ? 3 : 1}>
-              <Col span={23} className={s.artworkContainer}>
-                <Col className={s.artwork}>
-                  <Col className={s.imageContainer}>
-                    <Image src="/images/artwork-1.jpg" alt="" preview={false} />
-                  </Col>
-                  <h3>Mona Lisa</h3>
-                  <p>Artist</p>
-                  <p style={{ fontWeight: "bold" }}>Estimation</p>
-                  <p style={{ marginBottom: "0px" }}>IDR 2.000.000 - IDR 5.000.000</p>
-                </Col>
-              </Col>
-              <Col span={23} className={s.artworkContainer}>
-                <Col className={s.artwork}>
-                  <Col className={s.imageContainer}>
-                    <Image src="/images/artwork-1.jpg" alt="" preview={false} />
-                  </Col>
-                  <h3>Mona Lisa</h3>
-                  <p>Artist</p>
-                  <p style={{ fontWeight: "bold" }}>Estimation</p>
-                  <p style={{ marginBottom: "0px" }}>IDR 2.000.000 - IDR 5.000.000</p>
-                </Col>
-              </Col>
-              <Col span={23} className={s.artworkContainer}>
-                <Col className={s.artwork}>
-                  <Col className={s.imageContainer}>
-                    <Image src="/images/artwork-1.jpg" alt="" preview={false} />
-                  </Col>
-                  <h3>Mona Lisa</h3>
-                  <p>Artist</p>
-                  <p style={{ fontWeight: "bold" }}>Estimation</p>
-                  <p style={{ marginBottom: "0px" }}>IDR 2.000.000 - IDR 5.000.000</p>
-                </Col>
-              </Col>
-              <Col span={23} className={s.artworkContainer}>
-                <Col className={s.artwork}>
-                  <Col className={s.imageContainer}>
-                    <Image src="/images/artwork-1.jpg" alt="" preview={false} />
-                  </Col>
-                  <h3>Mona Lisa</h3>
-                  <p>Artist</p>
-                  <p style={{ fontWeight: "bold" }}>Estimation</p>
-                  <p style={{ marginBottom: "0px" }}>IDR 2.000.000 - IDR 5.000.000</p>
-                </Col>
-              </Col>
-            </Carousel>
-          </Col>
-        )}
-      </Col>
-      {/* // * ====================================== * // */}
+      )}
     </>
   );
 }
-
-ThemesContentsAuctionArtworkDetails.propTypes = {
-  artworkImg: propTypes.string,
-  mediaGallery: propTypes.string,
-  title: propTypes.string,
-  artistProfile: propTypes.string,
-  artistName: propTypes.string,
-  artistRole: propTypes.string,
-  artistDesc: propTypes.string,
-  imgWidth: propTypes.string,
-  imgHeight: propTypes.string,
-  media: propTypes.string,
-  information: propTypes.string,
-  description: propTypes.string,
-  imgCondition: propTypes.string,
-  conditionDesc: propTypes.string,
-  lotEnd: propTypes.string,
-  estimation: propTypes.string,
-  startingBid: propTypes.string,
-  step: propTypes.string,
-  logs: propTypes.string,
-  status: propTypes.string,
-};
 
 export default ThemesContentsAuctionArtworkDetails;

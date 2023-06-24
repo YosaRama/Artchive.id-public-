@@ -12,12 +12,6 @@ import s from "./index.module.scss";
 function ThemesAuctionCard(props) {
   const { thumbnail, title, status, startDate, endDate, id } = props;
   const todayDate = moment();
-  //? ============== Handle See Details ============= ?//
-  // const handleSeeDetails = () => {
-  //   router.push(`/auction/${slug}/lots`);
-  // };
-  // * ====================================== * //
-
   return (
     <>
       <Link key={id} href={`/auction/${id}/lots`}>

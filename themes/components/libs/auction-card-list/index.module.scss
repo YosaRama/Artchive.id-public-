@@ -63,9 +63,12 @@
 
 //? ============== Mobile View ============= ?//
 @media screen and (max-width: 508px) {
-  .thumbnail {
-    height: 300px;
+  .container {
+    .thumbnail {
+      height: 300px;
+    }
   }
+
   .description {
     padding: 15px !important;
   }

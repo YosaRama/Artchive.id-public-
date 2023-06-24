@@ -33,7 +33,7 @@ function ThemesHeader() {
       router.pathname !== "/auction/[id]" &&
       router.pathname !== "/auction/[id]/details" &&
       router.pathname !== "/auction/[id]/lots" &&
-      router.pathname !== "/auction/[id]/artwork/[artworkSlug]" &&
+      router.pathname !== "/auction/[id]/lots/[lotId]" &&
       router.pathname !== "/about" ? (
         <>
           <motion.div variants={fadeTopToBottom} initial="hidden" animate="visible" exit="exit">
