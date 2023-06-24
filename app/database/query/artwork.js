@@ -269,6 +269,7 @@ export const GET_ARTWORK_BY_SKU = ({ sku }) => {
           id: true,
           email: true,
           full_name: true,
+          biography: true,
           profile: {
             select: {
               id: true,

@@ -32,21 +32,24 @@ function ThemesContentsAuctionDetails() {
           <PageHeader
             style={{ padding: 0, marginBottom: 20 }}
             title={`${itemsDetails?.title} Lot Details`}
-            onBack={() => router.back()}
+            onBack={() => router.push(`/auction/${auctionId}/lots`)}
           />
 
           <ThemesContentsAuctionlotDataList />
         </ThemesContainerMain>
       </section>
 
-      <ThemesContentsAuctionBidDetails
-        estimation={bidDetails?.end_estimation}
-        startingBid={bidDetails?.initial_price}
-        step={bidDetails?.step}
-        sticky={true}
-        // status={items?.status}
-        // bidHistory={items?.logs}
-      />
+      {
+        //TODO: @Indra change with iFrame
+        <ThemesContentsAuctionBidDetails
+          estimation={bidDetails?.end_estimation}
+          startingBid={bidDetails?.initial_price}
+          step={bidDetails?.step}
+          sticky={true}
+          // status={items?.status}
+          // bidHistory={items?.logs}
+        />
+      }
     </>
   );
 }

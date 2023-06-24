@@ -34,28 +34,10 @@ function ThemesContentsAuctionArtworkDetails() {
   const auctionDetails = lotDetails?.auction_details;
 
   const { data: lotHighlightData } = useAuctionItems({ auctionId: auctionId, queryString: "" });
-  const [randomData, setRandomData] = useState([]);
+  console.log("lotHighlightData", lotHighlightData);
 
-  useEffect(() => {
-    getRandomData();
-  }, [auctionDetails]);
-
-  const getRandomData = () => {
-    // Filter out the shown data item from the data array
-    const filteredData = lotHighlightData.filter(
-      (item) => item?.auction_details.id !== auctionDetails?.id
-    );
-
-    // Shuffle the filtered data array
-    const shuffledData = [...filteredData].sort(() => 0.5 - Math.random());
-    // Select the first 4 elements from the shuffled array
-    const selectedData = shuffledData.slice(0, 4);
-    setRandomData(selectedData);
-  };
-  // #endregion
-
-  const handleHighlight = () => {
-    router.push(`/auction/${auctionId}/lots/${lotId}`);
+  const handleHighlight = (selectedLotId) => {
+    router.push(`/auction/${auctionId}/lots/${selectedLotId}`);
   };
 
   //? ============== Price Incremental ============= ?//
@@ -259,55 +241,38 @@ function ThemesContentsAuctionArtworkDetails() {
             // #endregion
           }
         </Col>
-        <Col span={11}>
-          <ThemesContentsAuctionBidDetails
-            estimation={auctionDetails?.end_estimation}
-            startingBid={auctionDetails?.initial_price}
-            step={auctionDetails?.step}
-            sticky={false}
-            // status={status}
-            // bidHistory={logs}
-          />
-        </Col>
+        {
+          //TODO: @indra change with iFrame
+          <Col span={11}>
+            <ThemesContentsAuctionBidDetails
+              estimation={auctionDetails?.end_estimation}
+              startingBid={auctionDetails?.initial_price}
+              step={auctionDetails?.step}
+              sticky={false}
+              // status={status}
+              // bidHistory={logs}
+            />
+          </Col>
+        }
       </Row>
 
-      {randomData && (
+      {lotHighlightData && (
         <Col className={s.highlightContainer}>
           <ThemesHeadline title="Auction Highlight" className={s.headline} />
           {width > 768 ? (
             <Row gutter={[16, 16]} justify="flex-start">
-              {randomData.map((item, index) => {
-                return (
-                  <>
-                    <Col span={6} className={s.artworkContainer} onClick={handleHighlight}>
-                      <Col className={s.artwork}>
-                        <Col className={s.imageContainer}>
-                          <Image
-                            src={`${process.env.NEXT_PUBLIC_S3_URL}/${item?.artwork_details?.media_cover?.url}`}
-                            alt=""
-                            preview={false}
-                          />
-                        </Col>
-                        <h3>{item?.artwork_details?.title}</h3>
-                        <p>Artist</p>
-                        <p style={{ fontWeight: "bold" }}>Estimation</p>
-                        <p style={{ marginBottom: "0px" }}>
-                          IDR {priceFormatter(item.auction_details?.start_estimation, ",")} - IDR{" "}
-                          {priceFormatter(item.auction_details?.end_estimation, ",")}
-                        </p>
-                      </Col>
-                    </Col>
-                  </>
-                );
-              })}
-            </Row>
-          ) : (
-            <Col>
-              <Carousel dots autoplay slidesToShow={width <= 500 ? 1 : 3}>
-                {randomData.map((item, index) => {
+              {lotHighlightData
+                .filter((item) => item?.auction_details?.id !== lotId)
+                .map((item, index) => {
                   return (
                     <>
-                      <Col span={24} className={s.artworkContainer} onClick={handleHighlight}>
+                      <Col
+                        span={6}
+                        className={s.artworkContainer}
+                        onClick={() => {
+                          handleHighlight(item?.auction_details?.id);
+                        }}
+                      >
                         <Col className={s.artwork}>
                           <Col className={s.imageContainer}>
                             <Image
@@ -328,6 +293,42 @@ function ThemesContentsAuctionArtworkDetails() {
                     </>
                   );
                 })}
+            </Row>
+          ) : (
+            <Col>
+              <Carousel dots autoplay slidesToShow={width <= 500 ? 1 : 3}>
+                {lotHighlightData
+                  .filter((item) => item?.auction_details?.id !== lotId)
+                  .map((item, index) => {
+                    return (
+                      <>
+                        <Col
+                          span={24}
+                          className={s.artworkContainer}
+                          onClick={() => {
+                            handleHighlight(item?.auction_details?.id);
+                          }}
+                        >
+                          <Col className={s.artwork}>
+                            <Col className={s.imageContainer}>
+                              <Image
+                                src={`${process.env.NEXT_PUBLIC_S3_URL}/${item?.artwork_details?.media_cover?.url}`}
+                                alt=""
+                                preview={false}
+                              />
+                            </Col>
+                            <h3>{item?.artwork_details?.title}</h3>
+                            <p>Artist</p>
+                            <p style={{ fontWeight: "bold" }}>Estimation</p>
+                            <p style={{ marginBottom: "0px" }}>
+                              IDR {priceFormatter(item.auction_details?.start_estimation, ",")} -
+                              IDR {priceFormatter(item.auction_details?.end_estimation, ",")}
+                            </p>
+                          </Col>
+                        </Col>
+                      </>
+                    );
+                  })}
               </Carousel>
             </Col>
           )}

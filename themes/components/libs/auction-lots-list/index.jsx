@@ -17,7 +17,7 @@ import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 
 function ThemesAuctionLotsList(props) {
-  const { artworkDetails, auctionDetails, auctionData, grid, handleVisible, session } = props;
+  const { artworkDetails, auctionDetails, auctionData, grid, handleVisible } = props;
   const router = useRouter();
   const { id: auctionId } = router.query;
 

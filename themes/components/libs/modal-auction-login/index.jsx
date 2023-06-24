@@ -22,7 +22,7 @@ import s from "./index.module.scss";
 import { useAuction } from "app/hooks/auction";
 
 function ThemesModalAuctionLogin(props) {
-  const { userRegistered, visible } = props;
+  const { visible, handleModal } = props;
   const router = useRouter();
   const { width } = useWindowSize();
 
@@ -34,20 +34,12 @@ function ThemesModalAuctionLogin(props) {
   const todayDate = moment();
   const beforeEvent = todayDate.isBefore(auctionData?.start_date);
   const inEvent = todayDate.isBetween(auctionData?.start_date, auctionData?.end_date);
+  const eventStatus = beforeEvent ? "BEFORE" : inEvent ? "LIVE" : "AFTER";
   // #endregion
 
   // #region Handle Modal
   const [loginModal, setLoginModal] = useState("login");
 
-  const handleLogin = () => {
-    if (beforeEvent) {
-      if (userRegistered) setLoginModal("countdown");
-      else setLoginModal("register");
-    } else if (inEvent) {
-      if (userRegistered) setLoginModal("verify");
-      else setLoginModal("sorry");
-    } else "";
-  };
   const handleRegister = () => {
     if (beforeEvent) {
       setLoginModal("countdown");
@@ -106,6 +98,7 @@ function ThemesModalAuctionLogin(props) {
 
 ThemesModalAuctionLogin.propTypes = {
   visible: propTypes.bool,
+  handleModal: propTypes.func,
 };
 
 export default ThemesModalAuctionLogin;
