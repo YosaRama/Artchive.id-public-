@@ -40,7 +40,6 @@ function ThemesContentsAuctionDetails() {
       </section>
 
       {
-        //TODO: @Indra change with iFrame
         <ThemesContentsAuctionBidDetails
           estimation={bidDetails?.end_estimation}
           startingBid={bidDetails?.initial_price}

@@ -141,8 +141,6 @@ function ThemesContentsAuctionBidDetails(props) {
           <Col span={24} className={s.lotDetails}>
             <iframe
               title="Auction History"
-              width="500"
-              height="1000"
               className={s.bidBoardIframeDesktop}
               src={`https://auctioo-id.vercel.app/live-auction?mode=desktop&${iframeParams}`}
             ></iframe>
@@ -162,8 +160,6 @@ function ThemesContentsAuctionBidDetails(props) {
           <Col span={24} className={s.lotDetails}>
             <iframe
               title="Auction History"
-              width="500"
-              height="1000"
               className={s.bidBoardIframeMobile}
               src={`https://auctioo-id.vercel.app/live-auction?mode=mobile&${iframeParams}`}
             ></iframe>

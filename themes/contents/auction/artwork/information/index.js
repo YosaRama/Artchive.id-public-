@@ -242,7 +242,6 @@ function ThemesContentsAuctionArtworkDetails() {
           }
         </Col>
         {
-          //TODO: @indra change with iFrame
           <Col span={11}>
             <ThemesContentsAuctionBidDetails
               estimation={auctionDetails?.end_estimation}
