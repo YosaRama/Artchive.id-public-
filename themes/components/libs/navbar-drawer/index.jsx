@@ -25,6 +25,7 @@ function ThemesNavbarDrawer(props) {
     { link: "/artist", label: "ARTIST" },
     { link: "/artwork", label: "ARTWORK" },
     { link: "/exhibition", label: "EXHIBITION" },
+    { link: "/auction", label: "AUCTION" },
     { link: "/maintenance", label: "NFT GALLERY" },
   ];
 

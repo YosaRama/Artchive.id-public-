@@ -1,0 +1,11 @@
+@use "/themes/styles/base/colors";
+@use "/themes/styles/base/font-size";
+@use "/themes/styles/base/font-weight";
+
+.back {
+  cursor: pointer;
+
+  &:hover {
+    color: colors.$fulvous;
+  }
+}

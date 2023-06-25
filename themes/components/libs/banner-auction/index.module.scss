@@ -1,0 +1,37 @@
+@use "/themes/styles/base/colors";
+@use "/themes/styles/base/font-size";
+
+.bannerItem {
+  h1 {
+    font-size: 42px;
+  }
+  p {
+    font-size: font-size.$paragraph;
+  }
+  h1,
+  h3 {
+    color: colors.$white;
+  }
+  color: colors.$white;
+  height: 100%;
+  width: 100%;
+  padding-bottom: 50px;
+  display: flex;
+  align-content: flex-end;
+}
+
+//? ============== Tablet Landscape View ============= ?//
+@media screen and (max-width: 1024px) {
+  .bannerItem {
+    padding-bottom: 20px;
+  }
+}
+// * ====================================== * //
+
+//? ============== Mobile View ============= ?//
+@media screen and (max-width: 500px) {
+  .bannerItem {
+    padding-bottom: 0px;
+  }
+}
+// * ====================================== * //

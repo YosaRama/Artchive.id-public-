@@ -46,15 +46,16 @@ function MyApp({ Component, pageProps: { session, ...pageProps }, router }) {
             </Head>
 
             <>
-              {router.pathname.startsWith("/dashboard") && router.pathname != "/dashboard/login" && (
-                <>
-                  {content && (
-                    <AppLayout>
-                      <Component {...pageProps} />
-                    </AppLayout>
-                  )}
-                </>
-              )}
+              {router.pathname.startsWith("/dashboard") &&
+                router.pathname != "/dashboard/login" && (
+                  <>
+                    {content && (
+                      <AppLayout>
+                        <Component {...pageProps} />
+                      </AppLayout>
+                    )}
+                  </>
+                )}
 
               {router.pathname.startsWith("/profile") && (
                 <>

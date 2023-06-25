@@ -10,6 +10,7 @@ import {
   ErrorNotification,
   WarningNotification,
 } from "app/components/utils/notification";
+import { hashPassword } from "app/helpers/auth";
 
 //TODO: Match with backend endpoint
 const pathName = "/user"; // End point
@@ -56,7 +57,7 @@ export const useUsers = ({ queryString = "" }) => {
   const results = data?.data;
   const total = data?.total;
 
-  // Add Hook Function
+  //#region Handle register with email
   const onAdd = useCallback(
     async (data) => {
       try {
@@ -93,9 +94,9 @@ export const useUsers = ({ queryString = "" }) => {
     },
     [mutate]
   );
-  // ==========================
+  //#endregion
 
-  // Delete Hook Function
+  //#region Handle delete user
   const onDelete = useCallback(
     async (singleId) => {
       try {
@@ -129,7 +130,74 @@ export const useUsers = ({ queryString = "" }) => {
     },
     [data, mutate]
   );
-  // ==========================
+  //#endregion
+
+  //#region send login OTP
+  const onSendOTP = useCallback(async (data) => {
+    try {
+      setLoading(true);
+      const { data: res } = await api.post(`${pathName}/login-otp`, data);
+      if (res.success) {
+        return res.success;
+      } else {
+        ErrorNotification({
+          message: "User not found!",
+          description: `Please try to sign-in with other phone number or email`,
+        });
+      }
+    } catch (error) {
+      ErrorNotification({
+        message: "Error",
+        description: `Something went wrong while sending OTP`,
+      });
+    }
+  }, []);
+  //#endregion
+
+  //#region Validation register with phone number
+  const onRegisterValidation = useCallback(async (data) => {
+    try {
+      setLoading(true);
+      const { data: res } = await api.post(`${pathName}/validation-phone-register`, data);
+      if (res.success) {
+        localStorage.setItem("otp_code", await hashPassword(res.data.otp_code));
+        setLoading(false);
+        return res.success;
+      } else {
+        WarningNotification({
+          message: "User already exists!",
+          description: `Your account is already registered, please try to login`,
+        });
+        setLoading(false);
+      }
+    } catch (error) {
+      ErrorNotification({
+        message: "Error",
+        description: `Something went wrong while registration`,
+      });
+      setLoading(false);
+    }
+  }, []);
+  //#endregion
+
+  //#region Handle registration by phone number
+  const onRegisterByPhone = useCallback(async (data) => {
+    try {
+      setLoading(true);
+      const { data: res } = await api.post(`${pathName}/phone-register`, data);
+      if (res.success) {
+        setLoading(false);
+        return res.success;
+      }
+    } catch (error) {
+      ErrorNotification({
+        message: "Error",
+        description: `Something went wrong while registration`,
+      });
+      setLoading(false);
+    }
+  }, []);
+  //#endregion
 
   return {
     data: results,
@@ -137,6 +205,9 @@ export const useUsers = ({ queryString = "" }) => {
     loading: (!error && !data) || isValidating || loading,
     onAdd,
     onDelete,
+    onSendOTP,
+    onRegisterValidation,
+    onRegisterByPhone,
   };
 };
 

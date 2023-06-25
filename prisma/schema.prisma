@@ -18,6 +18,7 @@ model User {
   full_name          String
   slug               String                 @unique
   password           String?
+  phone_number       String?                @unique
   profile            Media?                 @relation("profile", fields: [profile_img_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   profile_img_id     Int?                   @unique
   signature          Media?                 @relation("signature", fields: [signature_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
@@ -29,7 +30,6 @@ model User {
   city               String?
   billing_address    String?
   address            String?
-  phone_number       String?
   biography          String?                @db.Text
   birth_date         DateTime?              @db.Date
   role               Role?

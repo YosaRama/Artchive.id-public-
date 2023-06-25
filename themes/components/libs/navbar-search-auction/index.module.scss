@@ -1,0 +1,68 @@
+@use "/themes/styles/base/colors";
+@use "/themes/styles/base/font-size";
+@use "/themes/styles/base/font-weight";
+
+.container {
+  height: 100%;
+  position: relative;
+}
+.sizedBox {
+  height: 50px;
+}
+
+.bodyContainer {
+  padding: 20px;
+  // overflow: auto;
+  width: 100%;
+  height: calc(90%);
+}
+.footerContainer {
+  position: relative;
+  width: 100%;
+  bottom: 0;
+  height: 20px;
+  padding: 0px 10px;
+  .button {
+    width: 100%;
+  }
+}
+
+.menuItemBold {
+  text-align: right;
+  font-size: font-size.$paragraph;
+  font-weight: font-weight.$bold;
+  height: 32px !important;
+  font-family: "Aileron";
+}
+
+.menuItem {
+  text-align: right;
+  font-size: font-size.$paragraph;
+  font-weight: font-weight.$regular;
+  height: 32px !important;
+}
+
+.divider {
+  color: colors.$fulvous !important;
+  border-top: 3px solid colors.$fulvous !important;
+}
+
+.footerTitle {
+  margin-bottom: 20px !important;
+  font-weight: font-weight.$bold;
+  font-family: "Aileron";
+}
+
+.phone {
+  color: colors.$smoky-black;
+}
+
+.socialIcon {
+  color: colors.$smoky-black !important;
+  margin-top: 5px;
+  font-size: font-size.$heading-4;
+  margin-right: 5px;
+  &:hover {
+    color: colors.$fulvous !important;
+  }
+}

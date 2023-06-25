@@ -4,8 +4,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
-import { Button, Checkbox, Col, Form, Input, Row, Divider } from "antd";
-import { ExclamationCircleOutlined } from "@ant-design/icons";
+import { Button, Checkbox, Col, Form, Input, Row, Divider, Segmented } from "antd";
+import { ExclamationCircleOutlined, PhoneFilled, MailFilled } from "@ant-design/icons";
 
 // Components
 import ThemesContainerMain from "themes/components/container/main";
@@ -21,10 +21,13 @@ import { hashPassword } from "app/helpers/auth";
 
 // Styles
 import s from "./index.module.scss";
+import { useUsers } from "app/hooks/user";
 
 function ThemesContentsSignIn() {
   const router = useRouter();
   const [form] = Form.useForm();
+  const { onSendOTP } = useUsers({ queryString: "" });
+  const [phoneCode, setPhoneCode] = useState("62");
 
   //? ============== Handle Google Login ============= ?//
   const handleGoogleLogin = () => {
@@ -38,25 +41,24 @@ function ThemesContentsSignIn() {
   };
   // * ====================================== * //
 
-  //? ============== Handle Credentials Login ============= ?//
+  //#region Handle Credentials Login
   const [loading, setLoading] = useState(false);
   const { onSendMail } = useMailer({ pathName: "/register/confirmation" });
 
-  const handleLogin = () => {
+  const handleLoginByCredentials = () => {
     form.validateFields().then(async (value) => {
       setLoading(true);
       const login = await signIn("credentials", {
         redirect: false,
-        // phone_number: value.phone_number, //TODO: form activation
         email: value.email,
         password: value.password,
+        type: "mail",
       });
       if (!login.error) {
         router.push("/profile");
         setLoading(false);
       } else if (login.error == "INACTIVE") {
         const sendMail = await onSendMail({
-          // phone_number: value.phone_number, //TODO: active this function
           email: value.email,
           fullName: value.email,
         });
@@ -79,7 +81,41 @@ function ThemesContentsSignIn() {
       }
     });
   };
-  // * ====================================== * //
+  //#endregion
+
+  //#region Handle login by phone
+  const handleLoginByPhone = () => {
+    form.validateFields().then(async (value) => {
+      setLoading(true);
+      const sendOtp = await onSendOTP({ phone: `${phoneCode}${value.phone_number}` });
+      if (sendOtp) {
+        setLoading(false);
+        router.push(`/signin/otp-confirmation?phone=${phoneCode}${value.phone_number}`);
+      } else {
+        setLoading(false);
+      }
+    });
+  };
+  //#endregion
+
+  //#region Handle select login method
+  const [loginMethod, setLoginMethod] = useState("phone");
+  const handleSelectLoginMethod = (value) => {
+    setLoginMethod(value);
+  };
+  //#endregion
+
+  //#region Handle login
+  const handleLogin = () => {
+    if (loginMethod === "phone") {
+      handleLoginByPhone();
+    }
+
+    if (loginMethod === "mail") {
+      handleLoginByCredentials();
+    }
+  };
+  //#endregion
 
   return (
     <ThemesContainerMain>
@@ -120,39 +156,80 @@ function ThemesContentsSignIn() {
           <Divider style={{ color: "grey", margin: "0px" }}>OR</Divider>
 
           <section className={s.formSection}>
-            {/* <Col style={{ textAlign: "left" }}>
-              <p>
-                <ExclamationCircleOutlined /> Hello Artchive.id users! Now you can sign into your
-                account with just your{" "}
-                <span style={{ color: "#e5890a" }}>phone number or Whatsapp number</span>. Try to
-                fill your phone number or Whatsapp number and click sign ini button.
-              </p>
-            </Col> */}
             <Col span={24}>
-              <Form layout="vertical" form={form}>
-                {/* <Form.Item name="phone number" label="Phone Number">
-                  <Input addonBefore="+62" placeholder="Phone Number or Whatsapp Number" />
-                </Form.Item> */}
-                <Form.Item name="email" label="Email">
-                  <Input placeholder="Email Address" />
-                </Form.Item>
-                <Form.Item name="password" label="Password">
-                  <Input.Password placeholder="Password" />
-                </Form.Item>
-                <Row justify="space-between">
-                  <Col>
-                    <Checkbox>Remember me</Checkbox>
-                  </Col>
-                  <Col style={{ alignSelf: "right" }}>
-                    <Link href="/">
-                      <a>
-                        <p>Forgot password ?</p>
-                      </a>
-                    </Link>
-                  </Col>
-                </Row>
-              </Form>
+              <Segmented
+                className={s.segment}
+                block={true}
+                onChange={(value) => handleSelectLoginMethod(value)}
+                options={[
+                  {
+                    label: "Phone",
+                    icon: <PhoneFilled />,
+                    value: "phone",
+                  },
+                  {
+                    label: "Mail",
+                    icon: <MailFilled />,
+                    value: "mail",
+                  },
+                ]}
+              />
             </Col>
+
+            {loginMethod === "phone" ? (
+              <>
+                <Col style={{ textAlign: "left" }}>
+                  <p>
+                    <ExclamationCircleOutlined /> Hello Artchive.id users! Now you can sign into
+                    your account with just your{" "}
+                    <span style={{ color: "#e5890a" }}>phone number or Whatsapp number</span>. Try
+                    to fill your phone number or Whatsapp number and click sign ini button.
+                  </p>
+                </Col>
+                <Col span={24}>
+                  <Form layout="vertical" form={form}>
+                    <Form.Item name="phone_number" label="Phone Number">
+                      <Input
+                        addonBefore={`+${phoneCode}`}
+                        placeholder="Phone Number or Whatsapp Number"
+                      />
+                    </Form.Item>
+                    <Row justify="space-between">
+                      <Col>
+                        <Checkbox>Remember me</Checkbox>
+                      </Col>
+                    </Row>
+                  </Form>
+                </Col>
+              </>
+            ) : null}
+
+            {loginMethod === "mail" ? (
+              <>
+                <Col span={24}>
+                  <Form layout="vertical" form={form}>
+                    <Form.Item name="email" label="Email">
+                      <Input placeholder="Email Address" />
+                    </Form.Item>
+                    <Form.Item name="password" label="Password">
+                      <Input.Password placeholder="Password" />
+                    </Form.Item>
+                    <Row justify="space-between">
+                      <Col>
+                        <Checkbox>Remember me</Checkbox>
+                      </Col>
+                      <Col style={{ alignSelf: "right" }}>
+                        <Link href="/">
+                          <a>
+                            <p>Forgot password ?</p>
+                          </a>
+                        </Link>
+                      </Col>
+                    </Row>
+                  </Form>
+                </Col>
+              </>
+            ) : null}
           </section>
 
           <Col span={24}>

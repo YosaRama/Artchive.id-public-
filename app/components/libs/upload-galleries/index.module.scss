@@ -1,13 +1,14 @@
 .image {
   height: 100%;
   img {
-    height: auto;
-    object-fit: contain;
-    min-height: 150px;
+    object-fit: cover;
+    height: 350px;
+  }
+  .btn {
+    margin-top: 10px;
   }
 }
 
 .uploadBox {
-  height: 100% !important;
-  min-height: 200px;
+  height: 350px !important;
 }
