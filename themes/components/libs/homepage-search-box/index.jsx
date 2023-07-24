@@ -81,6 +81,18 @@ function ThemesHomepageSearchBox() {
             Manage This <span style={{ color: "#e5a03f" }}>Art Platform</span>!
           </h1>
         </Col>
+      ) : userRole == "auction-participant" ? (
+        <Col className={s.title}>
+          {width > 500 && (
+            <h3>
+              Welcome <span style={{ color: "#e5a03f" }}>{userName}</span>,
+            </h3>
+          )}
+
+          <h1>
+            Start Bidding on Our Latest<span style={{ color: "#e5a03f" }}>Art Auction</span>!
+          </h1>
+        </Col>
       ) : (
         ""
       )}
