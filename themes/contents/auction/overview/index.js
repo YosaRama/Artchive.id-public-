@@ -54,7 +54,7 @@ function ThemesContentsAuctionDetailsOverview() {
         // #region Overview Section
         <ThemesContainerMain>
           <Col className={s.description}>
-            <Col span={20}>{auctionData?.description}</Col>
+            <Col span={20} dangerouslySetInnerHTML={{ __html: auctionData?.description }} />
           </Col>
         </ThemesContainerMain>
         // #endregion
@@ -74,7 +74,7 @@ function ThemesContentsAuctionDetailsOverview() {
               </Col>
               <Col span={width >= 500 ? 12 : 24} className={s.videoDesc}>
                 <h1 style={{ fontSize: 32 }}>{auctionData?.name}</h1>
-                {auctionData?.description}
+                <p dangerouslySetInnerHTML={{ __html: auctionData?.description }} />
               </Col>
             </Row>
           </ThemesContainerMain>

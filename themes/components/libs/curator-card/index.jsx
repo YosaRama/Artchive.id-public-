@@ -31,9 +31,10 @@ function ThemesCuratorCard(props) {
             <Col>
               <h2>{curatorName}</h2>
             </Col>
-            <Col className={descriptionClass}>
-              <p>{description}</p>
-            </Col>
+            <Col
+              className={descriptionClass}
+              dangerouslySetInnerHTML={{ __html: description }}
+            ></Col>
             {description.length >
               (width > 1024 ? 1000 : width > 768 ? 600 : width > 500 && 250) && (
               <Col className={s.more} onClick={handleExpand}>
