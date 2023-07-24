@@ -39,7 +39,7 @@ function ThemesContentsAuctionDetailsOverview() {
     queryString: "",
     auctionId: auctionId,
   });
-  console.log(auctionItems);
+
   // #endregion
 
   // #region Handle Scroll
