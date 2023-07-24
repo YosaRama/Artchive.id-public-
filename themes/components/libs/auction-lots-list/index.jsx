@@ -7,12 +7,12 @@ import { useRouter } from "next/router";
 // Helper
 import priceFormatter from "app/helpers/priceFormatter";
 import stringCapitalize from "app/helpers/capitalize";
+import ThemesButton from "../button";
 
 // Styles
 import s from "./index.module.scss";
 
 // Icons
-import ThemesButton from "../button";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 
@@ -106,7 +106,7 @@ function ThemesAuctionLotsList(props) {
                 <Col>
                   <p className={s.description}>{artworkDetails?.description}</p>
                   <p>{`${artworkDetails?.width} x ${artworkDetails?.height} cm`}</p>
-                  <p>{stringCapitalize(artworkDetails?.material.replace(/_/g, " "))}</p>
+                  <p>{stringCapitalize(artworkDetails?.material?.replace(/_/g, " "))}</p>
                 </Col>
               )}
 

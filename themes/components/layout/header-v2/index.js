@@ -33,7 +33,6 @@ function ThemesHeader() {
       router.pathname !== "/auction/[id]" &&
       router.pathname !== "/auction/[id]/details" &&
       router.pathname !== "/auction/[id]/lots" &&
-      router.pathname !== "/auction/[id]/lots/[lotId]" &&
       router.pathname !== "/about" ? (
         <>
           <motion.div variants={fadeTopToBottom} initial="hidden" animate="visible" exit="exit">
@@ -45,11 +44,17 @@ function ThemesHeader() {
           </motion.div>
         </>
       ) : (
-        <HideOn inverse={true} atHeight height={150}>
-          <motion.div variants={fadeTopToBottom} initial="hidden" animate="visible" exit="exit">
-            {router.pathname.startsWith("/auction/[id]") ? "" : <ThemesHeaderItem />}
-          </motion.div>
-        </HideOn>
+        router.pathname !== "/auction/[id]/lots/[lotId]" && (
+          <HideOn inverse={true} atHeight height={150}>
+            <motion.div variants={fadeTopToBottom} initial="hidden" animate="visible" exit="exit">
+              {router.pathname.startsWith("/auction/[id]") ? (
+                <ThemesAuctionHeaderItem />
+              ) : (
+                <ThemesHeaderItem />
+              )}
+            </motion.div>
+          </HideOn>
+        )
       )}
 
       <ThemesNavbarDrawer visible={openMenu} onClose={() => setOpenMenu(false)} />

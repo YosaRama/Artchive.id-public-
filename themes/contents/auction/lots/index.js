@@ -224,8 +224,8 @@ function ThemesContentsAuctionDetailsLots() {
                     >
                       <ThemesAuctionLotsList
                         grid={windowWidth > 768 ? isGridView : true}
-                        artworkDetails={item.artwork_details}
-                        auctionDetails={item.auction_details}
+                        artworkDetails={item?.artwork_details}
+                        auctionDetails={item?.auction_details}
                         auctionData={auctionData}
                         handleVisible={() => {
                           setIsVisible(true);
