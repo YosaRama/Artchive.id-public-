@@ -14,6 +14,7 @@ import ThemesHeadline from "themes/components/libs/headline";
 
 // Data Hook
 import { useAuction } from "app/hooks/auction";
+import { useAuctionItems } from "app/hooks/auction/item";
 import { auctionList } from "app/database/dummy/auction-list";
 
 // Helpers
@@ -25,9 +26,20 @@ import s from "./index.module.scss";
 function ThemesContentsAuctionDetailsOverview() {
   const { width } = useWindowSize();
   const router = useRouter();
+  const { id: auctionId } = router.query;
 
   // #region Auction Data
-  const { data: auctionData, loading } = useAuction({ singleId: router.query.id });
+  const { data: auctionData, loading: auctionDataLoading } = useAuction({
+    singleId: auctionId,
+  });
+  // #endregion
+
+  // #region Auction Data
+  const { data: auctionItems, loading: auctionItemsLoading } = useAuctionItems({
+    queryString: "",
+    auctionId: auctionId,
+  });
+  console.log(auctionItems);
   // #endregion
 
   // #region Handle Scroll
@@ -96,6 +108,7 @@ function ThemesContentsAuctionDetailsOverview() {
                       shape="circle"
                       icon={<LeftOutlined />}
                       onClick={handlePrev}
+                      disabled={auctionItems?.length <= 3}
                     />
                   </Col>
                 ) : (
@@ -104,7 +117,7 @@ function ThemesContentsAuctionDetailsOverview() {
                 <Col span={width > 1024 ? 22 : 24} className={s.carousel}>
                   <Carousel
                     ref={carouselRef}
-                    autoplay={auctionList[0].overview.auction_img.length <= 3 ? false : true}
+                    autoplay={true}
                     dots={false}
                     slidesToShow={3}
                     slidesToScroll={1}
@@ -134,13 +147,21 @@ function ThemesContentsAuctionDetailsOverview() {
                       },
                     ]}
                   >
-                    {auctionList[0].overview.auction_img.map((item, index) => {
+                    {auctionItems?.map((item, index) => {
                       return (
-                        <>
-                          <Col key={index} className={s.sliderItem}>
-                            <img src={`${process.env.NEXT_PUBLIC_S3_URL}/${item.url}`} alt="" />
-                          </Col>
-                        </>
+                        <Col
+                          key={index}
+                          className={s.sliderItem}
+                          onClick={() =>
+                            router.push(`/auction/${auctionId}/lots/${item?.auction_details?.id}`)
+                          }
+                        >
+                          <Image
+                            preview={false}
+                            src={`${process.env.NEXT_PUBLIC_S3_URL}/${item.artwork_details?.media_cover?.url}`}
+                            alt=""
+                          ></Image>
+                        </Col>
                       );
                     })}
                   </Carousel>
@@ -152,6 +173,7 @@ function ThemesContentsAuctionDetailsOverview() {
                       shape="circle"
                       icon={<RightOutlined />}
                       onClick={handleNext}
+                      disabled={auctionItems?.length <= 3}
                     />
                   </Col>
                 ) : (
