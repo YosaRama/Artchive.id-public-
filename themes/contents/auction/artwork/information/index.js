@@ -25,6 +25,10 @@ function ThemesContentsAuctionArtworkDetails() {
   const { width } = useWindowSize();
   // #region timeline
   const timeZone = moment.tz.guess();
+  const zone = moment().format("ZZ");
+  const IndonesiaTimeZone =
+    zone === "+0700" ? "WIB" : zone === "+0800" ? "WITA" : zone === "+0900" ? "WIT" : "";
+
   // #endregion
 
   // #region Data Parse
@@ -34,105 +38,15 @@ function ThemesContentsAuctionArtworkDetails() {
   const auctionDetails = lotDetails?.auction_details;
 
   const { data: lotHighlightData } = useAuctionItems({ auctionId: auctionId, queryString: "" });
-  console.log("lotHighlightData", lotHighlightData);
 
   const handleHighlight = (selectedLotId) => {
     router.push(`/auction/${auctionId}/lots/${selectedLotId}`);
   };
 
-  //? ============== Price Incremental ============= ?//
-  const estimationBid = parseInt(auctionDetails?.end_estimation);
-  const startBid = parseInt(auctionDetails?.initial_price);
-
-  const [price, setPrice] = useState(startBid);
-  const [limit, setLimit] = useState(price);
-  const [priceStep, setPriceStep] = useState(auctionDetails?.step);
-  const handleDecrement = () => {
-    if (price > startBid) {
-      setPrice((prevPrice) => prevPrice - parseInt(priceStep));
-    }
-  };
-  const handleIncrement = () => {
-    if (price < estimationBid) {
-      setPrice((prevPrice) => prevPrice + parseInt(priceStep));
-    }
-  };
-  // * ====================================== * //
-
-  //? ============== Place Bid Handle ============= ?//
-  const [logsHistory, setLogsHistory] = useState([]);
-  const session = useSession();
-
-  const handleBid = () => {
-    const newLog = {
-      user_ref: session.data.user.full_name,
-      created_at: new Date().toISOString(), // or use the desired format for the date
-      bid_price: `${price}`, // assuming `price` is the current bid price
-    };
-
-    setLogsHistory((prevLogs) => [...prevLogs, newLog]);
-    setPrice(price);
-    setLimit(price);
-  };
-  const isCurrentPriceMatch = logsHistory.some((log) => log.bid_price === price.toString());
-
-  // Sort the logs in descending order based on index
-  const sortedLogs = [...logsHistory].sort(
-    (a, b) => logsHistory.indexOf(b) - logsHistory.indexOf(a)
-  );
-
-  // Get the latest bid price
-  const latestBidPrice = sortedLogs[0]?.bid_price;
-  // * ====================================== * //
-
-  //? ============== Bid History Column ============= ?//
-  const columns = [
-    {
-      title: "Date",
-      dataIndex: "created_at",
-      key: "created_at",
-      render: (text) => {
-        //? ============== Timer ============= ?//
-        const createdTime = moment.tz(text, timeZone); // Example created time
-        const currentTime = moment(); // Example current time
-
-        const duration = moment.duration(currentTime.diff(createdTime));
-        const timePassed = formatTimePassed(duration);
-
-        function formatTimePassed(duration) {
-          const seconds = duration.asSeconds();
-
-          if (seconds < 60) {
-            return `${Math.floor(seconds)} seconds ago`;
-          } else if (seconds < 3600) {
-            return `${Math.floor(seconds / 60)} minutes ago`;
-          } else if (seconds < 86400) {
-            return `${Math.floor(seconds / 3600)} hours ago`;
-          } else {
-            return `${Math.floor(seconds / 86400)} days ago`;
-          }
-        }
-        // * ====================================== * //
-        return <p>{timePassed}</p>;
-      },
-    },
-    {
-      title: "Bid",
-      dataIndex: "bid_price",
-      key: "bid_price",
-      render: (text) => <p>IDR {priceFormatter(text, ",")}</p>,
-      sortOrder: "descend",
-      sorter: (a, b) => a.bid_price - b.bid_price,
-    },
-    {
-      title: "User",
-      dataIndex: "user_ref",
-      key: "user_ref",
-    },
-  ];
-
   const artistDescription =
-    "Through the absence of color, you delve into the realm of monochrome, allowing for a focus on contrast, texture, and form. Your artistic style embraces the power of simplicity, utilizing shades of black, white, and the countless nuances in between to create striking compositions. Whether you work with pencils, charcoal, ink, or explore digital mediums, your mastery of grayscale brings depth and a sense of mystery to your creations. Your artworks possess a timeless quality, evoking emotions and inviting viewers to interpret the imagery through their own lens. Within this black and white realm, you skillfully capture the interplay of light and shadow, emphasizing the details that might otherwise be overlooked. ";
+    artworkDetails?.artist?.biography === null
+      ? `No biography from ${artworkDetails?.artist?.full_name}.`
+      : artworkDetails?.artist?.biography;
 
   return (
     <>
@@ -175,32 +89,79 @@ function ThemesContentsAuctionArtworkDetails() {
               <Col style={{ marginBottom: "40px" }}>
                 <h2>Details</h2>
                 <Divider className={s.divider} />
-                <p style={{ fontWeight: "bold" }}>{artworkDetails?.title}</p>
-                <br />
-                <p>by {artworkDetails?.artist?.full_name}</p>
+                <h3 style={{ fontWeight: "bold", marginBottom: "5px" }}>{artworkDetails?.title}</h3>
+                <p>
+                  by <span style={{ fontWeight: "bold" }}>{artworkDetails?.artist?.full_name}</span>
+                </p>
+                <Col className={s.borderContainer}>
+                  <Row gutter={[16, 16]}>
+                    {artworkDetails?.genre?.map((item, index) => {
+                      return (
+                        <Col key={index} className={s.genreBorder}>
+                          <p style={{ fontSize: "14px", padding: "5px 5px" }}>{item.title}</p>
+                        </Col>
+                      );
+                    })}
+                  </Row>
+                </Col>
                 <br />
                 <p>
                   {artworkDetails?.width} x {artworkDetails?.height} cm
                 </p>
                 <p>{stringCapitalize(`${artworkDetails?.material}`.replace(/_/g, " "))}</p>
-                <p>Artist painted this in 1913</p>
-                {/* //TODO : Information of the artist// */}
+
                 <br />
-                <p style={{ fontWeight: "bold" }}>Description</p>
-                <br />
-                <p>{artworkDetails?.description} </p>
-                <br />
+                <p style={{ fontWeight: "bold", marginBottom: "5px" }}>Artwork Description</p>
+
+                <p dangerouslySetInnerHTML={{ __html: artworkDetails?.description }} />
+
                 <p>
                   Item Condition: <span>Good</span>
                 </p>
                 <br />
-                <p>
-                  Auction ends:{" "}
-                  <span style={{ fontWeight: "bold" }}>
-                    {moment.tz(artworkDetails?.stopped_at, timeZone).format("DD MMM YYYY, HH:mm")}{" "}
-                    WITA
-                  </span>
-                </p>
+                <p style={{ fontWeight: "bold", marginBottom: "5px" }}>Auction Description</p>
+
+                {width > 500 ? (
+                  <>
+                    {" "}
+                    <p>
+                      Auction ends on{" "}
+                      <span style={{ fontWeight: "bold" }}>
+                        {moment
+                          .tz(artworkDetails?.stopped_at, timeZone)
+                          .format("dddd, DD MMM YYYY, HH:mm")}{" "}
+                        {IndonesiaTimeZone}
+                      </span>
+                    </p>
+                    <p>
+                      Bid estimation :{" "}
+                      {priceFormatter(
+                        `IDR ${auctionDetails?.start_estimation} - IDR ${auctionDetails?.end_estimation} `,
+                        ","
+                      )}
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    {" "}
+                    <p>Auction ends on</p>
+                    <p>
+                      <span style={{ fontWeight: "bold" }}>
+                        {moment
+                          .tz(artworkDetails?.stopped_at, timeZone)
+                          .format("dddd, DD MMM YYYY, HH:mm")}{" "}
+                        {IndonesiaTimeZone}
+                      </span>
+                    </p>
+                    <p>Bid estimation : </p>
+                    <p>
+                      {priceFormatter(
+                        `IDR ${auctionDetails?.start_estimation} - IDR ${auctionDetails?.end_estimation} `,
+                        ","
+                      )}
+                    </p>
+                  </>
+                )}
               </Col>
               {
                 // #region About Artist Section
@@ -214,7 +175,7 @@ function ThemesContentsAuctionArtworkDetails() {
                           <Image src="/images/profile-3.jpg" alt="" preview={false} />
                         </Col>
                         {width <= 768 && (
-                          <Col style={{ margin: "auto 0px" }}>
+                          <Col style={{ margin: "auto 0px auto 10px" }}>
                             <h4 style={{ fontWeight: "bold" }}>
                               {artworkDetails?.artist?.full_name}
                             </h4>
@@ -231,7 +192,7 @@ function ThemesContentsAuctionArtworkDetails() {
                         </>
                       )}
                       <br />
-                      <p>{artistDescription}</p>
+                      <p dangerouslySetInnerHTML={{ __html: artistDescription }} />
                     </Col>
                   </Row>
                 </Col>
