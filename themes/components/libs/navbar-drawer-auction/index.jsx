@@ -28,11 +28,14 @@ function ThemesNavbarDrawerAuction(props) {
     <>
       <Drawer visible={visible} onClose={onClose} width={300} bodyStyle={{ padding: 0 }}>
         <section className={s.container}>
-          <Col span={24} className={s.bodyContainer}>
+          <Col span={24} style={{ height: data ? "70%" : "80%" }} className={s.bodyContainer}>
             <Col className={s.menuSection}>
-              <Col className={s.name}>
-                <h3>Welcome, {data?.user?.full_name}</h3>
-              </Col>
+              {data && (
+                <Col className={s.name}>
+                  <h3>Welcome, {data?.user?.full_name}</h3>
+                </Col>
+              )}
+
               <Menu>
                 {firstMenuList.map((item, index) => {
                   return (
@@ -47,12 +50,16 @@ function ThemesNavbarDrawerAuction(props) {
             </Col>
           </Col>
 
-          <Col span={24} className={s.footerContainer}>
+          <Col span={24} style={{ height: data ? "30%" : "20%" }} className={s.footerContainer}>
             <Col className={s.footerSection}>
-              <ThemesButton style={{ width: "100%" }} onClick={() => signOut()}>
-                Sign Out
-              </ThemesButton>
-              <Divider className={s.divider} />
+              {data && (
+                <>
+                  <ThemesButton style={{ width: "100%" }} onClick={() => signOut()}>
+                    Sign Out
+                  </ThemesButton>
+                  <Divider className={s.divider} />
+                </>
+              )}
 
               <p className={s.footerTitle}>Contact Us :</p>
               <Col>
