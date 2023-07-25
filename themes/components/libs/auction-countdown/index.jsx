@@ -91,22 +91,14 @@ function ThemesAuctionCountDown(props) {
             </>
           )}
 
-          {beforeEvent ? (
-            <Col span={24}>
-              <p>{`Mark your calendars and don't miss the chance to bid on your dream items at our upcoming auction event`}</p>
-              <p>{`Please check your inbox to make sure you receive our email.`}</p>
-            </Col>
-          ) : (
-            <Col span={24}>
-              <p>{`It's time to find your desired items and place your bids. Don't miss out on this exciting opportunity to secure your favorite items at competitive prices. Start exploring the available options and get ready to participate in the bidding action. Happy bidding!`}</p>
-            </Col>
-          )}
+          <Col span={24}>
+            <p>{`Mark your calendars and don't miss the chance to bid on your dream items at our upcoming auction event`}</p>
+            <p>{`Please check your inbox to make sure you receive our email.`}</p>
+          </Col>
 
-          {beforeEvent && (
-            <ThemesButton type={`primary + ${s.btn}`} onClick={() => router.push("/auction")}>
-              BACK TO AUCTION LIST
-            </ThemesButton>
-          )}
+          <ThemesButton type={`primary + ${s.btn}`} onClick={() => router.push("/auction")}>
+            BACK TO AUCTION LIST
+          </ThemesButton>
         </Col>
       </Col>
       <Col className={s.background}>

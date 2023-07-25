@@ -3,6 +3,7 @@ import { Col, Row, Image, Form, Input } from "antd";
 import { useRouter } from "next/router";
 import propTypes from "prop-types";
 import moment from "moment";
+import { useState } from "react";
 
 // Compoenent
 import ThemesButton from "../../button";
@@ -19,9 +20,10 @@ function ThemesAuctionLoginForm(props) {
   const router = useRouter();
   const { id: auctionId } = router.query;
   const { width } = useWindowSize();
-
+  const [loading, setLoading] = useState(false);
   const [form] = Form.useForm();
   const handleSubmit = () => {
+    setLoading(true);
     form
       .validateFields()
       .then(async (val) => {
@@ -52,6 +54,9 @@ function ThemesAuctionLoginForm(props) {
         }
       })
       .catch(() => {});
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
   };
 
   return (
@@ -92,12 +97,16 @@ function ThemesAuctionLoginForm(props) {
               </Form.Item>
 
               <Form.Item>
-                <ThemesButton type={`primary + ${s.registerBtn} `} onClick={handleSubmit}>
+                <ThemesButton
+                  type={`primary + ${s.registerBtn} `}
+                  onClick={handleSubmit}
+                  loading={loading}
+                >
                   LOGIN
                 </ThemesButton>
               </Form.Item>
             </Form>
-            <p className={s.closeBtn} onClick={() => router.push("/auction")}>
+            <p className={s.closeBtn} onClick={handleModalVisible}>
               No Thanks
             </p>
           </Col>

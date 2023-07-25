@@ -227,9 +227,7 @@ function ThemesContentsAuctionDetailsLots() {
                         artworkDetails={item?.artwork_details}
                         auctionDetails={item?.auction_details}
                         auctionData={auctionData}
-                        handleVisible={() => {
-                          setIsVisible(true);
-                        }}
+                        handleVisible={handleModal}
                       />
                     </Col>
                   );

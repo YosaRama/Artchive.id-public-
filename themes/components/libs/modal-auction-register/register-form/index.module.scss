@@ -21,6 +21,10 @@
     }
     .register {
       width: 100%;
+      .warn {
+        font-size: 12px;
+        color: colors.$fulvous;
+      }
     }
   }
 
