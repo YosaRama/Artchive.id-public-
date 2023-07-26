@@ -20,7 +20,7 @@ function PageArtworkOnAuctionDetails() {
 
 export default PageArtworkOnAuctionDetails;
 
-export const getStaticProps = async (ctx) => {
+export const getServerSideProps = async (ctx) => {
   const { query } = ctx;
   //? ============== Handle Session ============= ?//
   const session = await getSession(ctx);

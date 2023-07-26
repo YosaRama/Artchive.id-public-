@@ -37,6 +37,7 @@ function ThemesContentsAuctionDetailsLots() {
 
   // #region Auction Details
   const { data: auctionData, loading } = useAuction({ singleId: router.query.id });
+
   // #endregion
 
   // #region Auction Item Details
@@ -44,6 +45,7 @@ function ThemesContentsAuctionDetailsLots() {
     queryString: "",
     auctionId: router.query.id,
   });
+
   // #endregion
 
   // #region Timeline
@@ -59,9 +61,6 @@ function ThemesContentsAuctionDetailsLots() {
     setIsVisible(!isVisible);
   };
   //#endregion
-
-  // #endregion
-
   // #region Option Value
   const options = [
     {

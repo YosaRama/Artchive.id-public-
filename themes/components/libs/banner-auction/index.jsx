@@ -25,7 +25,7 @@ function ThemesBannerAuctionItem(props) {
   return (
     <Row className={s.bannerItem}>
       <Col span={24} className={s.description}>
-        <h1>{title}</h1>
+        <h2>{title}</h2>
         <p style={{ marginBottom: "15px" }}>
           {currentMoment < targetMoment
             ? `${remainingDays} day${remainingDays > 1 ? "s" : ""} before the lot closed`

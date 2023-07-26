@@ -2,13 +2,13 @@
 @use "/themes/styles/base/font-size";
 
 .bannerItem {
-  h1 {
+  h2 {
     font-size: 42px;
   }
   p {
     font-size: font-size.$paragraph;
   }
-  h1,
+  h2,
   h3 {
     color: colors.$white;
   }
@@ -31,6 +31,9 @@
 //? ============== Mobile View ============= ?//
 @media screen and (max-width: 500px) {
   .bannerItem {
+    h2 {
+      font-size: font-size.$heading-2 !important;
+    }
     padding-bottom: 0px;
   }
 }
