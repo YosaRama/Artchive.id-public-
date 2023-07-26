@@ -1,6 +1,12 @@
+// Libs
+import { getSession } from "next-auth/react";
+
 // Contents
 import ThemesContainerAuction from "themes/components/container/auction";
 import ThemesContentsAuctionArtwork from "themes/contents/auction/artwork";
+
+// Helper
+import auctionSession from "app/helpers/auctionSession";
 
 function PageArtworkOnAuctionDetails() {
   return (
@@ -14,4 +20,14 @@ function PageArtworkOnAuctionDetails() {
 
 export default PageArtworkOnAuctionDetails;
 
-//TODO : Handle dynamic pages
+export const getStaticProps = async (ctx) => {
+  const { query } = ctx;
+  //? ============== Handle Session ============= ?//
+  const session = await getSession(ctx);
+  const res = auctionSession({ session: session, data: session, id: query.id });
+  // * ====================================== * //
+  return {
+    props: res.props,
+    redirect: res.redirect,
+  };
+};

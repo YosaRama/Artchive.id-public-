@@ -23,23 +23,17 @@ function ThemesHeader() {
 
   return (
     <>
-      {router.pathname === "/auction/[id]/lots/[lotId]" ? (
-        <HideOn atHeight height={180}>
-          <motion.div variants={fadeTopToBottom} initial="hidden" animate="visible" exit="exit">
-            <ThemesAuctionHeaderItem />
-          </motion.div>
-        </HideOn>
-      ) : router.pathname !== "/" &&
-        router.pathname !== "/artwork" &&
-        router.pathname !== "/artist" &&
-        router.pathname !== "/exhibition" &&
-        router.pathname !== "/articles" &&
-        router.pathname !== "/genre" &&
-        router.pathname !== "/auction" &&
-        router.pathname !== "/auction/[id]" &&
-        router.pathname !== "/auction/[id]/details" &&
-        router.pathname !== "/auction/[id]/lots" &&
-        router.pathname !== "/about" ? (
+      {router.pathname !== "/" &&
+      router.pathname !== "/artwork" &&
+      router.pathname !== "/artist" &&
+      router.pathname !== "/exhibition" &&
+      router.pathname !== "/articles" &&
+      router.pathname !== "/genre" &&
+      router.pathname !== "/auction" &&
+      router.pathname !== "/auction/[id]" &&
+      router.pathname !== "/auction/[id]/details" &&
+      router.pathname !== "/auction/[id]/lots" &&
+      router.pathname !== "/about" ? (
         <>
           <div>
             {router.pathname.startsWith("/auction/[id]") ? (
