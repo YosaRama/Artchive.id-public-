@@ -43,10 +43,23 @@ function ThemesContentsAuctionArtworkDetails() {
     router.push(`/auction/${auctionId}/lots/${selectedLotId}`);
   };
 
+  //#region Handle artist data
+  // profile picture
+  const artistProfile = artworkDetails?.artist?.profile
+    ? `${process.env.NEXT_PUBLIC_S3_URL}/${artworkDetails?.artist?.profile?.url}`
+    : "/images/default-images.png";
+
+  // description
   const artistDescription =
     artworkDetails?.artist?.biography === null
       ? `No biography from ${artworkDetails?.artist?.full_name}.`
       : artworkDetails?.artist?.biography;
+
+  // handle go to profile page
+  const handleToArtistProfile = () => {
+    router.push(`/artist/${artworkDetails?.artist?.slug}`);
+  };
+  //#endregion
 
   return (
     <>
@@ -172,11 +185,21 @@ function ThemesContentsAuctionArtworkDetails() {
                     <Col span={width > 768 ? 6 : 24} className={s.image}>
                       <Row>
                         <Col xl={{ span: 8 }} lg={{ span: 8 }} sm={{ span: 4 }} xs={{ span: 8 }}>
-                          <Image src="/images/profile-3.jpg" alt="" preview={false} />
+                          <Image
+                            src={artistProfile}
+                            alt="artist-profile"
+                            preview={false}
+                            onClick={handleToArtistProfile}
+                            className={`${s.pointer}`}
+                          />
                         </Col>
                         {width <= 768 && (
                           <Col style={{ margin: "auto 0px auto 10px" }}>
-                            <h4 style={{ fontWeight: "bold" }}>
+                            <h4
+                              style={{ fontWeight: "bold" }}
+                              onClick={handleToArtistProfile}
+                              className={`${s.pointer}`}
+                            >
                               {artworkDetails?.artist?.full_name}
                             </h4>
                             <p>Artist</p>
@@ -187,7 +210,9 @@ function ThemesContentsAuctionArtworkDetails() {
                     <Col span={width > 768 ? 18 : 24}>
                       {width > 768 && (
                         <>
-                          <h4>{artworkDetails?.artist.full_name}</h4>
+                          <h4 onClick={handleToArtistProfile} className={`${s.pointer}`}>
+                            {artworkDetails?.artist.full_name}
+                          </h4>
                           <p>Artist</p>
                         </>
                       )}

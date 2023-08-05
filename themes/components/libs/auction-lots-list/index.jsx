@@ -38,11 +38,20 @@ function ThemesAuctionLotsList(props) {
   const session = sessionData?.user?.auction_id === auctionId;
   //#endregion
 
-  //#region User Current Bidn
+  //#region User Current Bid
   const matchingLogs = auctionLogs?.filter(
     (logEntry) => logEntry?.user?.phone_number === sessionData?.user?.phone_number
   );
   const currentUserBid = matchingLogs?.[0]?.bid_price;
+  //#endregion
+
+  //#region Lots Price
+  const lotPrice = priceFormatter(
+    `${
+      auctionDetails?.current_price ? auctionDetails?.current_price : auctionDetails?.initial_price
+    }`,
+    ","
+  );
   //#endregion
 
   const timeZone = moment.tz.guess();
@@ -71,10 +80,10 @@ function ThemesAuctionLotsList(props) {
 
   //#region Handle button
   const handleButton = () => {
-    if (!session) {
+    if (!session && liveLot) {
       handleVisible();
     } else {
-      if (!beforeLotStarted) router.push(`/auction/${auctionId}/lots/${auctionDetails?.id}`);
+      router.push(`/auction/${auctionId}/lots/${auctionDetails?.id}`);
     }
   };
   //#endregion
@@ -174,7 +183,7 @@ function ThemesAuctionLotsList(props) {
                   <h4>
                     {artworkDetails?.status === "PUBLISH" && "Current Bid: "}
                     {artworkDetails?.status === "SOLD" && "Final Bid: "}
-                    IDR {priceFormatter(`${auctionDetails?.current_price}`, ",")}
+                    IDR {lotPrice}
                   </h4>
                   {session && (
                     <Col>
@@ -222,7 +231,7 @@ function ThemesAuctionLotsList(props) {
                     <h3>
                       {artworkDetails?.status === "PUBLISH" && "Current Bid: "}
                       {artworkDetails?.status === "SOLD" && "Final Bid: "}
-                      IDR {priceFormatter(`${auctionDetails?.current_price}`, ",")}
+                      IDR {lotPrice}
                     </h3>
                   </Col>
 
