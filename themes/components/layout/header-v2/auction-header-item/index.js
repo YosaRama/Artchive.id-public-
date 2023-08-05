@@ -1,6 +1,7 @@
 // Libs
 import propTypes from "prop-types";
 import { Col, Layout, Row } from "antd";
+import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -20,11 +21,11 @@ import s from "./index.module.scss";
 import { MenuOutlined } from "@ant-design/icons";
 
 function ThemesAuctionHeaderItem(props) {
-  const { logo = "/images/logo-without-text.png", isTransparent = false } = props;
+  const { logo = false, isTransparent = false } = props;
   const { Header } = Layout;
   const router = useRouter();
-  const { width } = useWindowSize();
   const { id } = router.query;
+  const { width } = useWindowSize();
 
   // * ====================================== * //
 
@@ -36,51 +37,79 @@ function ThemesAuctionHeaderItem(props) {
     <>
       <Header className={`${s.container} ${isTransparent ? s.transparent : ""}`}>
         <ThemesContainerMain>
-          <Row
-            className={`${s.headerContainer} ${isTransparent ? s.transparent : ""}`}
-            justify={"space-between"}
-          >
-            <Col>
+          <Col className={s.headerContainer}>
+            <Row
+              className={`${s.header} ${isTransparent ? s.transparent : ""}`}
+              justify="space-between"
+            >
+              <Col
+                className={`${s.logo}`}
+                onClick={() => router.push("/")}
+                xl={{ span: 2 }}
+                lg={{ span: 3 }}
+                md={{ span: 4 }}
+                xs={{ span: 8 }}
+              >
+                <Image
+                  src={logo ? "/images/logo-text-white.png" : "/images/logo-without-text.png"}
+                  alt=""
+                  layout="fill"
+                  objectFit="contain"
+                  okButtonProps={{
+                    visible: false,
+                  }}
+                  cancelButtonProps={{
+                    visible: false,
+                  }}
+                />
+              </Col>
               {width > 500 && (
-                <Row gutter={[32, 32]}>
-                  <Col
-                    onClick={() => {
-                      router.push(`/auction/${id}`);
-                    }}
-                    className={router.asPath === `/auction/${id}` ? s.btnActive : s.btn}
+                <Col xl={{ span: 19 }} lg={{ span: 18 }} md={{ span: 17 }} xs={{ span: 13 }}>
+                  <Row
+                    gutter={[30, 30]}
+                    justify="start"
+                    align="middle"
+                    className={s.headerItemContainer}
                   >
-                    <h3>Overview</h3>
-                  </Col>
-                  <Col
-                    onClick={() => {
-                      router.push(`/auction/${id}/lots`);
-                    }}
-                    className={router.asPath === `/auction/${id}/lots` ? s.btnActive : s.btn}
-                  >
-                    <h3>Lots</h3>
-                  </Col>
-                  <Col
-                    onClick={() => {
-                      router.push(`/auction/${id}/details`);
-                    }}
-                    className={router.asPath === `/auction/${id}/details` ? s.btnActive : s.btn}
-                  >
-                    <h3>Auction Details</h3>
-                  </Col>
-                </Row>
+                    <Col
+                      onClick={() => {
+                        router.push(`/auction/${id}`);
+                      }}
+                      className={router.asPath === `/auction/${id}` ? s.btnActive : s.btn}
+                    >
+                      <h3>Overview</h3>
+                    </Col>
+                    <Col
+                      onClick={() => {
+                        router.push(`/auction/${id}/lots`);
+                      }}
+                      className={router.asPath === `/auction/${id}/lots` ? s.btnActive : s.btn}
+                    >
+                      <h3>Lots</h3>
+                    </Col>
+                    <Col
+                      onClick={() => {
+                        router.push(`/auction/${id}/details`);
+                      }}
+                      className={router.asPath === `/auction/${id}/details` ? s.btnActive : s.btn}
+                    >
+                      <h3>Auction Details</h3>
+                    </Col>
+                  </Row>
+                </Col>
               )}
-            </Col>
 
-            <Col className={s.iconHeader}>
-              <MenuOutlined
-                style={{ cursor: "pointer" }}
-                className={`${s.hamburger}`}
-                onClick={() => setOpenMenu(true)}
-              />
-            </Col>
-          </Row>
+              <Col className={s.iconHeader} span={2}>
+                <MenuOutlined
+                  style={{ cursor: "pointer" }}
+                  className={`${s.hamburger}`}
+                  onClick={() => setOpenMenu(true)}
+                />
+              </Col>
+            </Row>
+          </Col>
         </ThemesContainerMain>
-        <ThemesNavbarDrawerAuction visible={openMenu} onClose={() => setOpenMenu(false)} />
+        <ThemesNavbarDrawerAuction id={id} visible={openMenu} onClose={() => setOpenMenu(false)} />
       </Header>
     </>
   );

@@ -52,11 +52,16 @@
   justify-content: center !important;
   align-items: center !important;
   padding: 0px 8px;
+  cursor: pointer;
   img {
     height: 360px !important;
     width: 100% !important;
     object-fit: cover;
     margin: auto !important;
+    transition: 300ms all ease-in-out;
+    &:hover {
+      scale: 1.02;
+    }
   }
 }
 

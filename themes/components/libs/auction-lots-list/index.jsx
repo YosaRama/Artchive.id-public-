@@ -3,27 +3,55 @@ import propTypes from "prop-types";
 import moment from "moment-timezone";
 import { Col, Row, Image, Divider } from "antd";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
 
 // Helper
 import priceFormatter from "app/helpers/priceFormatter";
 import stringCapitalize from "app/helpers/capitalize";
 
+// Components
+import ThemesButton from "../button";
+
+// Hooks
+import { useAuctionItemsLogs } from "app/hooks/auction/logs";
+
 // Styles
 import s from "./index.module.scss";
-
-// Icons
-import ThemesButton from "../button";
-import { useEffect, useState } from "react";
-import { useSession } from "next-auth/react";
 
 function ThemesAuctionLotsList(props) {
   const { artworkDetails, auctionDetails, auctionData, grid, handleVisible } = props;
   const router = useRouter();
   const { id: auctionId } = router.query;
+  const itemId = auctionDetails.id;
+
+  //#region Handle session
+  const { data: auctionLogs } = useAuctionItemsLogs({
+    auctionId: auctionId,
+    itemId: itemId,
+    queryString: "",
+  });
+  //#endregion
 
   //#region Handle session
   const { data: sessionData } = useSession();
   const session = sessionData?.user?.auction_id === auctionId;
+  //#endregion
+
+  //#region User Current Bid
+  const matchingLogs = auctionLogs?.filter(
+    (logEntry) => logEntry?.user?.phone_number === sessionData?.user?.phone_number
+  );
+  const currentUserBid = matchingLogs?.[0]?.bid_price;
+  //#endregion
+
+  //#region Lots Price
+  const lotPrice = priceFormatter(
+    `${
+      auctionDetails?.current_price ? auctionDetails?.current_price : auctionDetails?.initial_price
+    }`,
+    ","
+  );
   //#endregion
 
   const timeZone = moment.tz.guess();
@@ -31,6 +59,9 @@ function ThemesAuctionLotsList(props) {
   const beforeLotStarted = todayDate.isBefore(auctionDetails?.started_at);
   const afterLotClosed = todayDate.isAfter(auctionDetails?.stopped_at);
   const liveLot = todayDate.isBetween(auctionDetails?.started_at, auctionDetails?.stopped_at);
+  const zone = moment().format("ZZ");
+  const IndonesiaTimeZone =
+    zone === "+0700" ? "WIB" : zone === "+0800" ? "WITA" : zone === "+0900" ? "WIT" : "";
 
   //#region Handle button content
   const [buttonContent, setButtonContent] = useState("");
@@ -49,10 +80,10 @@ function ThemesAuctionLotsList(props) {
 
   //#region Handle button
   const handleButton = () => {
-    if (!session) {
+    if (!session && liveLot) {
       handleVisible();
     } else {
-      if (!beforeLotStarted) router.push(`/auction/${auctionId}/lots/${auctionDetails?.id}`);
+      router.push(`/auction/${auctionId}/lots/${auctionDetails?.id}`);
     }
   };
   //#endregion
@@ -106,12 +137,12 @@ function ThemesAuctionLotsList(props) {
                 <Col>
                   <p className={s.description}>{artworkDetails?.description}</p>
                   <p>{`${artworkDetails?.width} x ${artworkDetails?.height} cm`}</p>
-                  <p>{stringCapitalize(artworkDetails?.material.replace(/_/g, " "))}</p>
+                  <p>{stringCapitalize(artworkDetails?.material?.replace(/_/g, " "))}</p>
                 </Col>
               )}
 
               {grid ? (
-                <Col>
+                <Col style={{ fontWeight: "bold" }}>
                   <>
                     <p>
                       {moment.tz(auctionDetails?.started_at, timeZone).format("DD MMMM")} -{" "}
@@ -120,21 +151,21 @@ function ThemesAuctionLotsList(props) {
                   </>
                 </Col>
               ) : (
-                <Col>
+                <Col style={{ fontWeight: "bold" }}>
                   <>
                     <p>
                       Open:{" "}
                       {moment
                         .tz(auctionDetails?.started_at, timeZone)
                         .format("DD MMMM YYYY | HH:mm")}{" "}
-                      WITA
+                      {IndonesiaTimeZone}
                     </p>
                     <p>
                       Close:{" "}
                       {moment
                         .tz(auctionDetails?.stopped_at, timeZone)
                         .format("DD MMMM YYYY | HH:mm")}{" "}
-                      WITA
+                      {IndonesiaTimeZone}
                     </p>
                   </>
                 </Col>
@@ -152,11 +183,14 @@ function ThemesAuctionLotsList(props) {
                   <h4>
                     {artworkDetails?.status === "PUBLISH" && "Current Bid: "}
                     {artworkDetails?.status === "SOLD" && "Final Bid: "}
-                    IDR {priceFormatter(auctionDetails?.initial_price, ",")}
+                    IDR {lotPrice}
                   </h4>
                   {session && (
                     <Col>
-                      <p style={{ fontWeight: "bold" }}>Your Bid: IDR -</p>
+                      <p style={{ fontWeight: "bold" }}>
+                        Your Bid: IDR{" "}
+                        {currentUserBid ? priceFormatter(`${currentUserBid}`, ",") : "-"}
+                      </p>
                     </Col>
                   )}
                 </Col>
@@ -197,13 +231,16 @@ function ThemesAuctionLotsList(props) {
                     <h3>
                       {artworkDetails?.status === "PUBLISH" && "Current Bid: "}
                       {artworkDetails?.status === "SOLD" && "Final Bid: "}
-                      IDR {priceFormatter(auctionDetails?.initial_price, ",")}
+                      IDR {lotPrice}
                     </h3>
                   </Col>
 
                   {session && (
                     <Col>
-                      <h4 style={{ fontWeight: "bold" }}>Your Bid: IDR -</h4>
+                      <h4 style={{ fontWeight: "bold" }}>
+                        Your Bid: IDR{" "}
+                        {currentUserBid ? priceFormatter(`${currentUserBid}`, ",") : "-"}
+                      </h4>
                     </Col>
                   )}
                 </>

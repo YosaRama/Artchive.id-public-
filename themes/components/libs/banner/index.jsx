@@ -31,7 +31,7 @@ function ThemesBanner(props) {
       </Col>
       <Col className={s.headerContainer}>
         {router.pathname.startsWith("/auction/[id]") ? (
-          <ThemesAuctionHeaderItem isTransparent={true} />
+          <ThemesAuctionHeaderItem isTransparent={true} logo={true} />
         ) : (
           <ThemesHeaderItem isTransparent={true} logo="/images/logo-text-white.png" />
         )}

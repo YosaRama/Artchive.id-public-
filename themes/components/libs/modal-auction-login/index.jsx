@@ -37,12 +37,32 @@ function ThemesModalAuctionLogin(props) {
   const eventStatus = beforeEvent ? "BEFORE" : inEvent ? "LIVE" : "AFTER";
   // #endregion
 
+  const [loading, setLoading] = useState(false);
+
   // #region Handle Modal
   const [loginModal, setLoginModal] = useState("login");
 
+  const handleBack = () => {
+    setLoginModal("login");
+  };
+
+  const handleCloseModal = () => {
+    if (beforeEvent) {
+      router.push("/auction");
+    } else
+      setTimeout(() => {
+        handleModal();
+        setLoginModal("login");
+      }, 100);
+  };
+
   const handleRegister = () => {
     if (beforeEvent) {
+      setLoading(true);
       setLoginModal("countdown");
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
     }
   };
   const handleVerify = () => {
@@ -65,9 +85,7 @@ function ThemesModalAuctionLogin(props) {
             <CloseOutlined />
           </p>
         }
-        onCancel={() => {
-          router.push("/auction");
-        }}
+        onCancel={handleCloseModal}
         visible={visible}
         width={1000}
         className={s.modal}
@@ -81,12 +99,18 @@ function ThemesModalAuctionLogin(props) {
         {loginModal === "login" && (
           <ThemesAuctionLoginForm
             handleModalStage={setLoginModal}
-            handleModalVisible={handleModal}
+            handleModalVisible={handleCloseModal}
             eventStatus={eventStatus}
           />
         )}
         {loginModal === "verify" && <ThemesAuctionVerifyForm onClick={handleVerify} />}
-        {loginModal === "register" && <ThemesAuctionRegisterForm onClick={handleRegister} />}
+        {loginModal === "register" && (
+          <ThemesAuctionRegisterForm
+            onClick={handleRegister}
+            handleBack={handleBack}
+            loading={loading}
+          />
+        )}
         {loginModal === "countdown" && (
           <ThemesAuctionCountDown startDate={auctionData.start_date} />
         )}

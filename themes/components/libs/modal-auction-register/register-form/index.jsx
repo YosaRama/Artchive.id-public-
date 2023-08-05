@@ -2,6 +2,7 @@
 import { Col, Row, Image, Form, Input } from "antd";
 import propTypes from "prop-types";
 import { useRouter } from "next/router";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
 
 // Compoenent
 import ThemesButton from "../../button";
@@ -13,7 +14,7 @@ import { useWindowSize } from "app/helpers/useWindowSize";
 import s from "./index.module.scss";
 
 function ThemesAuctionRegisterForm(props) {
-  const { onClick } = props;
+  const { onClick, handleBack, loading } = props;
   const router = useRouter();
   const { width } = useWindowSize();
 
@@ -30,6 +31,10 @@ function ThemesAuctionRegisterForm(props) {
           <Col className={s.title}>
             <h3>REGISTER</h3>
           </Col>
+          <p className={s.warn}>
+            <ExclamationCircleOutlined /> Not registered for the auction? Fill the form below to
+            sign up.
+          </p>
           <Form
             name="basic"
             layout="vertical"
@@ -80,15 +85,19 @@ function ThemesAuctionRegisterForm(props) {
             </Form.Item>
 
             <Form.Item>
-              <ThemesButton type={`primary + ${s.registerBtn} `} onClick={onClick}>
+              <ThemesButton
+                type={`primary + ${s.registerBtn} `}
+                onClick={onClick}
+                loading={loading}
+              >
                 REGISTER
               </ThemesButton>
             </Form.Item>
 
             <Form.Item>
-              <p className={s.closeBtn} onClick={() => router.push("/auction")}>
-                No Thanks
-              </p>{" "}
+              <p className={s.closeBtn} onClick={handleBack}>
+                Back to Login
+              </p>
             </Form.Item>
           </Form>
         </Col>
@@ -100,6 +109,8 @@ function ThemesAuctionRegisterForm(props) {
 
 propTypes.ThemesAuctionRegisterForm = {
   onClick: propTypes.any,
+  handleBack: propTypes.func,
+  loading: propTypes.any,
 };
 
 export default ThemesAuctionRegisterForm;

@@ -27,11 +27,11 @@ export const fadeTopToBottom = {
 };
 
 export const fadingBottomToTop = {
-  hidden: { opacity: 0, y: 5 },
+  hidden: { opacity: 1, y: 0 },
   visible: {
-    opacity: 1,
-    y: 0,
-    transition: { ease: "easeInOut", delay: 0.3, duration: 0.4 },
+    opacity: 0,
+    y: -10,
+    transition: { ease: "easeInOut", delay: 0.3, duration: 0.4, when: "beforeChildren" },
   },
 };
 

@@ -10,21 +10,22 @@ import s from "./index.module.scss";
 
 function ThemesBannerAuctionItem(props) {
   const { title, startDate, endDate, placeName } = props;
-  const router = useRouter();
   const timeZone = moment.tz.guess();
-
   //? ============== Countdown Timer ============= ?//
   const targetMoment = moment.tz(endDate, timeZone);
   const currentMoment = moment.tz(timeZone);
   const duration = moment.duration(targetMoment.diff(currentMoment));
   const remainingDays = Math.floor(duration.asDays());
-  const remainingHours = duration.hours();
+  const zone = moment().format("ZZ");
+  const IndonesiaTimeZone =
+    zone === "+0700" ? "WIB" : zone === "+0800" ? "WITA" : zone === "+0900" ? "WIT" : "";
+
   // * ====================================== * //
 
   return (
     <Row className={s.bannerItem}>
       <Col span={24} className={s.description}>
-        <h1>{title}</h1>
+        <h2>{title}</h2>
         <p style={{ marginBottom: "15px" }}>
           {currentMoment < targetMoment
             ? `${remainingDays} day${remainingDays > 1 ? "s" : ""} before the lot closed`
@@ -32,7 +33,8 @@ function ThemesBannerAuctionItem(props) {
         </p>
 
         <p style={{ marginBottom: "0px" }}>
-          {moment.tz(startDate, timeZone).format("DD MMMM YYYY | HH:mm")} WITA | {placeName}
+          {moment.tz(startDate, timeZone).format("DD MMMM YYYY | HH:mm")} {IndonesiaTimeZone}
+          {placeName && `| {placeName}`}
         </p>
       </Col>
     </Row>
