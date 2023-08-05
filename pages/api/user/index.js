@@ -15,12 +15,20 @@ import { slugParse } from "app/helpers/slugParse";
 const apiHandler = nextConnect();
 const messageHead = "Users";
 
-// GET HANDLER
+//#region GET HANDLER
 apiHandler.get(async (req, res) => {
-  const { page, limit, role, email, fullName, client } = req.query;
+  const { page, limit, role, email, fullName, client, phone } = req.query;
   try {
-    const result = await GET_USER({ page, limit, role, email, fullName, client });
-    const total = await GET_TOTAL_USER({ role, email, fullName, client });
+    const result = await GET_USER({
+      page,
+      limit,
+      role,
+      email,
+      fullName,
+      client,
+      phoneNumber: phone,
+    });
+    const total = await GET_TOTAL_USER({ role, email, fullName, client, phoneNumber: phone });
 
     // Clean up Data
     delete result["password"];
@@ -48,6 +56,7 @@ apiHandler.get(async (req, res) => {
     });
   }
 });
+//#endregion
 
 // POST HANDLER
 apiHandler.post(async (req, res) => {

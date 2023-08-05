@@ -1,0 +1,125 @@
+@use "/themes/styles/base/colors";
+@use "/themes/styles/base/font-size";
+
+.container {
+  margin: 25px 0px;
+  padding: 30px 55px;
+  background-color: colors.$white;
+
+  height: 100%;
+  .img {
+    width: 100%;
+    height: 300px;
+    img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+  }
+  .description {
+    height: 100%;
+    h2 {
+      font-size: 24px;
+    }
+    .shortDescription {
+      height: 200px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      text-overflow: ellipsis;
+      // white-space: nowrap;
+      transition: height 0.3s ease;
+    }
+
+    .expanded {
+      height: auto !important;
+      cursor: pointer;
+      transition: height 0.3s ease;
+    }
+
+    .more {
+      justify-self: end;
+      text-decoration: underline;
+      font-weight: 700;
+      cursor: pointer;
+      color: colors.$smoky-black;
+      &:hover {
+        transition: all 300ms ease;
+        color: colors.$fulvous;
+      }
+    }
+  }
+}
+
+//? ============== Table Landscape View ============= ?//
+@media screen and (max-width: 1024px) {
+  .container {
+    padding: 30px;
+
+    .img {
+      height: 250px;
+      img {
+        height: 250px;
+      }
+    }
+    .description {
+      height: 100%;
+      h2 {
+        font-size: 24px;
+      }
+      .shortDescription {
+        height: 200px;
+      }
+    }
+  }
+}
+// * ====================================== * //
+
+//? ============== Table Potrait View ============= ?//
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 30px;
+
+    .img {
+      height: 200px;
+      img {
+        height: 200px;
+      }
+    }
+    .description {
+      height: 100%;
+      h2 {
+        font-size: 24px;
+      }
+      .shortDescription {
+        height: 90px;
+      }
+    }
+  }
+}
+// * ====================================== * //
+
+//? ==============Mobile View ============= ?//
+@media screen and (max-width: 500px) {
+  .container {
+    padding: 20px;
+    .curatorName {
+      margin: auto 0px;
+    }
+    .img {
+      height: 100px;
+      img {
+        height: 100px;
+      }
+    }
+    .description {
+      height: 100%;
+      h2 {
+        font-size: 24px;
+      }
+      .shortDescription {
+        height: 90px;
+      }
+    }
+  }
+}
+// * ====================================== * //

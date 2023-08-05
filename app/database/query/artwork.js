@@ -258,6 +258,51 @@ export const GET_ALL_ARTWORK_SLUG = () => {
   });
 };
 // ==================================
+export const GET_ARTWORK_BY_SKU = ({ sku }) => {
+  return prisma.artwork.findUnique({
+    where: {
+      sku: sku,
+    },
+    include: {
+      artist: {
+        select: {
+          id: true,
+          email: true,
+          full_name: true,
+          biography: true,
+          profile: {
+            select: {
+              id: true,
+              url: true,
+            },
+          },
+          signature: {
+            select: {
+              id: true,
+              url: true,
+            },
+          },
+          slug: true,
+        },
+      },
+      media_cover: { select: { id: true, url: true } },
+      media_gallery: { select: { id: true, url: true } },
+      certificate: {
+        select: { id: true, url: true },
+        orderBy: { id: "desc" },
+        where: {
+          type: "EDITION",
+        },
+      },
+      genre: {
+        select: {
+          id: true,
+          title: true,
+        },
+      },
+    },
+  });
+};
 
 export const GET_EXHIBITION_ARTWORK_DETAILS_BY_SLUG = ({ slug, exhibitionSlug }) => {
   return prisma.artwork.findUnique({

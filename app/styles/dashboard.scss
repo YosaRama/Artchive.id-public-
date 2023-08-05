@@ -104,10 +104,10 @@
   //? Artwork Exhibition Selection
   .AppArtworkExhibitionSelect {
     .ant-select-selector {
-      height: 100%;
+      height: 100% !important;
     }
     .ant-row-middle {
-      height: 100%;
+      height: 100% !important;
     }
   }
 }

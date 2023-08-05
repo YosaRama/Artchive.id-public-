@@ -23,7 +23,6 @@ function AppContentsTransactionDetails() {
 
   //? ============== Transaction Hook ============= ?//
   const { data: orderDetails, onEdit, loading } = useOrder({ singleId: router.query.id });
-  console.log("orderDetails", orderDetails);
   // * ====================================== * //
 
   //? ============== Handle Update ============= ?//

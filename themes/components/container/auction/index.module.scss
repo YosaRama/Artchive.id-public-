@@ -1,0 +1,35 @@
+.container {
+  min-height: 80vh;
+}
+
+.contentSection {
+  margin-left: -4.3%;
+}
+
+.navbarWrapper {
+  z-index: 2;
+}
+
+.navbar {
+  height: 100%;
+}
+
+.contentWrapper {
+  z-index: 1;
+}
+
+//? ============== Medium Laptop Mode (1366px) ============= ?//
+@media screen and (max-width: 1366px) {
+  .contentSection {
+    margin-left: 0;
+  }
+}
+// * ====================================== * //
+
+//? ============== Tablet Landscape Mode (1024px) ============= ?//
+@media screen and (max-width: 1024px) {
+  .mobileHidden {
+    display: none !important;
+  }
+}
+// * ====================================== * //

@@ -1,0 +1,15 @@
+@use "/themes/styles/base/font-size";
+@use "/themes/styles/base/colors";
+
+.bgWhite {
+  background: colors.$white;
+  padding: 50px 0px;
+}
+
+//? ============== Tablet Potrait View ============= ?//
+@media screen and (max-width: 768px) {
+  .bgWhite {
+    padding: 20px 0px;
+  }
+}
+// * ====================================== * //

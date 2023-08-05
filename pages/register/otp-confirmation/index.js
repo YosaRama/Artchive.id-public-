@@ -1,14 +1,10 @@
 // Components
-import Title from "antd/lib/skeleton/Title";
-import ThemesContentOtpConfirmation from "themes/contents/register/otp-confirmation";
+import ThemesContentRegisterOtpConfirmation from "themes/contents/register/otp-confirmation";
 
-function PageRegisterOtpConfirmation(props) {
+export default function PageLoginOtpConfirmation(props) {
   return (
     <>
-      <Title>Artchive.id OTP Confirmation</Title>
-      <ThemesContentOtpConfirmation />
+      <ThemesContentRegisterOtpConfirmation />
     </>
   );
 }
-
-export default PageRegisterOtpConfirmation;

@@ -26,7 +26,6 @@ function ThemesLayout(props) {
     <>
       <Layout>
         <Affix className={s.header}>
-          {/* <ThemesHeader /> */}
           <ThemesHeaderAutoShow />
         </Affix>
         <Content className={s.content} id="frontpage">

@@ -4,7 +4,7 @@ export function stringCapitalize(str) {
     splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
   }
 
-  return splitStr.join(" ");
+  return splitStr.join(" ").trim();
 }
 
 export default stringCapitalize;
