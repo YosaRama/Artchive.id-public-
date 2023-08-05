@@ -241,7 +241,7 @@ function ThemesContentsAuctionArtworkDetails() {
         }
       </Row>
 
-      {lotHighlightData && (
+      {lotHighlightData.length > 1 && (
         <Col className={s.highlightContainer}>
           <ThemesHeadline title="Auction Highlight" className={s.headline} />
           {width > 768 ? (
