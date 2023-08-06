@@ -30,12 +30,6 @@ function ThemesNavbarDrawerAuction(props) {
         <section className={s.container}>
           <Col span={24} style={{ height: data ? "70%" : "80%" }} className={s.bodyContainer}>
             <Col className={s.menuSection}>
-              {data && (
-                <Col className={s.name}>
-                  <h3>Welcome, {data?.user?.full_name}</h3>
-                </Col>
-              )}
-
               <Menu>
                 {firstMenuList.map((item, index) => {
                   return (
