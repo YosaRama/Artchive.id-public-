@@ -30,7 +30,7 @@ apiHandler.post(async (req, res) => {
   try {
     const dataPayload = {
       name: name,
-      organizer: organizer,
+      organizer: process.env.IS_STAGING === "true" ? "staging-artchive.id" : "artchive.id",
       start_date: start_date,
       end_date: end_date,
       description: description,
