@@ -39,11 +39,11 @@ function ThemesContentsAuctionDetails() {
         // #region Auction Details
         <Col className={s.detailsContainer}>
           <ThemesContainerMain>
-            <Col
+            {/* <Col
               style={{ margin: "0px 0px 40px" }}
               dangerouslySetInnerHTML={{ __html: auctionData?.description }}
-            />
-            <Divider className={s.divider} />
+            /> */}
+            {/* <Divider className={s.divider} /> */}
             <Col style={{ margin: "0px 0px 40px" }}>
               <h1>Visi</h1>
               <p dangerouslySetInnerHTML={{ __html: auctionData?.vision }} />
@@ -57,7 +57,7 @@ function ThemesContentsAuctionDetails() {
         </Col>
         // #endregion
       }
-      <ThemesContainerMain>
+      {/* <ThemesContainerMain>
         <Col className={s.curator}>
           <h1>Curatorial Statement</h1>
           {auctionList[0].curator.map((item, index) => {
@@ -72,7 +72,7 @@ function ThemesContentsAuctionDetails() {
             );
           })}
         </Col>
-      </ThemesContainerMain>
+      </ThemesContainerMain> */}
     </>
   );
 }

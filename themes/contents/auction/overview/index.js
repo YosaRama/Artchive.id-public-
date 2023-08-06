@@ -86,7 +86,7 @@ function ThemesContentsAuctionDetailsOverview() {
               </Col>
               <Col span={width >= 500 ? 12 : 24} className={s.videoDesc}>
                 <h1 style={{ fontSize: 32 }}>{auctionData?.name}</h1>
-                <p dangerouslySetInnerHTML={{ __html: auctionData?.description }} />
+                <div dangerouslySetInnerHTML={{ __html: auctionData?.description }} />
               </Col>
             </Row>
           </ThemesContainerMain>
@@ -187,29 +187,29 @@ function ThemesContentsAuctionDetailsOverview() {
       }
       {
         // #region Curator Section
-        <Col className={s.bgwhite}>
-          <ThemesContainerMain>
-            <ThemesHeadline title="Curators" className={s.headline} />
-            <Row gutter={width > 1024 ? [20, 20] : [10, 10]}>
-              {auctionList[0].curator.map((item, index) => {
-                return (
-                  <>
-                    <Col span={width > 500 ? 6 : 24} className={s.curatorContainer}>
-                      <Col span={width > 500 ? 24 : 9} className={s.imageCurator}>
-                        <Image src={item.img_url} alt="" className={s.img} preview={false} />
-                      </Col>
-                      <Col span={width > 500 ? 24 : 14} className={s.curatorDesc}>
-                        <h2>{item.name}</h2>
-                        <p>{item.position}</p>
-                      </Col>
-                    </Col>
-                  </>
-                );
-              })}
-            </Row>
-            {/* // * ====================================== * // */}
-          </ThemesContainerMain>
-        </Col>
+        // <Col className={s.bgwhite}>
+        //   <ThemesContainerMain>
+        //     <ThemesHeadline title="Curators" className={s.headline} />
+        //     <Row gutter={width > 1024 ? [20, 20] : [10, 10]}>
+        //       {auctionList[0].curator.map((item, index) => {
+        //         return (
+        //           <>
+        //             <Col span={width > 500 ? 6 : 24} className={s.curatorContainer}>
+        //               <Col span={width > 500 ? 24 : 9} className={s.imageCurator}>
+        //                 <Image src={item.img_url} alt="" className={s.img} preview={false} />
+        //               </Col>
+        //               <Col span={width > 500 ? 24 : 14} className={s.curatorDesc}>
+        //                 <h2>{item.name}</h2>
+        //                 <p>{item.position}</p>
+        //               </Col>
+        //             </Col>
+        //           </>
+        //         );
+        //       })}
+        //     </Row>
+        //     {/* // * ====================================== * // */}
+        //   </ThemesContainerMain>
+        // </Col>
         // #endregion
       }
     </>
