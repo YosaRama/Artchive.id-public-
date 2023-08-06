@@ -6,7 +6,11 @@ const apiHandler = nextConnect();
 
 apiHandler.get(async (req, res) => {
   try {
-    const result = await auctioo.get("/events");
+    const result = await auctioo.get(
+      `/events?organizer=${
+        process.env.IS_STAGING === "true" ? "staging-artchive.id" : "artchive.id"
+      }`
+    );
 
     if (!result.data.success) {
       throw new Error(result.data.message);
