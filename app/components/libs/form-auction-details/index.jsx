@@ -55,7 +55,6 @@ function AppFormAuctionDetails(props) {
         end_date: moment(value.auction_date[1]._d).format("YYYY-MM-DD"),
         mission: missionValue,
         name: value.title,
-        organizer: value.organized_by,
         start_date: moment(value.auction_date[0]._d).format("YYYY-MM-DD"),
         thumbnail: `${process.env.NEXT_PUBLIC_S3_URL}/${uploadImage?.url}`,
         vision: visionValue,
@@ -104,9 +103,6 @@ function AppFormAuctionDetails(props) {
         </Col>
         <Form.Item name={"auction_date"} label="Auction Date">
           <DatePicker.RangePicker />
-        </Form.Item>
-        <Form.Item name={"organized_by"} label="Organized By">
-          <Input placeholder="Input auction organizer name" />
         </Form.Item>
         <Col span={24} style={{ textAlign: "right" }}>
           <Button type="primary" onClick={handleSubmit}>
