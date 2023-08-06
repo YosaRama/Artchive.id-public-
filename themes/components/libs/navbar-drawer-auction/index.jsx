@@ -2,18 +2,19 @@
 import propTypes from "prop-types";
 import { Col, Divider, Drawer, Menu, Row } from "antd";
 import Link from "next/link";
-
-// Components
-import ThemeArtistSearchBox from "../artist-search-box";
+import { useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 
 // Styles
 import s from "./index.module.scss";
 
 // Icons
 import { InstagramOutlined, FacebookOutlined } from "@ant-design/icons";
+import ThemesButton from "../button";
 
 function ThemesNavbarDrawerAuction(props) {
   const { visible, onClose, id } = props;
+  const { data } = useSession();
 
   //? ============== Menu List ============= ?//
   const firstMenuList = [
@@ -22,14 +23,19 @@ function ThemesNavbarDrawerAuction(props) {
     { link: `/auction/${id}/details`, label: "AUCTION DETAILS" },
     { link: `/auction/${id}/`, label: "OVERVIEW" },
   ];
-
-  // * ====================================== *id
+  // * ====================================== *//
   return (
     <>
       <Drawer visible={visible} onClose={onClose} width={300} bodyStyle={{ padding: 0 }}>
         <section className={s.container}>
-          <Col span={24} className={s.bodyContainer}>
-            <section className={s.menuSection}>
+          <Col span={24} style={{ height: data ? "70%" : "80%" }} className={s.bodyContainer}>
+            <Col className={s.menuSection}>
+              {data && (
+                <Col className={s.name}>
+                  <h3>Welcome, {data?.user?.full_name}</h3>
+                </Col>
+              )}
+
               <Menu>
                 {firstMenuList.map((item, index) => {
                   return (
@@ -41,49 +47,56 @@ function ThemesNavbarDrawerAuction(props) {
                   );
                 })}
               </Menu>
-            </section>
+            </Col>
           </Col>
 
-          <Col span={24} className={s.footerContainer}>
-            <section className={s.footerSection}>
-              <div>
-                <p className={s.footerTitle}>Contact Us :</p>
+          <Col span={24} style={{ height: data ? "30%" : "20%" }} className={s.footerContainer}>
+            <Col className={s.footerSection}>
+              {data && (
+                <>
+                  <ThemesButton style={{ width: "100%" }} onClick={() => signOut()}>
+                    Sign Out
+                  </ThemesButton>
+                  <Divider className={s.divider} />
+                </>
+              )}
+
+              <p className={s.footerTitle}>Contact Us :</p>
+              <Col>
+                <a href="mailto:info@artchive.id">info@artchive.id</a>
+              </Col>
+              <Col>
+                <p>
+                  <a className={s.phone} href={`tel:${process.env.NEXT_PUBLIC_PHONE_NUMBER}`}>
+                    +62821-4566-3008
+                  </a>
+                </p>
+              </Col>
+              <Row>
                 <Col>
-                  <a href="mailto:info@artchive.id">info@artchive.id</a>
+                  <a
+                    href={"https://www.instagram.com/__artchive.id/"}
+                    target={"_blank"}
+                    rel="noreferrer"
+                  >
+                    <Col>
+                      <InstagramOutlined className={s.socialIcon} />
+                    </Col>
+                  </a>
                 </Col>
                 <Col>
-                  <p>
-                    <a className={s.phone} href={`tel:${process.env.NEXT_PUBLIC_PHONE_NUMBER}`}>
-                      +62821-4566-3008
-                    </a>
-                  </p>
+                  <a
+                    href={"https://www.facebook.com/artchive.id"}
+                    target={"_blank"}
+                    rel="noreferrer"
+                  >
+                    <Col>
+                      <FacebookOutlined className={s.socialIcon} />
+                    </Col>
+                  </a>
                 </Col>
-                <Row>
-                  <Col>
-                    <a
-                      href={"https://www.instagram.com/__artchive.id/"}
-                      target={"_blank"}
-                      rel="noreferrer"
-                    >
-                      <Col>
-                        <InstagramOutlined className={s.socialIcon} />
-                      </Col>
-                    </a>
-                  </Col>
-                  <Col>
-                    <a
-                      href={"https://www.facebook.com/artchive.id"}
-                      target={"_blank"}
-                      rel="noreferrer"
-                    >
-                      <Col>
-                        <FacebookOutlined className={s.socialIcon} />
-                      </Col>
-                    </a>
-                  </Col>
-                </Row>
-              </div>
-            </section>
+              </Row>
+            </Col>
           </Col>
         </section>
       </Drawer>
@@ -94,7 +107,7 @@ function ThemesNavbarDrawerAuction(props) {
 ThemesNavbarDrawerAuction.propTypes = {
   visible: propTypes.bool,
   onClose: propTypes.func,
-  slug: propTypes.string,
+  id: propTypes.string,
 };
 
 export default ThemesNavbarDrawerAuction;

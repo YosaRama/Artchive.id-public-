@@ -1,6 +1,10 @@
 @use "/themes/styles/base/font-size";
 @use "/themes/styles/base/colors";
 
+.pointer {
+  cursor: pointer;
+}
+
 .imageContainer {
   margin-bottom: 10px;
 }
@@ -21,6 +25,10 @@
   h2 {
     font-size: font-size.$heading-2;
   }
+  h3 {
+    font-size: font-size.$heading-3;
+    margin: 0px;
+  }
   h4 {
     font-size: font-size.$heading-4;
   }
@@ -32,6 +40,16 @@
     font-weight: bold;
     color: colors.$fulvous;
   }
+  .borderContainer {
+    margin: 5px;
+    .genreBorder {
+      background: colors.$fulvous;
+      color: colors.$white;
+      border-radius: 15px;
+      margin: 3px;
+    }
+  }
+
   .divider {
     background: GAINSBORO;
     margin: 20px 0px !important;

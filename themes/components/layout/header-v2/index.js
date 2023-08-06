@@ -8,7 +8,7 @@ import { HideOn } from "react-hide-on-scroll";
 import ThemesNavbarDrawer from "themes/components/libs/navbar-drawer";
 
 // Styles
-import { fadeTopToBottom } from "app/database/framer-motion";
+import { fadeTopToBottom, fadeBottomToTop } from "app/database/framer-motion";
 
 // Dummy
 import ThemesHeaderItem from "./header-item";
@@ -33,21 +33,24 @@ function ThemesHeader() {
       router.pathname !== "/auction/[id]" &&
       router.pathname !== "/auction/[id]/details" &&
       router.pathname !== "/auction/[id]/lots" &&
-      router.pathname !== "/auction/[id]/lots/[lotId]" &&
       router.pathname !== "/about" ? (
         <>
+          <div>
+            {router.pathname.startsWith("/auction/[id]") ? (
+              <ThemesAuctionHeaderItem />
+            ) : (
+              <ThemesHeaderItem />
+            )}
+          </div>
+        </>
+      ) : (
+        <HideOn inverse={true} atHeight height={150}>
           <motion.div variants={fadeTopToBottom} initial="hidden" animate="visible" exit="exit">
             {router.pathname.startsWith("/auction/[id]") ? (
               <ThemesAuctionHeaderItem />
             ) : (
               <ThemesHeaderItem />
             )}
-          </motion.div>
-        </>
-      ) : (
-        <HideOn inverse={true} atHeight height={150}>
-          <motion.div variants={fadeTopToBottom} initial="hidden" animate="visible" exit="exit">
-            {router.pathname.startsWith("/auction/[id]") ? "" : <ThemesHeaderItem />}
           </motion.div>
         </HideOn>
       )}

@@ -39,15 +39,18 @@ function ThemesContentsAuctionDetails() {
         // #region Auction Details
         <Col className={s.detailsContainer}>
           <ThemesContainerMain>
-            <Col style={{ margin: "0px 0px 40px" }}>{auctionData?.description}</Col>
+            <Col
+              style={{ margin: "0px 0px 40px" }}
+              dangerouslySetInnerHTML={{ __html: auctionData?.description }}
+            />
             <Divider className={s.divider} />
             <Col style={{ margin: "0px 0px 40px" }}>
               <h1>Visi</h1>
-              <p>{auctionData?.vision}</p>
+              <p dangerouslySetInnerHTML={{ __html: auctionData?.vision }} />
             </Col>
             <Col style={{ margin: "0px 0px 40px" }}>
               <h1>Misi</h1>
-              <p>{auctionData?.mission}</p>
+              <p dangerouslySetInnerHTML={{ __html: auctionData?.mission }} />
             </Col>
             <Divider style={{ margin: "0px" }} />
           </ThemesContainerMain>

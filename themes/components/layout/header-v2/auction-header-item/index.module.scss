@@ -12,101 +12,87 @@
 }
 
 .headerContainer {
+  z-index: 2;
+  position: absolute;
+  top: 0px;
+  padding: 0 !important;
   width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  &.transparent {
-    h3 {
-      color: colors.$white;
-      margin: 0px !important;
+
+  .header {
+    padding: 0px 0px;
+    height: 64px !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: colors.$smoky-black !important;
+    width: 100%;
+
+    .btn {
+      cursor: pointer;
+      h3 {
+        margin: 0px !important;
+
+        color: colors.$smoky-black !important;
+        &:hover {
+          color: colors.$fulvous !important;
+          transition: all 300ms ease;
+        }
+      }
+    }
+    .btnActive {
+      h3 {
+        color: colors.$smoky-black !important;
+        text-decoration: underline;
+        margin: 0px !important;
+      }
     }
     .iconHeader {
-      color: colors.$white;
-      a {
-        color: colors.$white !important;
-      }
-    }
-  }
-  h3 {
-    color: colors.$smoky-black;
-    margin: 0px !important;
-  }
-  .btn {
-    cursor: pointer;
-    :hover {
-      color: colors.$fulvous;
-      transition: all 300ms ease;
-    }
-  }
-
-  .btnActive {
-    h3 {
-      color: colors.$white !important;
-      text-decoration: underline;
-      margin: 0px !important;
-    }
-  }
-  .iconHeader {
-    width: auto;
-    display: flex;
-    align-items: center;
-    color: colors.$smoky-black;
-
-    .nameContainer {
-      height: 30px;
+      padding: 0px !important;
       text-align: right;
-      margin: 0px 12px;
-      width: auto;
-      transition: all 300ms ease;
-      cursor: pointer;
-      &:hover {
-        width: auto;
-        color: colors.$fulvous;
-        transition: all 300ms ease;
+    }
+
+    &.transparent {
+      .iconHeader {
+        padding: 0px !important;
+        text-align: right;
+        color: #fff;
+        a {
+          color: #fff !important;
+        }
+      }
+      .headerItemContainer {
+        .btn {
+          margin: 0px !important;
+
+          cursor: pointer;
+          h3 {
+            color: colors.$white !important;
+            &:hover {
+              color: colors.$fulvous !important;
+              transition: all 300ms ease;
+            }
+          }
+        }
+        .btnActive {
+          h3 {
+            color: colors.$white !important;
+            text-decoration: underline;
+            margin: 0px !important;
+          }
+        }
       }
     }
 
-    .userName {
-      margin: 0px;
-      padding: 0px;
-      width: auto;
-      height: 15px;
-      line-height: 15px;
-      font-weight: font-weight.$bold;
-      font-size: font-size.$paragraph;
-      white-space: nowrap;
-      overflow: hidden;
-    }
-
-    .userRole {
-      margin: 4px 0px 0px 0px;
-      padding: 0px;
-      width: auto;
-      height: 10px;
-      line-height: 10px;
-      color: colors.$fulvous;
-      font-size: 10px;
-    }
-
-    a {
-      font-weight: font-weight.$bold;
-      color: colors.$smoky-black !important;
-      margin: 0px 10px;
-      font-size: font-size.$paragraph;
-      transition: all 300ms ease;
+    .logo {
+      width: 120px;
+      height: 100%;
       cursor: pointer;
-      &:hover {
-        transition: all 300ms ease;
-        color: colors.$fulvous !important;
-        text-decoration: underline;
-      }
     }
   }
+}
 
-  .hamburger {
-    font-size: font-size.$heading-4;
-  }
+.hamburger {
+  font-size: font-size.$heading-4;
 }
 
 //? ============== Mobile Mode ============= ?//
@@ -120,48 +106,16 @@
       padding: 0px 0px !important;
     }
   }
-
+  .logo {
+    width: 80px;
+    height: 100%;
+    cursor: pointer;
+  }
   .iconHeader {
     width: auto;
     display: flex;
     align-items: center;
     height: 64px !important;
-    .nameContainer {
-      height: 30px;
-      text-align: right;
-      margin: 0px 12px;
-      width: auto;
-      transition: all 300ms ease;
-      cursor: pointer;
-      &:hover {
-        width: auto;
-        color: colors.$fulvous;
-        transition: all 300ms ease;
-      }
-    }
-
-    .userName {
-      margin: 0px;
-      padding: 0px;
-      width: auto;
-      height: 15px;
-      line-height: 15px;
-      font-weight: font-weight.$bold;
-      font-size: font-size.$paragraph;
-      white-space: nowrap;
-      overflow: hidden;
-      color: colors.$smoky-black;
-    }
-
-    .userRole {
-      margin: 4px 0px 0px 0px;
-      padding: 0px;
-      width: auto;
-      height: 10px;
-      line-height: 10px;
-      color: colors.$fulvous;
-      font-size: 10px;
-    }
 
     a {
       font-weight: font-weight.$bold;

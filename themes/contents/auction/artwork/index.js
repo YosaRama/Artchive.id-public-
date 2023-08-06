@@ -45,8 +45,6 @@ function ThemesContentsAuctionDetails() {
           startingBid={bidDetails?.initial_price}
           step={bidDetails?.step}
           sticky={true}
-          // status={items?.status}
-          // bidHistory={items?.logs}
         />
       }
     </>
