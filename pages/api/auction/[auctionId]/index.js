@@ -22,13 +22,12 @@ apiHandler.get(async (req, res) => {
 
 apiHandler.put(async (req, res) => {
   const { auctionId } = req.query;
-  const { name, organizer, start_date, end_date, description, mission, vision, thumbnail } =
-    req.body;
+  const { name, start_date, end_date, description, mission, vision, thumbnail } = req.body;
 
   try {
     const dataPayload = {
       name: name,
-      organizer: organizer,
+      organizer: process.env.IS_STAGING === "true" ? "staging-artchive.id" : "artchive.id",
       start_date: start_date,
       end_date: end_date,
       description: description,
