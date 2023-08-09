@@ -9,7 +9,7 @@ import moment from "moment-timezone";
 import s from "./index.module.scss";
 
 function ThemesBannerAuctionItem(props) {
-  const { title, startDate, endDate, placeName } = props;
+  const { title, startDate, endDate, placeName, loading } = props;
   const timeZone = moment.tz.guess();
   //? ============== Countdown Timer ============= ?//
   const targetMoment = moment.tz(endDate, timeZone);
@@ -23,21 +23,23 @@ function ThemesBannerAuctionItem(props) {
   // * ====================================== * //
 
   return (
-    <Row className={s.bannerItem}>
-      <Col span={24} className={s.description}>
-        <h2>{title}</h2>
-        <p style={{ marginBottom: "15px" }}>
-          {currentMoment < targetMoment
-            ? `${remainingDays} day${remainingDays > 1 ? "s" : ""} before the lot closed`
-            : "This auction already ended"}
-        </p>
+    loading && (
+      <Row className={s.bannerItem}>
+        <Col span={24} className={s.description}>
+          <h2>{title}</h2>
+          <p style={{ marginBottom: "15px" }}>
+            {currentMoment < targetMoment
+              ? `${remainingDays} day${remainingDays > 1 ? "s" : ""} before the lot closed`
+              : "This auction already ended"}
+          </p>
 
-        <p style={{ marginBottom: "0px" }}>
-          {moment.tz(startDate, timeZone).format("DD MMMM YYYY | HH:mm")} {IndonesiaTimeZone}
-          {placeName && `| {placeName}`}
-        </p>
-      </Col>
-    </Row>
+          <p style={{ marginBottom: "0px" }}>
+            {moment.tz(startDate, timeZone).format("DD MMMM YYYY | HH:mm")} {IndonesiaTimeZone}
+            {placeName && `| {placeName}`}
+          </p>
+        </Col>
+      </Row>
+    )
   );
 }
 
@@ -47,6 +49,7 @@ propTypes.ThemesBannerAuctionItem = {
   startDate: propTypes.string,
   endDate: propTypes.string,
   placeName: propTypes.string,
+  loading: propTypes.any,
 };
 
 export default ThemesBannerAuctionItem;

@@ -25,19 +25,9 @@ import s from "./index.module.scss";
 
 function ThemesContentsAuctionDetailsLots() {
   const router = useRouter();
-  const { width: windowWidth } = useWindowSize();
-  const { Search } = Input;
-
-  // #region Handle Grid View
-  const [isGridView, setIsGridView] = useState(false);
-  const handleClick = () => {
-    setIsGridView(!isGridView);
-  };
-  // #endregion
 
   // #region Auction Details
   const { data: auctionData, loading } = useAuction({ singleId: router.query.id });
-
   // #endregion
 
   // #region Auction Item Details
@@ -46,6 +36,16 @@ function ThemesContentsAuctionDetailsLots() {
     auctionId: router.query.id,
   });
 
+  // #endregion
+
+  const { width: windowWidth } = useWindowSize();
+  const { Search } = Input;
+
+  // #region Handle Grid View
+  const [isGridView, setIsGridView] = useState(false);
+  const handleClick = () => {
+    setIsGridView(!isGridView);
+  };
   // #endregion
 
   // #region Timeline
@@ -113,8 +113,9 @@ function ThemesContentsAuctionDetailsLots() {
 
   return (
     <>
-      <ThemesBanner imgSrc={auctionData?.thumbnail} className={s.bannerContainer}>
+      <ThemesBanner imgSrc={auctionData?.thumbnail} className={s.bannerContainer} initial="visible">
         <ThemesBannerAuctionItem
+          loading={auctionData}
           title={auctionData?.name}
           startDate={auctionData?.start_date}
           endDate={auctionData?.end_date}
