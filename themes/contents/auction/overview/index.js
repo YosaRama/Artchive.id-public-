@@ -118,7 +118,7 @@ function ThemesContentsAuctionDetailsOverview() {
                     ref={carouselRef}
                     autoplay={true}
                     dots={false}
-                    slidesToShow={auctionItems.length >= 3 ? 3 : auctionItems.length}
+                    slidesToShow={auctionItems?.length >= 3 ? 3 : auctionItems?.length}
                     slidesToScroll={1}
                     draggable={true}
                     responsive={[

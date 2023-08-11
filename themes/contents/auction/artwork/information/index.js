@@ -226,33 +226,35 @@ function ThemesContentsAuctionArtworkDetails() {
             className={s.headline}
           />
           <Row gutter={[16, 0]} className={s.otherSection}>
-            {lotHighlightData
-              .filter((items, index) => items?.artwork_details?.id !== artworkDetails?.id)
-              .slice(0, 4)
-              .map((item) => {
-                return (
-                  <Col
-                    xl={{ span: 6 }}
-                    lg={{ span: 9 }}
-                    md={{ span: 11 }}
-                    xs={{ span: 22 }}
-                    key={item.id}
-                    onClick={() => {
-                      handleHighlight(item?.auction_details?.id);
-                    }}
-                  >
-                    <ThemesArtworkWithFrame
-                      imgSrc={`${process.env.NEXT_PUBLIC_S3_URL}/${item?.artwork_details?.media_cover?.url}`}
-                      artworkStatus={item?.artwork_details?.status}
-                      forAuction={true}
-                      artworkTitle={item?.artwork_details?.title}
-                      artistName={item?.artwork_details?.artist?.full_name}
-                      startEstimation={item?.auction_details?.start_estimation}
-                      endEstimation={item?.auction_details?.end_estimation}
-                    />
-                  </Col>
-                );
-              })}
+            {lotHighlightData &&
+              lotHighlightData
+                ?.filter((items, index) => items?.artwork_details?.id !== artworkDetails?.id)
+                ?.sort(() => Math.random() - 0.5)
+                ?.slice(0, 4)
+                ?.map((item) => {
+                  return (
+                    <Col
+                      xl={{ span: 6 }}
+                      lg={{ span: 9 }}
+                      md={{ span: 11 }}
+                      xs={{ span: 22 }}
+                      key={item.id}
+                      onClick={() => {
+                        handleHighlight(item?.auction_details?.id);
+                      }}
+                    >
+                      <ThemesArtworkWithFrame
+                        imgSrc={`${process.env.NEXT_PUBLIC_S3_URL}/${item?.artwork_details?.media_cover?.url}`}
+                        artworkStatus={item?.artwork_details?.status}
+                        forAuction={true}
+                        artworkTitle={item?.artwork_details?.title}
+                        artistName={item?.artwork_details?.artist?.full_name}
+                        startEstimation={item?.auction_details?.start_estimation}
+                        endEstimation={item?.auction_details?.end_estimation}
+                      />
+                    </Col>
+                  );
+                })}
           </Row>
         </section>
       )}
