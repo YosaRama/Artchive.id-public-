@@ -102,7 +102,7 @@ function ThemesContentsAuctionDetailsOverview() {
 
             <Col span={24}>
               <Row>
-                {width > 1024 ? (
+                {width > 1024 && (
                   <Col span={1} className={s.btnArrow}>
                     <Button
                       type="primary"
@@ -112,38 +112,22 @@ function ThemesContentsAuctionDetailsOverview() {
                       disabled={auctionItems?.length <= 3}
                     />
                   </Col>
-                ) : (
-                  ""
                 )}
                 <Col span={width > 1024 ? 22 : 24} className={s.carousel}>
                   <Carousel
                     ref={carouselRef}
                     autoplay={true}
                     dots={false}
-                    slidesToShow={3}
+                    slidesToShow={auctionItems.length >= 3 ? 3 : auctionItems.length}
                     slidesToScroll={1}
                     draggable={true}
                     responsive={[
-                      {
-                        breakpoint: 1024,
-                        settings: {
-                          slidesToShow: 3,
-                          slidesToScroll: 1,
-                        },
-                      },
                       {
                         breakpoint: 768,
                         settings: {
                           slidesToShow: 1,
                           slidesToScroll: 1,
                           centerMode: true,
-                        },
-                      },
-                      {
-                        breakpoint: 500,
-                        settings: {
-                          slidesToShow: 1,
-                          slidesToScroll: 1,
                         },
                       },
                     ]}
@@ -167,7 +151,7 @@ function ThemesContentsAuctionDetailsOverview() {
                     })}
                   </Carousel>
                 </Col>
-                {width > 1024 ? (
+                {width > 1024 && (
                   <Col span={1} className={s.btnArrow}>
                     <Button
                       type="primary"
@@ -177,8 +161,6 @@ function ThemesContentsAuctionDetailsOverview() {
                       disabled={auctionItems?.length <= 3}
                     />
                   </Col>
-                ) : (
-                  ""
                 )}
               </Row>
             </Col>

@@ -27,7 +27,7 @@ function ThemesContentsAuctionDetails() {
 
   return (
     <>
-      <ThemesBanner imgSrc={auctionData.thumbnail} className={s.bannerContainer} initial="visible">
+      <ThemesBanner imgSrc={auctionData?.thumbnail} className={s.bannerContainer} initial="visible">
         <ThemesBannerAuctionItem
           loading={auctionData}
           title={auctionData?.name}
