@@ -137,47 +137,19 @@ function ThemesContentsAuctionArtworkDetails() {
                 <br />
                 <p style={{ fontWeight: "bold", marginBottom: "5px" }}>Auction Description</p>
 
-                {width > 500 ? (
-                  <>
-                    {" "}
-                    <p>
-                      Auction ends on{" "}
-                      <span style={{ fontWeight: "bold" }}>
-                        {moment
-                          .tz(artworkDetails?.stopped_at, timeZone)
-                          .format("dddd, DD MMM YYYY, HH:mm")}{" "}
-                        {IndonesiaTimeZone}
-                      </span>
-                    </p>
-                    <p>
-                      Bid estimation :{" "}
-                      {priceFormatter(
-                        `IDR ${auctionDetails?.start_estimation} - IDR ${auctionDetails?.end_estimation} `,
-                        ","
-                      )}
-                    </p>
-                  </>
-                ) : (
-                  <>
-                    {" "}
-                    <p>Auction ends on</p>
-                    <p>
-                      <span style={{ fontWeight: "bold" }}>
-                        {moment
-                          .tz(artworkDetails?.stopped_at, timeZone)
-                          .format("dddd, DD MMM YYYY, HH:mm")}{" "}
-                        {IndonesiaTimeZone}
-                      </span>
-                    </p>
-                    <p>Bid estimation : </p>
-                    <p>
-                      {priceFormatter(
-                        `IDR ${auctionDetails?.start_estimation} - IDR ${auctionDetails?.end_estimation} `,
-                        ","
-                      )}
-                    </p>
-                  </>
-                )}
+                <p>
+                  Auction ends on {width <= 500 && <br />}
+                  <span style={{ fontWeight: "bold" }}>
+                    {moment(auctionDetails?.stopped_at).format("dddd, DD MMM YYYY")}{" "}
+                  </span>
+                </p>
+                <p>
+                  Bid estimation : {width <= 500 && <br />}
+                  {priceFormatter(
+                    `IDR ${auctionDetails?.start_estimation} - IDR ${auctionDetails?.end_estimation} `,
+                    ","
+                  )}
+                </p>
               </Col>
               {
                 // #region About Artist Section

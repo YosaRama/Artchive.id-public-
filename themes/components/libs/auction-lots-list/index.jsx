@@ -1,6 +1,6 @@
 // Libs
 import propTypes from "prop-types";
-import moment from "moment-timezone";
+import moment from "moment";
 import { Col, Row, Image, Divider } from "antd";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -54,14 +54,10 @@ function ThemesAuctionLotsList(props) {
   );
   //#endregion
 
-  const timeZone = moment.tz.guess();
-  const todayDate = moment.tz();
+  const todayDate = moment();
   const beforeLotStarted = todayDate.isBefore(auctionDetails?.started_at);
   const afterLotClosed = todayDate.isAfter(auctionDetails?.stopped_at);
   const liveLot = todayDate.isBetween(auctionDetails?.started_at, auctionDetails?.stopped_at);
-  const zone = moment().format("ZZ");
-  const IndonesiaTimeZone =
-    zone === "+0700" ? "WIB" : zone === "+0800" ? "WITA" : zone === "+0900" ? "WIT" : "";
 
   //#region Handle button content
   const [buttonContent, setButtonContent] = useState("");
@@ -141,35 +137,19 @@ function ThemesAuctionLotsList(props) {
                 </Col>
               )}
 
-              {grid ? (
-                <Col style={{ fontWeight: "bold" }}>
+              <Col style={{ fontWeight: "bold" }}>
+                {grid ? (
+                  <p>
+                    {moment(auctionDetails?.started_at).format("DD MMMM")} -{" "}
+                    {moment(auctionDetails?.stopped_at).format("DD MMMM YYYY")}
+                  </p>
+                ) : (
                   <>
-                    <p>
-                      {moment.tz(auctionDetails?.started_at, timeZone).format("DD MMMM")} -{" "}
-                      {moment.tz(auctionDetails?.stopped_at, timeZone).format("DD MMMM YYYY")}
-                    </p>
+                    <p>Open: {moment(auctionDetails?.started_at).format("dddd, DD MMMM YYYY")} </p>
+                    <p>Close: {moment(auctionDetails?.stopped_at).format("dddd, DD MMMM YYYY")} </p>
                   </>
-                </Col>
-              ) : (
-                <Col style={{ fontWeight: "bold" }}>
-                  <>
-                    <p>
-                      Open:{" "}
-                      {moment
-                        .tz(auctionDetails?.started_at, timeZone)
-                        .format("DD MMMM YYYY | HH:mm")}{" "}
-                      {IndonesiaTimeZone}
-                    </p>
-                    <p>
-                      Close:{" "}
-                      {moment
-                        .tz(auctionDetails?.stopped_at, timeZone)
-                        .format("DD MMMM YYYY | HH:mm")}{" "}
-                      {IndonesiaTimeZone}
-                    </p>
-                  </>
-                </Col>
-              )}
+                )}
+              </Col>
 
               {grid && (
                 <Col>
@@ -259,7 +239,6 @@ function ThemesAuctionLotsList(props) {
       </Col>
     </>
   );
-  // return <></>;
 }
 
 ThemesAuctionLotsList.propTypes = {
