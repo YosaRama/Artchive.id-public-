@@ -5,6 +5,10 @@
   cursor: pointer;
 }
 
+.headline {
+  margin-bottom: 40px;
+}
+
 .imageContainer {
   margin-bottom: 10px;
 }
@@ -71,6 +75,7 @@
 }
 
 .highlightContainer {
+  margin: 80px 0px !important;
   .headline {
     margin: 40px 0px;
   }
@@ -115,6 +120,15 @@
     height: 100px;
   }
 
+  .otherSection {
+    flex-wrap: nowrap;
+    overflow: auto;
+    margin-bottom: 40px;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
   .detailsContainer {
     h2 {
       font-size: font-size.$heading-3 !important;
@@ -146,6 +160,8 @@
   }
 
   .highlightContainer {
+    margin: 60px 0px !important;
+
     .artworkContainer {
       padding: 0px 8px !important;
 
@@ -184,6 +200,8 @@
   }
 
   .highlightContainer {
+    margin: 40px 0px !important;
+
     .artworkContainer {
       padding: 0px 8px !important;
 

@@ -9,6 +9,7 @@ import { useSession } from "next-auth/react";
 import ThemesHeadline from "themes/components/libs/headline";
 import ThemesContentsAuctionBidDetails from "../bid";
 import ThemesTextReadMore from "themes/components/libs/text-read-more";
+import ThemesArtworkWithFrame from "themes/components/libs/artwork-with-frame";
 
 // Hooks
 import { useAuctionItem, useAuctionItems } from "app/hooks/auction/item";
@@ -217,83 +218,43 @@ function ThemesContentsAuctionArtworkDetails() {
         }
       </Row>
 
-      {lotHighlightData?.length > 1 && (
-        <Col className={s.highlightContainer}>
-          <ThemesHeadline title="Auction Highlight" className={s.headline} />
-          {width > 768 ? (
-            <Row gutter={[16, 16]} justify="flex-start">
-              {lotHighlightData
-                .filter((item) => item?.auction_details?.id !== lotId)
-                .map((item, index) => {
-                  return (
-                    <>
-                      <Col
-                        span={6}
-                        className={s.artworkContainer}
-                        onClick={() => {
-                          handleHighlight(item?.auction_details?.id);
-                        }}
-                      >
-                        <Col className={s.artwork}>
-                          <Col className={s.imageContainer}>
-                            <Image
-                              src={`${process.env.NEXT_PUBLIC_S3_URL}/${item?.artwork_details?.media_cover?.url}`}
-                              alt=""
-                              preview={false}
-                            />
-                          </Col>
-                          <h3>{item?.artwork_details?.title}</h3>
-                          <p>Artist</p>
-                          <p style={{ fontWeight: "bold" }}>Estimation</p>
-                          <p style={{ marginBottom: "0px" }}>
-                            IDR {priceFormatter(item.auction_details?.start_estimation, ",")} - IDR{" "}
-                            {priceFormatter(item.auction_details?.end_estimation, ",")}
-                          </p>
-                        </Col>
-                      </Col>
-                    </>
-                  );
-                })}
-            </Row>
-          ) : (
-            <Col>
-              <Carousel dots autoplay slidesToShow={width <= 500 ? 1 : 3}>
-                {lotHighlightData
-                  .filter((item) => item?.auction_details?.id !== lotId)
-                  .map((item, index) => {
-                    return (
-                      <>
-                        <Col
-                          span={24}
-                          className={s.artworkContainer}
-                          onClick={() => {
-                            handleHighlight(item?.auction_details?.id);
-                          }}
-                        >
-                          <Col className={s.artwork}>
-                            <Col className={s.imageContainer}>
-                              <Image
-                                src={`${process.env.NEXT_PUBLIC_S3_URL}/${item?.artwork_details?.media_cover?.url}`}
-                                alt=""
-                                preview={false}
-                              />
-                            </Col>
-                            <h3>{item?.artwork_details?.title}</h3>
-                            <p>Artist</p>
-                            <p style={{ fontWeight: "bold" }}>Estimation</p>
-                            <p style={{ marginBottom: "0px" }}>
-                              IDR {priceFormatter(item.auction_details?.start_estimation, ",")} -
-                              IDR {priceFormatter(item.auction_details?.end_estimation, ",")}
-                            </p>
-                          </Col>
-                        </Col>
-                      </>
-                    );
-                  })}
-              </Carousel>
-            </Col>
-          )}
-        </Col>
+      {lotHighlightData?.length != 0 && (
+        <section className={s.highlightContainer}>
+          <ThemesHeadline
+            title="Auction Highlight"
+            subtitle={artworkDetails?.artist?.full_name}
+            className={s.headline}
+          />
+          <Row gutter={[16, 0]} className={s.otherSection}>
+            {lotHighlightData
+              .filter((items, index) => items?.artwork_details?.id !== artworkDetails?.id)
+              .slice(0, 4)
+              .map((item) => {
+                return (
+                  <Col
+                    xl={{ span: 6 }}
+                    lg={{ span: 9 }}
+                    md={{ span: 11 }}
+                    xs={{ span: 22 }}
+                    key={item.id}
+                    onClick={() => {
+                      handleHighlight(item?.auction_details?.id);
+                    }}
+                  >
+                    <ThemesArtworkWithFrame
+                      imgSrc={`${process.env.NEXT_PUBLIC_S3_URL}/${item?.artwork_details?.media_cover?.url}`}
+                      artworkStatus={item?.artwork_details?.status}
+                      forAuction={true}
+                      artworkTitle={item?.artwork_details?.title}
+                      artistName={item?.artwork_details?.artist?.full_name}
+                      startEstimation={item?.auction_details?.start_estimation}
+                      endEstimation={item?.auction_details?.end_estimation}
+                    />
+                  </Col>
+                );
+              })}
+          </Row>
+        </section>
       )}
     </>
   );
