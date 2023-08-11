@@ -8,6 +8,7 @@ import { useSession } from "next-auth/react";
 // Components
 import ThemesHeadline from "themes/components/libs/headline";
 import ThemesContentsAuctionBidDetails from "../bid";
+import ThemesTextReadMore from "themes/components/libs/text-read-more";
 
 // Hooks
 import { useAuctionItem, useAuctionItems } from "app/hooks/auction/item";
@@ -51,9 +52,11 @@ function ThemesContentsAuctionArtworkDetails() {
 
   // description
   const artistDescription =
-    artworkDetails?.artist?.biography === null
-      ? `No biography from ${artworkDetails?.artist?.full_name}.`
-      : artworkDetails?.artist?.biography;
+    artworkDetails?.artist?.biography === null ? (
+      `No biography from ${artworkDetails?.artist?.full_name}.`
+    ) : (
+      <ThemesTextReadMore textLength={200}>{artworkDetails?.artist?.biography}</ThemesTextReadMore>
+    );
 
   // handle go to profile page
   const handleToArtistProfile = () => {
@@ -217,7 +220,8 @@ function ThemesContentsAuctionArtworkDetails() {
                         </>
                       )}
                       <br />
-                      <p dangerouslySetInnerHTML={{ __html: artistDescription }} />
+
+                      <p className={s.description}>{artistDescription}</p>
                     </Col>
                   </Row>
                 </Col>
