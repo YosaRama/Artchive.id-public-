@@ -90,7 +90,7 @@ function ThemesHomepageSearchBox() {
           )}
 
           <h1>
-            Start Bidding on Our Latest<span style={{ color: "#e5a03f" }}>Art Auction</span>!
+            Start Bidding on Our Latest <span style={{ color: "#e5a03f" }}>Art Auction</span>!
           </h1>
         </Col>
       ) : (
