@@ -1,5 +1,5 @@
 // Libs
-import { Col, Row, Input, Select, Divider, Empty } from "antd";
+import { Col, Row, Input, Select, Divider, Empty, Segmented } from "antd";
 import { AppstoreOutlined, SlidersOutlined, UnorderedListOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import propTypes from "prop-types";
@@ -127,85 +127,66 @@ function ThemesContentsAuctionDetailsLots() {
         <ThemesContainerMain>
           {
             // #region Search Auction Item
-            windowWidth >= 500 ? (
-              <>
-                <Row gutter={[32, 32]} className={s.searchContainer}>
-                  {windowWidth > 768 && (
+            <>
+              {windowWidth <= 768 && (
+                <Col span={24} className={s.segmentContainer}>
+                  <Segmented block className={s.segment} options={["Available Bid", "My Bid"]} />
+                </Col>
+              )}
+
+              <Row
+                gutter={windowWidth > 768 ? [32, 32] : [0, 0]}
+                className={s.searchContainer}
+                justify={windowWidth <= 500 && "space-around"}
+              >
+                {windowWidth > 768 && (
+                  <>
                     <Col onClick={handleClick} className={s.click}>
                       <h4>{isGridView ? <AppstoreOutlined /> : <UnorderedListOutlined />}</h4>
                     </Col>
-                  )}
-
-                  <Divider type="vertical" className={s.divider} />
-                  <Row
-                    gutter={16}
-                    align="middle"
-                    onClick={() => {
-                      setOpenMenu(!openMenu);
-                    }}
-                    style={{ cursor: "pointer" }}
-                  >
+                    <Divider type="vertical" className={s.divider} />
+                  </>
+                )}
+                <Row
+                  gutter={16}
+                  align="middle"
+                  onClick={() => {
+                    setOpenMenu(!openMenu);
+                  }}
+                  className={s.click}
+                >
+                  <Col>
+                    <h4>
+                      <SlidersOutlined />
+                    </h4>
+                  </Col>
+                  {windowWidth > 768 && (
                     <Col>
                       <p>Filter</p>
                     </Col>
-                    <Col>
-                      <h4>
-                        <SlidersOutlined />
-                      </h4>
-                    </Col>
-                  </Row>
-                  <Divider type="vertical" className={s.divider} />
-                  <Col>
-                    <Select
-                      size="large"
-                      placeholder="Sort by"
-                      style={{ width: windowWidth > 768 ? 300 : 200 }}
-                      bordered={false}
-                      options={options}
-                    />
-                  </Col>
-                  <Divider type="vertical" className={s.divider} />
-
-                  <Col>
-                    <Search placeholder="Search Lot Item" size="large" />
-                  </Col>
+                  )}
                 </Row>
-                <Divider className={s.dividerX} />
-              </>
-            ) : (
-              <>
-                <Col className={s.searchContainer}>
-                  <Col span={24}>
-                    <Row gutter={[16, 16]}>
-                      <Col
-                        span={2}
-                        onClick={() => {
-                          setOpenMenu(!openMenu);
-                        }}
-                        style={{ cursor: "pointer" }}
-                      >
-                        <h4>
-                          <SlidersOutlined />
-                        </h4>
-                      </Col>
-                      <Col span={22}>
-                        <Search placeholder="Search Lot Item" />
-                      </Col>
-                    </Row>
-                  </Col>
-                  <Divider className={s.divider} />
-                  <Col span={24}>
-                    <Select
-                      className={s.select}
-                      defaultValue="Sort by"
-                      style={{ width: 240 }}
-                      options={options}
-                    />
-                  </Col>
-                  <Divider className={s.divider} />
+                <Divider type="vertical" className={s.divider} />
+                <Col>
+                  <Select
+                    size="large"
+                    placeholder={windowWidth <= 768 ? null : <p>Sort By</p>}
+                    bordered={false}
+                    options={options}
+                    style={{ width: windowWidth <= 500 ? 50 : 250 }}
+                    className={s.select}
+                    dropdownClassName={s.dropdown}
+                  />
                 </Col>
-              </>
-            )
+                <Divider type="vertical" className={s.divider} />
+
+                <Col>
+                  <Search placeholder="Search Lot Item" size="large" style={{ width: 200 }} />
+                </Col>
+              </Row>
+              <Divider className={s.dividerX} />
+            </>
+
             // #endregion
           }
 

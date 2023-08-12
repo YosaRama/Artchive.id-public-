@@ -18,9 +18,10 @@ import { useAuctionItemsLogs } from "app/hooks/auction/logs";
 
 // Styles
 import s from "./index.module.scss";
+import ThemesAuctionLotListPrice from "../lot-list-price";
 
 function ThemesAuctionLotsList(props) {
-  const { artworkDetails, auctionDetails, auctionData, grid, handleVisible } = props;
+  const { artworkDetails, auctionDetails, auctionData, grid = false, handleVisible } = props;
   const router = useRouter();
   const { id: auctionId } = router.query;
   const itemId = auctionDetails.id;
@@ -138,42 +139,29 @@ function ThemesAuctionLotsList(props) {
               )}
 
               <Col style={{ fontWeight: "bold" }}>
-                {grid ? (
-                  <p>
-                    {moment(auctionDetails?.started_at).format("DD MMMM")} -{" "}
-                    {moment(auctionDetails?.stopped_at).format("DD MMMM YYYY")}
-                  </p>
-                ) : (
-                  <>
-                    <p>Open: {moment(auctionDetails?.started_at).format("dddd, DD MMMM YYYY")} </p>
-                    <p>Close: {moment(auctionDetails?.stopped_at).format("dddd, DD MMMM YYYY")} </p>
-                  </>
-                )}
+                <p>
+                  {!grid && <span>Open :</span>}{" "}
+                  {moment(auctionDetails?.started_at).format(
+                    grid ? "DD MMMM" : "dddd, DD MMMM YYYY"
+                  )}
+                  {!grid ? <br /> : "-"}
+                  {!grid && <span>Close :</span>}{" "}
+                  {moment(auctionDetails?.stopped_at).format(
+                    grid ? "DD MMMM YYYY" : "dddd, DD MMMM YYYY"
+                  )}
+                </p>
               </Col>
 
               {grid && (
-                <Col>
-                  <p>
-                    Estimation : IDR{" "}
-                    {priceFormatter(
-                      `${auctionDetails?.start_estimation} - ${auctionDetails?.end_estimation} `,
-                      ","
-                    )}
-                  </p>
-                  <h4>
-                    {artworkDetails?.status === "PUBLISH" && "Current Bid: "}
-                    {artworkDetails?.status === "SOLD" && "Final Bid: "}
-                    IDR {lotPrice}
-                  </h4>
-                  {session && (
-                    <Col>
-                      <p style={{ fontWeight: "bold" }}>
-                        Your Bid: IDR{" "}
-                        {currentUserBid ? priceFormatter(`${currentUserBid}`, ",") : "-"}
-                      </p>
-                    </Col>
-                  )}
-                </Col>
+                <ThemesAuctionLotListPrice
+                  startEstimation={auctionDetails?.start_estimation}
+                  endEstimation={auctionDetails?.end_estimation}
+                  status={artworkDetails?.status}
+                  lotPrice={lotPrice}
+                  session={session}
+                  currentBid={currentUserBid}
+                  grid={grid}
+                />
               )}
             </Col>
             // #endregion
@@ -193,37 +181,18 @@ function ThemesAuctionLotsList(props) {
           }
 
           {
-            //#region Auction Details Container
+            //#region Default View Auction Price Container
             <Col span={grid ? 24 : 8} className={s.priceContainer}>
               {!grid && (
-                <>
-                  <Col>
-                    <p>Estimation :</p>
-                    <p>
-                      IDR{" "}
-                      {priceFormatter(
-                        `${auctionDetails?.start_estimation} - ${auctionDetails?.end_estimation} `,
-                        ","
-                      )}
-                    </p>
-                  </Col>
-                  <Col>
-                    <h3>
-                      {artworkDetails?.status === "PUBLISH" && "Current Bid: "}
-                      {artworkDetails?.status === "SOLD" && "Final Bid: "}
-                      IDR {lotPrice}
-                    </h3>
-                  </Col>
-
-                  {session && (
-                    <Col>
-                      <h4 style={{ fontWeight: "bold" }}>
-                        Your Bid: IDR{" "}
-                        {currentUserBid ? priceFormatter(`${currentUserBid}`, ",") : "-"}
-                      </h4>
-                    </Col>
-                  )}
-                </>
+                <ThemesAuctionLotListPrice
+                  startEstimation={auctionDetails?.start_estimation}
+                  endEstimation={auctionDetails?.end_estimation}
+                  status={artworkDetails?.status}
+                  lotPrice={lotPrice}
+                  session={session}
+                  currentBid={currentUserBid}
+                  grid={grid}
+                />
               )}
               <ThemesButton
                 type={`primary + ${s.btn}`}
