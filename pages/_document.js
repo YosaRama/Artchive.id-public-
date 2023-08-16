@@ -74,14 +74,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
           <link rel="apple-touch-icon" href="/icon.png" />
           <meta name="theme-color" content="#fff" />
           <link rel="icon" href="/images/favicon.svg" type="image/svg" sizes="16x16" />
-          {process.env.NEXT_PUBLIC_SITE_URL == "https://artchive.id/" && this.renderOGMeta()}
-          {process.env.NEXT_PUBLIC_SITE_URL == "https://artchive.id/" && this.renderGTMSnippet()}
-          {process.env.NEXT_PUBLIC_SITE_URL == "https://artchive.id/" &&
+          {process.env.NEXT_PUBLIC_SITE_URL == "https://www.artchive.id/" && this.renderOGMeta()}
+          {process.env.NEXT_PUBLIC_SITE_URL == "https://www.artchive.id/" &&
+            this.renderGTMSnippet()}
+          {process.env.NEXT_PUBLIC_SITE_URL == "https://www.artchive.id/" &&
             this.renderFacebookVerification()}
-          {process.env.NEXT_PUBLIC_SITE_URL != "https://artchive.id/" && this.renderNoIndexSite()}
+          {process.env.NEXT_PUBLIC_SITE_URL != "https://www.artchive.id/" &&
+            this.renderNoIndexSite()}
         </Head>
         <body>
-          {process.env.NEXT_PUBLIC_SITE_URL == "https://artchive.id/" &&
+          {process.env.NEXT_PUBLIC_SITE_URL == "https://www.artchive.id/" &&
             this.renderGTMnoScriptSnippet()}
           <Main />
           <NextScript />
