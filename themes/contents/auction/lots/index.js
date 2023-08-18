@@ -19,6 +19,7 @@ import { useAuctionItems } from "app/hooks/auction/item";
 
 // Helper
 import { useWindowSize } from "app/helpers/useWindowSize";
+import { useSession } from "next-auth/react";
 
 // Styles
 import s from "./index.module.scss";
@@ -35,8 +36,9 @@ function ThemesContentsAuctionDetailsLots() {
     queryString: "",
     auctionId: router.query.id,
   });
-
   // #endregion
+
+  const { data: session } = useSession();
 
   const { width: windowWidth } = useWindowSize();
   const { Search } = Input;
@@ -128,7 +130,7 @@ function ThemesContentsAuctionDetailsLots() {
           {
             // #region Search Auction Item
             <>
-              {windowWidth <= 768 && (
+              {windowWidth <= 768 && session?.user?.role === "auction-participant" && (
                 <Col span={24} className={s.segmentContainer}>
                   <Segmented block className={s.segment} options={["Available Bid", "My Bid"]} />
                 </Col>
