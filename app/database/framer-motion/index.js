@@ -19,10 +19,10 @@ export const fadeTopToBottom = {
 };
 
 export const fadingBottomToTop = {
-  hidden: { opacity: 1, y: 0 },
+  hidden: { opacity: 0, y: 10 },
   visible: {
-    opacity: 0,
-    y: -10,
+    opacity: 1,
+    y: 0,
     transition: { ease: "easeInOut", delay: 0.3, duration: 0.4, when: "beforeChildren" },
   },
 };
