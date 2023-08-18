@@ -25,7 +25,7 @@
   }
 
   .divider {
-    height: 18px;
+    height: 32px;
     background-color: rgba(217, 217, 217, 1);
   }
   .click {
@@ -71,10 +71,19 @@
       margin: 0px;
     }
     .divider {
-      height: 1px;
       background-color: rgba(217, 217, 217, 1);
-      margin: 20px 0px;
+      margin: 0px 2px;
     }
+  }
+  .select {
+    :global(ant-select-selection-search) {
+      width: 0px !important;
+    }
+  }
+
+  .dropdown {
+    width: 90% !important;
+    left: 5% !important;
   }
 }
 // * ====================================== * //

@@ -147,41 +147,44 @@ function ThemesContentsAuctionDetailsLots() {
                     <Divider type="vertical" className={s.divider} />
                   </>
                 )}
-                <Row
-                  gutter={16}
-                  align="middle"
+                <Col
                   onClick={() => {
                     setOpenMenu(!openMenu);
                   }}
                   className={s.click}
                 >
-                  <Col>
-                    <h4>
-                      <SlidersOutlined />
-                    </h4>
-                  </Col>
-                  {windowWidth > 768 && (
+                  <Row gutter={16} align="middle">
                     <Col>
-                      <p>Filter</p>
+                      <h4>
+                        <SlidersOutlined />
+                      </h4>
                     </Col>
-                  )}
-                </Row>
+                    {windowWidth > 768 && (
+                      <Col>
+                        <p>Filter</p>
+                      </Col>
+                    )}
+                  </Row>
+                </Col>
                 <Divider type="vertical" className={s.divider} />
-                <Col>
+                <Col lg={{ span: 6 }} md={{ span: 11 }} xs={{ span: 8 }} className={s.select}>
                   <Select
                     size="large"
-                    placeholder={windowWidth <= 768 ? null : <p>Sort By</p>}
+                    placeholder={<p>Sort By</p>}
                     bordered={false}
                     options={options}
-                    style={{ width: windowWidth <= 500 ? 50 : 250 }}
-                    className={s.select}
+                    style={{ width: "100%" }}
                     dropdownClassName={s.dropdown}
                   />
                 </Col>
                 <Divider type="vertical" className={s.divider} />
 
-                <Col>
-                  <Search placeholder="Search Lot Item" size="large" style={{ width: 200 }} />
+                <Col lg={{ span: 6 }} md={{ span: 11 }} xs={{ span: 12 }}>
+                  <Search
+                    placeholder={windowWidth <= 500 ? "Search" : "Search Lot Item"}
+                    size="large"
+                    style={{ width: "100%" }}
+                  />
                 </Col>
               </Row>
               <Divider className={s.dividerX} />
