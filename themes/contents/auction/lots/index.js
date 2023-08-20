@@ -27,13 +27,20 @@ import s from "./index.module.scss";
 function ThemesContentsAuctionDetailsLots() {
   const router = useRouter();
 
+  //#region Handle search
+  const [search, setSearch] = useState("");
+  const handleSearch = (value) => {
+    setSearch(value);
+  };
+  //#endregion
+
   // #region Auction Details
   const { data: auctionData, loading } = useAuction({ singleId: router.query.id });
   // #endregion
 
   // #region Auction Item Details
   const { data: auctionItems, loading: auctionItemsLoading } = useAuctionItems({
-    queryString: "",
+    queryString: `name=${search}`,
     auctionId: router.query.id,
   });
   // #endregion
@@ -57,7 +64,6 @@ function ThemesContentsAuctionDetailsLots() {
   // #endregion
 
   // #region Check User and Visibility of Modal
-  const [userRegistered, setUserRegistered] = useState(true);
   const [isVisible, setIsVisible] = useState(visibility);
   const handleModal = () => {
     setIsVisible(!isVisible);
@@ -186,6 +192,7 @@ function ThemesContentsAuctionDetailsLots() {
                     placeholder={windowWidth <= 500 ? "Search" : "Search Lot Item"}
                     size="large"
                     style={{ width: "100%" }}
+                    onSearch={handleSearch}
                   />
                 </Col>
               </Row>
