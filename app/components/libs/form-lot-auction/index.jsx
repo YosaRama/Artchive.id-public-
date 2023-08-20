@@ -1,7 +1,7 @@
 // Libs
 import propTypes from "prop-types";
 import moment from "moment";
-import { Col, DatePicker, Form, Input, Row, Modal, Switch } from "antd";
+import { Col, DatePicker, Form, Input, Row, Modal, Switch, Skeleton } from "antd";
 import { useState } from "react";
 
 // Styles
@@ -61,9 +61,8 @@ function AppFormLotAuction(props) {
         onCancel={handleModalClose}
         width={1000}
         title="Add Lot Item"
-        initialValues={isEdit ? initialValues : {}}
       >
-        <Form layout="vertical" form={form}>
+        <Form layout="vertical" form={form} initialValues={isEdit ? initialValues : {}}>
           {!isEdit ? (
             <Form.Item name={"artwork"} label="Add Item" className={s.artworkSelection}>
               <AppSelectArtwork setResult={setArtworkSelect} selectBy="sku" />
@@ -206,7 +205,7 @@ function AppFormLotAuction(props) {
           <Form.Item name={"lot_date"} label="Lot Date">
             <DatePicker.RangePicker />
           </Form.Item>
-          <Form.Item name={"is_showing"} label="Show this item?">
+          <Form.Item name={"is_showing"} label="Show this item?" valuePropName="checked">
             <Switch />
           </Form.Item>
         </Form>
@@ -222,6 +221,7 @@ AppFormLotAuction.propTypes = {
   visible: propTypes.bool,
   onClose: propTypes.func,
   initialData: propTypes.any,
+  activeLotId: propTypes.any,
 };
 
 export default AppFormLotAuction;
