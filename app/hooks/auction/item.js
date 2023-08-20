@@ -107,7 +107,12 @@ export const useAuctionItem = ({ singleId, auctionId }) => {
   const pathKeys = `${pathName}/${singleId}`;
   const [loading, setLoading] = useState(false);
 
-  const { data = [], error, isValidating, mutate } = useSWR(pathKeys);
+  const {
+    data = [],
+    error,
+    isValidating,
+    mutate,
+  } = useSWR(singleId && auctionId ? pathKeys : null);
   const results = data?.data;
   const total = data?.data;
 
