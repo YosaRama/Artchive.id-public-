@@ -7,7 +7,7 @@ import { GET_ARTWORK_BY_SKU } from "app/database/query/artwork";
 const apiHandler = nextConnect();
 
 apiHandler.get(async (req, res) => {
-  const { auctionId } = req.query;
+  const { auctionId, name } = req.query;
   try {
     const result = await auctioo.get(`/events/${auctionId}/items`);
 
@@ -26,7 +26,18 @@ apiHandler.get(async (req, res) => {
       })
     );
 
-    res.status(200).json({ success: true, message: "Successfully retrieve item list", data: data });
+    let dataParse;
+    if (name) {
+      dataParse = data.filter((item) =>
+        item?.artwork_details?.title?.toLowerCase()?.includes(name?.toLowerCase())
+      );
+    } else {
+      dataParse = data;
+    }
+
+    res
+      .status(200)
+      .json({ success: true, message: "Successfully retrieve item list", data: dataParse });
   } catch (error) {
     res.status(200).json({ success: false, message: error.message });
   }
