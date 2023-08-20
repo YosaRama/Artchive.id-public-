@@ -1,5 +1,5 @@
 // Libs
-import { Col, Row, Input, Select, Divider, Empty, Segmented } from "antd";
+import { Col, Row, Input, Select, Divider, Empty, Segmented, Spin } from "antd";
 import { AppstoreOutlined, SlidersOutlined, UnorderedListOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import propTypes from "prop-types";
@@ -32,7 +32,7 @@ function ThemesContentsAuctionDetailsLots() {
   // #endregion
 
   // #region Auction Item Details
-  const { data: auctionItems } = useAuctionItems({
+  const { data: auctionItems, loading: auctionItemsLoading } = useAuctionItems({
     queryString: "",
     auctionId: router.query.id,
   });
@@ -220,7 +220,7 @@ function ThemesContentsAuctionDetailsLots() {
                 })
               ) : (
                 <Col style={{ width: "100%", display: "flex", justifyContent: "center" }}>
-                  <Empty />
+                  {auctionItemsLoading ? <Spin size="large" tip="loading" /> : <Empty />}
                 </Col>
               )}
             </Row>
