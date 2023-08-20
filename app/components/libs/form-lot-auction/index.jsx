@@ -3,14 +3,24 @@ import propTypes from "prop-types";
 import moment from "moment";
 import { Col, DatePicker, Form, Input, Row, Modal, Switch, Skeleton } from "antd";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 // Styles
 import s from "./index.module.scss";
 import AppSelectArtwork from "../select-artwork";
+import { useAuction } from "app/hooks/auction";
 
 function AppFormLotAuction(props) {
   const { onSubmit, isEdit, singleSku, visible, onClose, initialData } = props;
   const [artworkSelect, setArtworkSelect] = useState("");
+  const router = useRouter();
+
+  //#region Handle auction item data
+  const { id: auctionId } = router.query;
+  const { data: auctionData } = useAuction({
+    singleId: auctionId,
+  });
+  //#endregion
 
   //#region Data initialize
   //? Data Parse
@@ -49,6 +59,19 @@ function AppFormLotAuction(props) {
   const handleModalClose = () => {
     form.resetFields();
     onClose();
+  };
+  //#endregion
+
+  //#region Handle auto date
+  const [isAutoDate, setIsAutoDate] = useState(false);
+  const [date, setDate] = useState([]);
+  const handleAutoDate = (value) => {
+    setIsAutoDate(value);
+    form.setFieldValue("lot_date", [
+      moment(auctionData?.start_date),
+      moment(auctionData?.end_date),
+    ]);
+    setDate([moment(auctionData?.start_date), moment(auctionData?.end_date)]);
   };
   //#endregion
 
@@ -202,9 +225,19 @@ function AppFormLotAuction(props) {
               addonBefore="Rp"
             />
           </Form.Item>
-          <Form.Item name={"lot_date"} label="Lot Date">
-            <DatePicker.RangePicker />
-          </Form.Item>
+          <Row align="middle">
+            <Form.Item name={"lot_date"} label="Lot Date" style={{ marginRight: 20 }}>
+              <Col>
+                <DatePicker.RangePicker
+                  disabled={isAutoDate}
+                  value={isAutoDate ? date : undefined}
+                />
+              </Col>
+            </Form.Item>
+            <Col>
+              <Switch onChange={handleAutoDate} checkedChildren="AUTO" unCheckedChildren="MANUAL" />
+            </Col>
+          </Row>
           <Form.Item name={"is_showing"} label="Show this item?" valuePropName="checked">
             <Switch />
           </Form.Item>
