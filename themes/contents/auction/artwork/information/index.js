@@ -21,6 +21,7 @@ import stringCapitalize from "app/helpers/capitalize";
 
 // Style
 import s from "./index.module.scss";
+import { useAuction } from "app/hooks/auction";
 
 function ThemesContentsAuctionArtworkDetails() {
   const router = useRouter();
@@ -35,6 +36,9 @@ function ThemesContentsAuctionArtworkDetails() {
 
   // #region Data Parse
   const { id: auctionId, lotId } = router.query;
+
+  const { data: auctionData } = useAuction({ singleId: auctionId });
+
   const { data: lotDetails } = useAuctionItem({ singleId: lotId, auctionId: auctionId });
   const artworkDetails = lotDetails?.artwork_details;
   const auctionDetails = lotDetails?.auction_details;
@@ -222,7 +226,7 @@ function ThemesContentsAuctionArtworkDetails() {
         <section className={s.highlightContainer}>
           <ThemesHeadline
             title="Auction Highlight"
-            subtitle={artworkDetails?.artist?.full_name}
+            subtitle={auctionData?.name}
             className={s.headline}
           />
           <Row gutter={[16, 0]} className={s.otherSection}>
@@ -237,7 +241,7 @@ function ThemesContentsAuctionArtworkDetails() {
                       xl={{ span: 6 }}
                       lg={{ span: 9 }}
                       md={{ span: 11 }}
-                      xs={{ span: 22 }}
+                      xs={{ span: 19 }}
                       key={item.id}
                       onClick={() => {
                         handleHighlight(item?.auction_details?.id);

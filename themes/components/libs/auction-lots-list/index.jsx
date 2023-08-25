@@ -134,7 +134,7 @@ function ThemesAuctionLotsList(props) {
                 <Col>
                   <p className={s.description}>{artworkDetails?.description}</p>
                   <p>{`${artworkDetails?.width} x ${artworkDetails?.height} cm`}</p>
-                  <p>{stringCapitalize(artworkDetails?.material?.replace(/_/g, " "))}</p>
+                  <p>{stringCapitalize(`${artworkDetails?.material?.replace(/_/g, " ")}`)}</p>
                 </Col>
               )}
 

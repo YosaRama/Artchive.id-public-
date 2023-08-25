@@ -66,6 +66,13 @@
   border: 2px solid #d9d9d9;
   transition: all 300ms ease;
   cursor: pointer;
+  .divider {
+    margin: 10px 0px !important;
+  }
+  h3 {
+    font-size: font-size.$heading-3;
+    font-weight: 400 !important;
+  }
   &:hover {
     border: 2px solid colors.$fulvous;
     transition: all 300ms ease;
@@ -74,7 +81,7 @@
     }
     img {
       padding: 0 !important;
-      transform: scale(0.95);
+      transform: scale(0.98);
     }
   }
   p {
@@ -86,7 +93,9 @@
 
   .image {
     width: 100%;
+    // height: 255px !important;
     aspect-ratio: 1/1;
+
     padding-left: 0 !important;
     padding-right: 0 !important;
     img {
@@ -97,6 +106,13 @@
   .content {
     margin-top: 15px;
     text-align: left;
+    padding: 0px !important;
+    P,
+    h3 {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
     .title {
       margin-bottom: 0;
       font-size: font-size.$heading-3;
@@ -193,6 +209,15 @@
       }
       .size {
         font-size: font-size.$paragraph;
+      }
+    }
+  }
+
+  .containerAuction {
+    p {
+      margin: 0px !important;
+      span {
+        color: colors.$fulvous !important;
       }
     }
   }

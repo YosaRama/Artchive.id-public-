@@ -1,7 +1,7 @@
 // Libs
 import { useRouter } from "next/router";
 import propTypes from "prop-types";
-import { Badge, Col, Image } from "antd";
+import { Badge, Col, Divider, Image } from "antd";
 
 // Helper
 import priceFormatter from "app/helpers/priceFormatter";
@@ -26,6 +26,7 @@ function ThemesArtworkWithFrame(props) {
     startEstimation,
     endEstimation,
   } = props;
+
   return (
     <Badge.Ribbon
       text={artworkStatus == "SOLD" ? "SOLD" : "Waiting Approval"}
@@ -84,6 +85,9 @@ function ThemesArtworkWithFrame(props) {
             <p>
               by <span>{artistName}</span>
             </p>
+
+            <div className={s.divider} />
+
             <p>Estimation</p>
             <p>
               IDR {priceFormatter(startEstimation, ",")} - {priceFormatter(endEstimation, ",")}
