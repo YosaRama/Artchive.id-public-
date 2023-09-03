@@ -14,15 +14,10 @@ function ThemesAuctionCard(props) {
   const todayDate = moment();
   return (
     <>
-      <Link key={id} href={`/auction/${id}/lots`}>
+      <Link key={id} href={`/auction/${id}/lots`} passHref>
         <Col className={s.container}>
           <img
-            src={
-              thumbnail
-                ? // `${process.env.NEXT_PUBLIC_S3_URL}/${thumbnail}`
-                  thumbnail
-                : "/images/artwork-1.jpg"
-            }
+            src={thumbnail ? thumbnail : "/images/artwork-1.jpg"}
             className={s.thumbnail}
             alt=""
           />

@@ -17,35 +17,10 @@
     }
   }
   .description {
+    text-align: justify;
     height: 100%;
     h2 {
       font-size: 24px;
-    }
-    .shortDescription {
-      height: 200px;
-      overflow: hidden;
-      margin-bottom: 16px;
-      text-overflow: ellipsis;
-      // white-space: nowrap;
-      transition: height 0.3s ease;
-    }
-
-    .expanded {
-      height: auto !important;
-      cursor: pointer;
-      transition: height 0.3s ease;
-    }
-
-    .more {
-      justify-self: end;
-      text-decoration: underline;
-      font-weight: 700;
-      cursor: pointer;
-      color: colors.$smoky-black;
-      &:hover {
-        transition: all 300ms ease;
-        color: colors.$fulvous;
-      }
     }
   }
 }
@@ -59,15 +34,6 @@
       height: 250px;
       img {
         height: 250px;
-      }
-    }
-    .description {
-      height: 100%;
-      h2 {
-        font-size: 24px;
-      }
-      .shortDescription {
-        height: 200px;
       }
     }
   }
@@ -89,9 +55,6 @@
       height: 100%;
       h2 {
         font-size: 24px;
-      }
-      .shortDescription {
-        height: 90px;
       }
     }
   }
@@ -115,9 +78,6 @@
       height: 100%;
       h2 {
         font-size: 24px;
-      }
-      .shortDescription {
-        height: 90px;
       }
     }
   }

@@ -19,7 +19,7 @@
   padding: 40px !important;
   display: flex;
   align-content: space-between;
-  height: 100%;
+  height: auto;
   h1,
   h2,
   h3,
@@ -45,7 +45,6 @@
     height: 340px;
     .imgSrc {
       object-fit: cover;
-
       transition: all 200ms ease;
       &:hover {
         transition: all 200ms ease;
@@ -71,7 +70,7 @@
   }
 
   .descContainer {
-    height: 200px;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -81,6 +80,7 @@
   }
 
   .btn {
+    margin-top: 10px;
     width: 100%;
   }
 }
@@ -178,6 +178,7 @@
     }
 
     .btn {
+      margin-top: 15px;
       width: 100%;
     }
   }
@@ -193,9 +194,6 @@
   .cartContainerGrid {
     padding: 20px !important;
 
-    p {
-      margin: 5px 0px !important;
-    }
     h2 {
       font-size: font-size.$heading-3;
     }
@@ -210,7 +208,7 @@
     }
 
     .descContainer {
-      height: 180px;
+      height: 190px;
     }
   }
 
@@ -255,26 +253,13 @@
 @media screen and (max-width: 768px) {
   //? ============== GRID VIEW ============= ?//
   .cartContainerGrid {
-    padding: 20px !important;
-
-    p {
-      margin: 5px 0px !important;
-    }
-    h2 {
-      font-size: font-size.$heading-3;
-    }
-
-    p {
-      font-size: 14px;
-    }
-
     .imgSrcContainer {
       height: 300px;
       margin-bottom: 0px;
     }
 
     .descContainer {
-      height: 180px;
+      height: 200px;
     }
   }
 }
@@ -283,21 +268,8 @@
 @media screen and (max-width: 500px) {
   //? ============== GRID VIEW ============= ?//
   .cartContainerGrid {
-    padding: 20px !important;
-
-    p {
-      margin: 5px 0px !important;
-    }
-    h2 {
-      font-size: font-size.$heading-3;
-    }
-
-    p {
-      font-size: 14px;
-    }
-
     .imgSrcContainer {
-      height: 320px;
+      height: 290px;
       margin-bottom: 0px;
     }
 

@@ -1,5 +1,5 @@
 // Libs
-import { Col, Row, Input, Select, Divider, Empty } from "antd";
+import { Col, Row, Input, Select, Divider, Empty, Segmented, Spin } from "antd";
 import { AppstoreOutlined, SlidersOutlined, UnorderedListOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import propTypes from "prop-types";
@@ -19,12 +19,34 @@ import { useAuctionItems } from "app/hooks/auction/item";
 
 // Helper
 import { useWindowSize } from "app/helpers/useWindowSize";
+import { useSession } from "next-auth/react";
 
 // Styles
 import s from "./index.module.scss";
 
 function ThemesContentsAuctionDetailsLots() {
   const router = useRouter();
+
+  //#region Handle search
+  const [search, setSearch] = useState("");
+  const handleSearch = (value) => {
+    setSearch(value);
+  };
+  //#endregion
+
+  // #region Auction Details
+  const { data: auctionData, loading } = useAuction({ singleId: router.query.id });
+  // #endregion
+
+  // #region Auction Item Details
+  const { data: auctionItems, loading: auctionItemsLoading } = useAuctionItems({
+    queryString: `name=${search}`,
+    auctionId: router.query.id,
+  });
+  // #endregion
+
+  const { data: session } = useSession();
+
   const { width: windowWidth } = useWindowSize();
   const { Search } = Input;
 
@@ -35,19 +57,6 @@ function ThemesContentsAuctionDetailsLots() {
   };
   // #endregion
 
-  // #region Auction Details
-  const { data: auctionData, loading } = useAuction({ singleId: router.query.id });
-
-  // #endregion
-
-  // #region Auction Item Details
-  const { data: auctionItems } = useAuctionItems({
-    queryString: "",
-    auctionId: router.query.id,
-  });
-
-  // #endregion
-
   // #region Timeline
   const todayDate = moment();
   const beforeEvent = todayDate.isBefore(auctionData?.start_date);
@@ -55,7 +64,6 @@ function ThemesContentsAuctionDetailsLots() {
   // #endregion
 
   // #region Check User and Visibility of Modal
-  const [userRegistered, setUserRegistered] = useState(true);
   const [isVisible, setIsVisible] = useState(visibility);
   const handleModal = () => {
     setIsVisible(!isVisible);
@@ -113,8 +121,9 @@ function ThemesContentsAuctionDetailsLots() {
 
   return (
     <>
-      <ThemesBanner imgSrc={auctionData?.thumbnail} className={s.bannerContainer}>
+      <ThemesBanner imgSrc={auctionData?.thumbnail} className={s.bannerContainer} initial="visible">
         <ThemesBannerAuctionItem
+          loading={auctionData}
           title={auctionData?.name}
           startDate={auctionData?.start_date}
           endDate={auctionData?.end_date}
@@ -126,85 +135,70 @@ function ThemesContentsAuctionDetailsLots() {
         <ThemesContainerMain>
           {
             // #region Search Auction Item
-            windowWidth >= 500 ? (
-              <>
-                <Row gutter={[32, 32]} className={s.searchContainer}>
-                  {windowWidth > 768 && (
+            <>
+              {windowWidth <= 768 && session?.user?.role === "auction-participant" && (
+                <Col span={24} className={s.segmentContainer}>
+                  <Segmented block className={s.segment} options={["Available Bid", "My Bid"]} />
+                </Col>
+              )}
+
+              <Row
+                gutter={windowWidth > 768 ? [32, 32] : [0, 0]}
+                className={s.searchContainer}
+                justify={windowWidth <= 500 && "space-around"}
+              >
+                {windowWidth > 768 && (
+                  <>
                     <Col onClick={handleClick} className={s.click}>
                       <h4>{isGridView ? <AppstoreOutlined /> : <UnorderedListOutlined />}</h4>
                     </Col>
-                  )}
-
-                  <Divider type="vertical" className={s.divider} />
-                  <Row
-                    gutter={16}
-                    align="middle"
-                    onClick={() => {
-                      setOpenMenu(!openMenu);
-                    }}
-                    style={{ cursor: "pointer" }}
-                  >
-                    <Col>
-                      <p>Filter</p>
-                    </Col>
+                    <Divider type="vertical" className={s.divider} />
+                  </>
+                )}
+                <Col
+                  onClick={() => {
+                    setOpenMenu(!openMenu);
+                  }}
+                  className={s.click}
+                >
+                  <Row gutter={16} align="middle">
                     <Col>
                       <h4>
                         <SlidersOutlined />
                       </h4>
                     </Col>
+                    {windowWidth > 768 && (
+                      <Col>
+                        <p>Filter</p>
+                      </Col>
+                    )}
                   </Row>
-                  <Divider type="vertical" className={s.divider} />
-                  <Col>
-                    <Select
-                      size="large"
-                      placeholder="Sort by"
-                      style={{ width: windowWidth > 768 ? 300 : 200 }}
-                      bordered={false}
-                      options={options}
-                    />
-                  </Col>
-                  <Divider type="vertical" className={s.divider} />
-
-                  <Col>
-                    <Search placeholder="Search Lot Item" size="large" />
-                  </Col>
-                </Row>
-                <Divider className={s.dividerX} />
-              </>
-            ) : (
-              <>
-                <Col className={s.searchContainer}>
-                  <Col span={24}>
-                    <Row gutter={[16, 16]}>
-                      <Col
-                        span={2}
-                        onClick={() => {
-                          setOpenMenu(!openMenu);
-                        }}
-                        style={{ cursor: "pointer" }}
-                      >
-                        <h4>
-                          <SlidersOutlined />
-                        </h4>
-                      </Col>
-                      <Col span={22}>
-                        <Search placeholder="Search Lot Item" />
-                      </Col>
-                    </Row>
-                  </Col>
-                  <Divider className={s.divider} />
-                  <Col span={24}>
-                    <Select
-                      className={s.select}
-                      defaultValue="Sort by"
-                      style={{ width: 240 }}
-                      options={options}
-                    />
-                  </Col>
-                  <Divider className={s.divider} />
                 </Col>
-              </>
-            )
+                <Divider type="vertical" className={s.divider} />
+                <Col lg={{ span: 6 }} md={{ span: 11 }} xs={{ span: 8 }} className={s.select}>
+                  <Select
+                    size="large"
+                    placeholder={<p>Sort By</p>}
+                    bordered={false}
+                    options={options}
+                    style={{ width: "100%" }}
+                    dropdownClassName={s.dropdown}
+                  />
+                </Col>
+                <Divider type="vertical" className={s.divider} />
+
+                <Col lg={{ span: 6 }} md={{ span: 11 }} xs={{ span: 12 }}>
+                  <Search
+                    placeholder={windowWidth <= 500 ? "Search" : "Search Lot Item"}
+                    size="large"
+                    style={{ width: "100%" }}
+                    onSearch={handleSearch}
+                  />
+                </Col>
+              </Row>
+              <Divider className={s.dividerX} />
+            </>
+
             // #endregion
           }
 
@@ -233,7 +227,7 @@ function ThemesContentsAuctionDetailsLots() {
                 })
               ) : (
                 <Col style={{ width: "100%", display: "flex", justifyContent: "center" }}>
-                  <Empty />
+                  {auctionItemsLoading ? <Spin size="large" tip="loading" /> : <Empty />}
                 </Col>
               )}
             </Row>

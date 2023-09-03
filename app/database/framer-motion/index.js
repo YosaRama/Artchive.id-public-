@@ -1,18 +1,10 @@
 //? ============== FADING ANIIMATION ============= ?//
 
 export const fading = {
-  hidden: { opacity: 0 },
+  hidden: { opacity: 0, transition: { ease: "easeInOut", delay: 0.3 } },
   visible: {
     opacity: 1,
-    transition: { ease: "easeInOut", delay: 0.3 },
-  },
-  exit: {
-    opacity: 0,
-    transition: {
-      ease: "easeInOut",
-      delay: 0.5,
-      duration: 0.4,
-    },
+    transition: { ease: "easeInOut", delay: 0 },
   },
 };
 
@@ -27,10 +19,10 @@ export const fadeTopToBottom = {
 };
 
 export const fadingBottomToTop = {
-  hidden: { opacity: 1, y: 0 },
+  hidden: { opacity: 0, y: 10 },
   visible: {
-    opacity: 0,
-    y: -10,
+    opacity: 1,
+    y: 0,
     transition: { ease: "easeInOut", delay: 0.3, duration: 0.4, when: "beforeChildren" },
   },
 };

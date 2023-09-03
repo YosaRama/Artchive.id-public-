@@ -1,6 +1,6 @@
 // Libs
 import propTypes from "prop-types";
-import { Button, Col, Empty, Row } from "antd";
+import { Button, Col, Empty, Row, Spin } from "antd";
 import { useState } from "react";
 
 // Components
@@ -23,6 +23,7 @@ function AppContentsAuctionDetailsLotsList(props) {
     data: lotsData,
     onAdd: addLots,
     onDelete: deleteLots,
+    loading: lotsLoading,
   } = useAuctionItems({
     auctionId: auctionId,
     queryString: ``,
@@ -59,62 +60,67 @@ function AppContentsAuctionDetailsLotsList(props) {
           </Button>
         </Col>
       </Row>
-      <Row gutter={[16, 32]} align="middle">
-        {lotsData?.length != 0 ? (
-          lotsData?.map((item, index) => {
-            return (
-              <Col span={8} style={{ marginBottom: 10 }} key={index}>
-                <AppCardAuctionArtwork
-                  onClick={() => {
-                    onItemClick(item?.auction_details?.id);
-                    onState("details");
-                  }}
-                  image={
-                    item?.artwork_details?.media_cover
-                      ? `${process.env.NEXT_PUBLIC_S3_URL}/${item?.artwork_details?.media_cover?.url}`
-                      : "/images/default-images.png"
-                  }
-                  artistImage={
-                    item?.artwork_details?.artist?.profile?.url &&
-                    `${process.env.NEXT_PUBLIC_S3_URL}/${item?.artwork_details?.artist?.profile?.url}`
-                  }
-                  artistName={item?.artwork_details?.artist?.full_name}
-                  id={item?.artwork_details?.id}
-                  size={
-                    <>
-                      <p>
-                        {item?.artwork_details?.width} x {item?.artwork_details?.height} cm
-                      </p>
-                      <p>
-                        End price : IDR{" "}
-                        {priceFormatter(`${item?.auction_details?.initial_price}`, ",")}{" "}
-                      </p>
-                    </>
-                  }
-                  status={item?.auction_details?.item_status}
-                  title={item?.artwork_details?.title}
-                />
-                <Col span={24} style={{ textAlign: "center" }}>
-                  <Button
-                    type="secondary"
-                    style={{ marginTop: 10 }}
-                    onClick={() =>
-                      deleteConfirmModal({
-                        title: `artwork from this events?`,
-                        onDelete: () => handleDeleteLots(item?.auction_details?.id),
-                      })
+      <Spin spinning={lotsLoading}>
+        <Row gutter={[16, 32]} align="middle">
+          {lotsData?.length != 1 ? (
+            lotsData?.map((item, index) => {
+              return (
+                <Col span={8} style={{ marginBottom: 10 }} key={index}>
+                  <AppCardAuctionArtwork
+                    onClick={() => {
+                      onItemClick(item?.auction_details?.id);
+                      onState("details");
+                    }}
+                    image={
+                      item?.artwork_details?.media_cover
+                        ? `${process.env.NEXT_PUBLIC_S3_URL}/${item?.artwork_details?.media_cover?.url}`
+                        : "/images/default-images.png"
                     }
-                  >
-                    Remove
-                  </Button>
+                    artistImage={
+                      item?.artwork_details?.artist?.profile?.url &&
+                      `${process.env.NEXT_PUBLIC_S3_URL}/${item?.artwork_details?.artist?.profile?.url}`
+                    }
+                    artistName={item?.artwork_details?.artist?.full_name}
+                    id={item?.artwork_details?.id}
+                    size={
+                      <>
+                        <p>
+                          {item?.artwork_details?.width} x {item?.artwork_details?.height} cm
+                        </p>
+                        <p>
+                          End price : IDR{" "}
+                          {priceFormatter(`${item?.auction_details?.initial_price}`, ",")}{" "}
+                        </p>
+                      </>
+                    }
+                    status={item?.auction_details?.item_status}
+                    title={item?.artwork_details?.title}
+                  />
+                  <Col span={24} style={{ textAlign: "center" }}>
+                    <Button
+                      type="secondary"
+                      style={{ marginTop: 10 }}
+                      onClick={() =>
+                        deleteConfirmModal({
+                          title: `artwork from this events?`,
+                          onDelete: () => handleDeleteLots(item?.auction_details?.id),
+                        })
+                      }
+                    >
+                      Remove
+                    </Button>
+                  </Col>
                 </Col>
-              </Col>
-            );
-          })
-        ) : (
-          <Empty />
-        )}
-      </Row>
+              );
+            })
+          ) : (
+            <Col span={24}>
+              <Empty />
+            </Col>
+          )}
+        </Row>
+      </Spin>
+
       <AppFormLotAuction visible={addModal} onClose={handleModal} onSubmit={addLots} />
     </>
   );
