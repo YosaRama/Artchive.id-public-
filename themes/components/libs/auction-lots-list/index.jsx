@@ -9,6 +9,7 @@ import { useSession } from "next-auth/react";
 // Helper
 import priceFormatter from "app/helpers/priceFormatter";
 import stringCapitalize from "app/helpers/capitalize";
+import { useWindowSize } from "app/helpers/useWindowSize";
 
 // Components
 import ThemesButton from "../button";
@@ -22,6 +23,7 @@ import ThemesAuctionLotListPrice from "../lot-list-price";
 
 function ThemesAuctionLotsList(props) {
   const { artworkDetails, auctionDetails, auctionData, grid = false, handleVisible } = props;
+  const { width } = useWindowSize();
   const router = useRouter();
   const { id: auctionId } = router.query;
   const itemId = auctionDetails.id;
@@ -127,7 +129,9 @@ function ThemesAuctionLotsList(props) {
             <Col span={grid ? 24 : 8} className={s.descContainer}>
               {!grid && <p>LOT</p>}
               <Col>
-                <h2 className={s.title}>{artworkDetails?.title}</h2>
+                <Col>
+                  <h2 className={width > 500 ? s.titleContainer : ""}> {artworkDetails?.title}</h2>
+                </Col>
                 {artworkDetails?.artist ? <p>by {artworkDetails?.artist?.full_name}</p> : ""}
               </Col>
               {!grid && (
