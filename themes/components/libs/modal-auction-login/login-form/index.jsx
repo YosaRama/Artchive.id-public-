@@ -13,7 +13,7 @@ import { useWindowSize } from "app/helpers/useWindowSize";
 
 // Style
 import s from "./index.module.scss";
-import { signIn } from "next-auth/react";
+import { useAuctionUsers } from "app/hooks/auction/user";
 
 function ThemesAuctionLoginForm(props) {
   const { handleModalVisible, handleModalStage, eventStatus } = props;
@@ -22,30 +22,37 @@ function ThemesAuctionLoginForm(props) {
   const { width } = useWindowSize();
   const [loading, setLoading] = useState(false);
   const [form] = Form.useForm();
+
+  // TODO CHANGE THIS
+  const { data: auctionUser } = useAuctionUsers({ queryString: "", auctionId: auctionId });
+  const { phoneNumberValue, setPhoneNumberValue } = useState("");
+  // TODO CHANGE THIS
+
   const handleSubmit = () => {
     setLoading(true);
     form
       .validateFields()
       .then(async (val) => {
-        const login = await signIn("credentials", {
-          redirect: false,
-          phone: val.phone,
-          type: "auction",
-          auctionId: auctionId,
-        });
-        if (!login.error) {
-          if (eventStatus === "LIVE") {
-            // handleModalStage("verify")
-            handleModalVisible();
-            window.location.reload();
-          }
-
-          if (eventStatus === "BEFORE") {
-            handleModalStage("countdown");
+        //TODO: Change this
+        phoneNumberValue = val?.phone;
+        const isPhoneNumberAvailable = await auctionUser?.some(
+          (item) => item?.phone_number === phoneNumberValue
+        );
+        //TODO: Change This
+        // const login = await signIn("credentials", {
+        //   redirect: false,
+        //   phone: val.phone,
+        //   type: "auction",
+        //   auctionId: auctionId,
+        // });
+        if (isPhoneNumberAvailable) {
+          if (eventStatus === "LIVE" || "BEFORE") {
+            handleModalStage("verify");
           }
         } else {
           if (eventStatus === "LIVE") {
             handleModalStage("sorry");
+            setPhoneNumberValue("");
           }
 
           if (eventStatus === "BEFORE") {
@@ -56,7 +63,7 @@ function ThemesAuctionLoginForm(props) {
       .catch(() => {});
     setTimeout(() => {
       setLoading(false);
-    }, 1000);
+    }, 2000);
   };
 
   return (

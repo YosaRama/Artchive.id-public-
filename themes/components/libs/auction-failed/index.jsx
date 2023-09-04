@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import s from "./index.module.scss";
 
 function ThemesAuctionFailed(props) {
-  const { onClick } = props;
+  const { onClick, eventStatus, handleBack } = props;
   const router = useRouter();
 
   return (
@@ -17,10 +17,16 @@ function ThemesAuctionFailed(props) {
         <Col className={s.container}>
           <h2>{`We apologize for any disappointment caused.`}</h2>
           <p>
-            {`We regret to inform you that since you did not register prior to the auction's
+            {`We regret to inform you that since you did not register or submit the wrong phone number prior to the auction's
             commencement, you are currently ineligible to participate.`}
           </p>
-          <ThemesButton onClick={() => router.push("/auction")}>BACK TO AUCTION LIST</ThemesButton>
+          {eventStatus === "LIVE" ? (
+            <ThemesButton onClick={handleBack}>BACK TO LOGIN</ThemesButton>
+          ) : (
+            <ThemesButton onClick={() => router.push("/auction")}>
+              BACK TO AUCTION LIST
+            </ThemesButton>
+          )}
         </Col>
       </Col>
       <Col className={s.background}>
@@ -32,6 +38,8 @@ function ThemesAuctionFailed(props) {
 
 propTypes.ThemesAuctionFailed = {
   onClick: propTypes.any,
+  handleBack: propTypes.func,
+  eventStatus: propTypes.oneOf(["BEFORE", "LIVE", "AFTER"]),
 };
 
 export default ThemesAuctionFailed;

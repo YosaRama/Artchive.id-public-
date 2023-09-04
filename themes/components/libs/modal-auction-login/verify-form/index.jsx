@@ -3,7 +3,8 @@ import { Col, Row, Image, Form, Input } from "antd";
 import propTypes from "prop-types";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { useUsers } from "app/hooks/user";
+import { LeftOutlined } from "@ant-design/icons";
+import { signIn } from "next-auth/react";
 
 // Compoenent
 import ThemesButton from "../../button";
@@ -15,12 +16,12 @@ import { useWindowSize } from "app/helpers/useWindowSize";
 import s from "./index.module.scss";
 
 function ThemesAuctionVerifyForm(props) {
-  const { onClick } = props;
+  const { handleBack, handleModalStage, eventStatus, handleModalVisible } = props;
   const { width } = useWindowSize();
-
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const [isThankYou, setIsThankYou] = useState(false);
   const router = useRouter();
+  const { id: auctionId } = router.query;
 
   //#region Handle change input
   const handleChange = (e, index) => {
@@ -51,12 +52,13 @@ function ThemesAuctionVerifyForm(props) {
   //#endregion
 
   //#region Handle verification
-  const { onRegisterByPhone } = useUsers({ queryString: "" });
+  const [form] = Form.useForm();
+
   const handleVerification = async () => {
+    //TODO: CHANGE THIS
     const otpParse = otp.join("");
     const otpCode = `${otpParse.slice(0, 3)}-${otpParse.slice(3)}`;
     const otpLocal = localStorage.getItem("otp_code");
-
     const isValid = await verifyPassword(otpCode, otpLocal);
 
     if (isValid) {
@@ -73,9 +75,18 @@ function ThemesAuctionVerifyForm(props) {
           type: "phone",
         });
         if (!login.error) {
-          setIsThankYou(true);
+          if (eventStatus === "LIVE") {
+            window.location.reload();
+            handleModalVisible();
+          }
+          if (eventStatus === "BEFORE") {
+            handleModalStage("countdown");
+          }
         } else {
           ErrorNotification({ message: "Login Failed!", description: login.error });
+          if (eventStatus === "LIVE") {
+            handleModalStage("sorry");
+          }
         }
       }
     } else {
@@ -99,6 +110,7 @@ function ThemesAuctionVerifyForm(props) {
         <Col className={s.register}>
           <Col className={s.title}>
             <h3>Verification Required</h3>
+            <p>Insert your PIN verification code</p>
           </Col>
           <Col>
             <Form>
@@ -128,16 +140,15 @@ function ThemesAuctionVerifyForm(props) {
               </Form.Item>
             </Form>
 
-            <ThemesButton
-              type={"primary " + s.btn}
-              // onClick={handleVerification}
-              onClick={onClick}
-            >
+            <ThemesButton type={"primary " + s.btn} onClick={handleVerification}>
               VERIFY
             </ThemesButton>
-            <p>
-              Not receiving any OTP notification? <span className={s.resend}>Resend again</span>.
-            </p>
+            <Col onClick={handleBack}>
+              <p className={s.resend}>
+                <LeftOutlined /> Back to Phone Number Check
+                {/* Not receiving any OTP notification? <span className={s.resend}>Resend again</span>. */}
+              </p>
+            </Col>
           </Col>
         </Col>
       </Col>
@@ -148,6 +159,10 @@ function ThemesAuctionVerifyForm(props) {
 
 propTypes.ThemesAuctionVerifyForm = {
   onClick: propTypes.any,
+  handleModalStage: propTypes.func,
+  eventStatus: propTypes.oneOf(["BEFORE", "LIVE", "AFTER"]),
+  handleBack: propTypes.any,
+  handleModalVisible: propTypes.any,
 };
 
 export default ThemesAuctionVerifyForm;
