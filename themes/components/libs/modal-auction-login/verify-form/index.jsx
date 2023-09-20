@@ -2,7 +2,6 @@
 import { Col, Row, Image, Form, Input } from "antd";
 import propTypes from "prop-types";
 import { useState } from "react";
-import { useRouter } from "next/router";
 import { LeftOutlined } from "@ant-design/icons";
 import { signIn } from "next-auth/react";
 
@@ -14,14 +13,17 @@ import { useWindowSize } from "app/helpers/useWindowSize";
 
 // Style
 import s from "./index.module.scss";
+import { useAuctionPhoneCtx } from "app/contexts/auction-phone";
+import { ErrorNotification } from "app/components/utils/notification";
+import { useRouter } from "next/router";
 
 function ThemesAuctionVerifyForm(props) {
   const { handleBack, handleModalStage, eventStatus, handleModalVisible } = props;
   const { width } = useWindowSize();
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
-  const [isThankYou, setIsThankYou] = useState(false);
   const router = useRouter();
   const { id: auctionId } = router.query;
+  const { phoneNumber } = useAuctionPhoneCtx();
 
   //#region Handle change input
   const handleChange = (e, index) => {
@@ -52,48 +54,27 @@ function ThemesAuctionVerifyForm(props) {
   //#endregion
 
   //#region Handle verification
-  const [form] = Form.useForm();
-
   const handleVerification = async () => {
-    //TODO: CHANGE THIS
-    const otpParse = otp.join("");
-    const otpCode = `${otpParse.slice(0, 3)}-${otpParse.slice(3)}`;
-    const otpLocal = localStorage.getItem("otp_code");
-    const isValid = await verifyPassword(otpCode, otpLocal);
+    const otpCode = otp.join("");
 
-    if (isValid) {
-      const registrationData = {
-        ...JSON.parse(localStorage.getItem("registration_data")),
-        otpCode: otpCode,
-      };
-      const result = await onRegisterByPhone(registrationData);
-      if (result) {
-        const login = await signIn("credentials", {
-          redirect: false,
-          phone: router.query.phone,
-          otp: otpCode,
-          type: "phone",
-        });
-        if (!login.error) {
-          if (eventStatus === "LIVE") {
-            window.location.reload();
-            handleModalVisible();
-          }
-          if (eventStatus === "BEFORE") {
-            handleModalStage("countdown");
-          }
-        } else {
-          ErrorNotification({ message: "Login Failed!", description: login.error });
-          if (eventStatus === "LIVE") {
-            handleModalStage("sorry");
-          }
-        }
+    const login = await signIn("credentials", {
+      redirect: false,
+      auctionId: auctionId,
+      phone: phoneNumber,
+      code: otpCode,
+      type: "auction",
+    });
+
+    if (!login.error) {
+      if (eventStatus === "LIVE") {
+        window.location.reload();
+      }
+      if (eventStatus === "BEFORE") {
+        handleModalStage("countdown");
       }
     } else {
-      ErrorNotification({
-        message: "OTP is not valid",
-        description: "Please check your OTP on your phone, and resend if still not received any",
-      });
+      handleModalStage("login");
+      ErrorNotification({ message: "Login Failed!", description: login.error });
     }
   };
   //#endregion

@@ -2,7 +2,6 @@
 import { Col, Row, Image, Form, Input } from "antd";
 import { useRouter } from "next/router";
 import propTypes from "prop-types";
-import moment from "moment";
 import { useState } from "react";
 
 // Compoenent
@@ -13,51 +12,27 @@ import { useWindowSize } from "app/helpers/useWindowSize";
 
 // Style
 import s from "./index.module.scss";
-import { useAuctionUsers } from "app/hooks/auction/user";
+import { useAuctionPhoneCtx } from "app/contexts/auction-phone";
 
 function ThemesAuctionLoginForm(props) {
   const { handleModalVisible, handleModalStage, eventStatus } = props;
-  const router = useRouter();
-  const { id: auctionId } = router.query;
   const { width } = useWindowSize();
   const [loading, setLoading] = useState(false);
   const [form] = Form.useForm();
-
-  // TODO CHANGE THIS
-  const { data: auctionUser } = useAuctionUsers({ queryString: "", auctionId: auctionId });
-  const { phoneNumberValue, setPhoneNumberValue } = useState("");
-  // TODO CHANGE THIS
+  const { setPhoneNumber } = useAuctionPhoneCtx();
 
   const handleSubmit = () => {
     setLoading(true);
     form
       .validateFields()
       .then(async (val) => {
-        //TODO: Change this
-        phoneNumberValue = val?.phone;
-        const isPhoneNumberAvailable = await auctionUser?.some(
-          (item) => item?.phone_number === phoneNumberValue
-        );
-        //TODO: Change This
-        // const login = await signIn("credentials", {
-        //   redirect: false,
-        //   phone: val.phone,
-        //   type: "auction",
-        //   auctionId: auctionId,
-        // });
-        if (isPhoneNumberAvailable) {
-          if (eventStatus === "LIVE" || "BEFORE") {
-            handleModalStage("verify");
-          }
-        } else {
-          if (eventStatus === "LIVE") {
-            handleModalStage("sorry");
-            setPhoneNumberValue("");
-          }
+        setPhoneNumber(val.phone);
+        if (eventStatus === "LIVE") {
+          handleModalStage("verify");
+        }
 
-          if (eventStatus === "BEFORE") {
-            handleModalStage("register");
-          }
+        if (eventStatus === "BEFORE") {
+          handleModalStage("register");
         }
       })
       .catch(() => {});
