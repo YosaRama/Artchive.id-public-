@@ -1,10 +1,13 @@
 // Context Library
 import TemplateContextProvider from "./_template";
+import AuctionPhoneContextProvider from "./auction-phone";
 
 function GlobalContext(props) {
   return (
     <>
-      <TemplateContextProvider>{props.children}</TemplateContextProvider>
+      <AuctionPhoneContextProvider>
+        <TemplateContextProvider>{props.children}</TemplateContextProvider>
+      </AuctionPhoneContextProvider>
     </>
   );
 }

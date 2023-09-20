@@ -86,8 +86,17 @@ export default NextAuth({
             phoneNumber: credentials.phone,
           });
           const isValid = userFound?.result?.length !== 0;
+          const isCodeValid = userFound?.result?.[0]?.code === credentials.code;
 
-          if (isValid) {
+          if (!isValid) {
+            throw new Error("Sorry your phone number is not registered!");
+          }
+
+          if (!isCodeValid) {
+            throw new Error("Sorry your code is not correct!");
+          }
+
+          if (isValid && isCodeValid) {
             return {
               message: "Successfully Login",
               user: {
@@ -97,10 +106,6 @@ export default NextAuth({
                 full_name: userFound?.result?.[0]?.name,
               },
             };
-          }
-
-          if (!isValid) {
-            throw new Error("Sorry your phone number is not registered!");
           }
         }
         //#endregion
