@@ -21,7 +21,7 @@ function ThemesContentsAuctionList() {
   //? ============== Auction Hook ============= ?//
   const { data: auctionList, loading: auctionListLoading } = useAuctions({ queryString: "" });
   // * ====================================== * //
-
+  console.log(auctionList);
   return (
     <>
       {
@@ -64,7 +64,12 @@ function ThemesContentsAuctionList() {
                                 xs={{ span: 24 }}
                               >
                                 <ThemesAuctionCard
-                                  thumbnail={item?.thumbnail}
+                                  thumbnail={
+                                    item?.thumbnail !==
+                                    "https://s3.ap-southeast-1.amazonaws.com/artchivestagingbucket/undefined"
+                                      ? item?.thumbnail
+                                      : "/images/default-images.jpg"
+                                  }
                                   title={item?.name}
                                   status={item?.status}
                                   startDate={item.start_date}
