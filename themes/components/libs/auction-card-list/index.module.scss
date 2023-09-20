@@ -31,6 +31,9 @@
       font-size: 36px;
       margin: 0;
       cursor: pointer;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
       &:hover {
         color: colors.$fulvous;
         transition: all 0.3s ease;
@@ -51,10 +54,6 @@
       display: flex;
       justify-content: space-between;
       flex-direction: column;
-
-      h3 {
-        font-size: font-size.$heading-4 !important;
-      }
     }
   }
 }
