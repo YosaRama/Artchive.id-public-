@@ -92,7 +92,7 @@ function ThemesModalAuctionLogin(props) {
           padding: "0px",
           background: "white",
           borderRadius: "10px",
-          height: width > 500 ? "650px" : "550px",
+          height: width > 500 ? "650px" : "600px",
         }}
       >
         {loginModal === "login" && (

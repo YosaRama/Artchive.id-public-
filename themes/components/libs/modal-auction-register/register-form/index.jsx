@@ -32,8 +32,7 @@ function ThemesAuctionRegisterForm(props) {
             <h3>REGISTER</h3>
           </Col>
           <p className={s.warn}>
-            <ExclamationCircleOutlined /> Not registered for the auction? Fill the form below to
-            sign up.
+            <ExclamationCircleOutlined /> You are not registered in this auction! Register now.
           </p>
           <Form
             name="basic"
@@ -68,7 +67,7 @@ function ThemesAuctionRegisterForm(props) {
                 },
               ]}
             >
-              <Input.Password placeholder="Enter your password" />
+              <Input placeholder="Enter your phone number" />
             </Form.Item>
 
             <Form.Item
@@ -78,6 +77,10 @@ function ThemesAuctionRegisterForm(props) {
                 {
                   required: true,
                   message: "Please input your email!",
+                },
+                {
+                  type: "email",
+                  message: "Please enter a valid email address!",
                 },
               ]}
             >
@@ -96,7 +99,7 @@ function ThemesAuctionRegisterForm(props) {
 
             <Form.Item>
               <p className={s.closeBtn} onClick={handleBack}>
-                Back to Login
+                Back to Participant Verification
               </p>
             </Form.Item>
           </Form>

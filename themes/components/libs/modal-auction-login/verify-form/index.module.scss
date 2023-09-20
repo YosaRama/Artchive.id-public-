@@ -71,10 +71,11 @@
   margin-bottom: 10px;
   width: 100%;
 }
-.resend {
+.back {
   cursor: pointer;
   transition: 300ms all ease;
   color: colors.$fulvous;
+  text-align: center;
   &:hover {
     color: colors.$fulvous;
     transition: 300ms all ease;

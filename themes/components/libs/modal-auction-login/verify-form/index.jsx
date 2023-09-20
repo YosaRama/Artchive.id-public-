@@ -144,10 +144,7 @@ function ThemesAuctionVerifyForm(props) {
               VERIFY
             </ThemesButton>
             <Col onClick={handleBack}>
-              <p className={s.resend}>
-                <LeftOutlined /> Back to Phone Number Check
-                {/* Not receiving any OTP notification? <span className={s.resend}>Resend again</span>. */}
-              </p>
+              <p className={s.back}>Back to Participant Verification</p>
             </Col>
           </Col>
         </Col>

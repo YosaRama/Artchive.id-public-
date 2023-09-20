@@ -79,7 +79,7 @@ function ThemesAuctionLoginForm(props) {
         <Col span={width > 768 ? 13 : 24} className={s.registerContainer}>
           <Col className={s.register}>
             <Col className={s.title}>
-              <h3>Confirm your Phone Number</h3>
+              <h3>Participant Verification</h3>
             </Col>
             <Form
               form={form}
@@ -100,7 +100,7 @@ function ThemesAuctionLoginForm(props) {
                   },
                 ]}
               >
-                <Input placeholder="Enter your phone number" />
+                <Input placeholder="Enter your Phone Number" />
               </Form.Item>
 
               <Form.Item>
@@ -114,7 +114,7 @@ function ThemesAuctionLoginForm(props) {
               </Form.Item>
             </Form>
             <p className={s.closeBtn} onClick={handleModalVisible}>
-              No Thanks
+              Back to Auction List
             </p>
           </Col>
         </Col>
