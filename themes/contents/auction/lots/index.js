@@ -27,6 +27,18 @@ import s from "./index.module.scss";
 function ThemesContentsAuctionDetailsLots() {
   const router = useRouter();
 
+  const [filterParams, setFilterParams] = useState({
+    estMinPrice: 0,
+    estMaxPrice: 0,
+    minCurPrice: 0,
+    maxCurPrice: 0,
+    sltBidTypes: [],
+  });
+  const [sortParam, setSortParam] = useState({
+    value: "0",
+    label: "Default",
+  });
+
   //#region Handle search
   const [search, setSearch] = useState("");
   const handleSearch = (value) => {
@@ -40,7 +52,11 @@ function ThemesContentsAuctionDetailsLots() {
 
   // #region Auction Item Details
   const { data: auctionItems, loading: auctionItemsLoading } = useAuctionItems({
-    queryString: `name=${search}`,
+    queryString: new URLSearchParams({
+      name: search,
+      ...filterParams,
+      sort: sortParam.value,
+    }).toString(),
     auctionId: router.query.id,
   });
   // #endregion
@@ -183,6 +199,8 @@ function ThemesContentsAuctionDetailsLots() {
                     options={options}
                     style={{ width: "100%" }}
                     dropdownClassName={s.dropdown}
+                    value={sortParam}
+                    onChange={(_, value) => setSortParam(value)}
                   />
                 </Col>
                 <Divider type="vertical" className={s.divider} />
@@ -242,7 +260,11 @@ function ThemesContentsAuctionDetailsLots() {
 
         {
           // #region Navbar Search
-          <ThemesNavbarSearchAuction visible={openMenu} onClose={() => setOpenMenu(false)} />
+          <ThemesNavbarSearchAuction
+            setFilterParams={setFilterParams}
+            visible={openMenu}
+            setVisible={setOpenMenu}
+          />
           // #endregion
         }
       </Col>
