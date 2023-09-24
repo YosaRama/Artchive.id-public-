@@ -41,6 +41,7 @@ function ThemesModalAuctionLogin(props) {
 
   // #region Handle Modal
   const [loginModal, setLoginModal] = useState("login");
+  const [isVerified, setIsVerified] = useState("false");
 
   const handleBack = () => {
     setLoginModal("login");
@@ -68,8 +69,6 @@ function ThemesModalAuctionLogin(props) {
   const handleVerify = () => {
     if (beforeEvent) {
       setLoginModal("countdown");
-    } else if (inEvent) {
-      handleVisible;
     }
   };
   // #endregion
@@ -93,7 +92,7 @@ function ThemesModalAuctionLogin(props) {
           padding: "0px",
           background: "white",
           borderRadius: "10px",
-          height: width > 500 ? "650px" : "550px",
+          height: width > 500 ? "650px" : "600px",
         }}
       >
         {loginModal === "login" && (
@@ -103,7 +102,14 @@ function ThemesModalAuctionLogin(props) {
             eventStatus={eventStatus}
           />
         )}
-        {loginModal === "verify" && <ThemesAuctionVerifyForm onClick={handleVerify} />}
+        {loginModal === "verify" && (
+          <ThemesAuctionVerifyForm
+            eventStatus={eventStatus}
+            handleModalStage={setLoginModal}
+            handleBack={handleBack}
+            handleModalVisible={handleCloseModal}
+          />
+        )}
         {loginModal === "register" && (
           <ThemesAuctionRegisterForm
             onClick={handleRegister}
@@ -114,7 +120,9 @@ function ThemesModalAuctionLogin(props) {
         {loginModal === "countdown" && (
           <ThemesAuctionCountDown startDate={auctionData.start_date} />
         )}
-        {loginModal === "sorry" && <ThemesAuctionFailed />}
+        {loginModal === "sorry" && (
+          <ThemesAuctionFailed eventStatus={eventStatus} handleBack={handleBack} />
+        )}
       </ThemesModal>
     </>
   );

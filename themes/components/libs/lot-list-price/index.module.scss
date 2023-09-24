@@ -1,0 +1,50 @@
+@use "/themes/styles/base/colors";
+@use "/themes/styles/base/font-size";
+
+.container {
+  p {
+    font-size: font-size.$paragraph !important;
+  }
+  h3 {
+    font-size: font-size.$heading-3 !important;
+    color: colors.$fulvous;
+  }
+  height: 100%;
+  display: flex;
+  align-content: space-around;
+}
+
+.containerGrid {
+  margin-top: 10px;
+  p {
+    font-size: font-size.$paragraph !important;
+  }
+  h3 {
+    font-size: font-size.$heading-4 !important;
+    color: colors.$fulvous;
+  }
+  height: auto;
+}
+//? ============== Tablet Landscape Mode ============= ?//
+
+@media screen and (max-width: 1024px) {
+  .container {
+    p {
+      font-size: font-size.$paragraph !important;
+    }
+    h3 {
+      font-size: font-size.$heading-3 !important;
+      color: colors.$fulvous;
+    }
+    height: 100%;
+    display: flex;
+    align-content: space-around;
+  }
+
+  .containerGrid {
+    p {
+      font-size: 14px !important;
+    }
+  }
+}
+// * ====================================== * //

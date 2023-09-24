@@ -3,7 +3,7 @@
 // Libs
 import { useRouter } from "next/router";
 import propTypes from "prop-types";
-import { Badge, Card, Col, Divider } from "antd";
+import { Badge, Card, Col, Divider, Tag } from "antd";
 
 // Helpers
 import priceFormatter from "app/helpers/priceFormatter";
@@ -72,7 +72,13 @@ function ThemesArtworkCard(props) {
               {artworkYear}, {stringCapitalize(artworkMedia.replace(/_/g, " "))}
             </p>
             <p>{`${artworkWidth} x ${artworkHeight} cm`}</p>
-            <p className={s.price}>{`IDR ${priceFormatter(artworkPrice, ",")}`}</p>
+            <p className={s.price}>
+              {artworkPrice !== "0" ? (
+                `IDR ${priceFormatter(artworkPrice, ",")}`
+              ) : (
+                <Tag>Request For Price</Tag>
+              )}
+            </p>
           </Col>
         </Card>
       </Badge.Ribbon>

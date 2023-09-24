@@ -46,7 +46,7 @@ function ThemesNavbarDrawerAuction(props) {
 
           <Col span={24} style={{ height: data ? "30%" : "20%" }} className={s.footerContainer}>
             <Col className={s.footerSection}>
-              {data && (
+              {data?.user?.role === "auction-participant" && (
                 <>
                   <ThemesButton style={{ width: "100%" }} onClick={() => signOut()}>
                     Sign Out

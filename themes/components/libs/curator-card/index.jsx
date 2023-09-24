@@ -8,17 +8,13 @@ import { useWindowSize } from "app/helpers/useWindowSize";
 
 // Styles
 import s from "./index.module.scss";
+import ThemesTextReadMore from "../text-read-more";
 
 function ThemesCuratorCard(props) {
   const { imgUrl, curatorName, description } = props;
   const { width } = useWindowSize();
-  const [expanded, setExpanded] = useState(false);
 
-  const handleExpand = () => {
-    setExpanded(!expanded);
-  };
-
-  const descriptionClass = `${s.shortDescription} ${expanded ? s.expanded : ""}`;
+  const textLength = width > 1024 ? 1200 : width > 768 ? 650 : 350;
 
   return (
     <>
@@ -31,16 +27,11 @@ function ThemesCuratorCard(props) {
             <Col>
               <h2>{curatorName}</h2>
             </Col>
-            <Col
-              className={descriptionClass}
-              dangerouslySetInnerHTML={{ __html: description }}
-            ></Col>
-            {description.length >
-              (width > 1024 ? 1000 : width > 768 ? 600 : width > 500 && 250) && (
-              <Col className={s.more} onClick={handleExpand}>
-                {expanded === true ? <p>Read less</p> : <p>Read more</p>}
-              </Col>
-            )}
+            <Col>
+              <p>
+                <ThemesTextReadMore textLength={textLength}>{description}</ThemesTextReadMore>
+              </p>
+            </Col>
           </Col>
         </Row>
       ) : (
@@ -54,14 +45,9 @@ function ThemesCuratorCard(props) {
             </Col>
           </Row>
           <Col span={24} className={s.description}>
-            <Col className={descriptionClass}>
-              <p>{description}</p>
-            </Col>
-            {description.length > 150 && (
-              <Col className={s.more} onClick={handleExpand}>
-                {expanded === true ? <p>Read less</p> : <p>Read more</p>}
-              </Col>
-            )}
+            <p>
+              <ThemesTextReadMore textLength={150}>{description}</ThemesTextReadMore>
+            </p>
           </Col>
         </Col>
       )}

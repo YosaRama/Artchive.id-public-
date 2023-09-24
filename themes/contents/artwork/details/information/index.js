@@ -1,6 +1,6 @@
 // Libs
 import propTypes from "prop-types";
-import { Card, Col, Image, Row, Modal, Badge } from "antd";
+import { Card, Col, Image, Row, Modal, Badge, Tag } from "antd";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
@@ -162,21 +162,24 @@ function ThemesContentsArtworkDetailsInformation(props) {
             </Col>
 
             <Col className={s.artworkDetailsPrice}>
-              <p>
-                <strong>IDR</strong>{" "}
-                {artworkData?.markup_price && priceFormatter(artworkData?.markup_price, ",")}
-              </p>
+              {artworkData?.markup_price !== "0" ? (
+                <p>
+                  <strong>IDR</strong>{" "}
+                  {artworkData?.markup_price && priceFormatter(artworkData?.markup_price, ",")}
+                </p>
+              ) : null}
             </Col>
             <Col className={s.cardBtnContainer}>
-              <ThemesButton
-                // type={"default " + statusArtwork ? s.cartBtnDisable : s.cartBtn}
-                type={cartButtonType}
-                loading={cartLoading}
-                onClick={sessionStatus == "authenticated" ? handleAddToCart : modalLogin}
-                disabled={statusArtwork}
-              >
-                <CartIcon /> ADD TO CART
-              </ThemesButton>
+              {artworkData?.markup_price !== "0" ? (
+                <ThemesButton
+                  type={cartButtonType}
+                  loading={cartLoading}
+                  onClick={sessionStatus == "authenticated" ? handleAddToCart : modalLogin}
+                  disabled={statusArtwork}
+                >
+                  <CartIcon /> ADD TO CART
+                </ThemesButton>
+              ) : null}
 
               <a
                 href={`https://wa.me/${
@@ -191,7 +194,8 @@ function ThemesContentsArtworkDetailsInformation(props) {
                 rel="noreferrer"
               >
                 <ThemesButton type={"outlined " + s.requestBtn}>
-                  <WhatsappIcon /> REQUEST ARTWORK
+                  <WhatsappIcon />
+                  {artworkData?.markup_price !== "0" ? "REQUEST ARTWORK" : "REQUEST FOR PRICE"}
                 </ThemesButton>
               </a>
             </Col>

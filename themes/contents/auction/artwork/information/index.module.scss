@@ -5,6 +5,10 @@
   cursor: pointer;
 }
 
+.headline {
+  margin-bottom: 40px;
+}
+
 .imageContainer {
   margin-bottom: 10px;
 }
@@ -63,10 +67,15 @@
         object-fit: cover;
       }
     }
+
+    .description {
+      text-align: justify !important;
+    }
   }
 }
 
 .highlightContainer {
+  margin: 50px 0px 0px !important;
   .headline {
     margin: 40px 0px;
   }
@@ -109,6 +118,15 @@
 @media screen and (max-width: 1024px) {
   .detailsImageContainer {
     height: 100px;
+  }
+
+  .otherSection {
+    flex-wrap: nowrap;
+    overflow: auto;
+    margin-bottom: 40px;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   .detailsContainer {
@@ -180,6 +198,8 @@
   }
 
   .highlightContainer {
+    margin: 40px 0px !important;
+
     .artworkContainer {
       padding: 0px 8px !important;
 

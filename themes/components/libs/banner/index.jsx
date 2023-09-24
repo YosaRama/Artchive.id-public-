@@ -15,19 +15,19 @@ import ThemesHeaderItem from "themes/components/layout/header-v2/header-item";
 import ThemesAuctionHeaderItem from "themes/components/layout/header-v2/auction-header-item";
 
 function ThemesBanner(props) {
-  const { children, imgSrc, className } = props;
+  const { children, imgSrc, className, initial = "hidden", loader } = props;
   const router = useRouter();
 
   return (
     <motion.div
       variants={fading}
-      initial="hidden"
+      initial={initial}
       animate="visible"
       span={24}
       className={`${s.container} ${className}`}
     >
       <Col span={24} className={`${s.image} banner-image`}>
-        <Image src={imgSrc} alt="" layout="fill" objectFit="cover" />
+        <Image src={imgSrc} priority={true} quality={25} alt="" layout="fill" objectFit="cover" />
       </Col>
       <Col className={s.headerContainer}>
         {router.pathname.startsWith("/auction/[id]") ? (
@@ -45,6 +45,8 @@ ThemesBanner.propTypes = {
   children: propTypes.node,
   imgSrc: propTypes.string.isRequired,
   className: propTypes.string,
+  initial: propTypes.string,
+  loader: propTypes.string,
 };
 
 export default ThemesBanner;

@@ -1,43 +1,49 @@
 // Libs
 import { Col, Row } from "antd";
-import { useRouter } from "next/router";
 import propTypes from "prop-types";
-// import moment from "moment";
-import moment from "moment-timezone";
+import moment from "moment";
+
+// Helper
+import { useSession } from "next-auth/react";
+import { useWindowSize } from "app/helpers/useWindowSize";
+import nameAbbreviation from "app/helpers/nameAbbreviation";
 
 // Style
 import s from "./index.module.scss";
 
 function ThemesBannerAuctionItem(props) {
-  const { title, startDate, endDate, placeName } = props;
-  const timeZone = moment.tz.guess();
+  const { title, startDate, endDate, placeName, loading } = props;
+  const { data: session } = useSession();
+  const userName = session?.user?.full_name;
+  const { width } = useWindowSize();
+
   //? ============== Countdown Timer ============= ?//
-  const targetMoment = moment.tz(endDate, timeZone);
-  const currentMoment = moment.tz(timeZone);
+  const targetMoment = moment(endDate);
+  const currentMoment = moment();
   const duration = moment.duration(targetMoment.diff(currentMoment));
   const remainingDays = Math.floor(duration.asDays());
-  const zone = moment().format("ZZ");
-  const IndonesiaTimeZone =
-    zone === "+0700" ? "WIB" : zone === "+0800" ? "WITA" : zone === "+0900" ? "WIT" : "";
-
-  // * ====================================== * //
 
   return (
-    <Row className={s.bannerItem}>
-      <Col span={24} className={s.description}>
-        <h2>{title}</h2>
-        <p style={{ marginBottom: "15px" }}>
-          {currentMoment < targetMoment
-            ? `${remainingDays} day${remainingDays > 1 ? "s" : ""} before the lot closed`
-            : "This auction already ended"}
-        </p>
+    loading && (
+      <Row className={s.bannerItem}>
+        <Col span={24} className={s.description}>
+          <h2>{title}</h2>
+          {session && session.user.role === "auction-participant" && (
+            <h3>Welcome, {width <= 500 ? nameAbbreviation(userName, 14) : userName}</h3>
+          )}
 
-        <p style={{ marginBottom: "0px" }}>
-          {moment.tz(startDate, timeZone).format("DD MMMM YYYY | HH:mm")} {IndonesiaTimeZone}
-          {placeName && `| {placeName}`}
-        </p>
-      </Col>
-    </Row>
+          <p style={{ marginBottom: "0px" }}>
+            Started on {moment(startDate).format("dddd, DD MMMM YYYY")}
+            {placeName && `| {placeName}`}
+          </p>
+          <p style={{ marginBottom: "0px" }}>
+            {currentMoment.isBefore(targetMoment)
+              ? `${remainingDays} day${remainingDays > 1 ? "s" : ""} before the lot closed`
+              : "This auction already ended"}
+          </p>
+        </Col>
+      </Row>
+    )
   );
 }
 
@@ -47,6 +53,7 @@ propTypes.ThemesBannerAuctionItem = {
   startDate: propTypes.string,
   endDate: propTypes.string,
   placeName: propTypes.string,
+  loading: propTypes.any,
 };
 
 export default ThemesBannerAuctionItem;

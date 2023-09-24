@@ -2,7 +2,6 @@
 import { Row, Col, Divider, Image, Table, Empty, Button } from "antd";
 import propTypes from "prop-types";
 import { v4 as uuid } from "uuid";
-import moment from "moment";
 import { useState } from "react";
 import { useRouter } from "next/router";
 
@@ -27,7 +26,11 @@ function AppContentsAuctionDetailsLotsDetails(props) {
   const { id: auctionId } = router.query;
 
   //#region Auction item hooks
-  const { data: itemDetails, onEdit: itemUpdate } = useAuctionItem({
+  const {
+    data: itemDetails,
+    onEdit: itemUpdate,
+    loading: itemLoading,
+  } = useAuctionItem({
     auctionId: auctionId,
     singleId: activeLotId,
   });
@@ -37,7 +40,7 @@ function AppContentsAuctionDetailsLotsDetails(props) {
     queryString: "",
   });
   //#endregion
-  console.log(itemDetails);
+
   //#region  Handle Column
   const columns = AuctionLogsColumn({ onDelete: () => {} });
   //#endregion
@@ -83,7 +86,7 @@ function AppContentsAuctionDetailsLotsDetails(props) {
           </Col>
         </Row>
         <Col style={{ textAlign: "right" }}>
-          <ThemesButton type="primary" onClick={handleModal}>
+          <ThemesButton type="primary" onClick={handleModal} loading={itemLoading}>
             Edit item
           </ThemesButton>
         </Col>
@@ -99,14 +102,17 @@ function AppContentsAuctionDetailsLotsDetails(props) {
         )}
         {!itemLogs && <Empty />}
 
-        <AppFormLotAuction
-          visible={addModal}
-          onClose={handleModal}
-          isEdit={true}
-          onSubmit={itemUpdate}
-          singleSku={itemDetails?.auction_details?.item_id}
-          initialData={itemDetails?.auction_details}
-        />
+        {!itemLoading && (
+          <AppFormLotAuction
+            visible={addModal}
+            onClose={handleModal}
+            isEdit={true}
+            onSubmit={itemUpdate}
+            singleSku={itemDetails?.auction_details?.item_id}
+            initialData={itemDetails?.auction_details}
+            isLoading={itemLoading}
+          />
+        )}
       </Col>
     </>
   );

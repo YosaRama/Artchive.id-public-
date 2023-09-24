@@ -1,0 +1,73 @@
+@use "/themes/styles/base/colors";
+@use "/themes/styles/base/font-size";
+
+.pageContainer {
+  height: calc(100vh - 64px);
+
+  display: flex;
+  justify-content: center;
+
+  .container {
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
+    align-content: center;
+
+    h1 {
+      font-size: font-size.$heading-1;
+      margin: 0px 0px 10px !important;
+    }
+    p {
+      font-size: font-size.$paragraph;
+      margin: 0px 0px 20px !important;
+    }
+    .left {
+      margin: auto 0px;
+    }
+    .imageContainer {
+      img {
+        max-width: 580px;
+        object-fit: contain;
+      }
+    }
+  }
+}
+
+// #region Tablet Potrait View
+@media screen and (max-width: 768px) {
+  .pageContainer {
+    height: calc(100vh - 128px);
+
+    display: flex;
+    justify-content: center;
+
+    .container {
+      display: flex;
+      height: 100%;
+      justify-content: space-between;
+      align-content: center;
+
+      h1 {
+        font-size: font-size.$heading-3;
+        margin: 0px 0px 10px !important;
+      }
+      p {
+        font-size: font-size.$paragraph;
+        margin: 0px 0px 20px !important;
+      }
+      .left {
+        margin: 30px 0px;
+        text-align: center;
+      }
+      .imageContainer {
+        text-align: center !important;
+
+        img {
+          max-width: 350px;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+}
+// #endregion

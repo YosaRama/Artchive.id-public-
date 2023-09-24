@@ -14,17 +14,29 @@
 
 .searchContainer {
   height: 80px;
+  width: 100%;
   align-items: center;
   p {
     margin-bottom: 0px;
   }
   h4 {
-    font-size: font-size.$heading-4;
+    font-size: font-size.$heading-3 !important;
     margin: 0px;
   }
+
   .divider {
-    height: 18px;
+    height: 32px;
     background-color: rgba(217, 217, 217, 1);
+  }
+  .click {
+    cursor: pointer;
+    &:hover {
+      transition: all ease 300ms;
+      h4,
+      p {
+        color: colors.$fulvous !important;
+      }
+    }
   }
 }
 
@@ -33,10 +45,15 @@
   background-color: rgba(217, 217, 217, 1);
 }
 
-.click {
-  cursor: pointer;
-  &:hover {
+.segmentContainer {
+  // height: 50px;
+  padding-top: 20px;
+  :global(.ant-segmented-item-selected) {
     color: colors.$fulvous;
+  }
+  .segment {
+    height: 35px;
+    font-weight: bold !important;
   }
 }
 
@@ -54,13 +71,19 @@
       margin: 0px;
     }
     .divider {
-      height: 1px;
       background-color: rgba(217, 217, 217, 1);
-      margin: 20px 0px;
+      margin: 0px 2px;
     }
-    .select {
-      width: 100% !important;
+  }
+  .select {
+    :global(ant-select-selection-search) {
+      width: 0px !important;
     }
+  }
+
+  .dropdown {
+    width: 90% !important;
+    left: 5% !important;
   }
 }
 // * ====================================== * //
