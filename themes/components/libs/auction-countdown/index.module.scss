@@ -12,6 +12,10 @@
     font-size: font-size.$heading-1;
     margin: 0px;
   }
+  h3 {
+    font-size: font-size.$heading-3;
+    margin: 0px;
+  }
   h1,
   p,
   h3,
@@ -31,6 +35,7 @@
     margin: 0px auto;
     text-align: center;
   }
+
   .timer {
     margin-bottom: 25px;
     flex-flow: nowrap !important;
@@ -65,7 +70,7 @@
   img {
     object-fit: cover;
     border-radius: 10px;
-    filter: brightness(0.5);
+    filter: brightness(0.25);
   }
 }
 

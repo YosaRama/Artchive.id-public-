@@ -67,7 +67,7 @@ function ThemesAuctionCountDown(props) {
             {width > 500 ? (
               <h3>Auction Will Start at {moment(startDate).format("DD MMMM YYYY")}</h3>
             ) : (
-              <h2>{moment(startDate).format("DD MMMM YYYY")}</h2>
+              <h2>Start at {moment(startDate).format("DD MMMM YYYY")}</h2>
             )}
           </Col>
 

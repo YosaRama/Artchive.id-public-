@@ -1,6 +1,15 @@
 @use "/themes/styles/base/colors";
 @use "/themes/styles/base/font-size";
 
+@keyframes scrollText {
+  0% {
+    transform: translateX(100%); /* Start offscreen to the right */
+  }
+  100% {
+    transform: translateX(-100%); /* Scroll to the left */
+  }
+}
+
 .cartHover {
   transition: all 300ms ease;
   cursor: pointer;
@@ -29,6 +38,7 @@
   }
   h2 {
     font-size: font-size.$heading-3;
+    margin: 0px;
   }
   h4 {
     font-size: font-size.$heading-4;
@@ -74,8 +84,11 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    .title {
-      margin: 0px;
+    .titleContainer {
+      width: 100%;
+      overflow: hidden; /* Hide overflowing text */
+      white-space: nowrap; /* Prevent text from wrapping */
+      text-overflow: ellipsis !important;
     }
   }
 

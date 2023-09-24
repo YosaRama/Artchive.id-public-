@@ -56,15 +56,14 @@ function ThemesContentsAuctionList() {
                         <Row gutter={width > 768 ? [32, 32] : [20, 20]} justify="flex-start">
                           {auctionList?.map((item, index) => {
                             return (
-                              <Col
-                                key={index}
-                                lg={{ span: 8 }}
-                                md={{ span: 8 }}
-                                sm={{ span: 8 }}
-                                xs={{ span: 24 }}
-                              >
+                              <Col key={index} lg={{ span: 8 }} md={{ span: 12 }} xs={{ span: 24 }}>
                                 <ThemesAuctionCard
-                                  thumbnail={item?.thumbnail}
+                                  thumbnail={
+                                    item?.thumbnail !==
+                                    "https://s3.ap-southeast-1.amazonaws.com/artchivestagingbucket/undefined"
+                                      ? item?.thumbnail
+                                      : "/images/default-images.jpg"
+                                  }
                                   title={item?.name}
                                   status={item?.status}
                                   startDate={item.start_date}
