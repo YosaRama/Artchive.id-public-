@@ -27,7 +27,19 @@ function ThemesBanner(props) {
       className={`${s.container} ${className}`}
     >
       <Col span={24} className={`${s.image} banner-image`}>
-        <Image src={imgSrc} priority={true} quality={25} alt="" layout="fill" objectFit="cover" />
+        <Image
+          src={
+            imgSrc === "https://s3.ap-southeast-1.amazonaws.com/artchivestagingbucket/undefined" ||
+            !imgSrc
+              ? "/images/default-images.jpg"
+              : imgSrc
+          }
+          priority={true}
+          quality={25}
+          alt=""
+          layout="fill"
+          objectFit="cover"
+        />
       </Col>
       <Col className={s.headerContainer}>
         {router.pathname.startsWith("/auction/[id]") ? (

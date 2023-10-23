@@ -86,11 +86,17 @@ function AppContentsAuctionDetailsLotsList(props) {
                     size={
                       <>
                         <p>
+                          Lot Id : {item?.auction_details?.lot ? item?.auction_details?.lot : "-"}
+                        </p>
+
+                        <p>
                           {item?.artwork_details?.width} x {item?.artwork_details?.height} cm
                         </p>
+
                         <p>
-                          End price : IDR{" "}
-                          {priceFormatter(`${item?.auction_details?.initial_price}`, ",")}{" "}
+                          End price :
+                          <br />
+                          IDR {priceFormatter(`${item?.auction_details?.initial_price}`, ",")}{" "}
                         </p>
                       </>
                     }
