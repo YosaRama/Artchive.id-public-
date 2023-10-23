@@ -1,7 +1,7 @@
 // Libs
 import { Col, Row, Image, Form, Input } from "antd";
 import propTypes from "prop-types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { signIn } from "next-auth/react";
 
 import { useRouter } from "next/router";
@@ -53,6 +53,15 @@ function ThemesAuctionLoginForm(props) {
       setOtp(newOtp);
     }
   };
+  //#endregion
+
+  //#region Handle auto verification
+  useEffect(() => {
+    if (otp.join("").length === 6) {
+      handleVerification();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [otp]);
   //#endregion
 
   //#region Handle verification
