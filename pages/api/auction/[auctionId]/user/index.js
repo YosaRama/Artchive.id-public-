@@ -6,13 +6,20 @@ import nextConnect from "next-connect";
 const apiHandler = nextConnect();
 
 apiHandler.get(async (req, res) => {
-  const { auctionId } = req.query;
+  const { auctionId, search, searchBy } = req.query;
   try {
     const result = await GET_AUCTION_DETAILS_USER_LIST({ auctionId: auctionId });
+
     const data = await result.result;
+
+    const dataParse =
+      search && searchBy
+        ? data.filter((item) => item?.[searchBy].toLowerCase()?.includes(search?.toLowerCase()))
+        : data;
+
     res
       .status(200)
-      .json({ success: true, message: "Successfully retrieve users list", data: data });
+      .json({ success: true, message: "Successfully retrieve users list", data: dataParse });
   } catch (error) {
     res.status(200).json({ success: false, message: error.message });
   }

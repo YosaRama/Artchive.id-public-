@@ -12,10 +12,12 @@ import AppFormLotAuction from "app/components/libs/form-lot-auction";
 import priceFormatter from "app/helpers/priceFormatter";
 import { useAuctionItems } from "app/hooks/auction/item";
 import { useRouter } from "next/router";
+import AppSearchBox from "app/components/libs/search-box";
 
 function AppContentsAuctionDetailsLotsList(props) {
   const { onState, onItemClick } = props;
   const router = useRouter();
+  const [searchValue, setSearchValue] = useState();
 
   //#region Handle auction item data
   const { id: auctionId } = router.query;
@@ -26,7 +28,7 @@ function AppContentsAuctionDetailsLotsList(props) {
     loading: lotsLoading,
   } = useAuctionItems({
     auctionId: auctionId,
-    queryString: ``,
+    queryString: `search=${searchValue || ""}`,
   });
   //#endregion
 
@@ -46,13 +48,12 @@ function AppContentsAuctionDetailsLotsList(props) {
   return (
     <>
       <Row>
-        <Col span={12} style={{ marginBottom: 50 }}>
-          <p>
-            Total item :{" "}
-            <span style={{ fontWeight: "bold" }}>
-              {lotsData?.length} item{lotsData?.length > 1 ? "s" : ""}
-            </span>
-          </p>
+        <Col span={12}>
+          <AppSearchBox
+            searchBy="name, lot"
+            searchValue={searchValue}
+            setSearchValue={setSearchValue}
+          />
         </Col>
         <Col span={12} style={{ marginBottom: 50, textAlign: "right" }}>
           <Button type="primary" onClick={handleModal}>
@@ -62,7 +63,7 @@ function AppContentsAuctionDetailsLotsList(props) {
       </Row>
       <Spin spinning={lotsLoading}>
         <Row gutter={[16, 32]} align="middle">
-          {lotsData?.length != 1 ? (
+          {lotsData?.length != 0 ? (
             lotsData?.map((item, index) => {
               return (
                 <Col span={8} style={{ marginBottom: 10 }} key={index}>
@@ -120,6 +121,14 @@ function AppContentsAuctionDetailsLotsList(props) {
           )}
         </Row>
       </Spin>
+      <Col span={24} style={{ marginTop: 50, textAlign: "right" }}>
+        <p>
+          Total item :{" "}
+          <span style={{ fontWeight: "bold" }}>
+            {lotsData?.length} item{lotsData?.length > 1 ? "s" : ""}
+          </span>
+        </p>
+      </Col>
 
       <AppFormLotAuction visible={addModal} onClose={handleModal} onSubmit={addLots} />
     </>
