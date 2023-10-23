@@ -2,24 +2,25 @@
 import { Col, Row, Image, Form, Input } from "antd";
 import propTypes from "prop-types";
 import { useState } from "react";
-import { LeftOutlined } from "@ant-design/icons";
 import { signIn } from "next-auth/react";
+
+import { useRouter } from "next/router";
 
 // Compoenent
 import ThemesButton from "../../button";
 
 // Helper
 import { useWindowSize } from "app/helpers/useWindowSize";
+import { useAuctionPhoneCtx } from "app/contexts/auction-phone";
+import { ErrorNotification } from "app/components/utils/notification";
 
 // Style
 import s from "./index.module.scss";
-import { useAuctionPhoneCtx } from "app/contexts/auction-phone";
-import { ErrorNotification } from "app/components/utils/notification";
-import { useRouter } from "next/router";
 
-function ThemesAuctionVerifyForm(props) {
-  const { handleBack, handleModalStage, eventStatus, handleModalVisible } = props;
+function ThemesAuctionLoginForm(props) {
+  const { handleModalStage, eventStatus, handleModalVisible } = props;
   const { width } = useWindowSize();
+  const [loading, setLoading] = useState(false);
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const router = useRouter();
   const { id: auctionId } = router.query;
@@ -31,9 +32,18 @@ function ThemesAuctionVerifyForm(props) {
     newOtp[index] = e.target.value;
     setOtp(newOtp);
 
+    const otpCode = newOtp.join("");
+    if (otpCode.length === 6) {
+      // Auto-validate OTP when it reaches 6 characters
+      handleVerification();
+    }
+
     if (e.target.value.length === 1) {
-      const nextInput = document.getElementById(`input-${index + 1}`);
-      nextInput?.focus();
+      const nextIndex = index + 1;
+      if (nextIndex < 6) {
+        const nextInput = document.getElementById(`input-${nextIndex}`);
+        nextInput?.focus();
+      }
     }
   };
   //#endregion
@@ -55,6 +65,7 @@ function ThemesAuctionVerifyForm(props) {
 
   //#region Handle verification
   const handleVerification = async () => {
+    setLoading(true);
     const otpCode = otp.join("");
 
     const login = await signIn("credentials", {
@@ -76,8 +87,18 @@ function ThemesAuctionVerifyForm(props) {
       handleModalStage("login");
       ErrorNotification({ message: "Login Failed!", description: login.error });
     }
+    setOtp(["", "", "", "", "", ""]);
+    setLoading(false);
+  };
+
+  const handleCloseModal = () => {
+    handleModalVisible();
+    setTimeout(() => {
+      setOtp(["", "", "", "", "", ""]);
+    }, 500);
   };
   //#endregion
+
   return (
     <Row className={s.modalContainer}>
       {width > 768 && (
@@ -111,6 +132,7 @@ function ThemesAuctionVerifyForm(props) {
                               maxLength={1}
                               className={s.input}
                               bordered={false}
+                              disabled={loading}
                             />
                           </Col>
                         </>
@@ -121,12 +143,12 @@ function ThemesAuctionVerifyForm(props) {
               </Form.Item>
             </Form>
 
-            <ThemesButton type={"primary " + s.btn} onClick={handleVerification}>
+            <ThemesButton type={"primary " + s.btn} onClick={handleVerification} loading={loading}>
               VERIFY
             </ThemesButton>
-            <Col onClick={handleBack}>
-              <p className={s.back}>Back to Participant Verification</p>
-            </Col>
+            <ThemesButton type={"secondary " + s.btn} onClick={handleCloseModal} loading={loading}>
+              BACK TO LOTS LIST
+            </ThemesButton>
           </Col>
         </Col>
       </Col>
@@ -135,12 +157,11 @@ function ThemesAuctionVerifyForm(props) {
   );
 }
 
-propTypes.ThemesAuctionVerifyForm = {
+propTypes.ThemesAuctionLoginForm = {
   onClick: propTypes.any,
   handleModalStage: propTypes.func,
   eventStatus: propTypes.oneOf(["BEFORE", "LIVE", "AFTER"]),
-  handleBack: propTypes.any,
   handleModalVisible: propTypes.any,
 };
 
-export default ThemesAuctionVerifyForm;
+export default ThemesAuctionLoginForm;

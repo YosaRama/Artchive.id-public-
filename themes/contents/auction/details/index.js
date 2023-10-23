@@ -47,11 +47,19 @@ function ThemesContentsAuctionDetails() {
             {/* <Divider className={s.divider} /> */}
             <Col style={{ margin: "0px 0px 40px" }}>
               <h1>Visi</h1>
-              <p dangerouslySetInnerHTML={{ __html: auctionData?.vision }} />
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: auctionData?.vision.replace(/<\/p>/g, "\n").replace(/<p>/g, "").trim(),
+                }}
+              />
             </Col>
             <Col style={{ margin: "0px 0px 40px" }}>
               <h1>Misi</h1>
-              <p dangerouslySetInnerHTML={{ __html: auctionData?.mission }} />
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: auctionData?.mission.replace(/<\/p>/g, "\n").replace(/<p>/g, "").trim(),
+                }}
+              />
             </Col>
             <Divider style={{ margin: "0px" }} />
           </ThemesContainerMain>

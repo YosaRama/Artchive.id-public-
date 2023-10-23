@@ -39,8 +39,9 @@ function ThemesContentsAuctionDetailsOverview() {
     queryString: "",
     auctionId: auctionId,
   });
-
   // #endregion
+
+  const description = auctionData?.description?.replace(/<\/p>/g, "\n").replace(/<p>/g, "").trim();
 
   // #region Handle Scroll
   const carouselRef = useRef(null);
@@ -51,7 +52,6 @@ function ThemesContentsAuctionDetailsOverview() {
     carouselRef.current.prev();
   };
   // #endregion
-
   return (
     <>
       <ThemesBanner imgSrc={auctionData?.thumbnail} className={s.bannerContainer} initial="visible">
@@ -67,7 +67,12 @@ function ThemesContentsAuctionDetailsOverview() {
         // #region Overview Section
         <ThemesContainerMain>
           <Col className={s.description}>
-            <Col span={20} dangerouslySetInnerHTML={{ __html: auctionData?.description }} />
+            <Col
+              span={20}
+              dangerouslySetInnerHTML={{
+                __html: description,
+              }}
+            />
           </Col>
         </ThemesContainerMain>
         // #endregion
@@ -87,7 +92,7 @@ function ThemesContentsAuctionDetailsOverview() {
               </Col>
               <Col span={width >= 500 ? 12 : 24} className={s.videoDesc}>
                 <h1 style={{ fontSize: 32 }}>{auctionData?.name}</h1>
-                <div dangerouslySetInnerHTML={{ __html: auctionData?.description }} />
+                <Col span={24} dangerouslySetInnerHTML={{ __html: description }} />
               </Col>
             </Row>
           </ThemesContainerMain>
