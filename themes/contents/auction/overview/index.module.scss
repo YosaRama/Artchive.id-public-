@@ -20,6 +20,9 @@
   display: flex;
   justify-content: center;
   margin: 40px 0px;
+  p {
+    margin: 0px 0px 10px !important;
+  }
 }
 
 .video {
@@ -29,6 +32,9 @@
 }
 .videoDesc {
   height: auto;
+  p {
+    margin: 0px !important;
+  }
 }
 
 .btnArrow {

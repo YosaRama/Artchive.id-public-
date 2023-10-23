@@ -98,9 +98,13 @@ function ThemesAuctionRegisterForm(props) {
             </Form.Item>
 
             <Form.Item>
-              <p className={s.closeBtn} onClick={handleBack}>
-                Back to Participant Verification
-              </p>
+              <ThemesButton
+                type={"secondary " + s.btn}
+                onClick={handleCloseModal}
+                loading={loading}
+              >
+                BACK TO LOTS LIST
+              </ThemesButton>
             </Form.Item>
           </Form>
         </Col>

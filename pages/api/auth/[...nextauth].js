@@ -83,20 +83,15 @@ export default NextAuth({
         if (auctionId && loginMethod === "auction") {
           const userFound = await GET_AUCTION_DETAILS_USER_LIST({
             auctionId: auctionId,
-            phoneNumber: credentials.phone,
+            code: credentials.code,
           });
           const isValid = userFound?.result?.length !== 0;
-          const isCodeValid = userFound?.result?.[0]?.code === credentials.code;
 
           if (!isValid) {
-            throw new Error("Sorry your phone number is not registered!");
+            throw new Error("Sorry your code is not correct or not found!");
           }
 
-          if (!isCodeValid) {
-            throw new Error("Sorry your code is not correct!");
-          }
-
-          if (isValid && isCodeValid) {
+          if (isValid) {
             return {
               message: "Successfully Login",
               user: {

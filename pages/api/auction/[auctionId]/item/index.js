@@ -48,6 +48,7 @@ apiHandler.get(async (req, res) => {
 apiHandler.post(async (req, res) => {
   const { auctionId } = req.query;
   const {
+    lot_number,
     current_price,
     final_price,
     initial_price,
@@ -63,6 +64,7 @@ apiHandler.post(async (req, res) => {
 
   try {
     const dataPayload = {
+      lot_number: lot_number,
       current_price: current_price,
       final_price: final_price,
       initial_price: initial_price,
