@@ -16,7 +16,11 @@
       text-align: center;
       h3 {
         font-size: font-size.$heading-3;
-        margin: 0px 0px 20px !important;
+        margin: 0px !important;
+      }
+      p {
+        font-size: font-size.$paragraph;
+        margin: 0px 0px 30px !important;
       }
     }
     .register {
@@ -58,7 +62,7 @@
     border-radius: 15;
     padding: 0;
     box-shadow: none;
-    background-color: #ebe3d8 !important;
+    background-color: #d3d3d3 !important;
     margin-bottom: 20px;
     h1 {
       font-size: 32px;
@@ -84,5 +88,15 @@
   &:visited {
     color: colors.$fulvous;
     text-decoration: underline;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .modalContainer {
+    height: 100%;
+
+    .registerContainer {
+      padding: 20px !important;
+    }
   }
 }

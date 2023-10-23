@@ -6,10 +6,9 @@ import { CloseOutlined } from "@ant-design/icons";
 import moment from "moment";
 
 // Component
-import ThemesAuctionLoginForm from "./login-form";
 import ThemesModal from "../modal-container";
 import ThemesAuctionCountDown from "../auction-countdown";
-import ThemesAuctionVerifyForm from "./verify-form";
+import ThemesAuctionLoginForm from "./login-form-v2";
 import ThemesAuctionRegisterForm from "../modal-auction-register/register-form";
 import ThemesAuctionFailed from "../auction-failed";
 
@@ -41,7 +40,6 @@ function ThemesModalAuctionLogin(props) {
 
   // #region Handle Modal
   const [loginModal, setLoginModal] = useState("login");
-  const [isVerified, setIsVerified] = useState("false");
 
   const handleBack = () => {
     setLoginModal("login");
@@ -54,7 +52,7 @@ function ThemesModalAuctionLogin(props) {
       setTimeout(() => {
         handleModal();
         setLoginModal("login");
-      }, 100);
+      }, 0);
   };
 
   const handleRegister = () => {
@@ -66,11 +64,7 @@ function ThemesModalAuctionLogin(props) {
       }, 1000);
     }
   };
-  const handleVerify = () => {
-    if (beforeEvent) {
-      setLoginModal("countdown");
-    }
-  };
+
   // #endregion
   return (
     <>
@@ -97,16 +91,8 @@ function ThemesModalAuctionLogin(props) {
       >
         {loginModal === "login" && (
           <ThemesAuctionLoginForm
-            handleModalStage={setLoginModal}
-            handleModalVisible={handleCloseModal}
-            eventStatus={eventStatus}
-          />
-        )}
-        {loginModal === "verify" && (
-          <ThemesAuctionVerifyForm
             eventStatus={eventStatus}
             handleModalStage={setLoginModal}
-            handleBack={handleBack}
             handleModalVisible={handleCloseModal}
           />
         )}
