@@ -48,6 +48,7 @@ apiHandler.put(async (req, res) => {
     start_estimation,
     end_estimation,
     item_status,
+    lot_number,
   } = req.body;
 
   try {
@@ -64,6 +65,7 @@ apiHandler.put(async (req, res) => {
       start_estimation: start_estimation,
       end_estimation: end_estimation,
       item_status: item_status,
+      lot_number: lot_number,
     };
 
     const result = await auctioo.put(`/events/${auctionId}/items/${itemId}`, dataPayload);

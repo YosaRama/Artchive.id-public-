@@ -71,6 +71,9 @@ function AppContentsAuctionDetailsLotsDetails(props) {
             />
           </Col>
           <Col span={16}>
+            <h4>
+              Lot {itemDetails?.auction_details?.lot ? itemDetails?.auction_details?.lot : "-"}
+            </h4>
             <p style={{ fontWeight: "bold" }}>{itemDetails?.artwork_details?.title}</p>
             <p>by {itemDetails?.artwork_details?.artist?.full_name}</p>
             <p>{itemDetails?.artwork_details?.description}</p>

@@ -26,9 +26,9 @@ function AppFormLotAuction(props) {
   //? Data Parse
   const initialValues = {
     ...initialData,
+    lot_number: initialData?.lot,
     lot_date: [moment(initialData?.started_at), moment(initialData?.stopped_at)],
   };
-
   //#endregion
 
   //#region Handle submission
@@ -36,6 +36,7 @@ function AppFormLotAuction(props) {
   const handleSubmit = () => {
     form.validateFields().then(async (value) => {
       const submission = {
+        lot_number: value.lot_number,
         current_price: "",
         final_price: "",
         initial_price: value.initial_price,
@@ -93,6 +94,18 @@ function AppFormLotAuction(props) {
           ) : (
             ""
           )}
+          <Form.Item
+            name={"lot_number"}
+            label="Lot Id"
+            rules={[
+              {
+                required: false,
+              },
+            ]}
+          >
+            <Input style={{ width: "100%" }} placeholder="Lot Id" />
+          </Form.Item>
+
           <Form.Item
             name={"initial_price"}
             label="Set Starting Bid"
