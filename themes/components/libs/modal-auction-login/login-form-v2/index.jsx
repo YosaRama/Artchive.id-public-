@@ -11,7 +11,6 @@ import ThemesButton from "../../button";
 
 // Helper
 import { useWindowSize } from "app/helpers/useWindowSize";
-import { useAuctionPhoneCtx } from "app/contexts/auction-phone";
 import { ErrorNotification } from "app/components/utils/notification";
 
 // Style
@@ -24,19 +23,12 @@ function ThemesAuctionLoginForm(props) {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const router = useRouter();
   const { id: auctionId } = router.query;
-  const { phoneNumber } = useAuctionPhoneCtx();
 
   //#region Handle change input
   const handleChange = (e, index) => {
     const newOtp = [...otp];
     newOtp[index] = e.target.value;
     setOtp(newOtp);
-
-    const otpCode = newOtp.join("");
-    if (otpCode.length === 6) {
-      // Auto-validate OTP when it reaches 6 characters
-      handleVerification();
-    }
 
     if (e.target.value.length === 1) {
       const nextIndex = index + 1;
@@ -71,7 +63,6 @@ function ThemesAuctionLoginForm(props) {
     const login = await signIn("credentials", {
       redirect: false,
       auctionId: auctionId,
-      phone: phoneNumber,
       code: otpCode,
       type: "auction",
     });
