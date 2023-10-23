@@ -1,7 +1,7 @@
 // Libs
 import { v4 as uuid } from "uuid";
 import { useState } from "react";
-import { Table, Empty } from "antd";
+import { Table, Empty, Row, Col } from "antd";
 
 // Components
 import AppAddButton from "app/components/libs/add-button";
@@ -10,12 +10,14 @@ import deleteConfirmModal from "app/components/utils/delete-modal-confirm";
 import AppFormAuctionUser from "app/components/libs/form-auction-user";
 import { useRouter } from "next/router";
 import { useAuctionUsers } from "app/hooks/auction/user";
+import AppSearchBox from "app/components/libs/search-box";
 
 function AppContentsAuctionDetailsUser() {
   const router = useRouter();
   const { id } = router.query;
   const [modalVisible, setModalVisible] = useState(false);
   const [modalEditVisible, setModalEditVisible] = useState(false);
+  const [searchValue, setSearchValue] = useState();
 
   //#region User Auction Hook
   const {
@@ -25,7 +27,7 @@ function AppContentsAuctionDetailsUser() {
     onEdit: editUser,
     onDelete: deleteUser,
   } = useAuctionUsers({
-    queryString: "",
+    queryString: `searchBy=name&search=${searchValue || ""}`,
     auctionId: id,
   });
   //#endregion
@@ -72,7 +74,14 @@ function AppContentsAuctionDetailsUser() {
 
   return (
     <>
-      <AppAddButton onCreate={handleAddUser}>Add User</AppAddButton>
+      <Row gutter={[16, 0]} justify="space-between">
+        <Col>
+          <AppSearchBox searchValue={searchValue} setSearchValue={setSearchValue} searchBy="name" />
+        </Col>
+        <Col>
+          <AppAddButton onCreate={handleAddUser}>Add User</AppAddButton>
+        </Col>
+      </Row>
       {userList && (
         <>
           <Table
