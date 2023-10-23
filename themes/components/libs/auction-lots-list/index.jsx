@@ -127,7 +127,7 @@ function ThemesAuctionLotsList(props) {
           {
             // #region Artwork Details Container
             <Col span={grid ? 24 : 8} className={s.descContainer}>
-              {!grid && <p>LOT</p>}
+              <p>LOT {auctionDetails?.lot ? auctionDetails?.lot : "-"}</p>
               <Col>
                 <Col>
                   <h2 className={width > 500 ? s.titleContainer : ""}> {artworkDetails?.title}</h2>

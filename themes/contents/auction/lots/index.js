@@ -13,6 +13,7 @@ import ThemesAuctionLotsList from "themes/components/libs/auction-lots-list";
 import ThemesBannerAuctionItem from "themes/components/libs/banner-auction";
 import ThemesModalAuctionLogin from "themes/components/libs/modal-auction-login";
 import ThemesNavbarSearchAuction from "themes/components/libs/navbar-search-auction";
+import ThemesButton from "themes/components/libs/button";
 // Hooks
 import { useAuction } from "app/hooks/auction";
 import { useAuctionItems } from "app/hooks/auction/item";
@@ -41,8 +42,8 @@ function ThemesContentsAuctionDetailsLots() {
 
   //#region Handle search
   const [search, setSearch] = useState("");
-  const handleSearch = (value) => {
-    setSearch(value);
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
   };
   //#endregion
 
@@ -52,11 +53,7 @@ function ThemesContentsAuctionDetailsLots() {
 
   // #region Auction Item Details
   const { data: auctionItems, loading: auctionItemsLoading } = useAuctionItems({
-    queryString: new URLSearchParams({
-      name: search,
-      ...filterParams,
-      sort: sortParam.value,
-    }).toString(),
+    queryString: `search=${search || ""}&sortBy=lot&sortDirection=ASC`,
     auctionId: router.query.id,
   });
   // #endregion
@@ -210,8 +207,14 @@ function ThemesContentsAuctionDetailsLots() {
                     placeholder={windowWidth <= 500 ? "Search" : "Search Lot Item"}
                     size="large"
                     style={{ width: "100%" }}
-                    onSearch={handleSearch}
+                    onChange={handleSearch}
+                    value={search}
                   />
+                </Col>
+                <Col>
+                  <ThemesButton type={`secondary`} onClick={() => setSearch("")}>
+                    Reset
+                  </ThemesButton>
                 </Col>
               </Row>
               <Divider className={s.dividerX} />
