@@ -18,13 +18,6 @@ function ThemesAuctionLotListPrice(props) {
           IDR {lotPrice}
         </h3>
       </Col>
-      {/* {session && (
-        <Col span={24}>
-          <p style={{ fontWeight: "bold" }}>
-            Your Bid: IDR {currentBid ? priceFormatter(`${currentBid}`, ",") : "-"}
-          </p>
-        </Col>
-      )} */}
     </Row>
   );
 }
