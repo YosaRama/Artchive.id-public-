@@ -42,10 +42,10 @@ function ThemesAuctionLotsList(props) {
   //#endregion
 
   //#region User Current Bid
-  const matchingLogs = auctionLogs?.filter(
-    (logEntry) => logEntry?.user?.phone_number === sessionData?.user?.phone_number
-  );
-  const currentUserBid = matchingLogs?.[0]?.bid_price;
+  // const matchingLogs = auctionLogs?.filter(
+  //   (logEntry) => logEntry?.user?.phone_number === sessionData?.user?.phone_number
+  // );
+  // const currentUserBid = matchingLogs?.[0]?.bid_price;
   //#endregion
 
   //#region Lots Price
@@ -163,7 +163,7 @@ function ThemesAuctionLotsList(props) {
                   status={artworkDetails?.status}
                   lotPrice={lotPrice}
                   session={session}
-                  currentBid={currentUserBid}
+                  // currentBid={currentUserBid}
                   grid={grid}
                 />
               )}
@@ -194,7 +194,7 @@ function ThemesAuctionLotsList(props) {
                   status={artworkDetails?.status}
                   lotPrice={lotPrice}
                   session={session}
-                  currentBid={currentUserBid}
+                  // currentBid={currentUserBid}
                   grid={grid}
                 />
               )}
