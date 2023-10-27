@@ -22,10 +22,13 @@ import stringCapitalize from "app/helpers/capitalize";
 // Style
 import s from "./index.module.scss";
 import { useAuction } from "app/hooks/auction";
+import ThemesBlurOverlay from "themes/components/libs/blur-overlay";
 
 function ThemesContentsAuctionArtworkDetails() {
   const router = useRouter();
   const { width } = useWindowSize();
+  const { data: session } = useSession();
+
   // #region timeline
   const timeZone = moment.tz.guess();
   const zone = moment().format("ZZ");
@@ -111,96 +114,103 @@ function ThemesContentsAuctionArtworkDetails() {
                 <h2>Details</h2>
                 <Divider className={s.divider} />
                 <h3 style={{ fontWeight: "bold", marginBottom: "5px" }}>{artworkDetails?.title}</h3>
-                <p>
-                  by <span style={{ fontWeight: "bold" }}>{artworkDetails?.artist?.full_name}</span>
-                </p>
-                <Col className={s.borderContainer}>
-                  <Row gutter={[16, 16]}>
-                    {artworkDetails?.genre?.map((item, index) => {
-                      return (
-                        <Col key={index} className={s.genreBorder}>
-                          <p style={{ fontSize: "14px", padding: "5px 5px" }}>{item.title}</p>
-                        </Col>
-                      );
-                    })}
-                  </Row>
+                <Col>
+                  <p>
+                    by{" "}
+                    <span style={{ fontWeight: "bold" }}>{artworkDetails?.artist?.full_name}</span>
+                  </p>
+                  <Col className={s.borderContainer}>
+                    <Row gutter={[16, 16]}>
+                      {artworkDetails?.genre?.map((item, index) => {
+                        return (
+                          <Col key={index} className={s.genreBorder}>
+                            <p style={{ fontSize: "14px", padding: "5px 5px" }}>{item.title}</p>
+                          </Col>
+                        );
+                      })}
+                    </Row>
+                  </Col>
+                  <br />
+                  <p>
+                    {artworkDetails?.width} x {artworkDetails?.height} cm
+                  </p>
+                  <p>{stringCapitalize(`${artworkDetails?.material}`.replace(/_/g, " "))}</p>
+
+                  <br />
+                  <p style={{ fontWeight: "bold", marginBottom: "5px" }}>Artwork Description</p>
+
+                  <p dangerouslySetInnerHTML={{ __html: artworkDetails?.description }} />
+
+                  <p>
+                    Item Condition: <span>Good</span>
+                  </p>
+                  <br />
+                  <p style={{ fontWeight: "bold", marginBottom: "5px" }}>Auction Description</p>
+
+                  <p>
+                    Auction ends on {width <= 500 && <br />}
+                    <span style={{ fontWeight: "bold" }}>
+                      {moment(auctionDetails?.stopped_at).format("dddd, DD MMM YYYY")}{" "}
+                    </span>
+                  </p>
+                  <p>
+                    Bid estimation : {width <= 500 && <br />}
+                    {priceFormatter(
+                      `IDR ${auctionDetails?.start_estimation} - IDR ${auctionDetails?.end_estimation} `,
+                      ","
+                    )}
+                  </p>
+                  {!session && <ThemesBlurOverlay />}
                 </Col>
-                <br />
-                <p>
-                  {artworkDetails?.width} x {artworkDetails?.height} cm
-                </p>
-                <p>{stringCapitalize(`${artworkDetails?.material}`.replace(/_/g, " "))}</p>
-
-                <br />
-                <p style={{ fontWeight: "bold", marginBottom: "5px" }}>Artwork Description</p>
-
-                <p dangerouslySetInnerHTML={{ __html: artworkDetails?.description }} />
-
-                <p>
-                  Item Condition: <span>Good</span>
-                </p>
-                <br />
-                <p style={{ fontWeight: "bold", marginBottom: "5px" }}>Auction Description</p>
-
-                <p>
-                  Auction ends on {width <= 500 && <br />}
-                  <span style={{ fontWeight: "bold" }}>
-                    {moment(auctionDetails?.stopped_at).format("dddd, DD MMM YYYY")}{" "}
-                  </span>
-                </p>
-                <p>
-                  Bid estimation : {width <= 500 && <br />}
-                  {priceFormatter(
-                    `IDR ${auctionDetails?.start_estimation} - IDR ${auctionDetails?.end_estimation} `,
-                    ","
-                  )}
-                </p>
               </Col>
               {
                 // #region About Artist Section
                 <Col>
                   <h2>About The Artist</h2>
                   <Divider className={s.divider} />
-                  <Row gutter={[16, 0]} className={s.artistProfileContainer}>
-                    <Col span={width > 768 ? 6 : 24} className={s.image}>
-                      <Row>
-                        <Col xl={{ span: 8 }} lg={{ span: 8 }} sm={{ span: 4 }} xs={{ span: 8 }}>
-                          <Image
-                            src={artistProfile}
-                            alt="artist-profile"
-                            preview={false}
-                            onClick={handleToArtistProfile}
-                            className={`${s.pointer}`}
-                          />
-                        </Col>
-                        {width <= 768 && (
-                          <Col style={{ margin: "auto 0px auto 10px" }}>
-                            <h4
-                              style={{ fontWeight: "bold" }}
+                  <Col>
+                    <Row gutter={[16, 0]} className={s.artistProfileContainer}>
+                      <Col span={width > 768 ? 6 : 24} className={s.image}>
+                        <Row>
+                          <Col xl={{ span: 8 }} lg={{ span: 8 }} sm={{ span: 4 }} xs={{ span: 8 }}>
+                            <Image
+                              src={artistProfile}
+                              alt="artist-profile"
+                              preview={false}
                               onClick={handleToArtistProfile}
                               className={`${s.pointer}`}
-                            >
-                              {artworkDetails?.artist?.full_name}
+                            />
+                          </Col>
+                          {width <= 768 && (
+                            <Col style={{ margin: "auto 0px auto 10px" }}>
+                              <h4
+                                style={{ fontWeight: "bold" }}
+                                onClick={handleToArtistProfile}
+                                className={`${s.pointer}`}
+                              >
+                                {artworkDetails?.artist?.full_name}
+                              </h4>
+                              <p>Artist</p>
+                            </Col>
+                          )}
+                        </Row>
+                      </Col>
+                      <Col span={width > 768 ? 18 : 24}>
+                        {width > 768 && (
+                          <>
+                            <h4 onClick={handleToArtistProfile} className={`${s.pointer}`}>
+                              {artworkDetails?.artist.full_name}
                             </h4>
                             <p>Artist</p>
-                          </Col>
+                          </>
                         )}
-                      </Row>
-                    </Col>
-                    <Col span={width > 768 ? 18 : 24}>
-                      {width > 768 && (
-                        <>
-                          <h4 onClick={handleToArtistProfile} className={`${s.pointer}`}>
-                            {artworkDetails?.artist.full_name}
-                          </h4>
-                          <p>Artist</p>
-                        </>
-                      )}
-                      <br />
+                        <br />
 
-                      <p className={s.description}>{artistDescription}</p>
-                    </Col>
-                  </Row>
+                        <p className={s.description}>{artistDescription}</p>
+                      </Col>
+                      {!session && <ThemesBlurOverlay />}
+                    </Row>
+                  </Col>
                 </Col>
                 // #endregion
               }
