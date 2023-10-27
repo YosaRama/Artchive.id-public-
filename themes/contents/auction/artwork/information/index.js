@@ -1,9 +1,10 @@
 // Libs
-import { Col, Row, Image, Divider, Carousel } from "antd";
+import { Col, Row, Image, Divider, Spin } from "antd";
 import { useState, useEffect } from "react";
 import moment from "moment-timezone";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
+import propTypes from "prop-types";
 
 // Components
 import ThemesHeadline from "themes/components/libs/headline";
@@ -24,7 +25,8 @@ import s from "./index.module.scss";
 import { useAuction } from "app/hooks/auction";
 import ThemesBlurOverlay from "themes/components/libs/blur-overlay";
 
-function ThemesContentsAuctionArtworkDetails() {
+function ThemesContentsAuctionArtworkDetails(props) {
+  const { itemsDetails } = props;
   const router = useRouter();
   const { width } = useWindowSize();
   const { data: session } = useSession();
@@ -80,10 +82,32 @@ function ThemesContentsAuctionArtworkDetails() {
             // #region Artwork Container
             <Image.PreviewGroup>
               <Col span={24} className={s.imageContainer}>
-                <Image
-                  src={`${process.env.NEXT_PUBLIC_S3_URL}/${artworkDetails?.media_cover?.url}`}
-                  alt=""
-                />
+                {itemsDetails ? (
+                  <Image
+                    src={`${process.env.NEXT_PUBLIC_S3_URL}/${artworkDetails?.media_cover?.url}`}
+                    alt=""
+                  />
+                ) : (
+                  <>
+                    <Col>
+                      <Spin
+                        style={{
+                          position: "absolute",
+                          top: "0",
+                          left: "0",
+                          width: "100%",
+                          height: "100%",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          zIndex: "2",
+                        }}
+                        size="large"
+                      />
+                      <Image src="/images/default-images.png" alt="" preview={false} />
+                    </Col>
+                  </>
+                )}
               </Col>
 
               <Row gutter={[16, 0]}>
@@ -275,5 +299,9 @@ function ThemesContentsAuctionArtworkDetails() {
     </>
   );
 }
+
+ThemesContentsAuctionArtworkDetails.propTypes = {
+  itemsDetails: propTypes.string,
+};
 
 export default ThemesContentsAuctionArtworkDetails;

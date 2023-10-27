@@ -23,7 +23,6 @@ function ThemesAuctionLotsList(props) {
   const { width } = useWindowSize();
   const router = useRouter();
   const { id: auctionId } = router.query;
-  const itemId = auctionDetails.id;
 
   //#region Handle session
   const { data: sessionData } = useSession();
@@ -109,7 +108,9 @@ function ThemesAuctionLotsList(props) {
           {
             // #region Artwork Details Container
             <Col span={grid ? 24 : 8} className={s.descContainer}>
-              <p>LOT {auctionDetails?.lot ? auctionDetails?.lot : "-"}</p>
+              <p style={{ fontWeight: "bold" }}>
+                LOT {auctionDetails?.lot ? auctionDetails?.lot : "-"}
+              </p>
               <Col>
                 <Col>
                   <h2 className={width > 500 ? s.titleContainer : ""}> {artworkDetails?.title}</h2>
