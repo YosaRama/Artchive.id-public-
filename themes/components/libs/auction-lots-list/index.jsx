@@ -14,9 +14,6 @@ import { useWindowSize } from "app/helpers/useWindowSize";
 // Components
 import ThemesButton from "../button";
 
-// Hooks
-import { useAuctionItemsLogs } from "app/hooks/auction/logs";
-
 // Styles
 import s from "./index.module.scss";
 import ThemesAuctionLotListPrice from "../lot-list-price";
@@ -26,26 +23,10 @@ function ThemesAuctionLotsList(props) {
   const { width } = useWindowSize();
   const router = useRouter();
   const { id: auctionId } = router.query;
-  const itemId = auctionDetails.id;
-
-  //#region Handle session
-  const { data: auctionLogs } = useAuctionItemsLogs({
-    auctionId: auctionId,
-    itemId: itemId,
-    queryString: "",
-  });
-  //#endregion
 
   //#region Handle session
   const { data: sessionData } = useSession();
   const session = sessionData?.user?.auction_id === auctionId;
-  //#endregion
-
-  //#region User Current Bid
-  const matchingLogs = auctionLogs?.filter(
-    (logEntry) => logEntry?.user?.phone_number === sessionData?.user?.phone_number
-  );
-  const currentUserBid = matchingLogs?.[0]?.bid_price;
   //#endregion
 
   //#region Lots Price
@@ -127,7 +108,9 @@ function ThemesAuctionLotsList(props) {
           {
             // #region Artwork Details Container
             <Col span={grid ? 24 : 8} className={s.descContainer}>
-              <p>LOT {auctionDetails?.lot ? auctionDetails?.lot : "-"}</p>
+              <p style={{ fontWeight: "bold" }}>
+                LOT {auctionDetails?.lot ? auctionDetails?.lot : "-"}
+              </p>
               <Col>
                 <Col>
                   <h2 className={width > 500 ? s.titleContainer : ""}> {artworkDetails?.title}</h2>
@@ -163,7 +146,6 @@ function ThemesAuctionLotsList(props) {
                   status={artworkDetails?.status}
                   lotPrice={lotPrice}
                   session={session}
-                  currentBid={currentUserBid}
                   grid={grid}
                 />
               )}
@@ -194,7 +176,6 @@ function ThemesAuctionLotsList(props) {
                   status={artworkDetails?.status}
                   lotPrice={lotPrice}
                   session={session}
-                  currentBid={currentUserBid}
                   grid={grid}
                 />
               )}
