@@ -1,13 +1,15 @@
 // Libs
-import { Col, Row, Image, Divider, Table, Carousel, Affix } from "antd";
+import { Col } from "antd";
 import ThemesButton from "themes/components/libs/button";
-import { useState } from "react";
-import { MinusOutlined, PlusOutlined, CaretUpOutlined, CaretDownOutlined } from "@ant-design/icons";
-import propTypes, { string } from "prop-types";
+import { useState, useEffect } from "react";
+import { CaretUpOutlined, CaretDownOutlined } from "@ant-design/icons";
+
+import propTypes from "prop-types";
+
 import moment from "moment-timezone";
 
 // Components
-import ThemesHeadline from "themes/components/libs/headline";
+import ThemesModalAuctionLogin from "themes/components/libs/modal-auction-login";
 
 // Helper
 import priceFormatter from "app/helpers/priceFormatter";
@@ -131,6 +133,46 @@ function ThemesContentsAuctionBidDetails(props) {
   };
   // * ====================================== * //
 
+  // #region Check User and Visibility of Modal
+  const [isVisible, setIsVisible] = useState(false);
+  const handleModal = () => {
+    setIsVisible(!isVisible);
+  };
+  //#endregion
+
+  const todayDate = moment();
+  const beforeLotStarted = todayDate.isBefore(auctionItem?.auction_details?.started_at);
+  const afterLotClosed = todayDate.isAfter(auctionItem?.auction_details?.stopped_at);
+  const liveLot = todayDate.isBetween(
+    auctionItem?.auction_details?.started_at,
+    auctionItem?.auction_details?.stopped_at
+  );
+
+  //#region Handle button content
+  const [buttonContent, setButtonContent] = useState("");
+  useEffect(() => {
+    if (beforeLotStarted) {
+      setButtonContent("START SOON");
+    }
+    if (liveLot) {
+      setButtonContent(
+        session && session?.data?.user?.role === "auction-participant"
+          ? "PLACE BID"
+          : "LOGIN TO BID"
+      );
+    }
+    if (auctionItem?.artwork_details?.status === "SOLD" || afterLotClosed) {
+      setButtonContent("SEE DETAILS");
+    }
+  }, [afterLotClosed, auctionItem?.artwork_details?.status, beforeLotStarted, liveLot, session]);
+  //#endregion
+
+  //#region Handle button
+  const handleButton = () => {
+    handleVisible();
+  };
+  //#endregion
+
   const iframeParams = `userId=${session?.data?.user?.id}&userName=${session?.data?.user?.full_name}&eventId=${auctionId}&itemId=${artworkId}&initialPrice=${initialPrice}&step=${step}`;
 
   return (
@@ -139,11 +181,26 @@ function ThemesContentsAuctionBidDetails(props) {
         <Col span={24} className={s.lotContainer}>
           {/* //? ============== Lot Details ============= ?// */}
           <Col span={24} className={s.lotDetails}>
-            <iframe
-              title="Auction History"
-              className={s.bidBoardIframeDesktop}
-              src={`https://auctioo-id.vercel.app/live-auction?mode=desktop&${iframeParams}`}
-            ></iframe>
+            {session && session?.data?.user?.role === "auction-participant" ? (
+              <iframe
+                title="Auction History"
+                className={s.bidBoardIframeDesktop}
+                src={`https://auctioo-id.vercel.app/live-auction?mode=desktop&${iframeParams}`}
+              />
+            ) : (
+              <>
+                <Col className={s.warning}>
+                  <h3>Sorry, you are not allowed to bid in this lot item.</h3>
+                  <p>
+                    Please please check your participant account id on your email or login here if
+                    already have this auction participant account!
+                  </p>
+                  <ThemesButton type={`primary + ${s.btn}`} onClick={handleModal}>
+                    {buttonContent}
+                  </ThemesButton>
+                </Col>
+              </>
+            )}
             {/* // * ====================================== * // */}
           </Col>
           {/* // * ====================================== * // */}
@@ -157,18 +214,36 @@ function ThemesContentsAuctionBidDetails(props) {
           <Col className={s.collapseButton} onClick={handleCollapse}>
             {!open ? <CaretUpOutlined /> : <CaretDownOutlined />}
           </Col>
-          <Col span={24} className={s.lotDetails}>
-            <iframe
-              title="Auction History"
-              className={s.bidBoardIframeMobile}
-              src={`https://auctioo-id.vercel.app/live-auction?mode=mobile&${iframeParams}`}
-            ></iframe>
 
+          <Col span={24} className={s.lotDetails}>
+            {session && session?.data?.user?.role === "auction-participant" ? (
+              <iframe
+                title="Auction History"
+                className={s.bidBoardIframeMobile}
+                src={`https://auctioo-id.vercel.app/live-auction?mode=mobile&${iframeParams}`}
+              />
+            ) : (
+              <>
+                <p>
+                  Sorry, you are not allowed to bid in this lot item. please check your participant
+                  account or login here!
+                </p>{" "}
+                <ThemesButton type={`primary + ${s.btn}`} onClick={handleModal}>
+                  {buttonContent}
+                </ThemesButton>
+              </>
+            )}
             {/* // * ====================================== * // */}
           </Col>
           {/* // * ====================================== * // */}
         </Col>
       )}
+
+      {
+        // #region Modal Login Auction
+        <ThemesModalAuctionLogin visible={isVisible} handleModal={handleModal} />
+        // #endregion
+      }
     </>
   );
 }

@@ -20,14 +20,14 @@ function PageArtworkOnAuctionDetails() {
 
 export default PageArtworkOnAuctionDetails;
 
-export const getServerSideProps = async (ctx) => {
-  const { query } = ctx;
-  //? ============== Handle Session ============= ?//
-  const session = await getSession(ctx);
-  const res = auctionSession({ session: session, data: session, id: query.id });
-  // * ====================================== * //
-  return {
-    props: res.props,
-    redirect: res.redirect,
-  };
-};
+// export const getServerSideProps = async (ctx) => {
+//   const { query } = ctx;
+//   //? ============== Handle Session ============= ?//
+//   const session = await getSession(ctx);
+//   const res = auctionSession({ session: session, data: session, id: query.id });
+//   // * ====================================== * //
+//   return {
+//     props: res.props,
+//     redirect: res.redirect,
+//   };
+// };

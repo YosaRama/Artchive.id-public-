@@ -61,7 +61,6 @@ function ThemesContentsAuctionDetailsLots() {
   const { data: session } = useSession();
 
   const { width: windowWidth } = useWindowSize();
-  const { Search } = Input;
 
   // #region Handle Grid View
   const [isGridView, setIsGridView] = useState(false);
@@ -149,12 +148,6 @@ function ThemesContentsAuctionDetailsLots() {
           {
             // #region Search Auction Item
             <>
-              {windowWidth <= 768 && session?.user?.role === "auction-participant" && (
-                <Col span={24} className={s.segmentContainer}>
-                  <Segmented block className={s.segment} options={["Available Bid", "My Bid"]} />
-                </Col>
-              )}
-
               <Row
                 gutter={windowWidth > 768 ? [32, 32] : [0, 0]}
                 className={s.searchContainer}
@@ -203,18 +196,14 @@ function ThemesContentsAuctionDetailsLots() {
                 <Divider type="vertical" className={s.divider} />
 
                 <Col lg={{ span: 6 }} md={{ span: 11 }} xs={{ span: 12 }}>
-                  <Search
+                  <Input
+                    allowClear={true}
                     placeholder={windowWidth <= 500 ? "Search" : "Search Lot Item"}
                     size="large"
                     style={{ width: "100%" }}
                     onChange={handleSearch}
                     value={search}
                   />
-                </Col>
-                <Col>
-                  <ThemesButton type={`secondary`} onClick={() => setSearch("")}>
-                    Reset
-                  </ThemesButton>
                 </Col>
               </Row>
               <Divider className={s.dividerX} />

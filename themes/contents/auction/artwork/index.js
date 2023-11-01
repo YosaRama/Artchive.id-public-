@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 // Libs
-import { PageHeader } from "antd";
+import { PageHeader, Skeleton, Spin } from "antd";
 import propTypes from "prop-types";
 import { useRouter } from "next/router";
 
@@ -31,11 +31,11 @@ function ThemesContentsAuctionDetails() {
         <ThemesContainerMain>
           <PageHeader
             style={{ padding: 0, marginBottom: 20 }}
-            title={`${itemsDetails?.title} Lot Details`}
+            title={itemsDetails?.title ? `${itemsDetails?.title} Lot Details` : <Spin />}
             onBack={() => router.push(`/auction/${auctionId}/lots`)}
           />
 
-          <ThemesContentsAuctionlotDataList />
+          <ThemesContentsAuctionlotDataList itemsDetails={itemsDetails} />
         </ThemesContainerMain>
       </section>
 
