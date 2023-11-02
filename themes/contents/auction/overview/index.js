@@ -68,7 +68,7 @@ function ThemesContentsAuctionDetailsOverview() {
         <ThemesContainerMain>
           <Col className={s.description}>
             <Col
-              span={20}
+              span={width > 789 ? 20 : 24}
               dangerouslySetInnerHTML={{
                 __html: description,
               }}
@@ -92,7 +92,7 @@ function ThemesContentsAuctionDetailsOverview() {
               </Col>
               <Col span={width >= 500 ? 12 : 24} className={s.videoDesc}>
                 <h1 style={{ fontSize: 32 }}>{auctionData?.name}</h1>
-                <Col span={24} dangerouslySetInnerHTML={{ __html: description }} />
+                <p span={24} dangerouslySetInnerHTML={{ __html: description }} />
               </Col>
             </Row>
           </ThemesContainerMain>

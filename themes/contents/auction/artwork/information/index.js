@@ -1,7 +1,7 @@
 // Libs
-import { Col, Row, Image, Divider, Spin } from "antd";
-import { useState, useEffect } from "react";
+import { Col, Row, Image, Divider, Spin, Typography } from "antd";
 import moment from "moment-timezone";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import propTypes from "prop-types";
@@ -49,6 +49,22 @@ function ThemesContentsAuctionArtworkDetails(props) {
   const auctionDetails = lotDetails?.auction_details;
 
   const { data: lotHighlightData } = useAuctionItems({ auctionId: auctionId, queryString: "" });
+  const [filterHighlight, setFilterHighlight] = useState([]);
+  const getRandomData = (dataArray, count) => {
+    const shuffleData = dataArray
+      ?.filter((items, index) => items?.artwork_details?.id !== artworkDetails?.id)
+      ?.sort(() => Math.random() - 0.5)
+      ?.slice(0, 4);
+    return shuffleData?.slice(0, count);
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const randomSubset = getRandomData(lotHighlightData, 4);
+      setFilterHighlight(randomSubset);
+    };
+    fetchData();
+  }, [lotHighlightData]);
 
   const handleHighlight = (selectedLotId) => {
     router.push(`/auction/${auctionId}/lots/${selectedLotId}`);
@@ -230,7 +246,7 @@ function ThemesContentsAuctionArtworkDetails(props) {
                         )}
                         <br />
 
-                        <p className={s.description}>{artistDescription}</p>
+                        {artistDescription}
                       </Col>
                       {!session && <ThemesBlurOverlay />}
                     </Row>
@@ -265,34 +281,30 @@ function ThemesContentsAuctionArtworkDetails(props) {
           />
           <Row gutter={[16, 0]} className={s.otherSection}>
             {lotHighlightData &&
-              lotHighlightData
-                ?.filter((items, index) => items?.artwork_details?.id !== artworkDetails?.id)
-                ?.sort(() => Math.random() - 0.5)
-                ?.slice(0, 4)
-                ?.map((item) => {
-                  return (
-                    <Col
-                      xl={{ span: 6 }}
-                      lg={{ span: 9 }}
-                      md={{ span: 11 }}
-                      xs={{ span: 19 }}
-                      key={item.id}
-                      onClick={() => {
-                        handleHighlight(item?.auction_details?.id);
-                      }}
-                    >
-                      <ThemesArtworkWithFrame
-                        imgSrc={`${process.env.NEXT_PUBLIC_S3_URL}/${item?.artwork_details?.media_cover?.url}`}
-                        artworkStatus={item?.artwork_details?.status}
-                        forAuction={true}
-                        artworkTitle={item?.artwork_details?.title}
-                        artistName={item?.artwork_details?.artist?.full_name}
-                        startEstimation={item?.auction_details?.start_estimation}
-                        endEstimation={item?.auction_details?.end_estimation}
-                      />
-                    </Col>
-                  );
-                })}
+              filterHighlight?.map((item) => {
+                return (
+                  <Col
+                    xl={{ span: 6 }}
+                    lg={{ span: 9 }}
+                    md={{ span: 11 }}
+                    xs={{ span: 19 }}
+                    key={item.id}
+                    onClick={() => {
+                      handleHighlight(item?.auction_details?.id);
+                    }}
+                  >
+                    <ThemesArtworkWithFrame
+                      imgSrc={`${process.env.NEXT_PUBLIC_S3_URL}/${item?.artwork_details?.media_cover?.url}`}
+                      artworkStatus={item?.artwork_details?.status}
+                      forAuction={true}
+                      artworkTitle={item?.artwork_details?.title}
+                      artistName={item?.artwork_details?.artist?.full_name}
+                      startEstimation={item?.auction_details?.start_estimation}
+                      endEstimation={item?.auction_details?.end_estimation}
+                    />
+                  </Col>
+                );
+              })}
           </Row>
         </section>
       )}

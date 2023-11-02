@@ -10,10 +10,15 @@ function ThemesTextReadMore({ children, textLength }) {
   return (
     <>
       <Col className={s.text}>
-        {isReadMore ? `${children?.slice(0, textLength)} ...` : children}
-        <p onClick={toggleReadMore} className={s.toogle}>
-          {isReadMore ? "read more" : " show less"}
-        </p>
+        {isReadMore
+          ? children?.length > textLength && `${children?.slice(0, textLength)} ...`
+          : children}
+
+        {children?.length > textLength && (
+          <p onClick={toggleReadMore} className={s.toogle}>
+            {isReadMore ? "read more" : " show less"}
+          </p>
+        )}
       </Col>
     </>
   );
