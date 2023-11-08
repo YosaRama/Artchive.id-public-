@@ -1,10 +1,15 @@
-import s from "./index.module.scss";
+// Libs
 import { Col, Row } from "antd";
 import propTypes from "prop-types";
+
+// Helper
 import priceFormatter from "app/helpers/priceFormatter";
 
+// Styles
+import s from "./index.module.scss";
+
 function ThemesAuctionLotListPrice(props) {
-  const { startEstimation, endEstimation, status, currentBid, session, lotPrice, grid } = props;
+  const { startEstimation, endEstimation, status, lotPrice, grid } = props;
   return (
     <Row gutter={[0, 5]} className={`${grid ? s.containerGrid : s.container}`}>
       <Col span={24}>
@@ -13,8 +18,8 @@ function ThemesAuctionLotListPrice(props) {
       </Col>
       <Col span={24}>
         <h3>
-          {status === "PUBLISH" && "Current Bid: "}
-          {status === "SOLD" && "Final Bid: "}
+          {status === "OPEN" && "Current Bid: "}
+          {status === "CLOSED" && "Final Bid: "}
           IDR {lotPrice}
         </h3>
       </Col>

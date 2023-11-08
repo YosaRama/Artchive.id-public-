@@ -1,7 +1,6 @@
 // Libs
-import { Col, Row, Image, Divider, Spin, Typography } from "antd";
+import { Col, Row, Image, Divider, Spin, Badge } from "antd";
 import moment from "moment-timezone";
-import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import propTypes from "prop-types";
@@ -22,7 +21,6 @@ import stringCapitalize from "app/helpers/capitalize";
 
 // Style
 import s from "./index.module.scss";
-import { useAuction } from "app/hooks/auction";
 import ThemesBlurOverlay from "themes/components/libs/blur-overlay";
 
 function ThemesContentsAuctionArtworkDetails(props) {
@@ -33,22 +31,22 @@ function ThemesContentsAuctionArtworkDetails(props) {
 
   // #region Data Parse
   const { id: auctionId, lotId } = router.query;
-
   const { data: lotDetails } = useAuctionItem({ singleId: lotId, auctionId: auctionId });
   const artworkDetails = lotDetails?.artwork_details;
   const auctionDetails = lotDetails?.auction_details;
 
   // #region Auction Item Details
-
   const { data: hgItems, loading: hgItemsLoading } = useAuctionItems({
     queryString: `&sortBy=lot&sortDirection=ASC`,
     auctionId: router.query.id,
   });
   // #endregion
 
+  //#region Handle Highlight
   const handleHighlight = (selectedLotId) => {
     router.push(`/auction/${auctionId}/lots/${selectedLotId}`);
   };
+  //#endregion
 
   //#region Handle artist data
   // profile picture
@@ -70,6 +68,22 @@ function ThemesContentsAuctionArtworkDetails(props) {
   };
   //#endregion
 
+  //#region Bid Status
+  const status = {
+    bid_status: "OPEN", //TODO : OPEN || CLOSED//
+    winner_session: {
+      id: "001",
+      // id: "002",
+    },
+    winner: {
+      id: "001",
+      name: "John Doe",
+      final_bid: "20000000",
+      closed_time: "2024-07-30T17:00:00.000Z",
+    },
+  };
+  //#endregion
+
   return (
     <>
       <Row justify="space-between">
@@ -79,27 +93,20 @@ function ThemesContentsAuctionArtworkDetails(props) {
             <Image.PreviewGroup>
               <Col span={24} className={s.imageContainer}>
                 {itemsDetails ? (
-                  <Image
-                    src={`${process.env.NEXT_PUBLIC_S3_URL}/${artworkDetails?.media_cover?.url}`}
-                    alt=""
-                  />
+                  <>
+                    {status?.bid_status === "CLOSED" && (
+                      <Badge.Ribbon text="LOT CLOSED!" color="fulvous" className={s.badge} />
+                    )}
+                    <Image
+                      src={`${process.env.NEXT_PUBLIC_S3_URL}/${artworkDetails?.media_cover?.url}`}
+                      alt=""
+                      className={status?.bid_status === "CLOSED" && s.image}
+                    />
+                  </>
                 ) : (
                   <>
                     <Col>
-                      <Spin
-                        style={{
-                          position: "absolute",
-                          top: "0",
-                          left: "0",
-                          width: "100%",
-                          height: "100%",
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                          zIndex: "2",
-                        }}
-                        size="large"
-                      />
+                      <Spin className={s.spin} size="large" />
                       <Image src="/images/default-images.png" alt="" preview={false} />
                     </Col>
                   </>
@@ -133,46 +140,52 @@ function ThemesContentsAuctionArtworkDetails(props) {
               <Col style={{ marginBottom: "40px" }}>
                 <h2>Details</h2>
                 <Divider className={s.divider} />
-                <h3 style={{ fontWeight: "bold", marginBottom: "5px" }}>{artworkDetails?.title}</h3>
+                <h3>{artworkDetails?.title}</h3>
+
                 <Col>
                   <p>
                     by{" "}
-                    <span style={{ fontWeight: "bold" }}>{artworkDetails?.artist?.full_name}</span>
+                    <span style={{ fontWeight: "bold" }}>{artworkDetails?.artist?.full_name}</span>{" "}
+                    ({artworkDetails?.year})
                   </p>
                   <Col className={s.borderContainer}>
                     <Row gutter={[16, 16]}>
                       {artworkDetails?.genre?.map((item, index) => {
                         return (
                           <Col key={index} className={s.genreBorder}>
-                            <p style={{ fontSize: "14px", padding: "5px 5px" }}>{item.title}</p>
+                            <p>{item.title}</p>
                           </Col>
                         );
                       })}
                     </Row>
                   </Col>
                   <br />
+
                   <p>
                     {artworkDetails?.width} x {artworkDetails?.height} cm
                   </p>
                   <p>{stringCapitalize(`${artworkDetails?.material}`.replace(/_/g, " "))}</p>
-
-                  <br />
-                  <p style={{ fontWeight: "bold", marginBottom: "5px" }}>Artwork Description</p>
-
-                  <p dangerouslySetInnerHTML={{ __html: artworkDetails?.description }} />
-
                   <p>
                     Item Condition: <span>Good</span>
                   </p>
-                  <br />
-                  <p style={{ fontWeight: "bold", marginBottom: "5px" }}>Auction Description</p>
 
+                  <br />
+                  <p className={s.subTitle}>Artwork Description</p>
+                  <p dangerouslySetInnerHTML={{ __html: artworkDetails?.description }} />
+
+                  <br />
+                  <p className={s.subTitle}>Auction Description</p>
                   <p>
-                    Auction ends on {width <= 500 && <br />}
+                    The lot item is auctioned from {width <= 500 && <br />}
+                    <span style={{ fontWeight: "bold" }}>
+                      {moment(auctionDetails?.started_at).format("dddd, DD MMM YYYY")}{" "}
+                    </span>{" "}
+                    to{" "}
                     <span style={{ fontWeight: "bold" }}>
                       {moment(auctionDetails?.stopped_at).format("dddd, DD MMM YYYY")}{" "}
                     </span>
                   </p>
+
                   <p>
                     Bid estimation : {width <= 500 && <br />}
                     {priceFormatter(
@@ -198,33 +211,31 @@ function ThemesContentsAuctionArtworkDetails(props) {
                               alt="artist-profile"
                               preview={false}
                               onClick={handleToArtistProfile}
-                              className={`${s.pointer}`}
+                              className={`${s.pointer} `}
                             />
                           </Col>
                           {width <= 768 && (
-                            <Col style={{ margin: "auto 0px auto 10px" }}>
-                              <h4
-                                style={{ fontWeight: "bold" }}
-                                onClick={handleToArtistProfile}
-                                className={`${s.pointer}`}
-                              >
-                                {artworkDetails?.artist?.full_name}
-                              </h4>
-                              <p>Artist</p>
-                            </Col>
+                            <>
+                              <Col style={{ margin: "auto 0px auto 10px" }}>
+                                <h4 onClick={handleToArtistProfile} className={`${s.pointer} `}>
+                                  {artworkDetails?.artist?.full_name}
+                                </h4>
+                                <p>Artist</p>
+                              </Col>
+                            </>
                           )}
                         </Row>
+                        <br />
                       </Col>
                       <Col span={width > 768 ? 18 : 24}>
                         {width > 768 && (
                           <>
-                            <h4 onClick={handleToArtistProfile} className={`${s.pointer}`}>
+                            <h3 onClick={handleToArtistProfile} className={`${s.pointer}`}>
                               {artworkDetails?.artist.full_name}
-                            </h4>
-                            <p>Artist</p>
+                            </h3>
+                            <h4>Artist</h4>
                           </>
                         )}
-                        <br />
 
                         {artistDescription}
                       </Col>
@@ -245,8 +256,7 @@ function ThemesContentsAuctionArtworkDetails(props) {
               startingBid={auctionDetails?.initial_price}
               step={auctionDetails?.step}
               sticky={false}
-              // status={status}
-              // bidHistory={logs}
+              status={status}
             />
           </Col>
         }
@@ -270,7 +280,7 @@ function ThemesContentsAuctionArtworkDetails(props) {
                 >
                   <ThemesArtworkWithFrame
                     imgSrc={`${process.env.NEXT_PUBLIC_S3_URL}/${item?.artwork_details?.media_cover?.url}`}
-                    artworkStatus={item?.artwork_details?.status}
+                    artworkStatus={status?.bid_status}
                     forAuction={true}
                     artworkTitle={item?.artwork_details?.title}
                     artistName={item?.artwork_details?.artist?.full_name}

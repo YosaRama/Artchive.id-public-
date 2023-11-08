@@ -1,5 +1,5 @@
 // Libs
-import { Col, Button, Row, Carousel, Image } from "antd";
+import { Col, Button, Row, Carousel, Image, Badge } from "antd";
 import { useRef } from "react";
 import { useRouter } from "next/router";
 
@@ -52,6 +52,22 @@ function ThemesContentsAuctionDetailsOverview() {
     carouselRef.current.prev();
   };
   // #endregion
+
+  //#region Bid Status
+  const status = {
+    bid_status: "OPEN", //TODO : OPEN || CLOSED//
+    winner_session: {
+      id: "001",
+      // id: "002",
+    },
+    winner: {
+      id: "001",
+      name: "John Doe",
+      final_bid: "20000000",
+      closed_time: "2024-07-30T17:00:00.000Z",
+    },
+  };
+  //#endregion
   return (
     <>
       <ThemesBanner imgSrc={auctionData?.thumbnail} className={s.bannerContainer} initial="visible">
@@ -83,14 +99,14 @@ function ThemesContentsAuctionDetailsOverview() {
         <Col className={s.bgwhite}>
           <ThemesContainerMain>
             <Row gutter={[40, 20]} justifyContent="space-between">
-              <Col span={width >= 500 ? 12 : 24} className={s.video}>
+              <Col span={width > 768 ? 12 : 24} className={s.video}>
                 <ReactPlayer
                   height={width > 1024 ? 400 : width < 500 ? 250 : 350}
                   url="https://youtu.be/kE_C8kmD9lY"
                   controls={true}
                 />
               </Col>
-              <Col span={width >= 500 ? 12 : 24} className={s.videoDesc}>
+              <Col span={width > 768 ? 12 : 24} className={s.videoDesc}>
                 <h1 style={{ fontSize: 32 }}>{auctionData?.name}</h1>
                 <p span={24} dangerouslySetInnerHTML={{ __html: description }} />
               </Col>
@@ -139,19 +155,25 @@ function ThemesContentsAuctionDetailsOverview() {
                   >
                     {auctionItems?.map((item, index) => {
                       return (
-                        <Col
-                          key={index}
-                          className={s.sliderItem}
-                          onClick={() =>
-                            router.push(`/auction/${auctionId}/lots/${item?.auction_details?.id}`)
-                          }
-                        >
-                          <Image
-                            preview={false}
-                            src={`${process.env.NEXT_PUBLIC_S3_URL}/${item.artwork_details?.media_cover?.url}`}
-                            alt=""
-                          ></Image>
-                        </Col>
+                        <>
+                          {status?.bid_status === "CLOSED" && (
+                            <Badge.Ribbon text="LOT CLOSED!" color="fulvous" className={s.badge} />
+                          )}
+                          <Col
+                            key={index}
+                            className={`${s.sliderItem}`}
+                            onClick={() =>
+                              router.push(`/auction/${auctionId}/lots/${item?.auction_details?.id}`)
+                            }
+                          >
+                            <Image
+                              preview={false}
+                              className={status?.bid_status === "CLOSED" && s.image}
+                              src={`${process.env.NEXT_PUBLIC_S3_URL}/${item.artwork_details?.media_cover?.url}`}
+                              alt=""
+                            />
+                          </Col>
+                        </>
                       );
                     })}
                   </Carousel>

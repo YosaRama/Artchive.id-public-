@@ -4,20 +4,45 @@
 .lotContainer {
   position: -webkit-sticky !important;
   position: sticky !important;
-  top: 50px !important;
+  top: 70px !important;
   .lotDetails {
     padding: 40px 35px;
     background: WHITESMOKE;
+    border: 2px solid colors.$fulvous;
 
-    h2 {
-      font-size: font-size.$heading-2;
+    .final {
+      h2 {
+        font-size: font-size.$heading-2;
+        margin: 0px !important;
+      }
+      h3 {
+        font-size: font-size.$heading-3;
+      }
+      h4 {
+        font-size: font-size.$heading-4;
+        margin: 8px 0px !important;
+        font-weight: normal !important;
+      }
+      p,
+      svg {
+        font-size: font-size.$paragraph;
+        color: rgb(73, 73, 73);
+        margin: 0px !important;
+      }
+
+      span {
+        color: colors.$fulvous;
+      }
     }
-    h3 {
-      font-size: font-size.$heading-3;
-    }
-    p {
-      font-size: font-size.$paragraph;
-      margin: 15px 0px;
+    .warning {
+      h3 {
+        font-size: font-size.$heading-3;
+        font-weight: bold;
+      }
+      p {
+        font-size: font-size.$paragraph;
+        color: rgb(73, 73, 73);
+      }
     }
 
     .reminder {
@@ -77,17 +102,34 @@
   }
 }
 
-//? ============== Tablet Potrait View ============= ?//
+//? ============== Tablet Landscape View ============= ?//
 @media screen and (max-width: 1024px) {
   .lotContainer {
     .lotDetails {
       padding: 25px;
-      h2 {
-        font-size: font-size.$heading-3;
-      }
-      p {
-        font-size: font-size.$paragraph;
-        margin: 15px 0px;
+      .final {
+        h2 {
+          font-size: font-size.$heading-3;
+          margin: 0px !important;
+        }
+        h3 {
+          font-size: font-size.$heading-4;
+        }
+        h4 {
+          font-size: font-size.$paragraph;
+          margin: 8px 0px !important;
+          font-weight: normal !important;
+        }
+        p,
+        svg {
+          font-size: font-size.$paragraph;
+          color: rgb(163, 163, 163);
+          margin: 0px !important;
+        }
+
+        span {
+          color: colors.$fulvous;
+        }
       }
       .reminder {
         height: 30px;
@@ -144,10 +186,12 @@
 //? ============== Tablet Potrait View ============= ?//
 @media screen and (max-width: 768px) {
   .collapse {
-    height: 200px !important;
+    height: 230px !important;
+    transition: 300ms all ease;
   }
   .openCollapse {
     height: 620px !important;
+    transition: 300ms all ease;
   }
   .collapseButton {
     width: 100%;
@@ -167,18 +211,47 @@
     bottom: 0;
     width: 100% !important;
     background: colors.$white;
-    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5);
 
     .lotDetails {
       padding: 0px 30px 20px;
-      h2 {
-        font-size: font-size.$heading-3;
-        text-align: center;
-        margin: 0px;
+
+      .final {
+        padding-top: 20px;
+        h2 {
+          font-size: font-size.$heading-2;
+          margin: 0px !important;
+        }
+        h3 {
+          font-size: font-size.$heading-3;
+        }
+        h4 {
+          font-size: font-size.$heading-4;
+          margin: 8px 0px !important;
+          font-weight: normal !important;
+        }
+        p,
+        svg {
+          font-size: font-size.$paragraph;
+          color: rgb(163, 163, 163);
+          margin: 0px !important;
+        }
+
+        span {
+          color: colors.$fulvous;
+        }
       }
-      p {
-        font-size: font-size.$paragraph;
-        margin: 15px 0px;
+
+      .warning {
+        padding-top: 30px;
+        h3 {
+          font-size: font-size.$heading-3;
+          font-weight: bold;
+        }
+        p {
+          font-size: font-size.$paragraph;
+          color: rgb(73, 73, 73);
+        }
       }
       .reminder {
         height: 30px;
@@ -244,12 +317,18 @@
       }
     }
   }
+
+  .bidBoardIframeMobile {
+    border: 0;
+    height: 550px;
+    width: 100%;
+  }
 }
 
 //? ============== Mobike View ============= ?//
 @media screen and (max-width: 500px) {
   .collapse {
-    height: 210px !important;
+    height: 200px !important;
   }
   .openCollapse {
     height: 550px !important;
@@ -273,14 +352,41 @@
 
     .lotDetails {
       padding: 0px 30px 20px;
-      h2 {
-        font-size: font-size.$heading-3;
-        text-align: center;
-        margin: 0px;
+      .final {
+        padding-top: 15px;
+        h2 {
+          font-size: font-size.$heading-3;
+          margin: 0px !important;
+        }
+        h3 {
+          font-size: font-size.$heading-4;
+        }
+        h4 {
+          font-size: font-size.$paragraph;
+          margin: 8px 0px !important;
+          font-weight: normal !important;
+        }
+        p,
+        svg {
+          font-size: 14px;
+          color: rgb(163, 163, 163);
+          margin: 0px !important;
+        }
+
+        span {
+          color: colors.$fulvous;
+        }
       }
-      p {
-        font-size: font-size.$paragraph;
-        margin: 15px 0px;
+      .warning {
+        padding-top: 20px;
+
+        h3 {
+          font-size: font-size.$heading-4;
+        }
+        p {
+          font-size: 14px !important;
+          color: rgb(73, 73, 73);
+        }
       }
       .reminder {
         height: 30px;
@@ -362,18 +468,18 @@
       }
     }
   }
+
+  .bidBoardIframeMobile {
+    border: 0;
+    height: 500px;
+    width: 100%;
+  }
 }
 // * ====================================== * //
 // * ====================================== * //
 
 .bidBoardIframeDesktop {
   border: 0;
-  height: 474px;
-  width: 100%;
-}
-
-.bidBoardIframeMobile {
-  border: 0;
-  height: 486px;
+  height: 475px;
   width: 100%;
 }

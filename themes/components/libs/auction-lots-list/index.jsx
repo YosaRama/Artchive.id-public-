@@ -1,7 +1,7 @@
 // Libs
 import propTypes from "prop-types";
 import moment from "moment";
-import { Col, Row, Image, Divider } from "antd";
+import { Col, Row, Image, Divider, Badge } from "antd";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
@@ -43,6 +43,10 @@ function ThemesAuctionLotsList(props) {
   const afterLotClosed = todayDate.isAfter(auctionDetails?.stopped_at);
   const liveLot = todayDate.isBetween(auctionDetails?.started_at, auctionDetails?.stopped_at);
 
+  //$region bid Status
+  const bid_status = "OPEN"; //TODO : OPEN || CLOSED//
+  //#endregion
+
   //#region Handle button content
   const [buttonContent, setButtonContent] = useState("");
   useEffect(() => {
@@ -52,10 +56,13 @@ function ThemesAuctionLotsList(props) {
     if (liveLot) {
       setButtonContent(session ? "PLACE BID" : "LOGIN TO BID");
     }
-    if (artworkDetails?.status === "SOLD" || afterLotClosed) {
+    if (auctionDetails?.status === "SOLD" || afterLotClosed) {
       setButtonContent("SEE DETAILS");
     }
-  }, [afterLotClosed, artworkDetails?.status, auctionData, beforeLotStarted, liveLot, session]);
+    if (bid_status === "CLOSED" || afterLotClosed) {
+      setButtonContent("SEE DETAILS");
+    }
+  }, [afterLotClosed, auctionDetails?.status, auctionData, beforeLotStarted, liveLot, session]);
   //#endregion
 
   //#region Handle button
@@ -70,6 +77,9 @@ function ThemesAuctionLotsList(props) {
 
   return (
     <>
+      {bid_status === "CLOSED" && (
+        <Badge.Ribbon placement="start" text="LOT CLOSED!" color="fulvous" className={s.badge} />
+      )}
       <Col
         span={24}
         className={`${grid ? s.cartContainerGrid : s.cartContainer} ${
@@ -81,24 +91,9 @@ function ThemesAuctionLotsList(props) {
           {
             //#region Image Container
             <Col span={grid ? 24 : 6} className={s.imgSrcContainer}>
-              {afterLotClosed ? (
-                <Col className={s.tag}>
-                  <p>ENDED</p>
-                </Col>
-              ) : (
-                ""
-              )}
-              {artworkDetails?.status === "SOLD" ? (
-                <Col className={s.tag}>
-                  <p>SOLD</p>
-                </Col>
-              ) : (
-                ""
-              )}
-
               <Image
                 preview={false}
-                className={s.imgSrc}
+                className={bid_status === "CLOSED" ? s.imgSrcSold : s.imgSrc}
                 alt=""
                 src={`${process.env.NEXT_PUBLIC_S3_URL}/${artworkDetails?.media_cover?.url}`}
               />
@@ -111,11 +106,17 @@ function ThemesAuctionLotsList(props) {
               <p style={{ fontWeight: "bold" }}>
                 LOT {auctionDetails?.lot ? auctionDetails?.lot : "-"}
               </p>
-              <Col>
+              <Col className={s.titleContainer}>
                 <Col>
-                  <h2 className={width > 500 ? s.titleContainer : ""}> {artworkDetails?.title}</h2>
+                  <h2 className={width > 500 ? s.title : ""}> {artworkDetails?.title}</h2>
                 </Col>
-                {artworkDetails?.artist ? <p>by {artworkDetails?.artist?.full_name}</p> : ""}
+                {artworkDetails?.artist ? (
+                  <p>
+                    by <span>{artworkDetails?.artist?.full_name}</span> ({artworkDetails?.year})
+                  </p>
+                ) : (
+                  ""
+                )}
               </Col>
               {!grid && (
                 <Col>
@@ -143,7 +144,7 @@ function ThemesAuctionLotsList(props) {
                 <ThemesAuctionLotListPrice
                   startEstimation={auctionDetails?.start_estimation}
                   endEstimation={auctionDetails?.end_estimation}
-                  status={artworkDetails?.status}
+                  status={bid_status}
                   lotPrice={lotPrice}
                   session={session}
                   grid={grid}
@@ -173,7 +174,8 @@ function ThemesAuctionLotsList(props) {
                 <ThemesAuctionLotListPrice
                   startEstimation={auctionDetails?.start_estimation}
                   endEstimation={auctionDetails?.end_estimation}
-                  status={artworkDetails?.status}
+                  // status={artworkDetails?.status}
+                  status={bid_status}
                   lotPrice={lotPrice}
                   session={session}
                   grid={grid}
