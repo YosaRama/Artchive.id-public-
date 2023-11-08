@@ -6,7 +6,7 @@ import { useCallback, useState } from "react";
 // Component
 import { SuccessNotification, ErrorNotification } from "app/components/utils/notification";
 
-const msgHead = "Auction User"; // Just For message
+const msgHead = "Auction Items"; // Just For message
 
 //? ============== GENERAL HOOK (ALL DATA) ============= ?//
 
@@ -152,11 +152,46 @@ export const useAuctionItem = ({ singleId, auctionId }) => {
   );
   // ==========================
 
+  const onClosedBid = useCallback(
+    async (data) => {
+      try {
+        setLoading(true);
+        const { data: res } = await api.put(`${pathKeys}/closed`, data);
+        if (res.success) {
+          mutate();
+          SuccessNotification({
+            message: "Success",
+            description: `${msgHead} has successfully closed.`,
+          });
+          return res.success;
+        } else {
+          ErrorNotification({
+            message: "Error",
+            description: `Something went wrong while closed ${msgHead}`,
+          });
+
+          return res.success;
+        }
+      } catch (error) {
+        ErrorNotification({
+          message: "Error",
+          description: `Something went wrong while closed ${msgHead}`,
+        });
+
+        return false;
+      } finally {
+        setLoading(false);
+      }
+    },
+    [mutate, pathKeys]
+  );
+
   return {
     data: results,
     total,
     loading: (!error && !data) || isValidating || loading,
     onEdit,
+    onClosedBid,
   };
 };
 

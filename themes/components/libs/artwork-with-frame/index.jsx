@@ -29,9 +29,16 @@ function ThemesArtworkWithFrame(props) {
 
   return (
     <Badge.Ribbon
-      text={artworkStatus == "SOLD" ? "SOLD" : "Waiting Approval"}
+      text={
+        artworkStatus && artworkStatus === "SOLD"
+          ? "SOLD"
+          : artworkStatus === "CLOSED"
+          ? "LOT CLOSED"
+          : "Waiting Approval"
+      }
       className={`artwork-ribbon ${
-        (artworkStatus == "PUBLISH" || artworkStatus == "EXHIBITION") && "hide"
+        (artworkStatus == "PUBLISH" || artworkStatus == "EXHIBITION" || artworkStatus == "READY") &&
+        "hide"
       }`}
     >
       {!forAuction && (
@@ -73,11 +80,7 @@ function ThemesArtworkWithFrame(props) {
               objectFit="cover"
               objectPosition="center"
               preview={false}
-              className={
-                artworkStatus == "PUBLISH" || artworkStatus == "EXHIBITION"
-                  ? ""
-                  : `artwork-not-publish`
-              }
+              className={artworkStatus == "READY" ? "" : `artwork-not-publish`}
             />
           </Col>
           <Col className={s.content}>
@@ -104,7 +107,7 @@ ThemesArtworkWithFrame.propTypes = {
   imgSrc: propTypes.string,
   artworkTitle: propTypes.string,
   artworkSize: propTypes.string,
-  artworkStatus: propTypes.oneOf(["PUBLISH", "SOLD", "DRAFT", "EDIT"]),
+  artworkStatus: propTypes.oneOf(["PUBLISH", "SOLD", "DRAFT", "EDIT", "READY", "CLOSED"]),
   isCuratorPick: propTypes.bool,
   forAuction: propTypes.bool,
   artistName: propTypes.string,
