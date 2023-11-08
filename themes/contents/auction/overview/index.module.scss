@@ -26,12 +26,14 @@
 }
 
 .video {
+  width: 100% !important;
   height: 100%;
   display: flex;
   align-items: center;
 }
 .videoDesc {
   height: auto;
+  padding: 0px;
   p {
     margin: 0px !important;
   }
@@ -49,6 +51,10 @@
 }
 .carousel {
   text-align: center;
+  .badge {
+    position: absolute;
+    z-index: 1;
+  }
 }
 
 .sliderItem {
@@ -68,6 +74,12 @@
     &:hover {
       scale: 1.02;
     }
+  }
+}
+.image {
+  filter: grayscale(80%) !important;
+  &:hover {
+    filter: grayscale(0%) !important;
   }
 }
 
@@ -97,17 +109,12 @@
     background: colors.$white;
     padding: 30px 0px;
   }
-  .sliderItem {
-    height: 300px;
 
-    display: flex;
-    justify-content: center !important;
-    align-items: center !important;
+  .sliderItem {
+    height: 400px;
 
     img {
       height: 300px !important;
-      object-fit: cover;
-      text-align: center;
     }
   }
 
@@ -131,16 +138,10 @@
     padding: 30px 0px;
   }
   .sliderItem {
-    height: 325px;
-
-    display: flex;
-    justify-content: center !important;
-    align-items: center !important;
+    height: 250px;
 
     img {
-      height: 325px !important;
-      object-fit: cover;
-      text-align: center;
+      height: 250px !important;
     }
   }
   .curatorContainer {
@@ -169,16 +170,10 @@
     padding: 30px 0px;
   }
   .sliderItem {
-    height: 300px;
-
-    display: flex;
-    justify-content: center !important;
-    align-items: center !important;
+    height: 200px;
 
     img {
-      height: 300px !important;
-      object-fit: cover;
-      text-align: center;
+      height: 200px !important;
     }
   }
 

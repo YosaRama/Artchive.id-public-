@@ -9,7 +9,6 @@ import { useState } from "react";
 // Components
 import ThemesContainerMain from "themes/components/container/main";
 import ThemesNavbarDrawerAuction from "themes/components/libs/navbar-drawer-auction";
-import ThemesBannerAuctionItem from "themes/components/libs/banner-auction";
 
 // Helpers
 import { useWindowSize } from "app/helpers/useWindowSize";

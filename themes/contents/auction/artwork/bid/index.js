@@ -1,12 +1,12 @@
 // Libs
-import { Col } from "antd";
+import { Col, Divider } from "antd";
 import ThemesButton from "themes/components/libs/button";
 import { useState, useEffect } from "react";
-import { CaretUpOutlined, CaretDownOutlined } from "@ant-design/icons";
-
+import { CaretUpOutlined, CaretDownOutlined, InfoCircleOutlined } from "@ant-design/icons";
 import propTypes from "prop-types";
-
 import moment from "moment-timezone";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 
 // Components
 import ThemesModalAuctionLogin from "themes/components/libs/modal-auction-login";
@@ -14,16 +14,17 @@ import ThemesModalAuctionLogin from "themes/components/libs/modal-auction-login"
 // Helper
 import priceFormatter from "app/helpers/priceFormatter";
 import { useWindowSize } from "app/helpers/useWindowSize";
-import { useSession } from "next-auth/react";
+
+// Hooks
+import { useAuctionItem } from "app/hooks/auction/item";
 
 // Style
 import s from "./index.module.scss";
-import { useRouter } from "next/router";
-import { useAuctionItem } from "app/hooks/auction/item";
+import { useAuctionUser } from "app/hooks/auction/user";
 
 function ThemesContentsAuctionBidDetails(props) {
   const { estimation, startingBid, step, sticky, status, bidHistory } = props;
-
+  const session = useSession();
   const router = useRouter();
   const { id: auctionId, lotId: artworkId } = router.query;
   const { data: auctionItem } = useAuctionItem({ singleId: artworkId, auctionId: auctionId });
@@ -31,107 +32,12 @@ function ThemesContentsAuctionBidDetails(props) {
 
   const { width } = useWindowSize();
 
-  //? ============== Price Incremental ============= ?//
-  const estimationBid = parseInt(estimation);
-  const startBid = parseInt(startingBid);
-
-  const [price, setPrice] = useState(startBid);
-  const [limit, setLimit] = useState(price);
-  const [priceStep, setPriceStep] = useState(step);
-  const handleDecrement = () => {
-    if (price > startBid) {
-      setPrice((prevPrice) => prevPrice - parseInt(priceStep));
-    }
-  };
-  const handleIncrement = () => {
-    if (price < estimationBid) {
-      setPrice((prevPrice) => prevPrice + parseInt(priceStep));
-    }
-  };
-  // * ====================================== * //
-
-  //? ============== TimeZone ============= ?//
-  const timeZone = moment.tz.guess();
-  // * ====================================== * //
-
-  //? ============== Place Bid Handle ============= ?//
-  const [logsHistory, setLogsHistory] = useState(status == "SOLD" ? bidHistory : []);
-  const session = useSession();
-
-  const handleBid = () => {
-    const newLog = {
-      user_ref: <p>{session.data.user.full_name}</p>,
-      created_at: new Date().toISOString(), // or use the desired format for the date
-      bid_price: `${price}`, // assuming `price` is the current bid price
-    };
-
-    setLogsHistory((prevLogs) => [...prevLogs, newLog]);
-    setPrice(price);
-    setLimit(price);
-  };
-  const isCurrentPriceMatch = logsHistory.some((log) => log.bid_price === price.toString());
-
-  // Sort the logs in descending order based on index
-  const sortedLogs = [...logsHistory].sort(
-    (a, b) => logsHistory.indexOf(b) - logsHistory.indexOf(a)
-  );
-
-  // Get the latest bid price
-  const latestBidPrice = sortedLogs[0]?.bid_price;
-  // * ====================================== * //
-
-  //? ============== Bid History Column ============= ?//
-  const columns = [
-    {
-      title: "Date",
-      dataIndex: "created_at",
-      key: "created_at",
-      render: (text) => {
-        //? ============== Timer ============= ?//
-        const createdTime = moment.tz(text, timeZone); // Example created time
-        const currentTime = moment(); // Example current time
-
-        const duration = moment.duration(currentTime.diff(createdTime));
-        const timePassed = formatTimePassed(duration);
-
-        function formatTimePassed(duration) {
-          const seconds = duration.asSeconds();
-
-          if (seconds < 60) {
-            return `${Math.floor(seconds)} sec ago`;
-          } else if (seconds < 3600) {
-            return `${Math.floor(seconds / 60)} min ago`;
-          } else if (seconds < 86400) {
-            return `${Math.floor(seconds / 3600)} hrs ago`;
-          } else {
-            return `${Math.floor(seconds / 86400)} days ago`;
-          }
-        }
-        // * ====================================== * //
-        return <p>{timePassed}</p>;
-      },
-    },
-    {
-      title: "Bid",
-      dataIndex: "bid_price",
-      key: "bid_price",
-      render: (text) => <p>IDR {priceFormatter(text, ",")}</p>,
-      sortOrder: "descend",
-      sorter: (a, b) => a.bid_price - b.bid_price,
-    },
-    {
-      title: "User",
-      dataIndex: "user_ref",
-      key: "user_ref",
-    },
-  ];
-
-  //? ============== Handle Collapse ============= ?//
+  //#region Handle Collapse
   const [open, setOpen] = useState(false);
   const handleCollapse = () => {
     setOpen(!open);
   };
-  // * ====================================== * //
+  //#endregion
 
   // #region Check User and Visibility of Modal
   const [isVisible, setIsVisible] = useState(false);
@@ -140,6 +46,8 @@ function ThemesContentsAuctionBidDetails(props) {
   };
   //#endregion
 
+  //#region Moment Timezone
+  const timeZone = moment.tz.guess();
   const todayDate = moment();
   const beforeLotStarted = todayDate.isBefore(auctionItem?.auction_details?.started_at);
   const afterLotClosed = todayDate.isAfter(auctionItem?.auction_details?.stopped_at);
@@ -147,6 +55,7 @@ function ThemesContentsAuctionBidDetails(props) {
     auctionItem?.auction_details?.started_at,
     auctionItem?.auction_details?.stopped_at
   );
+  //#endregion
 
   //#region Handle button content
   const [buttonContent, setButtonContent] = useState("");
@@ -167,9 +76,28 @@ function ThemesContentsAuctionBidDetails(props) {
   }, [afterLotClosed, auctionItem?.artwork_details?.status, beforeLotStarted, liveLot, session]);
   //#endregion
 
-  //#region Handle button
-  const handleButton = () => {
-    handleVisible();
+  //#region Handle winner section
+  const { data: winnerDetails } = useAuctionUser({
+    singleId: auctionItem?.auction_details?.winner,
+    auctionId: auctionId,
+  });
+
+  const bidStatus = auctionItem?.auction_details?.item_status;
+  const winnerName = winnerDetails?.name;
+  const finalPrice = auctionItem?.auction_details?.final_price;
+  const closedAt = auctionItem?.auction_details?.closed_at;
+  const winnerId = auctionItem?.auction_details?.winner;
+
+  const winner = {
+    id: "001",
+    name: "John Doe",
+    final_bid: "20000000",
+    closed_time: "2024-07-30T17:00:00.000Z",
+  };
+
+  const winnerSession = {
+    id: "001",
+    // id: "002",
   };
   //#endregion
 
@@ -182,18 +110,43 @@ function ThemesContentsAuctionBidDetails(props) {
           {/* //? ============== Lot Details ============= ?// */}
           <Col span={24} className={s.lotDetails}>
             {session && session?.data?.user?.role === "auction-participant" ? (
-              <iframe
-                title="Auction History"
-                className={s.bidBoardIframeDesktop}
-                src={`https://auctioo-id.vercel.app/live-auction?mode=desktop&${iframeParams}`}
-              />
+              bidStatus === "READY" ? (
+                <iframe
+                  title="Auction History"
+                  className={s.bidBoardIframeDesktop}
+                  src={`https://auctioo-id.vercel.app/live-auction?mode=desktop&${iframeParams}`}
+                />
+              ) : (
+                bidStatus === "CLOSED" && (
+                  <Col className={s.final}>
+                    <h2>
+                      Congratulations, <span>Bidder {winnerName}</span>!
+                    </h2>
+                    <h3>You are the proud winner of this lot!</h3>
+                    <Divider style={{ margin: "8px 0px" }} />
+                    <h4>
+                      Winning bid : <span>IDR {priceFormatter(`${finalPrice}`, ",")}</span>
+                    </h4>
+                    <h4>
+                      This item met the requirements and officially closed on{" "}
+                      <span> {moment(closedAt).format("LL, LT")} </span>.
+                    </h4>
+                    {winnerId === session?.data?.user?.id && (
+                      <p>
+                        <InfoCircleOutlined /> Please get in touch with our admin to proceed with
+                        the purchase details and complete the process.
+                      </p>
+                    )}
+                  </Col>
+                )
+              )
             ) : (
               <>
                 <Col className={s.warning}>
-                  <h3>Sorry, you are not allowed to bid in this lot item.</h3>
+                  <h3>Sorry, you are not allowed to bid.</h3>
                   <p>
-                    Please please check your participant account id on your email or login here if
-                    already have this auction participant account!
+                    <InfoCircleOutlined /> Please please check your participant account id on your
+                    email or login here if already have this auction participant account!
                   </p>
                   <ThemesButton type={`primary + ${s.btn}`} onClick={handleModal}>
                     {buttonContent}
@@ -210,27 +163,56 @@ function ThemesContentsAuctionBidDetails(props) {
       {width <= 768 && sticky && (
         <Col span={24} className={`${s.lotContainerSticky} ${open ? s.openCollapse : s.collapse}`}>
           {/* //? ============== Lot Details ============= ?// */}
-
-          <Col className={s.collapseButton} onClick={handleCollapse}>
-            {!open ? <CaretUpOutlined /> : <CaretDownOutlined />}
-          </Col>
+          {bidStatus === "READY" ||
+            (session && (
+              <Col className={s.collapseButton} onClick={handleCollapse}>
+                {!open ? <CaretUpOutlined /> : <CaretDownOutlined />}
+              </Col>
+            ))}
 
           <Col span={24} className={s.lotDetails}>
             {session && session?.data?.user?.role === "auction-participant" ? (
-              <iframe
-                title="Auction History"
-                className={s.bidBoardIframeMobile}
-                src={`https://auctioo-id.vercel.app/live-auction?mode=mobile&${iframeParams}`}
-              />
+              bidStatus === "READY" ? (
+                <>
+                  <iframe
+                    title="Auction History"
+                    className={s.bidBoardIframeMobile}
+                    src={`https://auctioo-id.vercel.app/live-auction?mode=mobile&${iframeParams}`}
+                  />
+                </>
+              ) : (
+                bidStatus === "CLOSED" && (
+                  <Col className={s.final}>
+                    <h2>
+                      Congratulations, <span>Bidder {winnerName}</span>!
+                    </h2>
+                    <h3>You&apos;ve secured the winning bid!</h3>
+                    <h4>
+                      Winning bid : <span>IDR {priceFormatter(`${finalPrice}`, ",")}</span>
+                    </h4>
+                    <h4>
+                      Closed on <span> {moment(closedAt).format("LL, LT")} </span>.
+                    </h4>
+                    {winnerId === session?.id && (
+                      <p>
+                        <InfoCircleOutlined /> Contact admin to finalize your purchase.
+                      </p>
+                    )}
+                  </Col>
+                )
+              )
             ) : (
               <>
-                <p>
-                  Sorry, you are not allowed to bid in this lot item. please check your participant
-                  account or login here!
-                </p>{" "}
-                <ThemesButton type={`primary + ${s.btn}`} onClick={handleModal}>
-                  {buttonContent}
-                </ThemesButton>
+                <Col className={s.warning}>
+                  <h3>Sorry, you are not allowed to bid.</h3>
+                  <p>
+                    <InfoCircleOutlined /> Please please check your participant account id on your
+                    email or login here if already have this auction participant account!
+                  </p>
+                  <ThemesButton type={`primary + ${s.btn}`} onClick={handleModal}>
+                    {buttonContent}
+                  </ThemesButton>
+                </Col>
               </>
             )}
             {/* // * ====================================== * // */}

@@ -1,5 +1,5 @@
 // Libs
-import { Row, Col, Divider, Image, Table, Empty, Button } from "antd";
+import { Row, Col, Divider, Image, Table, Empty, Button, notification, Modal } from "antd";
 import propTypes from "prop-types";
 import { v4 as uuid } from "uuid";
 import { useState } from "react";
@@ -29,6 +29,7 @@ function AppContentsAuctionDetailsLotsDetails(props) {
   const {
     data: itemDetails,
     onEdit: itemUpdate,
+    onClosedBid: itemClosedBid,
     loading: itemLoading,
   } = useAuctionItem({
     auctionId: auctionId,
@@ -39,6 +40,7 @@ function AppContentsAuctionDetailsLotsDetails(props) {
     itemId: activeLotId,
     queryString: "",
   });
+  const latestPrice = itemLogs?.[0]?.bid_price;
   //#endregion
 
   //#region  Handle Column
@@ -49,6 +51,18 @@ function AppContentsAuctionDetailsLotsDetails(props) {
   const [addModal, setAddModal] = useState(false);
   const handleModal = () => {
     setAddModal(!addModal);
+  };
+  //#endregion
+
+  //#region Handle closed bid
+  const handleClosedBid = () => {
+    Modal.confirm({
+      title: "Are you sure closed this items?",
+      content: "This action will immedietly close this item",
+      onOk: () => {
+        itemClosedBid();
+      },
+    });
   };
   //#endregion
 
@@ -88,11 +102,20 @@ function AppContentsAuctionDetailsLotsDetails(props) {
             </p>
           </Col>
         </Row>
-        <Col style={{ textAlign: "right" }}>
-          <ThemesButton type="primary" onClick={handleModal} loading={itemLoading}>
-            Edit item
-          </ThemesButton>
-        </Col>
+        <Row gutter={[16, 0]} justify="end">
+          <Col>
+            <ThemesButton type="outlined" onClick={handleClosedBid} loading={itemLoading}>
+              Closed Bid
+            </ThemesButton>
+          </Col>
+
+          <Col style={{ textAlign: "right" }}>
+            <ThemesButton type="primary" onClick={handleModal} loading={itemLoading}>
+              Edit item
+            </ThemesButton>
+          </Col>
+        </Row>
+
         <Divider />
         <h3 style={{ textAlign: "center" }}>History logs</h3>
         {itemLogs && (
@@ -114,6 +137,7 @@ function AppContentsAuctionDetailsLotsDetails(props) {
             singleSku={itemDetails?.auction_details?.item_id}
             initialData={itemDetails?.auction_details}
             isLoading={itemLoading}
+            latestPrice={latestPrice}
           />
         )}
       </Col>
