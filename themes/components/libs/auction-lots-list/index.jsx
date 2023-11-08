@@ -43,8 +43,8 @@ function ThemesAuctionLotsList(props) {
   const afterLotClosed = todayDate.isAfter(auctionDetails?.stopped_at);
   const liveLot = todayDate.isBetween(auctionDetails?.started_at, auctionDetails?.stopped_at);
 
-  //$region bid Status
-  const bid_status = "OPEN"; //TODO : OPEN || CLOSED//
+  //#region bid Status
+  const bid_status = auctionDetails?.status;
   //#endregion
 
   //#region Handle button content

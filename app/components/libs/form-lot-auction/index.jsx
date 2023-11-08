@@ -11,7 +11,7 @@ import AppSelectArtwork from "../select-artwork";
 import { useAuction } from "app/hooks/auction";
 
 function AppFormLotAuction(props) {
-  const { onSubmit, isEdit, singleSku, visible, onClose, initialData } = props;
+  const { onSubmit, isEdit, singleSku, visible, onClose, initialData, latestPrice } = props;
   const [artworkSelect, setArtworkSelect] = useState("");
   const router = useRouter();
 
@@ -37,7 +37,7 @@ function AppFormLotAuction(props) {
     form.validateFields().then(async (value) => {
       const submission = {
         lot_number: value.lot_number,
-        current_price: "",
+        current_price: !latestPrice ? "" : latestPrice,
         final_price: "",
         initial_price: value.initial_price,
         is_showing: value.is_showing,
@@ -46,7 +46,7 @@ function AppFormLotAuction(props) {
         step: value.step,
         start_estimation: value.start_estimation,
         end_estimation: value.end_estimation,
-        item_status: value.is_showing ? "READY" : "DRAFT",
+        item_status: "READY",
         started_at: moment(value.lot_date[0]._d).format("YYYY-MM-DD"),
         stopped_at: moment(value.lot_date[1]._d).format("YYYY-MM-DD"),
       };
@@ -268,6 +268,7 @@ AppFormLotAuction.propTypes = {
   onClose: propTypes.func,
   initialData: propTypes.any,
   activeLotId: propTypes.any,
+  latestPrice: propTypes.any,
 };
 
 export default AppFormLotAuction;

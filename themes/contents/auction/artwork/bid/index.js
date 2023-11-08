@@ -20,6 +20,7 @@ import { useAuctionItem } from "app/hooks/auction/item";
 
 // Style
 import s from "./index.module.scss";
+import { useAuctionUser } from "app/hooks/auction/user";
 
 function ThemesContentsAuctionBidDetails(props) {
   const { estimation, startingBid, step, sticky, status, bidHistory } = props;
@@ -75,8 +76,18 @@ function ThemesContentsAuctionBidDetails(props) {
   }, [afterLotClosed, auctionItem?.artwork_details?.status, beforeLotStarted, liveLot, session]);
   //#endregion
 
-  //#region Bid Status
-  const bid_status = "OPEN"; //TODO : OPEN || CLOSED//
+  //#region Handle winner section
+  const { data: winnerDetails } = useAuctionUser({
+    singleId: auctionItem?.auction_details?.winner,
+    auctionId: auctionId,
+  });
+
+  const bidStatus = auctionItem?.auction_details?.item_status;
+  const winnerName = winnerDetails?.name;
+  const finalPrice = auctionItem?.auction_details?.final_price;
+  const closedAt = auctionItem?.auction_details?.closed_at;
+  const winnerId = auctionItem?.auction_details?.winner;
+
   const winner = {
     id: "001",
     name: "John Doe",
@@ -99,28 +110,28 @@ function ThemesContentsAuctionBidDetails(props) {
           {/* //? ============== Lot Details ============= ?// */}
           <Col span={24} className={s.lotDetails}>
             {session && session?.data?.user?.role === "auction-participant" ? (
-              bid_status === "OPEN" ? (
+              bidStatus === "READY" ? (
                 <iframe
                   title="Auction History"
                   className={s.bidBoardIframeDesktop}
                   src={`https://auctioo-id.vercel.app/live-auction?mode=desktop&${iframeParams}`}
                 />
               ) : (
-                bid_status === "CLOSED" && (
+                bidStatus === "CLOSED" && (
                   <Col className={s.final}>
                     <h2>
-                      Congratulations, <span>Bidder {winner?.id}</span>!
+                      Congratulations, <span>Bidder {winnerName}</span>!
                     </h2>
                     <h3>You are the proud winner of this lot!</h3>
                     <Divider style={{ margin: "8px 0px" }} />
                     <h4>
-                      Winning bid : <span>IDR {priceFormatter(`${winner?.final_bid}`, ",")}</span>
+                      Winning bid : <span>IDR {priceFormatter(`${finalPrice}`, ",")}</span>
                     </h4>
                     <h4>
                       This item met the requirements and officially closed on{" "}
-                      <span> {moment(winner?.closed_time).format("LL, LT")} </span>.
+                      <span> {moment(closedAt).format("LL, LT")} </span>.
                     </h4>
-                    {winner.id === winnerSession?.id && (
+                    {winnerId === session?.data?.user?.id && (
                       <p>
                         <InfoCircleOutlined /> Please get in touch with our admin to proceed with
                         the purchase details and complete the process.
@@ -152,7 +163,7 @@ function ThemesContentsAuctionBidDetails(props) {
       {width <= 768 && sticky && (
         <Col span={24} className={`${s.lotContainerSticky} ${open ? s.openCollapse : s.collapse}`}>
           {/* //? ============== Lot Details ============= ?// */}
-          {bid_status === "OPEN" ||
+          {bidStatus === "READY" ||
             (session && (
               <Col className={s.collapseButton} onClick={handleCollapse}>
                 {!open ? <CaretUpOutlined /> : <CaretDownOutlined />}
@@ -161,7 +172,7 @@ function ThemesContentsAuctionBidDetails(props) {
 
           <Col span={24} className={s.lotDetails}>
             {session && session?.data?.user?.role === "auction-participant" ? (
-              bid_status === "OPEN" ? (
+              bidStatus === "READY" ? (
                 <>
                   <iframe
                     title="Auction History"
@@ -170,19 +181,19 @@ function ThemesContentsAuctionBidDetails(props) {
                   />
                 </>
               ) : (
-                bid_status === "CLOSED" && (
+                bidStatus === "CLOSED" && (
                   <Col className={s.final}>
                     <h2>
-                      Congratulations, <span>Bidder {winner?.id}</span>!
+                      Congratulations, <span>Bidder {winnerName}</span>!
                     </h2>
                     <h3>You&apos;ve secured the winning bid!</h3>
                     <h4>
-                      Winning bid : <span>IDR {priceFormatter(`${winner?.final_bid}`, ",")}</span>
+                      Winning bid : <span>IDR {priceFormatter(`${finalPrice}`, ",")}</span>
                     </h4>
                     <h4>
-                      Closed on <span> {moment(winner?.closed_time).format("LL, LT")} </span>.
+                      Closed on <span> {moment(closedAt).format("LL, LT")} </span>.
                     </h4>
-                    {winner.id === winnerSession?.id && (
+                    {winnerId === session?.id && (
                       <p>
                         <InfoCircleOutlined /> Contact admin to finalize your purchase.
                       </p>
@@ -192,13 +203,6 @@ function ThemesContentsAuctionBidDetails(props) {
               )
             ) : (
               <>
-                {/* <p>
-                  Sorry, you are not allowed to bid in this lot item. please check your participant
-                  account or login here!
-                </p>
-                <ThemesButton type={`primary + ${s.btn}`} onClick={handleModal}>
-                  {buttonContent}
-                </ThemesButton> */}
                 <Col className={s.warning}>
                   <h3>Sorry, you are not allowed to bid.</h3>
                   <p>

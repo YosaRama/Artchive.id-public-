@@ -68,22 +68,6 @@ function ThemesContentsAuctionArtworkDetails(props) {
   };
   //#endregion
 
-  //#region Bid Status
-  const status = {
-    bid_status: "OPEN", //TODO : OPEN || CLOSED//
-    winner_session: {
-      id: "001",
-      // id: "002",
-    },
-    winner: {
-      id: "001",
-      name: "John Doe",
-      final_bid: "20000000",
-      closed_time: "2024-07-30T17:00:00.000Z",
-    },
-  };
-  //#endregion
-
   return (
     <>
       <Row justify="space-between">
@@ -94,13 +78,13 @@ function ThemesContentsAuctionArtworkDetails(props) {
               <Col span={24} className={s.imageContainer}>
                 {itemsDetails ? (
                   <>
-                    {status?.bid_status === "CLOSED" && (
+                    {auctionDetails?.status === "CLOSED" && (
                       <Badge.Ribbon text="LOT CLOSED!" color="fulvous" className={s.badge} />
                     )}
                     <Image
                       src={`${process.env.NEXT_PUBLIC_S3_URL}/${artworkDetails?.media_cover?.url}`}
                       alt=""
-                      className={status?.bid_status === "CLOSED" && s.image}
+                      className={auctionDetails?.status === "CLOSED" && s.image}
                     />
                   </>
                 ) : (
@@ -256,7 +240,6 @@ function ThemesContentsAuctionArtworkDetails(props) {
               startingBid={auctionDetails?.initial_price}
               step={auctionDetails?.step}
               sticky={false}
-              status={status}
             />
           </Col>
         }
@@ -280,7 +263,7 @@ function ThemesContentsAuctionArtworkDetails(props) {
                 >
                   <ThemesArtworkWithFrame
                     imgSrc={`${process.env.NEXT_PUBLIC_S3_URL}/${item?.artwork_details?.media_cover?.url}`}
-                    artworkStatus={status?.bid_status}
+                    artworkStatus={item?.auction_details?.item_status}
                     forAuction={true}
                     artworkTitle={item?.artwork_details?.title}
                     artistName={item?.artwork_details?.artist?.full_name}

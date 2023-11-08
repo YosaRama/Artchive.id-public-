@@ -18,7 +18,7 @@ function ThemesAuctionLotListPrice(props) {
       </Col>
       <Col span={24}>
         <h3>
-          {status === "OPEN" && "Current Bid: "}
+          {status === "READY" && "Current Bid: "}
           {status === "CLOSED" && "Final Bid: "}
           IDR {lotPrice}
         </h3>

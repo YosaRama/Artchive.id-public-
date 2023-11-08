@@ -53,21 +53,6 @@ function ThemesContentsAuctionDetailsOverview() {
   };
   // #endregion
 
-  //#region Bid Status
-  const status = {
-    bid_status: "OPEN", //TODO : OPEN || CLOSED//
-    winner_session: {
-      id: "001",
-      // id: "002",
-    },
-    winner: {
-      id: "001",
-      name: "John Doe",
-      final_bid: "20000000",
-      closed_time: "2024-07-30T17:00:00.000Z",
-    },
-  };
-  //#endregion
   return (
     <>
       <ThemesBanner imgSrc={auctionData?.thumbnail} className={s.bannerContainer} initial="visible">
@@ -156,7 +141,7 @@ function ThemesContentsAuctionDetailsOverview() {
                     {auctionItems?.map((item, index) => {
                       return (
                         <>
-                          {status?.bid_status === "CLOSED" && (
+                          {item?.status === "CLOSED" && (
                             <Badge.Ribbon text="LOT CLOSED!" color="fulvous" className={s.badge} />
                           )}
                           <Col
@@ -168,7 +153,7 @@ function ThemesContentsAuctionDetailsOverview() {
                           >
                             <Image
                               preview={false}
-                              className={status?.bid_status === "CLOSED" && s.image}
+                              className={item?.status === "CLOSED" && s.image}
                               src={`${process.env.NEXT_PUBLIC_S3_URL}/${item.artwork_details?.media_cover?.url}`}
                               alt=""
                             />

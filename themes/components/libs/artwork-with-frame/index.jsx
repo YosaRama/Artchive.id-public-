@@ -37,7 +37,7 @@ function ThemesArtworkWithFrame(props) {
           : "Waiting Approval"
       }
       className={`artwork-ribbon ${
-        (artworkStatus == "PUBLISH" || artworkStatus == "EXHIBITION" || artworkStatus == "OPEN") &&
+        (artworkStatus == "PUBLISH" || artworkStatus == "EXHIBITION" || artworkStatus == "READY") &&
         "hide"
       }`}
     >
@@ -80,7 +80,7 @@ function ThemesArtworkWithFrame(props) {
               objectFit="cover"
               objectPosition="center"
               preview={false}
-              className={artworkStatus == "OPEN" ? "" : `artwork-not-publish`}
+              className={artworkStatus == "READY" ? "" : `artwork-not-publish`}
             />
           </Col>
           <Col className={s.content}>
@@ -107,7 +107,7 @@ ThemesArtworkWithFrame.propTypes = {
   imgSrc: propTypes.string,
   artworkTitle: propTypes.string,
   artworkSize: propTypes.string,
-  artworkStatus: propTypes.oneOf(["PUBLISH", "SOLD", "DRAFT", "EDIT", "OPEN", "CLOSED"]),
+  artworkStatus: propTypes.oneOf(["PUBLISH", "SOLD", "DRAFT", "EDIT", "READY", "CLOSED"]),
   isCuratorPick: propTypes.bool,
   forAuction: propTypes.bool,
   artistName: propTypes.string,
