@@ -163,12 +163,11 @@ function ThemesContentsAuctionBidDetails(props) {
       {width <= 768 && sticky && (
         <Col span={24} className={`${s.lotContainerSticky} ${open ? s.openCollapse : s.collapse}`}>
           {/* //? ============== Lot Details ============= ?// */}
-          {bidStatus === "READY" ||
-            (session && (
-              <Col className={s.collapseButton} onClick={handleCollapse}>
-                {!open ? <CaretUpOutlined /> : <CaretDownOutlined />}
-              </Col>
-            ))}
+          {session && (
+            <Col className={s.collapseButton} onClick={handleCollapse}>
+              {!open ? <CaretUpOutlined /> : <CaretDownOutlined />}
+            </Col>
+          )}
 
           <Col span={24} className={s.lotDetails}>
             {session && session?.data?.user?.role === "auction-participant" ? (
