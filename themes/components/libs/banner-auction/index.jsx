@@ -1,6 +1,7 @@
 // Libs
 import { Col, Row } from "antd";
 import propTypes from "prop-types";
+import { useRouter } from "next/router";
 import moment from "moment";
 
 // Helper
@@ -10,12 +11,15 @@ import nameAbbreviation from "app/helpers/nameAbbreviation";
 
 // Style
 import s from "./index.module.scss";
+import ThemesButton from "../button";
 
 function ThemesBannerAuctionItem(props) {
-  const { title, startDate, endDate, placeName, loading } = props;
+  const { title, startDate, endDate, placeName, loading, overview, auctionDetails, auctionId } =
+    props;
   const { data: session } = useSession();
   const userName = session?.user?.full_name;
   const { width } = useWindowSize();
+  const router = useRouter();
 
   //? ============== Countdown Timer ============= ?//
   const targetMoment = moment(endDate);
@@ -24,7 +28,29 @@ function ThemesBannerAuctionItem(props) {
   const remainingDays = Math.floor(duration.asDays());
 
   return (
-    loading && (
+    loading &&
+    (overview ? (
+      <>
+        <Col className={s.title}>
+          <h1>{auctionDetails?.name}</h1>
+          <h2>{auctionDetails?.sub_name}</h2>
+          <br />
+          <h4>
+            {moment(startDate).format("dddd, DD MMMM, YYYY")} -{" "}
+            {moment(endDate).format("dddd, DD MMMM, YYYY")}
+          </h4>
+          <Col>
+            <ThemesButton
+              type={`primary + ${s.btnLot}`}
+              size="large"
+              onClick={() => router.push(`/auction/${auctionId}/lots/`)}
+            >
+              PLACE BID NOW!
+            </ThemesButton>
+          </Col>
+        </Col>
+      </>
+    ) : (
       <Row className={s.bannerItem}>
         <Col span={24} className={s.description}>
           <h2>{title}</h2>
@@ -43,7 +69,7 @@ function ThemesBannerAuctionItem(props) {
           </p>
         </Col>
       </Row>
-    )
+    ))
   );
 }
 
@@ -54,6 +80,9 @@ propTypes.ThemesBannerAuctionItem = {
   endDate: propTypes.string,
   placeName: propTypes.string,
   loading: propTypes.any,
+  overview: propTypes.bool,
+  auctionDetails: propTypes.string,
+  auctionId: propTypes.string,
 };
 
 export default ThemesBannerAuctionItem;
