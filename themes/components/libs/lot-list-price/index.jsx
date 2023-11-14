@@ -20,8 +20,8 @@ function ThemesAuctionLotListPrice(props) {
         <h3>
           {status === "READY" && "Current Bid: "}
           {status === "CLOSED" && "Final Bid: "}
-          IDR {lotPrice}
         </h3>
+        <h3>IDR {lotPrice}</h3>
       </Col>
     </Row>
   );

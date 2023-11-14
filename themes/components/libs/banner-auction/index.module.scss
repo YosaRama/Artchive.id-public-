@@ -1,6 +1,31 @@
 @use "/themes/styles/base/colors";
 @use "/themes/styles/base/font-size";
 
+//#region Overview Section
+.title {
+  text-align: center;
+  h1 {
+    font-size: font-size.$heading-1;
+  }
+  h2 {
+    font-size: font-size.$heading-2;
+  }
+  h4 {
+    font-size: font-size.$heading-4;
+  }
+  h1,
+  h2,
+  h4 {
+    color: white !important;
+    margin: 0px;
+    font-weight: normal;
+  }
+  .btnLot {
+    margin-top: 40px;
+  }
+}
+//#endregion
+
 .bannerItem {
   h2 {
     font-size: 42px;
@@ -34,6 +59,27 @@
 
 //? ============== Mobile View ============= ?//
 @media screen and (max-width: 500px) {
+  //#region Overview Section
+  .title {
+    text-align: center;
+    h1 {
+      font-size: font-size.$heading-2;
+    }
+    h2 {
+      font-size: font-size.$heading-3;
+    }
+    h4 {
+      font-size: font-size.$paragraph;
+    }
+    h1,
+    h2,
+    h4 {
+      color: white !important;
+      margin: 0px;
+      font-weight: normal;
+    }
+  }
+  //#endregion
   .bannerItem {
     h2 {
       font-size: font-size.$heading-2 !important;

@@ -2,40 +2,137 @@
 @use "/themes/styles/base/font-size";
 
 .bannerContainer {
-  height: 420px;
+  height: 100vh;
   :global(.banner-image) {
-    height: 420px;
+    height: 100vh;
   }
 }
 
 .bgwhite {
   background: colors.$white;
-  padding: 40px 0px;
-}
-.bgdefault {
-  padding: 40px 0px;
-}
-
-.description {
   display: flex;
   justify-content: center;
-  margin: 40px 0px;
-  p {
-    margin: 0px 0px 10px !important;
+  h1 {
+    font-size: font-size.$heading-1;
+    line-height: 60px;
+    margin: 0px;
   }
-}
-
-.video {
-  width: 100% !important;
-  height: 100%;
-  display: flex;
-  align-items: center;
-}
-.videoDesc {
-  height: auto;
-  padding: 0px;
+  h2 {
+    font-size: font-size.$heading-2;
+  }
   p {
-    margin: 0px !important;
+    font-size: font-size.$paragraph;
+    margin: 0px 0px 0px !important;
+  }
+  .description {
+    padding: 80px 0px 40px;
+    background: colors.$white;
+    display: flex;
+    justify-content: center;
+    text-align: justify;
+    h1 {
+      margin-bottom: 40px;
+      text-decoration: underline;
+    }
+  }
+
+  .statistic {
+    padding: 40px 0px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    .divider {
+      background: colors.$fulvous;
+      height: 5px;
+      border-radius: 10px;
+    }
+    h1 {
+      font-weight: bold;
+    }
+    h2 {
+      margin: 0px !important;
+    }
+  }
+  .speechControl {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    .speechHeadline {
+      margin-bottom: 40px;
+    }
+  }
+
+  .speechContainer {
+    height: 660px;
+    margin: 40px auto;
+
+    .imageContainer {
+      height: 100%;
+      img {
+        aspect-ratio: 3 / 4 !important;
+        height: auto !important;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+    p {
+      text-align: justify;
+    }
+    h1 {
+      font-size: font-size.$heading-1;
+      margin: 0px 0px 10px;
+      line-height: 60px;
+    }
+    h2 {
+      font-size: font-size.$heading-2;
+      margin: 0px;
+      text-align: end;
+    }
+    h4 {
+      font-size: font-size.$heading-3;
+      color: colors.$fulvous;
+      margin-bottom: 40px;
+    }
+    .speech {
+      overflow-y: auto;
+      height: 470px;
+      width: auto;
+      padding-left: 0px !important;
+    }
+    /* width */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: colors.$white;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: colors.$fulvous;
+      border-radius: 50px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #c97a0c;
+    }
+  }
+
+  .shoutoutAuction {
+    display: flex;
+    justify-content: flex-end;
+    margin: 40px 0px;
+    text-align: right;
+    .verticalDivider {
+      height: auto !important;
+      width: 10px !important;
+      background-color: colors.$fulvous !important;
+      margin-left: 10px;
+      border-radius: 10px;
+    }
   }
 }
 
@@ -44,6 +141,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .btn {
   padding: 0px !important;
   margin-top: 20px;
@@ -55,78 +153,124 @@
     position: absolute;
     z-index: 1;
   }
-}
-
-.sliderItem {
-  height: 400px;
-  width: 100%;
-  display: flex;
-  justify-content: center !important;
-  align-items: center !important;
-  padding: 0px 8px;
-  cursor: pointer;
-  img {
-    height: 360px !important;
-    width: 100% !important;
-    object-fit: cover;
-    margin: auto !important;
-    transition: 300ms all ease-in-out;
-    &:hover {
-      scale: 1.02;
+  .sliderItem {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 0px 8px;
+    cursor: pointer;
+    img {
+      // height: 360px !important;
+      aspect-ratio: 1 / 1;
+      width: 100% !important;
+      object-fit: cover;
+      margin: auto !important;
+      transition: 300ms all ease-in-out;
+      &:hover {
+        scale: 1.02;
+      }
     }
-  }
-}
-.image {
-  filter: grayscale(80%) !important;
-  &:hover {
-    filter: grayscale(0%) !important;
+    .image {
+      filter: grayscale(80%) !important;
+      &:hover {
+        filter: grayscale(0%) !important;
+      }
+    }
   }
 }
 
 .headline {
-  margin: 0px 0px 40px;
-}
-
-.curatorContainer {
-  background-color: colors.$white;
-  text-align: center;
-
-  .imageCurator {
-    margin-bottom: 20px;
-    .img {
-      height: 300px !important;
-      object-fit: cover;
-      img {
-        height: 300px !important;
-      }
-    }
-  }
+  margin-bottom: 40px !important;
 }
 
 //? ============== Table Landscpae View ============= ?//
 @media screen and (max-width: 1024px) {
   .bgwhite {
     background: colors.$white;
-    padding: 30px 0px;
-  }
-
-  .sliderItem {
-    height: 400px;
-
-    img {
-      height: 300px !important;
+    display: flex;
+    justify-content: center;
+    h1 {
+      font-size: font-size.$heading-2;
+      line-height: 60px;
+      margin: 0px;
     }
-  }
+    h2 {
+      font-size: font-size.$heading-3;
+    }
+    p {
+      font-size: font-size.$paragraph;
+    }
+    .description {
+      padding: 60px 0px 30px;
 
-  .curatorContainer {
-    .imageCurator {
-      .img {
-        height: 250px !important;
-        img {
-          height: 250px !important;
+      h1 {
+        margin-bottom: 30px;
+      }
+    }
+
+    .statistic {
+      padding: 30px 0px;
+    }
+    .speechControl {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+      .speechHeadline {
+        margin-bottom: 30px;
+        .btnArrow {
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
       }
     }
+
+    .speechContainer {
+      height: 100%;
+      margin: 30px auto;
+      .imageContainer {
+        img {
+          aspect-ratio: 3 / 5 !important;
+        }
+      }
+      .speech {
+        height: 300px;
+      }
+      h1 {
+        font-size: font-size.$heading-2;
+        margin: 0px 0px 10px;
+        line-height: 45px;
+      }
+      h2 {
+        font-size: font-size.$heading-3;
+        margin: 0px;
+        text-align: end;
+      }
+      h4 {
+        font-size: font-size.$heading-4;
+        color: colors.$fulvous;
+        margin-bottom: 30px;
+      }
+    }
+
+    .shoutoutAuction {
+      display: flex;
+      justify-content: flex-end;
+      margin: 30px 0px;
+      text-align: right;
+    }
+  }
+
+  .btn {
+    padding: 0px !important;
+    margin-top: 20px;
+    color: colors.$white;
+  }
+
+  .headline {
+    margin-bottom: 30px !important;
   }
 }
 // * ====================================== * //
@@ -135,30 +279,88 @@
 @media screen and (max-width: 768px) {
   .bgwhite {
     background: colors.$white;
-    padding: 30px 0px;
-  }
-  .sliderItem {
-    height: 250px;
-
-    img {
-      height: 250px !important;
+    display: flex;
+    justify-content: center;
+    h1 {
+      font-size: font-size.$heading-2;
+      line-height: 45px;
+      margin: 0px;
     }
-  }
-  .curatorContainer {
-    .imageCurator {
-      margin-bottom: 0px;
-      .img {
-        height: 200px !important;
-        img {
-          height: 200px !important;
+    h2 {
+      font-size: font-size.$heading-3;
+    }
+    p {
+      font-size: font-size.$paragraph;
+    }
+    .description {
+      padding: 60px 0px 30px;
+
+      h1 {
+        margin-bottom: 30px;
+      }
+    }
+
+    .statistic {
+      padding: 30px 0px;
+    }
+    .speechControl {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+      .speechHeadline {
+        margin-bottom: 30px;
+        .btnArrow {
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
       }
     }
-    .curatorDesc {
+
+    .speechContainer {
+      height: 100%;
+      margin: 30px auto;
+      .imageContainer {
+        img {
+          aspect-ratio: 3 / 4 !important;
+        }
+      }
+      .speech {
+        height: 300px;
+      }
+      h1 {
+        font-size: font-size.$heading-2;
+        margin: 0px 0px 10px;
+        line-height: 45px;
+      }
       h2 {
+        font-size: font-size.$heading-3;
+        margin: 0px;
+        text-align: end;
+      }
+      h4 {
         font-size: font-size.$heading-4;
+        color: colors.$fulvous;
+        margin-bottom: 30px;
       }
     }
+
+    .shoutoutAuction {
+      display: flex;
+      justify-content: flex-end;
+      margin: 30px 0px;
+      text-align: right;
+    }
+  }
+
+  .btn {
+    padding: 0px !important;
+    margin-top: 20px;
+    color: colors.$white;
+  }
+
+  .headline {
+    margin-bottom: 30px !important;
   }
 }
 // * ====================================== * //
@@ -167,37 +369,89 @@
 @media screen and (max-width: 500px) {
   .bgwhite {
     background: colors.$white;
-    padding: 30px 0px;
-  }
-  .sliderItem {
-    height: 200px;
-
-    img {
-      height: 200px !important;
-    }
-  }
-
-  .curatorContainer {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    box-shadow: 0px 2px 8px 0px rgba(99, 99, 99, 0.3);
-    padding: 20px !important;
-    .imageCurator {
-      .img {
-        height: 120px !important;
-        img {
-          height: 120px !important;
+    justify-content: center;
+    h1 {
+      font-size: font-size.$heading-3;
+      line-height: 30px;
+      margin: 0px;
+    }
+    h2 {
+      font-size: font-size.$heading-4;
+    }
+    p {
+      font-size: font-size.$paragraph;
+    }
+    .description {
+      padding: 40px 0px 20px;
+
+      h1 {
+        margin-bottom: 20px;
+      }
+    }
+
+    .statistic {
+      padding: 20px 0px;
+    }
+    .speechControl {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      .speechHeadline {
+        margin-bottom: 20px;
+        .btnArrow {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-top: 20px;
         }
       }
     }
-    .curatorDesc {
-      text-align: left;
-      margin: auto 0px;
-      h2 {
+
+    .speechContainer {
+      height: 100%;
+      margin: 20px auto;
+      .imageContainer {
+        img {
+          aspect-ratio: 1 / 1 !important;
+        }
+      }
+      .speech {
+        height: 400px;
+      }
+      h1 {
         font-size: font-size.$heading-3;
+        margin: 0px 0px 10px;
+        line-height: 45px;
+      }
+      h2 {
+        font-size: font-size.$heading-4;
+        margin: 0px;
+        text-align: end;
+      }
+      h4 {
+        font-size: font-size.$paragraph;
+        color: colors.$fulvous;
+        margin-bottom: 20px;
       }
     }
+
+    .shoutoutAuction {
+      display: flex;
+      justify-content: flex-end;
+      margin: 20px 0px;
+      text-align: right;
+    }
+  }
+
+  .btn {
+    padding: 0px !important;
+    margin-top: 20px;
+    color: colors.$white;
+  }
+
+  .headline {
+    margin-bottom: 20px !important;
   }
 }
 // * ====================================== * //
