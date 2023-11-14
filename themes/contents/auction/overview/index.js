@@ -96,6 +96,7 @@ function ThemesContentsAuctionDetailsOverview() {
           endDate={auctionData?.end_date}
           placeName={auctionData?.place_name}
           auctionDetails={auction_details}
+          auctionId={auctionId}
         />
       </ThemesBanner>
 
@@ -123,20 +124,20 @@ function ThemesContentsAuctionDetailsOverview() {
                   <Divider className={s.divider} />
                   <Row gutter={[20, 20]}>
                     <Col xl={{ span: 6 }} lg={{ span: 6 }} md={{ span: 6 }} xs={{ span: 12 }}>
-                      <h2>Day{days > 1 && "s"}</h2>
                       <h1>{days}</h1>
+                      <h2>Day{days > 1 && "s"}</h2>
                     </Col>
                     <Col xl={{ span: 6 }} lg={{ span: 6 }} md={{ span: 6 }} xs={{ span: 12 }}>
-                      <h2>Artwork{auctionItems?.length > 1 && "s"}</h2>
                       <h1>{auctionItems?.length}</h1>
+                      <h2>Artwork{auctionItems?.length > 1 && "s"}</h2>
                     </Col>
                     <Col xl={{ span: 6 }} lg={{ span: 6 }} md={{ span: 6 }} xs={{ span: 12 }}>
-                      <h2>Artist{artistCount > 1 && "s"}</h2>
                       <h1>{artistCount}</h1>
+                      <h2>Artist{artistCount > 1 && "s"}</h2>
                     </Col>
                     <Col xl={{ span: 6 }} lg={{ span: 6 }} md={{ span: 6 }} xs={{ span: 12 }}>
-                      <h2>Bid Value</h2>
                       <h1>{formattedTotalCurrentPrice}</h1>
+                      <h2>Bid Value</h2>
                     </Col>
                   </Row>
                   <Divider className={s.divider} />
@@ -148,37 +149,38 @@ function ThemesContentsAuctionDetailsOverview() {
               <Col span={24}>
                 <Row gutter={[0, 0]} className={s.speechHeadline} justify="space-around">
                   <Col xl={{ span: 20 }} lg={{ span: 20 }} md={{ span: 20 }} xs={{ span: 24 }}>
-                    <h1 style={{ textDecoration: "underline" }}>They Support This Auction</h1>
+                    <h1 style={{ textDecoration: "underline" }}>The Auction Supporters</h1>
                   </Col>
-                  {width > 500 && (
-                    <Col
-                      xl={{ span: 4 }}
-                      lg={{ span: 4 }}
-                      md={{ span: 4 }}
-                      style={{ display: "flex", alignItems: "center", justifyContent: "flex-end" }}
-                    >
-                      <Row gutter={[10, 10]} justify="space-around" align="bottom">
-                        <Col span={2} className={s.btnArrow}>
-                          <Button
-                            size="large"
-                            type="primary"
-                            shape="circle"
-                            icon={<LeftOutlined />}
-                            onClick={handlePrevSpeech}
-                          />
-                        </Col>
-                        <Col span={2} className={s.btnArrow}>
-                          <Button
-                            size="large"
-                            type="primary"
-                            shape="circle"
-                            icon={<RightOutlined />}
-                            onClick={handleNextSpeech}
-                          />
-                        </Col>
-                      </Row>
-                    </Col>
-                  )}
+                  {/* {width > 500 && ( */}
+                  <Col
+                    xl={{ span: 4 }}
+                    lg={{ span: 4 }}
+                    md={{ span: 4 }}
+                    xs={{ span: 24 }}
+                    style={{ display: "flex", alignItems: "center", justifyContent: "flex-end" }}
+                  >
+                    <Row gutter={[10, 10]} justify="space-around" align="bottom">
+                      <Col span={2} className={s.btnArrow}>
+                        <Button
+                          size={width > 500 ? "large" : "small"}
+                          type="primary"
+                          shape="circle"
+                          icon={<LeftOutlined />}
+                          onClick={handlePrevSpeech}
+                        />
+                      </Col>
+                      <Col span={2} className={s.btnArrow}>
+                        <Button
+                          size={width > 500 ? "large" : "small"}
+                          type="primary"
+                          shape="circle"
+                          icon={<RightOutlined />}
+                          onClick={handleNextSpeech}
+                        />
+                      </Col>
+                    </Row>
+                  </Col>
+                  {/* )} */}
                 </Row>
               </Col>
             </Col>
@@ -197,9 +199,9 @@ function ThemesContentsAuctionDetailsOverview() {
                     <Col span={24} className={s.speechContainer}>
                       <Row gutter={[40, 40]}>
                         <Col
-                          xl={{ span: 11 }}
-                          lg={{ span: 9 }}
-                          md={{ span: 9 }}
+                          xl={{ span: 10 }}
+                          lg={{ span: 10 }}
+                          md={{ span: 10 }}
                           xs={{ span: 24 }}
                           className={s.imageContainer}
                         >
@@ -211,9 +213,9 @@ function ThemesContentsAuctionDetailsOverview() {
                           />
                         </Col>
                         <Col
-                          xl={{ span: 13 }}
-                          lg={{ span: 15 }}
-                          md={{ span: 15 }}
+                          xl={{ span: 14 }}
+                          lg={{ span: 14 }}
+                          md={{ span: 14 }}
                           xs={{ span: 24 }}
                         >
                           <Row justify="space-between">
@@ -243,9 +245,11 @@ function ThemesContentsAuctionDetailsOverview() {
             </Carousel>
 
             <Col className={s.shoutoutAuction}>
-              <Col xl={{ span: 12 }} lg={{ span: 16 }} md={{ span: 24 }} xs={{ span: 24 }}>
-                <h1>{auction_details?.name}</h1>
-                <h2>{auction_details?.sub_name} </h2>
+              <Col xl={{ span: 20 }} lg={{ span: 20 }} md={{ span: 24 }} xs={{ span: 24 }}>
+                <Col>
+                  <h1>{auction_details?.name}</h1>
+                  <h2>{auction_details?.sub_name} </h2>
+                </Col>
               </Col>
             </Col>
           </ThemesContainerMain>
@@ -281,7 +285,7 @@ function ThemesContentsAuctionDetailsOverview() {
                     draggable={true}
                     responsive={[
                       {
-                        breakpoint: 768,
+                        breakpoint: 500,
                         settings: {
                           slidesToShow: 1,
                           slidesToScroll: 1,

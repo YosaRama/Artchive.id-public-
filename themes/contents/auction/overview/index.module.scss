@@ -32,6 +32,7 @@
     text-align: justify;
     h1 {
       margin-bottom: 40px;
+      text-decoration: underline;
     }
   }
 
@@ -42,9 +43,14 @@
     justify-content: center;
     .divider {
       background: colors.$fulvous;
+      height: 5px;
+      border-radius: 10px;
     }
     h1 {
       font-weight: bold;
+    }
+    h2 {
+      margin: 0px !important;
     }
   }
   .speechControl {
@@ -90,6 +96,7 @@
     .speech {
       overflow-y: auto;
       height: 470px;
+      width: auto;
       padding-left: 0px !important;
     }
     /* width */
@@ -119,6 +126,13 @@
     justify-content: flex-end;
     margin: 40px 0px;
     text-align: right;
+    .verticalDivider {
+      height: auto !important;
+      width: 10px !important;
+      background-color: colors.$fulvous !important;
+      margin-left: 10px;
+      border-radius: 10px;
+    }
   }
 }
 
@@ -139,36 +153,36 @@
     position: absolute;
     z-index: 1;
   }
+  .sliderItem {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 0px 8px;
+    cursor: pointer;
+    img {
+      // height: 360px !important;
+      aspect-ratio: 1 / 1;
+      width: 100% !important;
+      object-fit: cover;
+      margin: auto !important;
+      transition: 300ms all ease-in-out;
+      &:hover {
+        scale: 1.02;
+      }
+    }
+    .image {
+      filter: grayscale(80%) !important;
+      &:hover {
+        filter: grayscale(0%) !important;
+      }
+    }
+  }
 }
 
 .headline {
   margin-bottom: 40px !important;
-}
-
-.sliderItem {
-  height: 400px;
-  width: 100%;
-  display: flex;
-  justify-content: center !important;
-  align-items: center !important;
-  padding: 0px 8px;
-  cursor: pointer;
-  img {
-    height: 360px !important;
-    width: 100% !important;
-    object-fit: cover;
-    margin: auto !important;
-    transition: 300ms all ease-in-out;
-    &:hover {
-      scale: 1.02;
-    }
-  }
-  .image {
-    filter: grayscale(80%) !important;
-    &:hover {
-      filter: grayscale(0%) !important;
-    }
-  }
 }
 
 //? ============== Table Landscpae View ============= ?//
@@ -216,6 +230,11 @@
     .speechContainer {
       height: 100%;
       margin: 30px auto;
+      .imageContainer {
+        img {
+          aspect-ratio: 3 / 5 !important;
+        }
+      }
       .speech {
         height: 300px;
       }
@@ -230,7 +249,7 @@
         text-align: end;
       }
       h4 {
-        font-size: font-size.$heading-3;
+        font-size: font-size.$heading-4;
         color: colors.$fulvous;
         margin-bottom: 30px;
       }
@@ -253,14 +272,6 @@
   .headline {
     margin-bottom: 30px !important;
   }
-
-  .sliderItem {
-    height: 400px;
-
-    img {
-      height: 300px !important;
-    }
-  }
 }
 // * ====================================== * //
 
@@ -272,7 +283,7 @@
     justify-content: center;
     h1 {
       font-size: font-size.$heading-2;
-      line-height: 60px;
+      line-height: 45px;
       margin: 0px;
     }
     h2 {
@@ -309,6 +320,11 @@
     .speechContainer {
       height: 100%;
       margin: 30px auto;
+      .imageContainer {
+        img {
+          aspect-ratio: 3 / 4 !important;
+        }
+      }
       .speech {
         height: 300px;
       }
@@ -323,7 +339,7 @@
         text-align: end;
       }
       h4 {
-        font-size: font-size.$heading-3;
+        font-size: font-size.$heading-4;
         color: colors.$fulvous;
         margin-bottom: 30px;
       }
@@ -346,14 +362,6 @@
   .headline {
     margin-bottom: 30px !important;
   }
-
-  .sliderItem {
-    height: 350px;
-
-    img {
-      height: 350px !important;
-    }
-  }
 }
 // * ====================================== * //
 
@@ -365,7 +373,7 @@
     justify-content: center;
     h1 {
       font-size: font-size.$heading-3;
-      line-height: 60px;
+      line-height: 30px;
       margin: 0px;
     }
     h2 {
@@ -395,6 +403,7 @@
           display: flex;
           justify-content: center;
           align-items: center;
+          margin-top: 20px;
         }
       }
     }
@@ -402,8 +411,13 @@
     .speechContainer {
       height: 100%;
       margin: 20px auto;
+      .imageContainer {
+        img {
+          aspect-ratio: 1 / 1 !important;
+        }
+      }
       .speech {
-        height: 300px;
+        height: 400px;
       }
       h1 {
         font-size: font-size.$heading-3;
@@ -438,14 +452,6 @@
 
   .headline {
     margin-bottom: 20px !important;
-  }
-
-  .sliderItem {
-    height: 250px;
-
-    img {
-      height: 250px !important;
-    }
   }
 }
 // * ====================================== * //

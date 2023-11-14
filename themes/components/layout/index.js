@@ -40,7 +40,7 @@ function ThemesLayout(props) {
 
         {/* MAIN MOBILE NAVBAR */}
         {!router.pathname.startsWith("/profile") &&
-          !router.pathname.startsWith("/auction/[id]/lots") && (
+          !router.pathname.startsWith("/auction/[id]") && (
             <Affix offsetBottom={0} className={s.mobileMenu}>
               <ThemesMobileNavbar />
             </Affix>

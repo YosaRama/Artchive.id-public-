@@ -1,6 +1,7 @@
 // Libs
 import { Col, Row } from "antd";
 import propTypes from "prop-types";
+import { useRouter } from "next/router";
 import moment from "moment";
 
 // Helper
@@ -13,10 +14,12 @@ import s from "./index.module.scss";
 import ThemesButton from "../button";
 
 function ThemesBannerAuctionItem(props) {
-  const { title, startDate, endDate, placeName, loading, overview, auctionDetails } = props;
+  const { title, startDate, endDate, placeName, loading, overview, auctionDetails, auctionId } =
+    props;
   const { data: session } = useSession();
   const userName = session?.user?.full_name;
   const { width } = useWindowSize();
+  const router = useRouter();
 
   //? ============== Countdown Timer ============= ?//
   const targetMoment = moment(endDate);
@@ -37,7 +40,11 @@ function ThemesBannerAuctionItem(props) {
             {moment(endDate).format("dddd, DD MMMM, YYYY")}
           </h4>
           <Col>
-            <ThemesButton type={`primary + ${s.btnLot}`} size="large">
+            <ThemesButton
+              type={`primary + ${s.btnLot}`}
+              size="large"
+              onClick={() => router.push(`/auction/${auctionId}/lots/`)}
+            >
               PLACE BID NOW!
             </ThemesButton>
           </Col>
@@ -75,6 +82,7 @@ propTypes.ThemesBannerAuctionItem = {
   loading: propTypes.any,
   overview: propTypes.bool,
   auctionDetails: propTypes.string,
+  auctionId: propTypes.string,
 };
 
 export default ThemesBannerAuctionItem;
