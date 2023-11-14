@@ -5,7 +5,7 @@ export const auction_details = {
     {
       id: 1,
       name: "Tantowi Yahya",
-      position: "Leader of UID Indonesia",
+      position: "United in Diversity Indonesia",
       speech: `
     <b><p>Bismilahirohmanirohim, Assalamualaikum Warohmatulahi Wobarokatuh</p> 
     <p>Om Swastyastu,</p>
@@ -27,7 +27,7 @@ export const auction_details = {
     {
       id: 2,
       name: "Sandiaga Uno",
-      position: "Minister of Tourism and Creative Economy of the Republic of Indonesia",
+      position: "Menteri Pariwisata dan Ekonomi Kreatif Republik Indonesia",
       speech: `
       <b>
       <p>Assalamualaikum Warahmatullahi Wabarakatuh</p>
@@ -70,7 +70,7 @@ export const auction_details = {
     {
       id: 3,
       name: "Dito Ariotedjo",
-      position: "Minister of Youth and Sport Republic of Indonesia",
+      position: "Menteri Pemuda dan Olahraga Republik Indonesia",
       speech: `
       <b>
       <p>Assalamualaikum Warahmatullahi Wabarakatuh</p>
@@ -105,8 +105,7 @@ export const auction_details = {
     {
       id: 4,
       name: "Nadiem Anwar Makarim, B.A., M.B.A",
-      position:
-        "Minister of Education, Culture, Research, and Technologu of the Republic of Indonesia",
+      position: "Menteri Pendidikan, Kebudayaan, Riset dan Teknologi Republik Indonesia",
       speech: `
       <b>
       <p>Assalamualaikum Warahmatullahi Wabarakatuh</p>
