@@ -1,5 +1,5 @@
 // Libs
-import { Col, Divider } from "antd";
+import { Col, Divider, Row } from "antd";
 import ThemesButton from "themes/components/libs/button";
 import { useState, useEffect } from "react";
 import { CaretUpOutlined, CaretDownOutlined, InfoCircleOutlined } from "@ant-design/icons";
@@ -111,11 +111,22 @@ function ThemesContentsAuctionBidDetails(props) {
           <Col span={24} className={s.lotDetails}>
             {session && session?.data?.user?.role === "auction-participant" ? (
               bidStatus === "READY" ? (
-                <iframe
-                  title="Auction History"
-                  className={s.bidBoardIframeDesktop}
-                  src={`https://auctioo-id.vercel.app/live-auction?mode=desktop&${iframeParams}`}
-                />
+                <>
+                  <iframe
+                    title="Auction History"
+                    className={s.bidBoardIframeDesktop}
+                    src={`https://auctioo-id.vercel.app/live-auction?mode=desktop&${iframeParams}`}
+                  />
+                  <Row className={s.info}>
+                    <Col span={1}>
+                      <InfoCircleOutlined />
+                    </Col>
+                    <Col span={23}>
+                      <p>Bid increments or decrements : 10% of Initial Price</p>
+                      <p>This Lot Initial Price : IDR {priceFormatter(`${initialPrice}`, ",")}</p>
+                    </Col>
+                  </Row>
+                </>
               ) : (
                 bidStatus === "CLOSED" && (
                   <Col className={s.final}>
@@ -163,12 +174,13 @@ function ThemesContentsAuctionBidDetails(props) {
       {width <= 768 && sticky && (
         <Col span={24} className={`${s.lotContainerSticky} ${open ? s.openCollapse : s.collapse}`}>
           {/* //? ============== Lot Details ============= ?// */}
-          {bidStatus === "READY" ||
-            (session && (
+          {session &&
+            session?.data?.user?.role === "auction-participant" &&
+            bidStatus === "READY" && (
               <Col className={s.collapseButton} onClick={handleCollapse}>
                 {!open ? <CaretUpOutlined /> : <CaretDownOutlined />}
               </Col>
-            ))}
+            )}
 
           <Col span={24} className={s.lotDetails}>
             {session && session?.data?.user?.role === "auction-participant" ? (
@@ -179,6 +191,15 @@ function ThemesContentsAuctionBidDetails(props) {
                     className={s.bidBoardIframeMobile}
                     src={`https://auctioo-id.vercel.app/live-auction?mode=mobile&${iframeParams}`}
                   />
+                  <Row gutter={[10]} className={s.info}>
+                    <Col lg={{ span: 1 }} md={{ span: 1 }} xs={{ span: 2 }}>
+                      <InfoCircleOutlined />
+                    </Col>
+                    <Col span={22}>
+                      <p>Bid increments or decrements : 10% of Initial Price</p>
+                      <p>This Lot Initial Price : IDR {priceFormatter(`${initialPrice}`, ",")}</p>
+                    </Col>
+                  </Row>
                 </>
               ) : (
                 bidStatus === "CLOSED" && (

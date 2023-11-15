@@ -9,7 +9,13 @@
     padding: 40px 35px;
     background: WHITESMOKE;
     border: 2px solid colors.$fulvous;
-
+    .info {
+      color: rgb(129, 129, 129);
+      margin-top: 20px;
+      p {
+        margin: 0px;
+      }
+    }
     .final {
       h2 {
         font-size: font-size.$heading-2;
@@ -215,7 +221,14 @@
 
     .lotDetails {
       padding: 0px 30px 20px;
-
+      .info {
+        color: rgb(97, 97, 97);
+        margin-top: 10px;
+        p {
+          margin: 0px;
+          font-size: 12px !important;
+        }
+      }
       .final {
         padding-top: 20px;
         h2 {
@@ -266,7 +279,6 @@
       .priceBidder {
         width: 100%;
         background: colors.$white;
-
         margin-bottom: 15px;
         height: 45px;
         h1 {
@@ -320,7 +332,7 @@
 
   .bidBoardIframeMobile {
     border: 0;
-    height: 550px;
+    height: 500px;
     width: 100%;
   }
 }
@@ -471,7 +483,7 @@
 
   .bidBoardIframeMobile {
     border: 0;
-    height: 500px;
+    height: 450px;
     width: 100%;
   }
 }
