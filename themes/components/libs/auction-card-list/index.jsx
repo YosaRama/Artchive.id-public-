@@ -30,7 +30,8 @@ function ThemesAuctionCard(props) {
                 {todayDate.isAfter(endDate) && "ENDED"}
               </p>
               <p className={s.date}>
-                {moment(startDate).format("DD MMMM")} - {moment(endDate).format("DD MMMM YYYY")}
+                {/* {moment(startDate).format("DD MMMM")} - {moment(endDate).format("DD MMMM YYYY")} */}
+                16 November - 28 November 2023
               </p>
             </div>
           </Col>

@@ -125,14 +125,16 @@ function ThemesAuctionLotsList(props) {
               <Col style={{ fontWeight: "bold" }}>
                 <p>
                   {!grid && <span>Open :</span>}{" "}
-                  {moment(auctionDetails?.started_at).format(
+                  {/* {moment(auctionDetails?.started_at).format(
                     grid ? "DD MMMM" : "dddd, DD MMMM YYYY"
-                  )}
+                  )} */}
+                  {grid ? "16 November" : "Thursday, 16 November 2023"}
                   {!grid ? <br /> : "-"}
                   {!grid && <span>Close :</span>}{" "}
-                  {moment(auctionDetails?.stopped_at).format(
+                  {/* {moment(auctionDetails?.stopped_at).format(
                     grid ? "DD MMMM YYYY" : "dddd, DD MMMM YYYY"
-                  )}
+                  )} */}
+                  {grid ? "28 November 2023" : "Tuesday, 28 November 2023"}
                 </p>
               </Col>
 

@@ -101,7 +101,7 @@ function ThemesContentsAuctionDetailsOverview() {
       </ThemesBanner>
 
       <Col span={24} className={s.bgwhite}>
-        <Col xl={{ span: 18 }} lg={{ span: 23 }} md={{ span: 24 }} xs={{ span: 24 }}>
+        <Col>
           <ThemesContainerMain>
             {
               // #region Overview Section
@@ -118,24 +118,50 @@ function ThemesContentsAuctionDetailsOverview() {
               // #endregion
             }
             {
+              <Col className={s.logoContainer}>
+                <p>Diselenggarakan Oleh:</p>
+                <Row gutter={[40, 20]} justify="center">
+                  {auction_details?.logo_organizer.map((item, index) => {
+                    return (
+                      <Col key={item?.id} className={s.imageOrganizer}>
+                        <Image src={`/images/${item?.logo}`} alt="" preview={false} />
+                      </Col>
+                    );
+                  })}
+                </Row>
+                <br />
+                <p>Didukung Oleh:</p>
+                <Row gutter={[40, 20]} justify="center">
+                  {auction_details?.logo_supporter.map((item, index) => {
+                    return (
+                      <Col key={item?.id} className={s.imageSupporter}>
+                        <Image src={`/images/${item?.logo}`} alt="" preview={false} />
+                      </Col>
+                    );
+                  })}
+                </Row>
+              </Col>
+            }
+            {
               // #region Art Statistic
               <Col className={s.statistic}>
                 <Col span={24}>
                   <Divider className={s.divider} />
-                  <Row gutter={[20, 20]}>
-                    <Col xl={{ span: 6 }} lg={{ span: 6 }} md={{ span: 6 }} xs={{ span: 12 }}>
-                      <h1>{days}</h1>
+                  <Row gutter={[20, 50]}>
+                    <Col xl={{ span: 6 }} lg={{ span: 6 }} md={{ span: 6 }} xs={{ span: 24 }}>
+                      {/* <h1>{days}</h1> */}
+                      <h1>14</h1>
                       <h2>Day{days > 1 && "s"}</h2>
                     </Col>
-                    <Col xl={{ span: 6 }} lg={{ span: 6 }} md={{ span: 6 }} xs={{ span: 12 }}>
+                    <Col xl={{ span: 6 }} lg={{ span: 6 }} md={{ span: 6 }} xs={{ span: 24 }}>
                       <h1>{auctionItems?.length}</h1>
                       <h2>Artwork{auctionItems?.length > 1 && "s"}</h2>
                     </Col>
-                    <Col xl={{ span: 6 }} lg={{ span: 6 }} md={{ span: 6 }} xs={{ span: 12 }}>
+                    <Col xl={{ span: 6 }} lg={{ span: 6 }} md={{ span: 6 }} xs={{ span: 24 }}>
                       <h1>{artistCount}</h1>
                       <h2>Artist{artistCount > 1 && "s"}</h2>
                     </Col>
-                    <Col xl={{ span: 6 }} lg={{ span: 6 }} md={{ span: 6 }} xs={{ span: 12 }}>
+                    <Col xl={{ span: 6 }} lg={{ span: 6 }} md={{ span: 6 }} xs={{ span: 24 }}>
                       <h1>{formattedTotalCurrentPrice}</h1>
                       <h2>Bid Value</h2>
                     </Col>
@@ -148,21 +174,21 @@ function ThemesContentsAuctionDetailsOverview() {
             <Col className={s.speechControl}>
               <Col span={24}>
                 <Row gutter={[0, 0]} className={s.speechHeadline} justify="space-around">
-                  <Col xl={{ span: 20 }} lg={{ span: 20 }} md={{ span: 20 }} xs={{ span: 24 }}>
-                    <h1 style={{ textDecoration: "underline" }}>The Auction Supporters</h1>
+                  <Col xl={{ span: 20 }} lg={{ span: 20 }} md={{ span: 20 }} xs={{ span: 18 }}>
+                    <h1 style={{ textDecoration: "underline" }}>Auction Supporters</h1>
                   </Col>
-                  {/* {width > 500 && ( */}
+
                   <Col
                     xl={{ span: 4 }}
                     lg={{ span: 4 }}
                     md={{ span: 4 }}
-                    xs={{ span: 24 }}
+                    xs={{ span: 6 }}
                     style={{ display: "flex", alignItems: "center", justifyContent: "flex-end" }}
                   >
                     <Row gutter={[10, 10]} justify="space-around" align="bottom">
                       <Col span={2} className={s.btnArrow}>
                         <Button
-                          size={width > 500 ? "large" : "small"}
+                          size={width > 500 ? "large" : "middle"}
                           type="primary"
                           shape="circle"
                           icon={<LeftOutlined />}
@@ -171,7 +197,7 @@ function ThemesContentsAuctionDetailsOverview() {
                       </Col>
                       <Col span={2} className={s.btnArrow}>
                         <Button
-                          size={width > 500 ? "large" : "small"}
+                          size={width > 500 ? "large" : "middle"}
                           type="primary"
                           shape="circle"
                           icon={<RightOutlined />}
@@ -180,7 +206,6 @@ function ThemesContentsAuctionDetailsOverview() {
                       </Col>
                     </Row>
                   </Col>
-                  {/* )} */}
                 </Row>
               </Col>
             </Col>
@@ -197,11 +222,11 @@ function ThemesContentsAuctionDetailsOverview() {
                 return (
                   <>
                     <Col span={24} className={s.speechContainer}>
-                      <Row gutter={[40, 40]}>
+                      <Row gutter={[40, 20]}>
                         <Col
-                          xl={{ span: 10 }}
-                          lg={{ span: 10 }}
-                          md={{ span: 10 }}
+                          xl={{ span: 9 }}
+                          lg={{ span: 9 }}
+                          md={{ span: 9 }}
                           xs={{ span: 24 }}
                           className={s.imageContainer}
                         >
@@ -213,9 +238,9 @@ function ThemesContentsAuctionDetailsOverview() {
                           />
                         </Col>
                         <Col
-                          xl={{ span: 14 }}
-                          lg={{ span: 14 }}
-                          md={{ span: 14 }}
+                          xl={{ span: 15 }}
+                          lg={{ span: 15 }}
+                          md={{ span: 15 }}
                           xs={{ span: 24 }}
                         >
                           <Row justify="space-between">

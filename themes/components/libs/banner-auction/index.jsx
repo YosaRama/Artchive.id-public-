@@ -36,8 +36,9 @@ function ThemesBannerAuctionItem(props) {
           <h2>{auctionDetails?.sub_name}</h2>
           <br />
           <h4>
-            {moment(startDate).format("dddd, DD MMMM, YYYY")} -{" "}
-            {moment(endDate).format("dddd, DD MMMM, YYYY")}
+            {/* {moment(startDate).format("dddd, DD MMMM, YYYY")} -{" "}
+            {moment(endDate).format("dddd, DD MMMM, YYYY")} */}
+            Thursday, 16 November, 2023 - Tuesday, 28 November, 2023
           </h4>
           <Col>
             <ThemesButton
@@ -59,14 +60,15 @@ function ThemesBannerAuctionItem(props) {
           )}
 
           <p style={{ marginBottom: "0px" }}>
-            Started on {moment(startDate).format("dddd, DD MMMM YYYY")}
-            {placeName && `| {placeName}`}
+            {/* Started on {moment(startDate).format("dddd, DD MMMM YYYY")}
+            {placeName && `| {placeName}`} */}
+            Started on Thursday, 16 November 2023
           </p>
-          <p style={{ marginBottom: "0px" }}>
+          {/* <p style={{ marginBottom: "0px" }}>
             {currentMoment.isBefore(targetMoment)
               ? `${remainingDays} day${remainingDays > 1 ? "s" : ""} before the lot closed`
               : "This auction already ended"}
-          </p>
+          </p> */}
         </Col>
       </Row>
     ))
