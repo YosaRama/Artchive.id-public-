@@ -135,7 +135,10 @@ function ThemesFooterV2() {
           <Divider className={s.divider} />
           <Row gutter={[0, 30]} span={24} className={s.bottomContainer}>
             <Col md={{ span: 12, order: 1 }} xs={{ span: 24, order: 2 }}>
-              <p>@ {new Date().getFullYear()} Artchive.id</p>
+              <p>
+                © {new Date().getFullYear()} Artchive.id by PT. BALE TEKNOLOGI BALI. All Rights
+                Reserved
+              </p>
             </Col>
             <Col
               xl={{ span: 8 }}
