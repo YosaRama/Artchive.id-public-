@@ -88,19 +88,6 @@ function ThemesContentsAuctionBidDetails(props) {
   const closedAt = auctionItem?.auction_details?.closed_at;
   const winnerId = auctionItem?.auction_details?.winner;
 
-  const winner = {
-    id: "001",
-    name: "John Doe",
-    final_bid: "20000000",
-    closed_time: "2024-07-30T17:00:00.000Z",
-  };
-
-  const winnerSession = {
-    id: "001",
-    // id: "002",
-  };
-  //#endregion
-
   const iframeParams = `userId=${session?.data?.user?.id}&userName=${session?.data?.user?.full_name}&eventId=${auctionId}&itemId=${artworkId}&initialPrice=${initialPrice}&step=${step}`;
 
   return (
@@ -140,7 +127,10 @@ function ThemesContentsAuctionBidDetails(props) {
                     </h4>
                     <h4>
                       This item met the requirements and officially closed on{" "}
-                      <span> {moment(closedAt).format("LL, LT")} </span>.
+                      <span>
+                        {/* {moment(closedAt).format("LL, LT")}  */}
+                        Tuesday, 28 November 2023
+                      </span>
                     </h4>
                     {winnerId === session?.data?.user?.id && (
                       <p>
@@ -212,7 +202,11 @@ function ThemesContentsAuctionBidDetails(props) {
                       Winning bid : <span>IDR {priceFormatter(`${finalPrice}`, ",")}</span>
                     </h4>
                     <h4>
-                      Closed on <span> {moment(closedAt).format("LL, LT")} </span>.
+                      Closed on{" "}
+                      <span>
+                        {/* {moment(closedAt).format("LL, LT")}  */}
+                        Tuesday, 28 November 2023
+                      </span>
                     </h4>
                     {winnerId === session?.id && (
                       <p>

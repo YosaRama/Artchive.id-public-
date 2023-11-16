@@ -149,7 +149,8 @@ function ThemesContentsAuctionDetailsOverview() {
                   <Divider className={s.divider} />
                   <Row gutter={[20, 50]}>
                     <Col xl={{ span: 6 }} lg={{ span: 6 }} md={{ span: 6 }} xs={{ span: 24 }}>
-                      <h1>{days}</h1>
+                      {/* <h1>{days}</h1> */}
+                      <h1>14</h1>
                       <h2>Day{days > 1 && "s"}</h2>
                     </Col>
                     <Col xl={{ span: 6 }} lg={{ span: 6 }} md={{ span: 6 }} xs={{ span: 24 }}>
