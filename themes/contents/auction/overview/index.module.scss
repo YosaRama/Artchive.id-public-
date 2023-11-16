@@ -34,9 +34,17 @@
     }
     .imageOrganizer {
       height: 100px;
+      object-fit: contain;
+      img {
+        object-fit: contain !important;
+      }
     }
     .imageSupporter {
       height: 150px;
+      object-fit: contain;
+      img {
+        object-fit: contain !important;
+      }
     }
   }
   .description {
