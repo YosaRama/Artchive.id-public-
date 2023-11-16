@@ -171,7 +171,6 @@ function ThemesContentsAuctionBidDetails(props) {
                 {!open ? <CaretUpOutlined /> : <CaretDownOutlined />}
               </Col>
             )}
-
           <Col span={24} className={s.lotDetails}>
             {session && session?.data?.user?.role === "auction-participant" ? (
               bidStatus === "READY" ? (
