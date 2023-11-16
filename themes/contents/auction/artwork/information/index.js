@@ -162,11 +162,13 @@ function ThemesContentsAuctionArtworkDetails(props) {
                   <p>
                     The lot item is auctioned from {width <= 500 && <br />}
                     <span style={{ fontWeight: "bold" }}>
-                      {moment(auctionDetails?.started_at).format("dddd, DD MMM YYYY")}{" "}
+                      {/* {moment(auctionDetails?.started_at).format("dddd, DD MMM YYYY")}{" "} */}
+                      Thursday, 16 November 2023
                     </span>{" "}
                     to{" "}
                     <span style={{ fontWeight: "bold" }}>
-                      {moment(auctionDetails?.stopped_at).format("dddd, DD MMM YYYY")}{" "}
+                      {/* {moment(auctionDetails?.stopped_at).format("dddd, DD MMM YYYY")}{" "} */}
+                      Tuesday, 28 November, 2023
                     </span>
                   </p>
 
