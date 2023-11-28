@@ -217,25 +217,27 @@ function ThemesContentsAuctionDetailsLots() {
             // #region Item List Section
             <Row gutter={[16, 16]} style={{ paddingBottom: "80px" }} justify="flex-start">
               {auctionItems?.length > 0 ? (
-                auctionItems?.map((item, index) => {
-                  return (
-                    <Col
-                      xl={isGridView ? { span: 8 } : { span: 24 }}
-                      lg={isGridView ? { span: 8 } : { span: 24 }}
-                      sm={{ span: 12 }}
-                      xs={{ span: 24 }}
-                      key={index}
-                    >
-                      <ThemesAuctionLotsList
-                        grid={windowWidth > 768 ? isGridView : true}
-                        artworkDetails={item?.artwork_details}
-                        auctionDetails={item?.auction_details}
-                        auctionData={auctionData}
-                        handleVisible={handleModal}
-                      />
-                    </Col>
-                  );
-                })
+                auctionItems
+                  ?.filter((item) => item?.auction_details?.is_showing === true)
+                  ?.map((item, index) => {
+                    return (
+                      <Col
+                        xl={isGridView ? { span: 8 } : { span: 24 }}
+                        lg={isGridView ? { span: 8 } : { span: 24 }}
+                        sm={{ span: 12 }}
+                        xs={{ span: 24 }}
+                        key={index}
+                      >
+                        <ThemesAuctionLotsList
+                          grid={windowWidth > 768 ? isGridView : true}
+                          artworkDetails={item?.artwork_details}
+                          auctionDetails={item?.auction_details}
+                          auctionData={auctionData}
+                          handleVisible={handleModal}
+                        />
+                      </Col>
+                    );
+                  })
               ) : (
                 <Col style={{ width: "100%", display: "flex", justifyContent: "center" }}>
                   {auctionItemsLoading ? <Spin size="large" tip="loading" /> : <Empty />}
