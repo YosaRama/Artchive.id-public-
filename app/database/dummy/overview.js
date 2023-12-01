@@ -1,6 +1,8 @@
 export const auction_details = {
   //TODO : What we need//
   sub_name: `"Satoe Noesa, Satoe Bangsa, Satoe Djiwa"`,
+  catalogue_url:
+    "https://www.canva.com/design/DAF06ekWFgQ/2AyITMlTK1NbrRYlOqTC7g/edit?utm_content=DAF06ekWFgQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton",
   naratama: [
     {
       id: 1,
@@ -231,7 +233,7 @@ export const auction_details = {
     {
       id: 6,
       name: "Jean Couteau",
-      position: "Kurator",
+      position: "Kurator Seni",
       speech: `
       <h3><b>MEMUPUK NASIONALISM DALAM SENI LUKIS</b></h3>
 <p><b>Bhinneka Tunggal Ika
@@ -321,7 +323,7 @@ Satoe Noesa, Satoe Bangsa, Satoe Bahasa</b></p>
     {
       id: 7,
       name: "Arif Bagus Prasetyo",
-      position: "Kurator",
+      position: "Kurator Seni",
       speech: `
       <h3><b>KEINDONESIAAN DAN SENI RUPA MODERN INDONESIA</b></h3>
       <br/>
@@ -391,9 +393,57 @@ Satoe Noesa, Satoe Bangsa, Satoe Bahasa</b></p>
     { id: 3, logo: "auction-logo-bb.png" },
     { id: 4, logo: "auction-logo-uid20.png" },
   ],
-  logo_supporter: [
+  logo_supporter_vip: [
     { id: 1, logo: "auction-logo-kemenparekraf.png" },
     { id: 2, logo: "auction-logo-kemenpora.png" },
     { id: 3, logo: "auction-logo-kemdikbud.jpg" },
   ],
+  logo_supporter: [
+    { id: 1, logo: "auction-logo-xxi.png" },
+    { id: 2, logo: "auction-logo-bri.png" },
+    { id: 3, logo: "auction-logo-adaro.png" },
+  ],
+
+  article: {
+    title: "Recipient of Charity Funds",
+    item: [
+      {
+        id: 1,
+        title: "Budiyono Sutikno Sang Striker Legendaris",
+        slug: "article",
+        video_url: "https://youtu.be/rImTP0GacGo?si=plZruiW_7mkZJ5fr",
+        image_url: "",
+        source: "Kompas Jateng",
+        short_description: `Bagi pecinta sepak bola Tanah Air di era 90-an tentu sudah tak asing dengan nama Budiono Sutikno. Ia adalah salah satu mantan pemain bola yang membela klub PSIS Semarang era tahun 1994-1995. Tinggal di Rumah Susun Kudu, Genuk, Semarang, rupanya Budiono Sutikno hidup dalam kondisi yang kurang mengenakkan.
+    Pasalnya, mesin pencetak gol Mahesa Jenar menderita diabetes. Bahkan, penglihatannya kini sudah berkurang karena penyakit katarak. Sontak, kabar tersebut membuat sosok Budiono Sutikno menjadi perbincangan publik. Tak sedikit dari mereka yang dibuat miris dengan kondisinya itu.
+    Dirangkum dari berbagai sumber, berikut beberapa informasi mengenai Budiono Sutikno.Pasalnya, mesin pencetak gol Mahesa Jenar menderita diabetes. Bahkan, penglihatannya kini sudah berkurang karena penyakit katarak. Sontak, kabar tersebut membuat sosok Budiono Sutikno menjadi perbincangan publik. Tak sedikit dari mereka yang dibuat miris dengan kondisinya itu.
+    Dirangkum dari berbagai sumber, beri `,
+      },
+
+      {
+        id: 2,
+        title: "Legenda Olahraga Mardi Lestari dan Kusuma Wardhani Sakit",
+        slug: "article",
+        video_url: "",
+        image_url:
+          "data:image/jpeg;base64,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",
+        source: "Kompas Jateng",
+        short_description: `Bagi pecinta sepak bola Tanah Air di era 90-an tentu sudah tak asing dengan nama Budiono Sutikno. Ia adalah salah satu mantan pemain bola yang membela klub PSIS Semarang era tahun 1994-1995. Tinggal di Rumah Susun Kudu, Genuk, Semarang, rupanya Budiono Sutikno hidup dalam kondisi yang kurang mengenakkan.
+  Pasalnya, mesin pencetak gol Mahesa Jenar menderita diabetes. Bahkan, penglihatannya kini sudah berkurang karena penyakit katarak. Sontak, kabar tersebut membuat sosok Budiono Sutikno menjadi perbincangan publik. Tak sedikit dari mereka yang dibuat miris dengan kondisinya itu.
+  Dirangkum dari berbagai sumber, berikut beberapa informasi mengenai Budiono Sutikno.`,
+      },
+      {
+        id: 3,
+        title: "H. Ukat S Sedang Sakit",
+        slug: "article",
+        video_url: "",
+        image_url:
+          "https://www.voicemagz.com/wp-content/uploads/2023/01/Kunjungan-ke-Rumah-H-Ukat-S.jpg",
+        source: "Kompas Jateng",
+        short_description: `Bagi pecinta sepak bola Tanah Air di era 90-an tentu sudah tak asing dengan nama Budiono Sutikno. Ia adalah salah satu mantan pemain bola yang membela klub PSIS Semarang era tahun 1994-1995. Tinggal di Rumah Susun Kudu, Genuk, Semarang, rupanya Budiono Sutikno hidup dalam kondisi yang kurang mengenakkan.
+  Pasalnya, mesin pencetak gol Mahesa Jenar menderita diabetes. Bahkan, penglihatannya kini sudah berkurang karena penyakit katarak. Sontak, kabar tersebut membuat sosok Budiono Sutikno menjadi perbincangan publik. Tak sedikit dari mereka yang dibuat miris dengan kondisinya itu.
+  Dirangkum dari berbagai sumber, berikut beberapa informasi mengenai Budiono Sutikno.`,
+      },
+    ],
+  },
 };

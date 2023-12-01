@@ -8,6 +8,7 @@ import moment from "moment";
 import { useSession } from "next-auth/react";
 import { useWindowSize } from "app/helpers/useWindowSize";
 import nameAbbreviation from "app/helpers/nameAbbreviation";
+import { auction_details } from "app/database/dummy/overview";
 
 // Style
 import s from "./index.module.scss";
@@ -40,15 +41,24 @@ function ThemesBannerAuctionItem(props) {
             {moment(endDate).format("dddd, DD MMMM, YYYY")} */}
             Thursday, 16 November, 2023 - Tuesday, 28 November, 2023
           </h4>
-          <Col>
-            <ThemesButton
-              type={`primary + ${s.btnLot}`}
-              size="large"
-              onClick={() => router.push(`/auction/${auctionId}/lots/`)}
-            >
-              PLACE BID NOW!
-            </ThemesButton>
-          </Col>
+          <Row gutter={[40]} justify="center">
+            <Col span={24}>
+              <ThemesButton
+                type={`primary + ${s.btnLot}`}
+                size="large"
+                onClick={() => router.push(`/auction/${auctionId}/lots/`)}
+              >
+                PLACE BID NOW!
+              </ThemesButton>
+            </Col>
+            <Col span={24}>
+              <ThemesButton type={`secondary + ${s.btnLot}`} size="large">
+                <a href={auction_details?.catalogue_url} target="_blank" rel="noreferrer">
+                  E-CATALOGUE
+                </a>
+              </ThemesButton>
+            </Col>
+          </Row>
         </Col>
       </>
     ) : (
