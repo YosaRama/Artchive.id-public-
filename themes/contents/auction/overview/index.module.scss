@@ -108,56 +108,82 @@
     }
   }
 
+  //#region Speech
   .speechControl {
     margin: 80px 0px 40px;
+    .btnContainer {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+  .supportersCard {
+    height: auto;
+    transition: 300ms all ease;
+    margin: 30px 20px;
+    padding: 40px;
+    box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+
+    .divider {
+      height: 5px;
+      margin-top: 24px;
+      background: colors.$fulvous;
+    }
+    .image {
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      padding: 0px !important;
+      transition: 300ms all ease;
+      margin-bottom: 20px;
+      border-radius: 16px;
+    }
+
+    .cardDescription {
+      height: auto;
+      .description {
+        height: 550px;
+        overflow-y: auto;
+        padding-top: 0px;
+        padding-left: 0px !important;
+        padding-right: 40px !important;
+      }
+
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: none;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #e79625;
+        border-radius: 20px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: colors.$fulvous;
+      }
+    }
+    .shoutoutAuction {
+      display: flex;
+      justify-content: flex-end;
+      margin: auto 0px 40px;
+      text-align: right;
+    }
+
+    //#endregion Speech
+
+    h2 {
+      margin-bottom: 10px;
+      line-height: 40px;
+    }
   }
   .shoutoutAuction {
     display: flex;
     justify-content: flex-end;
     margin: auto 0px 40px;
     text-align: right;
-  }
-
-  .speechContainer {
-    margin: 100px !important;
-  }
-
-  .supportersRow {
-    display: flex;
-    justify-content: center;
-  }
-
-  .supportersCard {
-    height: 100%;
-    transition: 300ms all ease;
-    margin: 30px 10px 0px;
-    box-shadow: 0px 1px 25px 0px rgba(0, 0, 0, 0.1);
-
-    .image {
-      aspect-ratio: 3 / 3.5;
-      object-fit: cover;
-      padding: 0px !important;
-      transition: 300ms all ease;
-    }
-    &:hover {
-      transform: scale(1.02) !important;
-      transition: 300ms all ease;
-      box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.25);
-    }
-
-    .cardDescription {
-      height: auto;
-      padding: 30px 20px;
-      .button {
-        margin-top: 10px;
-        width: 100%;
-      }
-    }
-
-    h2 {
-      margin-bottom: 10px;
-      line-height: 40px;
-    }
   }
 }
 
@@ -279,35 +305,58 @@
       }
     }
 
+    //#region Speech
+    .speechControl {
+      margin: 80px 0px 40px;
+      .btnContainer {
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
     .supportersCard {
-      height: 100%;
+      height: auto;
       transition: 300ms all ease;
-      margin: 30px 10px 0px;
-      box-shadow: 0px 1px 25px 0px rgba(0, 0, 0, 0.1);
+      margin: 10px 20px;
+      padding: 20px;
+      box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.25);
+      border-radius: 20px;
 
+      .divider {
+        height: 5px;
+        margin-top: 24px;
+        background: colors.$fulvous;
+      }
       .image {
-        aspect-ratio: 3 / 3.5;
+        aspect-ratio: 3 / 3;
         object-fit: cover;
         padding: 0px !important;
         transition: 300ms all ease;
+        margin-bottom: 20px;
+        border-radius: 16px;
       }
-      &:hover {
-        transform: scale(1.02) !important;
-        transition: 300ms all ease;
-        box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.25);
-      }
+
       .cardDescription {
         height: auto;
-        padding: 20px;
-        .button {
-          margin-top: 10px;
-          width: 100%;
+        .description {
+          height: 470px;
+          overflow-y: auto;
+          padding-top: 0px;
+          padding-left: 0px !important;
+          padding-right: 10px !important;
         }
       }
+      .shoutoutAuction {
+        display: flex;
+        justify-content: flex-end;
+        margin: auto 0px 40px;
+        text-align: right;
+      }
+
+      //#endregion Speech
 
       h2 {
         margin-bottom: 10px;
-        line-height: 40px;
+        line-height: 30px;
       }
     }
   }
@@ -386,15 +435,42 @@
       }
     }
 
+    //#region Speech
     .speechControl {
-      margin-top: 30px;
-      .speechHeadline {
-        margin-bottom: 15px;
-        .btnArrow {
-          display: flex;
-          justify-content: center;
-          align-items: center;
+      margin: 30px 0px 30px;
+      .btnContainer {
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
+    .supportersCard {
+      height: auto;
+      transition: 300ms all ease;
+      margin: 20px 10px;
+      padding: 30px 20px;
+
+      .image {
+        aspect-ratio: 3 / 3.5;
+
+        padding: 0px !important;
+
+        margin-bottom: 20px;
+        border-radius: 16px;
+      }
+
+      .cardDescription {
+        .description {
+          height: 420px;
+          padding-left: 0px !important;
+          padding-right: 10px !important;
         }
+      }
+
+      //#endregion Speech
+
+      h2 {
+        margin-bottom: 10px;
+        line-height: 30px;
       }
     }
 
@@ -489,55 +565,46 @@
       }
     }
 
+    //#region Speech
     .speechControl {
-      margin: 80px 0px 40px;
+      margin: 30px 0px 30px;
+      .btnContainer {
+        display: flex;
+        justify-content: flex-end;
+      }
     }
-    .shoutoutAuction {
-      display: flex;
-      justify-content: flex-end;
-      margin: auto 0px 40px;
-      text-align: right;
-    }
-
-    .speechContainer {
-      margin: 100px !important;
-    }
-
-    .supportersRow {
-      display: flex;
-      justify-content: center;
-    }
-
     .supportersCard {
-      height: 100%;
+      height: auto;
       transition: 300ms all ease;
-      margin: 30px 10px 0px;
-      box-shadow: 0px 1px 25px 0px rgba(0, 0, 0, 0.15);
+      margin: 20px 10px;
+      padding: 20px 10px;
 
       .image {
-        aspect-ratio: 1 / 1.1;
-        object-fit: cover;
+        aspect-ratio: 1.2 / 1;
         padding: 0px !important;
-        transition: 300ms all ease;
+        margin-bottom: 0px;
+        border-radius: 16px;
       }
-      &:hover {
-        transform: scale(1.02) !important;
-        transition: 300ms all ease;
-        box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.25);
-      }
+
       .cardDescription {
-        height: auto;
-        padding: 20px;
-        .button {
-          margin-top: 15px;
-          width: 100%;
+        .description {
+          height: 350px;
+          padding-left: 0px !important;
+          padding-right: 10px !important;
+          text-align: left;
         }
       }
 
+      //#endregion Speech
+
       h2 {
-        margin: 0px 0px 10px;
-        line-height: 40px;
+        margin-bottom: 10px;
+        line-height: 30px;
       }
+    }
+
+    .shoutoutAuction {
+      margin: 30px 0px;
     }
   }
 

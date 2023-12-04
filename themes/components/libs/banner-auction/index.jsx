@@ -39,10 +39,10 @@ function ThemesBannerAuctionItem(props) {
           <h4>
             {/* {moment(startDate).format("dddd, DD MMMM, YYYY")} -{" "}
             {moment(endDate).format("dddd, DD MMMM, YYYY")} */}
-            Thursday, 16 November, 2023 - Tuesday, 28 November, 2023
+            Thursday, 16 November, 2023 - Sunday, 31 December, 2023
           </h4>
-          <Row gutter={[40]} justify="center">
-            <Col span={24}>
+          <Row gutter={[40]} justify="center" align="middle">
+            <Col xl={{ span: 6 }} lg={{ span: 6 }} md={{ span: 8 }} xs={{ span: 24 }}>
               <ThemesButton
                 type={`primary + ${s.btnLot}`}
                 size="large"
@@ -51,7 +51,7 @@ function ThemesBannerAuctionItem(props) {
                 PLACE BID NOW!
               </ThemesButton>
             </Col>
-            <Col span={24}>
+            <Col xl={{ span: 6 }} lg={{ span: 6 }} md={{ span: 8 }} xs={{ span: 24 }}>
               <ThemesButton type={`secondary + ${s.btnLot}`} size="large">
                 <a href={auction_details?.catalogue_url} target="_blank" rel="noreferrer">
                   E-CATALOGUE

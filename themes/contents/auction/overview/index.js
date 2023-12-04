@@ -44,8 +44,17 @@ function ThemesContentsAuctionDetailsOverview() {
 
   const description = auctionData?.description?.replace(/<\/p>/g, "\n").replace(/<p>/g, "").trim();
 
-  // #region Handle Scroll
+  // #region Handle Scroll Speech
+  const carouselSpeechRef = useRef(null);
+  const handleNextSpeech = () => {
+    carouselSpeechRef.current.next();
+  };
+  const handlePrevSpeech = () => {
+    carouselSpeechRef.current.prev();
+  };
+  // #endregion
 
+  // #region Handle Scroll
   const carouselRef = useRef(null);
   const handleNext = () => {
     carouselRef.current.next();
@@ -54,6 +63,7 @@ function ThemesContentsAuctionDetailsOverview() {
     carouselRef.current.prev();
   };
   // #endregion
+
   const startDate = moment(auctionData?.start_date);
   const endDate = moment(auctionData?.end_date);
   const days = endDate.diff(startDate, "days");
@@ -61,26 +71,11 @@ function ThemesContentsAuctionDetailsOverview() {
   const uniqueArtists = new Set(auctionItems?.map((item) => item?.artwork_details?.artist_id));
   const artistCount = uniqueArtists.size;
 
-  const totalCurrentPrice = auctionItems?.reduce(
-    (acc, item) => parseInt(acc + item?.auction_details?.current_price),
-    0
+  //#region Sold Lot
+  const lotSoldFilter = auctionItems?.filter(
+    (item) => item?.auction_details?.item_status === "CLOSED"
   );
-  const formatNumber = (number) => {
-    if (number > 999999999999) {
-      return (number / 1000000000000).toFixed(1) + (width > 1024 ? " Trillion" : " Tril.");
-    } else if (number > 999999999) {
-      return (number / 1000000000).toFixed(1) + (width > 1024 ? " Billion" : " Bill.");
-    } else if (number > 999999) {
-      return (number / 1000000).toFixed(1) + (width > 1024 ? " Million" : " Mill.");
-    } else if (number > 999) {
-      return (number / 1000).toFixed(1) + (width > 1024 ? " Thousand" : " K");
-    } else {
-      return number;
-    }
-  };
-
-  //#region Bid Value
-  const formattedTotalCurrentPrice = formatNumber(totalCurrentPrice);
+  const lotSoldLength = lotSoldFilter?.length;
   //#endregion
 
   //#region Statistic
@@ -88,37 +83,8 @@ function ThemesContentsAuctionDetailsOverview() {
     { statistic: "14", suffix: `Day${days > 1 && "s"}` },
     { statistic: `${auctionItems?.length}`, suffix: `Artwork${auctionItems?.length > 1 && "s"}` },
     { statistic: `${artistCount}`, suffix: `Artist${artistCount > 1 && "s"}` },
-    { statistic: `${formattedTotalCurrentPrice}`, suffix: `Bid Value` },
+    { statistic: `${lotSoldLength}`, suffix: `Lots Sold!` },
   ];
-  //#endregion
-
-  //#region Handle Modal
-  const [visible, isVisible] = useState(false);
-  const [selectedSpeech, setSelectedSpeech] = useState("");
-  const [selectedName, setSelectedName] = useState("");
-
-  const handleOpenModal = (item) => {
-    setSelectedSpeech(item?.speech);
-    setSelectedName(item?.name);
-    isVisible(true);
-  };
-
-  const handleCloseModal = () => {
-    isVisible(false);
-  };
-
-  const contentSpeech = (
-    <Col className={s.speechContainer}>
-      <h1>{selectedName}</h1>
-      <Divider />
-      <p
-        dangerouslySetInnerHTML={{
-          __html: selectedSpeech,
-        }}
-      />
-    </Col>
-  );
-
   //#endregion
 
   return (
@@ -160,20 +126,27 @@ function ThemesContentsAuctionDetailsOverview() {
                         <>
                           <Row gutter={[40]} className={s.descriptionContainer}>
                             <Col
-                              md={{ span: 10, order: item?.id % 2 == 0 ? 2 : 1 }}
+                              lg={{ span: 10, order: item?.id % 2 == 0 ? 1 : 2 }}
+                              md={{ span: 12, order: item?.id % 2 == 0 ? 2 : 1 }}
                               xs={{ span: 24, order: 1 }}
                               order={item?.id % 2 == 0 ? 2 : 1}
                             >
                               {item?.video_url === "" ? (
                                 <Image
-                                  src={item?.image_url}
+                                  src={
+                                    item?.image_url ? item?.image_url : "/images/default-images.jpg"
+                                  }
                                   className={s.image}
                                   alt=""
                                   preview={false}
                                 />
                               ) : (
                                 <ReactPlayer
-                                  url={`${item?.video_url}`}
+                                  url={
+                                    `${item?.video_url}`
+                                      ? `${item?.video_url}`
+                                      : "/images/default-images.jpg"
+                                  }
                                   light={true}
                                   controls={true}
                                   className={s.video}
@@ -181,14 +154,15 @@ function ThemesContentsAuctionDetailsOverview() {
                               )}
                             </Col>
                             <Col
-                              md={{ span: 14, order: item?.id % 2 == 0 ? 1 : 2 }}
+                              lg={{ span: 14, order: item?.id % 2 == 0 ? 1 : 2 }}
+                              md={{ span: 12, order: item?.id % 2 == 0 ? 1 : 2 }}
                               xs={{ span: 24, order: 2 }}
                             >
                               <h2>{item?.title}</h2>
                               <p className={s.shortDescription}>{item?.short_description}</p>
                               <ThemesButton
                                 type={`outlined + ${s.button}`}
-                                onClick={() => router.push(`/articles/${item?.slug}`)}
+                                onClick={() => router.push(item?.url)}
                               >
                                 READ MORE
                               </ThemesButton>
@@ -271,45 +245,94 @@ function ThemesContentsAuctionDetailsOverview() {
             {
               //#region Speech Carousel
               <Col className={s.speechControl}>
-                <h1 style={{ textDecoration: "underline" }}>Auction Supporters</h1>
+                <Row>
+                  <Col md={{ span: 12 }} xs={{ span: 24 }}>
+                    <h1 style={{ textDecoration: "underline" }}>Auction Supporters</h1>
+                  </Col>
+                  <Col md={{ span: 12 }} xs={{ span: 0 }} className={s.btnContainer}>
+                    {width > 500 && (
+                      <Col span={3} className={s.btnArrow}>
+                        <Button
+                          type="primary"
+                          shape="circle"
+                          size="large"
+                          icon={<LeftOutlined />}
+                          onClick={handlePrevSpeech}
+                        />
+                      </Col>
+                    )}
+                    {width > 500 && (
+                      <Col span={3} className={s.btnArrow}>
+                        <Button
+                          type="primary"
+                          shape="circle"
+                          size="large"
+                          icon={<RightOutlined />}
+                          onClick={handleNextSpeech}
+                        />
+                      </Col>
+                    )}
+                  </Col>
+                </Row>
+                <Row>
+                  <Col span={24} className={s.carousel}>
+                    <Carousel ref={carouselSpeechRef}>
+                      {auction_details?.naratama?.map((item, index) => {
+                        return (
+                          <>
+                            <Col
+                              xl={{ span: 24 }}
+                              lg={{ span: 24 }}
+                              md={{ span: 24 }}
+                              xs={{ span: 24 }}
+                              id={item.id}
+                              className={s.supportersCard}
+                            >
+                              <Row gutter={[40]}>
+                                <Col
+                                  xl={{ span: 8 }}
+                                  lg={{ span: 10 }}
+                                  md={{ span: 9 }}
+                                  xs={{ span: 24 }}
+                                >
+                                  <Col style={{ padding: 0 }}>
+                                    <Image
+                                      src={item?.profile_image}
+                                      alt=""
+                                      className={s.image}
+                                      preview={false}
+                                    />
+                                  </Col>
 
-                <>
-                  <Row className={s.supportersRow}>
-                    {auction_details?.naratama?.map((item, index) => {
-                      return (
-                        <>
-                          <Col
-                            xl={{ span: 7 }}
-                            lg={{ span: 7 }}
-                            md={{ span: 11 }}
-                            xs={{ span: 24 }}
-                            id={item.id}
-                            className={s.supportersCard}
-                          >
-                            <Col>
-                              <Image
-                                src={item?.profile_image}
-                                alt=""
-                                className={s.image}
-                                preview={false}
-                              />
+                                  <h2>{item?.name}</h2>
+                                  <p>{item?.position}</p>
+                                  <Col className={s.divider} />
+                                </Col>
+                                <Col
+                                  xl={{ span: 16 }}
+                                  lg={{ span: 14 }}
+                                  md={{ span: 15 }}
+                                  xs={{ span: 24 }}
+                                  className={s.cardDescription}
+                                >
+                                  <h2>Speech</h2>
+                                  <br />
+                                  <Col className={s.description}>
+                                    <p
+                                      dangerouslySetInnerHTML={{
+                                        __html: item?.speech,
+                                      }}
+                                    />
+                                  </Col>
+                                </Col>
+                              </Row>
                             </Col>
-                            <Col className={s.cardDescription}>
-                              <h2>{item?.name}</h2>
-                              <p>{item?.position}</p>
-                              <ThemesButton
-                                type={`outlined + ${s.button}`}
-                                onClick={() => handleOpenModal(item)}
-                              >
-                                VIEW SPEECH
-                              </ThemesButton>
-                            </Col>
-                          </Col>
-                        </>
-                      );
-                    })}
-                  </Row>
-                </>
+                          </>
+                        );
+                      })}
+                    </Carousel>
+                  </Col>
+                </Row>
               </Col>
               //#endregion
             }
@@ -403,21 +426,6 @@ function ThemesContentsAuctionDetailsOverview() {
           </ThemesContainerMain>
         </Col>
         // #endregion
-      }
-      {
-        //#region Modal
-        <Modal
-          centered
-          footer={null}
-          closeable={true}
-          visible={visible}
-          onCancel={handleCloseModal}
-          keyboard={true}
-          bodyStyle={{ height: "600px", overflowY: "auto" }}
-        >
-          {contentSpeech}
-        </Modal>
-        //#endregion
       }
     </>
   );
