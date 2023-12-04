@@ -12,16 +12,18 @@
   }
   h4 {
     font-size: font-size.$heading-4;
+    color: white !important;
+    font-weight: normal;
   }
   h1,
-  h2,
-  h4 {
+  h2 {
     color: white !important;
     margin: 0px;
     font-weight: normal;
   }
   .btnLot {
-    margin-top: 40px;
+    margin-top: 20px;
+    width: 200px;
   }
 }
 //#endregion
@@ -61,6 +63,10 @@
 @media screen and (max-width: 500px) {
   //#region Overview Section
   .title {
+    height: calc(100vh - 64px);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     text-align: center;
     h1 {
       font-size: font-size.$heading-2;
@@ -70,13 +76,16 @@
     }
     h4 {
       font-size: font-size.$paragraph;
+      margin-bottom: 40px;
     }
     h1,
-    h2,
-    h4 {
+    h2 {
       color: white !important;
       margin: 0px;
       font-weight: normal;
+    }
+    .btnLot {
+      width: 100%;
     }
   }
   //#endregion

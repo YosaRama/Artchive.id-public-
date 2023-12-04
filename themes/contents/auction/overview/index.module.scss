@@ -14,152 +14,176 @@
   justify-content: center;
   h1 {
     font-size: font-size.$heading-1;
-    line-height: 60px;
-    margin: 0px;
+    line-height: 1.5;
+    margin: 0px 0px 40px;
   }
   h2 {
     font-size: font-size.$heading-2;
+  }
+  h3 {
+    font-size: font-size.$heading-3;
+  }
+  h4 {
+    font-size: font-size.$heading-4;
   }
   p {
     font-size: font-size.$paragraph;
     margin: 0px 0px 0px !important;
   }
 
-  .logoContainer {
-    margin-bottom: 40px;
-    p {
-      font-weight: bold;
-      margin: 40px 0px 20px !important;
-      text-align: center;
-    }
-    .imageOrganizer {
-      height: 100px;
-      object-fit: contain;
-      img {
-        object-fit: contain !important;
-      }
-    }
-    .imageSupporter {
-      height: 150px;
-      object-fit: contain;
-      img {
-        object-fit: contain !important;
-      }
-    }
-  }
   .description {
-    padding: 80px 0px 40px;
+    .descriptionContainer {
+      margin-bottom: 80px;
+    }
+    padding: 80px 0px 0px;
     background: colors.$white;
     display: flex;
     justify-content: center;
     text-align: justify;
     h1 {
-      margin-bottom: 40px;
       text-decoration: underline;
+    }
+
+    .video {
+      height: 400px !important;
+      width: 100% !important;
+    }
+    .image {
+      height: 400px !important;
+      width: 100%;
+      object-fit: cover;
+    }
+    .shortDescription {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 10;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .button {
+      margin-top: 20px;
     }
   }
 
-  .statistic {
+  .statisticContainer {
+    margin: 10px 0px 80px;
     padding: 40px 0px;
     text-align: center;
     display: flex;
     justify-content: center;
-    .divider {
-      background: colors.$fulvous;
-      height: 5px;
-      border-radius: 10px;
-    }
-    h1 {
-      font-weight: bold;
-      font-size: font-size.$heading-1 !important;
-    }
-    h2 {
-      margin: 0px !important;
-      font-size: font-size.$heading-2 !important;
-    }
-  }
-  .speechControl {
-    display: flex;
-    justify-content: center;
-    margin-top: 40px;
-    .speechHeadline {
-      margin-bottom: 0px;
-    }
-  }
+    border-radius: 50px;
+    box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.25);
 
-  .speechContainer {
-    height: auto;
-    margin: 40px auto;
-
-    .imageContainer {
-      height: 100%;
-      img {
-        aspect-ratio: 3 / 4 !important;
-        height: auto !important;
-        width: 100%;
-        object-fit: cover;
+    .container {
+      h1 {
+        font-weight: bold;
+        color: colors.$fulvous;
+      }
+      h2 {
+        margin: 0px !important;
       }
     }
+  }
+
+  .logoContainer {
+    margin-bottom: 80px;
     p {
-      text-align: justify;
+      font-weight: bold;
+      margin: 40px 0px 20px !important;
+      text-align: center;
     }
-    h1 {
-      font-size: font-size.$heading-1;
-      margin: 0px 0px 0px;
-      line-height: 60px;
+    .logoSmall {
+      height: 150px;
+      max-width: 300px;
+      img {
+        object-fit: contain !important;
+      }
     }
-    h2 {
-      font-size: font-size.$heading-2;
-      margin: 0px;
-      text-align: end;
-    }
-    h4 {
-      font-size: font-size.$heading-4;
-      color: colors.$fulvous;
-      margin-bottom: 40px;
-      text-decoration: underline;
-    }
-    .speech {
-      z-index: 2;
-      overflow-y: auto;
-      height: 470px;
-      width: auto;
-      padding-left: 0px !important;
-    }
-    /* width */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    /* Track */
-    ::-webkit-scrollbar-track {
-      background: colors.$white;
-    }
-
-    /* Handle */
-    ::-webkit-scrollbar-thumb {
-      background: colors.$fulvous;
-      border-radius: 50px;
-    }
-
-    /* Handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
-      background: #c97a0c;
+    .logoLarge {
+      height: 150px;
+      max-width: 400px;
+      img {
+        object-fit: contain !important;
+      }
     }
   }
 
+  //#region Speech
+  .speechControl {
+    margin: 80px 0px 40px;
+    .btnContainer {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+  .supportersCard {
+    height: auto;
+    transition: 300ms all ease;
+    margin: 30px 20px;
+    padding: 40px;
+    box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+
+    .divider {
+      height: 5px;
+      margin-top: 24px;
+      background: colors.$fulvous;
+    }
+    .image {
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      padding: 0px !important;
+      transition: 300ms all ease;
+      margin-bottom: 20px;
+      border-radius: 16px;
+    }
+
+    .cardDescription {
+      height: auto;
+      .description {
+        height: 550px;
+        overflow-y: auto;
+        padding-top: 0px;
+        padding-left: 0px !important;
+        padding-right: 40px !important;
+      }
+
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: none;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #e79625;
+        border-radius: 20px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: colors.$fulvous;
+      }
+    }
+    .shoutoutAuction {
+      display: flex;
+      justify-content: flex-end;
+      margin: auto 0px 40px;
+      text-align: right;
+    }
+
+    //#endregion Speech
+
+    h2 {
+      margin-bottom: 10px;
+      line-height: 40px;
+    }
+  }
   .shoutoutAuction {
     display: flex;
     justify-content: flex-end;
-    margin: 20px 0px 40px;
+    margin: auto 0px 40px;
     text-align: right;
-    .verticalDivider {
-      height: auto !important;
-      width: 10px !important;
-      background-color: colors.$fulvous !important;
-      margin-left: 10px;
-      border-radius: 10px;
-    }
   }
 }
 
@@ -212,89 +236,140 @@
   margin-bottom: 40px !important;
 }
 
+.persRelease {
+  margin-top: 120px;
+  margin-bottom: 60px;
+}
+
 //? ============== Table Landscpae View ============= ?//
 @media screen and (max-width: 1024px) {
   .bgwhite {
-    background: colors.$white;
-    display: flex;
-    justify-content: center;
     h1 {
-      font-size: font-size.$heading-2;
-      line-height: 60px;
-      margin: 0px;
+      font-size: font-size.$heading-1;
+      line-height: 1.25;
+      margin: 0px 0px 30px;
     }
     h2 {
+      font-size: font-size.$heading-2;
+    }
+    h3 {
       font-size: font-size.$heading-3;
     }
     p {
       font-size: font-size.$paragraph;
+      margin: 0px 0px 0px !important;
     }
 
     .description {
-      padding: 60px 0px 30px;
+      .descriptionContainer {
+        margin-bottom: 60px;
+      }
+      padding: 60px 0px 0px;
 
-      h1 {
-        margin-bottom: 30px;
+      .video {
+        height: 300px !important;
+      }
+      .image {
+        height: 300px !important;
+      }
+      .shortDescription {
+        -webkit-line-clamp: 7;
+      }
+      .button {
+        margin-top: 20px;
       }
     }
 
-    .statistic {
+    .statisticContainer {
+      margin: 10px 0px 60px;
       padding: 30px 0px;
+
+      .container {
+        h1 {
+          font-weight: bold;
+          color: colors.$fulvous;
+        }
+        h2 {
+          margin: 0px !important;
+        }
+      }
     }
+
+    .logoContainer {
+      margin-bottom: 60px;
+      p {
+        margin: 30px 0px 20px !important;
+      }
+      .logoSmall {
+        height: 150px;
+        max-width: 300px;
+      }
+      .logoLarge {
+        height: 150px;
+        max-width: 400px;
+      }
+    }
+
+    //#region Speech
     .speechControl {
-      display: flex;
-      justify-content: center;
-      margin-top: 30px;
-      .speechHeadline {
-        margin-bottom: 15px;
-        .btnArrow {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
+      margin: 80px 0px 40px;
+      .btnContainer {
+        display: flex;
+        justify-content: flex-end;
       }
     }
+    .supportersCard {
+      height: auto;
+      transition: 300ms all ease;
+      margin: 10px 20px;
+      padding: 20px;
+      box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.25);
+      border-radius: 20px;
 
-    .speechContainer {
-      height: 100%;
-      margin: 30px auto;
-      .imageContainer {
-        img {
-          aspect-ratio: 3 / 4.5 !important;
+      .divider {
+        height: 5px;
+        margin-top: 24px;
+        background: colors.$fulvous;
+      }
+      .image {
+        aspect-ratio: 3 / 3;
+        object-fit: cover;
+        padding: 0px !important;
+        transition: 300ms all ease;
+        margin-bottom: 20px;
+        border-radius: 16px;
+      }
+
+      .cardDescription {
+        height: auto;
+        .description {
+          height: 470px;
+          overflow-y: auto;
+          padding-top: 0px;
+          padding-left: 0px !important;
+          padding-right: 10px !important;
         }
       }
-      .speech {
-        height: 390px;
+      .shoutoutAuction {
+        display: flex;
+        justify-content: flex-end;
+        margin: auto 0px 40px;
+        text-align: right;
       }
-      h1 {
-        font-size: font-size.$heading-2;
-        margin: 0px 0px 0px;
-        line-height: 45px;
-      }
+
+      //#endregion Speech
+
       h2 {
-        font-size: font-size.$heading-3;
-        margin: 0px;
-        text-align: end;
+        margin-bottom: 10px;
+        line-height: 30px;
       }
-      h4 {
-        font-size: font-size.$heading-4;
-        color: colors.$fulvous;
-        margin-bottom: 30px;
-      }
-    }
-
-    .shoutoutAuction {
-      display: flex;
-      justify-content: flex-end;
-      margin: 30px 0px;
-      text-align: right;
     }
   }
 
-  .btn {
-    padding: 0px !important;
-    margin-top: 20px;
-    color: colors.$white;
+  .btnArrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .headline {
@@ -306,106 +381,107 @@
 //? ============== Table Potrait View ============= ?//
 @media screen and (max-width: 768px) {
   .bgwhite {
-    background: colors.$white;
-    display: flex;
-    justify-content: center;
     h1 {
       font-size: font-size.$heading-2;
-      line-height: 45px;
-      margin: 0px;
+      line-height: 30px;
+      margin: 0px 0px 30px;
     }
     h2 {
       font-size: font-size.$heading-3;
     }
+    h3 {
+      font-size: font-size.$heading-4;
+    }
     p {
       font-size: font-size.$paragraph;
+      margin: 0px 0px 0px !important;
     }
-    .description {
-      padding: 60px 0px 30px;
 
-      h1 {
-        margin-bottom: 30px;
+    .description {
+      .descriptionContainer {
+        margin-bottom: 60px;
+      }
+      padding: 60px 0px 0px;
+      .shortDescription {
+        -webkit-line-clamp: 6;
+      }
+      .button {
+        margin-top: 20px;
       }
     }
+
+    .statisticContainer {
+      margin: 10px 0px 60px;
+      padding: 30px 0px;
+
+      .container {
+        h1 {
+          font-weight: bold;
+          color: colors.$fulvous;
+        }
+        h2 {
+          margin: 0px !important;
+        }
+      }
+    }
+
     .logoContainer {
       margin-bottom: 30px;
       p {
-        font-weight: bold;
         margin: 30px 0px 20px !important;
-        text-align: center;
       }
-      .imageOrganizer {
-        height: 80px;
-      }
-      .imageSupporter {
+      .logoSmall {
         height: 120px;
+        max-width: 250px;
       }
-    }
-    .statistic {
-      padding: 30px 0px;
-      h1 {
-        font-size: font-size.$heading-2 !important;
-      }
-      h2 {
-        font-size: font-size.$heading-3 !important;
-      }
-    }
-    .speechControl {
-      display: flex;
-      justify-content: center;
-      margin-top: 30px;
-      .speechHeadline {
-        margin-bottom: 15px;
-        .btnArrow {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
+      .logoLarge {
+        height: 120px;
+        max-width: 350px;
       }
     }
 
-    .speechContainer {
-      height: 100%;
-      margin: 30px auto;
-      .imageContainer {
-        img {
-          aspect-ratio: 3 / 5 !important;
+    //#region Speech
+    .speechControl {
+      margin: 30px 0px 30px;
+      .btnContainer {
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
+    .supportersCard {
+      height: auto;
+      transition: 300ms all ease;
+      margin: 20px 10px;
+      padding: 30px 20px;
+
+      .image {
+        aspect-ratio: 3 / 3.5;
+
+        padding: 0px !important;
+
+        margin-bottom: 20px;
+        border-radius: 16px;
+      }
+
+      .cardDescription {
+        .description {
+          height: 420px;
+          padding-left: 0px !important;
+          padding-right: 10px !important;
         }
       }
-      .speech {
-        height: 300px;
-      }
-      h1 {
-        font-size: font-size.$heading-3;
-        margin: 0px 0px 10px;
-        line-height: 30px;
-        font-weight: bold;
-      }
+
+      //#endregion Speech
+
       h2 {
-        font-size: font-size.$heading-4;
-        margin: 0px;
-        text-align: end;
-      }
-      h4 {
-        font-size: font-size.$paragraph;
-        color: colors.$fulvous;
-        margin-bottom: 30px;
-        font-weight: bold;
+        margin-bottom: 10px;
+        line-height: 30px;
       }
     }
 
     .shoutoutAuction {
-      display: flex;
-      justify-content: flex-end;
       margin: 30px 0px;
-      text-align: right;
     }
-  }
-
-  .btn {
-    padding: 0px !important;
-    margin-top: 20px;
-    color: colors.$white;
   }
 
   .headline {
@@ -417,96 +493,130 @@
 //? ============== Mobile View ============= ?//
 @media screen and (max-width: 500px) {
   .bgwhite {
-    background: colors.$white;
-    display: flex;
-    justify-content: center;
     h1 {
-      font-size: font-size.$heading-3;
-      line-height: 30px;
-      margin: 0px;
+      font-size: font-size.$heading-2;
+      line-height: 35px;
+      margin: 0px 0px 40px;
     }
     h2 {
+      font-size: font-size.$heading-3;
+      margin-top: 20px;
+    }
+    h3 {
       font-size: font-size.$heading-4;
+    }
+    h4 {
+      font-size: font-size.$paragraph;
     }
     p {
       font-size: font-size.$paragraph;
+      margin: 0px 0px 0px !important;
     }
+
     .description {
-      padding: 40px 0px 20px;
-
-      h1 {
-        margin-bottom: 20px;
+      .descriptionContainer {
+        margin-bottom: 40px;
       }
-    }
-    .logoContainer {
-      .imageOrganizer {
-        height: 60px;
-      }
-      .imageSupporter {
-        height: 100px;
-      }
-    }
-    .statistic {
-      padding: 20px 0px;
-      h1 {
-        font-size: font-size.$heading-1 !important;
-      }
+      padding: 40px 0px 0px;
       h2 {
-        font-size: font-size.$heading-2 !important;
-      }
-    }
-    .speechControl {
-      display: flex;
-      justify-content: center;
-      margin-top: 20px;
-      .speechHeadline {
-        margin-bottom: 10px;
-        .btnArrow {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          margin-top: 20px;
-        }
-      }
-    }
-
-    .speechContainer {
-      height: 100%;
-      margin: 20px auto;
-      .imageContainer {
-        img {
-          aspect-ratio: 1 / 1.2 !important;
-        }
-      }
-      .speech {
-        height: 400px;
-      }
-      p {
         text-align: left;
       }
-      h1 {
-        font-size: font-size.$heading-3;
-        margin: 0px 0px 5px;
-        line-height: 30px;
+      .video {
+        height: 300px !important;
       }
+      .image {
+        height: 300px !important;
+      }
+      .shortDescription {
+        -webkit-line-clamp: 5;
+      }
+      .button {
+        width: 100%;
+      }
+    }
+
+    .statisticContainer {
+      margin: 10px 0px 80px;
+      padding: 80px 0px;
+
+      .container {
+        h1 {
+          font-weight: bold;
+          color: colors.$fulvous;
+          font-size: font-size.$heading-1 !important;
+          margin: 0px 0px 10px !important;
+        }
+        h2 {
+          margin: 0px !important;
+          font-size: font-size.$heading-2 !important;
+        }
+      }
+    }
+
+    .logoContainer {
+      margin-bottom: 80px;
+      p {
+        font-weight: bold;
+        margin: 40px 0px 20px !important;
+        text-align: center;
+      }
+      .logoSmall {
+        height: 80px;
+        max-width: 200px;
+      }
+      .logoLarge {
+        height: 120px;
+        max-width: 300px;
+      }
+    }
+
+    //#region Speech
+    .speechControl {
+      margin: 30px 0px 30px;
+      .btnContainer {
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
+    .supportersCard {
+      height: auto;
+      transition: 300ms all ease;
+      margin: 20px 10px;
+      padding: 20px 10px;
+
+      .image {
+        aspect-ratio: 1.2 / 1;
+        padding: 0px !important;
+        margin-bottom: 0px;
+        border-radius: 16px;
+      }
+
+      .cardDescription {
+        .description {
+          height: 350px;
+          padding-left: 0px !important;
+          padding-right: 10px !important;
+          text-align: left;
+        }
+      }
+
+      //#endregion Speech
+
       h2 {
-        font-size: font-size.$heading-3;
-        margin: 0px;
-        text-align: end;
-      }
-      h4 {
-        font-size: font-size.$paragraph;
-        color: colors.$fulvous;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
+        line-height: 30px;
       }
     }
 
     .shoutoutAuction {
-      display: flex;
-      justify-content: flex-end;
-      margin: 20px 0px;
-      text-align: right;
+      margin: 30px 0px;
     }
+  }
+
+  .btnArrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .btn {
@@ -514,9 +624,42 @@
     margin-top: 20px;
     color: colors.$white;
   }
+  .carousel {
+    text-align: center;
+    .badge {
+      position: absolute;
+      z-index: 1;
+    }
+    .sliderItem {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: center !important;
+      align-items: center !important;
+      padding: 0px 8px;
+      cursor: pointer;
+      img {
+        // height: 360px !important;
+        aspect-ratio: 1 / 1;
+        width: 100% !important;
+        object-fit: cover;
+        margin: auto !important;
+        transition: 300ms all ease-in-out;
+        &:hover {
+          scale: 1.02;
+        }
+      }
+      .image {
+        filter: grayscale(80%) !important;
+        &:hover {
+          filter: grayscale(0%) !important;
+        }
+      }
+    }
+  }
 
   .headline {
-    margin-bottom: 20px !important;
+    margin-bottom: 40px !important;
   }
 }
 // * ====================================== * //

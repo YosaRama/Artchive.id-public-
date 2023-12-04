@@ -134,7 +134,7 @@ function ThemesAuctionLotsList(props) {
                   {/* {moment(auctionDetails?.stopped_at).format(
                     grid ? "DD MMMM YYYY" : "dddd, DD MMMM YYYY"
                   )} */}
-                  {grid ? "28 November 2023" : "Tuesday, 28 November 2023"}
+                  {grid ? "31 December 2023" : "Sunday, 23 December 2023"}
                 </p>
               </Col>
 
