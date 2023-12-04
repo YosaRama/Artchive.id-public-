@@ -25,6 +25,12 @@
   h1 {
     font-size: font-size.$heading-3;
     transition: all 0.3s ease;
+    line-break: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
     &:hover {
       color: colors.$fulvous;
     }
@@ -37,6 +43,13 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.authorContainer {
+  p {
+    font-size: 14px;
+    color: colors.$fulvous;
+  }
 }
 
 .postedDateContainer {
