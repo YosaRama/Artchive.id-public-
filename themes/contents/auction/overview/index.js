@@ -23,6 +23,7 @@ import { auction_details } from "app/database/dummy/overview.js";
 
 // Styles
 import s from "./index.module.scss";
+import ThemesArticleCard from "themes/components/libs/article-card";
 
 function ThemesContentsAuctionDetailsOverview() {
   const { width } = useWindowSize();
@@ -101,6 +102,7 @@ function ThemesContentsAuctionDetailsOverview() {
           auctionId={auctionId}
         />
       </ThemesBanner>
+
       <Col span={24} className={s.bgwhite}>
         <Col>
           <ThemesContainerMain>
@@ -343,6 +345,33 @@ function ThemesContentsAuctionDetailsOverview() {
                 <h2>{auction_details?.sub_name}</h2>
               </Col>
             </Col>
+
+            {
+              //#region Pers Release
+              <Col className={s.persRelease}>
+                {/* Add your code here */}
+                <Col md={{ span: 12 }} xs={{ span: 24 }}>
+                  <h1 style={{ textDecoration: "underline" }}>Pers Release</h1>
+                </Col>
+                <Row gutter={[32, 32]}>
+                  {auction_details?.pers_release.map((item, index) => {
+                    return (
+                      <Col xs={{ span: 24 }} md={{ span: 12 }} lg={{ span: 8 }} key={index}>
+                        <ThemesArticleCard
+                          title={item.title}
+                          shortDescription={item.description}
+                          postedDate={item.posted_at}
+                          url={item.url}
+                          imageSrc={item.img_src}
+                          author={item.author}
+                          isExternal={true}
+                        />
+                      </Col>
+                    );
+                  })}
+                </Row>
+              </Col>
+            }
           </ThemesContainerMain>
         </Col>
       </Col>

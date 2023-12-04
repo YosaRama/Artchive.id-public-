@@ -446,4 +446,67 @@ Satoe Noesa, Satoe Bangsa, Satoe Bahasa</b></p>
       },
     ],
   },
+
+  pers_release: [
+    {
+      title:
+        "Yayasan Upaya Indonesia Damai dan Yayasan Bunga Bali Peduli Dengan Pahlawan Olahraga Indonesia",
+      description:
+        "Yayasan Upaya Indonesia Damai atau dikenal dengan United In Diversity Foundation (UID) bekerja sama dengan Yayasan Bunga Bali dan Sanggar Ring Luwur Akasa menyelenggarakan pameran dan lelang lukisan amal bertema “Bhinneka Tunggal Ika” untuk pahlawan Indonesia di bidang seni dan olahraga yang diselenggarakan di The Club, Djakarta Theater Live, Jakarta Pusat, Selasa (28/11/2023)",
+      posted_at: "29 November 2023",
+      url: "https://m.tribunnews.com/sport/2023/11/29/yayasan-upaya-indonesia-damai-dan-yayasan-bunga-bali-peduli-dengan-pahlawan-olahraga-indonesia",
+      img_src:
+        "https://asset-2.tstatic.net/tribunnews/foto/bank/images/yayasan-upaya-indonesia-damai-dan-yayasan-bunga-bali-peduli-dengan-pahlawan-olahraga-indonesia.jpg",
+      author: "TRIBUNNEWS.COM, JAKARTA",
+    },
+    {
+      title: "68 Lukisan Dilelang oleh UID dan Yayasan Bunga Bali untuk Pahlawan Seni dan Olahraga",
+      description:
+        "Hasil lelang lukisan itu diperuntukkan pahlawan Indonesia di bidang seni dan olahraga. Digelar di The Club, Djakarta Theater Live, Jakarta Pusat, Selasa (28/11/2023), pameran dan lelang ini menampilkan 68 lukisan karya seniman Indonesia dari berbagai daerah.",
+      posted_at: "28 November 2023",
+      url: "https://mediaindonesia.com/humaniora/633306/68-lukisan-dilelang-oleh-uid-dan-yayasan-bunga-bali-untuk-pahlawan-seni-dan-olahraga",
+      img_src:
+        "https://disk.mediaindonesia.com/thumbs/1200x700/news/2023/11/f011df558970666f837221853298608c.jpg",
+      author: "Mediaindonesia.com | Humaniora",
+    },
+    {
+      title: "69 Lukisan Dilelang untuk Pahlawan Seni dan Olahraga yang Hidup Susah",
+      description:
+        "Sebanyak 69 lukisan karya seniman tradisional hingga kontemporer dari Bali, Yogyakarta, Solo, dan Surabaya, dipamerkan dalam pameran amal bertema Bhinneka Tunggal Ika.",
+      posted_at: "29 November 2023",
+      url: "https://www.tabloidbintang.com/berita/191016-69-lukisan-dilelang-untuk-pahlawan-seni-dan-olahraga-yang-hidup-susah",
+      img_src: "https://asset.tabloidbintang.com/img/1701214459_c7e014fcf7e896a2444a.jpeg",
+      author: "TABLOIDBINTANG.COM",
+    },
+    {
+      title: "68 Lukisan Dipamerkan di Pameran dan Lelang Amal 'Bhinneka Tunggal Ika'",
+      description:
+        "Sebanyak 68 lukisan karya seniman tradisional hingga kontemporer dari Bali, Yogyakarta, Solo, dan Surabaya, dipamerkan dalam pameran amal bertema Bhinneka Tunggal Ika.",
+      posted_at: "28 November 2023",
+      url: "https://m.jpnn.com/news/68-lukisan-dipamerkan-di-pameran-dan-lelang-amal-bhinneka-tunggal-ika",
+      img_src:
+        "https://image.jpnn.com/resize/570x380-80/arsip/normal/2023/11/28/sebanyak-68-lukisan-karya-seniman-tradisional-hingga-kontemp-dspm.jpg",
+      author: "jpnn.com",
+    },
+    {
+      title: "UID dan Yayasan Bunga Bali Gelar Lelang Lukisan untuk Pahlawan Seni dan Olahraga",
+      description:
+        "Yayasan Upaya Indonesia Damai (UID) atau dikenal dengan United In Diversity Foundation bekerja sama dengan Yayasan Bunga Bali dan Sanggar Ring Luwur Akasa menyelenggarakan pameran dan lelang lukisan amal bertema “Bhinneka Tunggal Ika” untuk pahlawan Indonesia di bidang seni dan olahraga. Acara digelar, di The Club, Djakarta Theater Live, Jakarta Pusat, Selasa (28/11).",
+      posted_at: "28 November 2023",
+      url: "https://rm.id/baca-berita/humaniora/199225/uid-dan-yayasan-bunga-bali-gelar-lelang-lukisan-untuk-pahlawan-seni-dan-olahraga",
+      img_src:
+        "https://rm.id/files/konten/berita/uid-dan-yayasan-bunga-bali-gelar-lelang-lukisan-untuk-pahlawan-seni-dan-olahraga_199225.jpg",
+      author: "RM.id Rakyat Merdeka",
+    },
+    {
+      title:
+        "Lelang Lukisan untuk Pahlawan Seni dan Olahraga Indonesia, Meraup 5 Milyar Lebih Dalam Semalam",
+      description:
+        "Seorang atlet hanya dikenang ketika meraih prestasi dan mengharumkan nama bangsa. Setelah masa kejayaannya berlalu, nasib sang pahlawan tersebut tak mendapat perhatian lagi, bahkan tersia-siakan. Tidak hanya di dunia olahraga, di dunia seni pun mengalami nasib yang sama. Mereka yang menorehkan nama Indonesia lewat karya-karyanya, menjalani hidupnya pun juga sangat memprihatinkan di masa tuanya.",
+      posted_at: "28 November 2023",
+      url: "https://urbannews.co/lelang-lukisan-untuk-pahlawan-seni-dan-olahraga-indonesia-meraup-5-milyar-lebih-dalam-semalam/",
+      img_src: "https://urbannews.co/wp-content/uploads/2023/11/IMG20231128175637.jpg",
+      author: "Urbannews",
+    },
+  ],
 };
