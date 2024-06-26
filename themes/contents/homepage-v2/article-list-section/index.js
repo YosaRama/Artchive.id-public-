@@ -9,7 +9,7 @@ import ThemesArticleListCard from "themes/components/libs/article-list-card";
 import ThemesHeadline from "themes/components/libs/headline";
 
 // Helpers
-import { useWindowSize } from "app/helpers/useWindowSize";
+import { useWindowSize } from "dashboard/helpers/useWindowSize";
 
 // Styles
 import s from "./index.module.scss";

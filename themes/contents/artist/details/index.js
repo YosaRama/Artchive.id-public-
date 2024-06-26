@@ -13,7 +13,7 @@ import ThemesHeadline from "themes/components/libs/headline";
 import ThemesShareSocial from "themes/components/libs/share-social";
 
 // Helpers
-import { useWindowSize } from "app/helpers/useWindowSize";
+import { useWindowSize } from "dashboard/helpers/useWindowSize";
 
 // Styles
 import s from "./index.module.scss";

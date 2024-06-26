@@ -11,7 +11,7 @@ import {
   textDelay,
   textDelayLeftToRight,
   textDelayRightToLeft,
-} from "app/database/framer-motion";
+} from "dashboard/database/framer-motion";
 
 // Components
 import ThemesContainerMain from "themes/components/container/main";
@@ -19,10 +19,10 @@ import ThemesButton from "themes/components/libs/button";
 import ThemesHomepageExhibitionSection from "themes/components/libs/homepage-exhibition";
 
 // Hooks
-import { useExhibitionLoad } from "app/hooks/exhibition";
+import { useExhibitionLoad } from "dashboard/hooks/exhibition";
 
 // Helpers
-import { useWindowSize } from "app/helpers/useWindowSize";
+import { useWindowSize } from "dashboard/helpers/useWindowSize";
 
 // Styles
 import s from "./index.module.scss";

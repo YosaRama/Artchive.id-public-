@@ -1,6 +1,6 @@
 // Helper
-import { GET_ARTWORK_BY_SKU } from "app/database/query/artwork";
-import auctioo from "app/utils/auctioo";
+import { GET_ARTWORK_BY_SKU } from "dashboard/database/query/artwork";
+import auctioo from "dashboard/utils/auctioo";
 import moment from "moment-timezone";
 import nextConnect from "next-connect";
 

@@ -1,5 +1,5 @@
 // Query
-import { DELETE_DATA, GET_DATA_BY_ID, UPDATE_DATA } from "app/database/query/_template";
+import { DELETE_DATA, GET_DATA_BY_ID, UPDATE_DATA } from "dashboard/database/query/_template";
 
 // Helper
 import nextConnect from "next-connect";

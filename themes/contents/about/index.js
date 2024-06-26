@@ -4,7 +4,7 @@ import {
   benefitList,
   aboutUsDescription,
   logoPartner,
-} from "app/database/dummy/benefit";
+} from "dashboard/database/dummy/benefit";
 
 // Libs
 import propTypes from "prop-types";
@@ -147,7 +147,8 @@ function ThemesContentsAbout(prop) {
                     name={item.name}
                     position={item.position}
                     description={item.description}
-                    linkedn={item.linkedn}
+                    linkedin={item.linkedin}
+                    email={item.email}
                   />
                 </Col>
               );

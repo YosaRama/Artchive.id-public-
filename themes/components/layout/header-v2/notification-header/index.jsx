@@ -10,7 +10,7 @@ import ThemesNotificationModalItem from "./notification-modal-item";
 import s from "./index.module.scss";
 
 // Dummy
-import { notificationList } from "app/database/dummy/notification";
+import { notificationList } from "dashboard/database/dummy/notification";
 import ThemesButton from "themes/components/libs/button";
 
 function ThemesNotificationModal() {

@@ -2,10 +2,10 @@
 import { getSession } from "next-auth/react";
 
 // Contents
-import AppContentsUserCreate from "app/contents/user/create";
+import AppContentsUserCreate from "dashboard/contents/user/create";
 
 // Helpers
-import dashboardSession from "app/helpers/dashboardSession";
+import dashboardSession from "dashboard/helpers/dashboardSession";
 
 function PageDashboardUsersCreate() {
   return (

@@ -2,7 +2,10 @@
 import moment from "moment";
 
 // Queries
-import { GET_ALL_EXHIBITION_SLUG, GET_EXHIBITION_BY_SLUG } from "app/database/query/exhibition";
+import {
+  GET_ALL_EXHIBITION_SLUG,
+  GET_EXHIBITION_BY_SLUG,
+} from "dashboard/database/query/exhibition";
 
 // Contents
 import ThemesContentsExhibitionDetails from "themes/contents/exhibition/detail";

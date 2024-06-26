@@ -1,8 +1,8 @@
 // Libs
 import nextConnect from "next-connect";
 import midtransClient from "midtrans-client";
-import { CREATE_PAYMENT_HISTORY } from "app/database/query/payment-history";
-import { UPDATE_ORDER_AFTER_PROCEED } from "app/database/query/order";
+import { CREATE_PAYMENT_HISTORY } from "dashboard/database/query/payment-history";
+import { UPDATE_ORDER_AFTER_PROCEED } from "dashboard/database/query/order";
 
 const apiHandler = nextConnect();
 

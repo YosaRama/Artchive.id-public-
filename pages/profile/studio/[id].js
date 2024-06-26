@@ -5,7 +5,7 @@ import { getSession, useSession } from "next-auth/react";
 import ThemesContentsProfileStudioDetails from "themes/contents/profile/studio/details";
 
 // Helper
-import profileSession from "app/helpers/profileSession";
+import profileSession from "dashboard/helpers/profileSession";
 
 function PageProfileStudioDetails() {
   //? ============== Handle Session ============= ?//

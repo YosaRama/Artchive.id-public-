@@ -1,5 +1,5 @@
 // Contents
-import { GET_ALL_ARTICLES_SLUG, GET_ARTICLE_BY_SLUG } from "app/database/query/articles";
+import { GET_ALL_ARTICLES_SLUG, GET_ARTICLE_BY_SLUG } from "dashboard/database/query/articles";
 import ThemesContentsArticlesDetails from "themes/contents/articles/details";
 
 function PageArticleDetails(props) {

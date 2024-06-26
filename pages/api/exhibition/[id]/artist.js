@@ -4,7 +4,10 @@ const apiHandler = nextConnect();
 const messageHead = "Artist on Exhibitions";
 
 // Queries
-import { UPDATE_EXHIBITION_ARTIST, DELETE_EXHIBITION_ARTIST } from "app/database/query/exhibition";
+import {
+  UPDATE_EXHIBITION_ARTIST,
+  DELETE_EXHIBITION_ARTIST,
+} from "dashboard/database/query/exhibition";
 
 apiHandler.put(async (req, res) => {
   const id = req.query.id;

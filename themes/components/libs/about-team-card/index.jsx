@@ -9,21 +9,13 @@ import Router from "next/router";
 import s from "./index.module.scss";
 
 function ThemesAboutTeamCard(props) {
-  const { imageTeam, name, position, description, linkedn, email } = props;
+  const { imageTeam, name, position, description, linkedin, email } = props;
   const { router } = Router;
   return (
     <>
       <Card className={s.card}>
         <Col className={s.imageContainer}>
-          <Image
-            className={s.imageTeam}
-            src={imageTeam}
-            // preview={{
-            //   maskClassName: s.customizemask,
-            // }}
-            preview={false}
-            alt=""
-          />
+          <Image className={s.imageTeam} src={imageTeam} preview={false} alt="" />
         </Col>
 
         <Col span={24} className={s.cardContainerDescription}>
@@ -33,8 +25,17 @@ function ThemesAboutTeamCard(props) {
         </Col>
         <Col span={24}>
           <Row gutter={[50, 10]} className={s.socialMediaContainer}>
-            <LinkedinOutlined className={s.socialIcon} onClick={() => router.push(`${linkedn}`)} />
-            <MailOutlined className={s.socialIcon} />
+            {linkedin ? (
+              <LinkedinOutlined
+                className={s.socialIcon}
+                onClick={() => router.push(`${linkedin}`)}
+              />
+            ) : null}
+            {email ? (
+              <a href={`mailto:${email}`}>
+                <MailOutlined className={s.socialIcon} />
+              </a>
+            ) : null}
           </Row>
         </Col>
       </Card>
@@ -47,6 +48,8 @@ ThemesAboutTeamCard.propType = {
   name: propType.string,
   position: propType.string,
   description: propType.string,
+  linkedin: propType.string,
+  email: propType.string,
 };
 
 export default ThemesAboutTeamCard;

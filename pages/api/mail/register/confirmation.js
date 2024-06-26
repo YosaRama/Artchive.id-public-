@@ -1,15 +1,15 @@
 // Query
-import { GET_USER_BY_EMAIL } from "app/database/query/user";
+import { GET_USER_BY_EMAIL } from "dashboard/database/query/user";
 
 // Templates
-import RegisterVerification from "app/template/mail/registerVerification";
+import RegisterVerification from "dashboard/template/mail/registerVerification";
 
 // Libs
 import nextConnect from "next-connect";
-import mailer from "app/utils/mailer";
+import mailer from "dashboard/utils/mailer";
 
 // Helper
-import { hashPassword } from "app/helpers/auth";
+import { hashPassword } from "dashboard/helpers/auth";
 
 const apiHandler = nextConnect();
 

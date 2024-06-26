@@ -14,12 +14,12 @@ import ThemesHeadline from "themes/components/libs/headline";
 import ThemesButton from "themes/components/libs/button";
 
 // Data Hook
-import { useAuction } from "app/hooks/auction";
-import { useAuctionItems } from "app/hooks/auction/item";
+import { useAuction } from "dashboard/hooks/auction";
+import { useAuctionItems } from "dashboard/hooks/auction/item";
 
 // Helpers
-import { useWindowSize } from "app/helpers/useWindowSize";
-import { auction_details } from "app/database/dummy/overview.js";
+import { useWindowSize } from "dashboard/helpers/useWindowSize";
+import { auction_details } from "dashboard/database/dummy/overview.js";
 
 // Styles
 import s from "./index.module.scss";

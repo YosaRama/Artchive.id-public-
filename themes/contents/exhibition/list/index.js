@@ -1,6 +1,6 @@
 // Libs
 import { Col, Empty, Row, Spin } from "antd";
-import { useExhibitionLoad } from "app/hooks/exhibition";
+import { useExhibitionLoad } from "dashboard/hooks/exhibition";
 
 // Components
 import ThemesContainerMain from "themes/components/container/main";

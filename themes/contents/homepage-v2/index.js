@@ -15,13 +15,13 @@ import ThemesContentsHomepageV2TestimonialSection from "./testimonial-section";
 import ThemesContentsHomepageV2FaqSection from "./faq-section";
 
 // Helpers
-import { useWindowSize } from "app/helpers/useWindowSize";
+import { useWindowSize } from "dashboard/helpers/useWindowSize";
 
 // Styles
 import s from "./index.module.scss";
 
 // Dummy
-import { roleSection, offerList, faqList } from "app/database/dummy/homepage-v2";
+import { roleSection, offerList, faqList } from "dashboard/database/dummy/homepage-v2";
 
 function ThemesContentsHomepageV2(props) {
   const { artworkData, artistData, curatorialPickData, articleData, exhibitionData } = props;

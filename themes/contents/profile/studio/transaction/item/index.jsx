@@ -4,8 +4,8 @@ import propTypes from "prop-types";
 import { useRouter } from "next/router";
 
 // Helper
-import priceFormatter from "app/helpers/priceFormatter";
-import stringCapitalize from "app/helpers/capitalize";
+import priceFormatter from "dashboard/helpers/priceFormatter";
+import stringCapitalize from "dashboard/helpers/capitalize";
 
 // Styles
 import s from "./index.module.scss";

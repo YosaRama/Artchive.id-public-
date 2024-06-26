@@ -13,12 +13,12 @@ import ThemesAuctionRegisterForm from "../modal-auction-register/register-form";
 import ThemesAuctionFailed from "../auction-failed";
 
 // Helper
-import { useWindowSize } from "app/helpers/useWindowSize";
+import { useWindowSize } from "dashboard/helpers/useWindowSize";
 
 // Style
 import s from "./index.module.scss";
 
-import { useAuction } from "app/hooks/auction";
+import { useAuction } from "dashboard/hooks/auction";
 
 function ThemesModalAuctionLogin(props) {
   const { visible, handleModal } = props;

@@ -17,14 +17,14 @@ import ThemesButton from "themes/components/libs/button";
 import ThemesCheckoutLogoPayment from "themes/components/libs/checkout-logo-payment";
 
 // Helper
-import priceFormatter from "app/helpers/priceFormatter";
+import priceFormatter from "dashboard/helpers/priceFormatter";
 
 // Hooks
-import { useCarts } from "app/hooks/cart";
-import { usePayments } from "app/hooks/payment";
+import { useCarts } from "dashboard/hooks/cart";
+import { usePayments } from "dashboard/hooks/payment";
 
 // Dummy
-import { logoDummy } from "app/database/dummy/checkout-logo";
+import { logoDummy } from "dashboard/database/dummy/checkout-logo";
 
 function ThemesContentsCheckout() {
   const router = useRouter();

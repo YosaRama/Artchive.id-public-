@@ -20,10 +20,10 @@ export default PageHomepage;
 
 export async function getStaticProps(ctx) {
   //? ============== Queries ============= ?//
-  const { GET_ARTWORK } = require("app/database/query/artwork");
-  const { GET_USER } = require("app/database/query/user");
-  const { GET_ARTICLES } = require("app/database/query/articles");
-  const { GET_EXHIBITION } = require("app/database/query/exhibition");
+  const { GET_ARTWORK } = require("dashboard/database/query/artwork");
+  const { GET_USER } = require("dashboard/database/query/user");
+  const { GET_ARTICLES } = require("dashboard/database/query/articles");
+  const { GET_EXHIBITION } = require("dashboard/database/query/exhibition");
   // * ====================================== * //
 
   //? ============== Artwork Data ============= ?//

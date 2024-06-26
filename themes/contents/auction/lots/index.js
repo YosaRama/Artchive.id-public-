@@ -15,11 +15,11 @@ import ThemesModalAuctionLogin from "themes/components/libs/modal-auction-login"
 import ThemesNavbarSearchAuction from "themes/components/libs/navbar-search-auction";
 import ThemesButton from "themes/components/libs/button";
 // Hooks
-import { useAuction } from "app/hooks/auction";
-import { useAuctionItems } from "app/hooks/auction/item";
+import { useAuction } from "dashboard/hooks/auction";
+import { useAuctionItems } from "dashboard/hooks/auction/item";
 
 // Helper
-import { useWindowSize } from "app/helpers/useWindowSize";
+import { useWindowSize } from "dashboard/helpers/useWindowSize";
 import { useSession } from "next-auth/react";
 
 // Styles

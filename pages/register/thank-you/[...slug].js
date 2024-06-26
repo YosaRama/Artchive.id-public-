@@ -1,5 +1,5 @@
 // Helper
-import { verifyPassword } from "app/helpers/auth";
+import { verifyPassword } from "dashboard/helpers/auth";
 
 // Contents
 import ThemesContentsRegisterThankYou from "themes/contents/register/thank-you";

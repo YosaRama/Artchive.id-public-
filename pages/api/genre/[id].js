@@ -1,5 +1,5 @@
 // Query
-import { DELETE_GENRE, UPDATE_GENRE, GET_GENRE_BY_ID } from "app/database/query/genre";
+import { DELETE_GENRE, UPDATE_GENRE, GET_GENRE_BY_ID } from "dashboard/database/query/genre";
 
 // Helper
 import nextConnect from "next-connect";

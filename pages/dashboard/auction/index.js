@@ -2,10 +2,10 @@
 import { getSession } from "next-auth/react";
 
 // Contents
-import AppContentsAuctionList from "app/contents/auction/list";
+import AppContentsAuctionList from "dashboard/contents/auction/list";
 
 // Helpers
-import dashboardSession from "app/helpers/dashboardSession";
+import dashboardSession from "dashboard/helpers/dashboardSession";
 
 function PageDashboardAuctionList() {
   return (

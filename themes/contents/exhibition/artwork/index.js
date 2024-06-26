@@ -12,7 +12,7 @@ import ThemesDividerWithButton from "themes/components/libs/divider-with-button"
 
 // Styles
 import s from "./index.module.scss";
-import { useExhibition } from "app/hooks/exhibition";
+import { useExhibition } from "dashboard/hooks/exhibition";
 
 function ThemesContentsExhibitionArtwork(props) {
   const { artworkDetails } = props;

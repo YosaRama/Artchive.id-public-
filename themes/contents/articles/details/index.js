@@ -11,7 +11,7 @@ import ThemesContentsArticleSidebar from "./sidebar";
 
 // Styles
 import s from "./index.module.scss";
-import { useArticles } from "app/hooks/articles";
+import { useArticles } from "dashboard/hooks/articles";
 import { useState } from "react";
 
 function ThemesContentsArticlesDetails(props) {

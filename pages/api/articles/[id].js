@@ -1,5 +1,9 @@
 // Query
-import { GET_ARTICLES_BY_ID, UPDATE_ARTICLES, DELETE_ARTICLES } from "app/database/query/articles";
+import {
+  GET_ARTICLES_BY_ID,
+  UPDATE_ARTICLES,
+  DELETE_ARTICLES,
+} from "dashboard/database/query/articles";
 
 // Helper
 import nextConnect from "next-connect";

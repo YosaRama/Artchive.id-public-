@@ -9,11 +9,11 @@ import ThemesButton from "themes/components/libs/button";
 import ThemesProfileArtworkCard from "themes/components/libs/profile-artwork-card";
 
 // Helper
-import priceFormatter from "app/helpers/priceFormatter";
+import priceFormatter from "dashboard/helpers/priceFormatter";
 
 // Styles
 import s from "./index.module.scss";
-import { useArtworksLoad } from "app/hooks/artwork";
+import { useArtworksLoad } from "dashboard/hooks/artwork";
 
 function ThemesContentsProfileStudioList(props) {
   const { artistId } = props;

@@ -1,5 +1,5 @@
 // Query
-import { CREATE_DATA, GET_DATA } from "app/database/query/_template";
+import { CREATE_DATA, GET_DATA } from "dashboard/database/query/_template";
 
 // Helper
 import nextConnect from "next-connect";

@@ -12,13 +12,13 @@ import ThemesButton from "themes/components/libs/button";
 import ThemesRadioWithImage from "themes/components/libs/radio-with-image";
 
 // Helper
-import { passwordFormRules } from "app/helpers/passwordFormRules";
-import { stringCapitalize } from "app/helpers/capitalize";
-import { hashPassword } from "app/helpers/auth";
+import { passwordFormRules } from "dashboard/helpers/passwordFormRules";
+import { stringCapitalize } from "dashboard/helpers/capitalize";
+import { hashPassword } from "dashboard/helpers/auth";
 
 // Data Hook
-import { useUsers } from "app/hooks/user";
-import { useMailer } from "app/hooks/mailer";
+import { useUsers } from "dashboard/hooks/user";
+import { useMailer } from "dashboard/hooks/mailer";
 
 // Styles
 import s from "./index.module.scss";

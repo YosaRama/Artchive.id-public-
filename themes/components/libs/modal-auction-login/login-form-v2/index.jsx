@@ -10,8 +10,8 @@ import { useRouter } from "next/router";
 import ThemesButton from "../../button";
 
 // Helper
-import { useWindowSize } from "app/helpers/useWindowSize";
-import { ErrorNotification } from "app/components/utils/notification";
+import { useWindowSize } from "dashboard/helpers/useWindowSize";
+import { ErrorNotification } from "dashboard/components/utils/notification";
 
 // Style
 import s from "./index.module.scss";

@@ -1,9 +1,9 @@
 // Templates
-import ContactEmail from "app/template/mail/contactEmail";
+import ContactEmail from "dashboard/template/mail/contactEmail";
 
 // Libs
 import nextConnect from "next-connect";
-import mailer from "app/utils/mailer";
+import mailer from "dashboard/utils/mailer";
 
 const apiHandler = nextConnect();
 

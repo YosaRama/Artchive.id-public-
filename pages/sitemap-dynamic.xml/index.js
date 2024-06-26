@@ -2,8 +2,8 @@
 import { getServerSideSitemap } from "next-sitemap";
 
 // Queries
-import { GET_ALL_ARTWORK_SLUG } from "app/database/query/artwork";
-import { GET_ALL_ARTIST_SLUG } from "app/database/query/user";
+import { GET_ALL_ARTWORK_SLUG } from "dashboard/database/query/artwork";
+import { GET_ALL_ARTIST_SLUG } from "dashboard/database/query/user";
 
 function SitemapDynamic() {}
 

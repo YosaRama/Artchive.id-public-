@@ -8,7 +8,7 @@ import { Spin } from "antd";
 import { useRouter } from "next/router";
 
 // Helper
-import { useWindowSize } from "app/helpers/useWindowSize";
+import { useWindowSize } from "dashboard/helpers/useWindowSize";
 
 // Style
 import s from "./index.module.scss";

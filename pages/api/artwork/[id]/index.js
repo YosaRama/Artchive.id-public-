@@ -2,10 +2,14 @@
 import nextConnect from "next-connect";
 
 // Query
-import { GET_ARTWORK_BY_ID, UPDATE_ARTWORK, DELETE_ARTWORK } from "app/database/query/artwork";
+import {
+  GET_ARTWORK_BY_ID,
+  UPDATE_ARTWORK,
+  DELETE_ARTWORK,
+} from "dashboard/database/query/artwork";
 
 // Helper
-import { stringCapitalize } from "app/helpers/capitalize";
+import { stringCapitalize } from "dashboard/helpers/capitalize";
 
 const apiHandler = nextConnect();
 const messageHead = "artwork";

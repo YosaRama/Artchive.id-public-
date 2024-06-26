@@ -1,11 +1,11 @@
 // Libs
 import { getSession } from "next-auth/react";
-import dashboardSession from "app/helpers/dashboardSession";
+import dashboardSession from "dashboard/helpers/dashboardSession";
 
-import { useAuction } from "app/hooks/auction";
+import { useAuction } from "dashboard/hooks/auction";
 
 // Contents
-import AppContentsAuctionDetails from "app/contents/auction/details";
+import AppContentsAuctionDetails from "dashboard/contents/auction/details";
 
 function PageDashboardExhibitionDetails(props) {
   return (

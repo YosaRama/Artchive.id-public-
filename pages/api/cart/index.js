@@ -1,5 +1,5 @@
 // Query
-import { GET_CART_BY_USER_ID, CREATE_CART } from "app/database/query/cart";
+import { GET_CART_BY_USER_ID, CREATE_CART } from "dashboard/database/query/cart";
 
 // Helper
 import nextConnect from "next-connect";

@@ -1,5 +1,5 @@
 // Query
-import { GET_GENRE, CREATE_GENRE, GET_TOTAL_GENRE } from "app/database/query/genre";
+import { GET_GENRE, CREATE_GENRE, GET_TOTAL_GENRE } from "dashboard/database/query/genre";
 
 // Helper
 import nextConnect from "next-connect";

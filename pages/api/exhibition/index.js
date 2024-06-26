@@ -4,8 +4,8 @@ import nextConnect from "next-connect";
 const apiHandler = nextConnect();
 
 // Helper
-import { slugParse } from "app/helpers/slugParse";
-import { stringCapitalize } from "app/helpers/capitalize";
+import { slugParse } from "dashboard/helpers/slugParse";
+import { stringCapitalize } from "dashboard/helpers/capitalize";
 
 // Queries
 import {
@@ -13,7 +13,7 @@ import {
   GET_EXHIBITION,
   GET_TOTAL_EXHIBITION,
   CHECK_EXHIBITION_BY_SLUG,
-} from "app/database/query/exhibition";
+} from "dashboard/database/query/exhibition";
 
 const messageHead = "exhibition";
 

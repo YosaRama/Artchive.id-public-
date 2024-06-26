@@ -5,7 +5,7 @@ import { Col, Form, Radio, Row } from "antd";
 import { useRouter } from "next/router";
 
 // Data Hook
-import { useUser } from "app/hooks/user";
+import { useUser } from "dashboard/hooks/user";
 
 // Components
 import ThemesContainerMain from "themes/components/container/main";

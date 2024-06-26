@@ -3,13 +3,13 @@ import moment from "moment";
 import { getSession } from "next-auth/react";
 
 // Data
-import { GET_ARTWORK_BY_ID } from "app/database/query/artwork";
+import { GET_ARTWORK_BY_ID } from "dashboard/database/query/artwork";
 
 // Contents
-import AppContentsArtworkDetails from "app/contents/artwork/details";
+import AppContentsArtworkDetails from "dashboard/contents/artwork/details";
 
 // Helpers
-import dashboardSession from "app/helpers/dashboardSession";
+import dashboardSession from "dashboard/helpers/dashboardSession";
 
 function PageDashboardArtworksDetails(props) {
   return (

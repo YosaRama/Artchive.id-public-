@@ -4,7 +4,7 @@ import propTypes from "prop-types";
 import { Badge, Col, Divider, Image } from "antd";
 
 // Helper
-import priceFormatter from "app/helpers/priceFormatter";
+import priceFormatter from "dashboard/helpers/priceFormatter";
 
 // Styles
 import s from "./index.module.scss";

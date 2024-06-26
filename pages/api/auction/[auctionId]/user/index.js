@@ -1,6 +1,6 @@
 // Helper
-import { GET_AUCTION_DETAILS_USER_LIST } from "app/database/query/auction";
-import auctioo from "app/utils/auctioo";
+import { GET_AUCTION_DETAILS_USER_LIST } from "dashboard/database/query/auction";
+import auctioo from "dashboard/utils/auctioo";
 import nextConnect from "next-connect";
 
 const apiHandler = nextConnect();

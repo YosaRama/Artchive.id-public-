@@ -7,7 +7,7 @@ import ThemesButton from "themes/components/libs/button";
 import { useEffect, useState } from "react";
 
 // Data Hook
-import { useMailer } from "app/hooks/mailer";
+import { useMailer } from "dashboard/hooks/mailer";
 
 // Styles
 import s from "./index.module.scss";

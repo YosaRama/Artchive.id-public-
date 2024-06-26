@@ -7,8 +7,8 @@ import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
 
 // Helper
-import { verifyPassword } from "app/helpers/auth";
-import { slugParse } from "app/helpers/slugParse";
+import { verifyPassword } from "dashboard/helpers/auth";
+import { slugParse } from "dashboard/helpers/slugParse";
 
 // Query
 import {
@@ -16,8 +16,8 @@ import {
   CREATE_USER,
   CHECK_USER_BY_SLUG,
   GET_USER_BY_PHONE_NUMBER,
-} from "app/database/query/user";
-import { GET_AUCTION_DETAILS_USER_LIST } from "app/database/query/auction";
+} from "dashboard/database/query/user";
+import { GET_AUCTION_DETAILS_USER_LIST } from "dashboard/database/query/auction";
 
 export default NextAuth({
   session: {

@@ -5,12 +5,12 @@ import {
   GET_TOTAL_USER,
   GET_USER,
   GET_USER_BY_EMAIL,
-} from "app/database/query/user";
+} from "dashboard/database/query/user";
 
 // Libs
-import { hashPassword } from "app/helpers/auth";
+import { hashPassword } from "dashboard/helpers/auth";
 import nextConnect from "next-connect";
-import { slugParse } from "app/helpers/slugParse";
+import { slugParse } from "dashboard/helpers/slugParse";
 
 const apiHandler = nextConnect();
 const messageHead = "Users";

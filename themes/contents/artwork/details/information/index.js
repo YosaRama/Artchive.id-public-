@@ -13,11 +13,11 @@ import ThemesLoginModal from "themes/components/libs/login-modal";
 import ThemesVerifiedIcon from "themes/components/libs/verified-icon";
 
 // Helper
-import { stringCapitalize } from "app/helpers/capitalize";
-import priceFormatter from "app/helpers/priceFormatter";
+import { stringCapitalize } from "dashboard/helpers/capitalize";
+import priceFormatter from "dashboard/helpers/priceFormatter";
 
 // Hooks
-import { useCarts } from "app/hooks/cart";
+import { useCarts } from "dashboard/hooks/cart";
 
 // Icons
 import { WhatsappIcon } from "public/icons/whatsapp-icon";

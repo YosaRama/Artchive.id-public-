@@ -8,7 +8,7 @@ import { HideOn } from "react-hide-on-scroll";
 import ThemesNavbarDrawer from "themes/components/libs/navbar-drawer";
 
 // Styles
-import { fadeTopToBottom, fadeBottomToTop } from "app/database/framer-motion";
+import { fadeTopToBottom, fadeBottomToTop } from "dashboard/database/framer-motion";
 
 // Dummy
 import ThemesHeaderItem from "./header-item";

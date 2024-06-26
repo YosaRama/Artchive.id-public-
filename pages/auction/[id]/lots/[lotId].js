@@ -6,7 +6,7 @@ import ThemesContainerAuction from "themes/components/container/auction";
 import ThemesContentsAuctionArtwork from "themes/contents/auction/artwork";
 
 // Helper
-import auctionSession from "app/helpers/auctionSession";
+import auctionSession from "dashboard/helpers/auctionSession";
 
 function PageArtworkOnAuctionDetails() {
   return (

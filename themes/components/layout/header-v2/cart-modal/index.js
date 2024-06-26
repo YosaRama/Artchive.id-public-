@@ -10,10 +10,10 @@ import ThemesCartModalItemDesc from "themes/components/libs/cart-modal/cart-moda
 import ThemesButton from "themes/components/libs/button";
 
 // Hooks
-import { useCarts } from "app/hooks/cart";
+import { useCarts } from "dashboard/hooks/cart";
 
 // Helpers
-import priceFormatter from "app/helpers/priceFormatter";
+import priceFormatter from "dashboard/helpers/priceFormatter";
 
 // Icons
 import { CartIcon } from "public/icons/cart-icon";

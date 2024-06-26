@@ -4,7 +4,7 @@ import { Col, Row, Image, Button } from "antd";
 import { useState } from "react";
 
 // Helper
-import { useWindowSize } from "app/helpers/useWindowSize";
+import { useWindowSize } from "dashboard/helpers/useWindowSize";
 
 // Styles
 import s from "./index.module.scss";

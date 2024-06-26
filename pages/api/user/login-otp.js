@@ -1,7 +1,7 @@
 // Query
-import { GET_USER_BY_PHONE_NUMBER, UPDATE_USER_OTP } from "app/database/query/user";
-import { generateOtp } from "app/utils/otp-generator";
-import { sendOtpMessage } from "app/utils/whatsapp";
+import { GET_USER_BY_PHONE_NUMBER, UPDATE_USER_OTP } from "dashboard/database/query/user";
+import { generateOtp } from "dashboard/utils/otp-generator";
+import { sendOtpMessage } from "dashboard/utils/whatsapp";
 
 // Helper
 import nextConnect from "next-connect";

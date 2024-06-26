@@ -7,7 +7,7 @@ const messageHead = "Artwork on Exhibitions";
 import {
   UPDATE_EXHIBITION_ARTWORK,
   DELETE_EXHIBITION_ARTWORK,
-} from "app/database/query/exhibition";
+} from "dashboard/database/query/exhibition";
 
 apiHandler.put(async (req, res) => {
   const id = req.query.id;

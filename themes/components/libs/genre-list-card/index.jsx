@@ -3,7 +3,7 @@ import { Col, Image, Row, Divider, Select } from "antd";
 import { useEffect, useMemo, useState } from "react";
 
 // Hooks
-import { useGenres } from "app/hooks/genre";
+import { useGenres } from "dashboard/hooks/genre";
 
 // Styles
 import s from "./index.module.scss";

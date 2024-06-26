@@ -11,7 +11,7 @@ import ThemesContainerMain from "themes/components/container/main";
 import ThemesNavbarDrawerAuction from "themes/components/libs/navbar-drawer-auction";
 
 // Helpers
-import { useWindowSize } from "app/helpers/useWindowSize";
+import { useWindowSize } from "dashboard/helpers/useWindowSize";
 
 // Styles
 import s from "./index.module.scss";

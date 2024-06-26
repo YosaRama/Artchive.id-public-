@@ -1,4 +1,4 @@
-import auctioo from "app/utils/auctioo";
+import auctioo from "dashboard/utils/auctioo";
 import nextConnect from "next-connect";
 
 const apiHandler = nextConnect();

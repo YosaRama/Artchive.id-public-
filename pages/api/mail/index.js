@@ -1,9 +1,9 @@
 // Templates
-import RegisterVerification from "app/template/mail/registerVerification";
+import RegisterVerification from "dashboard/template/mail/registerVerification";
 
 // Libs
 import nextConnect from "next-connect";
-import mailer from "app/utils/mailer";
+import mailer from "dashboard/utils/mailer";
 
 const apiHandler = nextConnect();
 

@@ -4,7 +4,7 @@ import { Col, Drawer, Row, Collapse, Input, Radio, Divider, Checkbox } from "ant
 import { useRouter } from "next/router";
 
 // Helper
-import { useWindowSize } from "app/helpers/useWindowSize";
+import { useWindowSize } from "dashboard/helpers/useWindowSize";
 
 // Styles
 import s from "./index.module.scss";

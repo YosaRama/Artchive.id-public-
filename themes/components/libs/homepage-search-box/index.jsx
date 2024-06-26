@@ -3,7 +3,7 @@ import { Col } from "antd";
 import { useSession } from "next-auth/react";
 
 // Helper
-import { useWindowSize } from "app/helpers/useWindowSize";
+import { useWindowSize } from "dashboard/helpers/useWindowSize";
 
 //Components
 import ThemeArtistSearchBox from "../artist-search-box";

@@ -2,11 +2,11 @@
 import moment from "moment";
 
 // Query
-import { CHECK_USER_BY_SLUG, CREATE_USER } from "app/database/query/user";
+import { CHECK_USER_BY_SLUG, CREATE_USER } from "dashboard/database/query/user";
 
 // Helper
 import nextConnect from "next-connect";
-import { slugParse } from "app/helpers/slugParse";
+import { slugParse } from "dashboard/helpers/slugParse";
 
 const apiHandler = nextConnect();
 
