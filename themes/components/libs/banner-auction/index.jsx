@@ -6,9 +6,9 @@ import moment from "moment";
 
 // Helper
 import { useSession } from "next-auth/react";
-import { useWindowSize } from "app/helpers/useWindowSize";
-import nameAbbreviation from "app/helpers/nameAbbreviation";
-import { auction_details } from "app/database/dummy/overview";
+import { useWindowSize } from "dashboard/helpers/useWindowSize";
+import nameAbbreviation from "dashboard/helpers/nameAbbreviation";
+import { auction_details } from "dashboard/database/dummy/overview";
 
 // Style
 import s from "./index.module.scss";

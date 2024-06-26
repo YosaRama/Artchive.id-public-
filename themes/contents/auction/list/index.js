@@ -7,10 +7,10 @@ import ThemesBanner from "themes/components/libs/banner";
 import ThemesAuctionCard from "themes/components/libs/auction-card-list";
 
 // Data Hook
-import { useAuctions } from "app/hooks/auction";
+import { useAuctions } from "dashboard/hooks/auction";
 
 // Helpers
-import { useWindowSize } from "app/helpers/useWindowSize";
+import { useWindowSize } from "dashboard/helpers/useWindowSize";
 
 // Styles
 import s from "./index.module.scss";

@@ -4,10 +4,10 @@ import {
   GET_USER_BY_ID,
   UPDATE_USER,
   UPDATE_USER_PASSWORD,
-} from "app/database/query/user";
+} from "dashboard/database/query/user";
 
 // Libs
-import { hashPassword } from "app/helpers/auth";
+import { hashPassword } from "dashboard/helpers/auth";
 import nextConnect from "next-connect";
 
 const apiHandler = nextConnect();

@@ -17,7 +17,7 @@ import ThemesThumbnailCard from "themes/components/libs/thumbnail-card";
 import ThemesArticleCard from "themes/components/libs/article-card";
 
 // Helper
-import { useWindowSize } from "app/helpers/useWindowSize";
+import { useWindowSize } from "dashboard/helpers/useWindowSize";
 
 // Styles
 import s from "./index.module.scss";

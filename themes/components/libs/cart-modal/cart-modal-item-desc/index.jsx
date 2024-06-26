@@ -5,10 +5,10 @@ import propTypes from "prop-types";
 import { useSession } from "next-auth/react";
 
 // Hooks
-import { useCarts } from "app/hooks/cart";
+import { useCarts } from "dashboard/hooks/cart";
 
 // Helpers
-import priceFormatter from "app/helpers/priceFormatter";
+import priceFormatter from "dashboard/helpers/priceFormatter";
 
 //Styles
 import s from "./index.module.scss";

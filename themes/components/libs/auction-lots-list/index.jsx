@@ -7,9 +7,9 @@ import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 
 // Helper
-import priceFormatter from "app/helpers/priceFormatter";
-import stringCapitalize from "app/helpers/capitalize";
-import { useWindowSize } from "app/helpers/useWindowSize";
+import priceFormatter from "dashboard/helpers/priceFormatter";
+import stringCapitalize from "dashboard/helpers/capitalize";
+import { useWindowSize } from "dashboard/helpers/useWindowSize";
 
 // Components
 import ThemesButton from "../button";

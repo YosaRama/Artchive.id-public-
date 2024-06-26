@@ -3,11 +3,11 @@ import { Col, Row, Image, Divider } from "antd";
 import propTypes from "prop-types";
 
 // Helper
-import priceFormatter from "app/helpers/priceFormatter";
-import stringCapitalize from "app/helpers/capitalize";
+import priceFormatter from "dashboard/helpers/priceFormatter";
+import stringCapitalize from "dashboard/helpers/capitalize";
 
 // Hooks
-import { useWindowSize } from "app/helpers/useWindowSize";
+import { useWindowSize } from "dashboard/helpers/useWindowSize";
 
 // Styles
 import s from "./index.module.scss";

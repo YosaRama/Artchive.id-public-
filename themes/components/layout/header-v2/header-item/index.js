@@ -16,11 +16,11 @@ import ThemesButton from "themes/components/libs/button";
 import ThemesNavbarDrawer from "themes/components/libs/navbar-drawer";
 
 // Helpers
-import { useWindowSize } from "app/helpers/useWindowSize";
+import { useWindowSize } from "dashboard/helpers/useWindowSize";
 
 // Hooks
-import { useCarts } from "app/hooks/cart";
-import { useUser } from "app/hooks/user";
+import { useCarts } from "dashboard/hooks/cart";
+import { useUser } from "dashboard/hooks/user";
 
 // Styles
 import s from "./index.module.scss";

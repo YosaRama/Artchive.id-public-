@@ -4,11 +4,11 @@ import {
   CREATE_ARTWORK,
   GET_TOTAL_ARTWORK,
   CHECK_ARTWORK_BY_SLUG,
-} from "app/database/query/artwork";
-import { stringCapitalize } from "app/helpers/capitalize";
+} from "dashboard/database/query/artwork";
+import { stringCapitalize } from "dashboard/helpers/capitalize";
 
 // Libs
-import { slugParse } from "app/helpers/slugParse";
+import { slugParse } from "dashboard/helpers/slugParse";
 import nextConnect from "next-connect";
 
 const apiHandler = nextConnect();

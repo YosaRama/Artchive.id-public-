@@ -18,22 +18,22 @@ import moment from "moment";
 const { Option } = Select;
 
 // Data Hook
-import { useUploads } from "app/hooks/upload";
-import { useArtwork } from "app/hooks/artwork";
-import { useGenres } from "app/hooks/genre";
+import { useUploads } from "dashboard/hooks/upload";
+import { useArtwork } from "dashboard/hooks/artwork";
+import { useGenres } from "dashboard/hooks/genre";
 
 // Components
 import ThemesHeadline from "themes/components/libs/headline";
 import ThemesButton from "themes/components/libs/button";
-import AppUploadBox from "app/components/libs/upload-box";
-import AppUploadButton from "app/components/libs/upload-button";
-import AppFormArtworkPrice from "app/components/libs/form-artwork-price";
-import AppFormArtworkMaterial from "app/components/libs/form-artwork-material";
-import deleteConfirmModal from "app/components/utils/delete-modal-confirm";
-import { WarningNotification } from "app/components/utils/notification";
+import AppUploadBox from "dashboard/components/libs/upload-box";
+import AppUploadButton from "dashboard/components/libs/upload-button";
+import AppFormArtworkPrice from "dashboard/components/libs/form-artwork-price";
+import AppFormArtworkMaterial from "dashboard/components/libs/form-artwork-material";
+import deleteConfirmModal from "dashboard/components/utils/delete-modal-confirm";
+import { WarningNotification } from "dashboard/components/utils/notification";
 
 // Helpers
-import priceFormatter from "app/helpers/priceFormatter";
+import priceFormatter from "dashboard/helpers/priceFormatter";
 
 // Styles
 import s from "./index.module.scss";

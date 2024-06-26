@@ -3,7 +3,7 @@ import ThemesModalAuctionLogin from "themes/components/libs/modal-auction-login"
 import { useRouter } from "next/router";
 import moment from "moment";
 
-import { useAuction } from "app/hooks/auction";
+import { useAuction } from "dashboard/hooks/auction";
 import { useState } from "react";
 
 function ThemesContainerAuction(props) {

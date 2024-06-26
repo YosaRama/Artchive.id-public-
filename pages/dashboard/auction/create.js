@@ -2,10 +2,10 @@
 import { getSession } from "next-auth/react";
 
 // Contents
-import AppContentsAuctionCreate from "app/contents/auction/create";
+import AppContentsAuctionCreate from "dashboard/contents/auction/create";
 
 // Helpers
-import dashboardSession from "app/helpers/dashboardSession";
+import dashboardSession from "dashboard/helpers/dashboardSession";
 
 function PageDashboardAuctionCreate() {
   return (

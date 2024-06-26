@@ -12,7 +12,7 @@ import ThemesContainerMain from "themes/components/container/main";
 import { ThankyouIcon } from "public/icons/thankyou-icon";
 
 // Hooks
-import { useOrderLoad } from "app/hooks/order";
+import { useOrderLoad } from "dashboard/hooks/order";
 
 // Styles
 import s from "./index.module.scss";

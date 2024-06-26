@@ -10,8 +10,8 @@ const apiHandler = nextConnect();
 import aws from "aws-sdk";
 
 // Template
-import certificateTemplate from "app/template/certificateTemplate";
-import { CREATE_CERTIFICATE, GET_CERTIFICATE_LAST_ID } from "app/database/query/certificate";
+import certificateTemplate from "dashboard/template/certificateTemplate";
+import { CREATE_CERTIFICATE, GET_CERTIFICATE_LAST_ID } from "dashboard/database/query/certificate";
 
 //? ============== AWS CONFIGURATION ============= ?//
 

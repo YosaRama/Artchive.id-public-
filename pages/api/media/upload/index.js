@@ -10,7 +10,7 @@ import multerS3Sharp from "multer-sharp-s3";
 import aws from "aws-sdk";
 
 // Queries
-import { CREATE_MAIN_MEDIA } from "app/database/query/media";
+import { CREATE_MAIN_MEDIA } from "dashboard/database/query/media";
 
 const apiHandler = nextConnect();
 

@@ -1,14 +1,14 @@
 // Libs
 // import { Col, Image } from "antd";
 import { motion } from "framer-motion";
-import { fadeTopToBottom } from "app/database/framer-motion";
+import { fadeTopToBottom } from "dashboard/database/framer-motion";
 
 // Components
 import ThemesBanner from "themes/components/libs/banner";
 import ThemesHomepageSearchBox from "themes/components/libs/homepage-search-box";
 
 // Hooks
-// import { useArtwork } from "app/hooks/artwork";
+// import { useArtwork } from "dashboard/hooks/artwork";
 
 // Styles
 import s from "./index.module.scss";

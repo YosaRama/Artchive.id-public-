@@ -1,5 +1,5 @@
 // Query
-import { GET_ORDER, GET_TOTAL_ORDER } from "app/database/query/order";
+import { GET_ORDER, GET_TOTAL_ORDER } from "dashboard/database/query/order";
 
 // Helper
 import nextConnect from "next-connect";

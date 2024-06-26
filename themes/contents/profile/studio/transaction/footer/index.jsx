@@ -7,8 +7,8 @@ import { DownloadOutlined } from "@ant-design/icons";
 import ThemesButton from "themes/components/libs/button";
 
 // Helper
-import priceFormatter from "app/helpers/priceFormatter";
-import { useWindowSize } from "app/helpers/useWindowSize";
+import priceFormatter from "dashboard/helpers/priceFormatter";
+import { useWindowSize } from "dashboard/helpers/useWindowSize";
 
 // Styles
 import s from "./index.module.scss";

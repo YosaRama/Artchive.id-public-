@@ -15,7 +15,7 @@ import ThemesDividerWithButton from "themes/components/libs/divider-with-button"
 import ThemesHeadline from "themes/components/libs/headline";
 
 // Data Hook
-import { useArtworks } from "app/hooks/artwork";
+import { useArtworks } from "dashboard/hooks/artwork";
 
 // Styles
 import s from "./index.module.scss";

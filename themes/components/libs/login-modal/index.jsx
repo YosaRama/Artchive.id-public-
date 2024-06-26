@@ -26,21 +26,21 @@ import ThemesContainerMain from "themes/components/container/main";
 import ThemesContainerTwoColumns from "themes/components/container/two-column";
 import ThemesButton from "themes/components/libs/button";
 import ThemesRadioWithImageModalLogin from "themes/components/libs/login-modal/radio-login-modal";
-import { ErrorNotification, WarningNotification } from "app/components/utils/notification";
+import { ErrorNotification, WarningNotification } from "dashboard/components/utils/notification";
 
 // Hooks
-import { useUsers } from "app/hooks/user";
+import { useUsers } from "dashboard/hooks/user";
 
-import { useMailer } from "app/hooks/mailer";
+import { useMailer } from "dashboard/hooks/mailer";
 
 // Helper
-import { passwordFormRules } from "app/helpers/passwordFormRules";
-import { stringCapitalize } from "app/helpers/capitalize";
-import { hashPassword } from "app/helpers/auth";
+import { passwordFormRules } from "dashboard/helpers/passwordFormRules";
+import { stringCapitalize } from "dashboard/helpers/capitalize";
+import { hashPassword } from "dashboard/helpers/auth";
 
 // Styles
 import s from "./index.module.scss";
-import { useWindowSize } from "app/helpers/useWindowSize";
+import { useWindowSize } from "dashboard/helpers/useWindowSize";
 
 function ThemesLoginModal(props) {
   const { visible, onCancel } = props;

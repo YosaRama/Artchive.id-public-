@@ -6,7 +6,7 @@ import {
   GET_EXHIBITION_BY_ID,
   UPDATE_EXHIBITION_DETAILS,
   DELETE_EXHIBITION,
-} from "app/database/query/exhibition";
+} from "dashboard/database/query/exhibition";
 
 // Helper
 import nextConnect from "next-connect";

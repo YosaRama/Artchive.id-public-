@@ -2,10 +2,10 @@
 import { getSession } from "next-auth/react";
 
 // Contents
-import AppContentsGenreList from "app/contents/genre/list";
+import AppContentsGenreList from "dashboard/contents/genre/list";
 
 // Helpers
-import dashboardSession from "app/helpers/dashboardSession";
+import dashboardSession from "dashboard/helpers/dashboardSession";
 
 function PageDashboardGenreList() {
   return (

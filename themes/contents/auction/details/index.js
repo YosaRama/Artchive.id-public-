@@ -11,10 +11,10 @@ import ThemesBannerAuctionItem from "themes/components/libs/banner-auction";
 import ThemesCuratorCard from "themes/components/libs/curator-card";
 
 // Hooks
-import { useAuction } from "app/hooks/auction";
+import { useAuction } from "dashboard/hooks/auction";
 
 // Dummy
-import { auctionList } from "app/database/dummy/auction-list";
+import { auctionList } from "dashboard/database/dummy/auction-list";
 
 // Styles
 import s from "./index.module.scss";

@@ -16,16 +16,16 @@ import ThemesButton from "themes/components/libs/button";
 import ThemesNoData from "themes/components/libs/no-data";
 
 // Data Hook
-import { useArtworksLoad } from "app/hooks/artwork";
-import { useUsers } from "app/hooks/user";
-import { useGenre, useGenres } from "app/hooks/genre";
+import { useArtworksLoad } from "dashboard/hooks/artwork";
+import { useUsers } from "dashboard/hooks/user";
+import { useGenre, useGenres } from "dashboard/hooks/genre";
 
 // Helpers
-import { useWindowSize } from "app/helpers/useWindowSize";
+import { useWindowSize } from "dashboard/helpers/useWindowSize";
 
 // Styles
 import s from "./index.module.scss";
-import { searchCollapse } from "app/database/framer-motion";
+import { searchCollapse } from "dashboard/database/framer-motion";
 
 function ThemesContentsArtworkList() {
   const router = useRouter();

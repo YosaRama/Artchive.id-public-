@@ -2,10 +2,10 @@
 import { getSession } from "next-auth/react";
 
 // Contents
-import AppContentsUserListArtist from "app/contents/user/list/artist";
+import AppContentsUserListArtist from "dashboard/contents/user/list/artist";
 
 // Helpers
-import dashboardSession from "app/helpers/dashboardSession";
+import dashboardSession from "dashboard/helpers/dashboardSession";
 
 function PageDashboardUsersArtistList() {
   return (

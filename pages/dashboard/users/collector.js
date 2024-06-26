@@ -2,10 +2,10 @@
 import { getSession } from "next-auth/react";
 
 // Contents
-import AppContentsUserListCollector from "app/contents/user/list/collector";
+import AppContentsUserListCollector from "dashboard/contents/user/list/collector";
 
 // Helpers
-import dashboardSession from "app/helpers/dashboardSession";
+import dashboardSession from "dashboard/helpers/dashboardSession";
 
 function PageDashboardUsersCollectorList() {
   return (

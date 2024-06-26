@@ -5,17 +5,17 @@ import { Col, DatePicker, Divider, Form, Image, Input, Row } from "antd";
 import { signOut } from "next-auth/react";
 
 // Data Hook
-import { useUser } from "app/hooks/user";
-import { useUploads } from "app/hooks/upload";
+import { useUser } from "dashboard/hooks/user";
+import { useUploads } from "dashboard/hooks/upload";
 
 // Components
-import AppUploadButton from "app/components/libs/upload-button";
+import AppUploadButton from "dashboard/components/libs/upload-button";
 import ThemesButton from "themes/components/libs/button";
-import changeConfirmModal from "app/components/utils/change-modal-confirm";
+import changeConfirmModal from "dashboard/components/utils/change-modal-confirm";
 import ThemesHeadline from "themes/components/libs/headline";
 
 // Helper
-import { passwordFormRules } from "app/helpers/passwordFormRules";
+import { passwordFormRules } from "dashboard/helpers/passwordFormRules";
 
 // Styles
 import s from "./index.module.scss";

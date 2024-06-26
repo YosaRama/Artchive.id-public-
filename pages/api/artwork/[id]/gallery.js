@@ -1,5 +1,5 @@
 // Query
-import { CREATE_ARTWORK_GALLERY, DELETE_ARTWORK_GALLERY } from "app/database/query/artwork";
+import { CREATE_ARTWORK_GALLERY, DELETE_ARTWORK_GALLERY } from "dashboard/database/query/artwork";
 
 // Helper
 import nextConnect from "next-connect";

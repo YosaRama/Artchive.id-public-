@@ -13,14 +13,14 @@ import ThemesBanner from "themes/components/libs/banner";
 import ThemesButton from "themes/components/libs/button";
 
 // Data Hook
-import { useUsersLoad } from "app/hooks/user";
+import { useUsersLoad } from "dashboard/hooks/user";
 
 // Helpers
-import { useWindowSize } from "app/helpers/useWindowSize";
+import { useWindowSize } from "dashboard/helpers/useWindowSize";
 
 // Styles
 import s from "./index.module.scss";
-import { searchCollapse } from "app/database/framer-motion";
+import { searchCollapse } from "dashboard/database/framer-motion";
 
 function ThemesContentsArtistList(props) {
   const router = useRouter();

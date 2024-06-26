@@ -1,9 +1,9 @@
 // Templates
-import RegisterWelcomeEmail from "app/template/mail/welcomeEmail";
+import RegisterWelcomeEmail from "dashboard/template/mail/welcomeEmail";
 
 // Libs
 import nextConnect from "next-connect";
-import mailer from "app/utils/mailer";
+import mailer from "dashboard/utils/mailer";
 
 const apiHandler = nextConnect();
 

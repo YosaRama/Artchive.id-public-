@@ -1,5 +1,5 @@
 // Query
-import { UPDATE_ARTWORK_COVER_IMAGE } from "app/database/query/artwork";
+import { UPDATE_ARTWORK_COVER_IMAGE } from "dashboard/database/query/artwork";
 
 // Helper
 import nextConnect from "next-connect";

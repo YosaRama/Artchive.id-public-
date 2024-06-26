@@ -2,10 +2,10 @@
 import { getSession } from "next-auth/react";
 
 // Contents
-import AppContentsGenreCreate from "app/contents/genre/create";
+import AppContentsGenreCreate from "dashboard/contents/genre/create";
 
 // Helpers
-import dashboardSession from "app/helpers/dashboardSession";
+import dashboardSession from "dashboard/helpers/dashboardSession";
 
 function PageDashboardGenreCreate() {
   return (

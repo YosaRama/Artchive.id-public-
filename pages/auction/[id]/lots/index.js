@@ -2,8 +2,8 @@
 import moment from "moment";
 
 // Dummy
-import { auctionList } from "app/database/dummy/auction-list";
-import { useAuction } from "app/hooks/auction";
+import { auctionList } from "dashboard/database/dummy/auction-list";
+import { useAuction } from "dashboard/hooks/auction";
 
 // Contents
 import ThemesContentsAuctionDetailsLots from "themes/contents/auction/lots";

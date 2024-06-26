@@ -4,14 +4,14 @@ import {
   GET_TOTAL_ARTICLES,
   CREATE_ARTICLES,
   CHECK_ARTICLE_BY_SLUG,
-} from "app/database/query/articles";
+} from "dashboard/database/query/articles";
 
 // Libs
 import nextConnect from "next-connect";
 
 // Helper
-import { stringCapitalize } from "app/helpers/capitalize";
-import { slugParse } from "app/helpers/slugParse";
+import { stringCapitalize } from "dashboard/helpers/capitalize";
+import { slugParse } from "dashboard/helpers/slugParse";
 
 const apiHandler = nextConnect();
 const messageHead = "Articles";

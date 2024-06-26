@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 // Styles
 import s from "./index.module.scss";
-import { fadingLeftToRight } from "app/database/framer-motion";
+import { fadingLeftToRight } from "dashboard/database/framer-motion";
 
 // Icons
 import { MobileAccountIcon } from "public/icons/mobile-account-icon";

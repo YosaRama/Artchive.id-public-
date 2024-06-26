@@ -5,9 +5,9 @@ import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 
 // Helper
-import priceFormatter from "/app/helpers/priceFormatter.js";
-import stringCapitalize from "app/helpers/capitalize";
-import { useWindowSize } from "app/helpers/useWindowSize";
+import priceFormatter from "dashboard/helpers/priceFormatter.js";
+import stringCapitalize from "dashboard/helpers/capitalize";
+import { useWindowSize } from "dashboard/helpers/useWindowSize";
 
 // Icons
 import { BsTruck } from "react-icons/bs";
@@ -15,7 +15,7 @@ import { AiFillDelete, AiFillHeart } from "react-icons/ai";
 import { InfoCircleOutlined } from "@ant-design/icons";
 
 // Hooks
-import { useCarts } from "app/hooks/cart";
+import { useCarts } from "dashboard/hooks/cart";
 
 // Styles
 import s from "./index.module.scss";

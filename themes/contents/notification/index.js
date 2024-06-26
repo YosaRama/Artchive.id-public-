@@ -8,7 +8,7 @@ import ThemesContainerMain from "themes/components/container/main";
 import ThemesNotificationItem from "themes/components/libs/notification-item";
 
 // Dummy
-import { notificationList } from "app/database/dummy/notification";
+import { notificationList } from "dashboard/database/dummy/notification";
 
 // Styles
 import s from "./index.module.scss";

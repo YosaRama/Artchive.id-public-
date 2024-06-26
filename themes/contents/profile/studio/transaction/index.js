@@ -12,14 +12,14 @@ import ThemesProfileTransactionItemFooter from "./footer";
 import ThemesCarouselMenu from "themes/components/libs/carousel-menu";
 
 // Helpers
-import { useWindowSize } from "app/helpers/useWindowSize";
+import { useWindowSize } from "dashboard/helpers/useWindowSize";
 
 // Hooks
-import { useOrderLoad } from "app/hooks/order";
+import { useOrderLoad } from "dashboard/hooks/order";
 
 // Styles
 import s from "./index.module.scss";
-import { fadeTopToBottom, fadingLeftToRight } from "app/database/framer-motion";
+import { fadeTopToBottom, fadingLeftToRight } from "dashboard/database/framer-motion";
 
 function ThemesContentsProfileTransaction(props) {
   const { userId } = props;

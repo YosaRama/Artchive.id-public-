@@ -7,10 +7,10 @@ import { motion } from "framer-motion";
 
 // Styles
 import s from "./index.module.scss";
-import { fadingBottomToTop } from "app/database/framer-motion";
+import { fadingBottomToTop } from "dashboard/database/framer-motion";
 
 // Hooks
-import { useUser } from "app/hooks/user";
+import { useUser } from "dashboard/hooks/user";
 
 // Icons
 import { ArtworkIcon } from "/public/icons/artwork-icon";

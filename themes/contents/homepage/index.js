@@ -15,7 +15,7 @@ import ThemesHeadline from "themes/components/libs/headline";
 
 // Styles
 import s from "./index.module.scss";
-import { fading } from "app/database/framer-motion";
+import { fading } from "dashboard/database/framer-motion";
 
 function ThemesContentsHomepage(props) {
   const { artworkData, artistData } = props;

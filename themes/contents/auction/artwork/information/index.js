@@ -12,12 +12,12 @@ import ThemesTextReadMore from "themes/components/libs/text-read-more";
 import ThemesArtworkWithFrame from "themes/components/libs/artwork-with-frame";
 
 // Hooks
-import { useAuctionItem, useAuctionItems } from "app/hooks/auction/item";
+import { useAuctionItem, useAuctionItems } from "dashboard/hooks/auction/item";
 
 // Helper
-import priceFormatter from "app/helpers/priceFormatter";
-import { useWindowSize } from "app/helpers/useWindowSize";
-import stringCapitalize from "app/helpers/capitalize";
+import priceFormatter from "dashboard/helpers/priceFormatter";
+import { useWindowSize } from "dashboard/helpers/useWindowSize";
+import stringCapitalize from "dashboard/helpers/capitalize";
 
 // Style
 import s from "./index.module.scss";

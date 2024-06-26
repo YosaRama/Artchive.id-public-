@@ -1,6 +1,6 @@
 // Queries
-import { GET_EXHIBITION_ARTWORK_DETAILS_BY_SLUG } from "app/database/query/artwork";
-import { GET_ALL_ARTWORK_EXHIBITION_SLUG } from "app/database/query/exhibition";
+import { GET_EXHIBITION_ARTWORK_DETAILS_BY_SLUG } from "dashboard/database/query/artwork";
+import { GET_ALL_ARTWORK_EXHIBITION_SLUG } from "dashboard/database/query/exhibition";
 
 // Contents
 import ThemesContentsExhibitionArtwork from "themes/contents/exhibition/artwork";

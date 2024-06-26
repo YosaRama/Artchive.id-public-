@@ -1,8 +1,8 @@
 // Helper
-import auctioo from "app/utils/auctioo";
+import auctioo from "dashboard/utils/auctioo";
 import nextConnect from "next-connect";
 import moment from "moment";
-import { GET_ARTWORK_BY_SKU } from "app/database/query/artwork";
+import { GET_ARTWORK_BY_SKU } from "dashboard/database/query/artwork";
 
 const apiHandler = nextConnect();
 

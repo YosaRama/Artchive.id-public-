@@ -11,7 +11,7 @@ import ThemesContainerMain from "themes/components/container/main";
 import ThemesContentsAuctionBidDetails from "./bid";
 
 // Hooks
-import { useAuctionItem } from "app/hooks/auction/item";
+import { useAuctionItem } from "dashboard/hooks/auction/item";
 
 // Styles
 import s from "./index.module.scss";

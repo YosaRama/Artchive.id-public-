@@ -8,7 +8,7 @@ import { ExclamationCircleOutlined } from "@ant-design/icons";
 import ThemesButton from "../../button";
 
 // Helper
-import { useWindowSize } from "app/helpers/useWindowSize";
+import { useWindowSize } from "dashboard/helpers/useWindowSize";
 
 // Style
 import s from "./index.module.scss";

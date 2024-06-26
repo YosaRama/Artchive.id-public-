@@ -16,9 +16,9 @@ import ThemesNavbarDrawer from "themes/components/libs/navbar-drawer";
 import ThemesHeaderCart from "./cart-modal";
 
 // Hooks
-import { useUser } from "app/hooks/user";
-import { useWindowSize } from "app/helpers/useWindowSize";
-import { useCarts } from "app/hooks/cart";
+import { useUser } from "dashboard/hooks/user";
+import { useWindowSize } from "dashboard/helpers/useWindowSize";
+import { useCarts } from "dashboard/hooks/cart";
 
 // Icons
 import { MenuOutlined, BellFilled } from "@ant-design/icons";
@@ -26,10 +26,10 @@ import { CartIcon } from "public/icons/cart-icon";
 
 // Styles
 import s from "./index.module.scss";
-import { fadeTopToBottom } from "app/database/framer-motion";
+import { fadeTopToBottom } from "dashboard/database/framer-motion";
 
 // Dummy
-import { notificationList } from "app/database/dummy/notification";
+import { notificationList } from "dashboard/database/dummy/notification";
 
 function ThemesHeader() {
   const router = useRouter();

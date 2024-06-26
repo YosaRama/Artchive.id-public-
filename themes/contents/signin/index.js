@@ -11,17 +11,17 @@ import { ExclamationCircleOutlined, PhoneFilled, MailFilled } from "@ant-design/
 import ThemesContainerMain from "themes/components/container/main";
 import ThemesContainerTwoColumns from "themes/components/container/two-column";
 import ThemesButton from "themes/components/libs/button";
-import { ErrorNotification, WarningNotification } from "app/components/utils/notification";
+import { ErrorNotification, WarningNotification } from "dashboard/components/utils/notification";
 
 // Hooks
-import { useMailer } from "app/hooks/mailer";
+import { useMailer } from "dashboard/hooks/mailer";
 
 // Helpers
-import { hashPassword } from "app/helpers/auth";
+import { hashPassword } from "dashboard/helpers/auth";
 
 // Styles
 import s from "./index.module.scss";
-import { useUsers } from "app/hooks/user";
+import { useUsers } from "dashboard/hooks/user";
 
 function ThemesContentsSignIn() {
   const router = useRouter();

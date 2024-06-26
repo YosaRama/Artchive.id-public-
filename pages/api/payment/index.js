@@ -4,8 +4,8 @@ import nextConnect from "next-connect";
 import { v4 as uuid } from "uuid";
 
 // Queries
-import { GET_PAYMENT_HISTORY } from "app/database/query/payment-history";
-import { CREATE_ORDER } from "app/database/query/order";
+import { GET_PAYMENT_HISTORY } from "dashboard/database/query/payment-history";
+import { CREATE_ORDER } from "dashboard/database/query/order";
 
 const apiHandler = nextConnect();
 const messageHead = "Template";

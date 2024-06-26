@@ -2,7 +2,7 @@
 import { getSession, useSession } from "next-auth/react";
 
 // Helper
-import profileSession from "app/helpers/profileSession";
+import profileSession from "dashboard/helpers/profileSession";
 
 // Contents
 import ThemesContentsProfileTransaction from "themes/contents/profile/studio/transaction";

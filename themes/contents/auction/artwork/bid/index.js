@@ -12,15 +12,15 @@ import { useRouter } from "next/router";
 import ThemesModalAuctionLogin from "themes/components/libs/modal-auction-login";
 
 // Helper
-import priceFormatter from "app/helpers/priceFormatter";
-import { useWindowSize } from "app/helpers/useWindowSize";
+import priceFormatter from "dashboard/helpers/priceFormatter";
+import { useWindowSize } from "dashboard/helpers/useWindowSize";
 
 // Hooks
-import { useAuctionItem } from "app/hooks/auction/item";
+import { useAuctionItem } from "dashboard/hooks/auction/item";
 
 // Style
 import s from "./index.module.scss";
-import { useAuctionUser } from "app/hooks/auction/user";
+import { useAuctionUser } from "dashboard/hooks/auction/user";
 
 function ThemesContentsAuctionBidDetails(props) {
   const { estimation, startingBid, step, sticky, status, bidHistory } = props;

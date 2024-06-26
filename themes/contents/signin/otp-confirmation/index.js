@@ -1,6 +1,6 @@
 // Libs
 import { Col, Row, Image, Input, Form } from "antd";
-import { ErrorNotification } from "app/components/utils/notification";
+import { ErrorNotification } from "dashboard/components/utils/notification";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useState } from "react";

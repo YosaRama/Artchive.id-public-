@@ -1,5 +1,5 @@
 // Query
-import { DELETE_CART } from "app/database/query/cart";
+import { DELETE_CART } from "dashboard/database/query/cart";
 
 // Helper
 import nextConnect from "next-connect";

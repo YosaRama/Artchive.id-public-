@@ -3,7 +3,7 @@ import ThemesContentsArtistDetails from "themes/contents/artist/details";
 
 // Query
 import moment from "moment";
-import { GET_ALL_ARTIST_SLUG, GET_USER_BY_SLUG } from "app/database/query/user";
+import { GET_ALL_ARTIST_SLUG, GET_USER_BY_SLUG } from "dashboard/database/query/user";
 
 function PageArtistDetails(props) {
   const { artistData } = props;

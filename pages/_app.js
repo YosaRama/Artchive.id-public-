@@ -4,19 +4,19 @@ import { useEffect, useState } from "react";
 import { SessionProvider } from "next-auth/react";
 
 // Context
-import GlobalContext from "app/contexts";
+import GlobalContext from "dashboard/contexts";
 
 // Client Data Fetching
 import { SWRConfig } from "swr";
-import { fetcher } from "app/utils/swr";
+import { fetcher } from "dashboard/utils/swr";
 
 // Layout
-import AppLayout from "app/components/layout";
+import AppLayout from "dashboard/components/layout";
 import ThemesLayout from "themes/components/layout";
 
 // Styles
 import "antd/dist/antd.less";
-import "app/styles/dashboard.scss";
+import "dashboard/styles/dashboard.scss";
 import "themes/styles/theme.scss";
 import "react-quill/dist/quill.snow.css";
 

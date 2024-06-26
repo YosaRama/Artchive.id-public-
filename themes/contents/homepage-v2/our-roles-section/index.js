@@ -10,7 +10,7 @@ import ThemesHeadline from "themes/components/libs/headline";
 
 // Styles
 import s from "./index.module.scss";
-import { textDelayLeftToRight, textDelayRightToLeft } from "app/database/framer-motion";
+import { textDelayLeftToRight, textDelayRightToLeft } from "dashboard/database/framer-motion";
 
 function ThemesContentsHomepageV2OurRolesSection(props) {
   const {

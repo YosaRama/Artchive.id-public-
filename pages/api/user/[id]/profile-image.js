@@ -1,5 +1,5 @@
 // Query
-import { UPDATE_USER_PROFILE_IMAGE } from "app/database/query/user";
+import { UPDATE_USER_PROFILE_IMAGE } from "dashboard/database/query/user";
 
 // Helper
 import nextConnect from "next-connect";

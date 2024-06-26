@@ -5,7 +5,7 @@ import { getSession, useSession } from "next-auth/react";
 import ThemesCheckoutThankYou from "themes/contents/checkout/thank-you";
 
 // Helper
-import profileSession from "app/helpers/profileSession";
+import profileSession from "dashboard/helpers/profileSession";
 
 function PageCheckoutThankYou() {
   //? ============== Handle Session ============= ?//

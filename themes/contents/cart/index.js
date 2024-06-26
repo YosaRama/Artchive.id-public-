@@ -7,7 +7,7 @@ import { useSession } from "next-auth/react";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 
 // DummyData
-// import { cartListDummyData } from "app/database/dummy/cart";
+// import { cartListDummyData } from "dashboard/database/dummy/cart";
 
 // Components
 import ThemesCartItem from "themes/components/libs/cart";
@@ -18,14 +18,14 @@ import ThemesArtworkWithFrame from "themes/components/libs/artwork-with-frame";
 import ThemesDividerWithButton from "themes/components/libs/divider-with-button";
 
 // Data Hook
-import { useArtworks } from "app/hooks/artwork";
-import { useCarts } from "app/hooks/cart";
+import { useArtworks } from "dashboard/hooks/artwork";
+import { useCarts } from "dashboard/hooks/cart";
 
 // Styles
 import s from "./index.module.scss";
 
 // Helper
-import priceFormatter from "app/helpers/priceFormatter";
+import priceFormatter from "dashboard/helpers/priceFormatter";
 
 function ThemesContentsCart(props) {
   const router = useRouter();

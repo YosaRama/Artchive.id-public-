@@ -6,8 +6,8 @@ import { useEffect } from "react";
 import { signOut } from "next-auth/react";
 
 // Data Hook
-import { useUser } from "app/hooks/user";
-import { useMailer } from "app/hooks/mailer";
+import { useUser } from "dashboard/hooks/user";
+import { useMailer } from "dashboard/hooks/mailer";
 
 // Styles
 import s from "./index.module.scss";

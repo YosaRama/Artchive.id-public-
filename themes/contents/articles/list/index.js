@@ -9,10 +9,10 @@ import ThemesArticleListCard from "themes/components/libs/article-list-card";
 import ThemesButton from "themes/components/libs/button";
 
 // Helpers
-import { useWindowSize } from "app/helpers/useWindowSize";
+import { useWindowSize } from "dashboard/helpers/useWindowSize";
 
 // Data Hook
-import { useArticlesLoad } from "app/hooks/articles";
+import { useArticlesLoad } from "dashboard/hooks/articles";
 
 // Styles
 import s from "./index.module.scss";

@@ -2,7 +2,7 @@
 import { getSession } from "next-auth/react";
 
 // Helper
-import { hashPassword } from "app/helpers/auth";
+import { hashPassword } from "dashboard/helpers/auth";
 
 // Content
 import ThemesContentsRegisterRoleSelection from "themes/contents/register/role-selection";

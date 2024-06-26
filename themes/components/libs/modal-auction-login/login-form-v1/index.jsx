@@ -8,11 +8,11 @@ import { useState } from "react";
 import ThemesButton from "../../button";
 
 // Helper
-import { useWindowSize } from "app/helpers/useWindowSize";
+import { useWindowSize } from "dashboard/helpers/useWindowSize";
 
 // Style
 import s from "./index.module.scss";
-import { useAuctionPhoneCtx } from "app/contexts/auction-phone";
+import { useAuctionPhoneCtx } from "dashboard/contexts/auction-phone";
 
 function ThemesAuctionLoginForm(props) {
   const { handleModalVisible, handleModalStage, eventStatus } = props;

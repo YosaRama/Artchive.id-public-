@@ -2,7 +2,7 @@
 import { getSession } from "next-auth/react";
 
 // Contents
-import AppContentsLogin from "app/contents/login";
+import AppContentsLogin from "dashboard/contents/login";
 
 function PageManagePage() {
   return <AppContentsLogin />;

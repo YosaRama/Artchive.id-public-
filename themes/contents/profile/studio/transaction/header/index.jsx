@@ -2,10 +2,10 @@
 import { Col, Row, Divider } from "antd";
 import propTypes from "prop-types";
 import moment from "moment";
-import { useWindowSize } from "app/helpers/useWindowSize";
+import { useWindowSize } from "dashboard/helpers/useWindowSize";
 
 // Helper
-import { stringCapitalize } from "app/helpers/capitalize";
+import { stringCapitalize } from "dashboard/helpers/capitalize";
 
 // Styles
 import s from "./index.module.scss";

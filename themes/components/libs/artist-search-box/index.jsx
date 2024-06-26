@@ -6,7 +6,7 @@ const { Option } = AutoComplete;
 import Image from "next/image";
 
 // Data Hooks
-import { useUsers } from "app/hooks/user";
+import { useUsers } from "dashboard/hooks/user";
 
 // Styles
 import s from "./index.module.scss";

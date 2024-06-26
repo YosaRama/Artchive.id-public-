@@ -3,7 +3,7 @@ import { Col, Row } from "antd";
 import propTypes from "prop-types";
 
 // Helper
-import priceFormatter from "app/helpers/priceFormatter";
+import priceFormatter from "dashboard/helpers/priceFormatter";
 
 // Styles
 import s from "./index.module.scss";

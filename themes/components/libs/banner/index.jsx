@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Col } from "antd";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { fading } from "app/database/framer-motion";
+import { fading } from "dashboard/database/framer-motion";
 import { useRouter } from "next/router";
 
 // Styles

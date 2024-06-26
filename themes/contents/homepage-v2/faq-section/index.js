@@ -7,7 +7,7 @@ import ThemesContainerMain from "themes/components/container/main";
 import ThemesHeadline from "themes/components/libs/headline";
 
 // Dummy
-import { faqList } from "app/database/dummy/homepage-v2";
+import { faqList } from "dashboard/database/dummy/homepage-v2";
 
 // Styles
 import s from "./index.module.scss";

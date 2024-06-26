@@ -6,8 +6,8 @@ import propTypes from "prop-types";
 import { Badge, Card, Col, Divider, Tag } from "antd";
 
 // Helpers
-import priceFormatter from "app/helpers/priceFormatter";
-import { stringCapitalize } from "app/helpers/capitalize";
+import priceFormatter from "dashboard/helpers/priceFormatter";
+import { stringCapitalize } from "dashboard/helpers/capitalize";
 
 // Components
 import ThemesVerifiedIcon from "../verified-icon";

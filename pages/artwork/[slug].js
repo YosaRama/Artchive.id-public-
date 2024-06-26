@@ -37,7 +37,7 @@ function PageArtworkDetails(props) {
 export default PageArtworkDetails;
 
 export const getStaticProps = async (ctx) => {
-  const { GET_ARTWORK_BY_SLUG } = require("app/database/query/artwork");
+  const { GET_ARTWORK_BY_SLUG } = require("dashboard/database/query/artwork");
 
   const artworkDataRes = await GET_ARTWORK_BY_SLUG({ slug: ctx.params.slug });
 
@@ -58,7 +58,7 @@ export const getStaticProps = async (ctx) => {
 };
 
 export const getStaticPaths = async () => {
-  const { GET_ALL_ARTWORK_SLUG } = require("app/database/query/artwork");
+  const { GET_ALL_ARTWORK_SLUG } = require("dashboard/database/query/artwork");
   const artworkSlug = await GET_ALL_ARTWORK_SLUG();
 
   return {

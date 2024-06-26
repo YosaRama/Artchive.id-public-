@@ -5,7 +5,7 @@ import moment from "moment";
 import ThemesContentsArtistList from "themes/contents/artist/list";
 
 // Queries
-import { GET_USER } from "app/database/query/user";
+import { GET_USER } from "dashboard/database/query/user";
 
 function PageArtistList(props) {
   const { artistData } = props;
